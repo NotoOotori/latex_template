@@ -23,6 +23,8 @@
 *.synctex.gz
 *.thm
 *.xwm
+*.nav
+*.snm
 
 # Ignore PDF Files
 

@@ -1,0 +1,169 @@
+\subsection{问题分析}
+    \begin{enumerate}
+        \item 题目给出了``若参加同一地点会议的(至少)两人中，有一人的学术报告选为大会报告的概率'',
+                我们理解为至少有一人的学术报告选为大会报告的概率.
+                对于参会安排最优的评价, 我们只有这个概率和会议星级的数据,
+                因此需以此建立一个参数来评判参会安排的优劣性.
+        \item 于是, 如果参会人数多于两人, 多出的职称最低的一人不能对选为大会报告的期望作出贡献,
+                并且每个会议的参会人数最低要求均不小于两人,
+                因此, 参加各个会议的人数应恰好为最低要求.
+        \item 经初步观察, 如果两位教授和两位副教授分别组队, 参加两个不同的会议,
+                那么有一人的学术报告被选为大会报告的概率分别为0.75和0.35, 相加得1.10;
+                如果两队均为一位教授和一位副教授的组合, 那么概率之和为1.00,
+                有$1.10>1.00$.
+                同理, 我们可得出副教授与讲师的组合中, 副教授和讲师分别组队优于交叉组队.
+                当然, 这样的推导只是直观上的感觉, 是不严谨的, 我们将在下文给出具体的证明.
+    \end{enumerate}
+
+\subsection{模型建立}
+    \subsubsection{影响力期望}
+        与上一个模型相同, 我们依旧直接用会议的星级$s_{i}$表征会议的影响力,
+        报告被选为大会报告的概率$p_{i}$即为产生影响力的概率, 
+        因此影响力总和的期望$E=\sum(s_{i})\times p_{i}.$
+    \subsubsection{贪心优化策略}
+        根据问题分析中的第二点和第三点, 我们得出了两个基本的贪心优化策略:
+        \begin{enumerate}[(i)]
+            \item 每场会议的参加人数恰好为会议要求最低总人数
+            \item 尽量使教授同教授一起组队, 副教授与副教授一起组队
+        \end{enumerate}
+        
+        在这里我们给出(ii)的证明, 以两位教授及两位副教授两两之间组队参会为例.
+        
+        \begin{proof}[证明:]
+            设两个会议的影响力分别为$\sigma_{1}$, $\sigma_{2}$, 其中$\sigma_{1}\ge \sigma_{2}>0$.
+            设教授与副教授分别组队的影响力期望为$E_{1}$,
+            教授与副教授交叉组队的影响力期望为$E_{2}$, 则
+            \begin{align}
+                E_{1}&=\frac{3}{4}\sigma_{1}+\frac{7}{20}\sigma_{2}\\
+                E_{2}&=\frac{1}{2}(\sigma_{1}+\sigma_{2}).
+            \end{align}
+            因此
+            \begin{equation}
+                E_{1}-E_{2}=\frac{1}{4}\sigma_{1}-\frac{3}{20}\sigma_{2}
+                =\frac{3}{20}(\sigma_{1}-\sigma_{2})+\frac{1}{10}\sigma_{1}>0
+            \end{equation}
+        \end{proof}
+    \subsubsection{基本贪心策略}
+        依据贪心优化策略(ii), 我们尽量避免不同职称之间老师交叉组队的情况, 列出下表.
+        \begin{table}[htb]\footnotesize
+            \begin{center}
+            \caption{贪心模型老师组合表}
+                \begin{tabular}{ccc}
+                    \Xhline{1.2pt}
+                    序号    &    老师1    &    老师2\\
+                    \hline
+                    1       &    主任     &    副主任\\
+                    2       &    教授A    &    教授B\\
+                    3       &    教授C    &    副教授A\\
+                    4       &    副教授B  &    副教授C\\
+                    5       &    副教授D  &    副教授E\\
+                    6       &    副教授F  &    副教授G\\
+                    7       &    副教授H  &    讲师A\\
+                    8       &    讲师B    &    讲师C\\
+                    9       &    讲师D    &    讲师E\\
+                    \Xhline{1.2pt}
+                \end{tabular}
+            \end{center}
+        \end{table}
+        
+\subsection{模型求解与评价}
+    \subsubsection{算法实现}
+        \begin{enumerate}[Step 1.]
+            \item 定义所有参会组合的有序集合$\Omega$, $\Omega$共有303个元素, 代表着附录中的参会组合,
+                    每个元素均为代表着所前往会议城市的编号.
+                    \[\Omega=(\{1\}, \{1, 4, 6\}, \{1, 4, 6, 7\}, \dotsc, \{13\}).\]
+            \item 定义$S_{i}$为参会组合$i$中所有会议的影响力总和
+            \item 对于9种老师组合, 定义$\boldsymbol P$为9种组合被选为大会报告的概率向量,
+                    \[{\boldsymbol P}=(0.75, 0.75, 0.5, 0.35, 0.35, 0.35, 0.10, 0.10, 0.10).\]
+            \item 令$i \leftarrow 1$, $E \leftarrow 0.$
+            \item 选出$\Omega$所有元素中影响力总和$S_{t}$最大的元素$t$作为第$i$组的参会安排,
+                    并且$E \leftarrow E + S_{t}\times P_{i}.$
+            \item 对任意一个$\Omega$中的元素$\Omega_{\zeta}$,
+                    若$\exists \chi (\chi \in \Omega_{\zeta} \wedge \chi \in \Omega_{t})$,
+                    则令$\Omega_{\zeta} \leftarrow \emptyset.$
+            \item $i \leftarrow i+1.$
+            \item 如果$i\le 9$返回步骤v.
+            \item 增加某几位讲师的参会数量, 以满足参会最小人数的约束.
+        \end{enumerate}
+    \subsubsection{运行结果}
+        求解得最大影响力期望为32.0, 具体参会安排如下:
+        
+        \begin{scriptsize}
+            \begin{align*}
+                \text{主任:}&\ \textit{同济}
+                    \xrightarrow[7.19]{\text{高铁}}\ \CityI\
+                    \xrightarrow[7.25]{\text{飞机}}\ \CityV\
+                    \xrightarrow[7.28]{\text{飞机}}\ \CityVI\
+                    \xrightarrow[8.01]{\text{高铁}}\ \CityVIII\
+                    \xrightarrow[8.05]{\text{高铁}} \textit{同济}
+                    \xrightarrow[8.05]{\text{飞机}}\ \CityX\
+                    \xrightarrow[8.09]{\text{高铁}} \textit{同济}\\
+                \text{副主任:}&\ \textit{同济}
+                    \xrightarrow[7.19]{\text{高铁}}\ \CityI\
+                    \xrightarrow[7.25]{\text{飞机}}\ \CityV\
+                    \xrightarrow[7.28]{\text{飞机}}\ \CityVI\
+                    \xrightarrow[8.01]{\text{高铁}}\ \CityVIII\
+                    \xrightarrow[8.05]{\text{高铁}} \textit{同济}
+                    \xrightarrow[8.05]{\text{飞机}}\ \CityX\
+                    \xrightarrow[8.09]{\text{高铁}} \textit{同济}\\
+                \text{教授A:}&\ \textit{同济}
+                    \xrightarrow{\hspace{13pt}}\ \CityII\
+                    \xrightarrow[7.31]{\text{高铁}}\ \CityVII\
+                    \xrightarrow[8.04]{\text{高铁}} \textit{同济}
+                    \xrightarrow[8.07]{\text{飞机}}\ \CityXIII\
+                    \xrightarrow[8.11]{\text{高铁}} \textit{同济}\\
+                \text{教授B:}&\ \textit{同济}
+                    \xrightarrow{\hspace{13pt}}\ \CityII\
+                    \xrightarrow[7.31]{\text{高铁}}\ \CityVII\
+                    \xrightarrow[8.04]{\text{高铁}} \textit{同济}
+                    \xrightarrow[8.07]{\text{飞机}}\ \CityXIII\
+                    \xrightarrow[8.11]{\text{高铁}} \textit{同济}\\
+                \text{教授C:}&\ \textit{同济}
+                    \xrightarrow[7.21]{\text{高铁}}\ \CityIII\
+                    \xrightarrow[8.02]{\text{高铁}}\ \CityIX\
+                    \xrightarrow[8.06]{\text{飞机}}\ \CityXII\
+                    \xrightarrow[8.10]{\text{高铁}} \textit{同济}\\
+                \text{副教授A:}&\ \textit{同济}
+                    \xrightarrow[7.21]{\text{高铁}}\ \CityIII\
+                    \xrightarrow[8.02]{\text{高铁}}\ \CityIX\
+                    \xrightarrow[8.06]{\text{飞机}}\ \CityXII\
+                    \xrightarrow[8.10]{\text{高铁}} \textit{同济}\\
+                \text{副教授B:}&\ \textit{同济}
+                    \xrightarrow[7.25]{\text{高铁}}\ \CityIV\
+                    \xrightarrow[7.28]{\text{高铁}}\ \CityXI\
+                    \xrightarrow[7.29]{\text{高铁}} \textit{同济}\\
+                \text{副教授C:}&\ \textit{同济}
+                    \xrightarrow[7.25]{\text{高铁}}\ \CityIV\
+                    \xrightarrow[7.28]{\text{高铁}}\ \CityXI\
+                    \xrightarrow[7.29]{\text{高铁}} \textit{同济}\\
+                \text{副教授D:}&\ \textit{同济}
+                    \xrightarrow{\text{休息}}\ \textit{同济}\\
+                \text{副教授E:}&\ \textit{同济}
+                    \xrightarrow{\text{休息}}\ \textit{同济}\\
+                \text{副教授F:}&\ \textit{同济}
+                    \xrightarrow{\text{休息}}\ \textit{同济}\\
+                \text{副教授G:}&\ \textit{同济}
+                    \xrightarrow{\text{休息}}\ \textit{同济}\\
+                \text{副教授H:}&\ \textit{同济}
+                    \xrightarrow{\text{休息}}\ \textit{同济}\\
+                \text{讲师A:}&\ \textit{同济}
+                    \xrightarrow[7.19]{\text{高铁}}\ \CityI\
+                    \xrightarrow[7.29]{\text{高铁}} \textit{同济}\\
+                \text{讲师B:}&\ \textit{同济}
+                    \xrightarrow{\hspace{13pt}}\ \CityII\
+                    \xrightarrow{\hspace{13pt}}\textit{同济}\\
+                \text{讲师C:}&\ \textit{同济}
+                    \xrightarrow{\text{休息}} \textit{同济}\\
+                \text{讲师D:}&\ \textit{同济}
+                    \xrightarrow{\text{休息}}\ \textit{同济}\\
+                \text{讲师E:}&\ \textit{同济}
+                    \xrightarrow{\text{休息}}\ \textit{同济}
+            \end{align*}
+        \end{scriptsize}
+    \subsubsection{算法评价}
+        \subsubsubsection{合理性}
+            以上算法, 优先考虑被选为会议报告概率最大的组别, 使其参会组合星级和最大,
+            能极大概率的保证规划出的星级期望尽可能大, 可以做到接近或者等于最优值.
+        \subsubsubsection{不合理性}
+            从运行结果便可看出, 教授们参加了非常多的会议, 日程繁忙, 而有接近一半的教授无所事事,
+            显然与真实情况有比较大的差距.

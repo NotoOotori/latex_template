@@ -1,0 +1,393 @@
+% !Mode::"TeX:UTF-8"
+
+% -------------------- Information --------------------
+
+\newcommand{\TITLE}{基于动态规划和贪心的参会安排最优化模型}
+\newcommand{\AUTHOR}{}
+\newcommand{\SUBJECT}{校赛论文}
+
+% -------------------- Packages --------------------
+
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage{amsmath}
+%\usepackage{amsthm} % 定理格式 由ntheorem代替.
+\usepackage{amssymb}
+\usepackage{authblk} % 作者 (见校赛论文).
+\usepackage{array}
+\usepackage{bigfoot} % to allow verbatim in footnote.
+\usepackage{boldline} % 长表格表格线加粗.
+\usepackage{caption} % 题注.
+\usepackage{commath} % abs, norm
+\usepackage{enumerate}
+%\usepackage{enumitem} 用enumerate包代替.
+\usepackage{fancyhdr} % 脚注.
+\usepackage{filecontents}
+\usepackage{flafter} % 不让float出现在定义之前的地方.
+\usepackage{float} % 你们这帮float给我乖乖听话 HHHHHHHHHHH.
+\usepackage[T1]{fontenc} % Bera Mono Font
+\usepackage{fontspec} % 字体.
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{listings} % 排版程序语言.
+\usepackage{longtable} % 长表格.
+\usepackage{makecell} % 表格线加粗 \Xhline{1.2pt}.
+\usepackage{mathtools} % \xleftrightarrow.
+\usepackage{multirow} % 合并单元格.
+\usepackage[square, numbers, sort&compress]{natbib} % 引用.
+\usepackage[thmmarks, amsmath, thref]{ntheorem} % 定理格式.
+\usepackage[section]{placeins} % 使图像不会显示在别的部分 若过于严格则换成[below].
+\usepackage{stackrel} % 上下写 见校赛论文.
+\usepackage{SUBSubsubsection}
+\usepackage{titlesec} % Section标题格式.
+\usepackage{varioref} % For Cross References.
+\usepackage[dvipsnames]{xcolor} % 颜色声明.
+\usepackage[all, cmtip]{xy} % Commutive diagram.
+
+% Require `ntheorem'
+
+\usepackage{DefaultTheoremStyle}
+\usepackage[mathlines, edtable]{lineno} % Line numbers.
+    %\begin{edtable}{tabular}[<args>] <entries> \end{edtable}
+
+% Require `xcolor'
+
+\usepackage[numbered, framed]{matlab-prettifier} 
+\usepackage{pgfplots}
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{\TITLE}
+\author{\AUTHOR}
+\date{\today}
+
+% Package: caption
+
+\captionsetup{
+    margin    =   6pt,
+    font      =   small,
+    labelfont =   bf
+}
+
+% Package: fancyhdr
+
+\setlength{\headheight}{15pt}
+\lhead{Copyright \copyright\ \AUTHOR}
+\rhead{Page \thepage\ of \pageref{LastPage}}
+
+% Package: graphicx
+
+\graphicspath{{resources/}} %图像文件目录
+    
+% Package: hyperref
+
+\hypersetup{
+    linktoc             =   all,
+    colorlinks          =   true,
+    linkcolor           =   cyan,
+    anchorcolor         =   black,
+    citecolor           =   blue,
+    filecolor           =   cyan,
+    menucolor           =   red,
+    runcolor            =   filecolor,
+    urlcolor            =   magenta,
+    pdfinfo             =   {
+        Title           =   {\TITLE},
+        Author          =   {\AUTHOR},
+        Subject         =   {\SUBJECT}},
+    bookmarksnumbered   =   true,
+    pdfstartview        =   FitH,
+    pdfpagelayout       =   OneColumn
+}
+
+% Package: lineno
+
+\renewcommand{\linenumberfont}{\normalfont\scriptsize\sffamily}
+
+\let\oldlstinputlisting\lstinputlisting
+\renewcommand{\lstinputlisting}[2][\empty]{
+    \par\nolinenumbers\oldlstinputlisting[#1]{#2}\linenumbers\par
+}
+
+\let\oldlstlisting\lstlisting
+\let\oldendlstlisting\endlstlisting
+\renewenvironment{lstlisting}
+    {\par\nolinenumbers\oldlstlisting}
+    {\oldendlstlisting\endnolinenumbers\par}
+
+\let\oldtable\table
+\let\oldendtable\endtable
+\renewenvironment{table}
+    {\par\nolinenumbers\oldtable}
+    {\oldendtable\endnolinenumbers\par}
+
+% Package: listings
+
+\lstMakeShortInline[style=MATLAB-editor, basicstyle=\mlttfamily]|
+
+\lstset{
+    breaklines=true,
+    backgroundcolor=\color{lightgray},
+    basicstyle=\scriptsize,
+    numbers=left,
+    numberstyle={\color{black!33}\scriptsize\sffamily},
+    xleftmargin=2em,
+    xrightmargin=2em
+}
+
+% Package: pgfplot
+
+\pgfplotsset{width=7cm, compat=1.16}
+
+% Package: varioref
+
+\renewcommand{\reftextbefore}
+    {on the \reftextvario{preceding page}{page before}}
+\renewcommand{\reftextafter}
+    {on the \reftextvario{following}{next} page}
+\renewcommand{\reftextfacebefore}
+    {on the \reftextvario{facing}{preceding} page}
+\renewcommand{\reftextfaceafter}
+    {on the \reftextvario{facing}{next}{page}}
+\renewcommand{\reftextfaraway}[1]
+    {on page \pageref{#1}}
+
+% -------------------- General new commands --------------------
+
+\DeclareMathAlphabet{\mathsfsl}{OT1}{cmss}{m}{sl}
+
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\matr}[1]{\ensuremath{\mathsfsl{#1}}} % italic sans serif
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\mi}{\mathrm{i}}
+\newcommand{\restrict[1]}{\raisebox{-.5ex}{$|$}_{#1}}
+
+% -------------------- Specific new commands --------------------
+
+\newcommand{\CityI}   {\stackrel[7.25]{7.20}{\text{北京}}}
+\newcommand{\CityII}  {\stackrel[7.26]{7.21}{\text{上海}}}
+\newcommand{\CityIII} {\stackrel[7.26]{7.22}{\text{广州}}}
+\newcommand{\CityIV}  {\stackrel[7.28]{7.26}{\text{兰州}}}
+\newcommand{\CityV}   {\stackrel[7.28]{7.26}{\text{成都}}}
+\newcommand{\CityVI}  {\stackrel[7.31]{7.29}{\text{昆明}}}
+\newcommand{\CityVII} {\stackrel[8.03]{8.01}{\text{南京}}}
+\newcommand{\CityVIII}{\stackrel[8.04]{8.02}{\text{厦门}}}
+\newcommand{\CityIX}  {\stackrel[8.06]{8.03}{\text{杭州}}}
+\newcommand{\CityX}   {\stackrel[8.08]{8.06}{\text{济南}}}
+\newcommand{\CityXI}  {\stackrel[8.09]{8.07}{\text{天津}}}
+\newcommand{\CityXII} {\stackrel[8.10]{8.07}{\text{咸阳}}}
+\newcommand{\CityXIII}{\stackrel[8.10]{8.08}{\text{大连}}}
+
+% -------------------- Document --------------------
+
+\begin{document}
+
+    % -------------------- Title Page --------------------
+
+    \maketitle
+    \thispagestyle{empty}
+    \pagenumbering{roman}
+
+    % -------------------- Abstract Page --------------------
+
+    \newpage
+    \input{abstract.tex}
+
+    % -------------------- Contents --------------------
+
+    \newpage
+    \tableofcontents
+
+    % -------------------- Body --------------------
+
+    \newpage
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    \linenumbers
+    
+    \section{背景介绍} %重述
+
+    \input{introduction.tex}
+
+    \section{模型假设} %分析
+
+    \begin{itemize}
+        \item 仅在老师连续不间隔地参加两个不同的会时考虑交通方式的时间因素,
+                  由于此时不存在两地距离很近的情况, 故一律乘坐飞机.
+        \item 会场方在会议开始之前及开始以后的一段时间内也提供住宿,
+                  即允许提前到达会场城市, 或者延后离开会场城市.
+        \item 会议开始前的一晚上必须住在会场城市.
+        \item 计算过程中向下取整.
+        \item 将老师按职称及职务大小由大到小排序.
+    \end{itemize}
+
+    \section{符号介绍}
+
+    \begin{table}[H]
+        \begin{center}
+            \begin{edtable}{tabular}{cc}
+                \Xhline{1.2pt}
+                符号                  &   含义\\
+                \hline
+                粗斜体字母            &   向量\\
+                $t_{i}$               &   第$i$位老师参加会议数的最低要求\\
+                $c_{i,1}$             &   第$i$个会议中参会总人数的最低要求\\
+                $c_{i,2}$             &   第$i$个会议中参会教授与副教授人数和的最低要求\\
+                $c_{i,3}$             &   第$i$个会议中参会教授人数的最低要求\\
+                $s_{i}$               &   第$i$个会议的星级\\
+                $\boldsymbol{e_{i}}$  &   单位矩阵第$i$列的列向量\\
+                \Xhline{1.2pt}
+            \end{edtable}
+        \end{center}
+    \end{table}
+
+    \section{基于动态规划的费用最优化模型}
+
+    \input{task1.tex}
+
+    \section{基于分组背包的动态规划影响力最优化模型}
+
+    \input{task2.tex}
+
+    \section{基于贪心算法的影响力期望最优化模型}
+
+    \input{task3.tex}
+
+    \section{基于价格和影响力期望值综合考虑的日程安排}
+
+    我们基于参会安排的费用和影响力以及被报告选为大会报告的概率, 做出日程安排.
+
+    \subsection{安排的科学性}
+
+    此日程安排在经费最优的基础上，进行调整，使得参会安排符合以下条件：
+    \begin{enumerate}
+        \item 每位教师都参加会议.
+        \item 尽量使得教授参加级别较高的会议.
+        \item 尽量使得教授和教授参加相同的会议.
+        \item 尽量使得副教授和副教授参加相同的会议.
+    \end{enumerate}
+    其中, 条件1, 2是为了响应学院积极报名的要求, 同时尽可能提高同济大学影响力.
+    条件2、3是为了尽量提高报告选为大会报告的影响力期望.
+    因此，本安排具有经费少, 报告被选为大会报告的星级期望更大, 同时也能较高地提高同济大学影响力的优点.
+
+    \subsection{具体安排}
+
+    \begin{scriptsize}
+        \begin{align*}
+            \text{主任:}&\ \textit{同济}
+                \xrightarrow[7.19]{\text{高铁}}\ \CityI\
+                \xrightarrow[7.25]{\text{高铁}}\ \CityIV\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}\\
+            \text{副主任:}&\ \textit{同济}
+                \xrightarrow[7.19]{\text{高铁}}\ \CityI\
+                \xrightarrow[7.25]{\text{高铁}}\ \CityIV\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}\\
+            \text{教授A:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[7.31]{\text{高铁}}\ \CityVII\
+                \xrightarrow[8.04]{\text{高铁}} \textit{同济}\\
+            \text{教授B:}&\ \textit{同济}
+                \xrightarrow[7.25]{\text{高铁}}\ \CityV\
+                \xrightarrow[7.28]{\text{高铁}}\ \CityVI\
+                \xrightarrow[8.01]{\text{高铁}} \textit{同济}\\
+            \text{教授C:}&\ \textit{同济}
+                \xrightarrow[7.21]{\text{高铁}}\ \CityIII\
+                \xrightarrow[8.02]{\text{高铁}}\ \CityIX\
+                \xrightarrow[8.06]{\text{飞机}}\ \CityXII\
+                \xrightarrow[8.10]{\text{高铁}} \textit{同济}\\
+            \text{副教授A:}&\ \textit{同济}
+                \xrightarrow[7.21]{\text{高铁}}\ \CityIII\
+                \xrightarrow[8.02]{\text{高铁}}\ \CityIX\
+                \xrightarrow[8.06]{\text{飞机}}\ \CityXII\
+                \xrightarrow[8.10]{\text{高铁}} \textit{同济}\\
+            \text{副教授B:}&\ \textit{同济}
+                \xrightarrow[7.25]{\text{高铁}}\ \CityIV\
+                \xrightarrow[7.28]{\text{高铁}}\ \CityXI\
+                \xrightarrow[7.29]{\text{高铁}} \textit{同济}\\
+            \text{副教授C:}&\ \textit{同济}
+                \xrightarrow[7.25]{\text{高铁}}\ \CityV\
+                \xrightarrow[7.28]{\text{高铁}}\ \CityVI\
+                \xrightarrow[8.01]{\text{高铁}} \textit{同济}\\
+            \text{副教授D:}&\ \textit{同济}
+                \xrightarrow[7.31]{\text{高铁}}\ \CityVII\
+                \xrightarrow[8.05]{\text{高铁}}\ \CityX\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}\\
+            \text{副教授E:}&\ \textit{同济}
+                \xrightarrow[7.25]{\text{高铁}}\ \CityV\
+                \xrightarrow[7.28]{\text{高铁}}\ \CityVI\
+                \xrightarrow[8.01]{\text{高铁}} \textit{同济}\\
+            \text{副教授F:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.02]{\text{高铁}}\ \CityIX\
+                \xrightarrow[8.07]{\text{高铁}} \textit{同济}\\
+            \text{副教授G:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.05]{\text{高铁}}\ \CityXII\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}\\
+            \text{副教授H:}&\ \textit{同济}
+                \xrightarrow[8.06]{\text{高铁}}\ \CityIII\
+                \xrightarrow[8.06]{\text{高铁}}\ \CityX\
+                \xrightarrow[8.10]{\text{高铁}} \textit{同济}\\
+            \text{讲师A:}&\ \textit{同济}
+                \xrightarrow[8.06]{\text{高铁}}\ \CityV\
+                \xrightarrow[8.02]{\text{高铁}}\ \CityVI\
+                \xrightarrow[8.07]{\text{高铁}} \textit{同济}\\
+            \text{讲师B:}&\ \textit{同济}
+                \xrightarrow[8.06]{\text{高铁}}\ \CityVII\
+                \xrightarrow[8.05]{\text{高铁}}\ \CityX\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}\\
+            \text{讲师C:}&\ \textit{同济}
+                \xrightarrow[8.06]{\text{高铁}}\ \CityVIII\
+                \xrightarrow[8.06]{\text{高铁}}\ \CityXI\
+                \xrightarrow[8.10]{\text{高铁}} \textit{同济}\\
+            \text{讲师D:}&\ \textit{同济}
+                \xrightarrow[8.06]{\text{高铁}}\ \CityIX\
+                \xrightarrow[8.06]{\text{高铁}}\ \CityXII\
+                \xrightarrow[8.11]{\text{高铁}} \textit{同济}\\
+            \text{讲师E:}&\ \textit{同济}
+                \xrightarrow[8.06]{\text{高铁}}\ \CityIX\
+                \xrightarrow[8.06]{\text{飞机}}\ \CityXIII\
+                \xrightarrow[8.11]{\text{高铁}} \textit{同济}\\
+        \end{align*}
+    \end{scriptsize}
+
+    \section{结论}
+
+    我们通过对不同约束条件进行分析,
+    分别建立了动态规划模型、动态规划模型的变种分组背包模型与贪心算法模型三种不同的模型,
+    较为准确, 合理地给出了满足不同要求的最优化人员参会安排,
+    并列出了具体的实施方案,
+    较好地解决了本题中一系列关于参会安排的问题.
+    并且在进行了误差分析与敏感度分析后,
+    发现模型对其中参数的变化并不敏感, 故具有一定的稳定性.
+
+    % -------------------- Bibliography --------------------
+
+    \newpage
+    \bibliography{tju_competition}
+    \bibliographystyle{plain}
+
+    % -------------------- Appendix --------------------
+
+    \newpage
+    \appendix
+
+    \section{参会组合表}
+
+    \input{appendices.tex}
+
+    \section{基于动态规划的费用最优化模型求解代码}
+
+    \input{cpp1.tex}
+
+    \section{基于分组背包的动态规划影响力最优化模型求解代码}
+
+    \input{cpp2.tex}
+
+    \section{基于贪心算法的影响力期望最优化模型求解代码}
+
+    \input{cpp3.tex}
+
+\end{document}

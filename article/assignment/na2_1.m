@@ -1,0 +1,16 @@
+﻿syms x;
+f(x) = sin(x)/x;
+f6(x) = taylor(f, x, 'ExpansionPoint', 0, 'Order', 6);
+f8(x) = taylor(f, x, 'ExpansionPoint', 0, 'Order', 8);
+f10(x) = taylor(f, x, 'ExpansionPoint', 0, 'Order', 10);
+xlist = linspace(-5, 5, 10000);
+hold on;
+plot(xlist, f(xlist));
+plot(xlist, f6(xlist));
+plot(xlist, f8(xlist));
+plot(xlist, f10(xlist));
+xlabel('x');
+ylabel('y');
+title('Matlab常用命令');
+legend('f', 'f6', 'f8', 'f10');
+grid on;

@@ -1,0 +1,226 @@
+\subsection{模型建立}
+    任务一要求我们在满足各会议参会人数最低要求(约束一)和各老师参会数量最低要求(约束二)的情况下,
+    给出总花费最低的参会安排.
+    我们发现了如下几条性质:
+    \begin{enumerate}
+        \item 任何人以相同的交通方式前往相同的(多个)会议, 花费均相同.
+        \item 满足约束一的最低老师参会人次$(n_{1,i})$
+                均少于该类老师满足约束二的最低老师参会人次$(n_{2,i}$),
+                $i=1,2,3$\\
+                因为
+                
+                \begin{gather*}
+                    n_{1,1}=\sum_{i=1}^{13} c_{i,1}=28<36=\sum_{i=1}^{18} t_{i}=n_{2,1}\\
+                    n_{1,2}=\sum_{i=1}^{13} c_{i,2}=14<26=\sum_{i=1}^{13} t_{i}=n_{2,2}\\
+                    n_{1,3}=\sum_{i=1}^{13} c_{i,3}=5 <10=\sum_{i=1}^{ 5} t_{i}=n_{2,3}.\\
+                \end{gather*}
+        \item 所有的老师参加且仅参加两场会议.\\
+                {\itshape 注: 该性质为第二条性质的直接推论}.
+    \end{enumerate}
+
+    因为得到了每个老师参会的确切数目, 并且以对老师进行了排序,
+    我们将已经确定所参加会议的老师数量作为阶段, 共分为18个阶段.
+
+    由于最终要求解的是花费的最小值, 我们定义\textbf{状态}为$\lambda(k,\boldsymbol{\alpha})$,
+    其中
+    $\boldsymbol{\alpha}=(a_{1}, a_{2}, a_{3}, a_{4}, a_{5}, a_{6},
+    a_{7}, a_{8}, a_{9}, a_{10}, a_{11}, a_{12}, a_{13}),$
+    表示前$k$位老师参加会议$1, 2, \dotsc, 13$分别达到人数$a_{1}, a_{2}, \dotsc, a_{13}$的要求时
+    的最低费用.
+
+    说明: 由于当$a_{i}$达到约束条件之后, 值的增加不会影响规划的结果,
+    因此在以下的计算中, 一旦参加第$i$个会议的人数大于$c_{i, 1}$, 我们都令$a_{i}=c_{i, 1}$.
+
+    设在阶段$i$的所有状态为$\lambda(i, \boldsymbol{\alpha_{1}})$,
+    在阶段$i+1$的所有状态为$\lambda(i+1, \boldsymbol{\alpha_{2}})$,
+    则第$i+1$位老师的\textbf{决策}可以是在13个会议中任选不冲突两场,
+    并且第$i+1$位老师的所有决策, 就是从阶段$i$到阶段$i+1$之间的\textbf{策略}。
+
+    由上, 设第$i+1$位老师选择了前往会议$k$和$l$的决策($k<l$),
+    那么$\boldsymbol{\alpha_{1}}$与$\boldsymbol{\alpha_{2}}$满足
+    \[\boldsymbol{\alpha_{2}}=\boldsymbol{\alpha_{1}}+\boldsymbol{e_{k}^T}+\boldsymbol{e_{l}^T}.\]
+    设$W(k,l)$表示一个人通过各种交通方式从同济前往会议$k$,
+    再前往会议$l$(或留宿在城市$k$, 或提前到达城市$l$, 或先回到同济),
+    最后再回到同济的整个过程所花费的最小费用.
+    于是我们可以得到\textbf{状态转移方程}:
+    \[\lambda(i+1, \boldsymbol{\alpha_{2}})=\min\{\lambda(i, \boldsymbol{\alpha_{1}})+W(k,l)\}.\]
+    
+\subsection{模型求解}
+    我们先定义初始状态$\lambda(0, \boldsymbol{0})=0$,
+    表示没有人参会, 并且会议参加数均为0人的最小花费为0元.
+    
+    接着从初始状态开始, 枚举出所有这一阶段所能采取的决策$(k,l)$,
+    通过状态转移方程
+    \[\lambda(i+1, \boldsymbol{\alpha_{2}})=\min\{\lambda(i, \boldsymbol{\alpha_{1}})+W(k,l)\}\]
+    递推出下一个阶段, 状态为$\boldsymbol{\alpha_{2}}$时的最低花费,
+    最终得出目标阶段的目标状态$\lambda(13, \boldsymbol{c_{1}})$时的最低花费
+    (其中$\boldsymbol{c_{1}}$为各会议参会总人数最低要求向量).
+    
+    此时我们没有把会议对不同职称老师的限制考虑进来.
+    在实际计算中, 我们先对教授进行状态转移, 即阶段$1-5$, 在阶段5结束之后,
+    检查各状态是否满足教授的参会人数最低要求, 删去其中不满足要求的状态
+    ($a_{1}<2\vee a_{2}<1\vee a_{12}<1\vee a_{13}<1$).
+    
+    同样的, 在阶段13结束之后, 我们也检查各状态是否满足教授与副教授的和人数的最低要求,
+    并删去不满足要求的状态($\exists i(a_{i}<1\wedge i\in ([3, 11]\cap \mathcal{Z})$).
+    
+    这样, 我们便可以用如上方法, 通过递推来求解使得总费用最低的参会安排.
+    结果算得最低总花费为89232元, 具体参会安排如下:
+    
+    \begin{scriptsize}
+        \begin{align*}
+            \text{主任:}&\ \textit{同济}
+                \xrightarrow[7.19]{\text{高铁}}\ \CityI\
+                \xrightarrow[7.25]{\text{飞机}}\ \CityIV\
+                \xrightarrow[7.29]{\text{高铁}} \textit{同济}
+                &\quad\text{花费8446元}\\
+            \text{副主任:}&\ \textit{同济}
+                \xrightarrow[7.20]{\text{高铁}}\ \CityI\
+                \xrightarrow[7.25]{\text{飞机}}\ \CityIV\
+                \xrightarrow[7.29]{\text{高铁}} \textit{同济}
+                &\quad\text{花费8446元}\\
+            \text{教授A:}&\ \textit{同济}
+                \xrightarrow[7.19]{\text{高铁}}\ \CityI\
+                \xrightarrow[7.26]{\text{高铁}} \textit{同济}
+                \xrightarrow[7.31]{\text{高铁}}\ \CityVII\
+                \xrightarrow[8.04]{\text{高铁}} \textit{同济}
+                &\quad\text{花费7592元}\\
+            \text{教授B:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.06]{\text{高铁}}\ \CityXII\
+                \xrightarrow[8.11]{\text{高铁}} \textit{同济}
+                &\quad\text{花费4388元}\\
+            \text{教授C:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.07]{\text{飞机}}\ \CityXIII\
+                \xrightarrow[8.11]{\text{高铁}} \textit{同济}
+                &\quad\text{花费3634元}\\
+            \text{副教授A:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[7.31]{\text{高铁}}\ \CityVII\
+                \xrightarrow[8.04]{\text{高铁}} \textit{同济}
+                &\quad\text{花费2804元}\\
+            \text{副教授B:}&\ \textit{同济}
+                \xrightarrow[7.21]{\text{高铁}}\ \CityIII\
+                \xrightarrow[7.27]{\text{高铁}} \textit{同济}
+                \xrightarrow[8.01]{\text{高铁}}\ \CityVIII\
+                \xrightarrow[8.05]{\text{高铁}} \textit{同济}
+                &\quad\text{花费7274元}\\
+            \text{副教授C:}&\ \textit{同济}
+                \xrightarrow[7.21]{\text{高铁}}\ \CityIII\
+                \xrightarrow[7.27]{\text{高铁}} \textit{同济}
+                \xrightarrow[8.01]{\text{高铁}}\ \CityVIII\
+                \xrightarrow[8.05]{\text{高铁}} \textit{同济}
+                &\quad\text{花费7274元}\\
+            \text{副教授D:}&\ \textit{同济}
+                \xrightarrow[7.25]{\text{高铁}}\ \CityV\
+                \xrightarrow[7.28]{\text{高铁}}\ \CityVI\
+                \xrightarrow[8.01]{\text{高铁}} \textit{同济}
+                &\quad\text{花费5510元}\\
+            \text{副教授E:}&\ \textit{同济}
+                \xrightarrow[7.25]{\text{高铁}}\ \CityV\
+                \xrightarrow[7.28]{\text{高铁}}\ \CityVI\
+                \xrightarrow[8.01]{\text{高铁}} \textit{同济}
+                &\quad\text{花费5510元}\\
+            \text{副教授F:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.02]{\text{高铁}}\ \CityIX\
+                \xrightarrow[8.07]{\text{高铁}} \textit{同济}
+                &\quad\text{花费3238元}\\
+            \text{副教授G:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.05]{\text{高铁}}\ \CityX\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}
+                &\quad\text{花费3292元}\\
+            \text{副教授H:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.06]{\text{高铁}}\ \CityXI\
+                \xrightarrow[8.10]{\text{高铁}} \textit{同济}
+                &\quad\text{花费3636元}\\
+            \text{讲师A:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.02]{\text{高铁}}\ \CityIX\
+                \xrightarrow[8.07]{\text{高铁}} \textit{同济}
+                &\quad\text{花费3238元}\\
+            \text{讲师B:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.05]{\text{高铁}}\ \CityX\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}
+                &\quad\text{花费3292元}\\
+            \text{讲师C:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.06]{\text{高铁}}\ \CityXI\
+                \xrightarrow[8.10]{\text{高铁}} \textit{同济}
+                &\quad\text{花费3636元}\\
+            \text{讲师D:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.06]{\text{高铁}}\ \CityXII\
+                \xrightarrow[8.11]{\text{高铁}} \textit{同济}
+                &\quad\text{花费4388元}\\
+            \text{讲师E:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.06]{\text{飞机}}\ \CityXIII\
+                \xrightarrow[8.11]{\text{高铁}} \textit{同济}
+                &\quad\text{花费3634元}
+        \end{align*}
+    \end{scriptsize}
+
+    参加各会议的不同职称老师的人数如下表, 可以看出结果满足题目的约束条件.
+    
+    \begin{table}[htb]\scriptsize
+        \begin{center}
+            \caption{任务一中参加各会议的老师情况}
+            \begin{tabular}{cccc}
+                \Xhline{1.2pt}
+                城市 & 实际总人数/要求总人数 & 实际(副)教授人数/要求(副)教授人数 &
+                    实际教授人数/要求教授人数\\
+                \hline
+                北京 & 3/3 & 3/2 & 3/2\\
+                上海 & 11/3 & 6/1 & 2/1\\
+                广州 & 2/2 & 2/1 & 0/0\\
+                兰州 & 2/2 & 2/1 & 2/0\\
+                成都 & 2/2 & 2/1 & 0/0\\
+                昆明 & 2/2 & 2/1 & 0/0\\
+                南京 & 2/2 & 2/1 & 1/0\\
+                厦门 & 2/2 & 2/1 & 0/0\\
+                杭州 & 2/2 & 1/1 & 0/0\\
+                济南 & 2/2 & 1/1 & 0/0\\
+                天津 & 2/2 & 1/1 & 0/0\\
+                咸阳 & 2/2 & 1/1 & 1/1\\
+                大连 & 2/2 & 1/1 & 1/1\\
+                \Xhline{1.2pt}
+            \end{tabular}
+        \end{center}
+    \end{table}
+    \clearpage
+\subsection{模型复杂度计算}
+    用C++实现本模型时所占用的内存为\[18\times 4^2\times3^{11}\times4=204073344\text{Byte},\]
+    约为194.62MB. 运算次数约为$18\times 4^2\times 3^{11}\times C_{13}^2)\approx 3.98\times 10^9$,
+    远远优于暴力枚举算法, 程序运行时间在50s左右, 在可接受范围内.
+\subsection{模型检验与评价}
+    \subsubsection{模型检验}
+        从求解结果可以看出, 一旦各会议参会人数最低要求被满足之后,
+        未达到参会数量最低要求的老师均选择参加上海的会议以凑满要求, 这是符合我们的预期的.
+        因为所要规划的是最低总花费, 而因为在上海开会无需住宿费和长途交通费,
+        所以花费比去其它城市开会要明显低很多.
+    \subsubsection{模型评价}
+        \subsubsubsection{优点}
+            \begin{itemize}
+                \item 模型中, 我们考虑到了老师在某一城市开完会, 准备前往下一个城市开会时,
+                        有三种可能的决策.
+                        \begin{enumerate}
+                            \item 不做停留, 直接前往下一个城市.
+                            \item 在当前城市留宿若干天, 直到下一场会议开会前一天, 再前往下一个城市.
+                            \item 先回到上海, 之后再前往下一个城市开会.
+                        \end{enumerate}
+                        
+                        因此模型得出的具体出行安排会很明确, 能确定老师出行的每一个时间点.
+                        
+                \item 我们通过推理得出了题目中老师参会数量的重要性质, 为固定值, 大幅简化了模型.
+            \end{itemize}
+        \subsubsubsection{缺点}
+            \begin{itemize}
+                \item 我们没有对会议结束的当天, 老师具体的住宿地点进行详细的讨论, 会带来一定的误差.
+                \item 本模型仅适用于每位老师参加会议数量为固定值的情况, 如果该值可在小范围内浮动,
+                        都会大大增加算法所需运算量, 使得难以算出结果.
+            \end{itemize}

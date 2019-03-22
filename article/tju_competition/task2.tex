@@ -1,0 +1,227 @@
+\subsection{问题分析}
+    任务二中, 我们需要得出预算在5万元的情况下, 老师们总影响力最大时的参会安排.
+    针对每一位老师, 令他参加的所有会议(不包括不参加会议)为这位老师的决策, 记为$x$,
+    其中决策的个数是有限的.
+    不同职称的老师做出相同的决策, 花费是相同的, 但是他们所产生的影响力, 即价值是不同的.
+    于是问题可以转化为分组背包模型.
+    
+    所谓分组背包模型，即在若干组中, 每组至多只取一件物品, 在一定的费用内使得物品价值最优化的模型.
+    
+\subsection{物品组与物品}
+    每个老师都可以当作一个背包, 每一个决策都相当于他背包中的一个物品,
+    该决策所花费的注册费, 报名费以及路费是该物品的花费,
+    而每一个决策贡献的影响力看作该物品的价值.
+
+    那么在18个背包内取至多一个物品, 使得花费在50000元以内, 并且物品价值得到最优化,
+    就是我们规划的目标.
+
+    通过计算机预处理, 在会议日程不冲突的前提下, 对于每一个人, 其参加会议所有可能的组合均只有303种, 对应着每个组内的303件物品(见附录).
+    
+\subsection{物品的费用}
+    定义第$i$个背包中的第$j$件物品(表示第$i$个人的第$j$种参会组合)的费用
+    \[V(i, j):=W(x_{j}),\]
+    其中, $W(x_{j})$为前往第$j$中参会组合中会议的所有费用的最小值, 并且$V(i, j)$的取值与$i$无关.
+
+    例如$V(1 ,2)$表示第1个人, 前往第2种参会组合中的会议时的费用,
+    即主任前往参会组合(1, 4), 代表北京$\rightarrow$兰州,
+    则$V(1, 2)=W(1, 4).$
+    
+\subsection{物品的价值}
+    当参会组合相同时, 不同职称的老师贡献的影响力却不同, 因此我们需要参数来描述职称对价值的影响,
+    为此我们引入了h指数(h-index)的概念.
+    
+    h指数由物理学家Jorge E. Hirsch在2005年提出, 旨在用以比较理论物理学家的学术能力.\citep{J.E.Hirsch_2005}
+    如果$f$为从发表的文章到引用次数的函数, 那么我们先将函数值按照从大到小排序, 那么h指数可由如下公式计算
+    \citep{wiki_h-index}
+    \[\text{\textit{h} -- index} (f) = {\displaystyle \max _{i}\min(f(i),i)}.\]
+    
+    Hirsch认为对于科学家, h指数达到12的可以在美国的主要研究型大学担任副教授职务,
+    h指数在15-20的可以成为美国物理学会的成员, 
+    h指数在45以上的可以成为美国国家科学院的主要成员.\citep{Peterson_2005}
+    
+    我们以此为基本, 定义了影响力指数$H$, 记$H_{i}$为第$i$个人的$H$值,
+    并令主任和副主任的$H$值为45,
+    普通教授的$H$值为$\lfloor(45+20)/2\rfloor=32$,
+    副教授的$H$值为$(20+12)/2=16$,
+    讲师的$H$值为$(12+0)/2=6$.
+    
+    再令$s_{j}$为第$j$场会议的星级,
+    并定义第$i$个人参加第$k$场会议的价值为$H_{i}\times s_{k}$,
+    一个背包内一件物品的价值即为参加该组合每场会议的影响力之和,
+    记为$\iota_{i, k}$.
+    
+    例如$\iota_{1, 2}$表示第1个人, 前往第2种参会组合中的会议时的费用, 即前文的组合(1, 4),
+    则\[\iota_{1,2}=s_{1}\times H_{1}+s_{4}\times H_{1}=5\times 45+3\times 45=315.\]
+    
+\subsection{状态及状态转移方程}
+    定义状态$\lambda(k, \xi)$表示: 只有前$k$组的人员参加会议,
+    每组只能选择至多一件物品(每人选择一种参会组合或选择不参会),
+    且费用小于等于$\xi$所产生的最大影响力.
+
+    假设当$k\le n-1$时的状态均已算出, 那么对于第$n$组, 有以下几种策略:
+    \begin{enumerate}
+        \item 在第$n$组中不选择任何物品(第$n$个人不参加任何会议)
+        \item 在第$n$组中选择任意选择一件物品(第$n$个人任意选择一种参会组合)
+    \end{enumerate}
+    
+    于是计算状态$\lambda(n, \xi)$可分解成一下几个子问题:
+    \begin{itemize}
+        \item 对应于策略1, 此时的影响力就等于上一个状态$k=n-1$时的影响力,
+                即$\lambda(n, \xi)=\lambda(n-1, \xi).$
+        \item 对应于策略2, 假设从第$n$组的背包选择了物品$j$(第$j$组参会方案),
+                产生了$V(n, j)$的花费,
+                因此只给前$n-1$组的背包留下了$\xi -V(n, j)$的花费,
+                于是此时的最大影响力等于前$n-1$组在花费为$\xi -V(n, j)$以内时的最大影响力
+                加上从第$n$组背包选择物品$j$所产生的影响力, 即
+                \[\lambda(n, \xi)=\lambda(n-1, \xi -V(n, j))+\iota_{n, j}.\]
+    \end{itemize}
+    
+     由此我们便可以得出状态转移方程:
+     \[\lambda(n, \xi)=\max \{\max_{1\le i\le 303} \{\lambda(n-1, \xi -V(n, j))+\iota_{n, j}\}, 
+        \lambda(n-1, \xi)\}.\]
+
+    目标状态即为$\lambda(18, 50000)$, 
+    表示前18组的人员参加会议, 且每组只能选择至多一中参会组合, 
+    花费小于等于50000所产生的最大影响力.
+\subsection{求解结果}
+    对模型进行运算求解, 得出总影响力的最优值为3438, 此时的总花费为49754元, 具体的参会安排如下:
+    
+    \begin{scriptsize}
+        \begin{align*}
+            \text{主任:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[7.28]{\text{高铁}}\ \CityVI\
+                \xrightarrow[8.01]{\text{高铁}}\ \CityVIII\
+                \xrightarrow[8.05]{\text{高铁}} \textit{同济}
+                \xrightarrow[8.05]{\text{飞机}}\ \CityX\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}
+                &\quad\text{花费9618元}\\
+            \text{副主任:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[7.28]{\text{高铁}}\ \CityVI\
+                \xrightarrow[8.01]{\text{高铁}}\ \CityVIII\
+                \xrightarrow[8.05]{\text{高铁}} \textit{同济}
+                \xrightarrow[8.05]{\text{飞机}}\ \CityX\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}
+                &\quad\text{花费9618元}\\
+            \text{教授A:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.01]{\text{高铁}}\ \CityVIII\
+                \xrightarrow[8.05]{\text{高铁}} \textit{同济}
+                \xrightarrow[8.05]{\text{飞机}}\ \CityX\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}
+                &\quad\text{花费5926元}\\
+            \text{教授B:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.01]{\text{高铁}}\ \CityVIII\
+                \xrightarrow[8.05]{\text{高铁}} \textit{同济}
+                \xrightarrow[8.05]{\text{飞机}}\ \CityX\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}
+                &\quad\text{花费5926元}\\
+            \text{教授C:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow[8.01]{\text{高铁}}\ \CityVIII\
+                \xrightarrow[8.05]{\text{高铁}} \textit{同济}
+                \xrightarrow[8.05]{\text{飞机}}\ \CityX\
+                \xrightarrow[8.09]{\text{高铁}} \textit{同济}
+                &\quad\text{花费5926元}\\
+            \text{副教授A:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{副教授B:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{副教授C:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{副教授D:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{副教授E:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{副教授F:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{副教授G:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{副教授H:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{讲师A:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{讲师B:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{讲师C:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{讲师D:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}\\
+            \text{讲师E:}&\ \textit{同济}
+                \xrightarrow{\hspace{13pt}}\ \CityII\
+                \xrightarrow{\hspace{13pt}}\textit{同济}
+                &\quad\text{花费980元}
+        \end{align*}
+    \end{scriptsize}
+    
+\subsection{模型复杂度计算}    
+    用C++实现本模型时所占用的内存为$18\times 50000\times 4=3600000\text{Byte}$,
+    约为3.43MB, 是比较优秀的.
+    运算次数约为$18\times 50000\times 303= 2.7\times 10^8$,
+    程序运行时间在5s左右, 也是比较优秀的.
+
+\subsection{模型检验与评价}
+    \subsubsection{模型检验}
+        进行模型求解之前,我们比对了前往会议时间相似的若干组城市的花费与影响力,
+        发现上海会议的影响力大于广州会议, 且费用远比其便宜,
+        故所得结果中应有较多的老师前往上海会议, 较少的老师前往广州会议.
+        同理, 比较南京会议与杭州会议, 济南会议与大连会议, 天津会议与咸阳会议, 
+        还可以得出应有较少老师前往杭州, 大连与天津会议的结论.
+        
+        观察模型的计算结果, 确实与我们之前的判断相符, 故该模型不存在大的谬误.
+        
+        \subsubsubsection{误差分析}
+            模型的误差主要来自影响力计算, 由于没有不同职称老师的学科影响力的定量数据,
+            我们简单地以推荐h指数作为影响力指数, 由于没有会议等级与彰显同济大学学科影响力的定量关系,
+            我们简单地以影响力指数与会议星级相乘在相加的结果作为所要规划的影响力,
+            而没有对会议的星级指数进行调整.
+        \subsubsubsection{敏感度分析}
+            我们分别修改了会议的星级指数和老师的影响力指数, 重新进行求解.
+            
+            若固定影响力指数, 只将不同星级会议的差距拉大,
+            即取星级指数为$2^s$, 其中$s$为星级,
+            则运行结果没有发生任何区别,
+            可见本模型对会议星级指数的变化不敏感.
+            
+            若固定会议的星级指数, 只改变影响力指数,
+            略微提高副教授的影响力指数至18, 模型解的变化为有几位讲师放弃参加任何会议,
+            而省出经费使得一位副教授可以出席南京的会议, 结果变化较小.
+            若略微降低(副)主任或普通教授的影响力指数, 或者略微提高讲师的影响力指数,
+            均不会对模型的结果造成影响, 故本模型对影响力指数的变化也不敏感.
+    \subsubsection{模型评价}
+        \subsubsubsection{优点}
+            \begin{itemize}
+                \item 本模型将问题抽象为分组背包的动态规划模型, 使得时间复杂度大幅降低,
+                        可以在十秒钟左右计算出结果.
+            \end{itemize}
+        \subsubsubsection{缺点}
+            \begin{itemize}
+                \item 本模型只适用于每一位老师的影响力相互独立的情况, 在任务三便失效了.
+                \item 未考虑第一题中(副)主任参会的上限限制, 使得模型结果可能不符合实际情况.
+            \end{itemize}

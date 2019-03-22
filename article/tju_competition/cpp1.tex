@@ -1,0 +1,446 @@
+\begin{lstlisting}[language=C++, numberstyle={\color{black!33}\tiny\sffamily}, basicstyle=\tiny]
+#include<cstdio>
+#include<cstring>
+#include<iostream>
+#include<ctime>
+#define pathen (int)Pas[cur][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13]
+using namespace std;
+const int maxn = 15;
+const int inf = 0x3fffffff;
+int INF = 0x3fffffff;
+int Paths[20][5];
+int Dom[maxn] = { 0,650,0,550,400,460,480,490,500,500,450,480,490,320 };
+int Money[maxn] = { 0,1200,980,650,500,500,500,550,550,600,500,500,400,650 };
+int dist1[maxn][maxn] = {//火车表
+	{ 0 },
+	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,1318,0,0,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,2298,1790,0,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,1784,2185,2687,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,1874,1976,inf,inf,0,0,0,0,0,0,0,0,0 },
+	{ 0,2760,2252,1330,inf,1112,0,0,0,0,0,0,0,0 },
+	{ 0,1023,295,1581,1782,1872,2349,0,0,0,0,0,0,0 },
+	{ 0,2053,1085,inf,inf,inf,2337,1182,0,0,0,0,0,0 },
+	{ 0,1279,159,1631,2038,inf,2093,256,993,0,0,0,0,0 },
+	{ 0,406,912,2251,1737,1830,2713,608,1647,873,0,0,0,0 },
+	{ 0,120,1196,2309,inf,1885,inf,901,1931,1157,284,0,0,0 },
+	{ 0,1246,1539,inf,538,inf,inf,1244,inf,inf,1199,inf,0,0 },
+	{ 0,963,2054,inf,inf,inf,inf,1759,inf,inf,1142,836,inf,0 }
+};
+int dist2[maxn][maxn] =
+{
+	{ 0 },
+	{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,1070,0,0,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,1893,1216,0,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,1182,1716,1697,0,0,0,0,0,0,0,0,0,0 },
+	{ 0,1528,1669,1232,620,0,0,0,0,0,0,0,0,0 },
+	{ 0,2106,1955,1068,1245,645,0,0,0,0,0,0,0,0 },
+	{ 0,898,270,1130,1451,1402,1746,0,0,0,0,0,0,0 },
+	{ 0,1726,828,513,1878,1536,1545,845,0,0,0,0,0,0 },
+	{ 0,1121,174,1043,1650,1540,1807,235,678,0,0,0,0,0 },
+	{ 0,360,733,1550,1196,1380,1889,535,1367,762,0,0,0,0 },
+	{ 0,107,963,1811,1222,1518,2080,793,1629,1014,271,0,0,0 },
+	{ 0,921,1250,1321,481,598,1191,968,1417,1167,801,922,0,0 },
+	{ 0,461,853,1928,1598,1842,2346,799,1613,967,472,380,1259,0 }
+};
+double Speed[2] = { 290,900 };
+struct Node {
+	int id;
+	int Beg, End;
+	Node(int id = 0, int Beg = 0, int End = 0) :id(id), Beg(Beg), End(End) {}
+}Nodes[maxn];
+struct Arc {
+	int u, v, w;
+};
+inline int Min(int a, int b) {
+	return (a < b) ? a : b;
+}
+
+int Cost(int u, int v, int &flag, int &Kind) {
+	if (Nodes[v].Beg == Nodes[u].End + 1) {
+		Kind = 1;
+		return (int)(dist2[u][v] * 0.8);
+	}
+	else if (Nodes[v].Beg - Nodes[u].End >= 1 && dist1[u][v] <= 1000000) {
+		Dom[v]>Dom[u] ? Kind = 2 : Kind = 3;
+		return (int)(dist1[u][v] * 0.5 + Min(Dom[v], Dom[u])*(Nodes[v].Beg - Nodes[u].End - 1));
+	}
+	else if (Nodes[v].Beg - Nodes[u].End >= 1) {
+		Dom[v]>Dom[u] ? Kind = 4 : Kind = 5;
+		return (int)(dist2[u][v] * 0.8 + Min(Dom[v], Dom[u])*(Nodes[v].Beg - Nodes[u].End - 1));
+	}
+	else {
+		flag = -1;
+		return -1;
+	}
+}
+int Cost1(int u, int &p) {
+	dist1[2][u] * 0.5<dist2[2][u] * 0.8 ? p = 1 : p = 0;
+	return (int)(Min(dist1[2][u] * 0.5, dist2[2][u] * 0.8));
+}
+
+
+int dp[20][4][4][3][3][3][3][3][3][3][3][3][3][3];
+
+struct Pa {
+	char c1, c2;
+	char k;
+	short w;
+	struct Pa* last;
+	Pa(char c1=0,char c2=0,char k=0,short w=0,struct Pa* last=NULL)
+	:c1(c1),c2(c2),k(k),w(w),last(last){}
+}Pas[20][4][4][3][3][3][3][3][3][3][3][3][3][3];
+void dfs(int cur,struct Pa* p) {
+	if (cur==0) {
+		return;
+	}
+	Paths[cur][0] = (int)(p->c1);
+	Paths[cur][1] = (int)(p->c2);
+	Paths[cur][2] = (int)(p->w);
+	Paths[cur][3] = (int)(p->k);
+	dfs(cur-1,p->last);
+	return;
+}
+char *Paing(int Kind){
+	if(Kind==1){
+		return (char *)"直接坐飞机到";
+	}
+	if(Kind==2){
+		return (char *)"先住宿，再坐火车到";
+	}
+	if(Kind==3){
+		return (char *)"先坐火车到，再住宿";
+	}
+	if(Kind==4){
+		return (char *)"先住宿，再坐飞机到";
+	}
+	if(Kind==5){
+		return (char *)"先坐飞机到，再住宿";
+	}
+	if(Kind==6){
+        return (char *)"做火车回上海,再坐火车去";
+	}
+	if(Kind==7){
+		return (char *)"做火车回上海,再坐飞机去";
+	}
+	if(Kind==8){
+		return (char *)"坐飞机回上海，再做火车去";
+	}
+	if(Kind==9){
+		return (char *)"坐飞机回上海，再做飞机去";
+	}
+}
+int main() {
+	freopen("a.txt", "w", stdout);
+	time_t a, b;
+	int Chs[15];
+	int p1,p2,q1,q2,w,s,t,g,flag,Kind;
+	a = time(NULL);
+	for (int i = 1; i <= 13; i++) {
+		for (int j = i + 1; j <= 13; j++) {
+			dist1[i][j] = dist1[j][i];
+		}
+	}
+	for (int i = 1; i <= 13; i++) {
+		for (int j = i + 1; j <= 13; j++) {
+			dist2[i][j] = dist2[j][i];
+		}
+	}
+	Nodes[1] = Node(1, 0, 5);
+	Nodes[2] = Node(2, 1, 6);
+	Nodes[3] = Node(3, 2, 6);
+	Nodes[4] = Node(4, 6, 8);
+	Nodes[5] = Node(5, 6, 8);
+	Nodes[6] = Node(6, 9, 11);
+	Nodes[7] = Node(7, 12, 14);
+	Nodes[8] = Node(8, 13, 15);
+	Nodes[9] = Node(9, 14, 17);
+	Nodes[10] = Node(10, 17, 19);
+	Nodes[11] = Node(11, 18, 20);
+	Nodes[12] = Node(12, 18, 21);
+	Nodes[13] = Node(13, 19, 21);
+	memset(dp, 63, sizeof(dp));
+	INF = dp[0][0][0][0][0][0][0][0][0][0][0][0][0][0];
+	dp[0][0][0][0][0][0][0][0][0][0][0][0][0][0] = 0;
+	cout << "程序运行开始！" << endl;
+	for (int i = 0; i <= 4; i++) {
+		for (int a1 = 0; a1 <= 3; a1++) {
+			for (int a2 = 0; a2 <= 3; a2++) {
+				for (int a3 = 0; a3 <= 2; a3++) {
+					for (int a4 = 0; a4 <= 2; a4++) {
+						for (int a5 = 0; a5 <= 2; a5++) {
+							for (int a6 = 0; a6 <= 2; a6++) {
+								for (int a7 = 0; a7 <= 2; a7++) {
+									for (int a8 = 0; a8 <= 2; a8++) {
+										for (int a9 = 0; a9 <= 2; a9++) {
+											for (int a10 = 0; a10 <= 2; a10++) {
+												for (int a11 = 0; a11 <= 2; a11++) {
+													for (int a12 = 0; a12 <= 2; a12++) {
+														for (int a13 = 0; a13 <= 2; a13++) {
+	if(dp[i][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13]>1000000){
+       continue;
+    }
+	for (int k = 1; k <= 13; k++) {
+		for (int l = k + 1; l <= 13; l++) {
+			memset(Chs,0,sizeof(Chs));
+			Chs[k] = Chs[l] = 1;
+			flag = 1;
+			p1 = 0;
+			p2 = 0;
+		    Kind = 0;
+			w = Cost(k, l, flag, Kind);
+			if (flag == -1) {
+				continue;
+			}
+			
+			s = dp[i + 1][Min(a1 + Chs[1], 3)][Min(a2 + Chs[2], 3)][Min(a3 + Chs[3], 2)][Min(a4 + Chs[4], 2)][Min(a5 + Chs[5], 2)][Min(a6 + Chs[6], 2)]
+			[Min(a7 + Chs[7], 2)][Min(a8 + Chs[8], 2)][Min(a9 + Chs[9], 2)][Min(a10 + Chs[10], 2)][Min(a11 + Chs[11], 2)][Min(a12 + Chs[12], 2)][Min(a13 + Chs[13], 2)];
+			q1 = Cost1(k, p1);
+			q2 = Cost1(l, p2);
+			if (q1 + q2<w) {
+				if (p1&&p2) Kind = 6;
+				if (p1 && !p2) Kind = 7;
+				if (!p1&&p2) Kind = 8;
+				if (!p1 && !p2) Kind = 9;
+			}
+			g=Min(w, q1 + q2) + q1 + q2 + Money[k] + Money[l] + Dom[k] * (Nodes[k].End - Nodes[k].Beg) + Dom[l] * (Nodes[l].End - Nodes[l].Beg);
+			t = dp[i][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13] + g;
+			if (s>=t) {
+
+				Pas[i + 1][Min(a1 + Chs[1], 3)][Min(a2 + Chs[2], 3)][Min(a3 + Chs[3], 2)][Min(a4 + Chs[4], 2)][Min(a5 + Chs[5], 2)][Min(a6 + Chs[6], 2)]
+				[Min(a7 + Chs[7], 2)][Min(a8 + Chs[8], 2)][Min(a9 + Chs[9], 2)][Min(a10 + Chs[10], 2)][Min(a11 + Chs[11], 2)][Min(a12 + Chs[12], 2)][Min(a13 + Chs[13], 2)]
+					= Pa((char)k,(char)l,(char)Kind,(short)g,&Pas[i][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13]);
+				dp[i+1][Min(a1 + Chs[1], 3)][Min(a2 + Chs[2], 3)][Min(a3 + Chs[3], 2)][Min(a4 + Chs[4], 2)][Min(a5 + Chs[5], 2)][Min(a6 + Chs[6], 2)]
+				[Min(a7 + Chs[7], 2)][Min(a8 + Chs[8], 2)][Min(a9 + Chs[9], 2)][Min(a10 + Chs[10], 2)][Min(a11 + Chs[11], 2)][Min(a12 + Chs[12], 2)][Min(a13 + Chs[13], 2)]
+					= t;
+			}
+		}
+	}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		cout << dp[i+1][3][3][2][2][2][2][2][2][2][2][2][2][2] << endl;
+		cout << "程序已经运行完成" << i + 1 << "/18" << endl;
+	}
+	for (int a1 = 0; a1 <= 3; a1++) {
+		for (int a2 = 0; a2 <= 3; a2++) {
+			for (int a3 = 0; a3 <= 2; a3++) {
+				for (int a4 = 0; a4 <= 2; a4++) {
+					for (int a5 = 0; a5 <= 2; a5++) {
+						for (int a6 = 0; a6 <= 2; a6++) {
+							for (int a7 = 0; a7 <= 2; a7++) {
+								for (int a8 = 0; a8 <= 2; a8++) {
+									for (int a9 = 0; a9 <= 2; a9++) {
+										for (int a10 = 0; a10 <= 2; a10++) {
+											for (int a11 = 0; a11 <= 2; a11++) {
+												for (int a12 = 0; a12 <= 2; a12++) {
+													for (int a13 = 0; a13 <= 2; a13++) {
+														if (a1<2 || a2<1 || a12<1 || a13<1) {
+															dp[5][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13] = INF;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	for (int i = 5; i <= 12; i++) {
+		for (int a1 = 0; a1 <= 3; a1++) {
+			for (int a2 = 0; a2 <= 3; a2++) {
+				for (int a3 = 0; a3 <= 2; a3++) {
+					for (int a4 = 0; a4 <= 2; a4++) {
+						for (int a5 = 0; a5 <= 2; a5++) {
+							for (int a6 = 0; a6 <= 2; a6++) {
+								for (int a7 = 0; a7 <= 2; a7++) {
+									for (int a8 = 0; a8 <= 2; a8++) {
+										for (int a9 = 0; a9 <= 2; a9++) {
+											for (int a10 = 0; a10 <= 2; a10++) {
+												for (int a11 = 0; a11 <= 2; a11++) {
+													for (int a12 = 0; a12 <= 2; a12++) {
+														for (int a13 = 0; a13 <= 2; a13++) {
+	if(dp[i][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13]>1000000){
+	 	continue;
+    }
+
+	for (int k = 1; k <= 13; k++) {
+		for (int l = k + 1; l <= 13; l++) {
+			memset(Chs,0,sizeof(Chs));
+			Chs[k] = Chs[l] = 1;
+			flag = 1;
+			p1 = 0;
+			p2 = 0;
+			Kind = 0;
+			w = Cost(k, l, flag, Kind);
+			if (flag == -1) {
+				continue;
+			}
+			s = dp[i + 1][Min(a1 + Chs[1], 3)][Min(a2 + Chs[2], 3)][Min(a3 + Chs[3], 2)][Min(a4 + Chs[4], 2)][Min(a5 + Chs[5], 2)][Min(a6 + Chs[6], 2)]
+			[Min(a7 + Chs[7], 2)][Min(a8 + Chs[8], 2)][Min(a9 + Chs[9], 2)][Min(a10 + Chs[10], 2)][Min(a11 + Chs[11], 2)][Min(a12 + Chs[12], 2)][Min(a13 + Chs[13], 2)];
+			q1 = Cost1(k, p1), q2 = Cost1(l, p2);
+			if (q1 + q2<w) {
+				if (p1&&p2) Kind = 6;
+				if (p1 && !p2) Kind = 7;
+				if (!p1&&p2) Kind = 8;
+				if (!p1 && !p2) Kind = 9;
+			}
+			g=Min(w, q1 + q2) + q1 + q2 + Money[k] + Money[l] + Dom[k] * (Nodes[k].End - Nodes[k].Beg) + Dom[l] * (Nodes[l].End - Nodes[l].Beg);
+			t = dp[i][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13] + g;
+			if (s>=t) {
+
+				Pas[i + 1][Min(a1 + Chs[1], 3)][Min(a2 + Chs[2], 3)][Min(a3 + Chs[3], 2)][Min(a4 + Chs[4], 2)][Min(a5 + Chs[5], 2)][Min(a6 + Chs[6], 2)]
+				[Min(a7 + Chs[7], 2)][Min(a8 + Chs[8], 2)][Min(a9 + Chs[9], 2)][Min(a10 + Chs[10], 2)][Min(a11 + Chs[11], 2)][Min(a12 + Chs[12], 2)][Min(a13 + Chs[13], 2)]
+					= Pa((char)k,(char)l,(char)Kind,(short)g,&Pas[i][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13]);
+				dp[i + 1][Min(a1 + Chs[1], 3)][Min(a2 + Chs[2], 3)][Min(a3 + Chs[3], 2)][Min(a4 + Chs[4], 2)][Min(a5 + Chs[5], 2)][Min(a6 + Chs[6], 2)]
+				[Min(a7 + Chs[7], 2)][Min(a8 + Chs[8], 2)][Min(a9 + Chs[9], 2)][Min(a10 + Chs[10], 2)][Min(a11 + Chs[11], 2)][Min(a12 + Chs[12], 2)][Min(a13 + Chs[13], 2)]
+					= t;
+			}
+		}
+	}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		cout << dp[i+1][3][3][2][2][2][2][2][2][2][2][2][2][2] << endl;
+		cout << "程序已经运行完成" << i + 1 << "/18" << endl;
+	}
+	for (int a1 = 0; a1 <= 3; a1++) {
+		for (int a2 = 0; a2 <= 3; a2++) {
+			for (int a3 = 0; a3 <= 2; a3++) {
+				for (int a4 = 0; a4 <= 2; a4++) {
+					for (int a5 = 0; a5 <= 2; a5++) {
+						for (int a6 = 0; a6 <= 2; a6++) {
+							for (int a7 = 0; a7 <= 2; a7++) {
+								for (int a8 = 0; a8 <= 2; a8++) {
+									for (int a9 = 0; a9 <= 2; a9++) {
+										for (int a10 = 0; a10 <= 2; a10++) {
+											for (int a11 = 0; a11 <= 2; a11++) {
+												for (int a12 = 0; a12 <= 2; a12++) {
+													for (int a13 = 0; a13 <= 2; a13++) {
+														if (a3<1 || a4<1 || a5<1 || a6<1 || a7<1 || a8<1 || a9<1 || a10<1 || a11<1) {
+															dp[13][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13] = INF;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	for (int i = 13; i <= 17; i++) {
+		for (int a1 = 0; a1 <= 3; a1++) {
+			for (int a2 = 0; a2 <= 3; a2++) {
+				for (int a3 = 0; a3 <= 2; a3++) {
+					for (int a4 = 0; a4 <= 2; a4++) {
+						for (int a5 = 0; a5 <= 2; a5++) {
+							for (int a6 = 0; a6 <= 2; a6++) {
+								for (int a7 = 0; a7 <= 2; a7++) {
+									for (int a8 = 0; a8 <= 2; a8++) {
+										for (int a9 = 0; a9 <= 2; a9++) {
+											for (int a10 = 0; a10 <= 2; a10++) {
+												for (int a11 = 0; a11 <= 2; a11++) {
+													for (int a12 = 0; a12 <= 2; a12++) {
+														for (int a13 = 0; a13 <= 2; a13++) {
+	if(dp[i][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13]>1000000){
+       continue;
+    }
+
+	for (int k = 1; k <= 13; k++) {
+		for (int l = k + 1; l <= 13; l++) {
+			memset(Chs,0,sizeof(Chs));
+			Chs[k] = Chs[l] = 1;
+			flag = 1;
+			p1 = 0;
+			p2 = 0;
+			Kind = 0;
+			w = Cost(k, l, flag, Kind);
+			if (flag == -1) {
+				continue;
+			}
+			s = dp[i + 1][Min(a1 + Chs[1], 3)][Min(a2 + Chs[2], 3)][Min(a3 + Chs[3], 2)][Min(a4 + Chs[4], 2)][Min(a5 + Chs[5], 2)][Min(a6 + Chs[6], 2)]
+			[Min(a7 + Chs[7], 2)][Min(a8 + Chs[8], 2)][Min(a9 + Chs[9], 2)][Min(a10 + Chs[10], 2)][Min(a11 + Chs[11], 2)][Min(a12 + Chs[12], 2)][Min(a13 + Chs[13], 2)];
+			q1 = Cost1(k, p1), q2 = Cost1(l, p2);
+			if (q1 + q2<w) {
+				if (p1&&p2) Kind = 6;
+				if (p1 && !p2) Kind = 7;
+				if (!p1&&p2) Kind = 8;
+				if (!p1 && !p2) Kind = 9;
+			}
+			g=Min(w, q1 + q2) + q1 + q2 + Money[k] + Money[l] + Dom[k] * (Nodes[k].End - Nodes[k].Beg) + Dom[l] * (Nodes[l].End - Nodes[l].Beg);
+			t = dp[i][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13] + g;
+			if (s>=t) {
+
+				Pas[i + 1][Min(a1 + Chs[1], 3)][Min(a2 + Chs[2], 3)][Min(a3 + Chs[3], 2)][Min(a4 + Chs[4], 2)][Min(a5 + Chs[5], 2)][Min(a6 + Chs[6], 2)]
+				[Min(a7 + Chs[7], 2)][Min(a8 + Chs[8], 2)][Min(a9 + Chs[9], 2)][Min(a10 + Chs[10], 2)][Min(a11 + Chs[11], 2)][Min(a12 + Chs[12], 2)][Min(a13 + Chs[13], 2)]
+					= Pa((char)k,(char)l,(char)Kind,(short)g,&Pas[i][a1][a2][a3][a4][a5][a6][a7][a8][a9][a10][a11][a12][a13]);
+				dp[i + 1][Min(a1 + Chs[1], 3)][Min(a2 + Chs[2], 3)][Min(a3 + Chs[3], 2)][Min(a4 + Chs[4], 2)][Min(a5 + Chs[5], 2)][Min(a6 + Chs[6], 2)]
+				[Min(a7 + Chs[7], 2)][Min(a8 + Chs[8], 2)][Min(a9 + Chs[9], 2)][Min(a10 + Chs[10], 2)][Min(a11 + Chs[11], 2)][Min(a12 + Chs[12], 2)][Min(a13 + Chs[13], 2)]
+					= t;
+			}
+		}
+	}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		cout << dp[i+1][3][3][2][2][2][2][2][2][2][2][2][2][2] << endl;
+		cout << "程序已经运行完成" << i + 1 << "/18" << endl;
+	}
+	b = time(NULL);
+	cout << "参加所有会议的最小费用是：" << endl;
+	cout << dp[18][3][3][2][2][2][2][2][2][2][2][2][2][2] << endl;
+	cout << "程序允许的总时间是:" << b - a << " s" << endl;
+	cout << "路径是：" << endl;
+	dfs(18,&Pas[18][3][3][2][2][2][2][2][2][2][2][2][2][2]);
+	for (int i = 1; i <= 18; i++) {
+		cout << "第" << i << "个人:"<<endl;
+		cout << "前往城市" << Paths[i][0] << "和" << Paths[i][1] << endl;
+		cout << "坐火车到" << Paths[i][0] <<", "<< Paing(Paths[i][3])  << Paths[i][1] << "  ,花费" << Paths[i][2] << "元" << endl;
+		cout << endl;
+	}
+	
+	return 0;
+}
+
+\end{lstlisting}

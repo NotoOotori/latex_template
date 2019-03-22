@@ -1,0 +1,161 @@
+% 使用utf-8格式
+% 在XeLaTeX下编译
+
+% Beamer Mode
+\documentclass{beamer}
+\usetheme{Berlin}
+
+% 导言区
+\usepackage{amsmath,amsthm,amssymb,bm}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage{xeCJK}
+\usepackage[noindent]{ctex}
+\usepackage{mathdots}
+\usepackage{multicol}
+\usepackage{extarrows}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage[all]{xy}
+\hypersetup{CJKbookmarks=true}
+\transpush<2>[duration=2]
+%\setbeamertemplate{footline}[frame number] 
+
+% 正文区
+\begin{document}
+\title{第零章\:\:说在前面}     % 这里写上你要讲的章节或主要内容
+%\author{胡雨宽}      % 这里写上你的大名
+\institute{同济大学数学科学学院济梦助学基地``数学外卖''讲师团}
+\titlegraphic{\includegraphics[width=0.1\paperwidth]{wallpaper.jpg}}     % 将wallpaper.jpg(校徽)放入同一文件夹下
+    \begin{frame}
+        \titlepage   % 标题页
+    \end{frame}
+	
+	\begin{frame}
+		\frametitle{目录}
+		\tableofcontents[pausesections]
+	\end{frame}
+	
+	\section{什么是线性代数?}
+	\begin{frame}
+		\frametitle{什么是线性代数?}
+		走进大学数学\quad  \pause  两门基础学科:  高等数学 \: 线性代数\pause
+		\begin{itemize}
+			\item 高数\\ 分析学：以微积分学与无穷级数理论为基础建立的较为系统的一门学科.\pause
+			\item 线代\\ 代数学：研究数、数量、关系、结构与代数方程(组)的通用解法与性质.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+	\frametitle{什么是线性代数?}
+	代数学：研究数、数量、关系、结构与代数方程(组)的通用解法与性质.\pause
+	\begin{itemize}
+		\item 线性: 量与量之间成比例, 成直线的关系. \pause
+		\item 研究线性关系的意义:简单直观, 计算方便, 复杂的实际问题的简化.\pause
+		\item 线性代数: 代数学的基础, 以向量, 向量空间(线性空间), 线性变换与有限维线性方程组为主要研究对象. 
+	\end{itemize}
+	\end{frame}
+
+	\section{为什么要学线性代数?}
+	\begin{frame}
+	\frametitle{为什么要学线性代数?}
+		线性代数具有理论性: 元素的表达空间化, 思维上升维度, 从初等的符号代数中脱离出来, 使得运算变得立体. 掌握线、面等高维中的运算方法, 培养严密的空间思维、逻辑思维, 理论性极强.
+	\end{frame}
+
+	\begin{frame}
+	\frametitle{为什么要学线性代数?}
+		线性代数具有广泛性：
+		许多同学因为不知晓自己学习线性代数的理由而失去动力. 事实上线性代数的使用无处不在.\pause
+		\begin{itemize}
+			\item 小学: 开始接触解方程(组), 小学奥数中著名的鸡兔同笼问题;\pause
+			\item 中学: 计算几何体面积、体积;\pause 物理中的矢量方程式;\pause 化学的氧化还原反应方程式配平;\pause 生物中的生态系统中的能量传递; \pause
+			\item 大学:  今后课程中的抽象代数、泛函分析、数值分析等课程均以线代为基础;\pause 高效算法的产出;\pause 强大的逻辑思维能力\pause \\学习掌握专门为矩阵计算设计的数学软件Matlab \quad (\url{software.tongji.edu.cn})\pause \\学好线性代数对以后的学习至关重要.\pause
+			\item 未来: 电气工程 复杂的电路网络;\pause 机械工程 大型动力系统的计算;\pause 土木工程 桥梁建筑应力分析;\pause 经济金融 多边经济均衡问题等等等等\pause 
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+	\frametitle{为什么要学线性代数?}
+	线性代数还具有实用性：\\\pause
+	现实的需求推动着理论的发展, 面临越来越复杂的数值计算问题, 由线性代数推导出的理论工具越来越完备(高斯消元, 克拉默法则, 矩阵分解) \\\pause
+	另外, 算法的高效性则更是决定着计算机的计算水平(正是因为线性代数, 现代计算机才能算那么多) \\\pause
+	当然, 线性代数作为大学的一门基础必修课, 它直接关系着同学们的期末成绩, 长远来看, 对线性代数的掌握程度也影响着今后各个学科的学习情况
+	\end{frame}
+	
+	\section{怎么理解线性代数?}
+	\begin{frame}
+		\frametitle{怎么理解线性代数?}
+		我们来大致厘清一下线性代数究竟学些什么. 这一切都要从多元线性方程组谈起:\pause
+		\begin{equation*}
+			\begin{aligned}
+				a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n&=b_1,\\
+				a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n&=b_2,\\
+				\cdots&\cdots\\
+				a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n&=b_n.
+			\end{aligned}
+		\end{equation*}
+	\end{frame}
+	
+	\begin{frame}
+		其实我们应最先引入矩阵的概念. 运用矩阵与向量的概念, 线性方程组可以表示为:\pause
+		$$
+			\begin{pmatrix}
+				a_{11} & a_{12} & \cdots & a_{1n}\\
+				a_{21} & a_{22} & \cdots & a_{2n}\\
+				\vdots & \vdots & \ddots & \vdots\\
+				a_{n1} & a_{n2} & \cdots & a_{nn}
+			\end{pmatrix}\begin{pmatrix}
+			x_1\\x_2\\\vdots\\x_n
+			\end{pmatrix}=\begin{pmatrix}
+			b_1\\b_2\\\cdots\\b_n
+			\end{pmatrix}$$
+			\pause
+			$$\Leftrightarrow x_1\begin{pmatrix}
+			a_{11}\\a_{21}\\\vdots\\a_{n1}
+			\end{pmatrix}+x_2\begin{pmatrix}
+			a_{12}\\a_{22}\\\vdots\\a_{n2}
+			\end{pmatrix}+\cdots+x_n\begin{pmatrix}
+			a_{1n}\\a_{2n}\\\vdots\\a_{nn}
+			\end{pmatrix}=\begin{pmatrix}
+			b_1\\b_2\\\cdots\\b_n
+			\end{pmatrix}
+			\pause
+		$$$$\Leftrightarrow x_1\alpha_1+x_2\alpha_2+\cdots+x_n\alpha_n=\beta(\makebox{向量方程})$$
+	\end{frame}
+	
+	\begin{frame}
+		进一步可以将上述简记为$$Ax=b,$$其中$A$为$n\times n$矩阵, $x,b$为$n$维向量. 
+		由此, 线性代数的所有基础内容都将由此展开:  \pause
+		\begin{itemize}
+			\item 若$A,b$已知, 如何求解$x$？\pause\\$\left\{\begin{array}{ll}
+				\makebox{解是不是唯一?}\Rightarrow\makebox{Chapter 1}\\
+				\makebox{如果解唯一 怎么求解?}\Rightarrow\makebox{Chapter 2}\\
+				\makebox{如果解不唯一 怎么求解?}\Rightarrow\makebox{Chapter 3}
+			\end{array}\right.$\pause
+			\item 研究$A$列向量组之间的关系与向量方程$\Rightarrow$Chapter 4
+			\item 研究$A$本身的性质以及矩阵间的特殊关系$\Rightarrow$Chapter 3, 5\pause
+			\item 将$A$视作作用在向量上一种变换(或研究向量$x,b$之间的变换关系)$\Rightarrow$Chapter 6
+		\end{itemize}
+	\end{frame}
+
+\begin{frame}
+\frametitle{参考文献}
+\begin{itemize}
+\item 同济大学数学系. 工程数学线性代数(第六版)[M]. 北京: 高等教育出版社, 2014.
+\item 线性代数的本质. \url{https://www.bilibili.com/} \\ 搜索: 3BLUE1BROWN（三蓝一土）
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Large Thanks for your attention!
+\end{center}
+\begin{flushright}
+---Made by Hu Yukuan\\
+---Revised by Zhang Yuanhang
+\end{flushright}
+\end{frame}
+\end{document}

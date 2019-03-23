@@ -29,6 +29,7 @@
 # Ignore PDF Files
 
 *.pdf
+!documentation/**/*.pdf
 
 # Ignore Git Commitizen
 

@@ -12,6 +12,8 @@
 \documentclass{ctexbeamer}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{commath} % abs, norm
+\usepackage[mathscr]{euscript}
 \usepackage{float} % 你们这帮float给我乖乖听话 HHHHHHHHHHH.
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -26,6 +28,7 @@
 
 \title{\TITLE}
 \author{\AUTHOR}
+\date{\today}
 \institute{\INSTITUTE}
 \titlegraphic{\includegraphics[width=0.1\paperwidth]{wallpaper.jpg}}
 
@@ -76,6 +79,25 @@
     ypos=15
 ]{\usebox\mybox}
 
+% -------------------- General new commands --------------------
+
+\DeclareMathAlphabet{\mathsfsl}{OT1}{cmss}{m}{sl}
+
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\matr}[1]{\ensuremath{\mathsfsl{#1}}} % italic sans serif
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\mi}{\mathrm{i}}
+\newcommand{\restrict[1]}{\raisebox{-.5ex}{$|$}_{#1}}
+
+% -------------------- Specific new commands --------------------
+
+\newcommand{\mahjong}{\mathscr{M}}
+\newcommand{\point}{\mathrm{point}}
+\newcommand{\Hand}{\mathscr{H}}
+\newcommand{\hand}{h}
+\newcommand{\base}{\omega}
+\newcommand{\prob}{\mathrm{Pr}}
+
 % -------------------- Document --------------------
 
 \begin{document}
@@ -95,123 +117,121 @@
 
 	% -------------------- Body --------------------
 	
-	\section{什么是线性代数?}
+	\section{背景}
+
 	\begin{frame}
-		\frametitle{什么是线性代数?}
-		走进大学数学\quad  \pause  两门基础学科:  高等数学 \: 线性代数\pause
-		\begin{itemize}
-			\item 高数\\ 分析学：以微积分学与无穷级数理论为基础建立的较为系统的一门学科.\pause
-			\item 线代\\ 代数学：研究数、数量、关系、结构与代数方程(组)的通用解法与性质.
-		\end{itemize}
+		\frametitle{背景}
+		麻将运动在我国有广泛的群众基础, 并且在2017年4月成为了继桥牌,
+		国际象棋, 围棋, 中国象棋和国际跳棋以后第六个世界智力运动会项目.
+		不过从数学角度研究麻将的论文很少,
+		在arXiv上搜索`Mahjong'关键词仅有两条相关结果,
+		其中一篇研究麻将牌中的组合问题, 与麻将博弈无关, 所以真正相关的文献仅有一篇.
+	\end{frame}
+
+	\section{基本定义}
+
+	\begin{frame}
+		\frametitle{局中人}
+		\begin{definition}[局中人]
+			局中人就是在麻将博弈中独自决策的个体, 最后获得相应结果.
+		\end{definition}
+		
+		\begin{note}
+			假设局中人做的决策与局中人追求的目的是一致的.
+		\end{note}
+
+		\begin{note}
+			假设局中人的目的是最大化收益的期望值.
+		\end{note}
+
+		\begin{note}[完全理性假设]
+			假设局中人有一切博弈所需的分析能力, 并且在行为上不会犯失误等任何错误.
+		\end{note}
+
+		% 我们讨论的麻将有以下几种共同规则:
+		% \begin{itemize}
+		% 	\item 存在和牌(胡牌)的规则, 可以荣和可以自摸.
+		% 		若有局中人和牌, 则一局博弈结束.
+		% 	\item 暂不考虑吃碰杠.
+		% \end{itemize}
 	\end{frame}
 
 	\begin{frame}
-	\frametitle{什么是线性代数?}
-	代数学：研究数、数量、关系、结构与代数方程(组)的通用解法与性质.\pause
-	\begin{itemize}
-		\item 线性: 量与量之间成比例, 成直线的关系. \pause
-		\item 研究线性关系的意义:简单直观, 计算方便, 复杂的实际问题的简化.\pause
-		\item 线性代数: 代数学的基础, 以向量, 向量空间(线性空间), 线性变换与有限维线性方程组为主要研究对象. 
-	\end{itemize}
+		\frametitle{策略}
+		\begin{definition}[策略]
+			一个策略是一个局中人的完整的相机抉择的行动计划,
+			在本博弈问题中即局中人对吃碰杠和(胡)切牌的选择.
+		\end{definition}
+		\begin{definition}[策略集]
+			一个局中人的所有的策略的全体称为这个局中人的策略集.
+		\end{definition}
 	\end{frame}
 
-	\section{为什么要学线性代数?}
-	\begin{frame}
-	\frametitle{为什么要学线性代数?}
-		线性代数具有理论性: 元素的表达空间化, 思维上升维度, 从初等的符号代数中脱离出来, 使得运算变得立体. 掌握线、面等高维中的运算方法, 培养严密的空间思维、逻辑思维, 理论性极强.
-	\end{frame}
+	收益是策略组合的函数, 即一局博弈结束时的点数得失.
+
+	信息是与博弈有关的消息和知识. 消息是指消息库balabala 知识是麻将规则.
+
+	假设: 
+	
+	行动顺序
 
 	\begin{frame}
-	\frametitle{为什么要学线性代数?}
-		线性代数具有广泛性：
-		许多同学因为不知晓自己学习线性代数的理由而失去动力. 事实上线性代数的使用无处不在.\pause
-		\begin{itemize}
-			\item 小学: 开始接触解方程(组), 小学奥数中著名的鸡兔同笼问题;\pause
-			\item 中学: 计算几何体面积、体积;\pause 物理中的矢量方程式;\pause 化学的氧化还原反应方程式配平;\pause 生物中的生态系统中的能量传递; \pause
-			\item 大学:  今后课程中的抽象代数、泛函分析、数值分析等课程均以线代为基础;\pause 高效算法的产出;\pause 强大的逻辑思维能力\pause 
-			\item 未来: 电气工程 复杂的电路网络;\pause 机械工程 大型动力系统的计算;\pause 土木工程 桥梁建筑应力分析;\pause 经济金融 多边经济均衡问题等等等等\pause 
-		\end{itemize}
+		\frametitle{麻将规则的严格定义}
+		\begin{definition}[麻将规则]
+			麻将规则由以下元素构成
+			\begin{itemize}
+				\item 麻将牌全体为广义集合$\mahjong$,
+					合法手牌全集为$\Hand\subset\mahjong$,
+					且有$\abs{\hand}=14, \forall{\hand\in\Hand}$.
+				\item 手牌点数为映射$\point: \Hand\rightarrow\mathbb{N}$.
+				\item 和牌手牌(winning hands)全体$\mathscr{W}=\{\point>0\}$.
+			\end{itemize}
+		\end{definition}
 	\end{frame}
 	
 	\begin{frame}
-	\frametitle{为什么要学线性代数?}
-	线性代数还具有实用性：\\\pause
-	现实的需求推动着理论的发展, 面临越来越复杂的数值计算问题, 由线性代数推导出的理论工具越来越完备(高斯消元, 克拉默法则, 矩阵分解) \\\pause
-	另外, 算法的高效性则更是决定着计算机的计算水平(正是因为线性代数, 现代计算机才能算那么多) \\\pause
-	当然, 线性代数作为大学的一门基础必修课, 它直接关系着同学们的期末成绩, 长远来看, 对线性代数的掌握程度也影响着今后各个学科的学习情况
-	\end{frame}
-	
-	\section{怎么理解线性代数?}
-	\begin{frame}
-		\frametitle{怎么理解线性代数?}
-		我们来大致厘清一下线性代数究竟学些什么. 这一切都要从多元线性方程组谈起:\pause
-		\begin{equation*}
-			\begin{aligned}
-				a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n&=b_1,\\
-				a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n&=b_2,\\
-				\cdots&\cdots\\
-				a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n&=b_n.
-			\end{aligned}
-		\end{equation*}
-	\end{frame}
-	
-	\begin{frame}
-		其实我们应最先引入矩阵的概念. 运用矩阵与向量的概念, 线性方程组可以表示为:\pause
-		$$
-			\begin{pmatrix}
-				a_{11} & a_{12} & \cdots & a_{1n}\\
-				a_{21} & a_{22} & \cdots & a_{2n}\\
-				\vdots & \vdots & \ddots & \vdots\\
-				a_{n1} & a_{n2} & \cdots & a_{nn}
-			\end{pmatrix}\begin{pmatrix}
-			x_1\\x_2\\\vdots\\x_n
-			\end{pmatrix}=\begin{pmatrix}
-			b_1\\b_2\\\cdots\\b_n
-			\end{pmatrix}$$
-			\pause
-			$$\Leftrightarrow x_1\begin{pmatrix}
-			a_{11}\\a_{21}\\\vdots\\a_{n1}
-			\end{pmatrix}+x_2\begin{pmatrix}
-			a_{12}\\a_{22}\\\vdots\\a_{n2}
-			\end{pmatrix}+\cdots+x_n\begin{pmatrix}
-			a_{1n}\\a_{2n}\\\vdots\\a_{nn}
-			\end{pmatrix}=\begin{pmatrix}
-			b_1\\b_2\\\cdots\\b_n
-			\end{pmatrix}
-			\pause
-		$$$$\Leftrightarrow x_1\alpha_1+x_2\alpha_2+\cdots+x_n\alpha_n=\beta(\makebox{向量方程})$$
-	\end{frame}
-	
-	\begin{frame}
-		进一步可以将上述简记为$$Ax=b,$$其中$A$为$n\times n$矩阵, $x,b$为$n$维向量. 
-		由此, 线性代数的所有基础内容都将由此展开:  \pause
-		\begin{itemize}
-			\item 若$A,b$已知, 如何求解$x$？\pause\\$\left\{\begin{array}{ll}
-				\makebox{解是不是唯一?}\Rightarrow\makebox{Chapter 1}\\
-				\makebox{如果解唯一 怎么求解?}\Rightarrow\makebox{Chapter 2}\\
-				\makebox{如果解不唯一 怎么求解?}\Rightarrow\makebox{Chapter 3}
-			\end{array}\right.$\pause
-			\item 研究$A$列向量组之间的关系与向量方程$\Rightarrow$Chapter 4
-			\item 研究$A$本身的性质以及矩阵间的特殊关系$\Rightarrow$Chapter 3, 5\pause
-			\item 将$A$视作作用在向量上一种变换(或研究向量$x,b$之间的变换关系)$\Rightarrow$Chapter 6
-		\end{itemize}
+		\frametitle{其它定义}
+		\begin{definition}[知识库]%TODO 消息库
+			知识库$\base$记录了每个局中人在之前打出的牌以及打出它们的次序.
+			知识库同时反映了其它局中人手牌的可能组合以及牌堆中牌的可能组合.
+		\end{definition}
+		\begin{definition}[收益]
+			博弈的收益即为点数的收益, 每个局中人的目标为最大化收益的期望.
+		\end{definition}
 	\end{frame}
 
-\begin{frame}
-\frametitle{参考文献}
-\begin{itemize}
-\item 同济大学数学系. 工程数学线性代数(第六版)[M]. 北京: 高等教育出版社, 2014.
-\item 线性代数的本质. \url{https://www.bilibili.com/} \\ 搜索: 3BLUE1BROWN（三蓝一土）
-\end{itemize}
-\end{frame}
+	\section{纯进攻}
 
-\begin{frame}
-\begin{center}
-\Large Thanks for your attention!
-\end{center}
-\begin{flushright}
----Made by Hu Yukuan\\
----Revised by Zhang Yuanhang
-\end{flushright}
-\end{frame}
+	\begin{frame}
+		\frametitle{纯进攻游戏}
+		\begin{definition}[纯进攻游戏]
+			该游戏仅有一位玩家, 该玩家手中有十四张牌$T$,
+			他的知识库$\base$为牌堆中牌的所有可能组合及其概率.
+			每回合该玩家打出一张牌并随机摸进一张牌. 给定限定回合数$k$,
+			若该玩家在$k$回合内和牌, 则收益记为该和牌型的点数,
+			若该玩家未能在$k$回合内和牌, 则收益为0.
+		\end{definition}
+		记知识库为$\base$时
+		切出手牌$i$在$k$回合内完成点数为$p$的和牌的概率为
+		$\mathrm{val}_{k}^{p}(\hand, \base, i)$,
+		则纯进攻游戏优化的目标即为
+		$\sum_{p}{p\cdot\mathrm{val}_{k}^{p}(\hand, \base, i)}$.
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{求解纯进攻游戏思路}
+		定义
+		\[\mathrm{val}_{k}^{p}(\hand, \base, i)=
+		\max_{i\in\mathbb{Z}_{14}}{\mathrm{val}_{k}^{p}(\hand, \base, i)}.\]
+		假设我们定义了摸进牌$t$时知识库的更新函数
+		$\base\mapsto\mathrm{renew}_t{\base}$,
+		那么对于每一个$p$, 都应有
+		\[\mathrm{val}_{k}^{p}(\hand, \base, i)=
+		\sum_{t}{\prob_{\base}}(t)\mathrm{val}_{k-1}^{p}(T[i/t]),
+		\mathrm{renew}_{t}^{-1}{\base},\]
+		其中$\prob_{\base}(t)$为摸进$t$的概率, $T[i/t]$为$T$打出$i$并摸进$T$后的手牌.
+		于是我们可递归求解$\mathrm{val}_{k}^{p}(\hand, \base, i)$,
+		从而解得纯进攻游戏各决策的期望收益.
+	\end{frame}
+
 \end{document}

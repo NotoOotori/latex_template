@@ -21,3 +21,5 @@ del *.fdb_latexmk /s
 del *.synctex.gz /s
 del *.thm /s
 del *.xwm /s
+del *.nav /s
+del *.snm /s

@@ -27,6 +27,11 @@
 *.nav
 *.snm
 
+# Ignore delete.bat
+
+**/delete.bat
+!tools/delete.bat
+
 # Ignore PDF Files
 
 *.pdf

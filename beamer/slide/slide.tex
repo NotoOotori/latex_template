@@ -5,6 +5,7 @@
 \newcommand{\TITLE}{幻灯片模板}
 \newcommand{\AUTHOR}{Jason}
 \newcommand{\SUBJECT}{幻灯片}
+\newcommand{\KEYWORDS}{}
 \newcommand{\INSTITUTE}{同济大学数学科学学院}
 
 % -------------------- Packages --------------------
@@ -34,11 +35,10 @@
 \institute{\INSTITUTE}
 \titlegraphic{\includegraphics[width=0.1\paperwidth]{wallpaper.jpg}}
 
-% Block
+% Theorem Environments
 
-\renewenvironment{note}[1][\empty]
-    {\block{注(#1)}}
-    {\endblock}
+\let\note\undefined
+\newtheorem{note}{注}[section]
 
 % Package: beamer
 
@@ -66,10 +66,12 @@
     menucolor           =   red,
     runcolor            =   filecolor,
     urlcolor            =   magenta,
-    pdfinfo             =   {
-        Title           =   {\TITLE},
-        Author          =   {\AUTHOR},
-        Subject         =   {\SUBJECT}},
+	pdftitle           	=   {\TITLE},
+	pdfauthor          	=   {\AUTHOR},
+	pdfsubject         	=   {\SUBJECT},
+	pdfcreator			=	{Visual Studio Code},
+	pdfproducer			=	{XeLaTeX with documentclass ctexbeamer},
+	pdfkeywords        	=   {\KEYWORDS},
     bookmarksnumbered   =   true,
     pdfstartview        =   Fit,
 	pdfpagelayout       =   OneColumn,

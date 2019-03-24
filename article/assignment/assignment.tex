@@ -5,6 +5,7 @@
 \newcommand{\TITLE}{作业}
 \newcommand{\AUTHOR}{Jason}
 \newcommand{\SUBJECT}{作业模板}
+\newcommand{\KEYWORDS}{}
 
 % -------------------- Packages --------------------
 
@@ -105,10 +106,12 @@
     menucolor           =   red,
     runcolor            =   filecolor,
     urlcolor            =   magenta,
-    pdfinfo             =   {
-        Title           =   {\TITLE},
-        Author          =   {\AUTHOR},
-        Subject         =   {\SUBJECT}},
+	pdftitle           	=   {\TITLE},
+	pdfauthor          	=   {\AUTHOR},
+	pdfsubject         	=   {\SUBJECT},
+	pdfcreator			=	{Visual Studio Code},
+	pdfproducer			=	{XeLaTeX with documentclass ctexart},
+	pdfkeywords        	=   {\KEYWORDS},
     bookmarksnumbered   =   true,
     pdfstartview        =   FitH,
     pdfpagelayout       =   OneColumn

@@ -1,0 +1,237 @@
+% !Mode::"TeX:UTF-8"
+
+% -------------------- Information --------------------
+
+\newcommand{\TITLE}{小组作业4}
+\newcommand{\AUTHOR}{Team 29}
+\newcommand{\SUBJECT}{经典数学专题选讲}
+
+% -------------------- Packages --------------------
+
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage{amsmath}
+%\usepackage{amsthm} %定理格式 由ntheorem代替
+\usepackage{amssymb}
+\usepackage[thmmarks, amsmath, thref]{ntheorem} % 定理格式
+\usepackage{DefaultTheoremStyle}
+\usepackage{lastpage}
+\usepackage{makecell} % 表格线加粗 \Xhline{1.2pt}
+\usepackage{boldline} % 长表格表格线加粗
+\usepackage{multirow} % 合并单元格
+\usepackage{array}
+\usepackage{longtable} %长表格
+\usepackage[dvipsnames]{xcolor} % 颜色声明
+\usepackage{varioref} % For Cross References
+\usepackage{caption} %题注
+\usepackage{fancyhdr} %脚注
+\usepackage[square, numbers, sort&compress]{natbib} %引用
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[section]{placeins} % 使图像不会显示在别的部分 若过于严格则换成[below]
+%\usepackage{fontspec} % 字体
+\usepackage{titlesec} %Section标题格式
+\usepackage{SUBSubsubsection}
+\usepackage{authblk} %作者
+\usepackage{stackrel} %上下写
+\usepackage{mathtools} %\xleftrightarrow
+%\usepackage{enumitem} 用enumerate包代替
+\usepackage{listings} %排版程序语言
+\usepackage{enumerate}
+\usepackage{flafter} %不让float出现在定义之前的地方
+\usepackage{float} %你们这帮float给我乖乖听话 HHHHHHHHHHH
+\usepackage{pgfplots}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered, framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage[all,cmtip]{xy} % Commutive diagram.
+\usepackage{lineno} % Line numbers.
+
+% -------------------- Settings --------------------
+
+% Title
+    \title{\TITLE}
+    \author{\AUTHOR}
+    \date{\today}
+
+% Package: caption
+    \captionsetup{
+        margin    =   6pt,
+        font      =   small,
+        labelfont =   bf
+    }
+
+% Package: fancyhdr
+    \setlength{\headheight}{15pt}
+    \lhead{Copyright \copyright\ \AUTHOR}
+    \rhead{Page \thepage\ of \pageref{LastPage}}
+
+% Package: graphicx
+    \graphicspath{{figures/}} %图像文件目录
+    
+% Package: hyperref
+    \hypersetup{
+        linktoc             =   all,
+        colorlinks          =   true,
+        linkcolor           =   TealBlue,
+       %anchorcolor         =   Black,
+        citecolor           =   Blue,
+       %filecolor           =   Cyan,
+       %menucolor           =   Red,
+       %runcolor            =   filecolor,
+        urlcolor            =   magenta,
+        pdfinfo             =   {
+            Title           =   {\TITLE},
+            Author          =   {\AUTHOR},
+            Subject         =   {\SUBJECT}},
+        bookmarksnumbered   =   true,
+        pdfstartview        =   FitH,
+        pdfpagelayout       =   OneColumn
+    }
+            
+% Package: pgfplot
+    \pgfplotsset{width=7cm}
+
+% Package: varioref
+    \renewcommand{\reftextbefore}
+        {on the \reftextvario{preceding page}{page before}}
+    \renewcommand{\reftextafter}
+        {on the \reftextvario{following}{next} page}
+    \renewcommand{\reftextfacebefore}
+        {on the \reftextvario{facing}{preceding} page}
+    \renewcommand{\reftextfaceafter}
+        {on the \reftextvario{facing}{next}{page}}
+    \renewcommand{\reftextfaraway}[1]
+        {on page \pageref{#1}}
+
+% -------------------- General new commands --------------------
+
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\e}{\mathrm{e}}
+
+% -------------------- Specific new commands --------------------
+
+\newcommand{\rank}{\mathrm{rank}}
+
+% -------------------- Document --------------------
+
+\begin{document}
+
+    % -------------------- Title Page --------------------
+
+    \maketitle
+    %\thispagestyle{empty}
+    %\pagenumbering{roman}
+    %\newpage
+
+    % -------------------- Abstract Page --------------------
+
+    % -------------------- Contents --------------------
+
+    % -------------------- Body --------------------
+
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    \linenumbers
+    
+    \begin{problem}
+        设$A$是$n$阶方阵, 证明: $\rank(A^2)-\rank(A^3)\leq\rank(A)-\rank(A^2)$.
+    \end{problem}
+
+    \begin{lemma}
+        设$A,B,C$为$n$阶方阵, $O$为$n$阶零矩阵, 则
+        \begin{equation}
+            \label{lemma_rank}
+            \rank
+            \begin{pmatrix}
+                A & B\\
+                O & C
+            \end{pmatrix}
+            \geq \rank(A)+\rank(C),
+        \end{equation}
+        并且当$B=O$时等号成立.
+    \end{lemma}
+
+    \begin{theorem}
+        设$A$是$n$阶方阵, 则$\rank(A^2)-\rank(A^3)\leq\rank(A)-\rank(A^2)$.
+    \end{theorem}
+
+    \begin{proof}
+        根据分块矩阵的初等变换, 有
+        \begin{equation}
+            \begin{pmatrix}
+                A^2 & A\\
+                O & A^2
+            \end{pmatrix}
+            \leftrightarrow
+            \begin{pmatrix}
+                A^2 & A\\
+                -A^3 & O
+            \end{pmatrix}
+            \leftrightarrow
+            \begin{pmatrix}
+                O & A\\
+                -A^3 & O
+            \end{pmatrix}.
+        \end{equation}
+        因此
+        \begin{equation}
+            \begin{aligned}
+                \rank(A^2) + \rank(A^2)
+                &\leq\rank
+                \begin{pmatrix}
+                    A^2 & A\\
+                    O & A^2
+                \end{pmatrix}\\
+                &=\rank
+                \begin{pmatrix}
+                    O & A\\
+                    -A^3 & O
+                \end{pmatrix}\\
+                &=\rank(A) + \rank(-A^3).
+            \end{aligned}
+        \end{equation}
+        即
+        \begin{equation}
+            \rank(A^2)-\rank(A^3)\leq\rank(A)-\rank(A^2).
+        \end{equation}
+    \end{proof}
+
+
+    \begin{problem}
+        设$\displaystyle x_n=\sum_{j=0}^{\infty}{\frac{j^n}{j!}}
+        \,(n\geq 0),$
+        其中$0^0, 0!=1$. 证明$x_n$是$\e$的正整数倍.
+    \end{problem}
+
+    \begin{proof}
+        首先, 发现对于任意的$n\geq 0$, 级数$x_n$均收敛.
+
+        我们用数学归纳法来证明.
+
+        当$n=0$时, 
+        \begin{equation}
+            x_0=\sum_{j=0}^{\infty}{\frac{1}{j!}}=e.
+        \end{equation}
+
+        设$n\leq k$时$x_n$都是$\e$的正整数倍, 并记倍数为$e_n$, 当$n=k+1$时, 有
+        \begin{equation}
+            \begin{aligned}
+                x_{k+1}
+                &= \sum_{j=0}^{\infty}{\frac{j^{k+1}}{j!}}\\
+                &= \sum_{j=1}^{\infty}{\frac{j^{k+1}}{j!}}\\
+                &= \sum_{j=1}^{\infty}{\frac{j^{k}}{(j-1)!}}\\
+                &= \sum_{j=0}^{\infty}{\frac{(j+1)^{k}}{j!}}\\
+                &= \sum_{j=0}^{\infty}
+                    {\frac{\sum_{\ell=0}^{k}{a_{\ell}j^{\ell}}}{j!}},
+            \end{aligned}
+        \end{equation}
+        其中$a^{\ell}$为正整数. 因为$x_{n}$收敛, 故两个求和号可交换, 即
+        \begin{equation}
+            x_{k+1}=\e\sum_{\ell=0}^{k}{e_{\ell}a_{\ell}},
+        \end{equation}
+        是$\e$的正整数倍.
+    \end{proof}
+
+    % -------------------- Bibliography --------------------
+
+\end{document}

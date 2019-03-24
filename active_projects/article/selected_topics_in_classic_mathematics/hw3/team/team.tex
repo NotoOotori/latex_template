@@ -1,0 +1,281 @@
+% !Mode::"TeX:UTF-8"
+\newcommand{\TITLE}{小组作业3}
+\newcommand{\AUTHOR}{Team 29}
+\newcommand{\SUBJECT}{经典数学专题选讲}
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage{amsmath}
+%\usepackage{amsthm} %定理格式 由ntheorem代替
+\usepackage{amssymb}
+\usepackage[thmmarks, amsmath, thref]{ntheorem}
+\usepackage{DefaultTheoremStyle}
+\usepackage{lastpage}
+\usepackage{makecell} %表格线加粗 \Xhline{1.2pt}
+\usepackage{boldline} %长表格表格线加粗
+\usepackage{multirow} %合并单元格
+\usepackage{array}
+\usepackage{longtable} %长表格
+\usepackage[dvipsnames]{xcolor} %颜色声明
+\usepackage{varioref} %For Cross References
+\renewcommand{\reftextbefore}
+    {on the \reftextvario{preceding page}{page before}}
+\renewcommand{\reftextafter}
+    {on the \reftextvario{following}{next} page}
+\renewcommand{\reftextfacebefore}
+    {on the \reftextvario{facing}{preceding} page}
+\renewcommand{\reftextfaceafter}
+    {on the \reftextvario{facing}{next}{page}}
+\renewcommand{\reftextfaraway}[1]
+    {on page \pageref{#1}}
+\usepackage{caption} %题注
+\captionsetup{margin    =   6pt,
+              font      =   small,
+              labelfont =   bf}
+\usepackage{fancyhdr} %脚注
+\setlength{\headheight}{15pt}
+\lhead{Copyright \copyright\ \AUTHOR}
+\rhead{Page \thepage\ of \pageref{LastPage}}
+\usepackage[square, numbers, sort&compress]{natbib} %引用
+%\renewcommand{\bibsection}{} %不显示"Reference"
+\usepackage{hyperref}
+\hypersetup{linktoc             =   all,
+            colorlinks          =   true,
+            linkcolor           =   TealBlue,
+           %anchorcolor         =   Black,
+            citecolor           =   Blue,
+           %filecolor           =   Cyan,
+           %menucolor           =   Red,
+           %runcolor            =   filecolor,
+            urlcolor            =   magenta,
+            pdfinfo             =   {
+                Title           =   {\TITLE},
+                Author          =   {\AUTHOR},
+                Subject         =   {\SUBJECT}},
+            bookmarksnumbered   =   true,
+            pdfstartview        =   FitH,
+            pdfpagelayout       =   OneColumn}
+\usepackage[section]{placeins} % 使图像不会显示在别的部分 若过于严格则换成[below]\
+\usepackage{graphicx}
+\graphicspath{{figures/}} %图像文件目录
+\usepackage[section]{placeins} % 使图像不会显示在别的部分 若过于严格则换成[below]
+%\usepackage{fontspec} % 字体
+\usepackage{titlesec} %Section标题格式
+\usepackage{SUBSubsubsection}
+\usepackage{authblk} %作者
+\usepackage{stackrel} %上下写
+\usepackage{mathtools} %\xleftrightarrow
+%\usepackage{enumitem} 用enumerate包代替
+\usepackage{listings} %排版程序语言
+\usepackage{enumerate}
+\usepackage{flafter} %不让float出现在定义之前的地方
+\usepackage{float} %你们这帮float给我乖乖听话 HHHHHHHHHHH
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered, framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage[all,cmtip]{xy} % Commutive diagram.
+\usepackage{lineno} % Line numbers.
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\ratio}{\frac{a_{n+1}}{a_n}}
+\newcommand{\maxf}{\max_{x\in[a,b]}{f(x)}}
+\newcommand{\E}{E_{\varepsilon}}
+
+%===============TITLE===============
+\title{\TITLE}
+\author{\AUTHOR}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \thispagestyle{empty}
+    \newpage
+
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    \linenumbers
+    
+    \begin{problem}
+        设$f(x), g(x)$是$[a,b]$上的非负连续函数, 且$f,g$只有有限个零点.
+        记$\displaystyle a_n=\int_a^b{(f(x))^ng(x)\diff x}$,
+        证明:$\displaystyle \lim_{n\to\infty}\ratio=\maxf.$
+    \end{problem}
+
+    \begin{theorem}
+        $a_n>0, \forall n.$
+    \end{theorem}
+
+    \begin{proof}
+        首先$a_n\geq 0, \forall n$.
+        假设如果存在$n$使得$a_n=0$, 那么根据非负连续函数积分的性质, 有
+        \begin{equation}
+            (f(x))^ng(x)=0, \forall x\in [a, b].
+        \end{equation}
+        与$f,g$只有有限个零点矛盾!
+    \end{proof}
+
+    \begin{theorem}
+        \label{leq}
+        对于任意的$n$, 均有
+        \begin{equation}
+            \ratio \leq \max_{x\in [a, b]}f(x).
+        \end{equation}
+    \end{theorem}
+
+    \begin{proof}
+        根据积分第一中值定理, 有
+        \begin{equation}
+            \ratio = \frac{f(\xi_n)a_n}{a_n} = f(\xi_n) \leq \maxf.
+        \end{equation}
+    \end{proof}
+
+    \begin{theorem}
+        \label{ext}
+        极限$\lim_{n\to\infty}{(a_{n+1}/a_n)}$存在.
+    \end{theorem}
+
+    \begin{proof}
+        根据Cauchy-Schwarz's inequality, 我们有
+        \begin{equation}
+        \begin{aligned}
+            a_{n+2}\cdot a_{n}
+            &= \int_a^b{(f(x))^{n+2}g(x)\diff x}\int_a^b{(f(x))^{n}g(x)\diff x}\\
+            &\geq (\int_a^b{(f(x))^{n+1}g(x)\diff x})^2
+            = a_{n+1}^2.
+        \end{aligned}
+        \end{equation}
+
+        故$\displaystyle\ratio$单调递增有上界, 极限存在.
+    \end{proof}
+
+    \begin{lemma}
+        设$f$在闭区间$[a,b]$上非负连续, 非空开集$O\subseteq [a,b]$,
+        $b_n=\displaystyle \int_O (f(x))^n\diff x$, 则
+        $\displaystyle \lim_{n\to\infty}\sqrt[n]{b_n}$存在, 并且
+        \begin{equation}
+            \lim_{n\to\infty}\sqrt[n]{b_n}=\sup_{x\in O}{f(x)}.
+        \end{equation}
+    \end{lemma}
+
+    \begin{proof}
+        将$O$写成至多可数个互不相交的开区间之并$O=\bigcup_j{I_j}$,
+        由积分中值定理, 有
+        \begin{equation}
+        \begin{aligned}
+            \sqrt[n]{b_n}&=\sqrt[n]{\sum_{j}\int_{I_j}{(f(x))^n\diff x}}\\
+            &= \sqrt[n]{\sum_{j}m(I_j)(f(\xi_j))^n}\\
+            &\leq \sqrt[n]{m(O)}\cdot\sup_{x\in O}{f(x)}.
+        \end{aligned}
+        \end{equation}
+        故
+        \begin{equation}
+            \limsup_{n\to\infty}{\sqrt[n]{b_n}}\leq\sup_{x\in O}{f(x)}.
+        \end{equation}
+
+        设$\varepsilon >0$,
+        记$\displaystyle\E=\{f>\sup_{x\in O}{f(x)}-\varepsilon\}$为非空开集,
+        设开区间$J_{\varepsilon}\subseteq\E$.
+        于是
+        \begin{equation}
+        \begin{aligned}
+            \sqrt[n]{b_n}
+            &\geq \sqrt[n]{\int_{J_{\varepsilon}}{(f(x))^n\diff x}}\\
+            &\geq \sqrt[n]{m(J_{\varepsilon})}
+                \cdot (\sup_{x\in O}{f(x)}-\varepsilon)
+        \end{aligned}
+        \end{equation}
+        故
+        \begin{equation}
+            \liminf_{n\to\infty}{\sqrt[n]{b_n}}\geq\sup_{x\in O}{f(x)}-\varepsilon.
+        \end{equation}
+        由于$\varepsilon$的任意性, 所以
+        \begin{equation}
+            \liminf_{n\to\infty}{\sqrt[n]{b_n}}\geq\sup_{x\in O}{f(x)}.
+        \end{equation}
+        
+        最后由夹逼原理, 有$\displaystyle \lim_{n\to\infty}\sqrt[n]{b_n}$存在, 并且
+        \begin{equation}
+            \lim_{n\to\infty}\sqrt[n]{b_n}=\sup_{x\in O}{f(x)}.
+        \end{equation}
+    \end{proof}
+
+    \begin{lemma}
+        \label{rudin}
+        设$\{a_n\}$为正项数列, 那么
+        \begin{equation}
+            \liminf_{n\to\infty}{\frac{a_{n+1}}{a_n}}
+            \leq\liminf_{n\to\infty}{\sqrt[n]{a_n}}
+            \leq\limsup_{n\to\infty}{\sqrt[n]{a_n}}
+            \leq\limsup_{n\to\infty}{\frac{a_{n+1}}{a_n}}
+        \end{equation}
+    \end{lemma}
+
+    \begin{proof}
+        见\citep{rudin_pma}[THEOREM 3.37].
+    \end{proof}
+
+    \begin{theorem}
+        \label{sqrt_limit}
+        极限$\displaystyle\lim_{n\to\infty}\sqrt[n]{a_n}$存在, 并且
+        \begin{equation}
+            \lim_{n\to\infty}\sqrt[n]{a_n}=\maxf.
+        \end{equation}
+    \end{theorem}
+
+    \begin{proof}
+        设$\E =\{g>\varepsilon\}, \varepsilon>0$. 因为$g$连续, 所以$\E$为开集,
+        故可写成至多可数个互不相交的开区间之并, 即
+        \begin{equation}
+            \E = \bigcup_j{I_j^{\varepsilon}};
+        \end{equation}
+        并且因为$g$非负且仅有有限个零点,
+        所以对于充分小的$\varepsilon$都有$\E$非空, 即$m(\E)>0$.
+
+        于是我们有
+        \begin{equation}
+        \label{sqrt_geq}
+        \begin{aligned}
+            \sqrt[n]{a_n}
+            &\geq \sqrt[n]{\int_{\E}{(f(x))^{n}g(x)\diff x}}\\
+            &= \sqrt[n]{\sum_{j}
+                {g(\xi_j)\int_{I_j^{\varepsilon}}{(f(x))^n\diff x}}}\\
+            &\geq \sqrt[n]{\varepsilon}\cdot
+                \sqrt[n]{\sum_{j}{\int_{I_j^{\varepsilon}}{(f(x))^n\diff x}}}\\
+            &= \sqrt[n]{\varepsilon}\cdot\sqrt[n]{\int_{\E}{(f(x))^n \diff x}}.
+        \end{aligned}
+        \end{equation}
+
+        因为$\displaystyle \bigcup_{\varepsilon >0}{\E} = \{g\geq 0\}=[a,b]$,
+        所以
+        \begin{equation}
+            \sup_{\varepsilon >0}\sup_{x\in \E}{f(x)} = \maxf.
+        \end{equation}
+
+        于是对式(\ref{sqrt_geq})两边取下极限可得
+        \begin{equation}
+            \liminf_{n\to\infty}{\sqrt[n]{a_n}} \geq \maxf.
+        \end{equation}
+
+        根据引理\ref{rudin}和定理\ref{leq},
+        有极限$\lim_{n\to\infty}\sqrt[n]{a_n}$存在, 并且
+        \begin{equation}
+            \lim_{n\to\infty}\sqrt[n]{a_n}=\maxf.
+        \end{equation}
+    \end{proof}
+
+    \begin{corollary}
+        \begin{equation}
+            \lim_{n\to\infty}{a_n} = \maxf.
+        \end{equation}
+    \end{corollary}
+
+    \begin{proof}
+        定理\ref{ext}引理\ref{rudin}和定理\ref{sqrt_limit}的直接推论.
+    \end{proof}
+
+    \begin{thebibliography}{9}
+        \bibitem{rudin_pma}
+            W.Rudin. Principles of Mathematical Analysis[M].
+            McGraw-Hill, 1976: P68.
+    \end{thebibliography}
+
+\end{document}

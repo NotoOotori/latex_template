@@ -1,0 +1,24 @@
+\RequirePackage{ntheorem}
+\newtheorem{thm}{Theorem}[section]
+% Definition
+\theoremstyle{plain}
+\theoremheaderfont{\bfseries}
+\theorembodyfont{\rmfamily}
+\newtheorem{dfn}{Definition}[section]
+% Note
+\theoremstyle{plain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\itshape}
+\newtheorem{note}{Note}[section]
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{Lemma}
+% Proof
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem{proof}{Proof}
+% Solution
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{solution}{Solution}

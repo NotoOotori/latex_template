@@ -1,0 +1,135 @@
+% !Mode::"TeX:UTF-8"
+\documentclass[a4paper,12pt]{ctexart}
+\usepackage{amsmath}
+%\usepackage{amsthm} %定理格式 由ntheorem代替
+\usepackage{amssymb}
+\usepackage[thmmarks, amsmath, thref]{ntheorem}
+\usepackage{DefaultTheormStyle}
+\usepackage{lastpage}
+\usepackage{makecell} %表格线加粗 \Xhline{1.2pt}
+\usepackage{boldline} %长表格表格线加粗
+\usepackage{multirow} %合并单元格
+\usepackage{array}
+\usepackage{longtable} %长表格
+\usepackage[dvipsnames]{xcolor} %颜色声明
+\usepackage{varioref} %For Cross References
+\renewcommand{\reftextbefore}
+    {on the \reftextvario{preceding page}{page before}}
+\renewcommand{\reftextafter}
+    {on the \reftextvario{following}{next} page}
+\renewcommand{\reftextfacebefore}
+    {on the \reftextvario{facing}{preceding} page}
+\renewcommand{\reftextfaceafter}
+    {on the \reftextvario{facing}{next}{page}}
+\renewcommand{\reftextfaraway}[1]
+    {在第\pageref{#1}页}
+\usepackage{caption} %题注
+\captionsetup{margin    =   6pt,
+              font      =   small,
+              labelfont =   bf}
+\usepackage{fancyhdr} %脚注
+\setlength{\headheight}{15pt}
+\usepackage[square, numbers, sort&compress]{natbib} %引用
+\renewcommand{\bibsection}{} %不显示"Reference"
+\usepackage{hyperref}
+\hypersetup{linktoc             =   all,
+            colorlinks          =   true,
+            linkcolor           =   TealBlue,
+           %anchorcolor         =   Black,
+            citecolor           =   Black,
+           %filecolor           =   Cyan,
+           %menucolor           =   Red,
+           %runcolor            =   filecolor,
+            urlcolor            =   magenta,
+            pdfinfo             =   {
+                Title           =   {数学建模论文大作业模板},
+                Author          =   {陈旭阳},
+                Subject         =   {数学建模 论文模板}},
+            bookmarksnumbered   =   true,
+            pdfstartview        =   FitH,
+            pdfpagelayout       =   OneColumn}
+\usepackage[section]{placeins} % 使图像不会显示在别的部分 若过于严格则换成[below]
+%\renewcommand{\tablename}{表}
+%\renewcommand{\figurename}{图}
+%\renewcommand{\contentsname}{目录}
+%\renewcommand{\abstractname}{摘要}
+\usepackage{graphicx}
+\graphicspath{{figures/}} %图像文件目录
+\usepackage[section]{placeins} % 使图像不会显示在别的部分 若过于严格则换成[below]
+%\usepackage{fontspec} % 字体
+\usepackage{titlesec} %Section标题格式
+\usepackage{SUBSubsubsection}
+\usepackage{authblk} %作者
+\usepackage{stackrel} %上下写
+%\usepackage{enumitem} 用enumerate包代替
+\usepackage{listings} %排版程序语言
+\usepackage{enumerate}
+\usepackage{flafter} %不让float出现在定义之前的地方
+\usepackage{float} %你们这帮float给我乖乖听话 HHHHHHHHHHH
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm}
+\usepackage{bigfoot} % to allow verbatim in footnote
+\usepackage[numbered, framed]{matlab-prettifier}
+\usepackage{filecontents}
+\usepackage[all,cmtip]{xy} % Commutive diagram.
+\usepackage{lineno} % Line numbers.
+
+%===============TITLE===============
+\title{个人作业2}
+\author{1753763 陈旭阳}
+\date{\today}
+
+\begin{document}
+    \pagestyle{empty}
+    \pagenumbering{roman}
+    \maketitle
+    \newpage
+%===============BODY===============
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    \linenumbers
+
+    \begin{solution}
+        分为两个步骤证明本题.
+        \begin{enumerate}[Step 1.]
+        \item 证明存在邻域$N(0)$, 存在$\alpha >0, k\in \mathbb{Z^+}$
+            使得\[f(x)=x-\alpha x^{k+1}+O(x^{k+2}).\]
+            
+            因为$x_n\downarrow 0$, 即$f(x_n)\le x_n$, 又由$f$的连续性, 有
+            \[f(0) = \lim_{x\to 0}{f(x)=0}.\]
+            
+            因为$x_{n+1}/x_n \to 1$, 即
+            \[\lim_{x\to 0}{\frac{f(x)}{x}}=1,\] 所以$f'(0)=1$.
+
+            因为$f$在原点解析, 所以存在邻域$N(0)$,
+            存在$\alpha \in \mathbb{R}-\{0\}$, $k\in \mathbb{Z^+}$
+            使得\[f(x)=x-\alpha x^{k+1}+O(x^{k+2}).\]
+            因为有一列$\{x_n\}\to 0$使得$f(x_n) \le x_n$,
+            故$\alpha <0$.
+        \item 证明$x_n \sim (\alpha k n)^{1/k}.$\\
+            设$y_n=x_n^{-k}.$ 有
+            \begin{equation}
+                \begin{aligned}
+                    x_{n+1}^{-k} &= f(x_n)^{-k}\\
+                    &= (x_n-\alpha x_n^{k+1}+O(x_n^{k+2}))^{-k}\\
+                    &= x_n^{-k}(1-\alpha x_n^k + O(x_n^{k+1}))^{-k}\\
+                    &= x_n^{-k}(1+\alpha kx_n^{k}+O(x_n^{2k}))\\
+                    &= x_n^{-k}+\alpha k + O(x_n^k).
+                \end{aligned}
+            \end{equation}
+            即
+            \begin{equation}
+                \begin{aligned}
+                    y_{n+1} &= y_n + \alpha k + O(y_n^{-1})\\
+                    y_{n+1} &= y_1 + n\alpha k + O(\sum_{j=1}^{n}{y_n^{-1}})\\
+                    \frac{y_{n+1}}{n} &= \frac{y_1}{n} + \alpha k
+                        + O((\sum_{j=1}^{n}{y_n^{-1}})/n)\\
+                \end{aligned}
+            \end{equation}
+            因为$\lim_{n}{y_n^{-1}}$存在, 所以
+            \[\lim_{n}{(\sum_{j=1}^{n}{y_n^{-1}})/n}\]存在, 即
+            \[\lim_{n}{\frac{y_{n+1}}{n}} = \alpha k + O(1).\]
+            所以$x_n \sim (\alpha k n)^{1/k}.$
+        \end{enumerate}
+    \end{solution}
+\end{document}

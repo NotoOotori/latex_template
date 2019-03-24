@@ -40,3 +40,7 @@
 # Ignore Git Commitizen
 
 *.czrc
+
+# Ignore desktop.ini
+
+desktop.ini

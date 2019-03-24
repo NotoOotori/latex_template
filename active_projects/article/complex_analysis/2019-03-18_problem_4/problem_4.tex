@@ -179,7 +179,8 @@
 
 \DeclareMathAlphabet{\mathsfsl}{OT1}{cmss}{m}{sl}
 
-\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\DeclareMathOperator{\diff}{d}
+
 \newcommand{\matr}[1]{\ensuremath{\mathsfsl{#1}}} % italic sans serif
 \newcommand{\me}{\mathrm{e}}
 \newcommand{\mi}{\mathrm{i}}
@@ -187,7 +188,9 @@
 
 % -------------------- Specific new commands --------------------
 
-
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\Arcosh}{Arcosh}
+\DeclareMathOperator{\Log}{Log}
 
 % -------------------- Document --------------------
 
@@ -230,7 +233,8 @@
             \begin{subfigure}{.49\textwidth}
                 \centering
                 \includegraphics[scale=0.5]{-2pi.png}
-                \caption{$\displaystyle w(i)=\sqrt[3]{5}\me^{(\arg(-3+4\mi)-2\pi)/3}$}
+                \caption{$\displaystyle w(i)=
+                    \sqrt[3]{5}\me^{(\arg(-3+4\mi)-2\pi)/3}$}
                 \label{figure_-2pi}
             \end{subfigure}
             \caption{两张直着切的}
@@ -239,7 +243,8 @@
         \begin{figure}[H]
             \centering
             \includegraphics[scale=0.5]{-4pi.png}
-            \caption{$\displaystyle w(i)=\sqrt[3]{5}\me^{(\arg(-3+4\mi)-4\pi)/3}$}
+            \caption{$\displaystyle w(i)=\sqrt[3]{5}
+                \me^{(\arg(-3+4\mi)-4\pi)/3}$}
             \label{figure_-4pi}
         \end{figure}
         即为所求分割方式.
@@ -251,7 +256,8 @@
         则$\diff \omega=0$.
         但是$\omega$在原点有奇性,
         因此积分$\displaystyle\int_{1}^{z}{\omega}$与路径有关, 进而
-        $\displaystyle f(z)=\int_{1}^{z}{\omega}$是$\mathbb{C}_{*}$上的一个多值函数.
+        $\displaystyle f(z)=\int_{1}^{z}{\omega}$是$\mathbb{C}_{*}$
+        上的一个多值函数.
         \begin{enumerate}[(1)]
             \item 求出$f(z)$的所有值, 即各种路径积分的值.
             \item 将$\omega$表示为$z, \bar{z}, \diff z, \diff \bar{z}$的形式,
@@ -277,7 +283,8 @@
         由于$\displaystyle x=\frac{z+\bar{z}}{2}, y=\frac{z-\bar{z}}{2\mi}$,
         有
         \begin{equation}
-            \omega = \frac{1}{2\mi}(\frac{\diff z}{z}+\frac{\diff \bar{z}}{\bar{z}}). 
+            \omega = \frac{1}{2\mi}(\frac{\diff z}{z}+
+            \frac{\diff \bar{z}}{\bar{z}}). 
         \end{equation}
         于是$f=1/(2\mi z), g=1/(2\mi\bar{z})$.
         故
@@ -298,6 +305,53 @@
             =
             0.
         \end{equation}
+    \end{solution}
+
+    \begin{problem}
+        在复球面意义下, 请分别画出$w_{1}=\sqrt{z(z-1)(z-2)}$和
+        $w_{2}=\sqrt{z(z-1)(z-2)(z-3)}$
+        的黎曼面的草图.
+    \end{problem}
+
+    \begin{solution}
+        草图如下.
+        \begin{figure}[H]
+            \begin{subfigure}{.49\textwidth}
+                \centering
+                \includegraphics[scale=0.25]{riemann_3.png}
+                \caption{$w_{1}=\sqrt{z(z-1)(z-2)}$}
+                \label{figure_riemann_3}
+            \end{subfigure}   
+            \begin{subfigure}{.49\textwidth}
+                \centering
+                \includegraphics[scale=0.25]{riemann_4.png}
+                \caption{$w_{2}=\sqrt{z(z-1)(z-2)(z-3)}$}
+                \label{figure_riemann_4}
+            \end{subfigure}
+            \caption{黎曼面草图}
+            \label{figure_riemann}
+        \end{figure}
+    \end{solution}
+
+    \begin{problem}
+        请适当割破复平面, 得到$w=\Arcosh(z)$的单值解析分支.
+    \end{problem}
+
+    \begin{solution}
+        通过计算, 有
+        \begin{equation}
+            \begin{aligned}
+                z &= \cosh{w}\\
+                z &= \frac{\me^{w}+\me^{-w}}{2}\\
+                \me^{w} &= z+\sqrt{z^{2}-1}\\
+                w &= \Log{(z+\sqrt{z^{2}-1})}
+            \end{aligned}
+        \end{equation}
+        于是若我们沿着线段$[-1,1]$割破复平面,
+        就能得到$\sqrt{z^{2}-1}$的单值解析分支.
+
+        再考虑$z+\sqrt{z^{2}-1}$的值域, 如果在该值域内可良定$\log$函数,
+        那么就大功告成了.
     \end{solution}
 
     % -------------------- Bibliography --------------------

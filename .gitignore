@@ -21,6 +21,7 @@
 *.log
 *.fdb_latexmk
 *.synctex.gz
+*.synctex(busy)
 *.thm
 *.xwm
 *.nav

@@ -66,16 +66,18 @@
     menucolor           =   red,
     runcolor            =   filecolor,
     urlcolor            =   magenta,
-	pdftitle           	=   {\TITLE},
-	pdfauthor          	=   {\AUTHOR},
-	pdfsubject         	=   {\SUBJECT},
-	pdfcreator			=	{Visual Studio Code},
-	pdfproducer			=	{XeLaTeX with documentclass ctexbeamer},
-	pdfkeywords        	=   {\KEYWORDS},
+    pdftitle           	=   {\TITLE},
+    pdfauthor          	=   {\AUTHOR},
+    pdfsubject         	=   {\SUBJECT},
+    pdfcreator			=	{Visual Studio Code},
+    pdfproducer			=	{XeLaTeX with documentclass ctexbeamer},
+    pdfkeywords        	=   {\KEYWORDS},
     bookmarksnumbered   =   true,
     pdfstartview        =   Fit,
-	pdfpagelayout       =   OneColumn,
-	pdfpagemode			=   FullScreen
+    pdfpagelayout       =   OneColumn,
+    pdfpagemode			=   FullScreen
+}
+
 }
 
 % Package: xwatermark
@@ -113,168 +115,168 @@
 
 \begin{document}
 
-	% -------------------- Title Page --------------------
+    % -------------------- Title Page --------------------
 
     \begin{frame}
         \titlepage
-	\end{frame}
-	
-	% -------------------- Contents --------------------
-	
-	\begin{frame}
-		\frametitle{目录}
-		\tableofcontents
-	\end{frame}
+    \end{frame}
+    
+    % -------------------- Contents --------------------
+    
+    \begin{frame}
+        \frametitle{目录}
+        \tableofcontents
+    \end{frame}
 
-	% -------------------- Body --------------------
-	
-	\section{背景}
+    % -------------------- Body --------------------
+    
+    \section{背景}
 
-	\begin{frame}
-		\frametitle{背景}
-		\begin{itemize}
-			\item 麻将运动在我国有广泛的群众基础, 并且在2017年4月成为了继桥牌,
-				国际象棋, 围棋, 中国象棋和国际跳棋以后第六个世界智力运动会项目.
-			\item 不过从数学角度研究麻将的论文很少,
-				在arXiv上搜索`Mahjong'关键词仅有两条相关结果.
-			\item 其中一篇
-				"Mathematical aspects of the combinatorial game Mahjong"
-				[arXiv:1707.07345v2]研究麻将牌中的组合问题,
-				与麻将博弈无关.
-			\item 另一篇"Let's Play Mahjong!"[arXiv:1903.03294v1]
-				花了主要篇幅定义并计算了牌型的好坏程度,
-				而只在一章里面提到了一点点具体决策的方法.
-		\end{itemize}
-	\end{frame}
+    \begin{frame}
+        \frametitle{背景}
+        \begin{itemize}
+            \item 麻将运动在我国有广泛的群众基础, 并且在2017年4月成为了继桥牌,
+                国际象棋, 围棋, 中国象棋和国际跳棋以后第六个世界智力运动会项目.
+            \item 不过从数学角度研究麻将的论文很少,
+                在arXiv上搜索`Mahjong'关键词仅有两条相关结果.
+            \item 其中一篇
+                "Mathematical aspects of the combinatorial game Mahjong"
+                [arXiv:1707.07345v2]研究麻将牌中的组合问题,
+                与麻将博弈无关.
+            \item 另一篇"Let's Play Mahjong!"[arXiv:1903.03294v1]
+                花了主要篇幅定义并计算了牌型的好坏程度,
+                而只在一章里面提到了一点点具体决策的方法.
+        \end{itemize}
+    \end{frame}
 
-	\section{基本定义}
+    \section{基本定义}
 
-	\begin{frame}
-		\frametitle{博弈的基本要素}
-		博弈的五要素分别为局中人, 策略集, 收益, 信息和行动顺序.
-		我们将从这五个要素来介绍本麻将博弈的基本要素.
-	\end{frame}
+    \begin{frame}
+        \frametitle{博弈的基本要素}
+        博弈的五要素分别为局中人, 策略集, 收益, 信息和行动顺序.
+        我们将从这五个要素来介绍本麻将博弈的基本要素.
+    \end{frame}
 
-	\begin{frame}
-		\frametitle{局中人}
-		\begin{definition}[局中人]
-			局中人就是在麻将博弈中独自决策的个体, 最后获得相应结果.
-		\end{definition}
-		
-		\begin{block}{假设}
-			\begin{itemize}
-				\item 假设局中人做的决策与局中人追求的目的是一致的.
-				\item 假设局中人的目的是最大化收益的期望值.
-				\item {[\alert{完全理性假设}]}假设局中人有一切博弈所需的分析能力,
-					并且在行为上不会犯失误等任何错误.
-			\end{itemize}
-		\end{block}
-	\end{frame}
+    \begin{frame}
+        \frametitle{局中人}
+        \begin{definition}[局中人]
+            局中人就是在麻将博弈中独自决策的个体, 最后获得相应结果.
+        \end{definition}
+        
+        \begin{block}{假设}
+            \begin{itemize}
+                \item 假设局中人做的决策与局中人追求的目的是一致的.
+                \item 假设局中人的目的是最大化收益的期望值.
+                \item {[\alert{完全理性假设}]}假设局中人有一切博弈所需的分析能力,
+                    并且在行为上不会犯失误等任何错误.
+            \end{itemize}
+        \end{block}
+    \end{frame}
 
-	\begin{frame}
-		\frametitle{策略}
-		\begin{definition}[策略]
-			一个策略是一个局中人的完整的相机抉择的行动计划,
-			在本博弈问题中即局中人对鸣牌(吃碰杠)和(胡)切牌的选择.
-		\end{definition}
-		\begin{definition}[策略集]
-			一个局中人的所有的策略的全体称为这个局中人的策略集.
-		\end{definition}
-	\end{frame}
+    \begin{frame}
+        \frametitle{策略}
+        \begin{definition}[策略]
+            一个策略是一个局中人的完整的相机抉择的行动计划,
+            在本博弈问题中即局中人对鸣牌(吃碰杠)和(胡)切牌的选择.
+        \end{definition}
+        \begin{definition}[策略集]
+            一个局中人的所有的策略的全体称为这个局中人的策略集.
+        \end{definition}
+    \end{frame}
 
-	\begin{frame}
-		\frametitle{收益}
-		\begin{definition}[收益]
-			收益是策略组合的函数, 在本博弈中即为一局博弈结束时的点数得失.
-		\end{definition}
-	\end{frame}
+    \begin{frame}
+        \frametitle{收益}
+        \begin{definition}[收益]
+            收益是策略组合的函数, 在本博弈中即为一局博弈结束时的点数得失.
+        \end{definition}
+    \end{frame}
 
-	\begin{frame}
-		\frametitle{信息}
-		\begin{definition}[信息]
-			信息是与博弈有关的消息和知识.
-		\end{definition}
-		\begin{definition}[消息]
-			消息, 之后我们称为消息库$\base$, 是局中人之间的共同知识.
-			在本博弈中为每个局中人切出的牌和切牌顺序, 以及鸣(吃碰杠)的牌.
-		\end{definition}
-		\begin{note}[消息库]
-			消息库反映了其它局中人手牌的可能组合以及牌堆中牌的可能组合.
-		\end{note}
-	\end{frame}
+    \begin{frame}
+        \frametitle{信息}
+        \begin{definition}[信息]
+            信息是与博弈有关的消息和知识.
+        \end{definition}
+        \begin{definition}[消息]
+            消息, 之后我们称为消息库$\base$, 是局中人之间的共同知识.
+            在本博弈中为每个局中人切出的牌和切牌顺序, 以及鸣(吃碰杠)的牌.
+        \end{definition}
+        \begin{note}[消息库]
+            消息库反映了其它局中人手牌的可能组合以及牌堆中牌的可能组合.
+        \end{note}
+    \end{frame}
 
-	\begin{frame}
-		\frametitle{信息(续)}
-		\begin{definition}[知识]
-			知识在本博弈中指的是博弈的相关定义以及麻将的规则等.
-		\end{definition}
-		\begin{note}[私人信息]
-			所有局中人的私人信息有且仅有自己当前手牌.
-		\end{note}
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{行动顺序}
+    \begin{frame}
+        \frametitle{信息(续)}
+        \begin{definition}[知识]
+            知识在本博弈中指的是博弈的相关定义以及麻将的规则等.
+        \end{definition}
+        \begin{note}[私人信息]
+            所有局中人的私人信息有且仅有自己当前手牌.
+        \end{note}
+    \end{frame}
+    
+    \begin{frame}
+        \frametitle{行动顺序}
 
-	\end{frame}
+    \end{frame}
 
-	\begin{frame}
-		\frametitle{麻将规则的定义}
-		\begin{definition}[麻将规则]
-			麻将规则由麻将牌全体和每种14张手牌的点数构成, 我们定义了如下记号:
-			\begin{itemize}
-				\item 麻将牌全体为广义集合$\mahjong$,
-					合法手牌全集为$\Hand\subset\mahjong$,
-					且有$\abs{\hand}=14, \forall{\hand\in\Hand}$.
-				\item 手牌点数为映射$\point: \Hand\rightarrow\mathbb{N}$.
-				\item 和牌手牌(winning hands)全体$\mathscr{W}=\{\point>0\}$.
-			\end{itemize}
-		\end{definition}
-	\end{frame}
+    \begin{frame}
+        \frametitle{麻将规则的定义}
+        \begin{definition}[麻将规则]
+            麻将规则由麻将牌全体和每种14张手牌的点数构成, 我们定义了如下记号:
+            \begin{itemize}
+                \item 麻将牌全体为广义集合$\mahjong$,
+                    合法手牌全集为$\Hand\subset\mahjong$,
+                    且有$\abs{\hand}=14, \forall{\hand\in\Hand}$.
+                \item 手牌点数为映射$\point: \Hand\rightarrow\mathbb{N}$.
+                \item 和牌手牌(winning hands)全体$\mathscr{W}=\{\point>0\}$.
+            \end{itemize}
+        \end{definition}
+    \end{frame}
 
-	\section{纯进攻}
+    \section{纯进攻}
 
-	\begin{frame}
-		\frametitle{纯进攻游戏引言}
-		\begin{itemize}
-			\item 麻将博弈中一局中人只有和牌才可能得到可观的正收益,
-				因此尽快和牌的能力也就是做牌的能力十分重要.
-			\item 所以我们将引入纯进攻游戏,
-				通过将消息库中其余局中人的私人消息转化为牌山的消息,
-				将博弈问题分解为最优化问题和计算牌山可能组合概率的问题.
-		\end{itemize}
-	\end{frame}
+    \begin{frame}
+        \frametitle{纯进攻游戏引言}
+        \begin{itemize}
+            \item 麻将博弈中一局中人只有和牌才可能得到可观的正收益,
+                因此尽快和牌的能力也就是做牌的能力十分重要.
+            \item 所以我们将引入纯进攻游戏,
+                通过将消息库中其余局中人的私人消息转化为牌山的消息,
+                将博弈问题分解为最优化问题和计算牌山可能组合概率的问题.
+        \end{itemize}
+    \end{frame}
 
-	\begin{frame}
-		\frametitle{纯进攻游戏定义}
-		\begin{definition}[纯进攻游戏]
-			该游戏仅有一位玩家, 该玩家手中有十四张牌$T$,
-			他的消息库$\base$为牌堆中牌的所有可能组合及其概率.
-			每回合该玩家打出一张牌$i$并随机摸进一张牌$t$, 消息库也随之更新,
-			更新函数为$\base\mapsto\mathrm{renew}_t{\base}$.
-			给定限定回合数$k$,
-			若该玩家在$k$回合内和牌, 则收益记为该和牌型的点数,
-			若该玩家未能在$k$回合内和牌, 则收益为0.
-		\end{definition}
-		记消息库为$\base$时
-		局中人选择切出手牌$i$在$k$回合内完成点数为$p$的和牌的概率为
-		$\mathrm{val}_{k}^{p}(\hand, \base, i)$,
-		则纯进攻游戏优化的目标即为期望
-		\[\sum_{p}{p\cdot\mathrm{val}_{k}^{p}(\hand, \base, i)}.\]
-	\end{frame}
+    \begin{frame}
+        \frametitle{纯进攻游戏定义}
+        \begin{definition}[纯进攻游戏]
+            该游戏仅有一位玩家, 该玩家手中有十四张牌$T$,
+            他的消息库$\base$为牌堆中牌的所有可能组合及其概率.
+            每回合该玩家打出一张牌$i$并随机摸进一张牌$t$, 消息库也随之更新,
+            更新函数为$\base\mapsto\mathrm{renew}_t{\base}$.
+            给定限定回合数$k$,
+            若该玩家在$k$回合内和牌, 则收益记为该和牌型的点数,
+            若该玩家未能在$k$回合内和牌, 则收益为0.
+        \end{definition}
+        记消息库为$\base$时
+        局中人选择切出手牌$i$在$k$回合内完成点数为$p$的和牌的概率为
+        $\mathrm{val}_{k}^{p}(\hand, \base, i)$,
+        则纯进攻游戏优化的目标即为期望
+        \[\sum_{p}{p\cdot\mathrm{val}_{k}^{p}(\hand, \base, i)}.\]
+    \end{frame}
 
-	\begin{frame}
-		\frametitle{求解纯进攻游戏思路}
-		定义
-		\[\mathrm{val}_{k}^{p}(\hand, \base)=
-		\max_{i\in\mathbb{Z}_{14}}{\mathrm{val}_{k}^{p}(\hand, \base, i)}.\]
-		那么对于每一个$p$, 都应有
-		\[\mathrm{val}_{k}^{p}(\hand, \base, i)=
-		\sum_{t}{\prob_{\base}}(t)\mathrm{val}_{k-1}^{p}(\hand[i/t],
-		\mathrm{renew}_{t}^{-1}{\base}),\]
-		其中$\prob_{\base}(t)$为摸进$t$的概率,
-		$T[i/t]$为$T$打出$i$并摸进$t$后的手牌.
-		于是我们可递归求解$\mathrm{val}_{k}^{p}(\hand, \base, i)$,
-		从而解得纯进攻游戏各决策的期望收益.
-	\end{frame}
+    \begin{frame}
+        \frametitle{求解纯进攻游戏思路}
+        定义
+        \[\mathrm{val}_{k}^{p}(\hand, \base)=
+        \max_{i\in\mathbb{Z}_{14}}{\mathrm{val}_{k}^{p}(\hand, \base, i)}.\]
+        那么对于每一个$p$, 都应有
+        \[\mathrm{val}_{k}^{p}(\hand, \base, i)=
+        \sum_{t}{\Pr_{\base}}(t)\mathrm{val}_{k-1}^{p}(\hand[i/t],
+        \mathrm{renew}_{t}^{-1}{\base}),\]
+        其中$\Pr_{\base}(t)$为摸进$t$的概率,
+        $T[i/t]$为$T$打出$i$并摸进$t$后的手牌.
+        于是我们可递归求解$\mathrm{val}_{k}^{p}(\hand, \base, i)$,
+        从而解得纯进攻游戏各决策的期望收益.
+    \end{frame}
 \end{document}

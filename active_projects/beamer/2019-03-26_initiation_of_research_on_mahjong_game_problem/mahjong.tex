@@ -2,9 +2,9 @@
 
 % -------------------- Information --------------------
 
-\newcommand{\TITLE}{幻灯片模板}
-\newcommand{\AUTHOR}{Jason}
-\newcommand{\SUBJECT}{幻灯片}
+\newcommand{\TITLE}{麻将博弈问题的研究}
+\newcommand{\AUTHOR}{郑博文, 张赫, 陈旭阳}
+\newcommand{\SUBJECT}{大学生创新创业训练计划项目立项答辩}
 \newcommand{\KEYWORDS}{}
 \newcommand{\INSTITUTE}{同济大学数学科学学院}
 
@@ -25,7 +25,7 @@
 \usepackage[absolute, overlay]{textpos}
 \usepackage{tikz}
 % \usepackage{xcolor} % loaded by beamer.
-\usepackage[printwatermark]{xwatermark} % Foreground Watermarks.
+% \usepackage[printwatermark]{xwatermark} % Foreground Watermarks.
 \usepackage[all, cmtip]{xy}
 
 % -------------------- Settings --------------------
@@ -95,15 +95,15 @@
 
 % Package: xwatermark
 
-\newsavebox\mybox
-\savebox\mybox{\tikz[color=cyan, opacity=0.2]\node{\fzstk\SUBJECT};}
-\newwatermark*[
-    allpages,
-    angle=45,
-    scale=6,
-    xpos=-20,
-    ypos=15
-]{\usebox\mybox}
+% \newsavebox\mybox
+% \savebox\mybox{\tikz[color=cyan, opacity=0.2]\node{\fzstk\SUBJECT};}
+% \newwatermark*[
+%     allpages,
+%     angle=45,
+%     scale=6,
+%     xpos=-20,
+%     ypos=15
+% ]{\usebox\mybox}
 
 % Title
 
@@ -145,7 +145,6 @@
     \begin{frame}
         \initclock
         \titlepage
-        \pagenumbering{arabic}
     \end{frame}
     
     % -------------------- Contents --------------------
@@ -268,7 +267,7 @@
         \begin{itemize}
             \item 在麻将博弈是公平博弈的假设下, 给出麻将博弈的概率测度,
                 即给出在任意行动顺序下轮到行为的局中人的各种策略的期望收益.
-            \item \alert{公平博弈假设}局中人在初始时刻具有点数$P_{0}$为常随机变量,
+            \item {[\alert{公平博弈假设}]}局中人在初始时刻具有点数$P_{0}$为常随机变量,
                 经过$k$回合后点数变为$P_{k}$, 且满足$P_{0} = E(P_{k})$,
                 i.e.
                 \begin{equation}
@@ -343,7 +342,7 @@
     \end{frame}
 
     \section*{}
-
+    
     \begin{frame}
         \FrameTextResetCrono{\ResetCronoBox}
         \centering\huge{谢谢!}

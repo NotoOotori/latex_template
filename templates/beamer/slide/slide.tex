@@ -17,28 +17,18 @@
 \usepackage{commath} % abs, norm
 \usepackage[mathscr]{euscript}
 \usepackage{float} % 你们这帮float给我乖乖听话 HHHHHHHHHHH.
+%\usepackage{fontspec}
 \usepackage{graphicx}
 %\usepackage{hyperref} % loaded by beamer.
 \usepackage{mathtools} % \xleftrightarrow.
+\usepackage[timeinterval=1, font=Times]{tdclock}
+\usepackage[absolute, overlay]{textpos}
 \usepackage{tikz}
 %\usepackage{xcolor} % loaded by beamer.
 \usepackage[printwatermark]{xwatermark} % Foreground Watermarks.
 \usepackage[all, cmtip]{xy}
 
 % -------------------- Settings --------------------
-
-% Title
-
-\title{\TITLE}
-\author{\AUTHOR}
-\date{\today}
-\institute{\INSTITUTE}
-\titlegraphic{\includegraphics[width=0.1\paperwidth]{wallpaper.jpg}}
-
-% Theorem Environments
-
-\let\note\undefined
-\newtheorem{note}{注}[section]
 
 % Package: beamer
 
@@ -78,7 +68,15 @@
     pdfpagemode			=   FullScreen
 }
 
+% Package: textpos
+
+\newcommand{\FrameTextSE}[1]{
+    \begin{textblock*}{\paperwidth}(\textwidth + 1em, \textheight + 1em)
+        #1
+    \end{textblock*}
 }
+
+% {5cm}(.7\textwidth,1cm)
 
 % Package: xwatermark
 
@@ -91,6 +89,19 @@
     xpos=-20,
     ypos=15
 ]{\usebox\mybox}
+
+% Title
+
+\title{\TITLE}
+\author{\AUTHOR}
+\date{\tdyear\dateseparator\tdmonth\dateseparator\tdday\hspace{1em}\tdtime}
+\institute{\INSTITUTE}
+\titlegraphic{\includegraphics[width=0.1\paperwidth]{wallpaper.jpg}}
+
+% Theorem Environments
+
+\let\note\undefined
+\newtheorem{note}{注}[section]
 
 % -------------------- General new commands --------------------
 
@@ -109,7 +120,12 @@
 \newcommand{\Hand}{\mathscr{H}}
 \newcommand{\hand}{h}
 \newcommand{\base}{\omega}
-\newcommand{\prob}{\mathrm{Pr}}
+
+\let\oldframe\frame
+\let\oldendframe\endframe
+\renewenvironment{frame}
+    {\oldframe\FrameTextSE{\small\color{blue}{\crono}}}
+    {\oldendframe}
 
 % -------------------- Document --------------------
 
@@ -118,6 +134,7 @@
     % -------------------- Title Page --------------------
 
     \begin{frame}
+        \initclock
         \titlepage
     \end{frame}
     
@@ -217,7 +234,42 @@
     
     \begin{frame}
         \frametitle{行动顺序}
+        \begin{definition}[行动顺序]
+            \begin{itemize}
+                \item 设$X$为有$n$种取值的随机变量, 记为
+                    $x_{1}, x_{2}, \dotsc, x_{n}$,
+                    且满足$0<\Pr(X)=x_{i}<1$, 以及
+                    \begin{equation}
+                        \sum_{i}{x_{i}} = 1.
+                    \end{equation}
+                \item 定义随机变量序列$\{X_{i}\}_{1}^{N}$, 其中$N$为正整数,
+                    且$X_{i}$之间独立并且与$X$同分布.
+                \item 我们称$\{X_{i}\}$的一个观测值为一个行动顺序.
+            \end{itemize}
+        \end{definition}
+    \end{frame}
 
+    \begin{frame}
+        \frametitle{行动顺序流程图}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{研究的问题}
+        \begin{itemize}
+            \item 在麻将博弈是公平博弈的假设下, 给出麻将博弈的概率测度,
+                即给出在任意行动顺序下轮到行为的局中人的各种策略的期望收益.
+            \item \alert{公平博弈假设}局中人在初始时刻具有点数$P_{0}$为常随机变量,
+                经过$k$回合后点数变为$P_{k}$, 且满足$P_{0} = E(P_{k})$,
+                i.e.
+                \begin{equation}
+                    E(P_{k}|\sigma(P_{0}, P_{1}, \dotsc, P_{k-1})) = P_{k-1},
+                \end{equation}
+                这里$\sigma(P_{0}, P_{1}, \dotsc, P_{k-1})$
+                是随机理论中的$\sigma$代数,
+                实际意义为局中人直到第$k-1$次行为点数
+                $P_{0}, P_{1}, \dotsc, P_{k-1}$所有可能发生的信息.
+                换句话说, 点数$\{P_{j}: 0\leq j\leq N\}$是鞅(martingale).
+        \end{itemize}
     \end{frame}
 
     \begin{frame}
@@ -239,7 +291,7 @@
     \begin{frame}
         \frametitle{纯进攻游戏引言}
         \begin{itemize}
-            \item 麻将博弈中一局中人只有和牌才可能得到可观的正收益,
+            \item 麻将博弈中局中人只有和牌才可能得到可观的正收益,
                 因此尽快和牌的能力也就是做牌的能力十分重要.
             \item 所以我们将引入纯进攻游戏,
                 通过将消息库中其余局中人的私人消息转化为牌山的消息,

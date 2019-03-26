@@ -122,11 +122,28 @@
 
 \DeclareMathAlphabet{\mathsfsl}{OT1}{cmss}{m}{sl}
 
+% Expectation
+
+\newcommand{\expect}{\operatorname{E}\expectarg}
+\DeclarePairedDelimiterX{\expectarg}[1]{(}{)}{
+  \ifnum\currentgrouptype=16 \else\begingroup\fi
+  \activatebar#1
+  \ifnum\currentgrouptype=16 \else\endgroup\fi
+}
+
+\newcommand{\innermid}{\nonscript\;\delimsize\vert\nonscript\;}
+\newcommand{\activatebar}{
+  \begingroup\lccode`\~=`\|
+  \lowercase{\endgroup\let~}\innermid
+  \mathcode`|=\string"8000
+}
+
 \newcommand{\diff}{\mathop{}\!\mathrm{d}}
 \newcommand{\matr}[1]{\ensuremath{\mathsfsl{#1}}} % italic sans serif
 \newcommand{\me}{\mathrm{e}}
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\restrict[1]}{\raisebox{-.5ex}{$|$}_{#1}}
+\newcommand{\vect}[1]{\bm{#1}}
 
 % -------------------- Specific new commands --------------------
 

@@ -16,6 +16,7 @@
 \usepackage{authblk} % 作者 (见校赛论文).
 \usepackage{array}
 \usepackage{bigfoot} % to allow verbatim in footnote.
+\usepackage{bm} % \bm for bold symbols.
 \usepackage{boldline} % 长表格表格线加粗.
 \usepackage{caption} % 题注.
 \usepackage{commath} % abs, norm
@@ -92,7 +93,7 @@
 % Package: graphicx
 
 \graphicspath{{resources/}} % 图像文件目录
-    
+
 % Package: hyperref
 
 \hypersetup{
@@ -220,10 +221,27 @@
 \DeclareMathOperator{\diff}{d}
 \DeclareMathOperator{\Log}{Log}
 
+% Expectation
+
+\newcommand{\expect}{\operatorname{E}\expectarg}
+\DeclarePairedDelimiterX{\expectarg}[1]{(}{)}{
+    \ifnum\currentgrouptype=16 \else\begingroup\fi
+    \activatebar#1
+    \ifnum\currentgrouptype=16 \else\endgroup\fi
+}
+
+\newcommand{\innermid}{\nonscript\;\delimsize\vert\nonscript\;}
+\newcommand{\activatebar}{
+    \begingroup\lccode`\~=`\|
+    \lowercase{\endgroup\let~}\innermid
+    \mathcode`|=\string"8000
+}
+
 \newcommand{\matr}[1]{\ensuremath{\mathsfsl{#1}}} % italic sans serif
 \newcommand{\me}{\mathrm{e}}
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\restrict[1]}{\raisebox{-.5ex}{$|$}_{#1}}
+\newcommand{\vect}[1]{\bm{#1}}
 
 % -------------------- Specific new commands --------------------
 
@@ -252,10 +270,12 @@
     \pagestyle{fancy}
     \pagenumbering{arabic}
     \linenumbers
-    
+
     \section{Mathematics}
 
-    \subsection{Matrix}
+    \subsection{Symbols}
+
+    \subsubsection{Matrix and Vector}
 
     矩阵变量的写法以及转置的写法如下:
     \begin{equation}
@@ -264,7 +284,13 @@
             1 & 0\\
             0 & 1
         \end{pmatrix}
-    \end{equation} 
+    \end{equation}
+
+    向量$\vect{a}, \vect{b}^{\top}$即为所求.
+
+    \subsubsection{Probability}
+
+    The conditional expectation can be type-set like $\expect{X|Y}$.
 
     \subsection{Theorem}
 
@@ -279,9 +305,11 @@
 
     \begin{solution}
         分别证明三个极限等于1.
-        
+
         \begin{enumerate}[Step i.]
-        \item 证明$\sqrt[n]{a_n}\to 1$.\\
+            \item
+
+            证明$\sqrt[n]{a_n}\to 1$.\\
             根据Beta函数定义, 可知$a_n=\Beta(n+1, 2/3)$, 故有通项公式
             \begin{equation}
                 a_n = \frac{3}{2}\prod_{j=1}^{n}{\frac{3j}{3j+2}}.
@@ -290,7 +318,7 @@
             首先有
             \begin{equation}
                 \label{angeq}
-                a_n 
+                a_n
                 \geq \frac{3}{2}\prod_{j=1}^{n}{\frac{3j}{3j+3}}
                 = \frac{3}{2(n+1)}
             \end{equation}
@@ -309,13 +337,16 @@
                 1\leftarrow \sqrt[n]{3/(2(n+1))} \leq a_n
                     \leq \sqrt[n]{2/3\cdot n!} \to 1.
             \end{equation}
-        \item 证明$b_n/a_n\to 1.$\\
+
+            \item
+
+            证明$b_n/a_n\to 1.$\\
             记$\displaystyle f_n(x)=\frac{x^n}{\sqrt[3]{1-x}}$, $x\in [0, 1)$.
             因为$f_n>0$, 由单调收敛定理和黎曼瑕积分定义可知
             \begin{equation}
                 (L)\int_{0}^{1}f_n = (R)\int_{0}^{1}f_n.
             \end{equation}
-            
+
             故
             \begin{equation}
             \begin{aligned}
@@ -335,19 +366,22 @@
             \end{equation}
 
             即$b_n/a_n\to 1$.
-        \item 证明$a_{n+1}/a_n\to 1$.\\
+
+            \item
+
+            证明$a_{n+1}/a_n\to 1$.\\
             因为$a_n=\Beta(n+1, 2/3)$, 所以
             \begin{equation}
-            \begin{aligned}
-                \frac{a_{n+1}}{a_n}
-                &= \frac{\Beta(n+2, 2/3)}{\Beta(n+1, 2/3)}\\
-                &= \frac{n+1}{n+1+2/3}\\
-                &\to 1.
-            \end{aligned}
+                \begin{aligned}
+                    \frac{a_{n+1}}{a_n}
+                    &= \frac{\Beta(n+2, 2/3)}{\Beta(n+1, 2/3)}\\
+                    &= \frac{n+1}{n+1+2/3}\\
+                    &\to 1.
+                \end{aligned}
             \end{equation}
         \end{enumerate}
     \end{solution}
-    
+
     \begin{proof}
         见\citep[P36]{rudin1976principles}.
         \citep[P34]{rudin1976principleschinese}
@@ -358,7 +392,7 @@
     \section{Codes}
 
     \subsection{MATLAB}
-        
+
     \lstinputlisting[style=MATLAB-editor, basicstyle=\mlttfamily\scriptsize]{na2_1.m}
     使用\lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{plot}命令绘制图像.
     当然, 使用|plot|命令也是一种不错的选择.

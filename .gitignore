@@ -37,6 +37,10 @@
 *.pdf
 !documentation/**/*.pdf
 
+# Ignore the test folder
+
+test/
+
 # Ignore Git Commitizen
 
 *.czrc

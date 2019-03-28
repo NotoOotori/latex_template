@@ -141,7 +141,7 @@
 
 % Package: listings
 
-\lstMakeShortInline[style=MATLAB-editor, basicstyle=\mlttfamily]~
+\lstMakeShortInline[style=MATLAB-editor, basicstyle=\mlttfamily]|
 
 \lstset{
     breaklines=true,
@@ -242,7 +242,7 @@
 \newcommand{\matr}[1]{\ensuremath{\mathsfsl{#1}}} % italic sans serif
 \newcommand{\me}{\mathrm{e}}
 \newcommand{\mi}{\mathrm{i}}
-\newcommand\restrict[1]{\raisebox{-.5ex}{$|$}_{#1}}
+\newcommand\restrict[1]{\raisebox{-.5ex}{$\vert$}_{#1}}
 \newcommand{\vect}[1]{\bm{#1}}
 
 % -------------------- Specific new commands --------------------
@@ -395,9 +395,13 @@
 
     \subsection{MATLAB}
 
-    \lstinputlisting[style=MATLAB-editor, basicstyle=\mlttfamily\scriptsize]{na2_1.m}
+    \lstinputlisting[
+        title=标题,
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize
+    ]{matlab.m}
     使用\lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{plot}命令绘制图像.
-    当然, 使用~plot~命令也是一种不错的选择.
+    当然, 使用|plot|命令也是一种不错的选择.
     运行其它代码得到结果
     \begin{lstlisting}[style=MATLAB-editor,
                        basicstyle=\mlttfamily\scriptsize,

@@ -147,6 +147,7 @@
     breaklines=true,
     backgroundcolor=\color{lightgray},
     basicstyle=\scriptsize,
+    inputpath=resources/,
     numbers=left,
     numberstyle={\color{black!33}\scriptsize\sffamily},
     xleftmargin=2em,
@@ -263,8 +264,8 @@
 
     % -------------------- Contents --------------------
 
-    %\newpage
-    %\tableofcontents
+    \newpage
+    \tableofcontents
 
     % -------------------- Body --------------------
 
@@ -403,9 +404,12 @@
     使用\lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{plot}命令绘制图像.
     当然, 使用|plot|命令也是一种不错的选择.
     运行其它代码得到结果
-    \begin{lstlisting}[style=MATLAB-editor,
-                       basicstyle=\mlttfamily\scriptsize,
-                       numberstyle={\color{black!33}\scriptsize\sffamily}]
+    \begin{lstlisting}[
+        title=标题,
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize,
+        numberstyle={\color{black!33}\scriptsize\sffamily}
+    ]
         ans = [153 370 371 407]
     \end{lstlisting}
     发现结果符合我们的预期.

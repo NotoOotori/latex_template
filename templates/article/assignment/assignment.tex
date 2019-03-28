@@ -274,6 +274,58 @@
     \pagenumbering{arabic}
     \linenumbers
 
+    \section{Codes}
+
+    \subsection{MATLAB}
+
+    \lstinputlisting[
+        title=标题,
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize
+    ]{matlab.m}
+    使用\lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{plot}命令绘制图像.
+    当然, 使用|plot|命令也是一种不错的选择.
+    运行其它代码得到结果
+    \begin{lstlisting}[
+        title=标题,
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize,
+        numberstyle={\color{black!33}\scriptsize\sffamily}
+    ]
+        ans = [153 370 371 407]
+    \end{lstlisting}
+    发现结果符合我们的预期.
+
+    \section{Float}
+
+    \subsection{Figures}
+
+    见图.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.2]{figure.jpg}
+        \caption{三次样条插值}
+        \label{figure_spline}
+    \end{figure}
+    就算到这里吧.
+
+    \subsection{Tables}
+
+    用笔算出表\ref{table_13}中的自然三次样条插值.
+    \begin{table}[H]
+        \begin{center}
+            \caption{习题中给定的三次样条数据}
+            \label{table_13}
+            \begin{tabular}{cccccc}
+                \Xhline{1.2pt}
+                $x$ & 1 & 2 & 3 & 4 & 5\\
+                \hline
+                $y$ & 0 & 1 & 0 & 1 & 0\\
+                \Xhline{1.2pt}
+            \end{tabular}
+        \end{center}
+    \end{table}
+
     \section{Mathematics}
 
     \subsection{Symbols}
@@ -391,28 +443,6 @@
         \citep{rudin1976principleschinese2}
         \citep[ZBWDSB]{rudin1976principleschinese3}
     \end{proof}
-
-    \section{Codes}
-
-    \subsection{MATLAB}
-
-    \lstinputlisting[
-        title=标题,
-        style=MATLAB-editor,
-        basicstyle=\mlttfamily\scriptsize
-    ]{matlab.m}
-    使用\lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{plot}命令绘制图像.
-    当然, 使用|plot|命令也是一种不错的选择.
-    运行其它代码得到结果
-    \begin{lstlisting}[
-        title=标题,
-        style=MATLAB-editor,
-        basicstyle=\mlttfamily\scriptsize,
-        numberstyle={\color{black!33}\scriptsize\sffamily}
-    ]
-        ans = [153 370 371 407]
-    \end{lstlisting}
-    发现结果符合我们的预期.
 
     % -------------------- Bibliography --------------------
 

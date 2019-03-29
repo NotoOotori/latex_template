@@ -142,6 +142,13 @@
 
 % Package: listings
 
+%% Title
+
+\renewcommand\lstlistingname{代码}
+\renewcommand\lstlistlistingname{代码}
+
+%% Lstinline with color box
+
 \LetLtxMacro{\oldlstinline}{\lstinline}
 \renewcommand{\lstinline}[2][]{\colorbox{lightgray}{\oldlstinline[#1]{#2}}}
 \newcommand{\matlabinline}[1]{
@@ -201,9 +208,16 @@
 \renewcommand{\reftextfacebefore}
     {on the \reftextvario{facing}{preceding} page}
 \renewcommand{\reftextfaceafter}
-    {on the \reftextvario{facing}{next}{page}}
+    {on the \reftextvario{facing}{next} page}
 \renewcommand{\reftextfaraway}[1]
     {on page \pageref{#1}}
+
+%% Label formats
+
+\labelformat{lstlisting}{代码#1}
+\labelformat{equation}{式(#1)}
+\labelformat{figure}{图#1}
+\labelformat{table}{表#1}
 
 % Package: xwatermark
 
@@ -283,14 +297,15 @@
     \subsection{MATLAB}
 
     \lstinputlisting[
-        title=标题,
+        caption=Matlab常用命令,
         style=MATLAB-editor,
         basicstyle=\mlttfamily\scriptsize
     ]{matlab.m}
     使用\matlabinline{plot}命令绘制图像.
-    运行其它代码得到结果
+    运行其它代码得到结果如\ref{listing_ans}
     \begin{lstlisting}[
-        title=标题,
+        caption=answer,
+        label={listing_ans},
         style=MATLAB-editor,
         basicstyle=\mlttfamily\scriptsize,
         numberstyle={\color{black!33}\scriptsize\sffamily}
@@ -303,7 +318,7 @@
 
     \subsection{Figures}
 
-    见图.
+    见\ref{figure_spline}.
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.2]{figure.jpg}
@@ -314,7 +329,7 @@
 
     \subsection{Tables}
 
-    用笔算出表\ref{table_13}中的自然三次样条插值.
+    用笔算出\ref{table_13}中的自然三次样条插值.
     \begin{table}[H]
         \begin{center}
             \caption{习题中给定的三次样条数据}
@@ -416,7 +431,7 @@
             \end{aligned}
             \end{equation}
 
-            根据式(\ref{angeq})有
+            根据\ref{angeq}
             \begin{equation}
                 \frac{a_n-b_n}{a_n}
                 \leq\frac{\delta^{n+1}/(\sqrt[3]{1-\delta})}{3/(2(n+1))}

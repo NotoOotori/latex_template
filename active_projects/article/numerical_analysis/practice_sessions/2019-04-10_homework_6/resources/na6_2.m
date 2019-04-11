@@ -1,0 +1,11 @@
+x0 = linspace(-1, 1, 11);
+y0 = 1./(1+25.*(x0.^2));
+x = linspace(-2, 2, 1001);
+y = 1./(1+25.*(x.^2));
+y1 = polyval(newton_interpolation(x0, y0), x);
+y2 = spline(x0, y0, x);
+hold on;
+p = plot(x, y);
+p1 = plot(x, y1);
+p2 = plot(x, y2);
+legend('origin','newton','spline');

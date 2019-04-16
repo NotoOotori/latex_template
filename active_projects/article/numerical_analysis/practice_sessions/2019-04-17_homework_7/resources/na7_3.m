@@ -1,0 +1,18 @@
+x = linspace(-1, 1, 6);
+x0 = linspace(-1, 1, 1001);
+y = 1./(1+25*x.^2);
+y0 = 1./(1+25*x0.^2);
+p1 = polyfit(x, y, 2);
+y1 = polyval(p1, x0);
+p2 = polyfit(x, y, 3);
+y2 = polyval(p2, x0);
+p3 = newton_interpolation(x, y);
+y3 = polyval(p3, x0);
+y4 = spline(x, y, x0);
+hold on;
+plot(x0, y0);
+plot(x0, y1);
+plot(x0, y2);
+plot(x0, y3);
+plot(x0, y4);
+legend('原函数', '2次拟合', '3次拟合', '5次等距节点插值', '样条插值');

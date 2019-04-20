@@ -312,6 +312,7 @@
     \begin{proof}
         对于$z\in K \subseteq \mathbb{C}\backslash\{0, 1\}$, 有
         \begin{equation}
+        \label{equation_Lemma}
         \begin{aligned}
             \sum{\abs{(\log{z})^{-4}}}
             &= \sum_{k=-\infty}^{+\infty}{
@@ -332,8 +333,8 @@
                 &\phantom{=}+\frac{4}{(\abs{\real{(\log_{0}{z})}}
                 +\abs{\image{(\log_{0}{z})}})^{4}}\\
             &\leq 2\sum_{k=1}^{+\infty}{
-                \frac{4}{(2k\pi-\pi)^{4}}}\\
-                &\phantom{=}+\frac{4}{(\abs{\real{(\log_{0}{z})}}
+                \frac{4}{(2k\pi-\pi)^{4}}}
+                +\frac{4}{(\abs{\real{(\log_{0}{z})}}
                 +\abs{\image{(\log_{0}{z})}})^{4}}
         \end{aligned}
         \end{equation}
@@ -362,6 +363,39 @@
         故$(\log{z})^{-4}$均解析.
         又已证级数$\sum{(\log{z})^{-4}}$内闭一致收敛, 故满足Weierstrass定理
         条件. 故$s$在$N_{\delta}(z_{0})$全纯. 再根据$z_{0}$的任意性即得证$s$全纯.
+    \end{proof}
+
+    \begin{theorem}
+        $\displaystyle \lim_{z\to\infty}{s(z)}=0$成立.
+    \end{theorem}
+
+    \begin{proof}
+        由\ref{equation_Lemma}, 有
+        \begin{equation}
+            s(z) \leq 2\sum_{k=1}^{+\infty}{
+                \frac{4}{(\abs{\real{(\log_{0}{z})}}+2k\pi-\pi)^{4}}}
+                +\frac{4}{(\abs{\real{(\log_{0}{z})}}
+                  +\abs{\image{(\log_{0}{z})}})^{4}}
+        \end{equation}
+        记$n=\lfloor \sfrac{\abs{\real{(\log_{0}{z})}}}{2\pi}\rfloor$, 有
+        当$z$趋向无穷时$n$也趋向无穷. 又当$n\to\infty$时, 有
+        \begin{equation}
+        \begin{aligned}
+            \sum_{k=1}^{+\infty}{
+                \frac{1}{(\abs{\real{(\log_{0}{z})}}+2k\pi-\pi)^{4}}}
+            &\leq
+            \sum_{k=1}^{+\infty}{\frac{1}{(2n\pi+2k\pi-\pi)^{4}}}\\
+            &=
+            \sum_{k=n+1}^{+\infty}{\frac{1}{(2k\pi-\pi)^{4}}}
+            \to 0.
+        \end{aligned}
+        \end{equation}
+        再根据
+        \begin{equation}
+            \lim_{z\to\infty}{\frac{4}{(\abs{\real{(\log_{0}{z})}}
+              +\abs{\image{(\log_{0}{z})}})^{4}}} = 0
+        \end{equation}
+        得出$\displaystyle \lim_{z\to\infty}{s(z)}=0$成立.
     \end{proof}
 
     % -------------------- Bibliography --------------------

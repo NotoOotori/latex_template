@@ -306,27 +306,155 @@
         \end{enumerate}
     \end{problem}
 
+    \section{第一小问}
+
+    \begin{problem}
+        若$\sum{b_{n}}$不平方收敛, 则存在平方收敛$\sum{a_{n}}$,
+        使得$\sum{a_{n}b_{n}}$发散.
+    \end{problem}
+
+    事实上我们可以假设$a_{n}$与$b_{n}$均恒为正.
+    \begin{itemize}
+        \item
+
+        可以假设它们不为零是因为$\sum{b_{n}}$有无限项不为零,
+        所以取出所有非零项能构成子列, 并且子列求和的敛散性与原级数相同.
+
+        \item
+
+        可以假设它们恒正是因为我们可以选取$a_{n}$使得$a_{n}b_{n}>0$,
+        这样问题中所讨论的三个级数
+        ($\sum{a_{n}^{2}}$, $\sum{b_{n}^{2}}$和$\sum{a_{n}b_{n}}$)
+        对于$a_{n}$, $b_{n}$是否同时取绝对值无关.
+    \end{itemize}
+
     \begin{lemma}
-        \label{lemma_square_convergence}
-        若级数$\sum{a_{n}}$, $\sum{b_{n}}$平方收敛, 则$\sum{a_{n}b_{n}}$绝对收敛,
-        故收敛.
+        设$\sum{p_{n}}$, $\sum{q_{n}}$为正项级数, 其中$\sum{p_{n}}$收敛,
+        且有
+        \begin{equation}
+            \label{equation_limsup}
+            \limsup_{n}{\frac{q_{n}}{p_{n}}} = C \in \BR,
+        \end{equation}
+        那么$\sum{q_{n}}$收敛.
     \end{lemma}
 
     \begin{proof}
-        因为$\sum{a_{n}^{2}}$和$\sum{b_{n}^{2}}$均收敛, 所以和
-        $\sum{(a_{n}^{2}+b_{n}^{2})}$也收敛. 又因为
-        $2\abs{a_{n}b_{n}}\leq a_{n}^{2}+b_{n}^{2}$,
-        故$\sum{a_{n}b_{n}}$绝对收敛, 所以收敛.
+        由推广Stolz-Ces\`aro定理可知
+        \begin{equation}
+            \limsup_{n}{\frac{\sum_{1}^{n}{q_{k}}}{\sum_{1}^{n}{p_{k}}}}
+            \leq
+            \limsup_{n}{\frac{{q_{n}}}{{p_{n}}}}
+            =
+            C,
+        \end{equation}
+        又$\sum{p_{n}}$收敛, 所以$\limsup_{n}{\sum_{1}^{n}{q_{k}}}$存在.
+        由于$\sum{q_{n}}$为正项级数, 所以$\sum{q_{n}}$存在, 即级数收敛.
     \end{proof}
 
+    \begin{lemma}
+        设$\sum{q_{n}}$为正项级数, 若存在正实数$m$使得$\sum{q_{n}^{m}}$收敛,
+        那么对于一切的实数$r>m$都有$\sum{q_{n}^{r}}$收敛.
+    \end{lemma}
+
+    \begin{proof}
+        只须注意到
+        \begin{equation}
+            \limsup_{n}{\frac{q_{k}^{r}}{q_{k}^{m}}}
+            =
+            \limsup_{n}{q_{n}^{r-m}}
+            =
+            0,
+        \end{equation}
+        再利用前一个引理即可得证.
+    \end{proof}
+
+    根据以上引理及$\sum{b_{n}}$不平方收敛的条件,
+    我们可以将$\sum{b_{n}}$分为两种情况分别讨论:
+    \begin{itemize}
+        \item
+    
+        集合$\{r\in \BR, r > 2: \sum{b_{n}^{r}}<+\infty\}$非空.
+
+        \item
+
+        对于任意的正实数$m$都有$\sum{b_{n}^{m}}$发散.
+    \end{itemize}
+
+    \subsection{第一种情况}
+
+    事实上我们暂时不能完全证明第一种情况下$a_{n}$的存在性,
+    所以给出一个加强条件后的证明.
+
     \begin{theorem}
-        若存在平方收敛级数$(\sum{a_{n}^{2}}<\infty)$使得
-        $\sum{a_{n}b_{n}}$发散, 则$\sum{b_{n}^{2}}$发散.
+        设$\sum{b_{n}}$不平方收敛,
+        并设集合$\{r\in \BR, r > 2: \sum{b_{n}^{r}}<+\infty\}$非空,
+        且下确界为$m>2$,
+        则存在平方收敛级数$\sum{a_{n}}$使得
+        $\sum{a_{n}b_{n}}$发散.
     \end{theorem}
 
     \begin{proof}
-        根据引理\ref{lemma_square_convergence}结论由反证法易得.
+        令$m=\inf\{r\in \BR, r > 2: \sum{b_{n}^{r}}<+\infty\}>2$,
+        取$\varepsilon = \sfrac{(m-2)}{2}$,
+        并令$a_{n}=b_{n}^{\sfrac{(m+\varepsilon)}{2}}$,
+        则由题意有$\sum{a_{n}}$平方收敛.
+        但是
+        \begin{equation}
+            a_{n}b_{n} = b_{n}^{\sfrac{(m+\varepsilon+2)}{2}},
+        \end{equation}
+        而
+        $\sfrac{(m+\varepsilon+2)}{2}
+        =
+        \sfrac{(m+\varepsilon+m-2\varepsilon)}{2}
+        < m$.
+        由$m$的定义知$\sum{a_{n}b_{n}}$发散.
     \end{proof}
+
+    \subsection{第二种情况}
+
+    \begin{lemma}
+        设$\sum{p_{n}}$, $\sum{q_{n}}$为正项级数, 其中$\sum{p_{n}}$发散,
+        且有
+        \begin{equation}
+            \label{equation_liminf}
+            \liminf_{n}{\frac{q_{n}}{p_{n}}} = +\infty,
+        \end{equation}
+        那么$\sum{q_{n}}$发散.
+    \end{lemma}
+
+    \clearpage
+
+    \begin{proof}
+        由推广Stolz-Ces\`aro定理可知
+        \begin{equation}
+            \liminf_{n}{\frac{\sum_{1}^{n}{q_{k}}}{\sum_{1}^{n}{p_{k}}}}
+            \geq
+            \liminf_{n}{\frac{{q_{n}}}{{p_{n}}}}
+            =
+            +\infty,
+        \end{equation}
+        又$\sum{p_{n}}$发散, 所以$\liminf_{n}{\sum_{1}^{n}{q_{k}}}=+\infty$.
+        由于$\sum{q_{n}}$为正项级数, 所以$\sum{q_{n}}=+\infty$, 即级数发散.
+    \end{proof}
+
+    \begin{theorem}
+        设对于任意的正实数$m$都有$\sum{b_{n}^{m}}$发散,
+        那么存在平方收敛级数$\sum{a_{n}}$使得
+        $\sum{a_{n}b_{n}}$发散.
+    \end{theorem}
+
+    \begin{proof}
+        取$a_{n}=n^{-0.6}$, $c_{n}=n^{-1}$, 则有$\sum{c_{n}}$发散, 且
+        \begin{equation}
+            \liminf_{n}{\frac{a_{n}b_{n}}{c_{n}}} =
+            \liminf_{n}{\frac{b_{n}}{n^{-0.4}}} =
+            \liminf_{n}{\sqrt[5]{\frac{b_{n}^{5}}{n^{-2}}}} = +\infty,
+        \end{equation}
+        否则$\sum{b_{n}^{5}}$收敛, 与假设矛盾.
+        由引理得$\sum{a_{n}b_{n}}$, 又显然有$\sum{a_{n}}$平方收敛, 即得证.
+    \end{proof}
+
+    \section{第二小问}
 
     \begin{theorem}
         设级数$\sum{b_{n}}$满足对于任意的级数$\sum{a_{n}}$都有

@@ -21,7 +21,7 @@
 \usepackage{graphicx}
 % \usepackage{hyperref} % loaded by beamer.
 \usepackage{mathtools} % \xleftrightarrow.
-\usepackage[timeinterval=1, font=Times, resetatpages=1]{tdclock}
+\usepackage[timeinterval=1, font=Times, resetatpages=2]{tdclock}
 \usepackage[absolute, overlay]{textpos}
 \usepackage{tikz}
 % \usepackage{xcolor} % loaded by beamer.
@@ -111,7 +111,7 @@
 \author{\AUTHOR}
 \date{\tdyear\dateseparator\tdmonth\dateseparator\tdday\hspace{1em}\tdtime}
 \institute{\INSTITUTE}
-\titlegraphic{\includegraphics[width=0.1\paperwidth]{wallpaper.jpg}}
+\titlegraphic{\includegraphics[width=0.1\paperwidth]{tongji.jpg}}
 
 % Theorem Environments
 
@@ -178,7 +178,7 @@
 
     \begin{frame}
         \frametitle{背景}
-        \begin{itemize}
+        \begin{itemize}[<+-| structure@+>]
             \item 麻将运动在我国有广泛的群众基础, 并且在2017年4月成为了继桥牌,
                 国际象棋, 围棋, 中国象棋和国际跳棋以后第六个世界智力运动会项目.
             \item 不过从数学角度研究麻将的论文很少,
@@ -195,7 +195,7 @@
 
     \section{基本定义}
 
-    \begin{frame}
+    \begin{frame}[<+-| alert@+>]
         \frametitle{博弈的基本要素}
         博弈的五要素分别为局中人, 策略集, 收益, 信息和行动顺序.
         我们将从这五个要素来介绍本麻将博弈的基本要素.

@@ -2,9 +2,9 @@
 
 % -------------------- Information --------------------
 
-\newcommand{\TITLE}{作业}
+\newcommand{\TITLE}{补充题9}
 \newcommand{\AUTHOR}{Jason}
-\newcommand{\SUBJECT}{作业模板}
+\newcommand{\SUBJECT}{复变函数补充题}
 \newcommand{\KEYWORDS}{}
 
 % -------------------- Packages --------------------
@@ -290,8 +290,8 @@
 
     % -------------------- Contents --------------------
 
-    \newpage
-    \tableofcontents
+    % \newpage
+    % \tableofcontents
 
     % -------------------- Body --------------------
 
@@ -300,180 +300,85 @@
     \pagenumbering{arabic}
     \linenumbers
 
-    \section{Codes}
-
-    \subsection{MATLAB}
-
-    \lstinputlisting[
-        caption=Matlab常用命令,
-        style=MATLAB-editor,
-        basicstyle=\mlttfamily\scriptsize
-    ]{matlab.m}
-    使用\matlabinline{plot}命令绘制图像.
-    运行其它代码得到结果如\ref{listing_ans}
-    \begin{lstlisting}[
-        caption=answer,
-        label={listing_ans},
-        style=MATLAB-editor,
-        basicstyle=\mlttfamily\scriptsize,
-        numberstyle={\color{black!33}\scriptsize\sffamily}
-    ]
-        ans = [153 370 371 407]
-    \end{lstlisting}
-    发现结果符合我们的预期.
-
-    \section{Float}
-
-    \subsection{Figures}
-
-    见\ref{figure_spline}.
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.2]{figure.jpg}
-        \caption{三次样条插值}
-        \label{figure_spline}
-    \end{figure}
-    就算到这里吧.
-
-    \subsection{Tables}
-
-    用笔算出\ref{table_13}中的自然三次样条插值.
-    \begin{table}[H]
-        \begin{center}
-            \caption{习题中给定的三次样条数据}
-            \label{table_13}
-            \begin{tabular}{cccccc}
-                \Xhline{1.2pt}
-                $x$ & 1 & 2 & 3 & 4 & 5\\
-                \hline
-                $y$ & 0 & 1 & 0 & 1 & 0\\
-                \Xhline{1.2pt}
-            \end{tabular}
-        \end{center}
-    \end{table}
-
-    \section{Mathematics}
-
-    \subsection{Symbols}
-
-    \subsubsection{Matrix and Vector}
-
-    矩阵变量的写法以及转置的写法如下:
-    \begin{equation}
-        \matr{A}^{\top} =
-        \begin{pmatrix}
-            1 & 0\\
-            0 & 1
-        \end{pmatrix}
-    \end{equation}
-
-    向量$\vect{a}, \vect{b}^{\top}$即为所求.
-
-    \subsubsection{Probability}
-
-    The conditional expectation can be type-set like $\expect{X|Y}$.
-
-    \subsection{Theorem}
-
     \begin{problem}
-        记$\displaystyle a_n=\int_{0}^{1}{\frac{x^n}{\sqrt[3]{1-x}}\diff x}$,
-        $\displaystyle b_n=\int_{\delta}^{1}{\frac{x^n}{\sqrt[3]{1-x}}\diff x}$.
-        证明:
-        \[\lim_{n\to \infty}{\frac{b_n}{a_n}}=
-        \lim_{n\to \infty}{\frac{a_{n+1}}{a_n}}=
-        \lim_{n\to \infty}{\sqrt[n]{a_n}}=1.\]
+        设$f$是整函数, 并且对于任意的$a\in\BC$, $f$在$a$点的Taylor展开
+        $\sum{c_{n}(z-a)^{n}}$至少有一项系数为零, 证明: $f$是多项式.
+        [提示: 将不可数个点放到可数个抽屉, 至少有一个抽屉有不可数的点.]
     \end{problem}
 
-    \begin{solution}
-        分别证明三个极限等于1.
+    \begin{proof}
+        令$B_{1}$为单位闭圆盘, 由题意知存在$n$使得对于无限个(可以做到不可数个)
+        $a\in B_{1}$使得$f^{(n)}(a)=0$, 故由Weierstrass定理知
+        $f^{(n)}$的零点集在$B_{1}$中有聚点, 故$f^{(n)}=0$, 即$f$为多项式.
+    \end{proof}
 
-        \begin{enumerate}[Step i.]
-            \item
+    \begin{problem}
+        设$G$是开区域, 请陈述并证明$G$上的调和函数的最大值原理, 唯一性定理.
+        注意, 零点孤立性并不成立(如$u(x,y)=xy$), 所以调和函数的唯一性定理
+        要比全纯函数的弱.
+    \end{problem}
 
-            证明$\sqrt[n]{a_n}\to 1$.\\
-            根据Beta函数定义, 可知$a_n=\Beta(n+1, 2/3)$, 故有通项公式
-            \begin{equation}
-                a_n = \frac{3}{2}\prod_{j=1}^{n}{\frac{3j}{3j+2}}.
-            \end{equation}
-
-            首先有
-            \begin{equation}
-                \label{angeq}
-                a_n
-                \geq \frac{3}{2}\prod_{j=1}^{n}{\frac{3j}{3j+3}}
-                = \frac{3}{2(n+1)}
-            \end{equation}
-
-            其次我们有
-            \begin{equation}
-            \begin{aligned}
-                a_n &= \frac{\Gamma(n+1)\Gamma(2/3)}{\Gamma(n+5/3)}\\
-                &= \frac{n!\cdot\Gamma(2/3)}{(2/3)\cdot(5/3)\cdot\dotsm
-                    \cdot(n+2/3)\cdot\Gamma(2/3)}\\
-                &\leq \frac{3}{2}\cdot n!.
-            \end{aligned}
-            \end{equation}
-            故
-            \begin{equation}
-                1\leftarrow \sqrt[n]{3/(2(n+1))} \leq a_n
-                    \leq \sqrt[n]{2/3\cdot n!} \to 1.
-            \end{equation}
-
-            \item
-
-            证明$b_n/a_n\to 1.$\\
-            记$\displaystyle f_n(x)=\frac{x^n}{\sqrt[3]{1-x}}$, $x\in [0, 1)$.
-            因为$f_n>0$, 由单调收敛定理和黎曼瑕积分定义可知
-            \begin{equation}
-                (L)\int_{0}^{1}f_n = (R)\int_{0}^{1}f_n.
-            \end{equation}
-
-            故
-            \begin{equation}
-            \begin{aligned}
-                a_n-b_n
-                &=(L)\int_{0}^{\delta}{f_n(x)\diff x}\\
-                &\leq (L)\int_{0}^{\delta}{f_n(\delta)\diff x}\\
-                &= (R)\int_{0}^{\delta}{f_n(\delta)\diff x}\\
-                &=\frac{\delta^{n+1}}{\sqrt[3]{1-\delta}}.
-            \end{aligned}
-            \end{equation}
-
-            根据\ref{angeq}
-            \begin{equation}
-                \frac{a_n-b_n}{a_n}
-                \leq\frac{\delta^{n+1}/(\sqrt[3]{1-\delta})}{3/(2(n+1))}
-                \to 0
-            \end{equation}
-
-            即$b_n/a_n\to 1$.
-
-            \item
-
-            证明$a_{n+1}/a_n\to 1$.\\
-            因为$a_n=\Beta(n+1, 2/3)$, 所以
-            \begin{equation}
-                \begin{aligned}
-                    \frac{a_{n+1}}{a_n}
-                    &= \frac{\Beta(n+2, 2/3)}{\Beta(n+1, 2/3)}\\
-                    &= \frac{n+1}{n+1+2/3}\\
-                    &\to 1.
-                \end{aligned}
-            \end{equation}
-        \end{enumerate}
-    \end{solution}
+    \begin{theorem}
+        设$G$是开区域, $u$为$G$上的调和函数. 如果$\max_{G}{\abs{u}}$存在,
+        那么$u$为常数.
+    \end{theorem}
 
     \begin{proof}
-        见\citep[P36]{rudin1976principles}.
-        \citep[P34]{rudin1976principleschinese}
-        \citep{rudin1976principleschinese2}
-        \citep[ZBWDSB]{rudin1976principleschinese3}
+        设$v$为$G$上的调和函数使得$g(x+\mi y):=u(x,y)+\mi v(x,y)$
+        为$G$上的全纯函数,
+        令$f=\me^{g}$, 则$\abs{f}=\me^{u}$和
+        $\abs{\sfrac{1}{f}}=\me^{-u}$中总有一个函数能在$G$中取到最大值.
+        所以$\me^{g}$为常数, 故$u$为常数.
     \end{proof}
+
+    \begin{theorem}
+        设$G$是开区域, $u$为$G$上的调和函数. 如果存在开集$O\subseteq G$使得
+        $u\restrict{O}=0$, 则$u=0$.
+    \end{theorem}
+
+    \begin{proof}
+        由题$u_{x}\restrict{O}=u_{y}\restrict{O}=0$.
+        由C-R方程, 若设调和函数$v$满足$u+\mi v$在$G$上全纯,
+        则$v_{x}\restrict{O}=v_{y}\restrict{O}=0$, 即$v$在$O$上为常数.
+        所以我们可以找到$G$上的全纯函数$f$使得$\real{f}=u$且$f\restrict{O}=0$.
+        由全纯函数零点孤立性知$f=0$, 故$u=0$.
+    \end{proof}
+
+    \begin{theorem}
+        设$G$是有界开区域, $u$为$\overline{G}$上的连续函数并且在$G$调和.
+        如果$u\restrict{\partial G}=0$, 则$u=0$.
+    \end{theorem}
+
+    \begin{proof}
+        设$g$为$\overline{G}$上的连续函数且在$G$全纯, 并满足
+        $real{g}=u$, 设$f=\me^{g}$. 因为$f(z)\neq 0$, $\forall z$,
+        又$f\restrict{\partial G}=1$, 由最大模原理和最小模原理知
+        $f=1$, 故$g=0$.
+    \end{proof}
+
+    \begin{conjecture}
+        若定义在开区域上的调和函数$u$的零点集有正Lebesgue测度, 那么$u=0$.
+    \end{conjecture}
+
+    \begin{problem}
+        设$\{f_{n}\}$是区域$G$上的一列单叶解析函数, 并且在$G$上内闭一致收敛于$F$.
+        假如$F$不是常值函数, 下面用反证法来证明$F$必是单叶解析函数.
+        若$F$不是单叶函数, 则存在$a\neq b$使得$F(a)=F(b)$.
+        对于充分小的$\delta>0$, 考察积分
+        \begin{equation}
+            I=\int_{\abs{z-b}=\delta}{\frac{F'(z)}{F(z)-F(b)}\diff{z}}.
+        \end{equation}
+        \begin{enumerate}[\hspace{2em}(1)]
+            \item 说明被积函数的分母不为零, 从而积分有意义;
+            \item 利用分解$F(z)-F(b)=(z-b)^{m}\varphi(z)$说明$I\neq 0$;
+            \item 利用$f_{n}(z)-f_{n}(a)\to F(z)-F(b)$说明$I=0$, 导出矛盾.
+        \end{enumerate}
+    \end{problem}
 
     % -------------------- Bibliography --------------------
 
-    \newpage
-    \bibliography{Principles_of_Mathematical_Analysis}
-    \bibliographystyle{plain}
+    % \newpage
+    % \bibliography{Principles_of_Mathematical_Analysis}
+    % \bibliographystyle{plain}
 
 \end{document}

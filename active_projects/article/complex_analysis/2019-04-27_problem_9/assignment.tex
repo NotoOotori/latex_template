@@ -375,6 +375,79 @@
         \end{enumerate}
     \end{problem}
 
+    \begin{proof}
+        因为$F$是区域$G$上解析函数列一致收敛的极限函数, 所以$F$解析.
+        记$g(z)=F(z)-F(b)$是关于$z$的解析函数, 因为$g$的零点具有孤立性,
+        所以存在$\delta>0$使得在去心闭邻域
+        $N_{\delta}(b)$上有$F(z)-F(b)=g(z)\neq 0$, 故积分有意义.
+
+        设$b$是$g$的$m>0$阶零点, 有因式分解
+        \begin{equation}
+            F(z)-F(b)=g(z)=(z-b)^{m}\varphi(z),
+        \end{equation}
+        且$\varphi(b)\neq 0$. 又
+        $F'(z)=g'(z)=m(z-b)^{m-1}\varphi(z)+(z-b)^{m}\varphi'(z)$,
+        于是
+        \begin{equation}
+        \begin{aligned}
+            I &= \int_{\abs{z-b}=\delta}{\frac{g'(z)}{g(z)}\diff{z}}\\
+            &= \int_{\abs{z-b}=\delta}{\left(
+                \frac{m(z-b)^{m-1}\varphi(z)}{(z-b)^{m}\varphi(z)}
+                + \frac{(z-b)^{m}\varphi'(z)}{(z-b)^{m}\varphi(z)}\right)
+                \diff z}\\
+            &= m\int_{\abs{z-b}=\delta}{(z-b)^{-1}\diff z}
+              + \int_{\abs{z-b}=\delta}{\frac{\varphi'(z)}{\varphi(z)}\diff z}\\
+            &= 2\pi\mi m \neq 0.
+        \end{aligned}
+        \end{equation}
+
+        因为$\norm{F(z)-f_{n}(z)}\to 0$,
+        所以
+        \begin{equation}
+        \begin{aligned}
+            0 &\leq \norm{(F(z)-F(a))-(f_{n}(z)-f_{n}(a))}\\
+            &\leq
+            \norm{F(z)-f_{n}(z)}+\norm{F(a)-f_{n}(a)} \to 0,
+        \end{aligned}
+        \end{equation}
+        又$F(a)=F(b)$, 所以$f_{n}(z)-f_{n}(a)$一致收敛到$F(z)-F(b)$,
+        所以
+        \begin{equation}
+            0
+            =
+            \int_{\abs{z-b}=\delta}{\frac{F'(z)}{f_{n}(z)-f_{n}(a)}\diff{z}}
+            = I_{n}
+            \to I,
+        \end{equation}
+        即$I=0$, 矛盾! 所以$F$是单叶解析函数.
+    \end{proof}
+
+    \begin{problem}
+        设$f(\theta)$是$\BR$上以$2\pi$为周期的$C^{1}$实函数,
+        可以视$f$为定义在$\abs{z}=1$上的一个函数$g$,
+        即$g(\me^{\mi\theta})=f(\theta)$.
+        根据Dirichlet收敛定理它可展开为Fourier级数
+        \begin{equation}
+            f(\theta)=\sum_{n=-\infty}^{\infty}{c_{n}\me^{\mi n\theta}};
+            \quad
+            g(z)=\sum_{n=-\infty}^{\infty}{c_{n}z^{n}},\ \abs{z}=1.
+        \end{equation}
+        试问$g$是否能延拓为定义在某个包含$\abs{z}=1$上的开区域上的全纯函数?
+    \end{problem}
+
+    \begin{solution}
+        根据Fourier系数的计算公式, 我们有$\abs{c_{n}}=\abs{c_{-n}}$.
+        因此如果$\displaystyle\limsup_{n\to +\infty}{\sqrt[n]{\abs{c_{n}}}} < 1$
+        则能延拓,
+        如果$\displaystyle\limsup_{n\to +\infty}{\sqrt[n]{\abs{c_{n}}}} = 1$
+        则不能延拓.
+
+        事实上这两种情况都有可能取得到. 当$f=0$时, 只要$n\neq 0$, 都有$c_{n}=0$; 而当
+        $f(x)=x$时,
+        $\displaystyle\limsup_{n\to +\infty}{\sqrt[n]{\abs{c_{n}}}}=
+        \limsup_{n\to +\infty}{\sqrt[n]{\sfrac{1}{n}}} = 1$
+    \end{solution}
+
     % -------------------- Bibliography --------------------
 
     % \newpage

@@ -1,6 +1,6 @@
 % -------------------- Information --------------------
 
-\newcommand{\TITLE}{Portable Document Format}
+\newcommand{\TITLE}{Features of Portable Document Format}
 \newcommand{\AUTHOR}{Jason Chen}
 \newcommand{\SUBJECT}{Public Speaking}
 \newcommand{\KEYWORDS}{}
@@ -22,6 +22,7 @@
 \usepackage[timeinterval=1, font=Times, resetatpages=2]{tdclock}
 \usepackage[absolute, overlay]{textpos}
 \usepackage{tikz}
+\usepackage{ulem} % strikethrough \sout
 % \usepackage{xcolor} % loaded by beamer.
 \usepackage[printwatermark]{xwatermark} % Foreground Watermarks.
 \usepackage[all, cmtip]{xy}
@@ -170,20 +171,18 @@
         \begin{itemize}
             \item PDF format was developed by Adobe in 1990s
                 to present documents, including texts and images.
-            \item Since then its features have been widely extended.
+            \item Motivation.
         \end{itemize}
     \end{frame}
 
-    \section{Presenting Documents}
+    \section{Feature I: Presenting Static Documents}
 
     \begin{frame}
-        \frametitle{Presenting Documents}
+        \frametitle{Presenting Static Documents}
+        PDF format
         \begin{itemize}
-            \item PDF format is widely used for saving and exchanging documents.
-            \item Many books, essays, articles and slides are saved
-                in PDF format.
-            \item PDF format features in presenting documents
-                in a manner independent of environment.
+            \item is wildly used.
+            \item presents documents in a manner independent of environment.
         \end{itemize}
     \end{frame}
 
@@ -195,26 +194,22 @@
                 so that the document looks the same
                 whenever the application software, hardware,
                 and operating systems are changed.
-            \item While PPT format does not have such a feature.
-                One may try his best to fit the title into one line
-                in personal laptap, only to find out the title ranging in two
-                lines when presenting the ppt to his audience. That is really
-                frustrating.
+            \item \sout{PPT}.
         \end{itemize}
     \end{frame}
 
     \begin{frame}
         \frametitle{Preserving Typesetting (Continued)}
-        % TODO: Add an example picture.
+        A fake example. (Hot Pot?)
+        \centering
+        \includegraphics[scale=0.2]{fake_ppt.png}
     \end{frame}
 
     \begin{frame}
         \frametitle{Containing All Needed Files}
         PDF files contains all files needed to present the documents.
         \begin{itemize}
-            \item For example, font files are embedded in PDF files so that
-            texts will present well even if the specific font isn't installed
-            in the displaying device.
+            \item e.g. font files.
             \item {\fontspec{Berlin Sans FB Demi}Berlin Sans FB Demi,}
             {\fontspec{Bradley Hand ITC}Bradley Hand ITC,}
             {\fontspec{Colonna MT}Colonna MT,}
@@ -231,14 +226,64 @@
 
     \begin{frame}
         \frametitle{Containing All Needed Files (Continued)}
-        I took the screenshot when I was opening our lecture ppt on my iPad
-        using Keynote.
+        A screenshot of previous page opened by my iPad's default viewer.
+        \centering
+        \includegraphics[scale=0.09]{fonts.png}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Containing All Needed Files (Continued)}
+        A screenshot of our lecture ppt opened by Keynote on my iPad.
+        \centering
         \includegraphics[scale=0.09]{missing_fonts.png}
     \end{frame}
 
-    % TODO: new features including forms, rich media and so on.
+    \section{Feature II: Presenting Dynamic Elements}
+
+    \begin{frame}
+        \FrameTextResetCrono{\ResetCronoBox}
+        \frametitle{Presenting Dynamic Elements}
+        \begin{itemize}
+            \item Logical structuring elements such as buttons and the stopwatch.
+            \item Interactive elements such as fillable forms.
+            \item Rich media such as animated GIFs, audios and videos.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Interactive Elements}
+        \begin{center}
+            \begin{Form}[action={https://123.com/receiveform.cgi}]
+                \begin{tabular}{@{}p{6cm}p{5cm}@{}}
+                    \TextField{Name} \\\\
+                    \CheckBox[width=1em]{Check} \\\\
+                    \Submit{Submit}\\
+                \end{tabular}
+            \end{Form}
+        \end{center}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Rich Media}
+        \centering
+        Examples.
+    \end{frame}
+
+    \section{Guides?}
+
+    \begin{frame}
+        \frametitle{Guides to make such a slide?}
+        \centering
+        codes $\Rightarrow$ \LaTeX $\Rightarrow$ PDF(Not recommended)
+
+        PPT $\Rightarrow$ PDF
+    \end{frame}
 
     \section*{}
+
+    \begin{frame}
+        \frametitle{Conclusion}
+    \end{frame}
 
     \begin{frame}
         \FrameTextResetCrono{\ResetCronoBox}

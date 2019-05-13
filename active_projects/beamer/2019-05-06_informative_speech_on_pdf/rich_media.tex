@@ -1,0 +1,27 @@
+\documentclass{beamer}
+\usepackage{animate}
+\usepackage{media9}
+
+\begin{document}
+    \begin{frame}
+        \frametitle{Animated GIFs}
+        \centering
+        \animategraphics[loop,controls,width=\linewidth,scale=0.75]{10}{resources/VHJml-}{0}{16}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Videos}
+        \centering
+        \includemedia[
+            width=0.8\textwidth,
+            height=0.6\textheight,
+            activate=pageopen,
+            % passcontext,
+            addresource=resources/ComplexTransformation.mp4,
+            playbutton=fancy,
+            flashvars={
+                source=resources/ComplexTransformation.mp4
+            }
+        ]{\fbox{Click!}}{resources/VPlayer.swf}
+    \end{frame}
+\end{document}

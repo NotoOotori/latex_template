@@ -1,0 +1,373 @@
+% !Mode::"TeX:UTF-8"
+
+% -------------------- Information --------------------
+
+\newcommand{\TITLE}{数值分析实践课作业9}
+\newcommand{\AUTHOR}{Jason}
+\newcommand{\SUBJECT}{数值分析实践课}
+\newcommand{\KEYWORDS}{}
+
+% -------------------- Packages --------------------
+
+\documentclass[a4paper, 12pt]{ctexart}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% \usepackage{amsthm} % 定理格式 由ntheorem代替.
+\usepackage{authblk} % 作者 (见校赛论文).
+\usepackage{array}
+\usepackage{bigfoot} % to allow verbatim in footnote.
+\usepackage{bm} % \bm for bold symbols.
+\usepackage{boldline} % 长表格表格线加粗.
+\usepackage{caption} % 题注.
+\usepackage{commath} % abs, norm
+\usepackage{enumerate}
+% \usepackage{enumitem} 用enumerate包代替.
+\usepackage{fancyhdr} % 脚注.
+\usepackage{filecontents}
+\usepackage{flafter} % 不让float出现在定义之前的地方.
+\usepackage{float} % 你们这帮float给我乖乖听话 HHHHHHHHHHH.
+\usepackage[T1]{fontenc} % Bera Mono Font
+\usepackage{fontspec} % 字体.
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{letltxmacro} % \let
+\usepackage{lipsum}
+\usepackage{listings} % 排版程序语言.
+\usepackage{longtable} % 长表格.
+\usepackage{makecell} % 表格线加粗 \Xhline{1.2pt}.
+\usepackage{mathtools} % \xleftrightarrow.
+\usepackage{mathrsfs} % \mathscr
+\usepackage{multirow} % 合并单元格.
+\usepackage[square, numbers, sort&compress]{natbib} % 引用.
+\usepackage[thmmarks, amsmath, thref]{ntheorem} % 定理格式.
+\usepackage[section]{placeins} % 使图像不会显示在别的部分 若过于严格则换成[below].
+\usepackage{stackrel} % 上下写 见校赛论文.
+\usepackage{subcaption} % subcaption and subfigure
+% \usepackage{SUBSubsubsection}
+\usepackage{titlesec} % Section标题格式.
+\usepackage{varioref} % For Cross References.
+\usepackage[dvipsnames]{xcolor} % 颜色声明.
+\usepackage{xfrac} %\sfrac{}{}
+\usepackage[all, cmtip]{xy} % Commutive diagram.
+
+% Require `ntheorem'
+
+\usepackage[mathlines, edtable]{lineno} % Line numbers.
+    %\begin{edtable}{tabular}[<args>] <entries> \end{edtable}
+
+% Require `xcolor'
+
+\usepackage[numbered, framed]{matlab-prettifier}
+\usepackage{pgfplots}
+\usepackage{tikz}
+
+% Incompatible with `matlab-prettifier'
+
+\usepackage[printwatermark]{xwatermark} % Foreground Watermarks.
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{\TITLE}
+\author{\AUTHOR}
+\date{\today}
+
+% Package: caption
+
+\captionsetup{
+    margin    =   6pt,
+    font      =   small,
+    labelfont =   bf
+}
+
+% Package: ctex
+
+\setCJKfamilyfont{fzstk}{FZShuTi} % 方正舒体
+\newcommand{\fzstk}{\CJKfamily{fzstk}}
+
+% Package: fancyhdr
+
+\setlength{\headheight}{15pt}
+\lhead{Copyright \copyright\ \AUTHOR}
+\rhead{Page \thepage\ of \pageref{LastPage}}
+
+% Package: graphicx
+
+\graphicspath{{resources/}} % 图像文件目录
+
+% Package: hyperref
+
+\hypersetup{
+    linktoc             =   all,
+    colorlinks          =   true,
+    linkcolor           =   cyan,
+    anchorcolor         =   black,
+    citecolor           =   green,
+    filecolor           =   cyan,
+    menucolor           =   red,
+    runcolor            =   filecolor,
+    urlcolor            =   magenta,
+	pdftitle           	=   {\TITLE},
+	pdfauthor          	=   {\AUTHOR},
+	pdfsubject         	=   {\SUBJECT},
+	pdfcreator			=	{Visual Studio Code},
+	pdfproducer			=	{XeLaTeX with documentclass ctexart},
+	pdfkeywords        	=   {\KEYWORDS},
+    bookmarksnumbered   =   true,
+    pdfstartview        =   FitH,
+    pdfpagelayout       =   OneColumn
+}
+
+% Package: lineno
+
+\renewcommand{\linenumberfont}{\normalfont\scriptsize\sffamily}
+
+\let\oldlstinputlisting\lstinputlisting
+\renewcommand{\lstinputlisting}[2][\empty]{
+    \par\nolinenumbers\oldlstinputlisting[#1]{#2}\linenumbers\par
+}
+
+\let\oldlstlisting\lstlisting
+\let\oldendlstlisting\endlstlisting
+\renewenvironment{lstlisting}
+    {\par\nolinenumbers\oldlstlisting}
+    {\oldendlstlisting\endnolinenumbers\par}
+
+\let\oldtable\table
+\let\oldendtable\endtable
+\renewenvironment{table}
+    {\par\nolinenumbers\oldtable}
+    {\oldendtable\endnolinenumbers\par}
+
+% Package: listings
+
+%% Title
+
+\renewcommand\lstlistingname{代码}
+\renewcommand\lstlistlistingname{代码}
+
+%% Lstinline with color box
+
+\LetLtxMacro{\oldlstinline}{\lstinline}
+\renewcommand{\lstinline}[2][]{\colorbox{lightgray}{\oldlstinline[#1]{#2}}}
+\newcommand{\matlabinline}[1]{
+    \lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{#1}}
+
+\lstset{
+    breaklines=true,
+    backgroundcolor=\color{lightgray},
+    basicstyle=\scriptsize,
+    inputpath=resources/,
+    numbers=left,
+    numberstyle={\color{black!33}\scriptsize\sffamily},
+    xleftmargin=2em,
+    xrightmargin=2em
+}
+
+% Package: ntheorem
+
+%% Theorem
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+%% Problem
+\theoremstyle{plain}
+\newtheorem{problem}{Problem}[section]
+%% Proposition
+\newtheorem{proposition}{Proposition}[section]
+%% Conjecture
+\newtheorem{conjecture}[proposition]{Conjecture}
+%% Definition
+\theoremstyle{plain}
+\theoremheaderfont{\bfseries}
+\theorembodyfont{\rmfamily}
+\newtheorem{definition}{Definition}[section]
+%% Note
+\theoremstyle{plain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\itshape}
+\newtheorem{note}{Note}[section]
+%% Proof
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem{proof}{Proof}
+%% Solution
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{solution}{Solution}
+
+% Package: pgfplot
+
+\pgfplotsset{width=7cm, compat=1.16}
+
+% Package: varioref
+
+\renewcommand{\reftextbefore}
+    {on the \reftextvario{preceding page}{page before}}
+\renewcommand{\reftextafter}
+    {on the \reftextvario{following}{next} page}
+\renewcommand{\reftextfacebefore}
+    {on the \reftextvario{facing}{preceding} page}
+\renewcommand{\reftextfaceafter}
+    {on the \reftextvario{facing}{next} page}
+\renewcommand{\reftextfaraway}[1]
+    {on page \pageref{#1}}
+
+%% Label formats
+
+\labelformat{lstlisting}{代码#1}
+\labelformat{equation}{式(#1)}
+\labelformat{figure}{图#1}
+\labelformat{table}{表#1}
+
+% Package: xwatermark
+
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan, opacity=0.2]\node{\fzstk\SUBJECT};}
+\newwatermark*[
+    allpages,
+    angle=45,
+    scale=6,
+    xpos=-20,
+    ypos=15
+]{\usebox\mybox}
+
+% -------------------- General new commands --------------------
+
+\DeclareMathAlphabet{\mathsfsl}{OT1}{cmss}{m}{sl}
+
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\Arcosh}{Arcosh}
+\DeclareMathOperator*{\Beta}{B}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator*{\real}{Re}
+\DeclareMathOperator*{\image}{Im}
+
+% Expectation
+
+\newcommand{\expect}{\operatorname{E}\expectarg}
+\DeclarePairedDelimiterX{\expectarg}[1]{(}{)}{
+    \ifnum\currentgrouptype=16 \else\begingroup\fi
+    \activatebar#1
+    \ifnum\currentgrouptype=16 \else\endgroup\fi
+}
+
+\newcommand{\innermid}{\nonscript\;\delimsize\vert\nonscript\;}
+\newcommand{\activatebar}{
+    \begingroup\lccode`\~=`\|
+    \lowercase{\endgroup\let~}\innermid
+    \mathcode`|=\string"8000
+}
+
+\newcommand*{\BC}{\mathbb{C}}
+\newcommand*{\BR}{\mathbb{R}}
+\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand*{\matr}[1]{\ensuremath{\mathsfsl{#1}}} % italic sans serif
+\newcommand*{\me}{\mathrm{e}}
+\newcommand*{\mi}{\mathrm{i}}
+\newcommand*{\restrict}[1]{\raisebox{-.5ex}{$\vert$}_{#1}}
+\newcommand*{\vect}[1]{\bm{#1}}
+
+% -------------------- Specific new commands --------------------
+
+
+
+% -------------------- Document --------------------
+
+\begin{document}
+
+    % -------------------- Title Page --------------------
+
+    \maketitle
+    \thispagestyle{empty}
+    \pagenumbering{roman}
+
+    % -------------------- Abstract Page --------------------
+
+    % -------------------- Contents --------------------
+
+    % \newpage
+    % \tableofcontents
+
+    % -------------------- Body --------------------
+
+    \newpage
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    \linenumbers
+
+    \section{Monte Carlo方法计算积分}
+
+    MATLAB代码如下:
+
+    \lstinputlisting[
+        caption=na9\_1.m,
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize
+    ]{na9_1.m}
+    
+    得到结果分别为
+
+    \begin{lstlisting}[
+        caption=answer,
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize,
+        numberstyle={\color{black!33}\scriptsize\sffamily}
+    ]
+        0.4324
+        0.4709
+        0.4634
+    \end{lstlisting}
+
+
+    \section{积分方程求解}
+    
+    代码如下:
+
+    \lstinputlisting[
+        caption=na9\_2.m,
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize
+    ]{na9_2.m}
+    
+    得到图像:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{na9_2.png}
+        \caption{积分方程求解}
+    \end{figure}
+
+    可以看出该数值计算方法并不收敛, 甚至MATLAB也给出了
+    "{\color{red}矩阵接近奇异值, 或者缩放错误. 结果可能不准确.}"的警告.
+    计算$\matr{A}$的条件数我们发现
+    条件数分别为
+    \matlabinline{1.3685e+04},
+    \matlabinline{4.1065e+08},
+    \matlabinline{1.0771e+17}和
+    \matlabinline{2.4827e+17},
+    不适宜用数值方法求解该线性方程组.
+
+    \section{高维积分的Monte Carlo方法}
+
+    代码如下:
+
+    \lstinputlisting[
+        caption=na9\_3.m,
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize
+    ]{na9_3.m}
+
+    得到体积为\matlabinline{0.7477}.
+    
+    % -------------------- Bibliography --------------------
+
+    % \newpage
+    % \bibliography{Principles_of_Mathematical_Analysis}
+    % \bibliographystyle{plain}
+
+\end{document}

@@ -60,6 +60,7 @@
 
 \usepackage[numbered, framed]{matlab-prettifier}
 \usepackage{pgfplots}
+\usepackage{pgfplotstable}
 \usepackage{tikz}
 
 % Incompatible with `matlab-prettifier'
@@ -200,9 +201,16 @@
 \theoremsymbol{\ensuremath{\blacksquare}}
 \newtheorem{solution}{Solution}
 
-% Package: pgfplot
+% Package: pgfplots
 
 \pgfplotsset{width=7cm, compat=1.16}
+
+% Package: pgfplotstable
+
+\pgfplotstableset{
+    every head row/.style={before row=\Xhline{1.2pt},after row=\hline},
+    every last row/.style={after row=\Xhline{1.2pt}}
+}
 
 % Package: varioref
 
@@ -349,6 +357,20 @@
                 $y$ & 0 & 1 & 0 & 1 & 0\\
                 \Xhline{1.2pt}
             \end{tabular}
+        \end{center}
+    \end{table}
+
+    这次我们尝试用pgfplotstable包来画表格.
+    \begin{table}[H]
+        \begin{center}
+            \caption{pgfplotstable}
+            \pgfplotstabletypeset{
+                a b
+                5000 1.234e5
+                6000 1.631e5
+                7000 2.1013e5
+                9000 1000000
+            }
         \end{center}
     \end{table}
 

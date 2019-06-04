@@ -1,0 +1,177 @@
+% !Mode::"TeX:UTF-8"
+
+% -------------------- Information --------------------
+
+\newcommand{\TITLE}{论新时代下新青年与数学学科发展}
+\newcommand{\AUTHOR}{陈旭阳}
+\newcommand{\SUBJECT}{毛泽东思想和中国特色社会主义理论体系概论课程论文}
+\newcommand{\KEYWORDS}{新时代, 新青年, 数学学科建设}
+
+% -------------------- Packages --------------------
+
+\documentclass[a4paper, 12pt]{ctexart}
+\usepackage{authblk} % 作者 (见校赛论文).
+\usepackage{array}
+\usepackage{boldline} % 长表格表格线加粗.
+\usepackage{caption} % 题注.
+\usepackage{enumerate}
+\usepackage{fancyhdr} % 脚注.
+\usepackage{filecontents}
+\usepackage{float} % 你们这帮float给我乖乖听话 HHHHHHHHHHH.
+\usepackage[T1]{fontenc} % Bera Mono Font
+\usepackage{fontspec} % 字体.
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{makecell} % 表格线加粗 \Xhline{1.2pt}.
+\usepackage[square, numbers, sort&compress]{natbib} % 引用.
+\usepackage{subcaption} % subcaption and subfigure
+\usepackage{titlesec} % Section标题格式.
+\usepackage{varioref} % For Cross References.
+\usepackage[dvipsnames]{xcolor} % 颜色声明.
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{\TITLE}
+\author{\AUTHOR}
+\date{\today}
+
+% Package: caption
+
+\captionsetup{
+    margin    =   6pt,
+    font      =   small,
+    labelfont =   bf
+}
+
+% Package: ctex
+
+\setCJKfamilyfont{fzstk}{FZShuTi} % 方正舒体
+\newcommand{\fzstk}{\CJKfamily{fzstk}}
+\ctexset{
+    section/name = {第,节},
+    section/number = \chinese{section},
+    subsection/number = (\chinese{subsection}),
+    subsubsection/number = \arabic{subsubsection}
+}
+
+% Package: fancyhdr
+
+\setlength{\headheight}{15pt}
+\lhead{\SUBJECT}
+\rhead{第\thepage 页\ 共\ \pageref{LastPage}\ 页}
+
+% Package: graphicx
+
+\graphicspath{{resources/}} % 图像文件目录
+
+% Package: hyperref
+
+\hypersetup{
+    linktoc             =   all,
+    colorlinks          =   true,
+    linkcolor           =   black,
+    anchorcolor         =   black,
+    citecolor           =   black,
+    filecolor           =   black,
+    menucolor           =   black,
+    runcolor            =   black,
+    urlcolor            =   black,
+	pdftitle           	=   {\TITLE},
+	pdfauthor          	=   {\AUTHOR},
+	pdfsubject         	=   {\SUBJECT},
+	pdfcreator			=	{Visual Studio Code},
+	pdfproducer			=	{XeLaTeX with documentclass ctexart},
+	pdfkeywords        	=   {\KEYWORDS},
+    bookmarksnumbered   =   true,
+    pdfstartview        =   FitH,
+    pdfpagelayout       =   OneColumn
+}
+
+% Package: varioref
+
+\renewcommand{\reftextbefore}
+    {on the \reftextvario{preceding page}{page before}}
+\renewcommand{\reftextafter}
+    {on the \reftextvario{following}{next} page}
+\renewcommand{\reftextfacebefore}
+    {on the \reftextvario{facing}{preceding} page}
+\renewcommand{\reftextfaceafter}
+    {on the \reftextvario{facing}{next} page}
+\renewcommand{\reftextfaraway}[1]
+    {on page \pageref{#1}}
+
+%% Label formats
+
+\labelformat{lstlisting}{代码#1}
+\labelformat{equation}{式(#1)}
+\labelformat{figure}{图#1}
+\labelformat{table}{表#1}
+
+% -------------------- General new commands --------------------
+
+
+
+% -------------------- Specific new commands --------------------
+
+
+
+% -------------------- Document --------------------
+
+\begin{document}
+
+    % -------------------- Title Page --------------------
+
+    % \maketitle
+    % \thispagestyle{empty}
+    \pagenumbering{roman}
+
+    % -------------------- Abstract Page --------------------
+
+    % \newpage
+
+    \begin{abstract}
+        \input{abstract.tex}
+    \end{abstract}
+
+    \textbf{关键词}:
+        \KEYWORDS
+
+    % -------------------- Contents --------------------
+
+    % \newpage
+    \tableofcontents
+
+    % -------------------- Body --------------------
+
+    \newpage
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    
+    \section*{引言\quad 新时代下新青年当奋斗}
+    \addcontentsline{toc}{section}{引言\ 新时代下新青年当奋斗}
+
+    \input{introduction.tex}
+
+    \section{新时代下数学学科建设的必要性}
+
+    \input{section1.tex}
+
+    \section{新青年应立下志向努力学习}
+
+    \input{section2.tex}
+
+    \section*{结语}
+    \addcontentsline{toc}{section}{结语}
+
+    \input{conclusion.tex}
+
+    % -------------------- Bibliography --------------------
+
+    \newpage
+    \bibliography{bibliography}
+    \bibliographystyle{plain}
+
+\end{document}

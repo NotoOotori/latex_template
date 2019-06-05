@@ -1,0 +1,13 @@
+syms x;
+f = @(x) (sqrt(1+x^2));
+fdiff = matlabFunction(diff(f(x)));
+k = f(1)-f(0); b1 = f(0);
+x0 = fsolve(@(x) (fdiff(x) - k), 0);
+b0 = f(x0) - k * x0;
+b = (b0 + b1)/2;
+ppoly = [k b];
+p = matlabFunction(poly2sym(ppoly));
+x1 = fsolve(@(x) (f(x) - p(x)), 0);
+x2 = fsolve(@(x) (f(x) - p(x)), 1);
+disp(ppoly);
+disp(x1); disp(x2);

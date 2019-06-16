@@ -1,0 +1,10 @@
+MAX_ITER = 200; eps = 1e-5;
+A1 = [1 3 3; 2 1 3; 3 3 6];
+A2 = [-4 14 0; -5 13 0; -1 0 2];
+A3 = [8 4 3 5; 7 2 4 1; 6 2 2 2; 1 0 4 3];
+[lambda, u] = eig_power(A1, [1 1 1]', MAX_ITER, eps);
+disp(lambda); disp(u);
+[lambda, u] = eig_power(A2, [1 1 1]', MAX_ITER, eps);
+disp(lambda); disp(u);
+[lambda, u] = eig_power(A3, [1 1 1 1]', MAX_ITER, eps);
+disp(lambda); disp(u);

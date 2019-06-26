@@ -1,0 +1,499 @@
+% !Mode::"TeX:UTF-8"
+
+% -------------------- Information --------------------
+
+\newcommand{\TITLE}{数值分析实验期末测试}
+\newcommand{\AUTHOR}{陈旭阳 1753763}
+\newcommand{\SUBJECT}{数值分析实践课}
+\newcommand{\KEYWORDS}{}
+
+% -------------------- Packages --------------------
+
+\documentclass[a4paper, 12pt]{ctexart}
+\usepackage{amsmath}
+\usepackage{amssymb}
+% \usepackage{amsthm} % 定理格式 由ntheorem代替.
+\usepackage{authblk} % 作者 (见校赛论文).
+\usepackage{array}
+\usepackage{bigfoot} % to allow verbatim in footnote.
+\usepackage{bm} % \bm for bold symbols.
+\usepackage{boldline} % 长表格表格线加粗.
+\usepackage{caption} % 题注.
+\usepackage{commath} % abs, norm
+\usepackage{enumerate}
+% \usepackage{enumitem} 用enumerate包代替.
+\usepackage{fancyhdr} % 脚注.
+\usepackage{filecontents}
+\usepackage{flafter} % 不让float出现在定义之前的地方.
+\usepackage{float} % 你们这帮float给我乖乖听话 HHHHHHHHHHH.
+\usepackage[T1]{fontenc} % Bera Mono Font
+\usepackage{fontspec} % 字体.
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{letltxmacro} % \let
+\usepackage{lipsum}
+\usepackage{listings} % 排版程序语言.
+\usepackage{longtable} % 长表格.
+\usepackage{makecell} % 表格线加粗 \Xhline{1.2pt}.
+\usepackage{mathtools} % \xleftrightarrow.
+\usepackage{mathrsfs} % \mathscr
+\usepackage{multirow} % 合并单元格.
+\usepackage[square, numbers, sort&compress]{natbib} % 引用.
+\usepackage[thmmarks, amsmath, thref]{ntheorem} % 定理格式.
+\usepackage[section]{placeins} % 使图像不会显示在别的部分 若过于严格则换成[below].
+\usepackage{stackrel} % 上下写 见校赛论文.
+\usepackage{subcaption} % subcaption and subfigure
+% \usepackage{SUBSubsubsection}
+\usepackage{titlesec} % Section标题格式.
+\usepackage{varioref} % For Cross References.
+\usepackage[dvipsnames]{xcolor} % 颜色声明.
+\usepackage{xfrac} %\sfrac{}{}
+\usepackage[all, cmtip]{xy} % Commutive diagram.
+
+% Require `ntheorem'
+
+\usepackage[mathlines, edtable]{lineno} % Line numbers.
+    %\begin{edtable}{tabular}[<args>] <entries> \end{edtable}
+
+% Require `xcolor'
+
+\usepackage[numbered, framed]{matlab-prettifier}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{tikz}
+
+% Incompatible with `matlab-prettifier'
+
+\usepackage[printwatermark]{xwatermark} % Foreground Watermarks.
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{\TITLE}
+\author{\AUTHOR}
+\date{\today}
+
+% Package: caption
+
+\captionsetup{
+    margin    =   6pt,
+    font      =   small,
+    labelfont =   bf
+}
+
+% Package: ctex
+
+\setCJKfamilyfont{fzstk}{FZShuTi} % 方正舒体
+\newcommand{\fzstk}{\CJKfamily{fzstk}}
+
+% Package: fancyhdr
+
+\setlength{\headheight}{15pt}
+\lhead{Copyright \copyright\ \AUTHOR}
+\rhead{Page \thepage\ of \pageref{LastPage}}
+
+% Package: graphicx
+
+\graphicspath{{resources/}} % 图像文件目录
+
+% Package: hyperref
+
+\hypersetup{
+    linktoc             =   all,
+    colorlinks          =   true,
+    linkcolor           =   cyan,
+    anchorcolor         =   black,
+    citecolor           =   green,
+    filecolor           =   cyan,
+    menucolor           =   red,
+    runcolor            =   filecolor,
+    urlcolor            =   magenta,
+	pdftitle           	=   {\TITLE},
+	pdfauthor          	=   {\AUTHOR},
+	pdfsubject         	=   {\SUBJECT},
+	pdfcreator			=	{Visual Studio Code},
+	pdfproducer			=	{XeLaTeX with documentclass ctexart},
+	pdfkeywords        	=   {\KEYWORDS},
+    bookmarksnumbered   =   true,
+    pdfstartview        =   FitH,
+    pdfpagelayout       =   OneColumn
+}
+
+% Package: lineno
+
+\renewcommand{\linenumberfont}{\normalfont\scriptsize\sffamily}
+
+\let\oldlstinputlisting\lstinputlisting
+\renewcommand{\lstinputlisting}[2][\empty]{
+    \par\nolinenumbers\oldlstinputlisting[#1]{#2}\linenumbers\par
+}
+
+\let\oldlstlisting\lstlisting
+\let\oldendlstlisting\endlstlisting
+\renewenvironment{lstlisting}
+    {\par\nolinenumbers\oldlstlisting}
+    {\oldendlstlisting\endnolinenumbers\par}
+
+\let\oldtable\table
+\let\oldendtable\endtable
+\renewenvironment{table}
+    {\par\nolinenumbers\oldtable}
+    {\oldendtable\endnolinenumbers\par}
+
+% Package: listings
+
+%% Title
+
+\renewcommand\lstlistingname{代码}
+\renewcommand\lstlistlistingname{代码}
+
+%% Lstinline with color box
+
+\LetLtxMacro{\oldlstinline}{\lstinline}
+\renewcommand{\lstinline}[2][]{\colorbox{lightgray}{\oldlstinline[#1]{#2}}}
+\newcommand{\matlabinline}[1]{
+    \lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{#1}}
+
+\lstset{
+    breaklines=true,
+    backgroundcolor=\color{lightgray},
+    basicstyle=\scriptsize,
+    inputpath=resources/,
+    numbers=left,
+    numberstyle={\color{black!33}\scriptsize\sffamily},
+    xleftmargin=2em,
+    xrightmargin=2em
+}
+
+% Package: ntheorem
+
+%% Theorem
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+%% Problem
+\theoremstyle{plain}
+\newtheorem{problem}{Problem}[section]
+%% Proposition
+\newtheorem{proposition}{Proposition}[section]
+%% Conjecture
+\newtheorem{conjecture}[proposition]{Conjecture}
+%% Definition
+\theoremstyle{plain}
+\theoremheaderfont{\bfseries}
+\theorembodyfont{\rmfamily}
+\newtheorem{definition}{Definition}[section]
+%% Note
+\theoremstyle{plain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\itshape}
+\newtheorem{note}{Note}[section]
+%% Proof
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem{proof}{Proof}
+%% Solution
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{solution}{Solution}
+
+% Package: pgfplots
+
+\pgfplotsset{width=7cm, compat=1.16}
+
+% Package: pgfplotstable
+
+\pgfplotstableset{
+    every head row/.style={before row=\Xhline{1.2pt},after row=\hline},
+    every last row/.style={after row=\Xhline{1.2pt}}
+}
+
+% Package: varioref
+
+\renewcommand{\reftextbefore}
+    {on the \reftextvario{preceding page}{page before}}
+\renewcommand{\reftextafter}
+    {on the \reftextvario{following}{next} page}
+\renewcommand{\reftextfacebefore}
+    {on the \reftextvario{facing}{preceding} page}
+\renewcommand{\reftextfaceafter}
+    {on the \reftextvario{facing}{next} page}
+\renewcommand{\reftextfaraway}[1]
+    {on page \pageref{#1}}
+
+%% Label formats
+
+\labelformat{lstlisting}{代码#1}
+\labelformat{equation}{式(#1)}
+\labelformat{figure}{图#1}
+\labelformat{table}{表#1}
+
+% Package: xwatermark
+
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=cyan, opacity=0.2]\node{\fzstk\AUTHOR};}
+\newwatermark*[
+    allpages,
+    angle=45,
+    scale=6,
+    xpos=-20,
+    ypos=15
+]{\usebox\mybox}
+
+% -------------------- General new commands --------------------
+
+\DeclareMathAlphabet{\mathsfsl}{OT1}{cmss}{m}{sl}
+
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\Arcosh}{Arcosh}
+\DeclareMathOperator*{\Beta}{B}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator*{\real}{Re}
+\DeclareMathOperator*{\image}{Im}
+
+% Expectation
+
+\newcommand{\expect}{\operatorname{E}\expectarg}
+\DeclarePairedDelimiterX{\expectarg}[1]{(}{)}{
+    \ifnum\currentgrouptype=16 \else\begingroup\fi
+    \activatebar#1
+    \ifnum\currentgrouptype=16 \else\endgroup\fi
+}
+
+\newcommand{\innermid}{\nonscript\;\delimsize\vert\nonscript\;}
+\newcommand{\activatebar}{
+    \begingroup\lccode`\~=`\|
+    \lowercase{\endgroup\let~}\innermid
+    \mathcode`|=\string"8000
+}
+
+\newcommand*{\BC}{\mathbb{C}}
+\newcommand*{\BR}{\mathbb{R}}
+\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand*{\matr}[1]{\ensuremath{\mathsfsl{#1}}} % italic sans serif
+\newcommand*{\me}{\mathrm{e}}
+\newcommand*{\mi}{\mathrm{i}}
+\newcommand*{\restrict}[1]{\raisebox{-.5ex}{$\vert$}_{#1}}
+\newcommand*{\vect}[1]{\bm{#1}}
+
+% -------------------- Specific new commands --------------------
+
+
+
+% -------------------- Document --------------------
+
+\begin{document}
+
+    % -------------------- Title Page --------------------
+
+    \maketitle
+    \thispagestyle{empty}
+    \pagenumbering{roman}
+
+    % -------------------- Abstract Page --------------------
+
+    % -------------------- Contents --------------------
+
+    % \newpage
+    % \tableofcontents
+
+    % -------------------- Body --------------------
+
+    \newpage
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+    \linenumbers
+
+    \begin{problem}
+        利用矩阵分解, 编写一个$\matr{QR}$分解的程序.
+    \end{problem}
+
+    \begin{solution}
+        函数文件myqr.m如下:
+
+        \lstinputlisting[
+            caption=myqr.m,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize
+        ]{myqr.m}
+
+        令\matlabinline{A = [2 -1 0 0; -1 2 -1 0; 0 -1 2 -1; 0 0 -1 2]}, 进行测试:
+
+        \begin{lstlisting}[
+            caption=内置qr函数测试,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize,
+            numberstyle={\color{black!33}\scriptsize\sffamily}
+        ]
+>> [Q, R] = qr(A)
+
+Q =
+        
+   -0.8944   -0.3586   -0.1952    0.1826
+    0.4472   -0.7171   -0.3904    0.3651
+         0    0.5976   -0.5855    0.5477
+         0         0    0.6831    0.7303
+
+
+R =
+        
+   -2.2361    1.7889   -0.4472         0
+         0   -1.6733    1.9124   -0.5976
+         0         0   -1.4639    1.9518
+         0         0         0    0.9129
+        \end{lstlisting}
+
+        \begin{lstlisting}[
+            caption=myqr.m测试,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize,
+            numberstyle={\color{black!33}\scriptsize\sffamily}
+        ]
+>> [QQ, RR] = myqr(A)
+
+QQ =
+
+   -0.8944   -0.3586   -0.1952    0.1826
+    0.4472   -0.7171   -0.3904    0.3651
+         0    0.5976   -0.5855    0.5477
+         0         0    0.6831    0.7303
+
+
+RR =
+
+   -2.2361    1.7889   -0.4472         0
+         0   -1.6733    1.9124   -0.5976
+         0         0   -1.4639    1.9518
+         0         0         0    0.9129
+        \end{lstlisting}
+    \end{solution}
+
+    \begin{problem}
+        求自然对数$\me$的近似表达.
+    \end{problem}
+
+    \begin{solution}
+        脚本文件prob2.m如下:
+
+        \lstinputlisting[
+            caption=prob2.m,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize
+        ]{prob2.m}
+
+        输出为:
+        
+        \begin{lstlisting}[
+            caption=prob2.m输出,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize,
+            numberstyle={\color{black!33}\scriptsize\sffamily}
+        ]
+        By our calculation e equals 2.718282, while in MATLAB e equals 2.718282.
+        \end{lstlisting}
+    \end{solution}
+
+    \begin{problem}
+        超松弛(SOR)迭代法在求解线性方程非常有效. 对于不同的线性方程, 松弛系数$\omega$的最优选择也不一致. 对于线性方程$\matr{A}x=b$, 尝试求出最优松弛系数$\omega$. 其中
+        \begin{equation}
+            \matr{A} =
+            \begin{pmatrix}
+                \phantom{-}2 & -1\\
+                -1 & \phantom{-}2 & \ddots\\
+                & \ddots & \ddots & -1\\
+                & & -1 & \phantom{-}2
+            \end{pmatrix}_{n\times n}\\
+            b = (1, 1, \dotsc, 1)_{n}^{T}.
+        \end{equation}
+    \end{problem}
+
+    \begin{solution}
+        函数文件myoption.m如下:
+
+        \lstinputlisting[
+            caption=myoption.m,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize
+        ]{myoption.m}
+
+        测试文件prob3.m如下:
+
+        \lstinputlisting[
+            caption=prob3.m,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize
+        ]{prob3.m}
+
+        输出为:
+
+        \begin{lstlisting}[
+            caption=prob3.m输出,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize,
+            numberstyle={\color{black!33}\scriptsize\sffamily}
+        ]
+The best omega equals 1.50 when n = 8.
+The best omega equals 1.70 when n = 16.
+The best omega equals 1.83 when n = 32.
+        \end{lstlisting}
+    \end{solution}
+
+    \begin{problem}
+        利用幂法, 编写一个求解矩阵$\matr{A}$的所有特征值.
+    \end{problem}
+
+    \begin{solution}
+        函数文件myeig.m如下:
+
+        \lstinputlisting[
+            caption=myeig.m,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize
+        ]{myeig.m}
+
+        令\matlabinline{A = [2 -1 0 0; -1 2 -1 0; 0 -1 2 -1; 0 0 -1 2]}, 进行测试:
+
+        \begin{lstlisting}[
+            caption=内置eig函数测试,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize,
+            numberstyle={\color{black!33}\scriptsize\sffamily}
+        ]
+>> eig(A)
+
+ans =
+        
+   0.381966011250105
+   1.381966011250105
+   2.618033988749895
+   3.618033988749895
+        \end{lstlisting}
+
+        \begin{lstlisting}[
+            caption=myeig.m测试,
+            style=MATLAB-editor,
+            basicstyle=\mlttfamily\scriptsize,
+            numberstyle={\color{black!33}\scriptsize\sffamily}
+        ]
+>> myeig(A)
+
+ans =
+        
+   3.618031589339802
+   2.618035829560031
+   1.381966285930558
+   0.381966011249917
+        \end{lstlisting}
+    \end{solution}
+
+    % -------------------- Bibliography --------------------
+
+    % \newpage
+    % \bibliography{Principles_of_Mathematical_Analysis}
+    % \bibliographystyle{plain}
+
+\end{document}

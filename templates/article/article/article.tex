@@ -2,9 +2,9 @@
 
 % -------------------- Information --------------------
 
-\newcommand{\TITLE}{作业}
+\newcommand{\TITLE}{\LaTeX 文章模板}
 \newcommand{\AUTHOR}{Jason}
-\newcommand{\SUBJECT}{作业模板}
+\newcommand{\SUBJECT}{文章模板}
 \newcommand{\KEYWORDS}{}
 
 % -------------------- Packages --------------------
@@ -344,7 +344,48 @@
     \end{figure}
     就算到这里吧.
 
-    %TODO: SUBFIGURE
+    \subsubsection{Subfigrues}
+
+    有换行的subfigure.
+
+    \begin{figure}[H]
+        \begin{subfigure}[b]{0.30\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{wc22.png}
+            \caption{$u(x,y,0.0)$图像}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.30\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{wc23.png}
+            \caption{$u(x,y,0.2)$图像}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.30\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{wc24.png}
+            \caption{$u(x,y,0.4)$图像}
+        \end{subfigure}
+        
+        \begin{subfigure}[b]{0.30\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{wc25.png}
+            \caption{$u(x,y,0.6)$图像}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.30\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{wc26.png}
+            \caption{$u(x,y,0.8)$图像}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.30\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{wc27.png}
+            \caption{$u(x,y,1.0)$图像}
+        \end{subfigure}
+        \caption{问题2图像}
+    \end{figure}
 
     \subsection{Tables}
 

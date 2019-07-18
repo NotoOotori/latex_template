@@ -1,0 +1,65 @@
+% !Mode::"TeX:UTF-8"
+
+% -------------------- Packages --------------------
+
+\documentclass[12pt, chinese, lineno, watermark]{assignment}
+\usepackage{bm} % \bm for bold symbols.
+\usepackage[square, numbers, sort&compress]{natbib} % 引用.
+\usepackage{varioref} % For Cross References.
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{\LaTeX 作业模板}
+\author{Jason}
+\date{\today}
+\institute{同济大学数学科学学院}
+\professor{张赫}
+\course{数理逻辑(最菜菜鸡班)}
+\subject{作业模板}
+\keywords{}
+
+% Package: varioref
+
+\labelformat{lstlisting}{代码#1}
+\labelformat{equation}{式(#1)}
+\labelformat{figure}{图#1}
+\labelformat{table}{表#1}
+\labelformat{problem}{Problem #1}
+
+% -------------------- General new commands --------------------
+
+\DeclareMathAlphabet{\mathsfsl}{OT1}{cmss}{m}{sl}
+
+\newcommand*{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand*{\matr}[1]{\ensuremath{\mathsfsl{#1}}} % italic sans serif
+\newcommand*{\restrict}[1]{\raisebox{-.5ex}{$\vert$}_{#1}}
+\newcommand*{\vect}[1]{\bm{#1}}
+
+% -------------------- Specific new commands --------------------
+
+
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \maketitle
+
+    你好.
+
+    再见.
+
+    \clearpage
+
+    您好.
+
+    再见.
+
+    % -------------------- Bibliography --------------------
+
+    % \newpage
+    % \bibliography{bibliography}
+    % \bibliographystyle{plain}
+
+\end{document}

@@ -18,6 +18,7 @@
 \usepackage{bigfoot} % to allow verbatim in footnote.
 \usepackage{bm} % \bm for bold symbols.
 \usepackage{boldline} % 长表格表格线加粗.
+\usepackage{booktabs}
 \usepackage{caption} % 题注.
 \usepackage{commath} % abs, norm
 \usepackage{enumerate}
@@ -35,7 +36,7 @@
 \usepackage{lipsum}
 \usepackage{listings} % 排版程序语言.
 \usepackage{longtable} % 长表格.
-\usepackage{makecell} % 表格线加粗 \Xhline{1.2pt}.
+% \usepackage{makecell} % 表格线加粗 \Xhline{1.2pt}. 用booktabs包代替.
 \usepackage{mathtools} % \xleftrightarrow.
 \usepackage{mathrsfs} % \mathscr
 \usepackage{multirow} % 合并单元格.
@@ -208,8 +209,8 @@
 % Package: pgfplotstable
 
 \pgfplotstableset{
-    every head row/.style={before row=\Xhline{1.2pt},after row=\hline},
-    every last row/.style={after row=\Xhline{1.2pt}}
+    every head row/.style={before row=\toprule, after row=\midrule},
+    every last row/.style={after row=\bottomrule}
 }
 
 % Package: varioref
@@ -395,11 +396,11 @@
             \caption{习题中给定的三次样条数据}
             \label{table_13}
             \begin{tabular}{cccccc}
-                \Xhline{1.2pt}
+                \toprule
                 $x$ & 1 & 2 & 3 & 4 & 5\\
-                \hline
+                \midrule
                 $y$ & 0 & 1 & 0 & 1 & 0\\
-                \Xhline{1.2pt}
+                \bottomrule
             \end{tabular}
         \end{center}
     \end{table}

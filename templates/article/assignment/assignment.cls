@@ -2,8 +2,6 @@
 % 写一下这个模板做了什么
 % Options: 12pt chinese lineno watermark
 
-% Known Issues: 不管选不选lineno都有
-
 % -------------------- Identification --------------------
 
 \NeedsTeXFormat{LaTeX2e}
@@ -104,6 +102,7 @@
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{booktabs}
 \RequirePackage{commath} % abs, norm
 \RequirePackage{enumerate}
 \RequirePackage{float} % [H].
@@ -262,8 +261,8 @@
 \pgfplotsset{width=7cm, compat=1.16}
 
 \pgfplotstableset{
-    every head row/.style={before row=\Xhline{1.2pt},after row=\hline},
-    every last row/.style={after row=\Xhline{1.2pt}}
+    every head row/.style={before row=\toprule, after row=\midrule},
+    every last row/.style={after row=\bottomrule}
 }
 
 % Package: xwatermark

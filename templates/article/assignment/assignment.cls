@@ -1,6 +1,8 @@
 % !Mode::"TeX:UTF-8"
 % 写一下这个模板做了什么
 % Options: 12pt chinese lineno watermark
+%
+% Known Issues: lineno [mathline] 失效
 
 % -------------------- Identification --------------------
 
@@ -107,14 +109,14 @@
 \RequirePackage{enumerate}
 \RequirePackage{float} % [H].
 \RequirePackage{fontspec} % fonts.
-\RequirePackage{mathtools} % \xleftrightarrow.
+% \RequirePackage{mathtools} % \xleftrightarrow.
 \RequirePackage{mathrsfs} % \mathscr
 \RequirePackage{subcaption} % subcaption and subfigure.
 
 % Packages that need to be loaded before xwatermark
 
 \RequirePackage{bigfoot} % to allow verbatim in footnote.
-\RequirePackage[T1]{fontenc} % Bera Mono Font
+% \RequirePackage[T1]{fontenc} % Bera Mono Font
 
 % Package: caption
 
@@ -274,6 +276,7 @@
         \newsavebox\mybox
         \savebox\mybox{\tikz[color=cyan, opacity=0.2]\node{\WatermarkStyle\ifx\@subject\undefined{\@title}\else{\@subject}\fi};}
         \newwatermark*[
+            fontfamily=lmr,
             allpages,
             angle=45,
             scale=6,

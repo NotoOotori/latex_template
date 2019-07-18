@@ -27,7 +27,6 @@
 \usepackage{filecontents}
 \usepackage{flafter} % 不让float出现在定义之前的地方.
 \usepackage{float} % 你们这帮float给我乖乖听话 HHHHHHHHHHH.
-\usepackage[T1]{fontenc} % Bera Mono Font
 \usepackage{fontspec} % 字体.
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -239,6 +238,7 @@
 \newsavebox\mybox
 \savebox\mybox{\tikz[color=cyan, opacity=0.2]\node{\fzstk\SUBJECT};}
 \newwatermark*[
+    fontfamily=lmr,
     allpages,
     angle=45,
     scale=6,

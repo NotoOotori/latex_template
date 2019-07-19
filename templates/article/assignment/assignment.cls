@@ -1,5 +1,5 @@
 % !Mode::"TeX:UTF-8"
-% 写一下这个模板做了什么
+% TODO: 写一下这个模板做了什么
 % Options: 12pt chinese lineno watermark
 %
 % Known Issues: lineno [mathline] 失效
@@ -26,13 +26,27 @@
 \newcommand{\ProfessorLang}{Professor}
 
 \newcommand{\InstituteStyle}{\scshape}
-\newcommand{\TitleStyle}{\LARGE\bfseries}
+\newcommand{\TitleStyle}{\bfseries}
+\newcommand{\TitleSize}{\LARGE}
 \newcommand{\AuthorStyle}{\itshape}
 \newcommand{\CourseStyle}{\itshape}
 \newcommand{\ProfessorStyle}{\itshape}
 \newcommand{\DateStyle}{\itshape}
 
 \newcommand{\WatermarkStyle}{\itshape\sffamily}
+
+% Package: varioref
+
+\newcommand{\LstlistingLabel}[1]{Code #1}
+\newcommand{\EquationLabel}[1]{Equation (#1)}
+\newcommand{\FigureLabel}[1]{Figure #1}
+\newcommand{\TableLabel}[1]{Table #1}
+\newcommand{\ProblemLabel}[1]{Problem #1}
+
+\newcommand{\ProblemLang}{Problem}
+\newcommand{\NoteLang}{Note}
+\newcommand{\ProofLang}{Proof}
+\newcommand{\SolutionLang}{Solution}
 
 % -------------------- Options --------------------
 
@@ -46,6 +60,7 @@
     \renewcommand{\DocumentClass}{ctexart}
 
     \AtBeginDocument{\renewcommand{\itshape}{\simkai}} % TODO: 观察是否引起问题
+    \AtBeginDocument{\renewcommand{\bfseries}{\simhei}} % TODO: 观察是否引起问题
 
     \renewcommand{\CourseLang}{课程}
     \renewcommand{\DateLang}{日期}
@@ -55,6 +70,19 @@
     \renewcommand{\InstituteStyle}{\sffamily}
 
     \renewcommand{\WatermarkStyle}{\fzstk}
+
+    % Package: varioref
+
+    \renewcommand{\LstlistingLabel}[1]{代码#1}
+    \renewcommand{\EquationLabel}[1]{式(#1)}
+    \renewcommand{\FigureLabel}[1]{图#1}
+    \renewcommand{\TableLabel}[1]{表#1}
+    \renewcommand{\ProblemLabel}[1]{问题#1}
+
+    \renewcommand{\ProblemLang}{问题}
+    \renewcommand{\NoteLang}{注}
+    \renewcommand{\ProofLang}{证明}
+    \renewcommand{\SolutionLang}{解}
 }
 
 \newif\iflineno@option
@@ -63,15 +91,13 @@
 \newif\ifwatermark@option
 \DeclareOption{watermark}{\watermark@optiontrue}
 
-\PassOptionsToClass{a4paper}{\DocumentClass}
-
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\DocumentClass}}
 
 \ProcessOptions\relax
 
 % -------------------- Bulk Declarations --------------------
 
-\LoadClass{\DocumentClass}
+\LoadClass[a4paper, 12pt]{\DocumentClass}
 
 % New title style for the document
 
@@ -81,12 +107,12 @@
         \ifx\@institute\undefined{}\else{\InstituteStyle\@institute}\\\vspace{10pt}\fi
         \hrule
         \vspace{10pt}
-        {\TitleStyle\@title}\\\vspace{5pt}
+        {\TitleSize\TitleStyle\@title}\\\vspace{5pt}
         \StudentLang: {\AuthorStyle\@author}
         \vspace{8pt}
         \hrule
         \vspace{10pt}
-        \ifx\@course\undefined{}\else\CourseLang: {\CourseStyle\@course\ifx\@professor\undefined{}\else{-- }\fi}\fi
+        \ifx\@course\undefined{}\else\CourseLang: {\CourseStyle\@course\ifx\@professor\undefined{}\else{ -- }\fi}\fi
         \ifx\@professor\undefined{}\else{\ProfessorLang: {\ProfessorStyle\@professor}}\fi\\
         \DateLang: {\DateStyle\@date}
         \vspace{20pt}
@@ -110,6 +136,9 @@
     \setCJKfamilyfont{simkai}{KaiTi}
     \newcommand{\simkai}{\CJKfamily{simkai}}
 
+    \setCJKfamilyfont{simhei}{SimHei}
+    \newcommand{\simhei}{\CJKfamily{simhei}}
+
     \setCJKfamilyfont{fzstk}{FZShuTi} % 方正舒体
     \newcommand{\fzstk}{\CJKfamily{fzstk}}
 \fi
@@ -125,7 +154,7 @@
 
 \RequirePackage[math-style=TeX, bold-style=TeX, partial=upright]{unicode-math}
 \setmathfont{XITS Math}
-\setmathfont[range={\mathcal,\mathbfcal}, StylisticSet=1]{XITS Math}
+\setmathfont[range={\mathcal,\mathbfcal}, StylisticSet=1]{XITS Math} % Script
 
 \newcommand*{\diff}{\mathop{}\!\symup{d}}
 \newcommand*{\matr}[1]{\symsfit{#1}}
@@ -134,28 +163,29 @@
 %% Package: ntheorem
 
 \RequirePackage[thmmarks, amsmath, thref, framed]{ntheorem} % 定理格式.
+\RequirePackage{framed}
 \RequirePackage{mdframed} % for \newframedtheorem
 
 %%% Problem
 \theoremstyle{plain}
 \theoremheaderfont{\upshape\bfseries}
 \theorembodyfont{\itshape}
-\newframedtheorem{problem}{Problem}
+\newframedtheorem{problem}{\ProblemLang}
 %%% Note
 \theoremstyle{plain}
 \theoremheaderfont{\itshape}
 \theorembodyfont{\itshape}
-\newtheorem{note}{Note}
+\newtheorem{note}{\NoteLang}
 %%% Proof
 \theoremstyle{nonumberplain}
 \theoremheaderfont{\itshape}
 \theorembodyfont{\upshape}
 \theoremseparator{.}
 \theoremsymbol{\ensuremath{\square}}
-\newtheorem{proof}{Proof}
+\newtheorem{proof}{\ProofLang}
 %%% Solution
 \theoremsymbol{\ensuremath{\blacksquare}}
-\newtheorem{solution}{Solution}
+\newtheorem{solution}{\SolutionLang}
 
 
 % Preload useful packages
@@ -181,9 +211,17 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 
+\newcommand{\PageHead}[2]{\ifchinese@option{第#1页\ 共\ #2\ 页}\else{Page #1\ of #2}\fi}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
 \setlength{\headheight}{15pt}
-\lhead{Copyright \copyright\ \@author}
-\rhead{Page \thepage\ of \pageref{LastPage}}
+\fancyhead[L]{\footnotesize{\ifx\@course\undefined{}\else{\CourseStyle\@course{ -- }\fi}\TitleStyle\@title}}
+\fancyhead[C]{}
+\fancyhead[R]{\footnotesize{\PageHead{\thepage}{\pageref{LastPage}}}}
+\fancyfoot[L, C]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\footnotesize\AuthorStyle\@author}
 
 % Package: graphicx
 
@@ -194,7 +232,7 @@
 % Package: hyperref
 
 \RequirePackage{hyperref}
-
+% TODO: color
 \hypersetup{
     linktoc             =   all,
     colorlinks          =   true,
@@ -284,6 +322,16 @@
     every head row/.style={before row=\toprule, after row=\midrule},
     every last row/.style={after row=\bottomrule}
 }
+
+% Package: varioref
+
+\usepackage{varioref} % For Cross References.
+
+\labelformat{lstlisting}{\LstlistingLabel{#1}}
+\labelformat{equation}{\EquationLabel{#1}}
+\labelformat{figure}{\FigureLabel{#1}}
+\labelformat{table}{\TableLabel{#1}}
+\labelformat{problem}{\ProblemLabel{#1}}
 
 % Package: xwatermark
 

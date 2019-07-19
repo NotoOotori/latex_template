@@ -1,10 +1,7 @@
-% !Mode::"TeX:UTF-8"
-
 % -------------------- Packages --------------------
 
-\documentclass[12pt, chinese, lineno, watermark]{assignment}
+\documentclass[chinese, lineno, watermark]{assignment}
 \usepackage[square, numbers, sort&compress]{natbib} % 引用.
-\usepackage{varioref} % For Cross References.
 
 % -------------------- Settings --------------------
 
@@ -19,14 +16,6 @@
 \subject{作业模板}
 \keywords{}
 
-% Package: varioref
-
-\labelformat{lstlisting}{代码#1}
-\labelformat{equation}{式(#1)}
-\labelformat{figure}{图#1}
-\labelformat{table}{表#1}
-\labelformat{problem}{Problem #1}
-
 % -------------------- New commands --------------------
 
 
@@ -38,7 +27,6 @@
 
     \begin{problem}
         请问郑博文是不是大傻逼. [如果是, 请举出具体事例; 如果不是, 请说明理由].
-
         \begin{equation}
             a\in[0, 1]
         \end{equation}
@@ -46,15 +34,16 @@
 
     \begin{solution}
         是, 不需要理由.
+
+        再见.
+
+        \begin{equation}
+            \nabla{H}=\frac{\partial{z}}{\partial{t}}=g(\vect{\alpha}) = \symcal{A} = \symscr{A} = \int_{0}^{1}f(x)\diff x.
+        \end{equation}
+
+        你好.
+
     \end{solution}
-
-    再见.
-
-    \begin{equation}
-        \nabla{H}=\frac{\partial{z}}{\partial{t}}=g(\vect{\alpha}) = \symcal{A} = \symscr{A} = \int_{0}^{1}f(x)\diff x.
-    \end{equation}
-
-    你好.
 
     \clearpage
 

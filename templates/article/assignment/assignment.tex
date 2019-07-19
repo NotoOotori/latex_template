@@ -4,7 +4,6 @@
 
 \documentclass[12pt, chinese, lineno, watermark]{assignment}
 \usepackage[square, numbers, sort&compress]{natbib} % 引用.
-\usepackage[math-style=TeX, bold-style=TeX, partial=upright]{unicode-math}
 \usepackage{varioref} % For Cross References.
 
 % -------------------- Settings --------------------
@@ -12,7 +11,7 @@
 % Title
 
 \title{\LaTeX 作业模板}
-\author{Jason}
+\author{陈旭阳}
 \date{\today}
 \institute{同济大学数学科学学院}
 \professor{张赫}
@@ -28,13 +27,7 @@
 \labelformat{table}{表#1}
 \labelformat{problem}{Problem #1}
 
-% -------------------- General new commands --------------------
-
-\newcommand*{\diff}{\mathop{}\!\symup{d}}
-\newcommand*{\matr}[1]{\symsfit{#1}}
-\newcommand*{\vect}[1]{\symbf{#1}}
-
-% -------------------- Specific new commands --------------------
+% -------------------- New commands --------------------
 
 
 
@@ -43,12 +36,22 @@
 \begin{document}
     \maketitle
 
-    你好.
+    \begin{problem}
+        请问郑博文是不是大傻逼. [如果是, 请举出具体事例; 如果不是, 请说明理由].
+
+        \begin{equation}
+            a\in[0, 1]
+        \end{equation}
+    \end{problem}
+
+    \begin{solution}
+        是, 不需要理由.
+    \end{solution}
 
     再见.
 
     \begin{equation}
-        \int_{0}^{1}f(x)\diff x
+        \nabla{H}=\frac{\partial{z}}{\partial{t}}=g(\vect{\alpha}) = \symcal{A} = \symscr{A} = \int_{0}^{1}f(x)\diff x.
     \end{equation}
 
     你好.
@@ -57,6 +60,6 @@
 
     您好.
 
-    再见.
+    再您妈的见.
 
 \end{document}

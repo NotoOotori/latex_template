@@ -45,6 +45,8 @@
 
     \renewcommand{\DocumentClass}{ctexart}
 
+    \AtBeginDocument{\renewcommand{\itshape}{\simkai}} % TODO: 观察是否引起问题
+
     \renewcommand{\CourseLang}{课程}
     \renewcommand{\DateLang}{日期}
     \renewcommand{\StudentLang}{姓名}
@@ -71,11 +73,6 @@
 
 \LoadClass{\DocumentClass}
 
-% Modify the sizes of the document
-
-\RequirePackage{geometry}
-\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
-
 % New title style for the document
 
 \renewcommand{\maketitle}{%
@@ -100,23 +97,74 @@
     \iflineno@option\linenumbers\fi
 }
 
-% Preload useful packages
+% Modify the sizes of the document
+
+\RequirePackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% Language support
+
+%% Package: ctex
+
+\ifchinese@option
+    \setCJKfamilyfont{simkai}{KaiTi}
+    \newcommand{\simkai}{\CJKfamily{simkai}}
+
+    \setCJKfamilyfont{fzstk}{FZShuTi} % 方正舒体
+    \newcommand{\fzstk}{\CJKfamily{fzstk}}
+\fi
+
+% Typeset math
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
-\RequirePackage{booktabs}
 \RequirePackage{commath} % abs, norm
+% \RequirePackage{mathtools} % \xleftrightarrow.
+
+%% Package: unicode-math
+
+\RequirePackage[math-style=TeX, bold-style=TeX, partial=upright]{unicode-math}
+\setmathfont{XITS Math}
+\setmathfont[range={\mathcal,\mathbfcal}, StylisticSet=1]{XITS Math}
+
+\newcommand*{\diff}{\mathop{}\!\symup{d}}
+\newcommand*{\matr}[1]{\symsfit{#1}}
+\newcommand*{\vect}[1]{\symbf{#1}}
+
+%% Package: ntheorem
+
+\RequirePackage[thmmarks, amsmath, thref, framed]{ntheorem} % 定理格式.
+\RequirePackage{mdframed} % for \newframedtheorem
+
+%%% Problem
+\theoremstyle{plain}
+\theoremheaderfont{\upshape\bfseries}
+\theorembodyfont{\itshape}
+\newframedtheorem{problem}{Problem}
+%%% Note
+\theoremstyle{plain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\itshape}
+\newtheorem{note}{Note}
+%%% Proof
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem{proof}{Proof}
+%%% Solution
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{solution}{Solution}
+
+
+% Preload useful packages
+
 \RequirePackage{enumerate}
 \RequirePackage{float} % [H].
 \RequirePackage{fontspec} % fonts.
-% \RequirePackage{mathtools} % \xleftrightarrow.
-\RequirePackage{mathrsfs} % \mathscr
 \RequirePackage{subcaption} % subcaption and subfigure.
-
-% Packages that need to be loaded before xwatermark
-
-\RequirePackage{bigfoot} % to allow verbatim in footnote.
-% \RequirePackage[T1]{fontenc} % Bera Mono Font
+\RequirePackage[dvipsnames]{xcolor} % 颜色声明.
 
 % Package: caption
 
@@ -171,18 +219,10 @@
 	pdfkeywords        	=   {\ifx\@keywords\undefined{}\else{\@keywords}\fi},
 }}
 
-% Package: ctex
-
-\ifchinese@option
-    \setCJKfamilyfont{fzstk}{FZShuTi} % 方正舒体
-    \newcommand{\fzstk}{\CJKfamily{fzstk}}
-\fi
-
 % Package: listings
 
 \RequirePackage{listings}
 \RequirePackage{letltxmacro} % \let
-\RequirePackage[dvipsnames]{xcolor} % 颜色声明.
 \RequirePackage[numbered, framed]{matlab-prettifier}
 
 %% Title
@@ -233,32 +273,10 @@
         {\oldendtable\endnolinenumbers\par}
 \fi
 
-% Package: ntheorem
-
-\RequirePackage[thmmarks, amsmath, thref]{ntheorem} % 定理格式.
-
-%% Problem
-\theoremstyle{plain}
-\newtheorem{problem}{Problem}
-%% Note
-\theoremstyle{plain}
-\theoremheaderfont{\itshape}
-\theorembodyfont{\itshape}
-\newtheorem{note}{Note}
-%% Proof
-\theoremstyle{nonumberplain}
-\theoremheaderfont{\itshape}
-\theorembodyfont{\upshape}
-\theoremseparator{.}
-\theoremsymbol{\ensuremath{\square}}
-\newtheorem{proof}{Proof}
-%% Solution
-\theoremsymbol{\ensuremath{\blacksquare}}
-\newtheorem{solution}{Solution}
-
 % Package: pgfplotstable
 
 \RequirePackage{pgfplotstable} % Need to load xcolor before loading xwatermark
+\RequirePackage{booktabs}
 
 \pgfplotsset{width=7cm, compat=1.16}
 
@@ -270,6 +288,7 @@
 % Package: xwatermark
 
 \ifwatermark@option
+    \RequirePackage{tikz}
     \RequirePackage[printwatermark]{xwatermark}
 
     \AtBeginDocument{

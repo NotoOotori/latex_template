@@ -99,6 +99,14 @@
 
 \LoadClass[a4paper, 12pt]{\DocumentClass}
 
+% Preload useful packages
+
+\RequirePackage{enumerate}
+\RequirePackage{float} % [H].
+\RequirePackage{fontspec} % fonts.
+\RequirePackage{subcaption} % subcaption and subfigure.
+\RequirePackage[dvipsnames]{xcolor} % 颜色声明.
+
 % New title style for the document
 
 \renewcommand{\maketitle}{%
@@ -143,6 +151,15 @@
     \newcommand{\fzstk}{\CJKfamily{fzstk}}
 \fi
 
+% Citation
+
+% \RequirePackage[british]{babel} % Need to load before ntheorem
+% \RequirePackage{csquotes} % Need to load after lineno
+% \RequirePackage{xpatch}
+
+\RequirePackage[backend=bibtex, citestyle=numeric-comp, bibstyle=numeric]{biblatex}
+\addbibresource{bibliography.bib}
+
 % Typeset math
 
 \RequirePackage{amsmath}
@@ -164,13 +181,13 @@
 
 \RequirePackage[thmmarks, amsmath, thref, framed]{ntheorem} % 定理格式.
 \RequirePackage{framed}
-\RequirePackage{mdframed} % for \newframedtheorem
+\RequirePackage[ntheorem]{mdframed} % for \newframedtheorem
 
 %%% Problem
 \theoremstyle{plain}
 \theoremheaderfont{\upshape\bfseries}
 \theorembodyfont{\itshape}
-\newframedtheorem{problem}{\ProblemLang}
+\newmdtheoremenv[outerlinewidth=2]{problem}{\ProblemLang}
 %%% Note
 \theoremstyle{plain}
 \theoremheaderfont{\itshape}
@@ -187,14 +204,31 @@
 \theoremsymbol{\ensuremath{\blacksquare}}
 \newtheorem{solution}{\SolutionLang}
 
+% Package: lineno
 
-% Preload useful packages
+\iflineno@option
+    \RequirePackage[mathlines, edtable]{lineno} % Need to load before csquotes
 
-\RequirePackage{enumerate}
-\RequirePackage{float} % [H].
-\RequirePackage{fontspec} % fonts.
-\RequirePackage{subcaption} % subcaption and subfigure.
-\RequirePackage[dvipsnames]{xcolor} % 颜色声明.
+    \renewcommand{\linenumberfont}{\normalfont\scriptsize\sffamily}
+
+    \let\oldtable\table
+    \let\oldendtable\endtable
+    \renewenvironment{table}
+        {\par\nolinenumbers\oldtable}
+        {\oldendtable\endnolinenumbers\par}
+\fi
+
+% Package: pgfplotstable
+
+\RequirePackage{pgfplotstable} % Need to load before xwatermark
+\RequirePackage{booktabs}
+
+\pgfplotsset{width=7cm, compat=1.16}
+
+\pgfplotstableset{
+    every head row/.style={before row=\toprule, after row=\midrule},
+    every last row/.style={after row=\bottomrule}
+}
 
 % Package: caption
 
@@ -286,12 +320,9 @@
     xrightmargin=2em
 }
 
-% Package: lineno
+%% Remove line numbers from lineno
 
 \iflineno@option
-    \RequirePackage[mathlines, edtable]{lineno}
-
-    \renewcommand{\linenumberfont}{\normalfont\scriptsize\sffamily}
 
     \let\oldlstinputlisting\lstinputlisting
     \renewcommand{\lstinputlisting}[2][\empty]{
@@ -304,24 +335,7 @@
         {\par\nolinenumbers\oldlstlisting}
         {\oldendlstlisting\endnolinenumbers\par}
 
-    \let\oldtable\table
-    \let\oldendtable\endtable
-    \renewenvironment{table}
-        {\par\nolinenumbers\oldtable}
-        {\oldendtable\endnolinenumbers\par}
 \fi
-
-% Package: pgfplotstable
-
-\RequirePackage{pgfplotstable} % Need to load xcolor before loading xwatermark
-\RequirePackage{booktabs}
-
-\pgfplotsset{width=7cm, compat=1.16}
-
-\pgfplotstableset{
-    every head row/.style={before row=\toprule, after row=\midrule},
-    every last row/.style={after row=\bottomrule}
-}
 
 % Package: varioref
 

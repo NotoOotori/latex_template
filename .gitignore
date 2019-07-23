@@ -26,6 +26,9 @@
 *.xwm
 *.nav
 *.snm
+*-blx.bib
+*.bcf
+*.run.xml
 
 # Ignore delete.bat
 

@@ -1,7 +1,6 @@
 % -------------------- Packages --------------------
 
 \documentclass[chinese, lineno, watermark]{assignment}
-\usepackage[square, numbers, sort&compress]{natbib} % 引用.
 
 % -------------------- Settings --------------------
 
@@ -26,7 +25,7 @@
     \maketitle
 
     \begin{problem}
-        请问郑博文是不是大傻逼. [如果是, 请举出具体事例; 如果不是, 请说明理由].
+        请问郑博文是不是大傻逼\footfullcite{rudin1976principles}. [如果是, 请举出具体事例; 如果不是, 请说明理由]\footfullcite{rudin1976principleschinese2}.
         \begin{equation}
             a\in[0, 1]
         \end{equation}
@@ -47,8 +46,10 @@
 
     \clearpage
 
-    您好.
+    您好.\footfullcite{rudin1976principles}
 
-    再您妈的见.
+    \begin{problem}
+        再您妈的见.\footfullcite{rudin1976principleschinese3}
+    \end{problem}
 
 \end{document}

@@ -23,3 +23,6 @@ del *.thm /s
 del *.xwm /s
 del *.nav /s
 del *.snm /s
+del *-blx.bib /s
+del *.bcf /s
+del *.run.xml /s

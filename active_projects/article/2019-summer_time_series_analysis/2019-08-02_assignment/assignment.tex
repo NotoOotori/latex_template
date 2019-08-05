@@ -1,0 +1,365 @@
+% -------------------- Packages --------------------
+
+\documentclass[chinese, lineno, watermark]{assignment}
+\usepackage{pgfplots}
+\usepackage[T1]{fontenc}
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{小作业}
+\author{陈旭阳}
+\date{\today}
+\institute{同济大学数学科学学院}
+\professor{王勇智}
+\course{时间序列分析(小学期)}
+\subject{时间序列分析作业}
+\keywords{}
+
+% -------------------- New commands --------------------
+
+
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \maketitle
+
+    \begin{problem}
+        模拟产生$AR(3)$模型数据300个, 记为$Y_{1}, Y_{2}, \dotsc, Y_{300}$. 自己编程(\textcolor{red}{不是}调用软件中现有函数)完成下列任务:
+        \begin{enumerate}[(1)]
+            \item 画出时间序列图;
+            \item 计算该时间序列的样本均值$\hat{\mu}$, 样本自协方差函数$\hat{\gamma}_{t}$, 样本自相关函数$\hat{\rho}_{t}$, 样本偏自相关函数$\hat{\alpha}_{t, t}$, 并画出$\hat{\gamma}_{t}$, $\hat{\rho}_{k}$, $\hat{\alpha}_{tt}$随$t$变化的图像;
+            \item 确定模型的阶数;
+            \item 估计参数;
+            \item 对模型进行检验;
+            \item 预测$Y_{301}$, $Y_{302}$, $Y_{303}$.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{solution}
+        \begin{itemize}
+            \item{建立模型}
+            \begin{equation}
+                Y_{t}=\frac{1}{2}Y_{t-1}-\frac{1}{3}Y_{t-2}-\frac{1}{4}Y_{t-3}+\varepsilon_{t},\quad t\in\mathbb{Z}_{+},
+            \end{equation}
+            其中$\{\varepsilon_{t}\}_{1}^{+\infty}$独立同分布于$N(0, 0.01)$, $\{y_{t}\}_{-2}^{0}$独立同分布于$N(0, 1)$. 生成数据, 绘制时间序列图.
+            \begin{figure}[H]
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                        ymin=-1.5,
+                        ymax=1.5,
+                        xlabel={$t$},
+                        ylabel={$y$},
+                    ]
+                    \addplot [blue] table {resources/ar_ys.txt};
+                    \end{axis}
+                \end{tikzpicture}
+                \caption{$AR(3)$模型时间序列图}
+            \end{figure}
+            \item{计算数字特征}
+            因为样本具有便历性, 所以我们可以用时间上的平均来计算各种数字特征.
+            \begin{itemize}
+                \item 样本均值:
+                \begin{equation}
+                    \mu = \frac{1}{N}{\sum_{t=1}^{N}{y_{t}}} = 2.35\times10^{-3}.
+                \end{equation}
+                \item 样本自协方差函数:
+                \begin{equation}
+                    \hat{\gamma}_{t} = \frac{1}{N-t}\sum_{k=1}^{N-t}(y_{k}-\mu)(y_{t+k}-\mu).
+                \end{equation}
+                \begin{figure}[H]
+                    \centering
+                    \begin{tikzpicture}
+                        \begin{axis}[
+                            xlabel={$t$},
+                            ylabel={$\hat{\gamma}_{t}$},
+                        ]
+                        \addplot [blue] table {resources/ar_ygammas.txt};
+                        \end{axis}
+                    \end{tikzpicture}
+                    \caption{$AR(3)$模型样本自协方差函数}
+                \end{figure}
+                \item 样本自相关函数:
+                \begin{equation}
+                    \hat{\rho}_{t} = \frac{\hat{\gamma}_{t}}{\hat{\gamma}_{0}}.
+                \end{equation}
+                \begin{figure}[H]
+                    \centering
+                    \begin{tikzpicture}
+                        \begin{axis}[
+                            xlabel={$t$},
+                            ylabel={$\hat{\rho}_{t}$},
+                        ]
+                        \addplot [blue] table {resources/ar_yrhos.txt};
+                        \end{axis}
+                    \end{tikzpicture}
+                    \caption{$AR(3)$模型样本自相关函数}
+                \end{figure}
+                \item 样本偏自相关函数
+                \begin{equation}
+                    \left\{
+                    \begin{aligned}
+                        \hat{\alpha}_{1, 1} &= \hat{\rho}_{1},\\
+                        \hat{\alpha}_{t+1, t+1} &= (\hat{\rho}_{t+1}-\sum_{j=1}^{t}{\hat{\rho}_{t+1-j}\hat{\alpha}_{t, j}})(1-\sum_{j=1}^{t}{\hat{\rho}_{j}\hat{\alpha}_{t, j}})^{-1},\\
+                        \hat{\alpha}_{t+1, j} &= \hat{\alpha}_{t, j} - \hat{\alpha}_{t+1, t+1}\hat{\alpha}_{t, t+1-j},\quad j=1, 2, \dotsc, k.
+                    \end{aligned}
+                    \right.
+                \end{equation}
+                \begin{figure}[H]
+                    \centering
+                    \begin{tikzpicture}
+                        \begin{axis}[
+                            xlabel={$t$},
+                            ylabel={$\hat{\alpha}_{t, t}$},
+                        ]
+                        \addplot [blue] table {resources/ar_yalphas.txt};
+                        \end{axis}
+                    \end{tikzpicture}
+                    \caption{$AR(3)$模型样本偏自相关函数}
+                \end{figure}
+                \item 小结: 在$t$偏大时, 样本数字特征显得不稳定, 可能是由于$t$变大之后, 样本自协方差函数由更少的数据取平均得到, 又因为之后的数字特征由自协方差函数得到, 因此误差累计, 体现在图表中.
+            \end{itemize}
+            \item{参数估计和定阶}
+            初步判断模型为$AR(p)$模型, 固定$p$, 我们采用最小二乘法估计参数,
+            \begin{equation}
+                \hat{\varepsilon}_{t} = y_{t}-\hat{\varphi}_{1}y_{t-1}-\hat{\varphi}_{2}y_{t-2}-\hat{\varphi}_{3}y_{t-3}.
+            \end{equation}
+            并通过计算残差方差, 找到使得残差方差最小的$p$作为模型的最优阶数.
+            \begin{figure}[H]
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                        xlabel={$p$},
+                        ylabel={$\hat{\sigma}_{a}$},
+                    ]
+                    \addplot[
+                        blue,
+                        mark=*,
+                    ]
+                    table {resources/ar_residual_variances.txt};
+                    \end{axis}
+                \end{tikzpicture}
+                \caption{$AR(3)$模型残差方差}
+            \end{figure}
+            可以发现确实$p=3$是最优阶数.
+            同时我们也得到了参数估计
+            \begin{table}[H]
+                \begin{center}
+                    \caption{$AR(3)$模型参数估计}
+                    \pgfplotstabletypeset[
+                        columns/0/.style={column name=$k$},
+                        columns/1/.style={column name=$\hat{\varphi}_{k}$},
+                    ]{
+                        1 0.498316145473295
+                        2 -0.330487315073513
+                        3 -0.250180475682447
+                    }
+                \end{center}
+            \end{table}
+            \item{模型检验}
+            通过$F$检验假设$\varphi_{3}=0$, 发现$F$统计量的分位数约1(MATLAB在\matlabinline{format long}情况下输出为1), 从而拒绝原假设, 即显著满足$AR(3)$模型.
+            \item{预测}
+            利用估计的参数直接进行预测,
+            \begin{equation}
+                y_{t+1} = \hat{\varphi}_{1}y_{t}+\hat{\varphi}_{2}y_{t-1}+\hat{\varphi}_{3}y_{t-2}
+            \end{equation}
+            得到预测值为
+            \begin{table}[H]
+                \begin{center}
+                    \caption{$AR(3)$模型预测}
+                    \pgfplotstabletypeset[
+                        columns/0/.style={column name=$t$},
+                        columns/1/.style={column name=$\hat{y}_{t}$},
+                    ]{
+                        301 -1.09e-03
+                        302 8.14e-03
+                        303 7.92e-03
+                    }
+                \end{center}
+            \end{table}
+        \end{itemize}
+    \end{solution}
+
+    \clearpage
+
+    \begin{problem}
+        模拟产生$ARMA(2, 2)$模型数据300个, 记为$Y_{1}, Y_{2}, \dotsc, Y_{300}$. 自己编程(\textcolor{red}{不是}调用软件中现有函数)完成下列任务:
+        \begin{enumerate}[(1)]
+            \item 画出时间序列图;
+            \item 计算该时间序列的样本均值$\hat{\mu}$, 样本自协方差函数$\hat{\gamma}_{t}$, 样本自相关函数$\hat{\rho}_{t}$, 样本偏自相关函数$\hat{\alpha}_{t, t}$, 并画出$\hat{\gamma}_{t}$, $\hat{\rho}_{k}$, $\hat{\alpha}_{tt}$随$t$变化的图像;
+            \item 确定模型的阶数;
+            \item 估计参数;
+            \item 对模型进行检验;
+            \item 预测$Y_{301}$, $Y_{302}$, $Y_{303}$.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{solution}
+        \begin{itemize}
+            \item{建立模型}
+            \begin{equation}
+                Y_{t}=\frac{1}{2}Y_{t-1}-\frac{1}{3}Y_{t-2}+\varepsilon_{t}+\frac{1}{3}\varepsilon_{t-1}-\frac{1}{4}\varepsilon_{t-2},\quad t\in\mathbb{Z}_{+},
+            \end{equation}
+            其中$\{\varepsilon_{t}\}_{-1}^{+\infty}$独立同分布于$N(0, 0.01)$, $\{y_{t}\}_{-2}^{0}$独立同分布于$N(0, 1)$. 生成数据, 绘制时间序列图.
+            \begin{figure}[H]
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                        ymin=-1.5,
+                        ymax=1.5,
+                        xlabel={$t$},
+                        ylabel={$y$},
+                    ]
+                    \addplot [blue] table {resources/arma_ys.txt};
+                    \end{axis}
+                \end{tikzpicture}
+                \caption{$ARMA(2, 2)$模型时间序列图}
+            \end{figure}
+            \item{计算数字特征}
+            因为样本具有便历性, 所以我们可以用时间上的平均来计算各种数字特征.
+            \begin{itemize}
+                \item 样本均值:
+                \begin{equation}
+                    \mu = \frac{1}{N}{\sum_{t=1}^{N}{y_{t}}} = 6.57\times10^{-4}.
+                \end{equation}
+                \item 样本自协方差函数:
+                \begin{equation}
+                    \hat{\gamma}_{t} = \frac{1}{N-t}\sum_{k=1}^{N-t}(y_{k}-\mu)(y_{t+k}-\mu).
+                \end{equation}
+                \begin{figure}[H]
+                    \centering
+                    \begin{tikzpicture}
+                        \begin{axis}[
+                            xlabel={$t$},
+                            ylabel={$\hat{\gamma}_{t}$},
+                        ]
+                        \addplot [blue] table {resources/arma_ygammas.txt};
+                        \end{axis}
+                    \end{tikzpicture}
+                    \caption{$ARMA(2, 2)$模型样本自协方差函数}
+                \end{figure}
+                \item 样本自相关函数:
+                \begin{equation}
+                    \hat{\rho}_{t} = \frac{\hat{\gamma}_{t}}{\hat{\gamma}_{0}}.
+                \end{equation}
+                \begin{figure}[H]
+                    \centering
+                    \begin{tikzpicture}
+                        \begin{axis}[
+                            xlabel={$t$},
+                            ylabel={$\hat{\rho}_{t}$},
+                        ]
+                        \addplot [blue] table {resources/arma_yrhos.txt};
+                        \end{axis}
+                    \end{tikzpicture}
+                    \caption{$ARMA(2, 2)$模型样本自相关函数}
+                \end{figure}
+                \item 样本偏自相关函数
+                \begin{equation}
+                    \left\{
+                    \begin{aligned}
+                        \hat{\alpha}_{1, 1} &= \hat{\rho}_{1},\\
+                        \hat{\alpha}_{t+1, t+1} &= (\hat{\rho}_{t+1}-\sum_{j=1}^{t}{\hat{\rho}_{t+1-j}\hat{\alpha}_{t, j}})(1-\sum_{j=1}^{t}{\hat{\rho}_{j}\hat{\alpha}_{t, j}})^{-1},\\
+                        \hat{\alpha}_{t+1, j} &= \hat{\alpha}_{t, j} - \hat{\alpha}_{t+1, t+1}\hat{\alpha}_{t, t+1-j},\quad j=1, 2, \dotsc, k.
+                    \end{aligned}
+                    \right.
+                \end{equation}
+                \begin{figure}[H]
+                    \centering
+                    \begin{tikzpicture}
+                        \begin{axis}[
+                            xlabel={$t$},
+                            ylabel={$\hat{\alpha}_{t, t}$},
+                        ]
+                        \addplot [blue] table {resources/arma_yalphas.txt};
+                        \end{axis}
+                    \end{tikzpicture}
+                    \caption{$ARMA(2, 2)$模型样本偏自相关函数}
+                \end{figure}
+                \item 小结: 在$t$偏大时, 样本数字特征显得不稳定, 可能是由于$t$变大之后, 样本自协方差函数由更少的数据取平均得到, 又因为之后的数字特征由自协方差函数得到, 因此误差累计, 体现在图表中.
+            \end{itemize}
+            \item{参数估计和定阶}
+            初步判断模型为$ARMA(p, q)$模型, 固定$p, q$, 我们采用两步回归估计参数. 先利用
+            \begin{equation}
+                \hat{\varepsilon}_{t} = y_{t}-\hat{\pi}_{1}y_{t-1}-\hat{\pi}_{2}y_{t-2}
+            \end{equation}
+            给出$\varepsilon_{t}$的估计, 再利用
+            \begin{equation}
+                \hat{\varepsilon}_{t}=y_{t}-\hat{\varphi}_{1}y_{t-1}-\hat{\varphi}_{2}y_{t-2}-\hat{\theta}_{1}\hat{\varepsilon}_{t-1}-\hat{\theta}_{2}\hat{\varepsilon}_{t-2},
+            \end{equation}
+            得到稳定的$\varphi$和$\theta$的估计.
+            并通过计算残差方差, 找到使得残差方差最小的$p$作为模型的最优阶数.
+            \begin{table}[H]
+                \begin{center}
+                    \caption{$ARMA(2, 2)$模型残差方差}
+                    \pgfplotstabletypeset[
+                        columns/0/.style={column name=$p$},
+                        columns/1/.style={column name=$\hat{\sigma}_{p, 1}$},
+                        columns/2/.style={column name=$\hat{\sigma}_{p, 2}$},
+                    ]{
+                        1 5.3322135e-03 -1
+                        2 1.9509208e-05 1.4937638e-05
+                        3 8.8954892e-04 1.6576920e-03
+                        4  2.2440094e-03 3.7298941e-03
+                    }
+                \end{center}
+            \end{table}
+            这里我们仅考虑$p\geq q$的情况, $\sigma=-1$表示未考虑该情况. 可以发现确实$p=2$, $q=2$是最优阶数.
+            同时我们也得到了参数估计
+            \begin{table}[H]
+                \begin{center}
+                    \caption{$ARMA(2, 2)$模型参数估计}
+                    \pgfplotstabletypeset[
+                        columns/0/.style={column name=$k$},
+                        columns/1/.style={column name=$\hat{\varphi}_{k}$},
+                        columns/2/.style={column name=$\hat{\theta}_{k}$},
+                    ]{
+                        1 0.497486295761290 -0.510398257637391
+                        2 -0.331976626080599 -0.286136438115090
+                    }
+                \end{center}
+            \end{table}
+            可以看出参数$\theta$的估计与模型生成时的取值相差有点大.
+            \item{模型检验}
+            通过$F$检验假设$\varphi_{2}=0$且$\theta_{2}=0$, 发现$F$统计量的分位数约1(MATLAB在\matlabinline{format long}情况下输出为1), 从而拒绝原假设, 即显著满足$ARMA(2, 2)$模型.
+            \item{预测}
+            利用估计的参数直接进行预测,
+            \begin{equation}
+                y_{t+1} = \hat{\varphi}_{1}y_{t}+\hat{\varphi}_{2}y_{t-1}
+            \end{equation}
+            得到预测值为
+            \begin{table}[H]
+                \begin{center}
+                    \caption{$ARMA(2, 2)$模型预测}
+                    \pgfplotstabletypeset[
+                        columns/0/.style={column name=$t$},
+                        columns/1/.style={column name=$\hat{y}_{t}$},
+                    ]{
+                        301 -3.4887196e-03
+                        302 2.1388873e-04
+                        303 1.2645801e-03
+                    }
+                \end{center}
+            \end{table}
+        \end{itemize}
+    \end{solution}
+
+    \newpage\appendix
+
+    \section{代码}
+
+    \lstinputlisting[
+        caption={$AR(3)$模型代码},
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize
+    ]{ar.m}
+
+    \lstinputlisting[
+        caption={$ARMA(2, 2)$模型代码},
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize
+    ]{arma.m}
+\end{document}

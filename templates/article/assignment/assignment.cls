@@ -1,8 +1,7 @@
 % !Mode::"TeX:UTF-8"
 % TODO: 写一下这个模板做了什么
-% Options: 12pt chinese lineno watermark
-%
-% Known Issues: lineno [mathline] 失效
+% TODO: biblatex
+% Options: chinese lineno watermark biblatex
 
 % -------------------- Identification --------------------
 
@@ -47,6 +46,7 @@
 \newcommand{\NoteLang}{Note}
 \newcommand{\ProofLang}{Proof}
 \newcommand{\SolutionLang}{Solution}
+\newcommand{\LstlistingLang}{Code}
 
 % -------------------- Options --------------------
 
@@ -83,7 +83,11 @@
     \renewcommand{\NoteLang}{注}
     \renewcommand{\ProofLang}{证明}
     \renewcommand{\SolutionLang}{解}
+    \renewcommand{\LstlistingLang}{代码}
 }
+
+\newif\ifbiblatex@option
+\DeclareOption{biblatex}{\biblatex@optiontrue}
 
 \newif\iflineno@option
 \DeclareOption{lineno}{\lineno@optiontrue}
@@ -153,12 +157,16 @@
 
 % Citation
 
-% \RequirePackage[british]{babel} % Need to load before ntheorem
-% \RequirePackage{csquotes} % Need to load after lineno
-% \RequirePackage{xpatch}
+\ifbiblatex@option
 
-\RequirePackage[backend=bibtex, citestyle=numeric-comp, bibstyle=numeric]{biblatex}
-\addbibresource{bibliography.bib}
+    % \RequirePackage[british]{babel} % Need to load before ntheorem
+    % \RequirePackage{csquotes} % Need to load after lineno
+    % \RequirePackage{xpatch}
+
+    \RequirePackage[backend=biber, citestyle=numeric-comp, bibstyle=numeric]{biblatex}
+    \addbibresource{bibliography.bib}
+
+\fi
 
 % Typeset math
 
@@ -193,7 +201,7 @@
 \theoremheaderfont{\itshape}
 \theorembodyfont{\itshape}
 \newtheorem{note}{\NoteLang}
-%%% Proof
+%%% Proof TODO: colour
 \theoremstyle{nonumberplain}
 \theoremheaderfont{\itshape}
 \theorembodyfont{\upshape}
@@ -261,7 +269,7 @@
 
 \RequirePackage{graphicx}
 
-\graphicspath{{resources/}} % 图像文件目录
+\graphicspath{{resources/}}
 
 % Package: hyperref
 
@@ -296,18 +304,12 @@
 \RequirePackage{listings}
 \RequirePackage{letltxmacro} % \let
 \RequirePackage[numbered, framed]{matlab-prettifier}
+\RequirePackage[T1]{fontenc}
 
 %% Title
 
-\renewcommand\lstlistingname{代码}
-\renewcommand\lstlistlistingname{代码}
-
-%% Lstinline with color box
-
-\LetLtxMacro{\oldlstinline}{\lstinline}
-\renewcommand{\lstinline}[2][]{\colorbox{lightgray}{\oldlstinline[#1]{#2}}}
-\newcommand{\matlabinline}[1]{
-    \lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{#1}}
+\renewcommand\lstlistingname{\LstlistingLang}
+% \renewcommand\lstlistlistingname{代码} % We don't use the list of listings
 
 \lstset{
     breaklines=true,
@@ -319,6 +321,11 @@
     xleftmargin=2em,
     xrightmargin=2em
 }
+
+%% Lstinline with color box
+
+\LetLtxMacro{\oldlstinline}{\lstinline}
+\renewcommand{\lstinline}[2][]{\colorbox{lightgray}{\oldlstinline[#1]{#2}}}
 
 %% Remove line numbers from lineno
 
@@ -336,6 +343,19 @@
         {\oldendlstlisting\endnolinenumbers\par}
 
 \fi
+
+%% MATLAB presets
+
+\newcommand{\matlabinline}[1]{
+    \lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{#1}
+}
+\newcommand{\matlabinputlisting}[2][]{ % #1: caption or label
+    \lstinputlisting[
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize,
+        #1
+    ]{#2}
+}
 
 % Package: varioref
 

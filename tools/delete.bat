@@ -26,3 +26,4 @@ del *.snm /s
 del *-blx.bib /s
 del *.bcf /s
 del *.run.xml /s
+del *.xdv /s

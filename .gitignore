@@ -29,6 +29,7 @@
 *-blx.bib
 *.bcf
 *.run.xml
+*.xdv
 
 # Ignore delete.bat
 

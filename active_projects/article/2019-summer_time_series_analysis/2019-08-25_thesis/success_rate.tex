@@ -1,0 +1,59 @@
+\subsection{特征参数选取}
+
+首先本文作出了成功率随交易量变化的散点图, 发现成功率在小交易量处波动较大, 在大交易量处很稳定, 其取值大约在96\%附近. 从直观上来说因系统出现异常或故障的次数与交易量之间呈正相关关系, 然而成功率这一参数并不满足这一要求, 因此只利用成功率的大小来衡量是否出现异常或故障是不足够的, 需要对其加以改进.
+
+由模型假设, 每次交易是否成功为独立同分布的随机变量$X_{i}$, 设其均值为$\mu$, 方差为$\sigma^{2}$. 
+设$R(m)$为$m$时刻$n$次交易的成功率, 其均值为$\mu$, 方差为$\sigma^{2}/n$. 为标准化该随机变量使其均值为0方差相同, 记$R(m)^{*}=\sqrt{n}(R(m)-\mu)$. 注意到其中均值$\mu$是未知的, 这里采用样本均值(成功率)$\hat{\mu}$来估计总体均值$\mu$.
+记各时刻交易量排成一列组成的交易量向量为$\vect{n}$, 成功率向量为$\vect{r}$, $\vect{e}$为各项元素全为1的列向量, 那么样本成功率
+\begin{equation}
+    \hat{\mu} = \frac{\vect{n} \cdot \vect{r}}{\vect{n} \cdot \vect{e}} \approx 0.9567
+\end{equation}
+可以作为$\mu$的估计.
+由此可作出标准化成功率随时刻$m$变化的散点图, 经过观察可以发现仅有少量数据点发生了偏移.
+
+\begin{figure}[htb]
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                enlargelimits=false,
+                xlabel={交易量},
+                ylabel={成功率(\%)},
+                scaled x ticks={base 10:-3},
+            ]
+                \addplot+ [only marks, mark size=0.2pt]
+                    table {resources/total_rate.txt};
+            \end{axis}
+        \end{tikzpicture}
+        \captionof{figure}{成功率随交易量的分布}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                enlargelimits=false,
+                xlabel={时刻},
+                ylabel={标准化成功率(\%)},
+            ]
+                \addplot+ [only marks, mark size=0.2pt]
+                    table {resources/normalized_rate.txt};
+            \end{axis}
+        \end{tikzpicture}
+        \captionof{figure}{标准化成功率随时间的分布}
+    \end{minipage}
+\end{figure}
+
+\subsection{异常检测}
+
+在上一节中本文发现有数十处标准化成功率远大于其他值, 实际查看发现对应时间段分别为1月15日4点01分与4点02分, 1月15日5点59分至6点04分, 3月23日0点48分至1点03分, 4月14日17点33分至17点35分. 逐项分析发现这些时间段:
+
+\paragraph{1月15日4点01分与4点02分} 交易成功率突然降至0\%和43.75\%, 且交易响应时间超过50000毫秒. 因此认为这段时间系统出现了异常.
+
+\paragraph{1月15日5点59分至6点04分} 先是响应时间上升到接近20万毫秒, 随后交易成功率迅速降至0\%. 因此这段时间出现了异常.
+
+\paragraph{3月23日0点48分至1点02分} 交易成功率突然降至18.18\%, 交易时间增至46256毫秒. 而到1时02分, 虽然成功率升至79\%, 但是相对于其交易数目而言仍然是小概率事件, 而且参考其响应时间(40000毫秒左右), 我们认为直至1点02分异常依然存在. 而到了1点03分, 异常基本解除.
+
+\paragraph{4月14日17点33分至17点35分} 交易成功率突然降至82.51\%,虽然不是很低,但是参照其交易次数仍是小概率事件, 而且交易时间非常长(8072毫秒). 直到17点36分, 数据才恢复正常, 因此我们认为17点33分至17点35分之间系统发生了故障.
+
+\paragraph{\quad}综上所述, 计算标准化成功率得到的异常点确实发生了异常. 因此本文认为此种异常检测方法是合理并且有效的, 即当$\sqrt{n}(R(t)-\hat{\mu})>2$时, 认为系统出现异常.

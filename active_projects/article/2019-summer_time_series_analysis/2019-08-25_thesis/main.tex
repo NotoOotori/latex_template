@@ -1,0 +1,184 @@
+% !Mode::"TeX:UTF-8"
+\documentclass[a4paper, 12pt]{ctexart}
+
+\newcommand{\LstlistingLabel}[1]{代码#1}
+\newcommand{\EquationLabel}[1]{式(#1)}
+\newcommand{\FigureLabel}[1]{图#1}
+\newcommand{\TableLabel}[1]{表#1}
+\newcommand{\ProblemLabel}[1]{问题#1}
+
+\newcommand{\ProblemLang}{问题}
+\newcommand{\NoteLang}{注}
+\newcommand{\ProofLang}{证明}
+\newcommand{\SolutionLang}{解}
+\newcommand{\LstlistingLang}{代码}
+
+\usepackage{enumerate}
+\usepackage{float} % [H].
+\usepackage{fontspec} % fonts.
+\usepackage{subcaption} % subcaption and subfigure.
+\usepackage[dvipsnames]{xcolor} % 颜色声明.
+
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{commath} % abs, norm
+
+\usepackage[math-style=TeX, bold-style=TeX, partial=upright]{unicode-math}
+\setmathfont{XITS Math}
+\setmathfont[range={\mathcal,\mathbfcal}, StylisticSet=1]{XITS Math} % Script
+
+\newcommand*{\diff}{\mathop{}\!\symup{d}}
+\newcommand*{\matr}[1]{\symsfit{#1}}
+\newcommand*{\vect}[1]{\symbf{#1}}
+
+\usepackage{pgfplotstable} % Need to load before xwatermark
+\usepackage{booktabs}
+
+\pgfplotsset{width=7cm, compat=1.16}
+
+\pgfplotstableset{
+    every head row/.style={before row=\toprule, after row=\midrule},
+    every last row/.style={after row=\bottomrule}
+}
+
+\usepackage{caption}
+
+\captionsetup{
+    margin    =   6pt,
+    font      =   small,
+    labelfont =   bf
+}
+
+\usepackage{fancyhdr}
+
+\usepackage{graphicx}
+
+\graphicspath{{resources/}}
+
+\usepackage{hyperref}
+
+\hypersetup{
+    linktoc             =   all,
+    colorlinks          =   true,
+    linkcolor           =   cyan,
+    anchorcolor         =   black,
+    citecolor           =   green,
+    filecolor           =   cyan,
+    menucolor           =   red,
+    runcolor            =   filecolor,
+    urlcolor            =   magenta,
+    bookmarksnumbered   =   true,
+    pdfstartview        =   FitH,
+    pdfpagelayout       =   OneColumn
+}
+
+\usepackage{listings}
+\usepackage{letltxmacro} % \let
+\usepackage[numbered, framed]{matlab-prettifier}
+\usepackage[T1]{fontenc}
+
+%% Title
+
+\renewcommand\lstlistingname{\LstlistingLang}
+% \renewcommand\lstlistlistingname{代码} % We don't use the list of listings
+
+\lstset{
+    breaklines=true,
+    backgroundcolor=\color{lightgray},
+    basicstyle=\scriptsize,
+    inputpath=resources/,
+    numbers=left,
+    numberstyle={\color{black!33}\scriptsize\sffamily},
+    xleftmargin=2em,
+    xrightmargin=2em
+}
+
+%% Lstinline with color box
+
+\LetLtxMacro{\oldlstinline}{\lstinline}
+\renewcommand{\lstinline}[2][]{\colorbox{lightgray}{\oldlstinline[#1]{#2}}}
+
+%% MATLAB presets
+
+\newcommand{\matlabinline}[1]{
+    \lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{#1}
+}
+\newcommand{\matlabinputlisting}[2][]{ % #1: caption or label
+    \lstinputlisting[
+        style=MATLAB-editor,
+        basicstyle=\mlttfamily\scriptsize,
+        #1
+    ]{#2}
+}
+
+\usepackage{varioref} % For Cross References.
+
+\labelformat{lstlisting}{\LstlistingLabel{#1}}
+\labelformat{equation}{\EquationLabel{#1}}
+\labelformat{figure}{\FigureLabel{#1}}
+\labelformat{table}{\TableLabel{#1}}
+\labelformat{problem}{\ProblemLabel{#1}}
+
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm, compat=1.15}
+\usepgfplotslibrary{external}
+\tikzsetexternalprefix{tikz/}
+\tikzexternalize
+
+\title{基于EM算法的ATM交易状态特征分析与异常检测}
+\date{\today}
+\author{}
+
+\begin{document}
+    \pagestyle{plain}
+    \maketitle
+    \begin{table}[H]
+        \begin{center}
+            \pgfplotstabletypeset[
+                columns/a/.style={column name=工作量, string type},
+                columns/b/.style={column name=姓名, string type},
+                columns/c/.style={column name=学号, string type},
+                columns/d/.style={column name=具体工作, string type},
+            ]{
+                a b c d
+                1/3 张赫(队长) 1752114 {统筹安排, 问题三和摘要}
+                1/3 李瑞 1752516 {文章整体思路和交易量部分}
+                1/3 陈旭阳 1753763 {论文排版, 成功率和响应时间部分}
+            }
+        \end{center}
+    \end{table}
+    \clearpage
+
+    \input{abstract.tex}
+    \clearpage
+
+    \section{模型假设}
+
+    \input{assumption.tex}
+
+    \section{交易量特征参数与异常检测}
+
+    \input{trading_volumn.tex}
+
+    \section{成功率特征参数与异常检测}
+
+    \input{success_rate.tex}
+
+    \section{响应时间特征参数与异常检测}
+
+    \input{response_time.tex}
+    
+    \section{增加采集数据}
+
+    \input{add_data.tex}
+
+    \appendix
+
+    \section{EM算法代码}
+
+    \matlabinputlisting[caption=EM算法代码]{lr.m}
+
+\end{document}

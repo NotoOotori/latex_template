@@ -1,4 +1,5 @@
 del *.aux /s
+del *.auxlock /s
 del *.bak /s
 del *.bbl /s
 del *.blg /s

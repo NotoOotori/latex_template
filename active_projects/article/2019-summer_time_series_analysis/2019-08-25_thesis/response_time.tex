@@ -1,0 +1,29 @@
+\subsection{特征参数选取}
+
+首先本文作出了响应时间随交易量变化的散点图, 发现在交易量较大的时候响应时间大多都在600毫秒以内, 而在交易量较小时响应时间有较大波动. 可以发现散点的轨迹近似于多条反比例函数. 本文选取特征参数$n(t-600)$, 其中$n$为交易量, $t$为响应时间. 取阈值为55000, 用是否$n(t-600)>55000$来判断系统是否出现异常.
+
+\begin{figure}[htb]
+    \centering
+    \begin{tikzpicture}
+        \begin{semilogyaxis}[
+            enlargelimits=false,
+            xlabel={交易量},
+            ylabel={响应时间(毫秒)},
+            scaled x ticks={base 10:-3},
+        ]
+            \addplot+ [only marks, mark size=0.2pt]
+                table {resources/total_time.txt};
+        \end{semilogyaxis}
+    \end{tikzpicture}
+    \caption{响应时间随交易量的分布}
+\end{figure}
+
+\subsection{异常检测}
+
+对所有异常点进行分析, 存在不连续的\textbf{波动}和持续一段时间的\textbf{异常}:
+
+\paragraph{波动} 在可能的异常点中, 有6处非连续的异常, 仅持续不到1分钟, 本文认为其为网络波动, 不属于系统异常.
+
+\paragraph{异常} 剩余的异常点中均持续一段时间, 其中包含了成功率参数的异常检测中提到的数个异常, 除此之外还有2月19日持续了15分钟的系统延迟, 响应时间在7000毫秒到10000毫秒, 本文认为该时段系统也出现了异常.
+
+\paragraph{\quad}综上所述, 计算响应时间特征参数得到的异常点中持续一段时间的点确实发生了异常. 因此本文认为此种异常检测方法是合理并且有效的.

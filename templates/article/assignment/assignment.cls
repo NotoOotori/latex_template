@@ -1,6 +1,5 @@
 % !Mode::"TeX:UTF-8"
 % TODO: 写一下这个模板做了什么
-% TODO: biblatex
 % Options: chinese lineno watermark biblatex
 
 % -------------------- Identification --------------------
@@ -359,7 +358,7 @@
 
 % Package: varioref
 
-\usepackage{varioref} % For Cross References.
+\RequirePackage{varioref} % For Cross References.
 
 \labelformat{lstlisting}{\LstlistingLabel{#1}}
 \labelformat{equation}{\EquationLabel{#1}}

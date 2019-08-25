@@ -1,6 +1,7 @@
 # Ignore Auxiliary Files
 
 *.aux
+*.auxlock
 *.bak
 *.bbl
 *.blg
@@ -30,6 +31,7 @@
 *.bcf
 *.run.xml
 *.xdv
+tikz/
 
 # Ignore delete.bat
 

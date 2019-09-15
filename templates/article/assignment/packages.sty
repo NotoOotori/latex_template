@@ -220,6 +220,10 @@
     \RequirePackage{pgfplotstable} % Need to load before xwatermark
     \RequirePackage{booktabs}
 
+    \usepgfplotslibrary{external}
+    \tikzsetexternalprefix{tikz/}
+    \tikzexternalize
+
     \pgfplotsset{width=7cm, compat=1.16}
 
     \pgfplotstableset{

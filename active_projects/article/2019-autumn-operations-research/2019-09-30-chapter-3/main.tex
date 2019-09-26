@@ -1,0 +1,330 @@
+% -------------------- Packages --------------------
+
+\documentclass{assignment}[2019/09/15]
+\usepackage[lineno, pgfplots]{packages}[2019/09/15]
+\pgfplotsset{compat=1.3}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usepgfplotslibrary{patchplots}
+\usepackage{grffile}
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{Homework of Chapter 3}
+\author{Chen Xuyang}
+\date{\today}
+\institute{School of Mathematical Science}
+\professor{Chen Xiongda}
+\course{Operations Research}
+\subject{Operations Research}
+\keywords{}
+
+% -------------------- New commands --------------------
+
+\newcommand{\diag}{\mathop{}\!\symup{diag}}
+\newcommand{\pr}{\mathop{}\!\symup{Pr}}
+\newcommand{\expect}{\mathop{}\!\symup{E}}
+\newcommand{\cov}{\mathop{}\!\symup{Cov}}
+\newcommand{\var}{\mathop{}\!\symup{Var}}
+
+\newcommand{\dfd}{\nabla f_k^Td_k}
+\newcommand{\ak}{\alpha_k}
+\newcommand{\nbi}{\norm{\matr{B}^{-1}}}
+\newcommand{\nbki}{\norm{\matr{B}_k^{-1}}}
+\newcommand{\nbk}{\norm{\matr{B}_k}}
+\newcommand{\lxpx}{\frac{1}{2}\left(x_1+x_2\right)}
+\newcommand{\blxpx}{\left(\lxpx\right)}
+\newcommand{\lxmx}{\frac{1}{2}\left(x_1-x_2\right)}
+\newcommand{\blxmx}{\left(\lxmx\right)}
+\newcommand{\df}{\nabla f}
+\newcommand{\nqs}[1]{\norm{#1}_{\matr{Q}}^2}
+\newcommand{\dfdf}{\nabla f_k^T\nabla f_k}
+\newcommand{\dfqdf}{\nabla f_k^T\matr{Q}\nabla f_k}
+\newcommand{\dfqidf}{\nabla f_k^T\matr{Q}^{-1}\nabla f_k}
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \maketitle
+
+    \begin{problem}\label{prob:sd}
+        Program the steepest descent and Newton algorithms using the backtracking line search, Algorithm 3.1. Use them to minimize the Rosenbrock function
+        \begin{equation}
+            f(x) = 100(x_2-{x_1}^2)^2+(1-x_1)^2.
+        \end{equation}
+        Set the initial step length $\alpha_0=1$ and print the step length used by each method at each iteration. First try the initial point $x_0=(1.2, 1.2)^T$ and then the more diffcult starting point $x_0=(-1.2, 1)$.
+    \end{problem}
+    \begin{solution}
+        The results of steepest descent method and Newton method are listed below, while the codes \ref{code:sd} and \ref{code:nt} are put in the appendix. From this example we can see if the contour lines of the target function (like the one in \ref{fig:rosenbrock}) are extremely flat, the performance of steepest descent method is not satisfying. Newton method is always reliable though.
+        \begin{table}[htb]
+            \begin{center}
+                \caption{Total iterations of steepest descent method and Newton method with different initial points and with $\rho=0.9$, $c=0.5$ and $\varepsilon=0.001$.}
+                \pgfplotstabletypeset[
+                    string type,
+                ]{
+                    {Method} {Initial Point} {Total Iterations}
+                    {Steepest Descent} {$(1.2, 1.2)^T$} 680
+                    {Steepest Descent} {$(-1.2, 1)^T$} 848
+                    {Newton} {$(1.2, 1.2)^T$} 7
+                    {Newton} {$(-1.2, 1)^T$} 21
+                }
+            \end{center}
+        \end{table}
+        \begin{figure}[htb]
+            \centering
+            \input{resources/rosenbrock.tex}
+            \caption{Contour lines of the Rosenbrock function $f$, where each line represents a value of $f$ from $2^{-5}$ to $2^4$, which increases from inner to outer.}
+            \label{fig:rosenbrock}
+        \end{figure}
+    \end{solution}
+
+    \begin{problem}
+        Show that the one-dimensional minimizer of a strongly convex quadratic function always satisfies the Goldstein conditions
+        \begin{equation}
+            f(x_k)+(1-c)\ak\dfd\leq f(x_k+\ak d_k)\leq f(x_k)+c\ak\dfd,
+        \end{equation}
+        with $0<c<1/2$.
+    \end{problem}
+    \begin{proof}
+        Let the quadratic function
+        \begin{equation}
+            f(x)=\frac{1}{2}x^T\matr{A}x+b^Tx+c,
+        \end{equation}
+        where $\matr{A}$ is a symmetric matrix.
+
+        Since $f$ is strongly convex, by definition we have
+        \begin{equation}
+            f\blxpx-\left(\lambda f(x_1)+(1-\lambda)f(x_2)\right)<0,\quad\text{for }x_1\neq x_2\text{ and } \lambda\in(0,1).
+        \end{equation}
+        Hence
+        \begin{equation}
+            \begin{aligned}
+                0
+                &>f\blxpx-\left(\frac{1}{2} f(x_1)+f(x_2)\right)\\
+                &=\left(\frac{1}{2}\blxpx^T\matr{A}\blxpx+b^T\blxpx+c\right)\\
+                &\phantom{{}={}}-\left(\frac{1}{2}\left(\frac{1}{2} {x_1}^T\matr{A}x_1+\frac{1}{2}{x_2}^T\matr{A}x_2\right)+\frac{1}{2}\left(b^Tx_1+b^Tx_2\right)+c\right)\\
+                &= -\frac{1}{2}\blxmx^T\matr{A}\blxmx.
+            \end{aligned}
+        \end{equation}
+        Since $x_1, x_2$ are arbitrary, $\matr{A}$ must be positive definite.
+
+        Only for convenience of typography, let's omit the iterator $k$ in the following context. Given a descent direction $d$, we can calculate $\alpha$ explicitly as follows since $f$ is a quadratic function, that is
+        \begin{equation}
+            \begin{aligned}
+                \alpha
+                &=\arg\min f(x+\alpha d)\\
+                &=\arg\min \left(\frac{1}{2}d^T\matr{A}d\right)\alpha^2+\left(d^T\matr{A}x+d^Tb\right)\alpha+\frac{1}{2}\left(x^T\matr{A}x+b^Tx+c\right)\\
+                &= -\frac{d^T(\matr{A}x+b)}{d^T\matr{A}d},
+            \end{aligned}
+        \end{equation}
+        which is greater than 0 because $\matr{A}$ is positive definite and $\matr{A}x+b$ is the steepest descent direction. Thus
+        \begin{equation}
+            \frac{f(x+\alpha d)-f(x)}{\alpha\nabla f^Td}=\left.\left\{-\frac{1}{2}\frac{\left(d^T(\matr{A}x+b)\right)^2}{d^T\matr{A}d}\right\}\middle/\left(-\frac{d^T(\matr{A}x+b)}{d^T\matr{A}d}(\matr{A}x+b)^Td\right)=\frac{1}{2}\right.,
+        \end{equation}
+        since $(\matr{A}x+b)^Td$ is a scalar and its transpose equals itself. It directly follows that the step length always satisfies the Goldstein conditions.
+    \end{proof}
+
+    \begin{problem}
+        Prove that $\norm{\matr{B}x}\geq\norm{x}/\nbi$ for any nonsingular matrix $\matr{B}$. Use this fact to establish
+        \begin{equation}
+            \cos{\theta_k}\doteq\frac{-\dfd}{\norm{\nabla f_k}\norm{d_k}}\geq\frac{1}{M},
+        \end{equation}
+        where the constant $M$ satisfies
+        \begin{equation}
+            \nbk\nbki\leq M,\quad \text{for all } k,
+        \end{equation}
+        and where
+        \begin{equation}
+            d_k=-\matr{B}_k^{-1}\nabla f_k.
+        \end{equation}
+    \end{problem}
+    \begin{proof}
+        Notice that the matrix norm $\norm{\cdot}$ is compatible with the vector norm $\norm{\cdot}$, that is
+        \begin{equation}
+            \norm{\matr{B}}=\sup_{x\neq 0}\frac{\norm{\matr{B}x}}{\norm{x}}.
+        \end{equation}
+        Thus
+        \begin{equation}
+            \norm{\matr{B}}\norm{x}\geq\norm{\matr{B}x}.
+        \end{equation}
+        Replace $\matr{A}x$ by $\matr{B}^{-1}$ and $\matr{B}x$ respectively, we have
+        \begin{equation}
+            \norm{\matr{B}^{-1}}\norm{\matr{B}x}\geq\norm{x},
+        \end{equation}
+        since that $\matr{B}$ is nonsingular yields that $\norm{\matr{B}^{-1}}\neq 0$.
+
+        It is easy to prove by definition that for any positive definite matrix $\matr{B}$, the 2-norm
+        \begin{equation}
+            \norm{\matr{B}}=\lambda_{\symup{max}}.
+        \end{equation}
+
+        Only for convenience of typography, let's omit the iterator $k$ in the following context. Let $\matr{B}=\matr{Q}^T\matr{D}\matr{Q}$
+        denote the orthonormal diagonalization of $\matr{B}$,
+        then
+        \begin{equation}
+            \begin{aligned}
+                \cos{\theta}
+                &\doteq\frac{-\nabla f^Td}{\norm{\nabla f}\norm{d}}
+                =\frac{\df^T\matr{Q}^T\matr{D}^{-1}\matr{Q}\df}{\norm{\df}\norm{\matr{D}^{-1}\df}}\\
+                &\geq\frac{\lambda_{\symup{min}}(\matr{D}^{-1})\norm{\matr{Q}\df}^2}{\norm{\df}^2\norm{\matr{D}^{-1}}}
+                =\frac{1}{\norm{\matr{B}}\norm{\matr{B}^{-1}}}
+                \geq\frac{1}{M},
+            \end{aligned}
+        \end{equation}
+        as desired.
+    \end{proof}
+
+    \begin{problem}
+        Prove the result
+        \begin{equation}
+            \nqs{x_{k+1}-x^{*}}=\left\{1-\frac{\left(\dfdf\right)^2}{\left(\dfqdf\right)\left(\dfqidf\right)}\right\}\nqs{x_k-x^{*}}
+        \end{equation}
+        by working through the following steps. First use
+        \begin{equation}
+            \ak=\frac{\dfdf}{\dfqdf}\quad\text{and}\quad x_{k+1}=x_k-\ak\df_k
+        \end{equation}
+        to show that
+        \begin{equation}
+            \nqs{x_k-x^{*}}-\nqs{x_{k+1}-x^{*}}=2\ak\df_k^T\matr{Q}(x_k-x^*)-\ak^2\df_k^T\matr{Q}\df_k,
+        \end{equation}
+        where the weight norm is defined as $\nqs{x}=x^T\matr{Q}x$. Second, use the fact that $\df_k=\matr{Q}(x_k-x^*)$ to obtain
+        \begin{equation}
+            \nqs{x_k-x^*}-\nqs{x_{k+1}-x^{*}}=\frac{2\left(\dfdf\right)^2}{\dfqdf}-\frac{\left(\dfdf\right)^2}{\dfqdf}
+        \end{equation}
+        and
+        \begin{equation}
+            \nqs{x_k-x^*}=\dfqidf.
+        \end{equation}
+    \end{problem}
+    \begin{proof}
+        First,
+        \begin{equation}
+            \begin{aligned}
+                &\phantom{{}={}}\nqs{x_k-x^{*}}-\nqs{x_{k+1}-x^{*}}\\
+                &=\left(x_k-x^{*}\right)^T\matr{Q}\left(x_k-x^{*}\right)-\left(x_{k}-x^{*}-\ak\df_k\right)^T\matr{Q}\left(x_{k}-x^{*}-\ak\df_k\right)\\
+                &=2\left(\ak\df_k\right)^T\matr{Q}\left(x_{k}-x^{*}\right)-\left(\ak\df_k\right)^T\matr{Q}\left(\ak\df_k\right)\\
+                &=2\ak\df_k^T\matr{Q}(x_k-x^*)-\ak^2\df_k^T\matr{Q}\df_k.
+            \end{aligned}
+        \end{equation}
+        Second, apply the value of $\ak$ the the fact that $\df_k=\matr{Q}(x_k-x^*)$, we have
+        \begin{equation}
+            \begin{aligned}
+                &\phantom{{}={}}\nqs{x_k-x^{*}}-\nqs{x_{k+1}-x^{*}}=2\ak\df_k^T\df_k-\ak^2\df_k^T\matr{Q}\df_k\\
+                &=2\left(\frac{\dfdf}{\dfqdf}\df_k\right)^T\df_k-\left(\frac{\dfdf}{\dfqdf}\df_k\right)^T\matr{Q}\left(\frac{\dfdf}{\dfqdf}\df_k\right)\\
+                &=\frac{2\left(\dfdf\right)^2}{\dfqdf}-\frac{\left(\dfdf\right)^2}{\dfqdf}
+            \end{aligned}
+        \end{equation}
+        and
+        \begin{equation}
+            \begin{aligned}
+                \nqs{x_k-x^*}
+                &=\left(x_k-x^{*}\right)^T\matr{Q}^T\matr{Q}^{-1}\matr{Q}\left(x_k-x^{*}\right)\\
+                &=\dfqidf.
+            \end{aligned}
+        \end{equation}
+        It follows the conclusion.
+    \end{proof}
+    
+    \begin{problem}(Kantorovich Inequality)
+        Let $\matr{Q}$ be a positive definite symmetric matrix. Prove that for any vector x, we have
+        \begin{equation}
+            \frac{\left(x^Tx\right)^2}{\left(x^T\matr{Q}x\right)\left(x^T\matr{Q}^{-1}x\right)}\geq\frac{4\lambda_n\lambda_1}{\left(\lambda_n+\lambda_1\right)^2},
+        \end{equation}
+        where $\lambda_n$ and $\lambda_1$ are, respectively, the largest and smallest eigenvalues of $\matr{Q}$.
+    \end{problem}
+    \begin{proof}
+        Without loss of generality assume that $Q$ is a positive definite diagnoal matrix, since we can write down the orthonormal diagonalization $\matr{Q}=\matr{P}^T\matr{D}\matr{P}$ and denote $y$ by $\matr{P}x$. Let
+        \begin{equation}
+            \matr{D}=\diag\left(\lambda_1, \lambda_2, \dotsc, \lambda_n\right)\quad\text{and}\quad x=\left(x_1, x_2,\dotsc, x_n\right)^T,
+        \end{equation}
+        where $\lambda_1\leq\lambda_2\leq\dotsb\leq\lambda_n$.
+        Then
+        \begin{equation}
+            \frac{\left(x^Tx\right)^2}{\left(x^T\matr{Q}x\right)\left(x^T\matr{Q}^{-1}x\right)}
+            =\frac{\sum_{1}^{n}x_j^2}{\left(\sum_1^n\lambda_jx_j^2\right)\left(\sum_1^n\lambda_j^{-1}x_j^2\right)}.
+        \end{equation}
+        Hence it is equivalent to prove that
+        \begin{equation}\label{eq:5proof}
+            \frac{\left(\sum_1^n\lambda_jp_j\right)\left(\sum_1^n\lambda_j^{-1}p_j\right)}{\left(\sum_{1}^{n}p_j\right)^2}\leq\frac{\left(\lambda_n+\lambda_1\right)^2}{4\lambda_n\lambda_1},
+        \end{equation}
+        where $p_j>0$ for all $j$. Without loss of generality assume that $\sum_1^np_j=1$.
+
+        Now let $X$ denote a random variable whose value is taking from $\left\{\lambda_1, \lambda_2, \dotsc, \lambda_n\right\}$ and the probability
+        \begin{equation}
+            \pr(X=j)=p_j,\quad\text{for}\ j=1,2\dotsc,n.
+        \end{equation}
+        Thus the left hand side of \ref{eq:5proof}
+        \begin{equation}
+            \symup{l.h.s.}=\expect(X)\expect\left(X^{-1}\right)=\expect\left(XX^{-1}\right)-\cov\left(X,X^{-1}\right)\leq 1+\left(\var(X)\var\left(X^{-1}\right)\right)^{1/2}.
+        \end{equation}
+        And for such a random variable $X$ with finite sample space, we have
+        \begin{equation}
+            \begin{aligned}
+                \var(X)
+                &=\sum_{j=1}^{n}p_j\left(\lambda_j-\sum_{k
+                =1}^np_j\lambda_j\right)^2
+                =\min_{\mu\in\symbb{R}}\sum_{j=1}^np_j(\lambda_j-\mu)^2\\
+                &\leq \sum_{j=1}^np_j\left(\lambda_j-\frac{\lambda_1+\lambda_n}{2}\right)^2
+                \leq \frac{\left(\lambda_n-\lambda_1\right)^2}{4}.
+            \end{aligned}
+        \end{equation}
+        Similarly, for $X^{-1}$ we have
+        \begin{equation}
+            \var\left(X^{-1}\right) \leq \frac{\left(\lambda_n^{-1}-\lambda_1^{-1}\right)^2}{4}
+            =\frac{\left(\lambda_n-\lambda_1\right)^2}{4\lambda_n^2\lambda_1^2}.
+        \end{equation}
+        Hence the left hand side of \ref{eq:5proof}
+        \begin{equation}
+            \symup{l.h.s.}\leq 1+\frac{\left(\lambda_n-\lambda_1\right)^2}{4\lambda_n\lambda_1}=\frac{\left(\lambda_n+\lambda_1\right)^2}{4\lambda_n\lambda_1}=\symup{r.h.s.},
+        \end{equation}
+        which completes the proof.
+    \end{proof}
+
+    \begin{problem}
+        Program the BFGS algorithm using the line search algorithm describe in this chapter that implements the strong Wolfe conditions. Have the code verify that $y_k^Ts_k$ is always positive. Use it to minimize the Rosenbrock function using the starting points given in \ref{prob:sd}.
+    \end{problem}
+    \begin{solution}
+        The result of quasi-Newton method with BFGS formula is listed below,while the codes \ref{code:bfgs} are put in the appendix.
+        \begin{table}[htb]
+            \begin{center}
+                \caption{Total iterations of quasi-Newton method with BGFS formula with $\rho=0.9$, $c_1 = 10^{-4}$, $c_2=0.9$, $\matr{B}_0=\left(y_1^Ts_1\right)/\left(y_1^Ty_1\right)\matr{I}$ and $\varepsilon=0.001$.}
+                \pgfplotstabletypeset[
+                    string type,
+                ]{
+                    {Initial Point} {Total Iterations}
+                    {$(1.2, 1.2)^T$} 680
+                    {$(-1.2, 1)^T$} 848
+                    {$(1.2, 1.2)^T$} 7
+                    {$(-1.2, 1)^T$} 21
+                }
+            \end{center}
+        \end{table}
+        According to the discussions in chapter 6, we choose the parameters
+        \begin{equation}
+            c_1 = 10^{-4},\quad c_2=0.9,\quad \matr{B}_0=\matr{I},
+        \end{equation}
+        and we update $\matr{B}_0$ by setting
+        \begin{equation}
+            \matr{B}_0 \leftarrow \frac{y_0^Ts_0}{y_0^Ty_0}\matr{I}
+        \end{equation}
+        after the first step has been computed but before the first BFGS update is performed. The update of initial matrix is extremely important for the algorithm. Otherwise the approximation of Hessian matrix by $\matr{B}_k$ won't be accurate enough, then the initial step length in each iteration might be too short to satisfiy the strong Wolfe condition, or might be unnecessarily long so that extra tests for step length will be made, and it will affect the performance.
+    \end{solution}
+
+    \clearpage\appendix
+    \section{Codes of Algorithms}
+
+    \matlabinputlisting[caption={Steepest Descent Method}, label={code:sd}]{steepest_descent.m}
+    \matlabinputlisting[caption={Newton Method}, label={code:nt}]{newton.m}
+    \matlabinputlisting[caption={Quasi Newton Method with BFGS Formula}, label={code:bfgs}]{bfgs_quasi_newton.m}
+
+    \section{Other Codes}
+
+    \matlabinputlisting[caption={Rosenbrock Function with Vector Input}]{f.m}
+    \matlabinputlisting[caption={Rosenbrock Function with Coodernite Input Used by Contour Plot}]{f_cdn.m}
+    \matlabinputlisting[caption={Gradient of Rosenbrock Function}]{df.m}
+    \matlabinputlisting[caption={Hessian Matrix of Rosenbrock Function}]{ddf.m}
+    \matlabinputlisting[caption={Contour Plot of Rosenbrock Function}]{rosenbrock_contour.m}
+    \matlabinputlisting[caption={Tests for the Algorithms}]{test.m}
+\end{document}

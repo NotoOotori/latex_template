@@ -4,7 +4,7 @@
 % -------------------- Identification --------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{assignment}
+\ProvidesClass{assignment}[2019/09/15]
 
 % -------------------- Preliminary Declarations --------------------
 

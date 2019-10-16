@@ -1,0 +1,189 @@
+% -------------------- Packages --------------------
+
+\documentclass{assignment}[2019/10/15]
+\usepackage[lineno, pgfplots]{packages}[2019/10/15]
+\pgfplotsset{compat=1.3}
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{Homework of Chapter 4}
+\author{Chen Xuyang}
+\date{\today}
+\institute{School of Mathematical Science}
+\professor{Chen Xiongda}
+\course{Operations Research}
+\subject{Operations Research}
+\keywords{}
+
+% -------------------- New commands --------------------
+
+\newcommand{\BR}{\symbb{R}}
+\newcommand{\diag}{\mathop{}\!\symup{diag}}
+\newcommand{\pr}{\mathop{}\!\symup{Pr}}
+\newcommand{\expect}{\mathop{}\!\symup{E}}
+\newcommand{\cov}{\mathop{}\!\symup{Cov}}
+\newcommand{\var}{\mathop{}\!\symup{Var}}
+
+\newcommand{\B}{\matr{B}}
+\newcommand{\Bi}{\matr{B}^{-1}}
+\newcommand{\Bii}{\matr{B}^{-2}}
+\newcommand{\pC}{p^{\symup{C}}}
+\newcommand{\pB}{p^{\symup{B}}}
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \maketitle
+    \begin{problem}\label{prob:1}
+        Let $f(x)=10\left(x_2-x_1^2\right)^2+(1-x_1)^2$. At $x=(0, -1)^T$ draw the contour lines of the quadratic model
+        \begin{equation}
+            m(p)=f+g^Tp+\frac{1}{2}p^T\B p
+        \end{equation}
+        assuming that $\B$ is the Hessian of $f$. Draw the family of solutions of trust region subproblem
+        \begin{equation}
+            \min_{p\in\BR}m(p)=f+g^Tp+\frac{1}{2}p^T\B p\quad\text{s.t. }\norm{p}\leq\Delta
+        \end{equation}
+        as the trust region radius varies from $\Delta=0$ to $\Delta=2$. Repeat this at $x=(0, 0.5)^T$.
+    \end{problem}
+    \begin{solution}
+        \begin{figure}[htb]
+            \centering
+            \input{resources/fig1.tex}
+            \caption{The contour lines of the quadratic model at point $x = (0, -1)^T$ and the family of solutions of trust region subproblem with $\Delta=0.2, 0.4, \dotsc, 2$, where a larger circle symbolizes a greater $\Delta$.}
+            \label{fig:1}
+        \end{figure}
+        \begin{figure}[htb]
+            \centering
+            \input{resources/fig2.tex}
+            \caption{The contour lines of the quadratic model $m$ at point $x = (0, 0.5)^T$ and the family of solutions of trust region subproblem with $\Delta=0.2, 0.4, \dotsc, 2$, where a larger circle symbolizes a greater $\Delta$.}
+            \label{fig:2}
+        \end{figure}
+        We have used Newton iteration method to solve the trust region subproblem. To make the algorithm pracicable, we select proper $\lambda_0$ to ensure that $\B +\lambda_0 \matr{I}$ is a diagonally dominant matrix.
+        Please refer to \ref{fig:1} and \ref{fig:2} for results.
+    \end{solution}
+
+    \begin{problem}
+        When $\B$ is positive definite, the {\itshape double-dogleg method} constructs a path with three line segments from the origin to the full step. The four points that define the path are
+        \begin{itemize}
+            \item the origin;
+            \item the unconstrained Cauchy step $\pC=-\left.\left(g^Tg\right)\middle/\left(g^T\B g\right)\right.g$;
+            \item a fraction of the full step $\bar{\gamma}\pB=-\bar{\gamma}\Bi g$, for some $\bar{\gamma}\in(\gamma, 1]$, where
+            \begin{equation}
+                \gamma \doteq \frac{\norm{g}^4}{\left(g^T\B g\right)\left(g^T\Bi g\right)}\leq -1;
+            \end{equation}
+            and
+            \item the full step $\pB = -\Bi g$.
+        \end{itemize}
+        Show that $\norm{p}$ increases monotonically along this path.
+    \end{problem}
+    \begin{proof}
+        Since the first, the third and the fourth points lay on the same line, it suffices to prove that $\norm{p}$ increases monotonically between the second point and the third point.
+
+        Let $\alpha\in[0,1]$, and define $d(\alpha)$ by
+        \begin{equation}
+            d(\alpha)\doteq\frac{1}{2}\norm{\pC+\alpha\left(\bar{\gamma}\pB-\pC\right)}^2=\frac{1}{2}\norm{\pC}^2+\alpha\left(\pC\right)^T\left(\bar{\gamma}\pB-\pC\right)+\frac{1}{2}\alpha^2\norm{\bar{\gamma}\pB-\pC}^2.
+        \end{equation}
+        Hence the derivative
+        \begin{equation}
+            d'(\alpha)=\left(\pC\right)^T\left(\bar{\gamma}\pB-\pC\right)+\alpha\norm{\bar{\gamma}\pB-\pC}^2=\left((1-\alpha)\pC+\alpha\bar{\gamma}\pB\right)^T\left(\bar{\gamma}\pB-\pC\right)
+        \end{equation}
+        is a convex combination of $d'(0)$ and $d'(1)$. Thus to show $d'>0$, it suffices to show that $d'(0)>0$ and $d'(1)>0$ respectively.
+
+        When $\alpha=0$, it is easy to check
+        \begin{equation}
+            \begin{aligned}
+                d'(0)&= \left(\pC\right)^T\left(\bar{\gamma}\pB-\pC\right)\\
+                &= \bar{\gamma}\frac{g^Tg}{g^T\B g}g^T \Bi g-\left(\frac{g^T g}{g^T\B g}\right)^2 g^T g>0,
+            \end{aligned}
+        \end{equation}
+        since $\bar{\gamma}>\gamma$.
+
+        When $\alpha=1$, we have
+        \begin{equation}
+            \begin{aligned}
+                d'(1)&= \left(\bar{\gamma}\pB\right)^T\left(\bar{\gamma}\pB-\pC\right)
+                = \bar{\gamma}\left(\bar{\gamma}g^T\Bii g- g^T\Bi g\frac{g^Tg}{g^T\B g}\right)\\
+                &> \frac{\gamma}{\left(g^T\B g\right)\left(g^T\Bi g\right)}\left(g^Tgg^T\Bii g-\left(g^T\Bi g\right)^2\right)\geq 0,
+            \end{aligned}
+        \end{equation}
+        by Cauchy-Schwarz inequality.
+    \end{proof}
+
+    \begin{problem}
+        Show that the two formula
+        \begin{equation}
+            \lambda^{(l+1)}=\lambda^{(l)}-\frac{\varphi\left(\lambda^{(l)}\right)}{\varphi'\left(\lambda^{(l)}\right)}
+            \quad\text{and}\quad
+            \lambda^{(l+1)}=\lambda^{(l)}+\left(\frac{\norm{p_l}}{\norm{q_l}}\right)^2\left(\frac{\norm{p_l}-\Delta}{\Delta}\right)
+        \end{equation}
+        are equivalent.
+    \end{problem}
+    \begin{proof}
+        Since this topic has been discussed in the course, we will only prove the derivative of inverse matrix.
+
+        By taking derivative at the both side of the equation
+        \begin{equation}
+            \B(\lambda)\Bi(\lambda)=\matr{I},
+        \end{equation}
+        we have
+        \begin{equation}
+            \B'(\lambda)\Bi(\lambda)+\B(\lambda)\left(\Bi(\lambda)\right)'=0.
+        \end{equation}
+        It follows that
+        \begin{equation}
+            \left(\Bi(\lambda)\right)'=-\Bi(\lambda)\B'(\lambda)\Bi(\lambda),
+        \end{equation}
+        as needed.
+    \end{proof}
+    \begin{problem}
+        The following example shows that the reduction in the model function $m$ achieved by the two-dimensional minimization strategy can be much smaller than achieved by the exact solution of \ref{eq:TrsModelFunc}
+        \begin{equation}\label{eq:TrsModelFunc}
+            \min_{p\in\BR^n}m(p)\doteq f+g^Tp+\frac{1}{2}p^T\B p\quad\text{s.t. }\norm{p}\leq\Delta.
+        \end{equation}
+
+        In \ref{eq:TrsModelFunc}, set
+        \begin{equation}
+            g = \left(-\frac{1}{\varepsilon}, -1, -\varepsilon^2\right),
+        \end{equation}
+        where $\varepsilon$ is a small positive number. Set
+        \begin{equation}
+            \B = \diag\left(\frac{1}{\varepsilon^3}, 1, \varepsilon^3\right),\quad \Delta=0.5.
+        \end{equation}
+        Show that the solution of \ref{eq:TrsModelFunc} has components $\left(O(\varepsilon), 1/2+O(\varepsilon), O(\varepsilon)\right)^T$ and that the reduction in the model $m$ is $3/8 + O(\varepsilon)$. For the two-dimensional minimization strategy, show that the solution is a multiple of $\Bi g$ and that the reduction in $m$ is $O(\varepsilon)$.
+    \end{problem}
+    \begin{proof}
+        Theorem of global minimizer yields the equations
+        \begin{equation}
+            d(\lambda)=-(\B+\lambda\matr{I})^{-1}g=\left(\frac{\varepsilon^2}{\lambda\varepsilon^3+1},\frac{1}{1+\lambda},\frac{\varepsilon}{\varepsilon^3+\lambda}\right)^T
+            \quad\text{and}\quad
+            \norm{d(\lambda)}=0.5.
+        \end{equation}
+        Since $\lambda>1$ shown by second component, then it is easy to show that
+        \begin{equation}
+            \lambda=1+O(\varepsilon)
+            \quad\text{and}\quad
+            d(\lambda)=\left(O(\varepsilon), \frac{1}{2}+O(\varepsilon), O(\varepsilon)\right).
+        \end{equation}
+        Then, it naturally follows the reduction in the model $m$
+        \begin{equation}
+            \begin{aligned}
+                &\phantom{{}={}}m(0)-m(p)\\
+                &=\left(\frac{\varepsilon}{\lambda\varepsilon^3+1}+\frac{1}{1+\lambda}+\frac{\varepsilon^3}{\lambda\varepsilon^3+1}\right)-\frac{1}{2}\left(\frac{\varepsilon}{\left(\lambda\varepsilon^3+1\right)^2}+\frac{1}{\left(1+\lambda\right)^2}+\frac{\varepsilon^5}{\left(\lambda\varepsilon^3+1\right)^2}\right)\\
+                &=\frac{3}{8}+O(\varepsilon).
+            \end{aligned}
+        \end{equation}
+
+        For the two-dimensional minimization strategy, I have no idea how to solve that. If we only search along the line parallel to $-\Bi g=\left(\varepsilon^2, 1, 1/\varepsilon\right)^T$, then the minimizer must be $O(\varepsilon)\Bi g$. Hence the reduction is $O(\varepsilon)$.
+
+        As for the reason why the solution must be a multiple of $\Bi g$, my thought is as follows. Let $\alpha = (\varepsilon^3, \varepsilon, 1)$ and $\beta = (\varepsilon, 1, \varepsilon^2)^T$, where $\alpha$ and $\beta$ have similar length and are parallel to $-\Bi g$ and $-g$ respectively. Without loss of generality let's assume that the minimizer lies at the boundary of the trust region, thus the component on $\alpha$ and the one on $\beta$ are closedly related. It is easy to find out that every unit length on direction $a$ provides a reduction of $O(\varepsilon)$, while every unit length on direction $b$ actually provides a increase of $O(1/\varepsilon)$. Hence the less component on $-g$ we choose, the better reduction it will make. It might be the reason why the solution is a multiple of $\Bi g$.
+    \end{proof}
+
+    \clearpage\appendix
+    \section{Codes}
+
+    \matlabinputlisting[caption={Newton Iteration Method for a Trust Region Subproblem}]{trs_iteration.m}
+    \matlabinputlisting[caption={Contour Lines of a Quadratic Model}]{rosenbrock_quadratic_contour.m}
+    \matlabinputlisting[caption={Main Script of \ref{prob:1}}]{main.m}
+\end{document}

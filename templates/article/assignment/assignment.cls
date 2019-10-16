@@ -4,7 +4,7 @@
 % -------------------- Identification --------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{assignment}[2019/09/15]
+\ProvidesClass{assignment}[2019/10/15]
 
 % -------------------- Preliminary Declarations --------------------
 
@@ -124,7 +124,7 @@
 %%% Problem
 \theoremstyle{plain}
 \theoremheaderfont{\upshape\bfseries}
-\theorembodyfont{\itshape}
+\theorembodyfont{\upshape}
 \newmdtheoremenv[outerlinewidth=2]{problem}{\ProblemLang}
 %%% Note
 \theoremstyle{plain}

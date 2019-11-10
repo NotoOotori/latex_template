@@ -126,4 +126,14 @@
             \item Show that $\matr{J}$ has full column rank if and only if $\matr{J}^T\matr{J}$ is positive definite.
         \end{enumerate}
     \end{problem}
+    \begin{proof}
+        First, notice that linear equations $\matr{J}^T\matr{J}x=0$ and $\matr{J}x=0$ are equivalent, that is to say they have the same solutions. If $\matr{J}$ has full column rank, then the solution space has dimension $n$, which implies that $\matr{J}^T\matr{J}$ is nonsingular, and the converse is also true.
+
+        Second, since $\matr{J}^T\matr{J}$ is always positive semi definite, $\matr{J}^T\matr{J}$ is nonsingular if and only if it is positive definite. It follows the conclusion.
+    \end{proof}
+
+    \clearpage\appendix
+    \section{Codes}
+
+    \matlabinputlisting[caption={Conjugate Gradient Method}]{conjugate_gradient.m}
 \end{document}

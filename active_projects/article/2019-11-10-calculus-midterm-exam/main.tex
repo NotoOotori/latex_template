@@ -1,0 +1,552 @@
+% -------------------- Packages --------------------
+
+\documentclass[a4paper, 12pt]{ctexart}
+
+\RequirePackage{enumerate}
+\RequirePackage{fontspec} % fonts.
+\RequirePackage[dvipsnames]{xcolor} % color declarations.
+
+\RequirePackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+\RequirePackage{hyperref}
+
+\hypersetup{
+    linktoc             =   all,
+    colorlinks          =   true,
+    linkcolor           =   cyan,
+    anchorcolor         =   black,
+    citecolor           =   green,
+    filecolor           =   cyan,
+    menucolor           =   red,
+    runcolor            =   filecolor,
+    urlcolor            =   magenta,
+    bookmarksnumbered   =   true,
+    pdfstartview        =   FitH,
+    pdfpagelayout       =   OneColumn,
+}
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{commath} % abs, norm
+
+\RequirePackage[math-style=TeX, bold-style=TeX, partial=upright]{unicode-math}
+\setmathfont{XITS Math}
+\setmathfont[range={\mathcal,\mathbfcal}, StylisticSet=1]{XITS Math} % Script
+
+\newcommand*{\diff}{\mathop{}\!\symup{d}}
+\newcommand*{\matr}[1]{\symsfit{#1}}
+\newcommand*{\vect}[1]{\symbf{#1}}
+
+\RequirePackage[thmmarks, amsmath, thref, framed]{ntheorem} % 定理格式.
+\RequirePackage{framed}
+\RequirePackage[ntheorem]{mdframed} % for \newframedtheorem
+
+\theoremstyle{plain}
+\theoremheaderfont{\upshape\bfseries}
+\theorembodyfont{\upshape}
+\theoremsymbol{}
+\newmdtheoremenv[outerlinewidth=2]{problem}{问题}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\theoremseparator{:}
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem{proof}{证明}
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{solution}{解}
+\theoremsymbol{}
+\newtheorem{hint}{提示}
+
+\theoremsymbol{}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\theoremseparator{:}
+\newtheorem{analysis}{分析}
+
+\newtheorem{supplement}{拓展}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\theoremseparator{:}
+\newtheorem{example}{例}
+
+\usepackage{xparse}
+\usepackage{xtemplate}
+\usepackage{tasks}
+
+\settasks{label=(\Alph*), label-width=1.6em}
+
+% -------------------- Settings --------------------
+
+% -------------------- New commands --------------------
+
+\newcommand{\ans}[1]{\textcolor{Aquamarine}{#1}}
+
+\newcommand{\me}{\symup{e}}
+\newcommand{\BR}{\symbb{R}}
+\newcommand{\BN}{\symbb{N}}
+\newcommand{\diag}{\mathop{}\!\symup{diag}}
+\newcommand{\pr}{\mathop{}\!\symup{Pr}}
+\newcommand{\expect}{\mathop{}\!\symup{E}}
+\newcommand{\cov}{\mathop{}\!\symup{Cov}}
+\newcommand{\var}{\mathop{}\!\symup{Var}}
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \section{填空与选择题}
+
+    \begin{problem}
+        函数$\displaystyle y=\cos\frac{\pi x}{x^2+4}$的定义域为$x\in(-\infty, \infty)$, 则它的值域为$y\in\ans{\displaystyle\left[\frac{\sqrt{2}}{2}, 1\right]}$.
+    \end{problem}
+    \begin{analysis}\hspace{\fill}
+        \begin{itemize}
+            \item 复合函数求值域.
+            \item 观察函数奇偶性, 简化计算过程.
+            \item 利用不等式: $a^2+b^2\geq 2ab$.
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}
+        分类讨论. 当$x=0$时, 有
+        \begin{equation}
+            \frac{\pi x}{x^2+4}=0.
+        \end{equation}
+        因为原函数为偶函数, 故只需再考虑$x>0$的情况即可. 当$x>0$时, 有
+        \begin{equation}
+            0<\frac{\pi x}{x^2+4}=\frac{\pi}{x+4/x}\leq\frac{\pi}{4}.
+        \end{equation}
+        故
+        \begin{equation}
+            y=\cos \frac{\pi x}{x^2+4}\in\left[\frac{\sqrt{2}}{2}, 1\right].
+        \end{equation}%FIXME: 为什么这就是值域?
+    \end{solution}
+
+    \begin{problem}
+        设函数$f(x)$在$(-\infty, \infty)$满足$2f(1+x)-f(1-x)=\me^x$, 则$\displaystyle f(x)=\ans{\frac{2\me^{x-1}+\me^{1-x}}{3}}$.
+    \end{problem}
+    \begin{analysis}\hspace{\fill}
+        \begin{itemize}
+            \item 题型: 已知复合函数$f[g(x)]$, 求$f(x)$表达式.
+            \item 方法: 换元法, 构造方程组法等.
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}
+        用两种方法进行求解.
+        \begin{enumerate}[\hspace{2em}法1:]
+            \item 令$t=1+x$, 则$x=t-1$, 于是有
+                \begin{equation}
+                    2f(t)-f(2-t)=\me^{t-1},\quad 2f(2-t)-f(t)=\me^{1-t}.
+                \end{equation}
+                因此
+                \begin{equation}
+                    f(t)=\frac{2\me^{t-1}+\me^{1-t}}{3},
+                \end{equation}
+                即
+                \begin{equation}
+                    f(x)=\frac{2\me^{x-1}+\me^{1-x}}{3},
+                \end{equation}
+            \item 构造方程组:
+                \begin{equation}
+                    \left\{\begin{aligned}
+                        2f(1+x)-f(1-x)&=\me^x,\\
+                        2f(1-x)-f(1+x)&=\me^{-x}.
+                    \end{aligned}\right.
+                \end{equation}
+                解得
+                \begin{equation}
+                    f(1+x)=\frac{2\me^x+\me^{-x}}{3},
+                \end{equation}
+                故
+                \begin{equation}
+                    f(x)=\frac{2\me^{x-1}+\me^{1-x}}{3},
+                \end{equation}
+        \end{enumerate}
+    \end{solution}
+    \begin{supplement}[求函数表达式方法总结]\hspace{\fill}
+        \begin{enumerate}[1.]
+            \item 待定系数法
+            \begin{example}
+                设$f(x)$是一次函数, 且$f[f(x)]=4x+3$. 求$f(x)$.
+            \end{example}
+            \begin{solution}
+                设$f(x)=ax+b$, 其中$a\neq 0$, 则
+                \begin{equation}
+                    f[f(x)]=a(ax+b)+b=a^2x+ab+b.
+                \end{equation}
+                比较系数, 有方程组
+                \begin{equation}
+                    \left\{\begin{aligned}
+                        a^2&=4,\\
+                        ab+b&=3.
+                    \end{aligned}\right.
+                \end{equation}
+                解得
+                \begin{equation}
+                    \left\{\begin{aligned}
+                        a&=2,\\
+                        b&=1.
+                    \end{aligned}\right.
+                    \quad\text{或}\quad
+                    \left\{\begin{aligned}
+                        a&=-2,\\
+                        b&=-3.
+                    \end{aligned}\right.
+                \end{equation}
+            \end{solution}
+            \item 配凑法 \emph{注意$f(x)$的定义域应是$g(x)$的值域}
+            \begin{example}
+                已知$f\left(x+x^{-1}\right)=\left.x^2\middle/\left(x^4+1\right)\right.$, 求$f(x)$.
+            \end{example}
+            \begin{solution}
+                不难发现
+                \begin{equation}
+                    f\left(x+x^{-1}\right)=\frac{1}{x^2+x^{-2}}=\frac{1}{\left(x+x^{-1}\right)^2}.
+                \end{equation}
+                令$t=x+x^{-1}$, 则$t\in(-\infty, -2]\cup[2, \infty)$, 故
+                \begin{equation}
+                    f(x)=\frac{1}{x^2-2}, \quad x\geq 2 \text{ or } x\leq -2.
+                \end{equation}
+            \end{solution}
+            \item 换元法\ 见考题, 不再赘述 \emph{同样要注意定义哦}
+            \item 构造方程组法 \emph{适用于$f[g(x)]$与$f[h(x)]$系数不同时}
+            \item 赋值法 \emph{适用于多变量问题}
+            \begin{example}
+                已知$f(0)=1$, 等式$f(x-y)=f(x)-y(2x-y+1)$对于任意的$x, y$恒成立, 求$f(x)$.
+            \end{example}
+            \begin{solution}
+                不妨令$x=0$代入, 则有%FIXME: 为什么充要?
+                \begin{equation}
+                    f(-y)=f(0)-y(-y+1)=y^2-y+1.
+                \end{equation}
+                再令$-y=x$, 得
+                \begin{equation}
+                    f(x)=x^2+x+1.
+                \end{equation}
+            \end{solution}
+            \item 递推法
+            \begin{example}
+                设$f(n)$是定义在自然数集$\BN$上的函数, 且有$f(1)=1$, 对任意自然数$a, b$都有$f(a)+f(b)=f(a+b)-ab$. 求$f(n)$.
+            \end{example}
+            \begin{solution}
+                不妨令$a=n, b=1$代入, 则有%FIXME: 为什么充要?
+                \begin{equation}
+                    f(n)+f(1)=f(n+1)-n,\quad\text{即 }f(n+1)-f(n)=n+1.
+                \end{equation}
+                累加得
+                \begin{equation}
+                    f(n)-f(1)=2+3+\dotsb +n,
+                \end{equation}
+                即
+                \begin{equation}
+                    f(n)=\frac{n(n+1)}{2}.
+                \end{equation}
+            \end{solution}
+        \end{enumerate}
+    \end{supplement}
+
+    \begin{problem}
+        极限$\displaystyle \lim_{x\to 0}\frac{\left(2^x-1\right)(1-\cos x)\arctan x}{\log\left(1+x^2\right)\left(\sqrt{1+2x^2}-1\right)}=\ans{\frac{\log 2}{2}}$.
+    \end{problem}
+    \begin{analysis}
+        \begin{itemize}
+            \item 熟练掌握常见等价无穷小.
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}
+        当$x\to 0$时, 有等价无穷小
+        \begin{equation}
+            \begin{aligned}
+                2^x-1&\sim x\log 2,\\
+                1-\cos x&\sim \frac{1}{2}x^2,\\
+                \arctan x&\sim x,\\
+                \log(1+x^2)&\sim x^2,\\
+                \sqrt{1+2x^2}-1&\sim x^2.
+            \end{aligned}
+        \end{equation}
+        故
+        \begin{equation}
+            \text{原式 }=\lim_{x\to 0}\frac{x\log 2\cdot \frac{1}{2}x^2\cdot x}{x^2\cdot x^2}=\frac{\log 2}{2}.
+        \end{equation}
+    \end{solution}
+
+    \begin{problem}
+        设函数$f(x)=x\sqrt{4-x^2}+4\arcsin (x/2)$, 则$f'(x)=\ans{2\sqrt{4-x^2}}$.
+    \end{problem}
+    \begin{analysis}
+        \begin{itemize}
+            \item 熟练掌握初等函数的导数
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}
+        \begin{equation}
+            \begin{aligned}
+                f'(x)
+                &= \sqrt{4-x^2}+x\cdot\frac{-x}{\sqrt{4-x^2}}+4\cdot\frac{1}{\sqrt{1-(x/2)^2}}\cdot \frac{1}{2}\\
+                &= \frac{4-x^2-x^2+4}{\sqrt{4-x^2}}\\
+                &= 2\sqrt{4-x^2}.
+            \end{aligned}
+        \end{equation}
+    \end{solution}
+
+    \begin{problem}
+        设函数$y=y(x)$由方程$2^{xy}=x+y$所决定, 则$\diff y\vert_{x=0}=\ans{(\log 2 -1)\diff x}$.
+    \end{problem}
+    \begin{analysis}\hspace{\fill}
+        \begin{itemize}
+            \item 隐函数求导, 常中途将$x=0$代入以简化计算.
+            \item 易错点: 微分符号`$\diff x$'丢失.
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}
+        方程两边对$x$求导得
+        \begin{equation}
+            2^{xy}(y+xy')\log 2=1+y'.
+        \end{equation}
+        将$x=0, y=1$代入, 得
+        \begin{equation}
+            \log 2 = 1+y', \quad\text{即 }\diff y\vert_{x=0}=(\log 2 -1)\diff x.
+        \end{equation}
+    \end{solution}
+
+    \begin{problem}
+        设函数
+        \begin{equation}
+            f(x)=
+            \begin{cases}
+                \left.(\me^x-1)\middle/x+1\right.,&x<0,\\
+                2+\sin(ax),&x\geq 0
+            \end{cases}
+        \end{equation}
+        在$x=0$处可导, 则常数$a=\ans{1/2}$.
+    \end{problem}
+    \begin{analysis}
+        \begin{itemize}
+            \item 考察函数连续性, 左右导数问题.
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}
+        已知$f(0)=2$, 且有$f_+'(0)=f_-'(0)$. 分别计算左右导数, 有
+        \begin{equation}
+            \begin{aligned}
+                f_+'(0)&=\lim_{x\to 0^+}\frac{2+\sin(ax)-f(0)}{x-0}=a,\\
+                f_-'(0)&=\lim_{x\to 0^-}\frac{\left.(\me^x-1)\middle/x+1-f(0)\right.}{x-0}=\lim_{x\to 0^-}\frac{\me^x-1-x}{x^2}.
+            \end{aligned}
+        \end{equation}
+        此时可以通过洛必达法则或者泰勒展开来求解该极限.
+        \begin{enumerate}[\hspace{2em}法1:]
+            \item 洛必达法则:
+            \begin{equation}
+                \text{上式 }=\lim_{x\to 0^-}\frac{\me^x -1}{2x}=\frac{1}{2}.
+            \end{equation}
+            \item 泰勒展开:
+            \begin{equation}
+                \text{上式 }=\lim_{x\to 0^-}\frac{\left(1+x+\left.x^2\middle/2\right.+o\left(x^2\right)\right)-1-x}{x^2}=\frac{1}{2}.
+            \end{equation}
+        \end{enumerate}
+        故$a=1/2$.
+    \end{solution}
+
+    \begin{problem}
+        设函数$f(x)=(1-x^2)\me^{x^2}$, 则$\displaystyle f^{(20)}(0)=\ans{\left(\frac{1}{10!}-\frac{1}{9!}\right)\cdot 20!=-\frac{9\cdot 20!}{10!}}$.
+    \end{problem}
+    \begin{analysis}\hspace{\fill}
+        \begin{itemize}
+            \item $\me^{x^2}$指数部分含$x^2$, 直接用莱布尼茨公式较繁琐.
+            \item 考虑利用泰勒展开将$\me^{x^2}$以多项式形式替换, 在避免求导的情况下, 得到$f(x)=\sum_{0}^{\infty}a_nx^n+o\left(x^n\right)$, 则$f^{(n)}(0)=n!\cdot a_n$.
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}
+        将$\me^{x^2}$泰勒展开, 得
+        \begin{equation}
+            \me^{x^2}=1+x^2+\frac{x^4}{2}+\dotsb+\frac{x^{18}}{9!}+\frac{x^{20}}{10!}+o\left(x^{20}\right).
+        \end{equation}
+        故
+        \begin{equation}
+            \begin{aligned}
+                f(x)
+                &= \left(1-x^2\right)\left[1+x^2+\frac{x^4}{2}+\dotsb+\frac{x^{18}}{9!}+\frac{x^{20}}{10!}+o\left(x^{20}\right)\right]\\
+                &= \left[1+x^2+\dotsb+\frac{x^{20}}{10!}+o\left(x^{20}\right)\right]-\left[x^2+\dotsb+\frac{x^{20}}{9!}+\frac{x^{22}}{10!}+o\left(x^{22}\right)\right].
+            \end{aligned}
+        \end{equation}
+        其中$x^{20}$的系数为$1/(10!)-1/(9!)$. 故
+        \begin{equation}
+            f^{(20)}(0)=\left(\frac{1}{10!}-\frac{1}{9!}\right)\cdot 20!=-\frac{9\cdot 20!}{10!}.
+        \end{equation}
+    \end{solution}
+    \begin{supplement}[求函数表达式方法总结]\hspace{\fill}
+        \begin{enumerate}[1.]
+            \item 归纳法: 试求前几阶导, 观察规律性, 数学归纳. 常用如下
+            \begin{equation}
+                \begin{aligned}
+                    \left(\me^{ax+b}\right)^{(n)}&=a^n\me^{ax+b};\\
+                    \left[\sin(ax+b)\right]^{(n)}&=a^n\sin\left(ax+b+\frac{n\pi}{2}\right);\\
+                    \left[\cos(ax+b)\right]^{(n)}&=a^n\cos\left(ax+b+\frac{n\pi}{2}\right);\\
+                    \left(\frac{1}{ax+b}\right)^{(n)}&=\frac{(-1)^na^nn!}{(ax+b)^{n+1}};\\
+                    \left[\log(ax+b)\right]^{(n)}&=(-1)^{n-1}a^n(n-1)!\frac{1}{(ax+b)^n}.
+                \end{aligned}
+            \end{equation}
+            \begin{example}
+                设函数$f(x)$有任意阶导数且$f'(x)=\left[f(x)\right]^2$, 求$f^{(n)}(x)$, $n>2$.
+            \end{example}
+            \begin{solution}
+                将$f'(x)=\left[f(x)\right]^2$两边连续求导, 得
+                \begin{equation}
+                    \begin{aligned}
+                        f''(x)&=2f(x)f'(x)=2!\left[f(x)\right]^3,\\
+                        f'''(x)&=3!\left[f(x)\right]^2f'(x)=3!\left[f(x)\right]^4,\\
+                        \dotsb&\phantom{{}={}}\dotsb\\
+                        f^{(n)}(x)&=n!\left[f(x)\right]^{n+1}.
+                    \end{aligned}
+                \end{equation}
+            \end{solution}
+            \item 直接法: 直接用莱布尼茨法则求解
+            \begin{equation}
+                \left[u(x)v(x)\right]^{(n)}=\sum_{j=0}^{n}\binom{n}{j}u^{(j)}(x)v^{(n-j)}(x), \quad\text{其中 }\binom{n}{j}\doteq\frac{n!}{j!(n-j)!}.
+            \end{equation}
+            \item 间接法: 先拆项再求导.
+            \begin{example}
+                计算$y^{(n)}$.
+                \begin{enumerate}[\hspace{2em}(1)]
+                    \item $y=\sin^6x+\cos^6x$;
+                    \item $y=\sin(ax)\sin(bx)$;
+                    \item $y=\left.\left(x^2+x+1\right)\middle/\left(x^2-5x+6\right)\right.$.
+                \end{enumerate}
+            \end{example}
+            \begin{hint}\hspace{\fill}
+                \begin{enumerate}[\hspace{2em}(1)]
+                    \item 先降次
+                    \begin{equation}
+                        y=\left(\frac{1-\cos(2x)}{2}\right)^3+\left(\frac{1+\cos(2x)}{2}\right)^3=\frac{5}{8}+\frac{3}{8}\cos(4x).
+                    \end{equation}
+                    \item 运用积化和差公式
+                    \begin{equation}
+                        \sin(\alpha)\sin(\beta)=-\frac{1}{2}\left[\cos(\alpha+\beta-\cos(\alpha-\beta))\right].
+                    \end{equation}
+                    \item 拆分有理式
+                    \begin{equation}
+                        y=1-\frac{7}{x-2}+\frac{13}{x-3}.
+                    \end{equation}
+                \end{enumerate}
+            \end{hint}
+            \item 泰勒公式: 若求得展开式
+            \begin{equation}
+                f(x)=\sum_{n=0}^{\infty}a_n(x-a)^n,
+            \end{equation}
+            可知
+            \begin{equation}
+                f^{(n)}(a)=a_nn!.
+            \end{equation}
+        \end{enumerate}
+    \end{supplement}
+
+    \begin{problem}
+        数列$x_n$与$y_n$满足$\lim_n x_ny_n=0$, 则下列判断正确的是
+        \begin{tasks}(2)
+            \task 若$x_n$收敛, 则$y_n$必为无穷小.
+            \task[\ans{(B)}] \ans{若$x_n$为无穷大, 则$y_n$必为无穷小}.
+            \task 若$x_n$有界, 则$y_n$必为无穷小.
+            \task 若$x_n$无界, 则$y_n$必为无穷小.
+        \end{tasks}
+    \end{problem}
+    \begin{analysis}
+        \begin{itemize}
+            \item 巧举反例很关键.
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}\hspace{\fill}
+        \begin{enumerate}[\hspace{2em}A:]
+            \item 设$x_n=n^{-2}$, $y_n=n$, 得A错.
+            \item 因为$y_n=(x_ny_n)\cdot\left(1\middle/x_n\right)$为有限个无穷小的乘积, 故$y_n$必为无穷小.
+            \item 同A.
+            \item 有反例
+            \begin{equation}
+                x_n=
+                \begin{cases}
+                    0, &n \text{ even},\\
+                    n, &n \text{ odd},
+                \end{cases}
+                \quad
+                y_n=
+                \begin{cases}
+                    n, &n \text{ even},\\
+                    0, &n \text{ odd}.
+                \end{cases}
+            \end{equation}
+            故D错.
+        \end{enumerate}
+    \end{solution}
+
+    \begin{problem}
+        当$x\to 0$时, 下列无穷小函数中, 哪一个是比其它三个更高阶的无穷小?
+        \begin{tasks}(4)
+            \task $\log(1+x)-x$.
+            \task $\me^x-1-x$.
+            \task[\ans{(C)}] \ans{$\sin x-x$}.
+            \task $\sqrt{1+2x}-1-x$.
+        \end{tasks}
+    \end{problem}
+    \begin{analysis}
+        \begin{itemize}
+            \item 考察泰勒公式在无穷小中的应用
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}\hspace{\fill}
+        \begin{enumerate}[\hspace{2em}A:]
+            \item 泰勒展开, 得
+            \begin{equation}
+                \log(1+x)-x=\left[x-\frac{x^2}{2}+o\left(x^2\right)\right]-x\sim -\frac{x^2}{2}.
+            \end{equation}
+            \item 泰勒展开, 得
+            \begin{equation}
+                \me^x-1-x = \left[1+x+\frac{x^2}{2}+o\left(x^2\right)\right]-1-x\sim \frac{x^2}{2}.
+            \end{equation}
+            \item 泰勒展开, 得
+            \begin{equation}
+                \sin x-x = \left[x-\frac{x^3}{6}+o\left(x^3\right)\right]-x\sim -\frac{x^3}{6}.
+            \end{equation}
+            \item 泰勒展开, 得
+            \begin{equation}
+                \sqrt{1+2x}-1-x= \left[1+x-\frac{x^2}{2}+o\left(x^2\right)\right]-1-x\sim -\frac{x^2}{2}.
+            \end{equation}
+        \end{enumerate}
+        故选C.
+    \end{solution}
+
+    \begin{problem}
+        设函数$f(x)$在$x=0$处连续, 则下列函数在$x=0$必可导的是
+        \begin{tasks}(4)
+            \task $\abs{f(x)}$.
+            \task $\abs{xf(x)}$.
+            \task[\ans{(C)}] \ans{$\abs{x^2f(x)}$}.
+            \task $\abs{f(x)\sin x}$.
+        \end{tasks}
+    \end{problem}
+    \begin{analysis}\hspace{\fill}
+        \begin{itemize}
+            \item 巧举反例.
+            \item 利用导数的定义式.
+        \end{itemize}
+    \end{analysis}
+    \begin{solution}\hspace{\fill}
+        \begin{enumerate}[\hspace{2em}A:]
+            \item 令$f(x)=x$, 有$\abs{f(x)}=\abs{x}$在$x=0$不可导.
+            \item 令$f(x)=1$, 有$\abs{xf(x)}=\abs{x}$在$x=0$不可导.
+            \item 有
+            \begin{equation}
+                f'(0)\doteq \lim_{x\to 0}\frac{\abs{x^2f(x)}-0}{x-0}=\lim_{x\to 0}\frac{x^2\abs{f(x)}}{x}=0.
+            \end{equation}
+            故C正确.
+            \item 令$f(x)=x$, 有$\abs{f(x)\sin x}=\abs{\sin x}$在$x=0$不可导.
+        \end{enumerate}
+    \end{solution}
+
+    \section{License}
+
+    Permission is granted to copy, distribute and/or modify this software under the terms of the Creative Commons Attribution Share Alike 4.0 International (CC-BY-SA-4.0) (\url{https://creativecommons.org/licenses/by-sa/4.0/legalcode}).
+
+\end{document}

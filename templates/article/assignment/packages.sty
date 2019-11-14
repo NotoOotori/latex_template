@@ -4,7 +4,7 @@
 % -------------------- Identification --------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{packages}
+\ProvidesPackage{packages}[2019/11/14]
 
 % -------------------- Preliminary Declarations --------------------
 
@@ -33,7 +33,6 @@
 
 \RequirePackage{enumerate}
 \RequirePackage{etoolbox} % hooks \AfterEndPreamble
-\RequirePackage{float} % [H].
 \RequirePackage{fontspec} % fonts.
 \RequirePackage{subcaption} % subcaption and subfigure.
 \RequirePackage[dvipsnames]{xcolor} % color declarations.
@@ -163,7 +162,7 @@
     \newcommand{\NoteLang}{Note}
     \newcommand{\ProofLang}{Proof}
     \newcommand{\SolutionLang}{Solution}
-    
+
     \ifctex@loaded
         \renewcommand{\ProblemLang}{问题}
         \renewcommand{\NoteLang}{注}
@@ -174,8 +173,8 @@
     %%% Problem
     \theoremstyle{plain}
     \theoremheaderfont{\upshape\bfseries}
-    \theorembodyfont{\itshape}
-    \newmdtheoremenv[outerlinewidth=2]{mdproblem}{\ProblemLang}
+    \theorembodyfont{\upshape}
+    \newmdtheoremenv[outerlinewidth=2]{problem}{\ProblemLang}
     %%% Note
     \theoremstyle{plain}
     \theoremheaderfont{\itshape}
@@ -194,6 +193,9 @@
 \fi
 
 % Float
+
+\RequirePackage{float} % [H].
+\RequirePackage{booktabs}
 
 %% `caption'
 
@@ -218,7 +220,6 @@
 \ifpgfplots@option
     \RequirePackage{pgfplots}
     \RequirePackage{pgfplotstable} % Need to load before xwatermark
-    \RequirePackage{booktabs}
 
     \usepgfplotslibrary{external}
     \tikzsetexternalprefix{tikz/}
@@ -257,6 +258,9 @@
         {\oldendtable\endnolinenumbers\par}
 
     \linenumbers
+
+    \let\oldmaketitle\maketitle
+    \renewcommand{\maketitle}{\nolinenumbers\oldmaketitle\linenumbers}
 \fi
 
 % `listings'

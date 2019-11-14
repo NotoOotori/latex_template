@@ -1,0 +1,148 @@
+% -------------------- Packages --------------------
+
+\documentclass{assignment}[2019/10/15]
+\usepackage[lineno]{packages}[2019/10/15]
+\usepackage{blkarray}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{Homework of Linear Programming 1}
+\author{Chen Xuyang}
+\date{\today}
+\institute{School of Mathematical Science}
+\professor{Chen Xiongda}
+\course{Operations Research}
+\subject{Operations Research}
+\keywords{}
+
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+% -------------------- New commands --------------------
+
+\newcommand{\BR}{\symbb{R}}
+\newcommand{\diag}{\mathop{}\!\symup{diag}}
+\newcommand{\pr}{\mathop{}\!\symup{Pr}}
+\newcommand{\expect}{\mathop{}\!\symup{E}}
+\newcommand{\cov}{\mathop{}\!\symup{Cov}}
+\newcommand{\var}{\mathop{}\!\symup{Var}}
+
+\newcommand{\basis}[1]{\textcolor{Aquamarine}{#1}}
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \maketitle
+    \begin{problem}\label{pr:1}
+        Solve the linear programming
+        \begin{equation}
+            \begin{blockarray}{c*{4}{r@{\hspace{0.33em}}c@{\hspace{0.33em}}}l}
+                \max & 2x_1 & +&4x_2 & +&x_3 & +&x_4\\
+                \begin{block}{\BAmultirow{3em}\{*{4}{r@{\hspace{0.33em}}c@{\hspace{0.33em}}}l}
+                    \centering\text{s.t.} & x_1 & +&3x_2 && & +&x_4 & \leq & 8,\\
+                    & x_1 & + &\tfrac{1}{2}x_2 & &&& & \leq & 3,\\
+                    & && x_2 & +& x_3 & + &x_4 &\leq & 6,\\
+                    & x_1&+&x_2&+&x_3&&&\leq &9,\\
+                    \begin{block*}{c\BAmulticolumn{9}{c}}
+                        & x_1, x_2, x_3, x_4\leq 0.\\
+                    \end{block*}
+                \end{block}
+            \end{blockarray}
+        \end{equation}
+    \end{problem}
+    \begin{solution}
+        After transforming the programming to its standard form, we can solve it directly by the simplex method. By calculation, we can find out that the optimal value is 16, and one of the optimal points is $\vect{x} = (2, 2, 4, 0)^T$.
+    \end{solution}
+    \begin{table}[htb]
+        \begin{center}
+            \caption{The first and last simplex table of \ref{pr:1}}
+            \begin{tabularx}{14cm}{cR|*{8}{R}}
+                \toprule
+                & 0 & $-2$ & $-4$ & $-1$ & $-1$ & 0 & 0 & 0 & 0\\\cmidrule{2-10}
+                $x_5$ & 8 & 1 & 3 & 0 & 1 & 1 & 0 & 0 & 0\\
+                $x_6$ & 3 & \basis{1} & $\tfrac{1}{2}$ & 0 & 0 & 0 & 1 & 0 & 0\\
+                $x_7$ & 6 & 0 & 1 & 1 & 1 & 0 & 0 & 1 & 0\\
+                $x_8$ & 6 & 0 & $\tfrac{1}{2}$ & 1 & 0 & 0 & $-1$ & 0 & 1\\
+                \midrule \\ \midrule
+                & 16 & 0 & 0 & 0 & $\tfrac{4}{5}$ & $\tfrac{4}{5}$ & $\tfrac{6}{5}$ & 1 & 0\\\cmidrule{2-10}
+                $x_2$ & 2 & 0 & 1 & 0 & $\tfrac{2}{5}$ & $\tfrac{2}{5}$ & $-\tfrac{2}{5}$ & 0 & 0\\
+                $x_1$ & 2 & 1 & 0 & 0 & $-\tfrac{1}{5}$ & $-\tfrac{1}{5}$ & $-\tfrac{6}{5}$ & 0 & 0\\
+                $x_3$ & 4 & 0 & 0 & 1 & $\tfrac{3}{5}$ & $-\tfrac{2}{5}$ & $\tfrac{2}{5}$ & 1 & 0\\
+                $x_8$ & 1 & 0 & 0 & 0 & $-\tfrac{4}{5}$ & $-\tfrac{1}{5}$ & $-\tfrac{6}{5}$ & $-1$ & 1\\
+                \bottomrule
+            \end{tabularx}
+        \end{center}
+    \end{table}
+    \clearpage
+    \begin{problem}\label{pr:2}
+        Solve the linear programming
+        \begin{equation}
+            \begin{blockarray}{c*{4}{r@{\hspace{0.33em}}c@{\hspace{0.33em}}}l}
+                \max & 10x_1 & +&7x_2 & +&30x_3 & +&2x_4\\
+                \begin{block}{\BAmultirow{3em}\{*{4}{r@{\hspace{0.33em}}c@{\hspace{0.33em}}}l}
+                    \centering\text{s.t.} & x_1 & & &-&6x_3 & +&x_4 & \leq & -2,\\
+                    & x_1 & + &x_2 &+ &5x_3&-&x_4 & \leq & -7,\\
+                    \begin{block*}{c\BAmulticolumn{9}{c}}
+                        & x_2, x_3, x_4\leq 0.\\
+                    \end{block*}
+                \end{block}
+            \end{blockarray}
+        \end{equation}
+    \end{problem}
+    \begin{solution}
+        After transforming the programming to its standard form, we need to apply two-phase approach to find a starting feasible solution. By using twice the simplex methodn, we can find out that the optimal value is $-55$, and one of the optimal points is $\vect{x} = (-2, -5, 0, 0)^T$.
+    \end{solution}
+    \begin{table}[htb]
+        \begin{center}
+            \caption{The first and last simplex table of Phase I of \ref{pr:2}}
+            \begin{tabularx}{14cm}{cR|*{9}{R}}
+                \toprule
+                & & 2 & $-2$ & 1 & 1 & 0 & 1 & 1 & 0 & 0\\\cmidrule{2-11}
+                $x_8$ & 2 & $-1$ & \basis{1} & 0 & $-6$ & 1 & $-1$ & 0 & 1 & 0\\
+                $x_9$ & 7 & $-1$ & 1 & 1 & 5 & $-1$ & 0 & $-1$ & 0 & 1\\
+                \midrule \\ \midrule
+                & & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\\cmidrule{2-11}
+                $x_2$ & 7 & $-1$ & 1 & 1 & 5 & $-1$ & 0 & $-1$ & 0 & 1\\
+                $x_6$ & 5 & 0 & 0 & 1 & 11 & $-2$ & 1 & $-1$ & $-1$ & 1\\
+                \bottomrule
+            \end{tabularx}
+        \end{center}
+    \end{table}
+    \begin{table}[htb]
+        \begin{center}
+            \caption{The first and last simplex table of Phase II of \ref{pr:2}}
+            \begin{tabularx}{14cm}{cR|*{7}{R}}
+                \toprule
+                & & 0 & 0 & $-3$ & $-20$ & 12 & 0 & 10\\\cmidrule{2-9}
+                $x_2$ & 7 & $-1$ & 1 & 1 & 5 & $-1$ & 0 & $-1$\\
+                $x_6$ & 5 & 0 & 0 & \basis{1} & 11 & $-2$ & 1 & $-1$\\
+                \midrule \\ \midrule
+                & & 0 & 0 & 0 & 13 & 6 & 3 & 7 \\\cmidrule{2-9}
+                $x_2$ & 2 & $-1$ & 1 & 0 & $-6$ & 1 & $-1$ & 0\\
+                $x_3$ & 5 & 0 & 0 & 1 & 11 & $-2$ & 1 & $-1$\\
+                \bottomrule
+            \end{tabularx}
+        \end{center}
+    \end{table}
+    \begin{problem}\label{pr:3}
+        Solve the linear programming
+        \begin{equation}
+            \begin{blockarray}{c*{3}{r@{\hspace{0.33em}}c@{\hspace{0.33em}}}l}
+                \max & -5x_1 & +&5x_2 & +&13x_3\\
+                \begin{block}{\BAmultirow{3em}\{*{3}{r@{\hspace{0.33em}}c@{\hspace{0.33em}}}l}
+                    \centering\text{s.t.} & -x_1 & +&x_2 & -&x_3 & \leq & 10,\\
+                    & 12x_1 & + &4x_2 & +& 10x_3& \leq & 90,\\
+                    \begin{block*}{c\BAmulticolumn{7}{c}}
+                        & x_1, x_2, x_3\leq 0.\\
+                    \end{block*}
+                \end{block}
+            \end{blockarray}
+        \end{equation}
+    \end{problem}
+    \begin{solution}
+        This problem is rather easy because the answer can be reached within only one step of simplex method. The optimal value is 50, and one of the optimal points is $(-10, 0, 0)^T$.
+    \end{solution}
+\end{document}

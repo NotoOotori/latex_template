@@ -141,8 +141,15 @@
 %% `unicode-math': math font
 
 \RequirePackage[math-style=TeX, bold-style=TeX, partial=upright]{unicode-math}
+\setmainfont[Ligatures=TeX]{XITS}
 \setmathfont{XITS Math}
 \setmathfont[range={\mathcal,\mathbfcal}, StylisticSet=1]{XITS Math} % Script
+\setmathfont[range=\mathup/{num}]{XITS Math}
+\setmathfont[range=\mathit/{greek,Greek,latin,Latin}]{XITS Math}
+\setmathfont[range=\mathup/{greek,Greek,latin,Latin}]{XITS Math}
+\setmathfont[range={"2212,"002B,"003D,"0028,"0029,"005B,
+"005D,"221A,"2211,"2248,"222B,"007C,"2026,"2202,"00D7,"0302,
+"2261,"0025,"22C5,"00B1,"2194,"21D4}]{XITS Math}
 
 \newcommand*{\diff}{\mathop{}\!\symup{d}}
 \newcommand*{\matr}[1]{\symsfit{#1}}
@@ -268,7 +275,7 @@
 \RequirePackage{listings}
 \RequirePackage{letltxmacro} % \let
 \RequirePackage[numbered, framed]{matlab-prettifier}
-\RequirePackage[T1]{fontenc}
+% \RequirePackage[T1]{fontenc}
 
 %% Title
 

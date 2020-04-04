@@ -1,0 +1,117 @@
+% -------------------- Packages --------------------
+
+\documentclass[chinese]{assignment}[2019/10/15]
+\usepackage[lineno]{packages}[2019/11/14]
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{Homework of Week 1}
+\author{Chen Xuyang}
+\date{\today}
+\institute{School of Mathematical Science}
+\professor{Shan Haiying}
+\course{Combinatorics}
+\subject{Combinatorics}
+\keywords{}
+
+% -------------------- New commands --------------------
+
+\newcommand{\BR}{\symbb{R}}
+\newcommand{\BZ}{\symbb{Z}}
+\newcommand{\diag}{\mathop{}\!\symup{diag}}
+\newcommand{\pr}{\mathop{}\!\symup{Pr}}
+\newcommand{\expect}{\mathop{}\!\symup{E}}
+\newcommand{\cov}{\mathop{}\!\symup{Cov}}
+\newcommand{\var}{\mathop{}\!\symup{Var}}
+
+\newcommand{\lr}[3]{\left#1#3\right#2}
+\newcommand{\lmr}[5]{\left#1#4\middle#2#5\right#3}
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \maketitle
+    \begin{problem}
+        任意给定52个数, 它们之中有两个数, 其和或差是100的倍数.
+    \end{problem}
+    \begin{proof}
+        记这52个数分别为$a_j$, $j\in \BZ_{52}$, 因为只需要考虑这些数的和差模100的余数, 所以可以不妨设$a_j\in \BZ_{100}$, $\forall j$. 假设题目结论为假, 即假设$a_j$两两不同, 并且$a_i+a_j\neq 0$, $\forall i\neq q$. 在$\BZ_{100}$中定义等价关系$R$, 使得$\BZ_{100}$被划分为51个等价类, 他们分别为$\{1, 99\}, \{2, 98\}, \dotsc, \{49, 51\}, \{50\}, \{0\}$. 根据鸽巢原理, 将52个不同的元素$a_j$放入51个等价类, 一定存在一个等价类中包含两个元素, 即$\exists i\neq j: a_iRa_j$, 与之前得到的结论$a_i+a_j\neq 0$, $\forall i\neq j$矛盾! 故题目结论成立.
+    \end{proof}
+
+    \begin{problem}
+        一位学生有37天时间准备考试, 根据以往的经验, 她知道至多只需要60个小时的复习时间, 她决定每天至少复习1小时. 证明: 无论她的复习计划怎样, 在此期间都存在连续的一些天, 她正好复习了13个小时.
+    \end{problem}
+    \begin{proof}
+        我们先来整理一下题意. 设$\{a_j\}_{j\in \BZ_{37}}$是有限正整数数列, 且有
+        \begin{equation}
+            \sum_{j\in\BZ_{37}}a_j\leq 60,
+        \end{equation}
+        须证明存在整数$m, n$使得$0\leq m\leq n\leq 36$并且
+        \begin{equation}
+            \sum_{j=m}^n a_j=13.
+        \end{equation}
+
+        设$s_n$为$\{a_j\}$的前$n$项求和, $n\in\BZ_{37}$, 显然$\{s_n\}$严格单调递增. 考察$\{s_n\}$与$\{s_n+13\}$共74个数, 显然这些数都是正整数, 并且不超过$60+13=73$. 根据鸽巢原理, 其中有两个数相等. 因为$\{s_n\}$严格单调递增, 所以一定存在整数$m, n$, 满足$0\leq m<n\leq 36$满足$s_m+13=s_n$, 因此
+        \begin{equation}
+            \sum_{j=m+1}^{n}=13.
+        \end{equation}
+        证毕.
+    \end{proof}
+
+    \begin{problem}
+        令$q_3$和$t$是正整数, 且$q_3\geq t$, 求Ramsey数$r(t, t, q_3; t)$.
+    \end{problem}
+    \begin{solution}
+        $r(t, t, q_3; t)=q_3$.
+
+        先引入一些记号, 对于集合$S$, 记它的所有$t$元子集全体为$P$, 记$P$的一个分划为$P_1, P_2, P_3$. 当集合$S$的元素个数大于等于$q_3$时, 若分划$P_1$或$P_2$非空, 则其元素满足该元素的任意$t$元子集属于该分划; 若分划$P_1$和$P_2$均为空, 则$S$作为自己的$q_3$元子集, 它的每一个$t$元子集都属于$P_3$. 因此$r(t, t, q_3; t)\leq q_3$. 当$S$的元素个数为$q_3-1$时, 令分划$P_1=P_2=\emptyset$, $P_3=P$, 则不存在$S$的$t$元子集使得其任意的$t$元子集属于$P_1$或$P_2$, 也不存在$S$的$q_3$元子集. 因此$r(t, t, q_3; t)=q_3$.
+    \end{solution}
+    \begin{note}
+        当集合$S$的元素个数小于$t$时, 因为$S$的$t$元子集全体构成的集合是空集, 这时候存在对空集的分划, 分划出来每个子集都是空集.
+    \end{note}
+
+    \begin{problem}
+       平面上有6个点, 任何三点都是一个不等边三角形的顶点, 则这些三角形中, 有一个三角形的最短边是另一个三角形的最长边.
+    \end{problem}
+    \begin{proof}
+        假设题目结论为假, 即不存在一条边, 使得这条边既是一个三角形的最短边, 又是另一个三角形的最长边. 记$V$为平面上的这6个点构成的集合, 设$E$为$V$的所有二元子集构成的集合, $E$的元素即为边. 设集合$P_1$满足$e$属于$P_1$当且仅当$e$是某一个三角形的最长边, 设集合$P_2$满足$e$属于$P_2$当且仅当$e$是某一个三角形的最短边, 则$P_1\cap P_2=\emptyset$. 设$P_3=E-P_1-P_2$, 则$P_1, P_2, P_3$构成$V$的一个分划.
+
+        我们考察一下这个分划的性质. 先引入两条边相邻的概念, 设$e, f\in E$为两条不同的边, 则$e$与$f$相邻当且仅当$e$与$f$有且仅有一个公共顶点.
+
+        因为每一个三角形都有一条最长边和一条最短边, 所以任取三条互相相邻的边(它们构成了一个三角形), 其中至少有一条属于$P_1$, 至少有一条属于$P_2$; 特别地, 因为$P_3=E-P_1-P_2$, 所以$P_3$中没有两条相邻的边. 同时, 不存在三条相邻的边使得每条边都是某一个三角形的最长边, 即不存在$V$的三元子集使得其每个二元子集均属于$P_1$, 即$P_1$不含有$K_3$. 同理, $P_2$不含有$K_3$.
+
+        设$Q_1$和$Q_2$为集合$E$的分划, 满足$P_1\subseteq Q_1$, $P_2\subseteq Q_2$, 则
+        \begin{equation}
+            Q_1\cap P_2=\emptyset,\quad Q_2\cap P_1=\emptyset.
+        \end{equation}
+        根据定理有$Q_1$和$Q_2$中至少有其一含有至少一个$K_3$. 设$Q_j$含有一个$K_3$, $j\in\{1, 2\}$, 则因为$P_{3-j}\cap Q_j=\emptyset$, 所以这个$K_3$中不含有$P_{3-j}$的元素, 与每个三角形都有最长边最短边矛盾!
+
+        因此题目的推理有效.
+    \end{proof}
+
+    \begin{problem}
+       从$1, 2, \dotsc, 200$中任取100个整数, 其中之一小于16, 那么必有两个数, 一个能被另一个整除.
+    \end{problem}
+    \begin{proof}
+        记这100个整数构成的集合为$S$. 与书上例题类似, 我们将整数$k$写成$2^{r}\times s$的形式, 其中$r$为非负整数, $s$为正奇数. 若有两个整数它们的$s$相同, 则这两个整数之间有整除关系.
+
+        所以不妨设任意两个整数的$s$均不同, 则$s$取遍1至200的所有奇数. 我们不妨令$r$为$s$的函数, 即记$2^{r(s)}\times s=k(s)$. 注意到当$s' |\ s$时, 一定有$r(s')\geq r(s)+1$. 特别地, 当$s>100$时, $r(s)=0$, 故此时如果$s' |\ s$, 则有$r(s')\geq 1$.
+
+        利用以上引理, 因为$1|\ 101$, $3|\ 105$, $5|\ 105$, $7|\ 105$, $9|\ 117$, $11|\ 121$, $13|\ 117$, $15|\ 105$, 所以小于16的所有奇数不属于$S$, 之后我们将证明小于16的偶数也不属于$S$.
+
+        因为$63|\ 189$, 所以$r(63)\geq 1$, 事实上$r(63)=1$. 因为$9|\ 63$, $7|\ 63$, 所以$r(9)\geq 2$, $r(7)\geq 2$, 故$14\notin S$. 因为$3|\ 9$, 所以$r(3)\geq 3$, 故$6, 12\notin S$, 因为$1|\ 3$, 所以$r(1)\geq 4$, 因此$2, 4, 8\notin S$.
+
+        目前为止还只剩下10没有确定. 因为$25|\ 125$, 所以$r(25)\geq 1$. 因为$5|\ 25$, 所以$r(5)\geq 2$, 所以$10\notin S$. 得证.
+    \end{proof}
+
+    \begin{problem}
+       将从1到67的正整数任意分成四部分, 则其中必有一部分至少有一个元素是该部分中某两个元素之差.
+    \end{problem}
+    \begin{proof}
+        与书上例题的证法没有太大区别. 简单说一下证明思路.
+
+        反证. 设四个部分分别为$A_1, A_2, A_3, A_4$. 运用鸽巢原理选出17个正整数作为$B_1\subseteq A_1$, 将其中每一个非最小元与最小元做差得到16个正整数, 与$A_1$中的元素一起两两不同. 再次运用鸽巢原理选出6个正整数作为$B_2\subseteq A_2$, 类似地选出3个正整数作为$B_3\subseteq A_3$, 选出2个正整数作为$B_4\subseteq A_4$, 此时$B_4$中大数减小数的值不属于$A_1, A_2, A_3, A_4$中的任何一个, 推出矛盾.
+    \end{proof}
+\end{document}

@@ -205,7 +205,7 @@
     Now we should organize these linear equations into a matrix form. Let $k(i, j) = iN + (j + 1)$ be a bijection, where $0\leq i, j\leq N-1, 1\leq k\leq N\times N$. Let $u^k = u^{i, j}$, and let the equation at point $(\xi_i, \eta_j)$ be the equation at row $k(i, j)$. Then we obtain a coefficient matrix $A$ of size $(N\times N, N\times N)$ and a column vector $f$ of length $N\times N$ whose elements range from 0 and 1. Solve the linear equations $\matr{A}u=f$ and rearrange the solution $u$ to its matrix form by setting $u^{i, j} = u^{k(i, j)}$, we can obtain the numerical solution of the problem.
 
     Finally, we shall use the composed trapezoid formula to compute the integral on $\Omega$. Recall that $T$ is the transformation map. Let $y(\xi, \eta)$ be the second component of $T^{-1}(\xi, \eta)$ and let $f$ be the function to be integrated. Then
-    \begin{equation}
+    \begin{equation}\label{eq: ctf}
         \begin{aligned}
             \int_{\Omega}f(x, y)\symup{d}y\symup{d}x
             &= \int_0^1\int_0^{y(x, 1)}f(x, y)\symup{d}y\symup{d}x\\
@@ -267,19 +267,19 @@
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{4-contour-1.eps}
-            \caption{Contour Lines for $b = 0.0$.}
+            \caption{$b = 0.0$.}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{4-contour-2.eps}
-            \caption{Contour Lines for $b = 0.5$.}
+            \caption{$b = 0.5$.}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{4-contour-3.eps}
-            \caption{Contour Lines for $b = 1.0$.}
+            \caption{$b = 1.0$.}
         \end{subfigure}
         \caption{Contour Lines of the Solutions for $N = 21, l = 3.0, h = 1.0$ and Different Values of $b$.}
         \label{fig: q4}
@@ -291,27 +291,29 @@
 
     To get the linear fitting of the data points, we have manually constructed the corresponding linear equations where the number of equations is larger than the number of variables. Then we have used \matlabinline{\\} to obtain the least square solution, where the positive part of the slope is the convergence rate we needed.
 
+    Similar to the modified $L_2$ norm in the 1-D case, we have defined a {\it weighted} $L_2$ norm of our matrix related to the grid of the right-angled trapezoid, that is the numerical value of the integral $\int (\Delta u)^2$ calculated by composed trapezoid formula developed in \ref{eq: ctf}.
+
     From the figures \ref{fig: q5-Q}, \ref{fig: q5-Linf} and \ref{fig: q5-L2} we can see that we obtain second-order convergence for $\hat Q$ and $L_2$ norm, but not $L_\infty$ norm with $b = 0.0, 0.5$. Sincerely I don't know the reason of it.
 
     \begin{figure}[htb]
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{5-Q-1.eps}
-            \caption{Convergence Plot for $b = 0.0$, where the scope is -2.2837.}
+            \caption{$b = 0.0, \text{scope} = -2.2837$.}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{5-Q-2.eps}
-            \caption{Convergence Plot for $b = 0.5$, where the scope is -2.2268.}
+            \caption{$b = 0.5, \text{scope} = -2.2268$.}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{5-Q-3.eps}
-            \caption{Convergence Plot for $b = 1.0$, where the scope is -2.2761.}
+            \caption{$b = 1.0, \text{scope} = -2.2761$.}
         \end{subfigure}
-        \caption{Convergence plots for the Error of the Flowrate $\hat Q$ for $l = 3.0, h = 1.0$ and Different Values of $b$ where the $x$-axis represents $\log N$ and the $y$-axis represents $\log \hat{\Delta Q}$.}
+        \caption{Convergence plots for the error of the flowrate $\hat Q$ for $l = 3.0, h = 1.0$ and different values of $b$ where the $x$-axis represents $\log N$ and the $y$-axis represents $\log \Delta \hat{Q}$.}
         \label{fig: q5-Q}
     \end{figure}
 
@@ -319,21 +321,21 @@
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{5-Linf-1.eps}
-            \caption{Convergence Plot for $b = 0.0$, where the scope is -1.6349.}
+            \caption{$b = 0.0, \text{scope} = -1.6349$.}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{5-Linf-2.eps}
-            \caption{Convergence Plot for $b = 0.5$, where the scope is -1.5007.}
+            \caption{$b = 0.5, \text{scope} = -1.5007$.}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{5-Linf-3.eps}
-            \caption{Convergence Plot for $b = 1.0$, where the scope is -2.0853.}
+            \caption{$b = 1.0, \text{scope} = -2.0853$.}
         \end{subfigure}
-        \caption{Convergence plots For the $L_\infty$ norms of the Solution $u$ for $l = 3.0, h = 1.0$ and Different Values of $b$ where the $x$-axis represents $\log N$ and the $y$-axis represents $\log \Delta \norm{\Delta u}_\infty$.}
+        \caption{Convergence plots for the $L_\infty$ norms of the solution $u$ for $l = 3.0, h = 1.0$ and different values of $b$ where the $x$-axis represents $\log N$ and the $y$-axis represents $\log  \norm{\Delta u}_\infty$.}
         \label{fig: q5-Linf}
     \end{figure}
 
@@ -341,34 +343,34 @@
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{5-L2-1.eps}
-            \caption{Convergence Plot for $b = 0.0$, where the scope is -2.2529.}
+            \caption{$b = 0.0, \text{scope} = -2.2529$.}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{5-L2-2.eps}
-            \caption{Convergence Plot for $b = 0.5$, where the scope is -2.2040.}
+            \caption{$b = 0.5, \text{scope} = -2.2040$.}
         \end{subfigure}
         \hfill
         \begin{subfigure}[b]{0.32\textwidth}
             \centering
             \includegraphics[width=5cm]{5-L2-3.eps}
-            \caption{Convergence Plot for $b = 1.0$, where the scope is -2.1861.}
+            \caption{$b = 1.0, \text{scope} = -2.1861$.}
         \end{subfigure}
-        \caption{Convergence plots For the $L_1$ norms of the Solution $u$ for $l = 3.0, h = 1.0$ and Different Values of $b$ where the $x$-axis represents $\log N$ and the $y$-axis represents $\log \Delta \norm{\Delta u}_1$.}
+        \caption{Convergence plots For the $L_1$ norms of the solution $u$ for $l = 3.0, h = 1.0$ and different values of $b$ where the $x$-axis represents $\log N$ and the $y$-axis represents $\log \Delta \norm{\Delta u}_1$.}
         \label{fig: q5-L2}
     \end{figure}
 
     \section{Pareto Optimal Frontier}
 
-    The codes are placed in Appendix \ref{appx: q5}.
+    The codes are placed in Appendix \ref{appx: q6}.
 
     The convex hull in the figure \ref{fig: q6} is called the Pareto optimal frontier, which is a trade-off curve. If we fix the moment of inertia $I$, then the maxium and minimum possible flowrate $\hat Q$ is placed on the convex hull. Hence the frontier can help us make decisions.
 
     \begin{figure}[htb]
         \centering
         \includegraphics[width=7cm]{6-curve.eps}
-        \caption{The Pareto Optimal Frontier for the moment of inertia $I$ and the flowrate $\hat Q$.}
+        \caption{The Pareto optimal frontier for the moment of inertia $I$ and the flowrate $\hat Q$.}
         \label{fig: q6}
     \end{figure}
 

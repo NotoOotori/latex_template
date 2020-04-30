@@ -8,7 +8,7 @@ bcount = length(bs); hcount = length(hs);
 B = B'; H = H';
 D = (l - B)/2;
 Y = H.*D./(2*D + B);
-I = Y.*B*t + 2*D*t.*(H.^2 - 3*H.*Y + 3*Y.^2)/3;
+I = Y.*2.*B*t + 2*D*t.*(H.^2 - 3*H.*Y + 3*Y.^2)/3;
 
 % Compute Q for each point.
 Q = zeros(bcount, hcount);

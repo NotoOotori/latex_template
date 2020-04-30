@@ -4,7 +4,7 @@
 % -------------------- Identification --------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{packages}[2019/11/14]
+\ProvidesPackage{packages}[2020/04/30]
 
 % -------------------- Preliminary Declarations --------------------
 
@@ -268,6 +268,9 @@
 
     \let\oldmaketitle\maketitle
     \renewcommand{\maketitle}{\nolinenumbers\oldmaketitle\linenumbers}
+
+    \let\oldtableofcontents\tableofcontents
+    \renewcommand{\tableofcontents}{\nolinenumbers\oldtableofcontents\linenumbers}
 \fi
 
 % `listings'
@@ -321,12 +324,12 @@
 %% MATLAB presets
 
 \newcommand{\matlabinline}[1]{
-    \lstinline[style=MATLAB-editor, basicstyle=\mlttfamily]{#1}
+    \lstinline[style=MATLAB-editor, basicstyle=\ttfamily]{#1}
 }
 \newcommand{\matlabinputlisting}[2][]{ % #1: caption or label
     \lstinputlisting[
         style=MATLAB-editor,
-        basicstyle=\mlttfamily\scriptsize,
+        basicstyle=\ttfamily\scriptsize,
         #1
     ]{#2}
 }

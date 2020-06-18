@@ -1,0 +1,528 @@
+% -------------------- Packages --------------------
+
+\documentclass[chinese]{assignment}[2019/10/15]
+\usepackage[lineno]{packages}[2019/11/14]
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{生成函数在组合计数模型中的应用}
+\author{陈旭阳}
+\date{\today}
+\institute{数学科学学院}
+\professor{单海英}
+\course{组合数学与图论}
+\subject{组合数学与图论}
+\keywords{}
+
+% -------------------- New commands --------------------
+
+\newcommand{\me}{\symup{e}}
+\newcommand{\BR}{\symbb{R}}
+\newcommand{\BZ}{\symbb{Z}}
+\newcommand{\BN}{\symbb{N}}
+\newcommand{\diag}{\mathop{}\!\symup{diag}}
+\newcommand{\pr}{\mathop{}\!\symup{Pr}}
+\newcommand{\expect}{\mathop{}\!\symup{E}}
+\newcommand{\cov}{\mathop{}\!\symup{Cov}}
+\newcommand{\var}{\mathop{}\!\symup{Var}}
+
+\def\multiset#1#2{\ensuremath{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}}
+
+\newcommand{\lr}[3]{\left#1#3\right#2}
+\newcommand{\lmr}[5]{\left#1#4\middle#2#5\right#3}
+
+\theoremstyle{plain}
+\theoremheaderfont{\upshape\bfseries}
+\theorembodyfont{\upshape}
+\theoremseparator{}
+\theoremsymbol{}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{example}[theorem]{例}
+
+\newcommand{\Kernal}{\mathop{}\!\symup{Ker}}
+\newcommand{\Image}{\mathop{}\!\symup{Im}}
+\newcommand{\Polya}{P\'{o}lya}
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \clearpage
+
+    \setcounter{section}{-1}
+    \section{前言}
+
+    这篇报告主要关于生成函数在组合计数模型中的应用, 以生成函数为主线, 内容涵盖了生成函数的基本定理, 微分方程法求解常系数线性递推关系, Catalan数, 带权版本生成函数形式的\Polya 定理以及其在计算$n$阶无向图的同构类个数上的应用.
+
+    第一节介绍了关于形式幂级数的基本知识. 形式幂级数的定义是纯代数的, 但是解析函数可以通过在0点的泰勒展开对应到一个形式幂级数上, 由此一些分析上的工具也可以引入进来. 为了后文的需要, 我们还介绍了形式幂级数的高阶常系数线性常微分方程, 性质上与普通的高阶常系数线性微分方程十分相像, 由于齐次方程解具有线性性, 零解具有唯一性, 而普通微分方程的解是形式幂级数微分方程的解, 故我们可以利用常微分方程理论求得所有的解. 最后提及多变量形式幂级数. 多变量形式幂级数虽然在计算上比一阶要复杂许多, 但是能包含更多的信息, 有一个非常重要的例子是轮换指标, 可以从中很方便的读取出置换子群作用的信息.
+
+    第二节介绍了生成函数的基本理论, 包括普通生成函数在多重集合组合, 以及指数型生成函数在多重集合排列中的作用. 通过选用两种不同的生成函数, 使得两个组合计数模型的表示均有简单的形式, 想必在后续的课程学习中这一点也十分重要.
+
+    第三节介绍了高阶常系数线性递推关系的求解方法. 我们并没有用书中的求解方法, 而是通过指数型生成函数将递推关系转化为了微分方程, 利用已经学习的微分方程理论进行求解. 这里采用指数型生成函数的原因就是其求导之后不会多出额外的系数来, 于是可以非常方便的对应到微分方程的系数, 而普通生成函数做不到这一点, 生成函数选取的重要性可见一斑. 利用微分方程理论, 我们将微分方程中非齐次项为频率相同的三角函数情况下的待定系数法求解, 应用到了递推关系中, 求出了一种书上没有列出来的特解. 不过我们没有讨论其中的一些特殊情况, 算是一点缺陷吧. 最后我们讨论了Catalan数. 本来想利用形式幂级数的分析性质, 通过估计级数来舍去增根, 后来发现没有必要, 因为舍去增根的关键事实上是验证另一个根是正确的, 再利用唯一性来获得结论. 所以这一部分虽然保留了, 但是没有什么新的内容.
+
+    第四节介绍了带权版本生成函数形式的\Polya 定理. 这个定理给出了计算权为给定值的染色方案的个数. 定理的证明不是很困难, 主要是对不同权值的染色映射分别应用引理, 最后根据置换子群群作用的良好性质转化为易于求解的形式. 定理的关键应该是在染色映射的权的理解上, 这里权的定义与书中不同, 是对染色映射的像的权进行求和, 应该比书中的求积定义要自然许多. 注意到无向简单图可以看作对边集进行黑白2-染色, 黑色的权重为1, 白色的权重为0. 而两个图同构即为两种染色在点集的置换群诱导出的边集的置换子群的作用下位于同一个轨道内, 因此我们可以利用之前得到的\Polya 定理进行求解. 由于边集的置换子群十分复杂, 在没有更深刻工具的情况下徒手计算比较困难, 因此我们用Python语言编写了一段代码, 求解了$n\leq 7$的情形, 并将部分结果列在了正文中. 代码本身的可读性不是很高, 所以我们添加了大量注释, 以使读者更加容易读懂. 需要注意的是模块numpy.polynomial.polynomial中虽然提供了Polynomial类, 但是模块中的polyadd, polymul一类的多项式运算函数返回的类型是numpy.ndarray类而不是Polynomial类, 文档中也没有详细提到, 算是比较坑吧.
+
+    由于这篇报告涉及到了比较多领域的知识, 所以在参考教材许胤龙著<组合数学引论>以及老师上课的课件之外, 我还参考了华东师范大学数学系著<数学分析>, 丁同仁著<常微分方程教程>, Hungerford著<Algebra>以及Wikipedia, NumPy文档, SymPy文档等网上资料.
+
+    从报告中可以看出, 处理不同的问题可以使用不同的生成函数. 好用的生成函数应该远不止文中提到的这两种, 而用生成函数可以解决的问题
+
+    \section{形式幂级数}
+
+    为了引入生成函数, 我们先需要定义形式幂级数并研究一些它的基本性质.
+
+    \begin{definition}[形式幂级数]
+        设 $\BR$ 为实数域, 记 $\BR[[x]]$ 为 $\BR$ 中序列全体, 其元素记为 $(a_0, a_1, \dotsc)$. 在 $\BR[[x]]$ 定义加法运算
+        \begin{equation}
+            (a_0, a_1, \dotsc) + (b_0, b_1, \dotsc) = (a_0+b_0, a_1+b_1, \dotsc),
+        \end{equation}
+        定义乘法运算
+        \begin{equation}
+            (a_0, a_1, \dotsc)(b_0, b_1, \dotsc) = (c_0, c_1, \dotsc),
+        \end{equation}
+        其中
+        \begin{equation}
+            c_n = \sum_{i=0}^na_ib_{n-i} = \sum_{i+j=n}a_ib_j,
+        \end{equation}
+        则 $\BR[[x]]$关于加法和乘法构成整环(无零因子的交换幺环), 称为$\BR$上的\textbf{形式幂级数环}, 称其元素为$\BR$上的\textbf{形式幂级数}.
+    \end{definition}
+
+    $\BR$上的多项式环$\BR[x]$可以看作形式幂级数环的子环, 即只有有限项非零的形式幂级数可以看作多项式.
+
+    记$\BR$的单位元为1, 称$x=(0, 1, 0, 0, \dotsc)\in \BR[[x]]$ 为未定元. 注意到$x^n$即为第$n+1$个元素为1其余元素均为0的形式幂级数, 也为多项式, 并且$rx^k=x^kr$对于一切的$r\in\BR$与$k\in\BN$都成立, 故我们可沿用多项式的记号, 记形式幂级数$(a_0, a_1, \dotsc)$为$\sum_{i=0}^{\infty}a_ix^i$.
+
+    下面一个定理刻画了形式幂级数环$\BR[x]$的单位, 即乘法可逆元, 在求解递推关系的时候会用到这一定理.
+
+    \begin{theorem}
+        形式幂级数$f=(a_0, a_1, \dotsc)\in\BR[[x]]$是单位当且仅当$a_0\in\BR[[x]]$是单位.
+    \end{theorem}
+
+    虽然形式幂级数的定义是纯代数的, 但是我们可以对一部分形式幂级数引入分析的工具.
+
+    \begin{lemma}\label{lem: germ}
+        记$C^\omega_0(\BR) = \left\{f: \BR\to\BR\middle\vert\ \text{存在0点的邻域} N(0)\text{使得}f|_{N(0)}\text{解析} \right\}$为交换幺环, 构造映射
+        \begin{equation}
+            \phi: f\in C_0^\omega(\BR) \to \left(\frac{f(0)}{0!}, \frac{f'(0)}{1!}, \dotsc\right)\in\BR[[x]],
+        \end{equation}
+        则$\phi$为环同态, 导出环同构$C_0^\omega(\BR)/\Kernal\phi\cong\Image\phi$.
+    \end{lemma}
+
+    称引理\ref{lem: germ}中$\Image\phi$中的元素为收敛形式幂级数, 记商环$C_0^\omega(\BR)\big/\Kernal\phi$为$\mathscr{C}_0^\omega(\BR)$, 记其元素$f+\Kernal\phi$ 为$[f]$, 称为$f$在0点处的解析函数芽. 虽然函数芽这个概念强调的是局部性质, 但是由于解析函数芽十分特殊, 对于每一个函数芽$[f]$, 都存在开区间$I_{[f]}$, 使得$[f]$可以对应到一个定义在$I_{[f]}$上的解析函数.
+
+    \begin{theorem}
+        记$[f]\in\mathscr{C}_0^\omega(\BR)$为$f$在0点处的解析函数芽, 令
+        \begin{equation}
+            \rho_{[f]} = \limsup_{k\to\infty}\sqrt[k]{\abs{\frac{f^{(k)}}{k!}}},
+        \end{equation}
+        则$\rho_{[f]}$为非负实数, 且若记$I_{[f]} = (-1/\rho_{[f]}, 1/\rho_{[f]})$, 则函数$g: x\in I_{[f]}\to g(x)\in\BR$在定义域内解析, 其中
+        \begin{equation}
+            g(x) = \sum_{k=1}^\infty \frac{f^{(k)}}{k!}x^k.
+        \end{equation}
+    \end{theorem}
+
+    这个定理给我们提供了如下工具: 对于收敛形式幂级数$\phi(f)$, 我们可以考察其在$I_{[f]}$上的取值, 并由此给出两个收敛形式幂级数不同的充分条件. 这在起初的纯代数定义中是难以想象的, 因为在原始定义中有未定元$x\notin\BR$, 而考察收敛形式幂级数在$I_{[f]}$的取值, 形式上看相当于把$x$用$I_{[f]}\subseteq\BR$中的元素代入. 我们将来会在例子中展示这种方法的应用.
+
+    有时为了方便起见, 我们也用收敛形式幂级数所对应的解析函数来记这个形式幂级数.
+
+    \begin{example}
+        设有收敛形式幂级数$(a_0, a_1, \dotsc)$满足
+        \begin{equation}
+            a_k =
+            \begin{cases}
+                (-1)^l, &n=2l,\\
+                0, &n=2l+1,
+            \end{cases}
+            \quad
+            l \in \BN,
+        \end{equation}
+        则有
+        \begin{equation}
+            \rho_{[f]} = \limsup_{k\to\infty}\sqrt[k]{\abs{\frac{f^{(k)}}{k!}}} = \limsup_{k\to\infty}\sqrt[k]{\abs{a_k}} = 1.
+        \end{equation}
+        故该收敛形式幂级数对应的解析函数$g$定义在$(-1, 1)$, 表达式为
+        \begin{equation}
+            g(x) = \sum_{n=0}^{\infty}\left(-x^2\right)^n = \frac{1}{1+x^2}.
+        \end{equation}
+
+        注意到虽然$g$的表达式可以延拓到整个实数轴$\BR$上的解析函数, 但由于我们没有深入探讨实解析延拓的性质, 因此不考虑收敛形式幂级数对应的解析函数在级数收敛开区间外的取值.
+    \end{example}
+
+    在形式幂级数中还可定义形式导数. 设$f=\sum_{k=0}^\infty a_kx^k$为形式幂级数, 记$f$的形式导数为$f'=\sum_{k=0}^\infty (k+1)a_{k+1}x^k$. 用$f^{(l)}$来对$f$做$l$次形式导数之后的形式幂级数. 为方便起见, 我们也用$f^{(l)}(0)$来记$a_kk!$.
+
+    对于形式幂级数, 我们也可考虑高阶常系数常微分方程初值问题, 与充分阶连续可微实函数有相同的结论.
+
+    \begin{theorem}\label{thm: ode}
+        设$f$为形式幂级数, 考虑$f$的$k$阶线性常系数形式微分方程
+        \begin{equation}
+            f^{(k)}+c_1f^{(k-1)}+\dotsb+c_kf = 0,
+        \end{equation}
+        且满足初值条件
+        \begin{equation}
+            f^{(k-1)}(0) = d_1, \dotsc, f(0) = d_k.
+        \end{equation}
+        设特征方程$\lambda^k+c_1\lambda^{k-1}+\dotsb+c_k=0$有$s$个互不相同的实根$\lambda_1, \dotsc, \lambda_s$, 和$t$对不同的共轭复根$\lambda_{s+1}, \overline{\lambda}_{s+1}; \dotsc; \lambda_{s+t}, \overline{\lambda}_{s+t}$, 且相应的重数分别为$k_1, \dotsc, k_{s+t}$, 满足$k_1 + \dotsb + k_s + 2k_{s+1} + \dotsb + 2k_{s+t} = k$, 则初值问题的解可由如下线性无关收敛形式幂级数
+        \begin{equation}
+            \left\{\begin{aligned}
+                &\me^{\lambda_1x}, x\me^{\lambda_1x}, \dotsc, x^{k_1-1}\me^{\lambda_1x};\\
+                &\dotsb;\\
+                &\me^{\lambda_sx}, x\me^{\lambda_sx}, \dotsc, x^{k_s-1}\me^{\lambda_sx};\\
+                &\cos(\lambda_{s+1}x), x\cos(\lambda_{s+1}x), \dotsc, x^{k_{s+1}}\cos(\lambda_{s+1}x);\\
+                &\sin(\lambda_{s+1}x), x\sin(\lambda_{s+1}x), \dotsc, x^{k_{s+1}}\sin(\lambda_{s+1}x);\\
+                &\dotsb;\\
+                &\cos(\lambda_{s+t}x), x\cos(\lambda_{s+t}x), \dotsc, x^{k_{s+t}}\cos(\lambda_{s+t}x);\\
+                &\sin(\lambda_{s+t}x), x\sin(\lambda_{s+t}x), \dotsc, x^{k_{s+t}}\sin(\lambda_{s+t}x)
+            \end{aligned}\right.
+        \end{equation}
+        的线性组合唯一表示.
+    \end{theorem}
+
+    \begin{proof}
+        根据常微分方程的理论, 对于初值问题我们已经找到了解析的解, 因此我们只需要证明唯一性即可. 根据解的线性结构, 我们只需要证明零初值问题的解只有零解即可. 假设$d_1 = d_2 = \dotsb = d_k = 0$, 即$f^{(k-1)}(0) = \dotsb = f(0) = 0$. 由形式微分方程可得递推关系
+        \begin{equation}
+            f^{(k+l)}(0)+c_1f^{(k+l-1)}(0)+\dotsb+c_kf^{(l)}(0) = 0,
+        \end{equation}
+        得$f^{(k)} = 0$对一切的$k\in\BN$都成立. 即$f=(0, 0, \dotsc)$. 得证.
+    \end{proof}
+
+    形式幂级数中只有一个未定元, 我们可以将其推广到多元情形.
+
+    \begin{definition}[多元形式幂级数]
+        设$\BR$为实数域, 记$\BR[[x_1, \dotsc, x_n]]$为形如$f:\BN^n\to\BR$的函数全体构成的集合. 在$\BR[[x_1, \dotsc, x_n]]$定义加法运算
+        \begin{equation}
+            (f+g)(u) = f(u)+g(u),
+        \end{equation}
+        定义乘法运算
+        \begin{equation}
+            (fg)(u) = \sum_{v+w=u}f(v)g(w),
+        \end{equation}
+        则$\BR[[x_1, \dotsc, x_n]]$关于加法和乘法构成整环, 称为$\BR$上的\textbf{$n$元形式幂级数环}, 称其元素为$\BR$上的\textbf{$n$元形式幂级数}.
+    \end{definition}
+
+    在多种意义上多元形式幂级数是形式幂级数的推广. 第一, 形式幂级数环$\BR[[x_1]]$可以看成$n$元形式幂级数环$\BR[[x_1, \dotsc, x_n]]$的子环. 第二, 有满同态
+    \begin{equation}
+        \psi: f\in\BR[[x_1, \dotsc, x_n]]\to \psi(f)\in\BR[[x]],
+    \end{equation}
+    其中
+    \begin{equation}
+        \psi(f)(k) = \sum_{l_1+\dotsb+l_n=k}f(l_1, \dotsc, l_n),
+    \end{equation}
+    因此形式幂级数环$\BR[[x]]$可以看成$n$元形式幂级数环$\BR[[x_1, \dotsc, x_n]]$的商环. 直观上来说这个等价关系就是将$n$个未定元$x_1, \dotsc, x_n$看成了同一个未定元.
+
+    第二点非常重要, 这代表着多元形式幂级数中包含了比形式幂级数更多的信息, 我们将来也会用例子展示这一点的作用.
+
+    \section{生成函数}
+
+    生成函数的引入对于组合数学, 尤其是组合计数问题有着划时代的意义, 它通过将研究某一个具体的计数问题转化为研究一个计数序列的整体性质, 看似化简为繁, 实则引入了新的工具, 提供了一种统一的方法解决了一类问题, 也提供了一种开创新的工具的思路. 对于不同的组合问题数学家们构造了许多种生成函数, 这一节中我们主要介绍普通生成函数(OGF, 后文中简称为生成函数)和指数型生成函数(EGF).
+
+    我们先来考虑一个例子.
+
+    \begin{example}
+        若掷两个六面骰子, 求两个骰子点数之和为3的可能情况与总情况数.
+    \end{example}
+
+    \begin{solution}
+        设两个骰子分别为$x_1, x_2$, 形式上令$x_i^k$表示骰子$x_i$掷出了$k$点, 考虑2元形式幂级数
+        \begin{equation}
+            \lr(){x_1+x_1^2+\dotsb+x_1^6}\lr(){x_2+x_2^2+\dotsb+x_2^6}=\sum_{k, l}a_{k, l}x_1^kx_2^l \in R[[x_1, x_2]],
+        \end{equation}
+        有3次项为$x_1^2x_2+x_1x_2^2$, 表示第一个骰子掷出2点第二个骰子掷出1点, 以及第一个骰子掷出1点第二个骰子掷出2点两种情况, 而3次项系数之和即为总情况数. 可以证明有且仅有这两种情况.
+    \end{solution}
+
+    在这个例子中, 如果我们不考虑具体的情况只考虑总情况数, 那么可以使用这个2元形式幂级数在商映射下的像, 即形式幂级数
+    \begin{equation}
+        \lr(){x+x^2+\dotsb+x^6}\lr(){x+x^2+\dotsb+x^6}=\sum_{m=0}^\infty\sum_{k+l=m}a_{k, l}x^m \in R[[x]].
+    \end{equation}
+    这个形式幂级数实际上统一给出了两个骰子点数之和为$m$的总情况数.
+
+    尽管目前来看这种方法计算量比起运用排列组合的知识直接做没有本质的减少, 但是随着组合计数模型的推广, 这种方法就会体现出引入了形式幂级数的优势.
+
+    受例子启发, 我们先引入生成函数的定义.
+
+    \begin{definition}[生成函数]
+        给定序列$\{a_k\}_{k\in\BN}$, 定义其生成函数为形式幂级数$\sum_{k=0}^\infty a_kx^k$.
+    \end{definition}
+
+    对于例子中的计数模型, 将掷2个骰子看成从2元集合中带有限制条件地取3个元素, 并加以推广, 我们有如下定理:
+
+    \begin{theorem}\label{thm: ogf-comb}
+        从$n$元集合$S = \{s_1, s_2, \dotsc, s_n\}$中可重复取$m$个元素, 若限定元素$s_i$出现的次数集合为$M_i$, 设其组合数为$c_m$, 则该组合数序列的生成函数为
+        \begin{equation}
+            \prod_{i=1}^n\left(\sum_{m_i\in M_i}x^{m_i}\right).
+        \end{equation}
+    \end{theorem}
+
+    \begin{proof}
+        考虑多元形式幂级数
+        \begin{equation}
+            \prod_{i=1}^n\left(\sum_{m_i\in M_i}x_i^{m_i}\right),
+        \end{equation}
+        每一项系数均为1, 而每一个$m$次项又与从$S$中可重复取$m$个元素的一种取法一一对应, 因此该多元形式幂级数由商映射对应的形式幂级数即为所求组合数的生成函数.
+    \end{proof}
+
+    这一个定理十分关键, 我们可以把可重复取$m$个元素分解成每次取1个元素取$m$次, 将这$m$次的生成函数分别乘起来, 来得到整体的生成函数.
+
+    值得注意的是当$M_{i}=\BN$时, 该形式幂级数为收敛形式幂级数, 并且对应的解析函数为$g(x) = (1-x)^{-n}$, 定义域为$(-1, 1)$. 根据控制收敛定理, 对于任意的$M_{i}$, 都有组合数序列的生成函数为收敛形式幂级数, 并且对于$M_i$构成等差数列甚至准等差数列(与一个等差数列集合的对称差为有限集)的情况我们都可以显示写出该收敛形式幂级数对应的解析函数. 这在正整数的分拆数部分得到了应用, 在本文中我们就不涉及了.
+
+    定理\ref{thm: ogf-comb}中的组合计数模型与一个经典的球盒模型等价, 该球盒模型为: 将$m$个相同的小球放入$n$个不同的盒子中, 使得第$i$个盒子中放的小球数属于集合$M_i$, 求总放法数.
+
+    接下来我们考虑排列数的情况, 即将上模型中相同的小球改为不同的小球. 试图推广组合数情况的讨论, 考虑多元形式幂级数
+    \begin{equation}
+        \sum_{k, l}a_{k, l}x_1^kx_2^l,
+    \end{equation}
+    在讨论组合数时, $x_1^kx_2^l$表示第一个盒子中放入$k$个小球, 同时第二个盒子中放入$l$个小球, 我们现在认为小球是不同的, 因此应有系数$a_{k, l} = (k+l)!/(k!l!)$, 此时有多元形式幂级数
+    \begin{equation}
+        \sum_{k, l}\frac{(k+l)!}{k!l!}x_1^kx_2^l.
+    \end{equation}
+    发现其不易拆成关于$x_1$及$x_2$的形式幂级数的乘积, 但是却有
+    \begin{equation}
+        \lr(){\sum_k\frac{x_1^k}{k!}}\lr(){\sum_l\frac{x_2^l}{l!}} = \sum_{k, l}b_{k, l}x_1^kx_2^l = \sum_{k, l}\frac{1}{k!l!}x_1^kx_2^l,
+    \end{equation}
+    其中$b_{k, l}$与$a_{k, l}$的商为$1/(k+l)!$, 仅与$k+l$, 即这一项的次数有关, 这启发了我们引入指数型生成函数的定义:
+
+    \begin{definition}[指数型生成函数]
+        给定序列$\{a_k\}_{k\in\BN}$, 定义其指数型生成函数为形式幂级数
+        \begin{equation}
+            \sum_{k=0}^\infty \frac{a_k}{k!}x^k.
+        \end{equation}
+    \end{definition}
+
+    \begin{theorem}
+        从$n$元集合$S = \{s_1, s_2, \dotsc, s_n\}$中可重复取$m$个元素进行排列, 若限定元素$s_i$出现的次数集合为$M_i$, 设其排列数为$c_m$, 则该排列数序列的指数型生成函数为
+        \begin{equation}
+            \prod_{i=1}^n\left(\sum_{m_i\in M_i}\frac{x^{m_i}}{m!}\right).
+        \end{equation}
+    \end{theorem}
+
+    与组合数序列的生成函数相类似, 当$M_i=\BN$时, 排列数序列的指数型生成函数也是收敛形式幂级数, 并且对应的解析函数为$g(x)=\me^x$, 定义域为整根实数轴. 对于任意的$M_i$都有排列型生成函数为收敛形式幂级数, 不过我们只会计算出几种简单情况下对应的解析函数, 例如$M_i$为正奇数全体或正偶数全体.
+
+    对于排列数序列专门构造一种新的生成函数进行处理, 启发了我们生成函数的应用实际上是非常灵活的, 可以用不同的生成函数处理不同的计数问题.
+
+    \section{生成函数求解递推关系}
+
+    求解递推关系在数学中是个非常重要的问题, 在组合计数问题中尤为如此. 例如著名的Fibonacci序列比较方便的刻画方式就是递推关系$a_n=a_{n-1}+a_{n-2}$与初值$a_0=0, a_1=1$. 常系数线性递推关系是一类比较简单的递推关系, 在高中的时候我们就会处理1阶和2阶的递推关系, 当时是通过凑等比级数来做的. 那一套方法不是很容易推广到高维. 这一节中我们将利用生成函数, 求解常系数齐次线性递推关系以及部分常系数非齐次递推关系特解. 在本节的最后, 我们还将用生成函数求解Catalan数所满足的递推关系.
+
+    设有$k$阶常系数线性齐次递推关系
+    \begin{equation}
+        a_{l} + c_1a_{l-1}+c_2a_{l-2}+ \dotsb + c_ka_{l-k} = 0, c_k\neq 0, l\geq k,
+    \end{equation}
+    和初值$a_0, a_1, \dotsc, a_{k-1}$.
+    考虑指数型生成函数
+    \begin{equation}
+        f = \sum_{k=0}^\infty \frac{a_k}{k!}x^k,
+    \end{equation}
+    则其满足高阶常系数齐次线性常微分方程
+    \begin{equation}
+        f^{(k)}+c_1f^{(k-1)}+\dotsb+c_kf = 0,
+    \end{equation}
+    初始条件为$f^{(k-1)}(0) = a_{k-1}, \dotsc, f(0) = a_0$. 根据定理\ref{thm: ode}, 可求得收敛形式幂级数$f$的表达式, 从而解出递推关系.
+
+    \begin{example}
+        求解递推关系$a_k-7a_{k-1}+10a_{k-2}=0, a_0=2, a_1=7$.
+    \end{example}
+
+    \begin{solution}
+        设$f$为序列$\{a_k\}_{k\in\BN}$的指数型生成函数. 特征方程$\lambda^2-7\lambda+10=0$有两个根$\lambda_1=2, \lambda_2=5$. 因此有表达式$f=C_1\me^{2x}+C_2\me^{5x}$, 有$f(0)=C_1+C_2, f'(0)=2C_1+5C_2$. 求解线性方程组, 得$C_1=C_2 = 1$, 即
+        \begin{equation}
+            f=\me^{2x}+\me^{5x} = \sum_{k=0}^\infty \frac{2^k+5^k}{k!}x^k,
+        \end{equation}
+        故$a_k=2^k+5^k$.
+    \end{solution}
+
+    接下来我们考虑非齐次递推关系. 设有$k$阶常系数非齐次线性递推关系
+    \begin{equation}
+        a_{l} + c_1a_{l-1}+c_2a_{l-2}+ \dotsb + c_ka_{l-k} = b_{l-k}, c_k\neq 0, l\geq k,
+    \end{equation}
+    和初值$a_0, a_1, \dotsc, a_{k-1}$. 考虑指数型生成函数
+    \begin{equation}
+        f = \sum_{k=0}^\infty \frac{a_k}{k!}x^k, \quad g = \sum_{k=0}^\infty \frac{b_k}{k!}x^k,
+    \end{equation}
+    则其满足高阶常系数非齐次线性常微分方程
+    \begin{equation}
+        f^{(k)}+c_1f^{(k-1)}+\dotsb+c_kf = g,
+    \end{equation}
+    根据常微分方程的理论, 解的结构为齐次通解加上非齐次特解, 因此我们只需找到非齐次特解即可.
+
+    书中对
+    \begin{equation}
+        g=\sum_{k=0}^\infty \frac{k^s\beta^k}{k!}x^k
+    \end{equation}
+    的情况进行了求解, 而注意到$n^s/(n!)$可由
+    \begin{equation}
+        \frac{1}{(n-s)!}, \frac{1}{(n-s+1)!}, \dotsc, \frac{1}{n!}
+    \end{equation}
+    线性表示, 于是$g$可由$\me^{\beta x}, x\me^{\beta x}, \dotsc, x^s\me^{\beta x}$线性表示, 而在常微分方程中, 我们已经学习了如何通过待定系数法求解这种类型的特解, 在这里就不演示具体如何操作了.
+
+    我们来考虑一种书中没有提到的情形, 设
+    \begin{equation}
+        g = u\sin(\omega x) + v\cos(\omega x) = \sum_{k=0}^\infty \frac{b_k}{k!}x^k,
+    \end{equation}
+    其中$u, v, \omega$已知,
+    \begin{equation}
+        b_k =
+        \begin{cases}
+            (-1)^m \omega^{2m}v, &k = 2m,\\
+            (-1)^m \omega^{2m+1}u, &k = 2m+1,
+        \end{cases}
+        \quad m\in \BN.
+    \end{equation}
+    设$f = p\sin(\omega x) + q\cos(\omega x)$, 则有关于$p, q$的二元线性方程组, 当系数行列式不为零时, 解出$p, q$即可. 下面给出一个例子来演示计算过程.
+
+    \begin{example}
+        求解递推关系$a_k-7a_{k-1}+10a_{k-2}=b_{k-2}$, 其中
+        \begin{equation}
+            b_k = \sin^{(k)}(0) =
+            \lr\{.{
+                \begin{aligned}
+                    0, &\quad k=2m,\\
+                    (-1)^m, &\quad k=2m+1,
+                \end{aligned}
+            }
+            \quad m\in\BN.
+        \end{equation}
+    \end{example}
+
+    \begin{solution}
+        设$f$为序列$\{a_k\}_{k\in\BN}$的指数型生成函数, 有方程$f''-7f'+10f = \sin(x)$. 设$f = p\sin(x) + q\cos(x)$, 则有方程组
+        \begin{equation}
+            \left\{
+            \begin{aligned}
+                -p + 7q + 10p &= 1,\\
+                -q - 7p + 10q &= 0,
+            \end{aligned}
+            \right.
+        \end{equation}
+        解得$p=9/130, q = 7/130$. 因此$a_k=C_12^k+C_25^k + d_k$, 其中
+        \begin{equation}
+            d_k =
+            \left\{\begin{aligned}
+                (-1)^m\frac{7}{130}, &\quad k = 2m,\\
+                (-1)^m\frac{9}{130}, &\quad k=2m+1,
+            \end{aligned}\right.
+            \quad m\in\BN.
+        \end{equation}
+    \end{solution}
+
+    这节的最后我们来用生成函数求解Catalan数所满足的递推关系.
+
+    \begin{theorem}
+        设序列$\{a_k\}_{k\in\BN}$满足递推关系
+        \begin{equation}
+            a_k = a_1a_{k-1}+a_2a_{k-2} + \dotsb + a_{k-1}a_1, k\geq 2
+        \end{equation}
+        且有初值$a_1 = 1$, 则有
+        \begin{equation}
+            a_k = \frac{1}{k}\binom{2k-2}{k-1}
+        \end{equation}
+    \end{theorem}
+
+    \begin{proof}
+        设序列$\{a_k\}_{k\in\BN}$的生成函数为$f$, 注意到形式幂级数相乘的公式, 有方程
+        \begin{equation}
+            f^2-f+x=0.
+        \end{equation}
+        有两组收敛形式幂级数解$f = \left(1\pm\sqrt{1-4x}\right)\big/2$. 考虑条件$a_0=0$和$a_1=1$, 而当$f=\left(1-\sqrt{1-4x}\right)\big/2$, 有$f' = (1-4x)^{-1/2}$, 故$f(0)=0, f'(0)=1$满足要求. 通过对解析函数求泰勒级数, 即得形式幂级数
+        \begin{equation}
+            f = \sum_{k=1}^\infty \frac{1}{k}\binom{2k-2}{k-1}x^k.
+        \end{equation}
+        遂得证.
+    \end{proof}
+
+    \section{生成函数形式的\Polya 计数定理}
+
+    \Polya 计数定理是非常重要的一个组合定理, 它考虑的组合模型介于排列和组合之间. 对于$n$元集合的$m$着色问题, 若$n$个元素视为不同, 即为$m$多重集合的$n$排列问题; 若$n$个集合视为相同, 即为$m$多重集合的$n$组合问题. 而\Polya 计数定理讨论的就是若在$n$元集合上定义一个等价关系, 此时的着色可能数. 在\Polya 定理出现之前已经有Burnside引理\footnote{也称为``The Lemma that is not Burnside's".}可以解决这一问题, 但是因为计算十分繁琐很少人使用, \Polya 定理利用了置换子群作用的性质, 整理出了方便计算的形式, 随后又进行推广推出了带权形式, 这一套方法才流传开来.
+
+    这一节中我们将叙述简化版本的\Polya 计数定理, 然后重点叙述并证明带权版本生成函数形式的\Polya 计数定理, 最后应用定理给出求解互不同构的$n$阶简单无向图个数的一般方法, 并给出程序, 在$n$较小时计算出结果.
+
+    注意, 在这一节中我们不要过分关心形式幂级数的定义, 理解核心思想为重.
+
+    \begin{theorem}[\Polya 计数定理 (简化版本)]
+        设$A$为$n$元有限点集, $C$为$m$元有限颜色集, 设$G$为$A$上的对称群的子群, 作用在$A$上. 记$C^A$表示映射$A\to C$全体构成的集合. $G$在$A$上的作用导出了$G$在$C^A$上的作用, 有$(g, \phi)\in G\times C^A\to \phi g^{-1}\in C^A$. 记$C^A\big/G$表示$C^A$在$G$作用下轨道全体构成的集合, 则有
+        \begin{equation}
+            \abs{C^A\big/G} = \frac{1}{\abs{G}}\sum_{g\in G}m^{c_g},
+        \end{equation}
+        其中$c_g = \abs{A\big/\left<g\right>}$为$g$生成的循环子群作用在$A$上的轨道个数, 也为$g$的轮换个数.
+    \end{theorem}
+
+    \begin{theorem}[\Polya 计数定理 (带权版本生成函数形式)]
+        设$A$为$n$元有限点集, $C$为$m$元有限颜色集. 对$C$的每一个元素赋予非负整数的权值, 设$f_k$表示权值为$k$的颜色的个数, 记其生成函数为
+        \begin{equation}
+            f(x) = f_0 + f_1x + f_2x^2 + \dotsb,
+        \end{equation}
+        为多项式.
+
+        设$G$为$A$上的对称群的子群, 作用在$A$上. 定义循环指数为多元生成函数
+        \begin{equation}
+            Z_G(x_1, \dotsc, x_n) = \frac{1}{\abs{G}}\sum_{g\in G}x_1^{c_1(g)}\dotsb x_n^{c_n(g)},
+        \end{equation}
+        其中$c_k(g)$表示$\lr<>g$作用在$A$上的元素个数为$k$的轨道的个数.
+
+        称$C^A$在$G$作用下的一个轨道为一个染色方案. 定义一个染色方案$\phi : A\to C$ 的权为所有$\phi(a)$的权在$a\in A$中\textbf{求和}. 设每个权值的染色方案数的生成函数为$F$, 则有
+        \begin{equation}
+            F(x) = Z_G\left(f(x), f(x^2), \dotsc, f(x^n)\right).
+        \end{equation}
+
+        特别地, 当所有颜色的权都为0时, 有$f(x)=m$, 故
+        \begin{equation}
+            \abs{C^A\big/G} = F(0) = Z_G(m, m, \dotsc, m) = \frac{1}{\abs{G}}\sum_{g\in G}m^{c(g)},
+        \end{equation}
+        即为简化版本.
+    \end{theorem}
+
+    在证明这个定理之前, 我们首先要认识到这个定理与书上的带权\Polya 定理的区别. 书上定义一个染色方案$\phi$的权为其在点集上取值的权的乘积, 即$\prod_{a\in A} w(\phi(a))$, 定理中求出的是所有染色方案的权和. 而这里我们定义一个染色方案$\phi$的权为其在点集上取值的权的求和, 即$\sum_{a\in A} w(\phi(a))$, 定理中求出的是权值为给定值的染色方案的个数. 想必两个定理中对于权这个概念的理解也是不一样的.
+
+    \begin{proof}
+        对$C^A$中不同权数值元素分别运用Burnside引理, 得权值为$w$的轨道个数为
+        \begin{equation}
+            \frac{1}{\abs{G}}\sum_{g\in G}\abs{\left(C^A\right)_{w, g}},
+        \end{equation}
+        其中$\left(C^A\right)_{w, g}$表示权值为$w$且在$g$作用下保持不变的映射全体. 即所求生成函数
+        \begin{equation}
+            F(x) = \frac{1}{\abs{G}}\sum_{g\in G, w}\abs{\lr(){C^A}_{w, g}}x^w.
+        \end{equation}
+        注意到$\phi: A\to C$在$g$作用下保持不变当且仅当$f$在每个$A$的$\lr<>g$轨道上取定值, 即染相同的颜色. 而$i$个相同颜色的权的生成函数为$f(x^i)$, 故设$c_i(g)$为$A$的有$i$个元素的$\lr<>g$轨道个数, 利用定理\ref{thm: ogf-comb}, 有
+        \begin{equation}
+            \sum_{w}\abs{\lr(){C^A}_{w, g}}x^w = \prod_{i=1}^n f(x^i)^{c_i(g)}.
+        \end{equation}
+        再观察到轮换指标
+        \begin{equation}
+            Z_G(x_1, \dotsc, x_n) = \frac{1}{\abs{G}}\sum_{g\in G}x_1^{c_1(g)}\dotsb x_n^{c_n(g)},
+        \end{equation}
+        于是有
+        \begin{equation}
+            F(x) = Z_G\left(f(x), f(x^2), \dotsc, f(x^n)\right).
+        \end{equation}
+        证明完成.
+    \end{proof}
+
+    最后我们来考虑$n$阶简单无向图的同构分类. 一张$n$阶简单无向图可以看成是对边集的黑白染色, 染成黑色的视为有边, 染成白色的视为无边, 即权函数为$f(x)=1+x$. 记顶点集为$V$, 边集为$E$, $G$为$V$上的对称群, 则$G$导出了$E$上的对称群子群$H$, 而$H$在$E$上的作用诱导出了在$C^E$上的作用. 利用带权版本生成函数形式的\Polya 计数定理即可求得每个权值的染色方案数的生成函数
+    \begin{equation}
+        F(x) = Z_G(f(x), f(x^2), \dotsc, f(x^n)) = \sum_{k=0}^{\binom n2}F_kx^k,
+    \end{equation}
+    而$F_k$代表了互不同构的有$k$条边的$n$阶简单无向图的个数.
+
+    当然由于$H$是$\binom n2$-对称群的子群, 且结构也很复杂, 所以随着$n$的增长, 这个问题的复杂度的增长阶数比通常的问题要来得高, 这需要我们对$H$的结构有更加深刻的认识, 而这就有待我们在后续进一步研究了. 这里我们用Python写出了一段程序, 可以对任意的$n$计算生成函数, 当然只在$n$很小的时候可以在合理的时间内计算出结果. 在下面, 我们列出了$n\leq 6$时的生成函数, 以及$n=7$时互不同构的$n$阶简单无向图的总个数.
+
+    当$n=3$时, 生成函数为$1+x+x^2+x^3$, 表示在3个顶点的简单无向图中, 有0, 1, 2, 3条边的互不同构的图的个数均为1. 当$n=4$时, 生成函数为$1+x+2x^2+3x^3+2x^4+x^5+x^6$. 当$n=5$时, 生成函数为
+    \begin{equation}
+        1+x+2x^2+4x^3+6x^4+6x^5+6x^6+4x^7+2x^8+x^9+x^{10}.
+    \end{equation}
+    当$n=6$时, 生成函数为
+    \begin{equation}
+        \begin{aligned}
+            &\phantom{{}+{}}1+x+2x^2+5x^3+9x^4+15x^5+21x^6+24x^7\\
+            &+24x^8+21x^9+15x^{10}+9x^{11}+5x^{12}+2x^{13}+x^{14}+x^{15}.
+        \end{aligned}
+    \end{equation}
+    当$n=7$时, 共有1044种互不同构的$n$阶简单无向图.
+
+    \lstinputlisting[
+        language=python,
+        basicstyle=\ttfamily\scriptsize,
+        caption={graph\_classification.py}
+    ]{graph_classification.py}
+\end{document}

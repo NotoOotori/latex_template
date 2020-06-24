@@ -1,0 +1,296 @@
+% -------------------- Packages --------------------
+
+\documentclass{assignment}[2019/10/15]
+\usepackage[lineno]{packages}[2019/11/14]
+\usepackage{ytableau}
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{Representation Theory of Symmetric Group}
+\author{Chen Xuyang, Chen Xuyang}
+\date{\today}
+\institute{School of Mathematical Science}
+\professor{Song linliang}
+\course{Algebra}
+\subject{Algebra}
+\keywords{}
+
+% -------------------- New commands --------------------
+
+\newcommand{\me}{\symup{e}}
+\newcommand{\BR}{\symbb{R}}
+\newcommand{\BZ}{\symbb{Z}}
+\newcommand{\BN}{\symbb{N}}
+\newcommand{\diag}{\mathop{}\!\symup{diag}}
+\newcommand{\pr}{\mathop{}\!\symup{Pr}}
+\newcommand{\expect}{\mathop{}\!\symup{E}}
+\newcommand{\cov}{\mathop{}\!\symup{Cov}}
+\newcommand{\var}{\mathop{}\!\symup{Var}}
+
+\def\multiset#1#2{\ensuremath{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}}
+
+\newcommand{\lr}[3]{\left#1#3\right#2}
+\newcommand{\lmr}[5]{\left#1#4\middle#2#5\right#3}
+
+\theoremstyle{plain}
+\theoremheaderfont{\upshape\bfseries}
+\theorembodyfont{\upshape}
+\theoremseparator{}
+\theoremsymbol{}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+
+\newcommand{\SC}{\mathscr{C}}
+\newcommand{\BC}{\symbb{C}}
+
+\newcommand{\Kernal}{\mathop{}\!\symup{Ker}}
+\newcommand{\Image}{\mathop{}\!\symup{Im}}
+\newcommand{\Hom}{\mathop{}\!\symup{Hom}}
+\newcommand{\Aut}{\mathop{}\!\symup{Aut}}
+\newcommand{\Type}{\mathop{}\!\symup{Type}}
+\newcommand{\GL}{\mathop{}\!\symup{GL}}
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \clearpage
+
+    \section{Categories}
+
+    In this section, we will introduce the definition of a category. Category is an abstract mathematical concept, which focuses on not only mathematical objects, but also morphisms between them.
+
+    \begin{definition}[Category]
+        A \emph{category} is a class $\mathscr{C}$ of objects (denoted by $A, B, C, \dotsc$) together with
+        \begin{enumerate}[(i)]
+            \item a class of disjoint sets, denoted by $\Hom(A, B)$, one for each pair of objects in $\mathscr{C}$; (an element of $\Hom(A, B)$ is called a \emph{morphism} from $A$ to $B$ and is denoted by $f\colon A\to B$);
+            \item for each triple $(A, B, C)$ of objects of $\mathscr{C}$ a function
+            \begin{equation}
+                \Hom(B, C)\times \Hom(A, B)\to \Hom(A, C);
+            \end{equation}
+            (for morphisms $f\colon A\to B, g\colon B\to C$, this function is written $(g, f)\mapsto g\circ f$ and $g\circ f\colon A\to C$ is called the \emph{composite} of $f$ and $g$); all subject to the two axioms:
+            \begin{enumerate}[\hspace{-1em}(I)]
+                \item Associativity. If $f\colon A\to B, g\colon B\to C, h\colon C\to D$ are morphisms of $\SC$, then $h\circ (g\circ f) = (h\circ g)\circ f$.
+                \item Identity. For each object $B$ of $\SC$ there exists a morphism $1_B\colon B\to B$ such that for any $f\colon A\to B, g\colon B\to C$,
+                \begin{equation}
+                    1_B \circ f = f\quad\text{and}\quad g\circ 1_B = g.
+                \end{equation}
+            \end{enumerate}
+        \end{enumerate}
+
+        In a category $\SC$ a morphism $f\colon A\to B$ is called an \emph{equivalence} if there is in $\SC$ a morphism $g\colon B\to A$ such that $g\circ f = 1_A$ and $f\circ g = 1_B$.
+    \end{definition}
+
+    Note that in the definition of a category, an object is not necessarily a set and a morphism is not necessarily a map between sets. We may exclude these cases and consider all categories to be concrete in the sequel.
+
+    \begin{definition}[Concrete Category]
+        A category $\SC$ is called a \emph{concrete category} provided that
+        \begin{enumerate}[(i)]
+            \item every object is a set;
+            \item every morphism of $\Hom(A, B)$ is a map on the sets $A\to B$ for each pair of objects $(A, B)$;
+            \item composition of morphisms agrees with composition of maps on the sets;
+            \item the identity morphism of each object $A$ is the identity map on the set $A$.
+        \end{enumerate}
+    \end{definition}
+
+    \begin{example}[Category of Finite Dimensional Linear Spaces]
+        Let $\mathscr{V}_\text{\it finite}$ denote the class of all finite dimensional linear spaces over $\BC$. Let $\Hom(V, W)$ be the set of all linear maps from $V$ to $W$. Then $\mathscr{V}_\text{\it finite}$ is a concrete category and is called the \emph{category of finite dimensional linear spaces}.
+    \end{example}
+
+    Sometimes we may be interested in those concrete categories each of which contains exactly one object.
+
+    \begin{definition}[Structure]
+        A concrete category is called a \emph{structure} provided that it contains exactly one object $C$. We usually denote a structure by the same symbol of its letter but with a different font $\mathcal{C}$. The set of all equivalences in $\mathcal{C}$ forms a group with the composite operation which is called the \emph{automorphism group} of the structure and is denoted by $\Aut(\mathcal{C})$.
+    \end{definition}
+
+    \begin{example}[Set Structure]
+        Let $\mathcal{X}$ be the set of a given set $X$. Let $\Hom(X, X)$ be the set of all maps on $X$. Then $\mathcal{X}$ is easily seen to be a structure, which is called a \emph{set structure}.
+    \end{example}
+
+    \begin{example}[Group Structure]
+        Let $\mathcal{G}$ be the set of a given group $G$. Let $\Hom(G, G)$ be the set of all endomorphisms of groups $G\to G$. Then $\mathcal{G}$ is easily seen to be a structure, which is called a \emph{group structure}.
+    \end{example}
+
+    \begin{example}[Linear Space Structure]
+        Let $\mathcal{V}\subseteq \mathscr{V}_{\text{\it finite}}$ be the set of a given finite dimensional linear space $V$ over $\BC$. Let $\Hom(V, V)$ be the set of all morphisms $V\to V$ in $\mathscr{V}_{\text{\it finite}}$. Then $\mathcal{V}$ is easily seen to be a structure, which is called a \emph{group structure}. An equivalence in $\mathcal{V}$ is an linear transformation on $V$. Thus the automorphism group of a linear space structure $\mathcal{V}$ is also called a \emph{general linear group} of $V$ and is denoted by $\GL(V)$.
+    \end{example}
+
+    \section{Group Actions}
+
+    In this section, we will introduce the definition of group actions and derive the class equation of any finite group.
+
+    \begin{definition}[Action]
+        An \emph{action} of a group $G$ on a structure $\mathcal{C}$ is a group homomorphism $\phi\colon G\to \Aut(\mathcal{C})$. We usually write $\phi_g$ for $\phi(g)$ and $\phi_g(x)$ for $\phi(g)(x)$ where $x\in C\in \mathcal{C}$.
+    \end{definition}
+
+    In particular, an action of the group $G$ on a set $X$ is a group homomorphism from $G$ to the group $S_X$ of all bijections on $X$.
+
+    \begin{example}[Conjugation]
+        Let $\mathcal{G}$ be a group structure. The action $\phi\colon G\to \Aut(\mathcal{G})$ given by $\phi_g(x) = gxg^{-1}$ is called \emph{conjugation} and the element $gxg^{-1}$ is said to be a \emph{conjugate} of $x$.
+    \end{example}
+
+    A group action on a structure $\mathcal{C}$ can derive an equivalence class on $C$, which is essential in counting theory.
+
+    \begin{theorem}
+        Let $G$ be a group that acts on a structure $\mathcal{C}$. The relation on $C$ defined by
+        \begin{equation}
+            x\sim x' \Longleftrightarrow \phi_g(x) = x'\text{ for some }g\in G
+        \end{equation}
+        is an equivalence relation.
+    \end{theorem}
+
+    The equivalence classes of the equivalence relation are called the \emph{orbits} of $G$ on $\mathcal{C}$; the orbit of $x\in C$ is denoted by $\overline{c}$.
+
+    \begin{proof}
+        It follows from the fact that $\phi$ is a homomorphism from group $G$. (transitivity follows from associativity, reflexivity follows from the existance of an identity element, and symmetry follows from the existance of an inverse element).
+    \end{proof}
+
+    \begin{theorem}
+        Let $G$ be a group that acts on a structure $\mathcal{C}$. For each $x\in C$, $G_x=\{g\in G|\ \phi_g(x) = x\}$ is a subgroup of $G$.
+    \end{theorem}
+
+    The subgroup $G_x$ is called the \emph{stabilizer} of $x$.
+
+    \begin{example}
+        Let a group $G$ acts on the group structure $\mathcal{G}$ by conjugation. The orbit $\{gxg^{-1}|\ g\in G\}$ of $x\in G$ is called the \emph{conjugacy class} of $x$ and the stabilizer $G_x=\{g\in G|\ gxg^{-1} = x\}$ is called the \emph{centralizer} of $x$ and is denoted by $C_G(x)$.
+    \end{example}
+
+    The next theorem counts the cardinal number of any orbit, which will directly induce the group equation of a finite group.
+
+    \begin{theorem}
+        If a group $G$ acts on a structure $\mathcal{C}$, then the cardinal number of the orbit of $x\in C$ is the index $[G:G_x]$.
+    \end{theorem}
+
+    \begin{proof}
+        The map given by $gG_x\mapsto \phi_g(x)$ from the set of all cosets of $G_x$ in $G$ to the orbit $\overline{x}$ is a well-defined bijection since $x$ runs through $G$ and
+        \begin{equation}
+            \phi_g(x)=\phi_{g'}(x)\Longleftrightarrow \phi_{g^{-1}g'}(x)=x\Longleftrightarrow g^{-1}g'\in G_x\Longleftrightarrow gG_x = g'G_x.
+        \end{equation}
+        It completes the proof.
+    \end{proof}
+
+    Apply the previous theorem to the conjugacy action of a finite group $G$ on $\mathcal{G}$ and notice that the cardinal of a finite set equals to the sum of the cardinals of all equivalence classes, we can derive the class equation, as desired.
+
+    \begin{corollary}[Class Equation]
+        If $G$ is a finite group and $\{\overline{x_1}, \dotsc, \overline{x_n}\}$ is the set of all conjugacy classes of $G$, then the equation
+        \begin{equation}
+            |G| = \sum_{i=1}^n[G: C_G(x_i)]
+        \end{equation}
+        is called the \emph{class equation} of the finite group $G$.
+    \end{corollary}
+
+    Given a group $G$ and a category $\mathscr{C}$. The class of all actions of $G$ on a arbitrary structure $\mathcal{C}$ of the category $\mathscr{C}$ can form a category by defining the morphism between actions.
+
+    \begin{definition}[Category of Group Actions]
+        Let $G$ be a group and $\mathscr{C}$ be a concrete category with $\mathcal{C}, \mathcal{C}'\subseteq \mathscr{C}$ to be two structures. Let $\phi\colon G\to \Aut(\mathcal{C})$ and $\phi'\colon G\to\Aut(\mathcal{C}')$ be group actions. A morphism from $\phi$ to $\phi'$ is by definition a morphism $f\colon C\to C'$ in $\mathscr{C}$ such that $f\phi_g = \phi'_gf$ for all $g\in G$. Then the class of all actions of $G$ on any structure $\mathcal{C}$ of $\mathscr{C}$ is a category and is denoted by $\mathscr{C}_G$. The set of all morphisms from $\phi$ to $\phi'$ is denoted by $\Hom_G(\phi, \phi')$. Notice that $\Hom_{G}(\phi, \phi')\subseteq \Hom(V, W)$.
+    \end{definition}
+
+    \section{Symmetric Groups: First Study}
+
+    In this section, we will study the conjugacy classes of the symmetric group $S_n$, in order to give an explicit form of the class equation on $S_n$ $(n\geq 3)$.
+
+    We will assume $n\geq 3$ when talking about the symmetric group $S_n$.
+
+    Recall that an element $\sigma$ of the symmetric group $S_n$ is a bijection on $I_n = \{1, 2, \dotsc, n\}$ and is called a \emph{permutaion}.
+    A \emph{cycle} denoted by $(i_1 i_2 \dotsb i_k)$ is a permutation which maps $i_1\mapsto i_2, \dotsc, i_{k-1}\mapsto i_k$ and $i_k\mapsto i_1$ and maps every other element to itself.
+
+    It is widely known that every permutation $\tau$ can be uniquely (up to the order of the factors) written as a product of disjoint cycles, where each cycle corresponds to an orbit of the group action on the set $I_n$ by the group $\lr<>\tau < S_n$ with the length of the cycle to be equal to the cardinal of the orbit. Since the sum of the cardinals of all orbits equals to $n$, thus $\tau$ corresponds to a partition of $n$, which is called the \emph{cycle type} of the permutation $\tau$ and denoted by $\Type(\tau)$. Namely, $\Type(\tau)=(\lambda_1, \dotsc, \lambda_r)$ in decreasing order with multiplicity.
+
+    The next lemma is one of the exercises in the Algebra course and is proved to be useful to identify the conjugacy classes of $S_n$.
+
+    \begin{lemma}
+        If $\sigma = (i_1 i_2 \dotsb i_r)\in S_n$ and $\tau\in S_n$, then $\tau\sigma\tau^{-1}$ is the $r$-cycle $\left(\tau(i_1) \tau(i_2) \dotsb \tau(i_r)\right)$.
+    \end{lemma}
+
+    \begin{theorem}
+        Let $\sigma, \sigma'\in S_n$ be two permutations. If there is some $\tau\in S_n$ such that $\sigma'=\tau\sigma\tau^{-1}$, then $\Type(\sigma)=\Type(\tau\sigma\tau^{-1}) = \Type(\sigma')$. Conversely, if $\Type(\sigma) = \Type(\sigma')$, then there exists such permutation $\tau$ that $\sigma' = \tau\sigma\tau^{-1}$.
+    \end{theorem}
+
+    \begin{proof}
+        For the first part of the theorem, suppose $\Type(\sigma) = (\lambda_1, \dotsc, \lambda_r)$ and $\sigma=\sigma_1\dotsb\sigma_r$ be the product of disjoint cycles where $\lambda_i$ is the length of $\sigma_i$. Then $\sigma' = \tau\sigma\tau^{-1} = \sigma'_1\dotsb \sigma'_r$ is also a product of disjoint cycles where $\sigma'_i = \tau\sigma_i\tau^{-1}$. Notice that $\sigma_i'$ and $\sigma_i$ share the same length for $i= 1, \dotsc, r$. Thus $\Type(\sigma') = (\lambda_1, \dotsc, \lambda_r) = \Type(\sigma)$.
+
+        For the second part of the theorem, let $\sigma=\sigma_1\dotsb\sigma_r$ and $\sigma'=\sigma'_1\dotsb\sigma_r$ be the products of disjoint cycles where corresponding cycles share the same length. Then we can choose such $\tau_i$ that $\tau\sigma_i\tau^{-1}=\sigma_i'$, and let $\tau = \tau_1\dotsb\tau_r$, which satisfies the desired property.
+    \end{proof}
+
+    Since the conjugacy class of a permutation has exactly one element if and only if the permutation consists of 1-cycles, namely the permutation is the identity element. It follows the corollary.
+
+    \begin{corollary}
+        The center of $S_n$ is a trivial group (for $n \geq 3$).
+    \end{corollary}
+
+    In the next theorem we will compute the cardinal of each conjugacy class of $S_n$ by means of multiplication principle from combinatorics.
+
+    \begin{theorem}
+        If $\sigma\in S_n$, then the cardinal of the centralizer of $\sigma$
+        \begin{equation}
+            |C_G(\sigma)| = \prod_{i=1}^ni^{c_i(\sigma)}c_i(\sigma)!,
+        \end{equation}
+        where $c_i(\sigma)$ stands for the number of $i$-orbits of the group action on $I_n$ by $\lr<>\sigma$, namely the number of $i$-cycles in the cyclic form of $\sigma$.
+    \end{theorem}
+
+    \begin{proof}
+        Any $\tau\in S_n$ can either permute the cycles of length $i$ among themselves or perform a cyclic rotation on each of the individual cycles (or both). Since there are $c_i(\sigma)!$ ways to do the former operation and $i^{c_i(\sigma)}$ ways to do the latter, we are done.
+    \end{proof}
+
+    \begin{corollary}
+        The group equation of $S_n$ is
+        \begin{equation}
+            n! = \sum_{c_1+2c_2+\dotsb+nc_n=n}\frac{n!}{\prod_{i=1}^ni^{c_i}c_i!},
+        \end{equation}
+        where $c_1, \dotsc, c_n$ are nonnegative integers.
+    \end{corollary}
+
+    \section{Group Representations}
+
+    In this section, we will study the definition of a group representation and a irreducible representation, and state the existance and uniqueness of decomposing a representation of a finite group into irreducible ones.
+
+    \begin{definition}[Representation]
+        A \emph{representation} of a group is a group action on some linear space structure $\mathcal{V}$, that is a homomorphism $\phi\colon G\to\GL(V)$ where $V$ is a finite dimensional linear space over $\BC$.
+    \end{definition}
+
+    We shall tacitly assume in this text that representations are non-zero, although this is not formally part of the definition.
+
+    Recall that we have defined the category of group actions and hence the one of group representations.
+
+    \begin{definition}[Equivalence]
+        Two representations $\phi\colon G\to \GL(V)$ and $\psi\colon G\to\GL(W)$ are said to be equivalent if there exists an isomorphism $T\colon V\to W$ in such that $T\phi_g = \psi_gT$ for all $g\in G$. In this case, we write $\phi\sim\psi$.
+    \end{definition}
+
+    \begin{definition}[$G$-invariant Subspace]
+        Let $\phi\colon G\to \GL(V)$ be a representation. A subspace $W\leq V$ is $G$-\emph{invariant} if, for all $g\in G$ and $w\in W$, one has $\phi_gw\in W$.
+    \end{definition}
+
+    \begin{definition}[Direct Sum]
+        Gven the representations $\phi\colon G\to \GL(V)$ and $\psi\colon G\to\GL(W)$. Then their \emph{direct sum}
+        \begin{equation}
+            \phi\oplus\psi\colon G\to\GL(V\oplus W)
+        \end{equation}
+        is given by
+        \begin{equation}
+            (\phi\oplus\psi)_g(v, w) = (\phi_g(v), \psi_g(w)).
+        \end{equation}
+    \end{definition}
+
+    \begin{definition}[Irreducible Representation]
+        A non-zero representation $\phi\colon G\to \GL(V)$ of a group $G$ is said to be \emph{irreducible} if the only $G$-invariant subspace of $V$ are $\{0\}$ and $V$.
+    \end{definition}
+
+    The next theorem tells that every representation of a finite group can be written as the direct sum of irreducible ones.
+
+    \section{Symmetric Groups: Further Study}
+
+    \begin{center}
+        \begin{ytableau}
+            1 & 2\\
+            2 & 3 & 4\\
+            {}
+        \end{ytableau}
+    \end{center}
+\end{document}

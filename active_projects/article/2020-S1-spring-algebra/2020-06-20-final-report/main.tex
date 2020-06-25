@@ -55,6 +55,9 @@
 \newcommand{\Aut}{\mathop{}\!\symup{Aut}}
 \newcommand{\Type}{\mathop{}\!\symup{Type}}
 \newcommand{\GL}{\mathop{}\!\symup{GL}}
+\newcommand{\sgn}{\mathop{}\!\symup{sgn}}
+\newcommand{\id}{\text{i.d.}}
+% \newcommand{\dim}{\mathop{}\!\symup{dim}}
 
 % -------------------- Document --------------------
 
@@ -192,7 +195,7 @@
         Let $G$ be a group and $\mathscr{C}$ be a concrete category with $\mathcal{C}, \mathcal{C}'\subseteq \mathscr{C}$ to be two structures. Let $\phi\colon G\to \Aut(\mathcal{C})$ and $\phi'\colon G\to\Aut(\mathcal{C}')$ be group actions. A morphism from $\phi$ to $\phi'$ is by definition a morphism $f\colon C\to C'$ in $\mathscr{C}$ such that $f\phi_g = \phi'_gf$ for all $g\in G$. Then the class of all actions of $G$ on any structure $\mathcal{C}$ of $\mathscr{C}$ is a category and is denoted by $\mathscr{C}_G$. The set of all morphisms from $\phi$ to $\phi'$ is denoted by $\Hom_G(\phi, \phi')$. Notice that $\Hom_{G}(\phi, \phi')\subseteq \Hom(V, W)$.
     \end{definition}
 
-    \section{Symmetric Groups: First Study}
+    \section{Symmetric Groups: Conjugacy Classes and Class Equations}
 
     In this section, we will study the conjugacy classes of the symmetric group $S_n$, in order to give an explicit form of the class equation on $S_n$ $(n\geq 3)$.
 
@@ -267,6 +270,8 @@
         Let $\phi\colon G\to \GL(V)$ be a representation. A subspace $W\leq V$ is $G$-\emph{invariant} if, for all $g\in G$ and $w\in W$, one has $\phi_gw\in W$.
     \end{definition}
 
+    Sometimes one may say $\phi|_W$ is a subrepresentation of $\phi$.
+
     \begin{definition}[Direct Sum]
         Gven the representations $\phi\colon G\to \GL(V)$ and $\psi\colon G\to\GL(W)$. Then their \emph{direct sum}
         \begin{equation}
@@ -284,13 +289,261 @@
 
     The next theorem tells that every representation of a finite group can be written as the direct sum of irreducible ones.
 
-    \section{Symmetric Groups: Further Study}
+    \section{Symmetric Groups: Young Tableaux and Irreducible Representations}
 
-    \begin{center}
-        \begin{ytableau}
-            1 & 2\\
-            2 & 3 & 4\\
-            {}
-        \end{ytableau}
-    \end{center}
+    We have shown that each conjugacy class of a symmetric group of $n$ letters corresponds to a positive partition of $n$. In this section, we will construct one irreducible representation of $S_n$ for each partition of $n$ and will prove that any two representations of them are not equivalent by means of Young tableaux.
+
+    \begin{definition}[Partition]
+        A \emph{partition} of $n$ is a tuple $\lambda = (\lambda_1, \dotsc, \lambda_l)$ of positive integers such that $\lambda_1\geq \lambda_2\geq \dotsb \geq \lambda_l$ and $\lambda_1+\dotsb + \lambda_l=n$. Denote $\lambda\vdash n$ to indicate that $\lambda$ is a partition of $n$.
+    \end{definition}
+
+    Now we are ready to introduce the definition of Young diagram. It is a variation of Ferrers diagram which we have studied in the Combinatorics courses, with the dots replaced by boxes where numbers can be placed.
+
+    \begin{definition}[Young Diagram]
+        If $\lambda = (\lambda_1, \dotsc, \lambda_l)$ is a partition of $n$, then the \emph{Young diagram} of $\lambda$ consists of $n$ boxes placed into $l$ rows where the $i$th row has $\lambda_i$ boxes.
+    \end{definition}
+
+    \begin{definition}[Conjugate Partition]
+        If $\lambda\vdash n$, then the \emph{conjugate partition} $\lambda^T$ of $\lambda$ is the partition whose Young diagram is the transpose of the diagram of $\lambda$. An example is shown in \ref{fig: young-diagram}.
+    \end{definition}
+
+    \begin{figure}[htb]
+        \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \begin{ytableau}
+                {} & {} & {} \\
+                {} & {} \\
+            \end{ytableau}
+            \caption{$\lambda=(3, 2)$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \begin{ytableau}
+                {} & {} \\
+                {} & {} \\
+                {}
+            \end{ytableau}
+            \caption{$\lambda^T = (2, 2, 1)$}
+        \end{subfigure}
+        \caption{Young diagram of $\lambda=(3, 2)$ and its conjugate partition.}
+        \label{fig: young-diagram}
+    \end{figure}
+
+    We can define a partial order, denoted $\unrhd$, on the set of all Young diagrams of given integer $n$, where $\lambda = (\lambda_1, \dotsc, \lambda_l)\unrhd \mu = (\mu_1, \dotsc, \mu_m)$ if and only of
+    \begin{equation}
+        \lambda_1 + \dotsb + \lambda_i \geq \mu_1 + \dotsb + \mu_i
+    \end{equation}
+    for all $i\geq 1$, where we take $\lambda_i = 0$ ($\mu_i = 0$ resp.) if $i>l$ ($i>m$ resp.). The partial order is called the \emph{domination order}.
+
+    \begin{theorem}
+        The dominance order satisfies:
+        \begin{enumerate}
+            \item Reflexivity: $\lambda\unrhd\lambda$;
+            \item Anti-symmetry: $(\lambda\unrhd\mu)\wedge(\mu\unrhd\lambda)\Leftrightarrow(\lambda=\mu)$;
+            \item Transitivity: $(\lambda\unrhd\mu)\wedge(\mu\unrhd\rho)\Leftrightarrow(\lambda\unrhd\rho)$;
+        \end{enumerate}
+        that is to say, the dominance order is a partial order.
+    \end{theorem}
+
+    Young tableaux are obtained from Young diagrams by placing the distinct integers $1, \dotsc, n$ into the boxes.
+
+    \begin{definition}[Young Tableaux]
+        If $\lambda\vdash n$, then a $\lambda$-\emph{tableaux} is an array $t$ of integers, usually denoted by $t^\lambda$, obtained by placing $1, \dotsc, n$ into the boxes of the Young diagram for $\lambda$.
+    \end{definition}
+
+    There is a rather technical combinatorial fact which is useful in the sequel is that if $t^\lambda$ is a $\lambda$-tableaux and $s^\mu$ is a $\mu$-tableaux such that the integers in any given row of $s^\mu$ belong to distinct columns of $t^\lambda$, then $\lambda\unrhd\mu$. We shall prove the fact through a lemma.
+
+    \begin{lemma}\label{lem: tableaux}
+        Let $\lambda = (\lambda_1, \dotsc, \lambda_l)$ and $\mu = (\mu_1, \dotsc, \mu_m)$ be partitions of $n$. Suppose that $t^\lambda$ is a $\lambda$-tableaux and $s^\mu$ is a $\mu$-tableaux such that entries in the same row of $s^\mu$ are located in different columns of $t^\lambda$. Then we can find a $\lambda$-tableaux $u^\lambda$ such that:
+        \begin{enumerate}
+            \item The $j$th columns of $t^\lambda$ and $u^\lambda$ contain the same elements for $1\leq j \leq l$;
+            \item The entries of the first $i$ rows of $s^\mu$ belong to the first $i$ rows of $u^\lambda$ for each $1\leq i \leq m$.
+        \end{enumerate}
+    \end{lemma}
+
+    \begin{proof}
+        We will prove the lemma by constructing a $\lambda$-tableaux $t_r^\lambda$ such that
+        \begin{enumerate}[(a)]
+            \item The $j$th columns of $t^\lambda$ and $t_r^\lambda$ contain the same elements for $1\leq j\leq l$;
+            \item The entries of the first $i$ rows of $s^\mu$ belong to the first $i$ rows of $t_r^\lambda$ for $1\leq i \leq r$
+        \end{enumerate}
+        by induction. Setting $u^\lambda = t_m^\lambda$ will complete the proof.
+
+        When $r=1$, let $k$ be an element in the first row of $s^\mu$ and denote by $c(k)$ the column of $t^\lambda$ containing $k$. Then switch the first entry of column $c(k)$ with $k$.
+
+        Now suppose that $t_r^\lambda$ has been constructed for $r$, we shall construct $t_{r+1}^\lambda$ from $t_r^\lambda$ as follows. Again, let $k$ be an element in the row $r+1$ of $s^\mu$. If $k$ is in the first $r+1$ rows of $t_r^\lambda$, then it is done. Otherwise, since $\lambda\unrhd\mu$, then the column $c(k)$ must intersect the row $r+1$ of $t_{r+1}^\lambda$, that is, the row $r+1$ must have at least $c(k)$ entries. Then we can switch $k$ with the entry $c(k)$ of row $r+1$ for each such $k$ independently, in order to get the tableaux $t_{r+1}^\lambda$ satisfying desired properties.
+    \end{proof}
+
+    It follows immediately from the lemma that $\lambda\unrhd\mu$ by restating the property (b) for $u^\lambda = t_m^\lambda$. Hence we have proved the dominace lemma, which is stated as follows.
+
+    \begin{lemma}[Dominance Lemma]\label{lem: dom}
+        Let $\lambda$ and $\mu$ be partitions of $n$ and suppose that $t^\lambda$ and $s^\mu$ are tableaux of respective shapes $\lambda$ and $\mu$. Moreover, supposes that integers in the same row of $s^\mu$ are located in different columns of $t^\lambda$. Then $\lambda\unrhd\mu$.
+    \end{lemma}
+
+    In the next part, we shall construct the irreducible representations for $S_n$. We need some definitions first.
+
+    \begin{definition}
+        Let $t$ be a Young tableaux. Then the \emph{column stablizer} $C_t$ of $t$ is the subgroup of $S_n$ preserving the columns of $t$, that is, $\sigma\in C_t$ if and only if $\sigma(i)$ is in the same column as $i$ for every $i\in \{1, \dotsc, n\}$.
+    \end{definition}
+
+    In the previous proof of Lemma \ref{lem: tableaux}, the transformation from $t^\lambda$ to $u^\lambda$ was actually a column stablizer.
+
+    \begin{definition}[Tabloid]
+        Define an equivalence relation $\sim$ on the set of all $\lambda$-tableaux by putting $t_1\sim t_2$ only if they have the same entries in each row. Call a $\sim$-equivalence class of $\lambda$-tableaux a $\lambda$-\emph{tabloid}, which is denoted by $[t]$. Denote by $T^\lambda$ the set of all $\lambda$-tabloids and by $T_\lambda$ the tabloid which has $j$ in the $j$th box.
+    \end{definition}
+
+    The action of $S_n$ on $\lambda$-tableaux induces an action of $S_n$ on $\lambda$-tabloids since $t_1\sim t_2$ implies $\sigma t_1\sim \sigma t_2$. Suppose that $\lambda = (\lambda_1, \dotsc, \lambda_l)$. Let $S_\lambda$ the stablizer of $T_\lambda$, which is called the \emph{Young subgroup} associated to the partition $\lambda$.
+
+    For a partition $\lambda$, set $M^\lambda = \BC T^\lambda$ and let $\phi^\lambda\colon S_n\to \GL(M^\lambda)$ be the associated permutation representation, that is
+    \begin{equation}
+        \phi_\sigma^\lambda\lr(){\sum_{[t]\in T^\lambda}c_{[t]}[t]} = \sum_{[t]\in T^\lambda}c_{[t]}\sigma[t].
+    \end{equation}
+
+    If $\lambda\neq (n)$, then $\phi^\lambda$ is not irreducible. Hence we need to isolate the irreducible constituent from it.
+
+    \begin{definition}[Polytablid]
+        Let $\lambda, \mu\vdash n$. Let $t$ be a $\lambda$-tableaux and define a linear operator $A_t\colon M^\mu\to M^\mu$ by
+        \begin{equation}
+            A_t = \sum_{\pi\in C_t}\sgn(\pi)\phi^\mu_\pi.
+        \end{equation}
+        In the case $\lambda=\mu$, the element
+        \begin{equation}
+            e_t = A_t[t] = \sum_{\pi\in C_t}\sgn(\pi)\pi[t]
+        \end{equation}
+        of $M^\lambda$ is called the polytabloid associated to $t$.
+    \end{definition}
+
+    We shall now show that the subspace of $M^\lambda$ spanned by all polytabloids $e_t$ with $t$ a $\lambda$-tableaux is in fact a $S_n$-invariant subspace of $M^\lambda$.
+
+    \begin{theorem}
+        If $\sigma\in S_n$ and $t$ is a $\lambda$-tableaux, then $\phi_\sigma^\lambda e_t = e_{\sigma t}$.
+    \end{theorem}
+
+    \begin{proof}
+        Notice that $\tau(X) = X$ if and only if $\sigma\tau\sigma^{-1}(\sigma(X)) = \sigma(X)$ where $X\subseteq I_n$. Hence $C_{\sigma t}=\sigma C_t\sigma^{-1}$. Now we compute
+        \begin{equation}
+            \begin{aligned}
+                \phi_\sigma^\lambda e_t &= \phi_\sigma^\lambda A_t[t]\\
+                &= \sum_{\pi\in C_t}\sgn(\pi)\phi_\sigma^\lambda \pi [t]\\
+                &= \sum_{\sigma\pi\sigma^{-1}\in C_{\sigma t}}\sgn(\sigma\pi\sigma^{-1})\sigma\pi\sigma^{-1}[\sigma t]\\
+                &= e_{\sigma t}.
+            \end{aligned}
+        \end{equation}
+        It ends the proof.
+    \end{proof}
+
+    We can now define our desired subrepresentation.
+    \begin{definition}[Sprecht Representation]
+        Let $\lambda$ be a partition of $n$. Define $S^\lambda$ to be the subspace of $M^\lambda$ spanned by the polytabloids $e_t$ with $t$ a $\lambda$-tableaux. Let $\psi^\lambda\colon S_n\to \GL(S^\lambda)$ be the subrepresentation of $\phi^\lambda\colon S_n\to \GL(M^\lambda)$. It is called the \emph{Sprecht representation} associated to $\lambda$.
+    \end{definition}
+
+    We shall show that $\psi^\lambda$ are the irreducible representations of $S_n$ and each two of them are not equivalent.
+
+    \begin{lemma}\label{lem: Ats}
+        Let $\lambda, \mu\vdash n$ and suppose that $t^\lambda$ is a $\lambda$-tableaux and $s^\mu$ is a $\mu$-tableaux such that $A_{t^\lambda}[s^\mu]\neq 0$. Then $\lambda\unrhd\mu$. Moreover, if $\lambda=\mu$, then $A_{t^\lambda}[s^\mu]=\pm e_{t^\lambda}$.
+    \end{lemma}
+
+    \begin{proof}
+        We shall use the Dominance Lemma to prove the first assertion. Suppose there are two elements $i, j$ that are in the same row of $s^\mu$ and in the same column of $t^\lambda$. Then $(i j)s^\mu = s^\mu$ and $(i j)\in C_{t^\lambda}$. Let $H=\{\id, (i j)\}$ be the subgroup of $C_{t^\lambda}$, and let $\sigma_1, \dotsc, \sigma_k$ be a complete set of left cosets for $H$ in $C_{t^\lambda}$, that is to say, $\sigma_1H\cup\dotsb \cup \sigma_kH = C_{t^\lambda}$. Then we have
+        \begin{equation}
+            \begin{aligned}
+                A_{t^\lambda}[s^\mu] &= \sum_{\pi\in C_{t^\lambda}}\sgn(\pi)\phi_\pi^\mu[s^\mu]\\
+                &= \sum_{r=1}^k \lr(){\sgn(\sigma_r)\phi_{\sigma r}^\mu + \sgn(\sigma_r(i j))\phi_{\sigma_r(i j)}^\mu}[s^\mu]\\
+                &= \sum_{r=1}^k\sgn(\sigma_r)\phi_{\sigma_r}^\mu(\phi_\id^\mu-\phi_{(i j)}\mu)[s^\mu]\\
+                &= 0.
+            \end{aligned}
+        \end{equation}
+        It follows from Lemma \ref{lem: dom} that if $A_{t^\lambda}[s^\mu]\neq 0$, then $\lambda\vdash\mu$.
+
+        Next suppose that $\lambda=\mu$. Lemma \ref{lem: tableaux} states that there is a $\lambda$-tableaux $u^\lambda = \sigma t^\lambda$, where $\sigma\in C_{t^\lambda}$, such that the entries of the first $i$ rows of $s^\mu$ belong to the first $i$ rows of $u^\lambda$ for each $1\leq i\leq m$. Since $\lambda=\mu$, we can prove by induction that $[u^\lambda]=[s^\mu]$. It follows that
+        \begin{equation}
+            \begin{aligned}
+                A_{t^\lambda}[s^\mu]
+                &= \sum_{\pi\in C_{t^\lambda}}\sgn(\pi)\phi_\pi^\mu[s^\mu]\\
+                &= \sum_{\tau\sigma^{-1}\in C_{t^\lambda}}\sgn(\tau\sigma^{-1})\phi_{\tau\sigma^{-1}}^\lambda[u^\lambda]\\
+                &= \sgn(\sigma^{-1})\sum_{\tau\in C_{t^\lambda}}\sgn(\tau)\phi_\tau^\lambda[t^\lambda]\\
+                &= \sgn(\sigma^{-1})e_{t^\lambda},
+            \end{aligned}
+        \end{equation}
+        which completes the proof.
+    \end{proof}
+
+    \begin{lemma}\label{lem: At}
+        Let $t$ be a $\lambda$-tableaux. Then the image of the operator $A_t\colon M^\lambda\to M^\lambda$ is $\BC e_t$.
+    \end{lemma}
+    \begin{proof}
+        Notice that $A_t[s]$ equals either $\pm e_t$ or 0, for $[s]$ being any $\lambda$-tabloid. It follows the assertion.
+    \end{proof}
+
+    Recall that $M^\lambda = \BC T^\lambda$ has an inner product structure where $T^\lambda$ is an orthonormal basis. Notice that $\phi^\lambda_\sigma$ is unitary, and its adjoint is $(\phi^\lambda_\sigma)^*=\phi^\lambda_{\sigma^{-1}}$, for all $\sigma\in S_n$. It follows that
+    \begin{equation}
+        A_t^* = \sum_{\pi\in C_t}\sgn(\pi)(\phi^\lambda_\pi)^* = \sum_{\pi^{-1}\in C_t}\sgn(\pi^{-1})(\phi^\lambda_{\pi^{-1}}) = A_t,
+    \end{equation}
+    which means that $A_t$ is self-adjoint.
+
+    The following theorem is the key to prove that the $\psi^\lambda$ are the irreducible representations of $S_n$.
+
+    \begin{theorem}[Subrepresentation Theorem]\label{thm: subrepr}
+        Let $\lambda$ be a partition of $n$ and suppose that $V$ is an $S_n$-invariant subspace of $M^\lambda$. Then either $S^\lambda\subseteq V$ or $V\subseteq (S^\lambda)^\perp$.
+    \end{theorem}
+
+    \begin{proof}
+        First suppose that there is some $\lambda$-tableaux $t$ and some vector $v\in V$ such that $A_t(v)\neq 0$. Since $V$ is a $S_n$-invariant subspace, then we have
+        \begin{equation}
+            A_t(v)=\sum_{\pi\in C_t}\sgn(\pi)\phi_\pi^\lambda(v)\in V.
+        \end{equation}
+        By Lemma \ref{lem: At}, we have $A_t(v)\in V\cap \BC e_t$. Thus $e_t\in V$. Again by the fact that the $V$ is $S_n$-invariant, $e_{\sigma t} = \phi^\lambda_\sigma e_t\in V$. Thus $S^\lambda\subseteq V$.
+
+        Next suppose that for any $\lambda$-tableaux $t$ and any vector $v\in V$, we have $A_t(v) = 0$. Then we compute
+        \begin{equation}
+            \lr<>{v, e_t} = \lr<>{v, A_t[t]} = \lr<>{A_tv, [t]} = 0.
+        \end{equation}
+        Since $v$ and $e_t$ are arbitrary, we have $V\subseteq (S^\lambda)^\perp$. It ends the proof.
+    \end{proof}
+
+    \begin{corollary}
+        Let $\lambda\vdash n$. Then $\psi^\lambda\colon S_n\to \GL(S^\lambda)$ is irreducible.
+    \end{corollary}
+
+    It remains to be shown that $\lambda\neq\mu$ implies that $\psi^\lambda\nsim\psi^\mu$. Let's start with some lemmas. Recall that $T\in \Hom_{S_n}(\phi^\lambda, \phi^\mu)$ if and only if $T\phi^\lambda_\sigma = \phi^\mu_\sigma$ for $\sigma\in S_n$.
+
+    \begin{lemma}\label{lem: T-hom}
+        Suppose that $\lambda, \mu\vdash n$ and let $T\in \Hom_{S_n}(\phi^\lambda, \phi^\mu)$. If $S^\lambda\nsubseteq \Kernal(T)$, then $\lambda\unrhd \mu$. Moreover, if $\lambda=\mu$, then $T|_{S^\lambda}$ is a scalar multiple of the identity map.
+    \end{lemma}
+
+    \begin{proof}
+        Recall that $\Kernal(T)$ is a $S_n$-invariant subspace. It follows from Theorem \ref{thm: subrepr} that\\ $\Kernal(T)\subseteq(S^\lambda)^\perp$. Hence for any $\lambda$-tableaux $t$, there is $0\leq Te_t = TA_t[t]=A_tT[t]$, where it should be noticed that the two $A_t$ in the last equality have different domains. Since $T[t]$ is a linear combination of $\mu$-tabloids, there exists a $\mu$-tabloid $[s]$ such that $A_t[s]\neq 0$. By Lemma \ref{lem: Ats} $\lambda\unrhd\mu$.
+
+        Next suppose that $\lambda=\mu$, then
+        \begin{equation}
+            Te_t = A_tT[t]\in \BC e_t \subseteq S^\lambda
+        \end{equation}
+        by Lemma \ref{lem: At}. Thus $T|_{S^\lambda}$ is well-defined. The conclusion follows from Schur's lemma.
+    \end{proof}
+
+    \begin{lemma}\label{lem: hom-ker}
+        If $\Hom_{S_n}(\psi^\lambda, \phi^\mu)\neq 0$, then $\lambda\unrhd \mu$. Moreover, if $\lambda=\mu$, then
+        \begin{equation}
+            \dim\Hom_{S_n}(\psi^\lambda, \phi^\mu)=1.
+        \end{equation}
+    \end{lemma}
+
+    \begin{proof}
+        We can extend any non-zero morphism $T\colon S^\lambda\to M^\mu$ by putting $T(v+w)=Tv$ for elements $v\in S^\lambda$ and $w\in (S^\lambda)^\perp$. Notice that $(S^\lambda)^\perp$ is $S_n$-invariant since $(\phi_\sigma^\lambda)=\phi_{\sigma^{-1}}^\lambda$. Thus the extension is also a morphism. Clearly $S^\lambda\nsubseteq\Kernal(T)$ and so $\lambda\unrhd\mu$ by Lemma \ref{lem: T-hom}.
+
+        Next suppose that $\lambda=\mu$. Then by Lemma \ref{lem: T-hom}, the extension of $T$ must be a scalar multiple of the inclusion map, and so is $T$ itself. Thus $\dim\Hom_{S_n}(\psi^\lambda, \phi^\mu)=1$.
+    \end{proof}
+
+    \begin{theorem}
+        The Sprecht representations $\psi^\lambda$ with $\lambda\vdash n$ form a complete set of inequivalent irreducible representations of $S_n$.
+    \end{theorem}
+
+    \begin{proof}
+        Suppose that $\psi^\lambda\sim\psi^\mu$, then
+        \begin{equation}
+            0\neq \Hom_{S_n}(\psi^\lambda, \psi^\mu)\subseteq \Hom_{S_n}(\psi^\lambda, \phi^\mu).
+        \end{equation}
+        Thus by Lemma \ref{lem: hom-ker}, we have $\lambda\unrhd\mu$. A symmetric argument shows that $\mu\unrhd\lambda$. Thus we have $\lambda=\mu$ if $\psi^\lambda\sim\psi^\mu$, as desired.
+    \end{proof}
 \end{document}

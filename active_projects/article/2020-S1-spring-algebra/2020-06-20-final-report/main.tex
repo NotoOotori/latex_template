@@ -334,7 +334,7 @@
     \begin{equation}
         \lambda_1 + \dotsb + \lambda_i \geq \mu_1 + \dotsb + \mu_i
     \end{equation}
-    for all $i\geq 1$, where we take $\lambda_i = 0$ ($\mu_i = 0$ resp.) if $i>l$ ($i>m$ resp.). The partial order is called the \emph{domination order}.
+    for all $i\geq 1$, where we take $\lambda_i = 0$ ($\mu_i = 0$ resp.) if $i>l$ ($i>m$ resp.). The partial order is called the \emph{domination order}. We write $\lambda\rhd\mu$ if $\lambda\unrhd\mu$ and $\lambda\neq\mu$.
 
     \begin{theorem}
         The dominance order satisfies:
@@ -349,13 +349,13 @@
     Young tableaux are obtained from Young diagrams by placing the distinct integers $1, \dotsc, n$ into the boxes.
 
     \begin{definition}[Young Tableaux]
-        If $\lambda\vdash n$, then a $\lambda$-\emph{tableaux} is an array $t$ of integers, usually denoted by $t^\lambda$, obtained by placing $1, \dotsc, n$ into the boxes of the Young diagram for $\lambda$.
+        If $\lambda\vdash n$, then a $\lambda$-\emph{tableau} is an array $t$ of integers, usually denoted by $t^\lambda$, obtained by placing $1, \dotsc, n$ into the boxes of the Young diagram for $\lambda$.
     \end{definition}
 
-    There is a rather technical combinatorial fact which is useful in the sequel is that if $t^\lambda$ is a $\lambda$-tableaux and $s^\mu$ is a $\mu$-tableaux such that the integers in any given row of $s^\mu$ belong to distinct columns of $t^\lambda$, then $\lambda\unrhd\mu$. We shall prove the fact through a lemma.
+    There is a rather technical combinatorial fact which is useful in the sequel is that if $t^\lambda$ is a $\lambda$-tableau and $s^\mu$ is a $\mu$-tableau such that the integers in any given row of $s^\mu$ belong to distinct columns of $t^\lambda$, then $\lambda\unrhd\mu$. We shall prove the fact through a lemma.
 
     \begin{lemma}\label{lem: tableaux}
-        Let $\lambda = (\lambda_1, \dotsc, \lambda_l)$ and $\mu = (\mu_1, \dotsc, \mu_m)$ be partitions of $n$. Suppose that $t^\lambda$ is a $\lambda$-tableaux and $s^\mu$ is a $\mu$-tableaux such that entries in the same row of $s^\mu$ are located in different columns of $t^\lambda$. Then we can find a $\lambda$-tableaux $u^\lambda$ such that:
+        Let $\lambda = (\lambda_1, \dotsc, \lambda_l)$ and $\mu = (\mu_1, \dotsc, \mu_m)$ be partitions of $n$. Suppose that $t^\lambda$ is a $\lambda$-tableau and $s^\mu$ is a $\mu$-tableau such that entries in the same row of $s^\mu$ are located in different columns of $t^\lambda$. Then we can find a $\lambda$-tableau $u^\lambda$ such that:
         \begin{enumerate}
             \item The $j$th columns of $t^\lambda$ and $u^\lambda$ contain the same elements for $1\leq j \leq l$;
             \item The entries of the first $i$ rows of $s^\mu$ belong to the first $i$ rows of $u^\lambda$ for each $1\leq i \leq m$.
@@ -363,7 +363,7 @@
     \end{lemma}
 
     \begin{proof}
-        We will prove the lemma by constructing a $\lambda$-tableaux $t_r^\lambda$ such that
+        We will prove the lemma by constructing a $\lambda$-tableau $t_r^\lambda$ such that
         \begin{enumerate}[(a)]
             \item The $j$th columns of $t^\lambda$ and $t_r^\lambda$ contain the same elements for $1\leq j\leq l$;
             \item The entries of the first $i$ rows of $s^\mu$ belong to the first $i$ rows of $t_r^\lambda$ for $1\leq i \leq r$
@@ -372,10 +372,10 @@
 
         When $r=1$, let $k$ be an element in the first row of $s^\mu$ and denote by $c(k)$ the column of $t^\lambda$ containing $k$. Then switch the first entry of column $c(k)$ with $k$.
 
-        Now suppose that $t_r^\lambda$ has been constructed for $r$, we shall construct $t_{r+1}^\lambda$ from $t_r^\lambda$ as follows. Again, let $k$ be an element in the row $r+1$ of $s^\mu$. If $k$ is in the first $r+1$ rows of $t_r^\lambda$, then it is done. Otherwise, since $\lambda\unrhd\mu$, then the column $c(k)$ must intersect the row $r+1$ of $t_{r+1}^\lambda$, that is, the row $r+1$ must have at least $c(k)$ entries. Then we can switch $k$ with the entry $c(k)$ of row $r+1$ for each such $k$ independently, in order to get the tableaux $t_{r+1}^\lambda$ satisfying desired properties.
+        Now suppose that $t_r^\lambda$ has been constructed for $r$, we shall construct $t_{r+1}^\lambda$ from $t_r^\lambda$ as follows. Again, let $k$ be an element in the row $r+1$ of $s^\mu$. If $k$ is in the first $r+1$ rows of $t_r^\lambda$, then it is done. Otherwise, since $\lambda\unrhd\mu$, then the column $c(k)$ must intersect the row $r+1$ of $t_{r+1}^\lambda$, that is, the row $r+1$ must have at least $c(k)$ entries. Then we can switch $k$ with the entry $c(k)$ of row $r+1$ for each such $k$ independently, in order to get the tableau $t_{r+1}^\lambda$ satisfying desired properties.
     \end{proof}
 
-    It follows immediately from the lemma that $\lambda\unrhd\mu$ by restating the property (b) for $u^\lambda = t_m^\lambda$. Hence we have proved the dominace lemma, which is stated as follows.
+    It follows immediately from the lemma that $\lambda\unrhd\mu$ by restating the property (b) for $u^\lambda = t_m^\lambda$. Hence we have proved the dominance lemma, which is stated as follows.
 
     \begin{lemma}[Dominance Lemma]\label{lem: dom}
         Let $\lambda$ and $\mu$ be partitions of $n$ and suppose that $t^\lambda$ and $s^\mu$ are tableaux of respective shapes $\lambda$ and $\mu$. Moreover, supposes that integers in the same row of $s^\mu$ are located in different columns of $t^\lambda$. Then $\lambda\unrhd\mu$.
@@ -384,7 +384,7 @@
     In the next part, we shall construct the irreducible representations for $S_n$. We need some definitions first.
 
     \begin{definition}
-        Let $t$ be a Young tableaux. Then the \emph{column stablizer} $C_t$ of $t$ is the subgroup of $S_n$ preserving the columns of $t$, that is, $\sigma\in C_t$ if and only if $\sigma(i)$ is in the same column as $i$ for every $i\in \{1, \dotsc, n\}$.
+        Let $t$ be a Young tableau. Then the \emph{column stablizer} $C_t$ of $t$ is the subgroup of $S_n$ preserving the columns of $t$, that is, $\sigma\in C_t$ if and only if $\sigma(i)$ is in the same column as $i$ for every $i\in \{1, \dotsc, n\}$.
     \end{definition}
 
     In the previous proof of Lemma \ref{lem: tableaux}, the transformation from $t^\lambda$ to $u^\lambda$ was actually a column stablizer.
@@ -402,8 +402,8 @@
 
     If $\lambda\neq (n)$, then $\phi^\lambda$ is not irreducible. Hence we need to isolate the irreducible constituent from it.
 
-    \begin{definition}[Polytablid]
-        Let $\lambda, \mu\vdash n$. Let $t$ be a $\lambda$-tableaux and define a linear operator $A_t\colon M^\mu\to M^\mu$ by
+    \begin{definition}[Polytabloid]
+        Let $\lambda, \mu\vdash n$. Let $t$ be a $\lambda$-tableau and define a linear operator $A_t\colon M^\mu\to M^\mu$ by
         \begin{equation}
             A_t = \sum_{\pi\in C_t}\sgn(\pi)\phi^\mu_\pi.
         \end{equation}
@@ -414,10 +414,10 @@
         of $M^\lambda$ is called the polytabloid associated to $t$.
     \end{definition}
 
-    We shall now show that the subspace of $M^\lambda$ spanned by all polytabloids $e_t$ with $t$ a $\lambda$-tableaux is in fact a $S_n$-invariant subspace of $M^\lambda$.
+    We shall now show that the subspace of $M^\lambda$ spanned by all polytabloids $e_t$ with $t$ a $\lambda$-tableau is in fact a $S_n$-invariant subspace of $M^\lambda$.
 
-    \begin{theorem}
-        If $\sigma\in S_n$ and $t$ is a $\lambda$-tableaux, then $\phi_\sigma^\lambda e_t = e_{\sigma t}$.
+    \begin{theorem}\label{thm: poly-commu}
+        If $\sigma\in S_n$ and $t$ is a $\lambda$-tableau, then $\phi_\sigma^\lambda e_t = e_{\sigma t}$.
     \end{theorem}
 
     \begin{proof}
@@ -435,13 +435,13 @@
 
     We can now define our desired subrepresentation.
     \begin{definition}[Sprecht Representation]
-        Let $\lambda$ be a partition of $n$. Define $S^\lambda$ to be the subspace of $M^\lambda$ spanned by the polytabloids $e_t$ with $t$ a $\lambda$-tableaux. Let $\psi^\lambda\colon S_n\to \GL(S^\lambda)$ be the subrepresentation of $\phi^\lambda\colon S_n\to \GL(M^\lambda)$. It is called the \emph{Sprecht representation} associated to $\lambda$.
+        Let $\lambda$ be a partition of $n$. Define $S^\lambda$ to be the subspace of $M^\lambda$ spanned by the polytabloids $e_t$ with $t$ a $\lambda$-tableau. Let $\psi^\lambda\colon S_n\to \GL(S^\lambda)$ be the subrepresentation of $\phi^\lambda\colon S_n\to \GL(M^\lambda)$. It is called the \emph{Sprecht representation} associated to $\lambda$.
     \end{definition}
 
     We shall show that $\psi^\lambda$ are the irreducible representations of $S_n$ and each two of them are not equivalent.
 
     \begin{lemma}\label{lem: Ats}
-        Let $\lambda, \mu\vdash n$ and suppose that $t^\lambda$ is a $\lambda$-tableaux and $s^\mu$ is a $\mu$-tableaux such that $A_{t^\lambda}[s^\mu]\neq 0$. Then $\lambda\unrhd\mu$. Moreover, if $\lambda=\mu$, then $A_{t^\lambda}[s^\mu]=\pm e_{t^\lambda}$.
+        Let $\lambda, \mu\vdash n$ and suppose that $t^\lambda$ is a $\lambda$-tableau and $s^\mu$ is a $\mu$-tableau such that $A_{t^\lambda}[s^\mu]\neq 0$. Then $\lambda\unrhd\mu$. Moreover, if $\lambda=\mu$, then $A_{t^\lambda}[s^\mu]=\pm e_{t^\lambda}$.
     \end{lemma}
 
     \begin{proof}
@@ -456,7 +456,7 @@
         \end{equation}
         It follows from Lemma \ref{lem: dom} that if $A_{t^\lambda}[s^\mu]\neq 0$, then $\lambda\vdash\mu$.
 
-        Next suppose that $\lambda=\mu$. Lemma \ref{lem: tableaux} states that there is a $\lambda$-tableaux $u^\lambda = \sigma t^\lambda$, where $\sigma\in C_{t^\lambda}$, such that the entries of the first $i$ rows of $s^\mu$ belong to the first $i$ rows of $u^\lambda$ for each $1\leq i\leq m$. Since $\lambda=\mu$, we can prove by induction that $[u^\lambda]=[s^\mu]$. It follows that
+        Next suppose that $\lambda=\mu$. Lemma \ref{lem: tableaux} states that there is a $\lambda$-tableau $u^\lambda = \sigma t^\lambda$, where $\sigma\in C_{t^\lambda}$, such that the entries of the first $i$ rows of $s^\mu$ belong to the first $i$ rows of $u^\lambda$ for each $1\leq i\leq m$. Since $\lambda=\mu$, we can prove by induction that $[u^\lambda]=[s^\mu]$. It follows that
         \begin{equation}
             \begin{aligned}
                 A_{t^\lambda}[s^\mu]
@@ -470,7 +470,7 @@
     \end{proof}
 
     \begin{lemma}\label{lem: At}
-        Let $t$ be a $\lambda$-tableaux. Then the image of the operator $A_t\colon M^\lambda\to M^\lambda$ is $\BC e_t$.
+        Let $t$ be a $\lambda$-tableau. Then the image of the operator $A_t\colon M^\lambda\to M^\lambda$ is $\BC e_t$.
     \end{lemma}
     \begin{proof}
         Notice that $A_t[s]$ equals either $\pm e_t$ or 0, for $[s]$ being any $\lambda$-tabloid. It follows the assertion.
@@ -489,13 +489,13 @@
     \end{theorem}
 
     \begin{proof}
-        First suppose that there is some $\lambda$-tableaux $t$ and some vector $v\in V$ such that $A_t(v)\neq 0$. Since $V$ is a $S_n$-invariant subspace, then we have
+        First suppose that there is some $\lambda$-tableau $t$ and some vector $v\in V$ such that $A_t(v)\neq 0$. Since $V$ is a $S_n$-invariant subspace, then we have
         \begin{equation}
             A_t(v)=\sum_{\pi\in C_t}\sgn(\pi)\phi_\pi^\lambda(v)\in V.
         \end{equation}
         By Lemma \ref{lem: At}, we have $A_t(v)\in V\cap \BC e_t$. Thus $e_t\in V$. Again by the fact that the $V$ is $S_n$-invariant, $e_{\sigma t} = \phi^\lambda_\sigma e_t\in V$. Thus $S^\lambda\subseteq V$.
 
-        Next suppose that for any $\lambda$-tableaux $t$ and any vector $v\in V$, we have $A_t(v) = 0$. Then we compute
+        Next suppose that for any $\lambda$-tableau $t$ and any vector $v\in V$, we have $A_t(v) = 0$. Then we compute
         \begin{equation}
             \lr<>{v, e_t} = \lr<>{v, A_t[t]} = \lr<>{A_tv, [t]} = 0.
         \end{equation}
@@ -509,30 +509,19 @@
     It remains to be shown that $\lambda\neq\mu$ implies that $\psi^\lambda\nsim\psi^\mu$. Let's start with some lemmas. Recall that $T\in \Hom_{S_n}(\phi^\lambda, \phi^\mu)$ if and only if $T\phi^\lambda_\sigma = \phi^\mu_\sigma$ for $\sigma\in S_n$.
 
     \begin{lemma}\label{lem: T-hom}
-        Suppose that $\lambda, \mu\vdash n$ and let $T\in \Hom_{S_n}(\phi^\lambda, \phi^\mu)$. If $S^\lambda\nsubseteq \Kernal(T)$, then $\lambda\unrhd \mu$. Moreover, if $\lambda=\mu$, then $T|_{S^\lambda}$ is a scalar multiple of the identity map.
+        Suppose that $\lambda, \mu\vdash n$ and let $T\in \Hom_{S_n}(\phi^\lambda, \phi^\mu)$. If $S^\lambda\nsubseteq \Kernal(T)$, then $\lambda\unrhd \mu$.
     \end{lemma}
 
     \begin{proof}
-        Recall that $\Kernal(T)$ is a $S_n$-invariant subspace. It follows from Theorem \ref{thm: subrepr} that\\ $\Kernal(T)\subseteq(S^\lambda)^\perp$. Hence for any $\lambda$-tableaux $t$, there is $0\leq Te_t = TA_t[t]=A_tT[t]$, where it should be noticed that the two $A_t$ in the last equality have different domains. Since $T[t]$ is a linear combination of $\mu$-tabloids, there exists a $\mu$-tabloid $[s]$ such that $A_t[s]\neq 0$. By Lemma \ref{lem: Ats} $\lambda\unrhd\mu$.
-
-        Next suppose that $\lambda=\mu$, then
-        \begin{equation}
-            Te_t = A_tT[t]\in \BC e_t \subseteq S^\lambda
-        \end{equation}
-        by Lemma \ref{lem: At}. Thus $T|_{S^\lambda}$ is well-defined. The conclusion follows from Schur's lemma.
+        Recall that $\Kernal(T)$ is a $S_n$-invariant subspace. It follows from Theorem \ref{thm: subrepr} that\\ $\Kernal(T)\subseteq(S^\lambda)^\perp$. Hence for any $\lambda$-tableau $t$, there is $0\leq Te_t = TA_t[t]=A_tT[t]$, where it should be noticed that the two $A_t$ in the last equation have different domains. Since $T[t]$ is a linear combination of $\mu$-tabloids, there exists a $\mu$-tabloid $[s]$ such that $A_t[s]\neq 0$. By Lemma \ref{lem: Ats} we have $\lambda\unrhd\mu$.
     \end{proof}
 
     \begin{lemma}\label{lem: hom-ker}
-        If $\Hom_{S_n}(\psi^\lambda, \phi^\mu)\neq 0$, then $\lambda\unrhd \mu$. Moreover, if $\lambda=\mu$, then
-        \begin{equation}
-            \dim\Hom_{S_n}(\psi^\lambda, \phi^\mu)=1.
-        \end{equation}
+        If $\Hom_{S_n}(\psi^\lambda, \phi^\mu)\neq 0$, then $\lambda\unrhd \mu$.
     \end{lemma}
 
     \begin{proof}
         We can extend any non-zero morphism $T\colon S^\lambda\to M^\mu$ by putting $T(v+w)=Tv$ for elements $v\in S^\lambda$ and $w\in (S^\lambda)^\perp$. Notice that $(S^\lambda)^\perp$ is $S_n$-invariant since $(\phi_\sigma^\lambda)=\phi_{\sigma^{-1}}^\lambda$. Thus the extension is also a morphism. Clearly $S^\lambda\nsubseteq\Kernal(T)$ and so $\lambda\unrhd\mu$ by Lemma \ref{lem: T-hom}.
-
-        Next suppose that $\lambda=\mu$. Then by Lemma \ref{lem: T-hom}, the extension of $T$ must be a scalar multiple of the inclusion map, and so is $T$ itself. Thus $\dim\Hom_{S_n}(\psi^\lambda, \phi^\mu)=1$.
     \end{proof}
 
     \begin{theorem}
@@ -545,5 +534,157 @@
             0\neq \Hom_{S_n}(\psi^\lambda, \psi^\mu)\subseteq \Hom_{S_n}(\psi^\lambda, \phi^\mu).
         \end{equation}
         Thus by Lemma \ref{lem: hom-ker}, we have $\lambda\unrhd\mu$. A symmetric argument shows that $\mu\unrhd\lambda$. Thus we have $\lambda=\mu$ if $\psi^\lambda\sim\psi^\mu$, as desired.
+    \end{proof}
+
+    \section{Dimensions of the Irreducible Representations}
+
+    In this section, we shall compute the dimension of $S^\lambda$ for each partition $\lambda\vdash n$ by the following procedure. First we shall rove the set of polytabloids associated with standard $\lambda$-tableaux is linear independent and generates $S^\lambda$. Then we shall compute the number of standard $\lambda$-tablaux by Hook length formula.
+
+    \begin{definition}[Standard Young Tableaux]
+        A young tableau is called \emph{standard} provided that the entries along the rows and down the columns are ordered in increasing values. In this case we call the corresponding tabloid and polytabloid standard.
+    \end{definition}
+
+    We shall prove by induction that the polytabloids associated with standard tableaux are linear independent, where we need a linear order first.
+
+    \begin{lemma}
+        Suppose $\lambda\vdash n$ and $[t], [u]$ are two $\lambda$-tabloid. Then we say $[t]>[u]$ if there exists some $i$ such that,
+        \begin{enumerate}[(1)]
+            \item for all $j>i$, $j$ is in the same row of both $[t]$ and $[u]$;
+            \item $i$ is in a higher row of $[t]$ than $[u]$, where the first row is the highest row;
+        \end{enumerate}
+        and we say $[t]\geq [u]$ if $[t]>[u]$ or $[t]=[u]$. The relation $\leq$ is a linear order on the set of standard Young tableaux.
+    \end{lemma}
+
+    \begin{proof}
+        Notice that if $[t]\neq [u]$, then there exists a greatest integer $i\leq n$ such that $i$ is in different row of $[t]$ and $[u]$. The proof is then a routine.
+    \end{proof}
+
+    \begin{lemma}\label{lem: leq}
+        Suppose $t$ is a tableau and $\pi$ is a column stablizer of $t$. Then $\pi [t]\geq [t]$.
+    \end{lemma}
+
+    \begin{proof}
+        Suppose $i$ is the greatest integer such that $\pi (i)\neq i$. Thus all $j>i$ are not permuted. Since $\pi$ is a column stablizer and the columns are in in ascending order. Then the entry of $t$ with value $i$ must be permutated to a higher row. It ends the proof.
+    \end{proof}
+
+    \begin{theorem}
+        The polytabloids associated with the standard tableaux are linearly independent.
+    \end{theorem}
+
+    \begin{proof}
+        Let $t_1> t_2 > \dotsc > t_r$ be all standard tableaux. Suppose there is a linear combination of the associated polytabloids that gives 0, i.e.,
+        \begin{equation}
+            c_1e_{t_1}+\dotsb + c_re_{t_r}=0.
+        \end{equation}
+        Let's check the coefficients of $[t_r]$. Since there is
+        \begin{equation}
+            e_{t_j} = \sum_{\pi\in C_{t_j}}\sgn(\pi)\pi[t_j],
+        \end{equation}
+        and by Lemma \ref{lem: leq} we have $\pi[t_j]\geq[t_j]\neq [t_r]$, unless $\pi=\id$ and $j=r$. Thus by taking the inner product with $[t_r]$, we have
+        \begin{equation}
+            \lr<>{c_1e_{t_1}+\dotsb + c_re_{t_r}, [t_r]} = c_r = 0.
+        \end{equation}
+        Since $r$ is arbitary, it completes the proof.
+    \end{proof}
+
+    To prove that the polytabloids associated with the Young tableaux spans $S^\lambda$, we need some techniques. Let's start with some definition.
+
+    \begin{definition}[Composition]
+        A \emph{composition} of $n$ is a tuple $\lambda=(\lambda_1, \dotsc, \lambda_l)$ of positive integers such that $\lambda_1 + \dotsb + \lambda_l=n$.
+    \end{definition}
+
+    The definition of a tableau, a tabloid, a polytabloid and the dominance order can be extended to composition in a natural way. We shall now define the dominance order on tabloids.
+
+    Suppose that $[t^\lambda]$ is a tabloid with $\lambda$ a composition. For each index $i$ with $1\leq i\leq n$, let $[t^{\lambda_i}]$ be the tabloid formed by all elements no greater than $i$ in $[t]$, and let $\lambda_i$ be the corresponding composition of $i$.
+
+    \begin{definition}[Dominance Order on Tabloids]
+        Let $t^\lambda$ and $s^\mu$ be two tabloids with composition sequences $\lambda_i$ and $\mu_i$, respectively. Then $[t^\lambda]$ dominates $[s^\mu]$, denoted by $[t^\lambda]\unrhd [s^\mu]$, if $\lambda_i\unrhd\mu_i$ for all $i$.
+    \end{definition}
+
+    Notice that if $t$ and $s$ are two $\lambda$-tabloid with $\lambda$ being a partition, then $[t]\unrhd [s]$ implies $[t]>[s]$. Just as for partitions, there is a dominance lemma for tabloids.
+
+    \begin{lemma}[Dominance Lemma for Tabloids]\label{lem: dom-tab}
+        If $k<l$ and $k$ appears in a lower row than $l$ in $[t]$, then $(k l)[t]\rhd[t]$.
+    \end{lemma}
+
+    \begin{proof}
+        The lemma follows from checking the composition sequences for both tabloids.
+    \end{proof}
+
+    \begin{corollary}
+        If $t$ is standard and $\lr<>{[s], e_t}\neq 0$, then $[t]\unrhd [s]$.
+    \end{corollary}
+
+    \begin{proof}
+        By the definition of $e_t$, we can assume that $s=\pi t$, where $\pi\in C_t$. Induct on the number of column inversions in $s$, that is, the number of pairs $k<l$ in the same column of $s$ such that $k$ is in a lower row than $l$. By Lemma \ref{lem: dom-tab} we have $(k l)[s]\rhd[s]$, and it is easy to find out that $(k l)[s]$ has fewer inversions than $[s]$. Since $[t]$ has no inversions, then by induction we have $[t]\unrhd[s]$.
+    \end{proof}
+
+    Now it is ready to introduce the \emph{straightening algorithm}, which takes any standard tableau $t$ and writes the associated polytabloids $e_t$ in terms of other polytabloids associated with standard Young tableaux.
+
+    Take a $\lambda$-tableau $t$. There exist some $\sigma\in C_t$ such that all columns of $s = \sigma t$ are in increasing order. Then $e_{s}=\pm e_{t}$ by easy calculation from the definition. If the tableau $s$ is not standard, then there must be two adjacent entries in the same row where the left is greater than the right, which is called a row descent. Denote by $A$ the entries below the left row-descending entry (including itself) and by $B$ the entries above the right row-descending entry (including itself), which is illustrated in \ref{fig: straightening}. The \emph{Garnir element}, denoted by $g_{A, B}$, is the signed sum of all permutations of $A\cup B$ that keep both subsets $A$ and $B$ without column descents, that is,
+    \begin{equation}
+        g_{A, B}=\sum_{\pi\in\Pi}\sgn(\pi)\phi^\lambda_\pi,
+    \end{equation}
+    where $\Pi$ is the collection of such permutations.
+
+    \begin{figure}[htb]
+        \centering
+        \begin{ytableau}
+            {} & {a_1} & *(cyan) {b_1} & {} & {} & {}\\
+            {} & {\vdots} & *(cyan) {\vdots} & {} & {}\\
+            {} & *(yellow) a_i & *(cyan) b_i & {}\\
+            {} & *(yellow) \vdots & {\vdots}\\
+            {} & *(yellow) \vdots & {b_q}\\
+            {} & *(yellow) {a_p}\\
+            {}
+        \end{ytableau}
+        \caption{$s$ is a tableau such that all columns are in increasing order, where $a_i>b_i$ is a row descent. The set $A$ is the collection of yellow entries $a_i, \dotsc, a_p$, and the set $B$ is the collection of cyan entries $b_1, \dotsc, b_i$, where $b_1<\dotsb <b_i<a_i<\dotsb < a_p$.}
+        \label{fig: straightening}
+    \end{figure}
+
+    \begin{lemma}\label{lem: Garnir}
+        Let $s$ be a $\lambda$-tableau with no column descents and $g_{A, B}$ be a corresponding Garnir element. Then we have
+        \begin{equation}
+            g_{A, B}(e_t) = \sum_{\pi\in\Pi}(\sgn(\pi)\phi_\pi^\lambda(e_t))=0.
+        \end{equation}
+    \end{lemma}
+
+    Moreover, it is true for $\lambda$-tableau $t$ which has column descents, since $e_t=\pm e_s$.
+
+    \begin{proof}
+        First, notice that
+        \begin{equation}
+            \begin{aligned}
+                g_{A, B}(e_s)
+                &= \sum_{\pi\in\Pi}\sgn(\pi)\phi_\pi^\lambda(e_s)\\
+                &= \sum_{\pi\in\Pi}\sum_{\tau\in C_s}\sgn(\pi\tau)\pi\tau[s]\\
+                &= \sum_{\pi\tau\in S_{A\cup B}}\sgn(\pi\tau)\pi\tau[s],
+            \end{aligned}
+        \end{equation}
+        where $S_{A\cup B}$ stands for the set of all permutations which fix the elements outside $A\cup B$. For a given tableau $s$ and all $\sigma\in S_{A\cup B}$, there exist two adjacent elements $a$ and $b$ in $s$, and a transposition of the two elements denoted $(a b)$, where $(a b)\sigma[s] = \sigma[s]$. If we call $\sigma\sim (a b)\sigma$, then $\sim$ is an equivalence relation where every equivalence class has exactly two elements. Since
+        \begin{equation}
+            \sgn(\sigma)\sigma[s] + \sgn\left((a b)\sigma\right)(a b)\sigma[t] = \sgn(\sigma)\left(\sigma[s]-(a b)\sigma[t]\right) = 0,
+        \end{equation}
+        then the whole expression cancels to 0.
+    \end{proof}
+
+    \begin{theorem}
+        The standard $\lambda$-polytabloids spans $S^\lambda$.
+    \end{theorem}
+
+    \begin{proof}
+        It suffices to show that every polytabloid $e_s$ with no column descents can be represented as a linear combination of polytabloids each of whose corresponding tabloid is greater than $s$ under dominance order of tabloids.
+
+        Take $A=\{a_i, \dotsc, a_p\}$ and $B = \{b_1, \dotsc, b_i\}$ with
+        \begin{equation}
+            b_1<\dotsb <b_i<a_i<\dotsb <a_p.
+        \end{equation}
+        as is illustrated in \ref{fig: straightening}.
+
+        By Lemma \ref{lem: Garnir} and Theorem \ref{thm: poly-commu}, there is
+        \begin{equation}
+            e_s = \mp\sum_{\pi\in(\Pi-\{\id\})}\sgn(\pi)e_{\pi s}.
+        \end{equation}
+        It follows from the dominance lemma that $[\pi s]\unrhd[s]$ for all $\pi\neq \id$.
     \end{proof}
 \end{document}

@@ -56,7 +56,7 @@
 \newcommand{\Type}{\mathop{}\!\symup{Type}}
 \newcommand{\GL}{\mathop{}\!\symup{GL}}
 \newcommand{\sgn}{\mathop{}\!\symup{sgn}}
-\newcommand{\id}{\text{i.d.}}
+\newcommand{\id}{\text{id.}}
 % \newcommand{\dim}{\mathop{}\!\symup{dim}}
 
 % -------------------- Document --------------------
@@ -159,7 +159,7 @@
         Let $G$ be a group that acts on a structure $\mathcal{C}$. For each $x\in C$, $G_x=\{g\in G|\ \phi_g(x) = x\}$ is a subgroup of $G$.
     \end{theorem}
 
-    The subgroup $G_x$ is called the \emph{stabilizer} of $x$.
+    The subgroup $G_x$ is called the \emph{stablizer} of $x$.
 
     \begin{example}
         Let a group $G$ acts on the group structure $\mathcal{G}$ by conjugation. The orbit $\{gxg^{-1}|\ g\in G\}$ of $x\in G$ is called the \emph{conjugacy class} of $x$ and the stabilizer $G_x=\{g\in G|\ gxg^{-1} = x\}$ is called the \emph{centralizer} of $x$ and is denoted by $C_G(x)$.
@@ -593,18 +593,18 @@
         A \emph{composition} of $n$ is a tuple $\lambda=(\lambda_1, \dotsc, \lambda_l)$ of positive integers such that $\lambda_1 + \dotsb + \lambda_l=n$.
     \end{definition}
 
-    The definition of a tableau, a tabloid, a polytabloid and the dominance order can be extended to composition in a natural way. We shall now define the dominance order on tabloids.
+    The definition of a tableau, a tabloid, a polytabloid and the dominance order can be extended to composition in a natural way. These concepts introduced before are in a row manner, i.e., two tableaux are equivalent if and only if they have the same elements in each row, and we can get similar concepts by substituting rows by columns and columns by rows. Denote the column variant of the concepts by a subscript $c$, i.e. $[t]_c$ for a column tabloid. We shall now define the dominance order on column tabloids.
 
-    Suppose that $[t^\lambda]$ is a tabloid with $\lambda$ a composition. For each index $i$ with $1\leq i\leq n$, let $[t^{\lambda_i}]$ be the tabloid formed by all elements no greater than $i$ in $[t]$, and let $\lambda_i$ be the corresponding composition of $i$.
+    Suppose that $[t^\lambda]_c$ is a column tabloid with $\lambda$ a composition. For each index $i$ with $1\leq i\leq n$, let $[t^{\lambda_i}]_c$ be the column tabloid formed by all elements no greater than $i$ in $[t^\lambda]_c$, and let $\lambda_i$ be the corresponding column composition of $i$.
 
     \begin{definition}[Dominance Order on Tabloids]
-        Let $t^\lambda$ and $s^\mu$ be two tabloids with composition sequences $\lambda_i$ and $\mu_i$, respectively. Then $[t^\lambda]$ dominates $[s^\mu]$, denoted by $[t^\lambda]\unrhd [s^\mu]$, if $\lambda_i\unrhd\mu_i$ for all $i$.
+        Let $[t^\lambda]_c$ and $[s^\mu]_c$ be two column tabloids with composition sequences $\lambda_i$ and $\mu_i$, respectively. Then $[t^\lambda]_c$ dominates $[s^\mu]_c$, denoted by $[t^\lambda]_c\unrhd_c [s^\mu]_c$, if $\lambda_i\unrhd_c\mu_i$ for all $i$.
     \end{definition}
 
-    Notice that if $t$ and $s$ are two $\lambda$-tabloid with $\lambda$ being a partition, then $[t]\unrhd [s]$ implies $[t]>[s]$. Just as for partitions, there is a dominance lemma for tabloids.
+    Just as for partitions, there is a dominance lemma for column tabloids.
 
     \begin{lemma}[Dominance Lemma for Tabloids]\label{lem: dom-tab}
-        If $k<l$ and $k$ appears in a lower row than $l$ in $[t]$, then $(k l)[t]\rhd[t]$.
+        If $k<l$ and $k$ appears on the right hand side of $l$ in $[t]$, then $(k l)[t]_c\rhd[t]_c$.
     \end{lemma}
 
     \begin{proof}
@@ -612,11 +612,11 @@
     \end{proof}
 
     \begin{corollary}
-        If $t$ is standard and $\lr<>{[s], e_t}\neq 0$, then $[t]\unrhd [s]$.
+        If $t$ is standard and $\lr<>{[s]_c, (e_t)_c}\neq 0$, then $[t]_c\unrhd_c [s]_c$.
     \end{corollary}
 
     \begin{proof}
-        By the definition of $e_t$, we can assume that $s=\pi t$, where $\pi\in C_t$. Induct on the number of column inversions in $s$, that is, the number of pairs $k<l$ in the same column of $s$ such that $k$ is in a lower row than $l$. By Lemma \ref{lem: dom-tab} we have $(k l)[s]\rhd[s]$, and it is easy to find out that $(k l)[s]$ has fewer inversions than $[s]$. Since $[t]$ has no inversions, then by induction we have $[t]\unrhd[s]$.
+        By the definition of $(e_t)_c$, we can assume that $s=\pi t$, where $\pi\in R_t$ is a row stablizer of $t$. Induct on the number of row inversions in $s$, that is, the number of pairs $k<l$ in the same row of $s$ such that $k$ is on the right hand side of $l$. By Lemma \ref{lem: dom-tab} we have $(k l)[s]_c\rhd_c[s]_c$, and it is easy to find out that $(k l)[s]_c$ has fewer inversions than $[s]_c$. Since $[t]_c$ has no inversions, then by induction we have $[t]_c\unrhd_c[s]_c$.
     \end{proof}
 
     Now it is ready to introduce the \emph{straightening algorithm}, which takes any standard tableau $t$ and writes the associated polytabloids $e_t$ in terms of other polytabloids associated with standard Young tableaux.
@@ -685,6 +685,18 @@
         \begin{equation}
             e_s = \mp\sum_{\pi\in(\Pi-\{\id\})}\sgn(\pi)e_{\pi s}.
         \end{equation}
-        It follows from the dominance lemma that $[\pi s]\unrhd[s]$ for all $\pi\neq \id$.
+        It follows from the dominance lemma (Lemma \ref{lem: dom-tab}) that $[\pi s]_c\rhd_c[s]_c$ for all $\pi\neq \id$, which ends the proof.
     \end{proof}
+
+    Up to now, we have shown that the dimension of $S^\lambda$ equals to the number of standard $\lambda$-tableaux, which can be calculated by \emph{Hook length formula}, stating as follows.
+
+    \begin{theorem}[Hook Length Formula]
+        Suppose $\lambda\vdash n$. Then the number of standard $\lambda$-tableaux
+        \begin{equation}
+            \dim(S^\lambda)=\frac{n!}{\prod_{i, j}h_{i, j}},
+        \end{equation}
+        where $(i, j)$ is the index of an entry in the tableau, i.e., the entry locates in row $i$ and column $j$, and the hook $h_{i, j} = r_i - i + c_j-j + 1$, where $r_i$ (resp., $c_j$) denotes the number of entries in row $i$ (resp., column $j$).
+    \end{theorem}
+
+    We shall omit the prove of the hook length formula, since time is limited.
 \end{document}

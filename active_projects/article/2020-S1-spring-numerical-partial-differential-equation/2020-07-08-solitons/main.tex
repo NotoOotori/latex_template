@@ -98,7 +98,19 @@
 
     \section{Verification for One-Soliton Solution}
 
-    Since it only needs a direct calculatioin of the partial derivatives to verify that one-soliton solution \ref{eqn: one-s} solves the KdV \ref{eqn: KdV} which does not exceed the category of elementry calculus, we shall omit the computions here and check it by the symbolic tool box of MATLAB instead. The following code \ref{mat: q1} will print the sentence
+    We verify that one-soliton solution \ref{eqn: one-s} solves the KdV \ref{eqn: KdV} by direct calculation, and by the symbolic tool box of MATLAB instead.
+
+    The partial derivatives are
+    \begin{equation}
+        \begin{aligned}
+            u_{1x}(x,t)&=-\frac{v^{\frac{3}{2}}\sinh(\frac{1}{2}\sqrt{v}(x_0+vt-x))}{2\cosh^{3}(\frac{1}{2}\sqrt{v}(x_0+vt-x))};\\
+            u_{1t}(x,t)&=\frac{v^{\frac{5}{2}}\sinh(\frac{1}{2}\sqrt{v}(x_0+vt-x))}{2\cosh^{3}(\frac{1}{2}\sqrt{v}(x_0+vt-x))};\\
+            u_{1xxx}(x,t)&=\frac{v^{\frac{5}{2}}\sinh(\frac{1}{2}\sqrt{v}(x_0+vt-x))}{2\cosh^{3}(\frac{1}{2}\sqrt{v}(x_0+vt-x))}-\frac{3v^{\frac{5}{2}}\sinh^{3}(\frac{1}{2}\sqrt{v}(x_0+vt-x))}{2\cosh^{5}(\frac{1}{2}\sqrt{v}(x_0+vt-x))}.
+        \end{aligned}
+    \end{equation}
+    It follows by the identity $\cosh^2 - \sinh^2 = 1$ that $u_{1t} - 6 uu_{1x} + u_{1xxx}=0$.
+
+    The following code \ref{mat: q1} will print the sentence
     \begin{quote}
         ``The one-soliton solution solves the KdV equations."
     \end{quote}
@@ -166,6 +178,13 @@
 
     We use the scheme \ref{eqn: semi-disc} developed in the previous section to obtain an ordinary equation system of $u_1=u(x_{\text{min}}, t), \dotsc, u_N = u(x_{\text{max}}-\Delta x, t)$, where $N = (x_{\text{max}}-x_{\text{min}})/\Delta x$.
 
+    By von Neumann stability analysis for the simplified linear problem and after a very tedious and long derivation, we are led to the stability condition or
+    after we numerically experiment with the scheme, we see that the appropriate time
+    step is the one satisfying the condition\footnote{Hassan, Hany \& Saleh, Hassan. (2013). Fourier Spectral Methods for Solving Some Nonlinear Partial Differential Equations. Int. J. Open Problems Compt. Math.. 6. 144-179. 10.12816/0006177.}
+    \begin{equation}
+        \frac{\Delta t}{\Delta x^3} \leq 0.062.
+    \end{equation}
+
     \section{Numerical Solver and Solutions}
 
     In the funtion \ref{mat: rhs} \matlabinline{rhs}, we discrete the space derivatives and obtain the ordinary function system $u'=f(u)$. Since a periodic boundary condition is assumed, we don't need to derive a special scheme for the points near the boundary. Instead, we can prolongate the unknown function periodically, i.e. $u_{-2}=u_{N+3}$, to get the value we need in the discretization of space derivatives. To apply this idea elegently, we first prolongate the vector of $u$ by adding $p=2$ elements to the both side of the vector periodically. Then we return the object values by slicing the ``fat" vector, which helps us to deal with the whole vector, including the points near the boundary, at one time with very little additional space complexity.
@@ -180,25 +199,57 @@
 
     \matlabinputlisting[caption={solver.m}, label={mat: solver}]{solver.m}
 
+    \ref{fig: qa} shows the result of question a. As we can see, the numerical solution meets with the analytic solution very well as $t$ is small. But when $t$ comes near 0.5, namely the peak goes through our boundary, our numerical solution sucks. Since we have assume a periodic boundary condition, the peak is transported to the left boundary and continues to move from left to right, while it should have been going right continuously. Hence the boundary condition spoils our numerical solution after $t>0.5$. It should be notice that the solution is nearly or exactly free from dispersion.
+
     \begin{figure}[htb]
-        \begin{subfigure}[b]{0.3\textwidth}
+        \begin{subfigure}[b]{0.32\textwidth}
             \centering
-            \includegraphics[width=0.3\textwidth]{qa1.eps}
+            \includegraphics[width=5cm]{qa1.eps}
             \caption{$t=0.4$}
         \end{subfigure}
         \hfill
-        \begin{subfigure}[b]{0.3\textwidth}
+        \begin{subfigure}[b]{0.32\textwidth}
             \centering
-            \includegraphics[width=0.3\textwidth]{qa2.eps}
+            \includegraphics[width=5cm]{qa2.eps}
             \caption{$t=0.5$}
         \end{subfigure}
         \hfill
-        \begin{subfigure}[b]{0.3\textwidth}
+        \begin{subfigure}[b]{0.32\textwidth}
             \centering
-            \includegraphics[width=0.3\textwidth]{qa3.eps}
+            \includegraphics[width=5cm]{qa3.eps}
             \caption{$t=2.0$}
         \end{subfigure}
-        \caption{Discretization Grid and Contour Lines of the Solutions for $N = 21, l = 3.0, b = 0.5, h = 1.0$.}
+        \caption{One-soliton solution and numerical solution at different time $t$ with initial value $u(x, 0) = u_1(x, 0)$.}
         \label{fig: qa}
     \end{figure}
+
+    \ref{fig: qb} shows the numerical solution of KdV \ref{eqn: KdV} with a Gaussian to be the initial value, which is quite different from the previous one. As we can see, there are two notable peaks rolling right with different velocities, and the curve away from the peaks are also not plain, which means that the solution contains multiple solitons.
+
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=10cm]{qb.eps}
+        \caption{Numerical solution at different time $t$ with initial value $u(x, 0) = -8\me^{-x^2}.$}
+        \label{fig: qb}
+    \end{figure}
+
+    \ref{fig: qc} shows the numerical solution of KdV \ref{eqn: KdV} with a two-soliton to be the initial value. Differ to the previous example, there are exactly two peaks rolling right with different velocities. The two peaks preserve their shapes and velocities after they cross.
+
+    \begin{figure}[htb]
+        \centering
+        \includegraphics[width=10cm]{qc.eps}
+        \caption{Numerical solution at different time $t$ with initial value $u(x, 0) = -6/\cosh^2(x).$}
+        \label{fig: qc}
+    \end{figure}
+
+    Since we don't know how to superpose two one-soliton solutions, which definitely cannot be done by an addition or linear combination, we shall omit the question 4.d and 4.e.
+
+    \clearpage
+    \appendix
+
+    \matlabinputlisting[caption={Scirpt for question a.}]{qa.m}
+
+    \matlabinputlisting[caption={Scirpt for question b.}]{qb.m}
+
+    \matlabinputlisting[caption={Scirpt for question c.}]{qc.m}
+
 \end{document}

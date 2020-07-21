@@ -21,3 +21,16 @@ chinese: Use ctexart instead of article for base document style.
 \keywords{}
 
 ## Beamer
+
+## Appendix: submodule
+
+See [this link](https://stackoverflow.com/a/42044361) for reference.
+
+```bash
+git submodule add <url>
+git submodule init
+git submodule update --remote --merge
+```
+
+
+

@@ -1,35 +1,118 @@
 \section{数论选讲}
 
-本部分旨在用Rivoal方法证明$\zeta(3)$是无理数.
+本部分旨在用Rivoal方法证明$\zeta(3)$是无理数. 主要参考资料为\cite{zoudiji2019zeta1}.
+
+\begin{definition}[Riemann zeta函数]
+    Riemann zeta函数$\zeta(s)$当$s$的实部大于1时, 由如下式子定义:
+    \begin{equation}
+        \zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}.
+    \end{equation}
+\end{definition}
+
+\begin{definition}[Legendre多项式]
+    多项式
+    \begin{equation}
+        P_n(x)=\frac{1}{n!}\frac{\diff^n}{\diff x^n}\lr(){x^n(1-x)^n} = \sum_{j=0}^n p_{nj}x^j
+    \end{equation}
+    为整系数多项式, 称为Legendre多项式.
+\end{definition}
 
 \begin{theorem}
-    设$\xi$是实数. 如果存在实函数$f$, 使得对于$j\in \BN$, 存在有理系数多项式$F_i\in \BQ[x]$, 使得
-    \begin{equation}
-        \int_0^1 x^jf(x)\diff x=F_j(\xi)
-    \end{equation}
-    成立, 并且对于无穷多个$n$有
-    \begin{equation}
-        \int_0^1 P_n(x)f(x)\diff x\neq 0,
-    \end{equation}
-    其中$P_n$为Legendre多项式
-    \begin{equation}
-        P_n(x)=\frac{1}{n!}\frac{\diff^n}{\diff x^n}\lr(){x^n(1-x)^n},
-    \end{equation}
-    则$\xi$是无理数.
+    $\zeta(3)$是无理数.
 \end{theorem}
 
 \begin{proof}
-    考虑Legendre多项式
+    取辅助函数
     \begin{equation}
-        P_n(x)=\frac{1}{n!}\frac{\diff^n}{\diff x^n}\lr(){x^n(1-x)^n} = \sum_{j=0}^n p_{nj}x^j,
+        f_n(x) = \int_0^1 \frac{P_n(y)}{1-xy}\log(xy)\diff y.
     \end{equation}
-    有每个$p_{nj}\in\BZ$, 并且积分
+    则积分$\int_0^1 P_n(x)f_n(x)\diff x$是
     \begin{equation}
-        \int_0^1 P_n(x)f(x)\diff x=\sum_{j=0}^np_{nj}F_j(\xi).
+        \iint_{[0, 1]^2}\frac{x^iy^j}{1-xy}\log(xy)\diff x\diff y,\quad 0\leq i, j\leq n
     \end{equation}
-    因此若$\xi$是有理数, 则对每个$n$上述积分都是有理数. 设
+    的整系数线性组合. 由于
     \begin{equation}
-        \int_0^1 P_n(x)f(x)\diff x = \frac{A_n}{B_n},
+        \frac{1}{1-xy}=\sum_{k=0}^{\infty}x^ky^k,
     \end{equation}
-    其中$A_n, B_n$为互素整数.
+    我们有
+    \begin{align}
+        &{\phantom{{}={}}}\iint_{[0, 1]^2}\frac{x^iy^j}{1-xy}\log(xy)\diff x\diff y\label{eqn: Fseries}\\
+        &= \sum_{k=0}^\infty \iint_{[0, 1]^2} x^{i+k}y^{j+k}\log(xy)\diff x\diff y\\
+        &= \sum_{k=0}^\infty\lr(){\int_0^1 x^{i+k}\log(x)\diff x\int_0^1 y^{j+k}\diff y + \int_0^1 x^{i+k}\diff x\int_0^1 y^{j+k}\log(y)\diff y}\\
+        &= -\sum_{k=0}^\infty\lr(){\frac{1}{(i+k+1)^2(j+k+1)}+\frac{1}{(i+k+1)(j+k+1)^2}}.
+    \end{align}
+    注意到当$i\neq j$时有
+    \begin{equation}
+        \frac{1}{(i+k+1)^2(j+k+1)}+\frac{1}{(i+k+1)(j+k+1)^2} = \frac{1}{j-i}\lr(){\frac{1}{(i+k+1)^2}-\frac{1}{(j+k+1)^2}},
+    \end{equation}
+    而当$i=j$时有\ref{eqn: Fseries}等于
+    \begin{equation}
+        -2\lr(){\zeta(3)-\lr(){1+\frac{1}{2^3}+\dotsb + \frac{1}{i^3}}}.
+    \end{equation}
+    因此, 如果$\zeta(3)=a\divslash b$是有理数, 则有
+    \begin{equation}
+        \int_0^1P_n(x)f_n(x)\diff x = \frac{A_n}{bd_n^3},
+    \end{equation}
+    其中$d_n$为前$n$个正整数的最小公倍数.
+
+    另一方面, 利用分部积分, 我们可以得到
+    \begin{align}
+        \int_0^1 P_n(x)f_n(x)\diff x
+        &= \iint_{[0, 1]^2}\frac{P_n(x)P_n(y)}{1-xy}\log(xy)\diff x\diff y\label{eqn: Fint}\\
+        &= \iiint_{[0, 1]^3}\frac{P_n(x)P_n(y)}{1-(1-xy)z}\diff x\diff y\diff z\\
+        &= (-1)^n\iiint_{[0, 1]^3}\frac{x^n(1-x)^nP_n(y)y^nz^n}{(1-(1-xy)z)^{n+1}}\diff x\diff y\diff z.
+    \end{align}
+    做变量代换
+    \begin{equation}
+        w = \frac{1-z}{1-(1-xy)z},
+    \end{equation}
+    得\ref{eqn: Fint}等于
+    \begin{equation}
+        (-1)^{n+1}\iiint_{[0, 1]^3}\frac{(1-x)^nP_n(y)(1-w)^n}{1-(1-xy)w}\diff x\diff y\diff w.
+    \end{equation}
+    再对$y$进行$n$次分部积分, 可得\ref{eqn: Fint}等于
+    \begin{equation}
+        -\iiint_{[0, 1]^3}\lr(){\frac{x(1-x)y(1-y)w(1-w)}{1-(1-xy)w}}^n\frac{\diff x\diff y\diff w}{1-(1-xy)w}\neq 0.
+    \end{equation}
+    因为$d_n <3^n$, 且
+    \begin{equation}
+        \sup_{(x, y, w)\in [0, 1]^3}\frac{x(1-x)y(1-y)w(1-w)}{1-(1-xy)w} = (\sqrt{2}-1)^4,
+    \end{equation}
+    于是有
+    \begin{equation}
+        1\leq |A_n|=\lr\vert\vert{bd_n\int_0^1 P_n(x)f_n(x)\diff x}\leq\lr\vert\vert{b\lr(){27(\sqrt{2}-1)^4}^n\iiint_{[0, 1]^3}\frac{\diff x\diff y\diff w}{1-(1-xy)w}}\to 0,
+    \end{equation}
+    矛盾! 因此$\zeta(3)$是无理数.
 \end{proof}
+
+% \begin{theorem}
+%     设$\xi$是实数. 如果存在实函数$f$, 使得对于$j\in \BN$, 存在有理系数多项式$F_i\in \BQ[x]$, 使得
+%     \begin{equation}
+%         \int_0^1 x^jf(x)\diff x=F_j(\xi)
+%     \end{equation}
+%     成立, 并且对于无穷多个$n$有
+%     \begin{equation}
+%         \int_0^1 P_n(x)f(x)\diff x\neq 0,
+%     \end{equation}
+%     其中$P_n$为Legendre多项式
+%     \begin{equation}
+%         P_n(x)=\frac{1}{n!}\frac{\diff^n}{\diff x^n}\lr(){x^n(1-x)^n},
+%     \end{equation}
+%     则$\xi$是无理数.
+% \end{theorem}
+
+% \begin{proof}
+%     考虑Legendre多项式
+%     \begin{equation}
+%         P_n(x)=\frac{1}{n!}\frac{\diff^n}{\diff x^n}\lr(){x^n(1-x)^n} = \sum_{j=0}^n p_{nj}x^j,
+%     \end{equation}
+%     有每个$p_{nj}\in\BZ$, 并且积分
+%     \begin{equation}
+%         \int_0^1 P_n(x)f(x)\diff x=\sum_{j=0}^np_{nj}F_j(\xi).
+%     \end{equation}
+%     因此若$\xi$是有理数, 则对每个$n$上述积分都是有理数. 设
+%     \begin{equation}
+%         \int_0^1 P_n(x)f(x)\diff x = \frac{A_n}{B_n},
+%     \end{equation}
+%     其中$A_n, B_n$为互素整数.
+% \end{proof}

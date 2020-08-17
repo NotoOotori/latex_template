@@ -1,0 +1,24 @@
+\section{实分析选讲}
+
+这一节我们的主要目的是定义广义函数及广义导数, 并计算Dirac-$\delta$函数的广义导数.
+
+令$\symscr{D}(\symbb{R}^n)$表示从$\symbb{R}^n$映到$\symbb{R}$的紧支集光滑函数全体构成的集合. 定义一个$\symbb{R}^n$上的广义函数为线性泛函$T\colon \symscr{D}(\symbb{R}^n)\to \symbb{R}$, 并满足性质: 对于任意的紧集$K$, 存在常数$C(K)$与整数$m(K)\geq 0$使得
+\begin{equation}
+    |T(\phi)|\leq C(K)\sup_{|\alpha|\leq m(K), x\in K}|\partial^\alpha\phi(x)|
+\end{equation}
+对于一切满足$\supp\phi\subseteq K$的$\phi\in\symscr{D}(\symbb{R}^n)$都成立\cite[Sect. 6.3, 第316页]{ciarlet2013linear}.
+
+设$T$为$\symbb{R}^n$上的广义函数, $\alpha$为满足$|\alpha|\geq 1$的多重指标, 则广义导数$\partial^\alpha T$定义为
+\begin{equation}
+    \partial^\alpha T\colon \phi\mapsto (-1)^{|\alpha|}T(\partial^\alpha\phi).
+\end{equation}
+容易验证$\partial^\alpha T$也为广义函数\cite[Sect. 6.3, 第318页]{ciarlet2013linear}.
+
+Dirac-$\delta$函数为$\symbb{R}$上的广义函数, 定义为
+\begin{equation}
+    \delta\colon \phi\mapsto \phi(0).
+\end{equation}
+根据定义, Dirac-$\delta$函数的广义导数$\delta'$即为
+\begin{equation}
+    \delta'\colon \phi\mapsto -\phi'(0).
+\end{equation}

@@ -1,0 +1,64 @@
+\section{向量场的基本知识和Maxwell方程组的导出}
+
+散度和旋度这两个概念在物理中发挥了重要作用. 这一节中我们将研究散度和旋度的基本性质, 给出几个由散度旋度表示的方程组的例子, 并叙述有关的一些结论.
+
+\begin{definition}
+    设$u\colon (x, y, z)\in\BR^3\to \left(u_1(x, y, z), u_2(x, y, z), u_3(x, y, z)\right)\in\BR^3$二阶连续可微, 定义$u$的散度
+    \begin{equation}
+        \divv u = \frac{\partial u_1}{\partial x}+\frac{\partial u_2}{\partial y}+ \frac{\partial u_3}{\partial z}\in C^1(\BR^3, \BR),
+    \end{equation}
+    定义$u$的旋度
+    \begin{equation}
+        \curl u = \lr(){\pdiff{u_3}{y} - \pdiff{u_2}{z}, \pdiff{u_1}{z} - \pdiff{u_3}{x}, \pdiff{u_2}{x} - \pdiff{u_1}{y}}\in C^1(\BR^3, \BR^3).
+    \end{equation}
+\end{definition}
+\begin{proposition}\label{prop: curl}
+    设$f\in C^2(\BR, \BR)$, 则有$\curl\nabla f = 0$成立.
+\end{proposition}
+\begin{example}
+    设$u\colon \BR^3\to\BR^3$有表达式$u(x, y, z) = (yz, xz, 2xy)$,
+    则散度$\divv u = 0$,
+    旋度$\curl u = (x, -y, 0)$.
+
+    根据命题\ref{prop: curl}, 不存在$\phi\colon \BR^3\to\BR$使得$u=\nabla \phi$; 而很容易验证, 向量场
+    \begin{equation}
+        \psi(x, y, z) = \lr(){\frac12 xz^2, -\frac12 yz^2+x^2y, 0}
+    \end{equation}
+    满足$\curl \psi = u$.
+\end{example}
+
+接下来我们看几个与散度旋度有关的方程组.
+
+\begin{example}[Maxwell方程组\cite{wikipedia2020maxwell}]
+    设$E$表示电场, 为向量场, 设$B$表示磁场, 为伪向量场(pseudovector field), 它们都与时间和空间变量相关. 设$\rho$表示总电荷密度, $J$表示总电流密度, 它们构成源. 设$\varepsilon_0$表示电常数, $\mu_0$表示磁常数. 所有的物理量单位均符合国际单位制. 则Maxwell方程组为
+    \begin{align}
+        \divv E &= \frac{\rho}{\varepsilon_0};\\
+        \divv B &= 0;\\
+        \curl E &= -\pdiff{B}{t};\\
+        \curl B &= \mu_0\left(J+\varepsilon_0 \pdiff{E}{t}\right).
+    \end{align}
+\end{example}
+
+接下来的两个方程是流体动力学中的.
+
+\begin{example}[Euler方程{{\cite[§54, 第412页]{liang1995lixuexia}}}]
+    假设流体没有粘滞. 设流体流速为向量场$v$, 流体压强为数量场$p$, 流体受到的体力密度为向量场$f$, 流体密度为$\rho$, 则流体的动力学方程为
+    \begin{equation}
+        \rho\pdiff{v}{t}-\rho v\times \curl v + \rho\nabla\lr(){\frac{1}{2}v^2}+\nabla p = f,
+    \end{equation}
+    称为Euler方程. 再配上连续性方程和物态方程, 即构成流体动力学的完全方程组.
+\end{example}
+
+在Euler方程中补充粘滞项, 即构成了Navier-Stokes方程.
+
+\begin{example}[Navier-Stokes方程{{\cite[§56, 第426页]{liang1995lixuexia}}}]
+    假设流体中存在粘滞. 假定粘滞协强张量为
+    \begin{equation}
+        p_{ik} = \theta(\divv v)\delta_{ik}+2\eta\dot{e}_{ik},
+    \end{equation}
+    其中$\theta$是第二粘滞系数, $\delta_{ik}$是Kronecker记号, $e_{ik}$是协变速率, 由速率$v$决定. 则粘滞流体的动力学方程为
+    \begin{equation}
+        \rho\pdiff{v}{t}-\rho v\times (\curl v) + \rho\nabla\lr(){\frac{1}{2}v^2} = f-\nabla p+\eta \nabla^2v+(\eta+\theta)\nabla (\divv v),
+    \end{equation}
+    称为Navier-Stokes方程.
+\end{example}

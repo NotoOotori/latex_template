@@ -1,0 +1,35 @@
+\section{数论选讲}
+
+本部分旨在用Rivoal方法证明$\zeta(3)$是无理数.
+
+\begin{theorem}
+    设$\xi$是实数. 如果存在实函数$f$, 使得对于$j\in \BN$, 存在有理系数多项式$F_i\in \BQ[x]$, 使得
+    \begin{equation}
+        \int_0^1 x^jf(x)\diff x=F_j(\xi)
+    \end{equation}
+    成立, 并且对于无穷多个$n$有
+    \begin{equation}
+        \int_0^1 P_n(x)f(x)\diff x\neq 0,
+    \end{equation}
+    其中$P_n$为Legendre多项式
+    \begin{equation}
+        P_n(x)=\frac{1}{n!}\frac{\diff^n}{\diff x^n}\lr(){x^n(1-x)^n},
+    \end{equation}
+    则$\xi$是无理数.
+\end{theorem}
+
+\begin{proof}
+    考虑Legendre多项式
+    \begin{equation}
+        P_n(x)=\frac{1}{n!}\frac{\diff^n}{\diff x^n}\lr(){x^n(1-x)^n} = \sum_{j=0}^n p_{nj}x^j,
+    \end{equation}
+    有每个$p_{nj}\in\BZ$, 并且积分
+    \begin{equation}
+        \int_0^1 P_n(x)f(x)\diff x=\sum_{j=0}^np_{nj}F_j(\xi).
+    \end{equation}
+    因此若$\xi$是有理数, 则对每个$n$上述积分都是有理数. 设
+    \begin{equation}
+        \int_0^1 P_n(x)f(x)\diff x = \frac{A_n}{B_n},
+    \end{equation}
+    其中$A_n, B_n$为互素整数.
+\end{proof}

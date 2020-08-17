@@ -1,0 +1,365 @@
+% !Mode::"TeX:UTF-8"
+% Options: lineno watermark biblatex pgfplots
+
+% -------------------- Identification --------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packages}[2020/04/30]
+
+% -------------------- Preliminary Declarations --------------------
+
+\newif\ifctex@loaded
+\@ifpackageloaded{ctex}{\ctex@loadedtrue}{\ctex@loadedfalse}
+
+% -------------------- Handle Options --------------------
+
+\newif\ifbiblatex@option
+\DeclareOption{biblatex}{\biblatex@optiontrue}
+
+\newif\iflineno@option
+\DeclareOption{lineno}{\lineno@optiontrue}
+
+\newif\ifwatermark@option
+\DeclareOption{watermark}{\watermark@optiontrue}
+
+\newif\ifpgfplots@option
+\DeclareOption{pgfplots}{\pgfplots@optiontrue}
+
+\ProcessOptions\relax
+
+% -------------------- More Declarations --------------------
+
+% Preload useful packages
+
+\RequirePackage{enumerate}
+\RequirePackage{etoolbox} % hooks \AfterEndPreamble
+\RequirePackage{fontspec} % fonts.
+\RequirePackage{subcaption} % subcaption and subfigure.
+\RequirePackage[dvipsnames]{xcolor} % color declarations.
+
+%% `fancyhdr': page style
+
+\newif\iffancyhdr@loaded
+\@ifpackageloaded{fancyhdr}{\fancyhdr@loadedtrue}{\fancyhdr@loadedfalse}
+
+\iffancyhdr@loaded\else
+    \RequirePackage{fancyhdr}
+    \RequirePackage{lastpage}
+
+    \pagestyle{fancy}
+    \pagenumbering{arabic}
+
+    \newcommand{\PageHead}[2]{\ifctex@loaded{第#1页\ 共\ #2\ 页}\else{Page #1\ of #2}\fi}
+
+    \renewcommand{\headrulewidth}{0.4pt}
+    \setlength{\headheight}{15pt}
+    \fancyhead[L]{}
+    \fancyhead[C]{}
+    \fancyhead[R]{\footnotesize{\PageHead{\thepage}{\pageref{LastPage}}}}
+    \fancyfoot[L, C]{}
+    \fancyfoot[C]{}
+    \fancyfoot[R]{}
+\fi
+
+%% `hyperref'
+
+\RequirePackage{hyperref}
+% TODO: color
+\hypersetup{
+    linktoc             =   all,
+    colorlinks          =   true,
+    linkcolor           =   cyan,
+    anchorcolor         =   black,
+    citecolor           =   green,
+    filecolor           =   cyan,
+    menucolor           =   red,
+    runcolor            =   filecolor,
+    urlcolor            =   magenta,
+    bookmarksnumbered   =   true,
+    pdfstartview        =   FitH,
+    pdfpagelayout       =   OneColumn
+}
+
+\AtBeginDocument{\hypersetup{
+	pdftitle           	=   {\@title},
+	pdfauthor          	=   {\@author},
+	pdfsubject         	=   {\ifx\@subject\undefined{}\else{\@subject}\fi},
+	pdfcreator			=	{Visual Studio Code},
+	pdfproducer			=	{XeLaTeX with documentclass assignment},
+	pdfkeywords        	=   {\ifx\@keywords\undefined{}\else{\@keywords}\fi},
+}}
+
+%% `varioref': cross reference
+
+\RequirePackage{varioref}
+
+\newcommand{\LstlistingLabel}[1]{Code #1}
+\newcommand{\EquationLabel}[1]{Equation (#1)}
+\newcommand{\FigureLabel}[1]{Figure #1}
+\newcommand{\TableLabel}[1]{Table #1}
+\newcommand{\ProblemLabel}[1]{Problem #1}
+
+\ifctex@loaded
+    \renewcommand{\LstlistingLabel}[1]{代码#1}
+    \renewcommand{\EquationLabel}[1]{式(#1)}
+    \renewcommand{\FigureLabel}[1]{图#1}
+    \renewcommand{\TableLabel}[1]{表#1}
+    \renewcommand{\ProblemLabel}[1]{问题#1}
+\fi
+
+\labelformat{lstlisting}{\LstlistingLabel{#1}}
+\labelformat{equation}{\EquationLabel{#1}}
+\labelformat{figure}{\FigureLabel{#1}}
+\labelformat{table}{\TableLabel{#1}}
+\labelformat{problem}{\ProblemLabel{#1}}
+
+% Language support
+
+%% Package: ctex
+
+\ifctex@loaded
+    \setCJKfamilyfont{simkai}{KaiTi}
+    \newcommand{\simkai}{\CJKfamily{simkai}}
+
+    \setCJKfamilyfont{simhei}{SimHei}
+    \newcommand{\simhei}{\CJKfamily{simhei}}
+
+    \setCJKfamilyfont{fzstk}{FZShuTi} % 方正舒体
+    \newcommand{\fzstk}{\CJKfamily{fzstk}}
+
+    \AtBeginDocument{\renewcommand{\itshape}{\simkai}} % TODO: 观察是否引起问题
+    \AtBeginDocument{\renewcommand{\bfseries}{\simhei}} % TODO: 观察是否引起问题
+\fi
+
+% Math
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{commath} % abs, norm
+% \RequirePackage{mathtools} % \xleftrightarrow.
+
+%% `unicode-math': math font
+
+\RequirePackage[math-style=TeX, bold-style=TeX, partial=upright]{unicode-math}
+\setmainfont[Ligatures=TeX]{XITS}
+\setmathfont{XITS Math}
+\setmathfont[range={\mathcal,\mathbfcal}, StylisticSet=1]{XITS Math} % Script
+\setmathfont[range=\mathup/{num}]{XITS Math}
+\setmathfont[range=\mathit/{greek,Greek,latin,Latin}]{XITS Math}
+\setmathfont[range=\mathup/{greek,Greek,latin,Latin}]{XITS Math}
+\setmathfont[range={"2212,"002B,"003D,"0028,"0029,"005B,
+"005D,"221A,"2211,"2248,"222B,"007C,"2026,"2202,"00D7,"0302,
+"2261,"0025,"22C5,"00B1,"2194,"21D4}]{XITS Math}
+
+\newcommand*{\diff}{\mathop{}\!\symup{d}}
+\newcommand*{\matr}[1]{\symsfit{#1}}
+\newcommand*{\vect}[1]{\symbf{#1}}
+
+%% `ntheorem': theorem style
+
+\newif\ifntheorem@loaded
+\@ifpackageloaded{ntheorem}{\ntheorem@loadedtrue}{\ntheorem@loadedfalse}
+
+\ifntheorem@loaded\else
+    \RequirePackage[thmmarks, amsmath, thref, framed]{ntheorem} % 定理格式.
+    \RequirePackage{framed}
+    \RequirePackage[ntheorem]{mdframed} % for \newframedtheorem
+
+    \newcommand{\ProblemLang}{Problem}
+    \newcommand{\NoteLang}{Note}
+    \newcommand{\ProofLang}{Proof}
+    \newcommand{\SolutionLang}{Solution}
+
+    \ifctex@loaded
+        \renewcommand{\ProblemLang}{问题}
+        \renewcommand{\NoteLang}{注}
+        \renewcommand{\ProofLang}{证明}
+        \renewcommand{\SolutionLang}{解}
+    \fi
+
+    %%% Problem
+    \theoremstyle{plain}
+    \theoremheaderfont{\upshape\bfseries}
+    \theorembodyfont{\upshape}
+    \newmdtheoremenv[outerlinewidth=2]{problem}{\ProblemLang}
+    %%% Note
+    \theoremstyle{plain}
+    \theoremheaderfont{\itshape}
+    \theorembodyfont{\itshape}
+    \newtheorem{note}{\NoteLang}
+    %%% Proof
+    \theoremstyle{nonumberplain}
+    \theoremheaderfont{\itshape}
+    \theorembodyfont{\upshape}
+    \theoremseparator{.}
+    \theoremsymbol{\ensuremath{\square}}
+    \newtheorem{proof}{\ProofLang}
+    %%% Solution
+    \theoremsymbol{\ensuremath{\blacksquare}}
+    \newtheorem{solution}{\SolutionLang}
+\fi
+
+% Float
+
+\RequirePackage{float} % [H].
+\RequirePackage{booktabs}
+
+%% `caption'
+
+\RequirePackage{caption}
+
+\captionsetup{
+    margin    =   6pt,
+    font      =   small,
+    labelfont =   bf
+}
+
+%% `graphicx'
+
+\RequirePackage{graphicx}
+
+\graphicspath{{resources/}}
+
+%% `tikz'
+
+%%% `pgfplots' and `pgfplotstable'
+
+\ifpgfplots@option
+    \RequirePackage{pgfplots}
+    \RequirePackage{pgfplotstable} % Need to load before xwatermark
+
+    \usepgfplotslibrary{external}
+    \tikzsetexternalprefix{tikz/}
+    \tikzexternalize
+
+    \pgfplotsset{width=7cm, compat=1.16}
+
+    \pgfplotstableset{
+        every head row/.style={before row=\toprule, after row=\midrule},
+        every last row/.style={after row=\bottomrule}
+    }
+\fi
+
+% Citation
+
+\ifbiblatex@option
+    % \RequirePackage[british]{babel} % Need to load before ntheorem
+    % \RequirePackage{csquotes} % Need to load after lineno
+    % \RequirePackage{xpatch}
+
+    \RequirePackage[backend=biber, citestyle=numeric-comp, bibstyle=numeric]{biblatex}
+    \addbibresource{bibliography.bib}
+\fi
+
+% `lineno': line numbers
+
+\iflineno@option
+    \RequirePackage[mathlines, edtable]{lineno} % Need to load before csquotes
+
+    \renewcommand{\linenumberfont}{\normalfont\scriptsize\sffamily}
+
+    \let\oldtable\table
+    \let\oldendtable\endtable
+    \renewenvironment{table}
+        {\par\nolinenumbers\oldtable}
+        {\oldendtable\endnolinenumbers\par}
+
+    \linenumbers
+
+    \let\oldmaketitle\maketitle
+    \renewcommand{\maketitle}{\nolinenumbers\oldmaketitle\linenumbers}
+
+    \let\oldtableofcontents\tableofcontents
+    \renewcommand{\tableofcontents}{\nolinenumbers\oldtableofcontents\linenumbers}
+\fi
+
+% `listings'
+
+\RequirePackage{listings}
+\RequirePackage{letltxmacro} % \let
+\RequirePackage[numbered, framed]{matlab-prettifier}
+% \RequirePackage[T1]{fontenc}
+
+%% Title
+
+\newcommand{\LstlistingLang}{Code}
+\ifctex@loaded
+    \renewcommand{\LstlistingLang}{代码}
+\fi
+
+\renewcommand\lstlistingname{\LstlistingLang}
+% \renewcommand\lstlistlistingname{\LstlistingLang} % We don't use the list of listings
+
+\lstset{
+    breaklines=true,
+    backgroundcolor=\color{lightgray},
+    basicstyle=\scriptsize,
+    inputpath=resources/,
+    numbers=left,
+    numberstyle={\color{black!33}\scriptsize\sffamily},
+    xleftmargin=2em,
+    xrightmargin=2em
+}
+
+%% Lstinline with color box
+
+\LetLtxMacro{\oldlstinline}{\lstinline}
+\renewcommand{\lstinline}[2][]{\colorbox{lightgray}{\oldlstinline[#1]{#2}}}
+
+%% Remove line numbers from lineno
+
+\iflineno@option
+    \let\oldlstinputlisting\lstinputlisting
+    \renewcommand{\lstinputlisting}[2][\empty]{
+        \par\nolinenumbers\oldlstinputlisting[#1]{#2}\linenumbers\par
+    }
+
+    \let\oldlstlisting\lstlisting
+    \let\oldendlstlisting\endlstlisting
+    \renewenvironment{lstlisting}
+        {\par\nolinenumbers\oldlstlisting}
+        {\oldendlstlisting\endnolinenumbers\par}
+\fi
+
+%% MATLAB presets
+
+\newcommand{\matlabinline}[1]{
+    \lstinline[style=MATLAB-editor, basicstyle=\ttfamily]{#1}
+}
+\newcommand{\matlabinputlisting}[2][]{ % #1: caption or label
+    \lstinputlisting[
+        style=MATLAB-editor,
+        basicstyle=\ttfamily\scriptsize,
+        #1
+    ]{#2}
+}
+
+% `xwatermark'
+
+\ifwatermark@option
+    \RequirePackage{tikz}
+    \RequirePackage[printwatermark]{xwatermark}
+
+    \newcommand{\WatermarkStyle}{\itshape\sffamily}
+
+    \ifctex@loaded
+        \renewcommand{\WatermarkStyle}{\fzstk}
+    \fi
+
+    \AtBeginDocument{
+        \newsavebox\mybox
+        \savebox\mybox{\tikz[color=cyan, opacity=0.2]\node{\WatermarkStyle\ifx\@subject\undefined{\@title}\else{\@subject}\fi};}
+        \newwatermark*[
+            fontfamily=lmr,
+            allpages,
+            angle=45,
+            scale=6,
+            xpos=-20,
+            ypos=15
+        ]{\usebox\mybox}
+    }
+
+    \AfterEndPreamble{\linenumbers}
+\fi
+
+\endinput

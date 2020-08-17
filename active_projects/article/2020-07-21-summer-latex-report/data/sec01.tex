@@ -1,0 +1,80 @@
+\section{复分析选讲}
+
+在研究复平面中单位开圆盘的双全纯自同构群的时候有一个很重要的Schwarz引理,
+
+\begin{lemma}[Schwarz引理{{\cite[五.§2.3, 第191页]{zhong2013fu}}}]\label{lem: Sch}
+    如果函数$f(z)$在单位圆$|z|<1$内解析, 并且满足条件
+    \begin{equation}
+        f(0)=0\quad\text{与}\quad |f(z)|<1\quad (|z|<1),
+    \end{equation}
+    则在单位圆$|z|<1$内恒有
+    \begin{equation}\label{eqn: Sch1}
+        |f(z)|\leq |z|
+    \end{equation}
+    与
+    \begin{equation}\label{eqn: Sch2}
+        |f'(0)|\leq 1.
+    \end{equation}
+    如果\ref{eqn: Sch2}等号成立, 或在圆$|z|<1$内一点$z_0\neq 0$处\ref{eqn: Sch1}等号成立, 则(当且仅当)
+    \begin{equation}
+        f(z)=\me^{\mi\alpha}z\quad (|z|<1),
+    \end{equation}
+    其中$\alpha$为一实常数.
+\end{lemma}
+
+在引理\ref{lem: Sch}的证明过程中, 需要用到一个辅助函数$g$
+\begin{equation}
+    g(z) =
+    \begin{cases}
+        f(z)\divslash z, &z\neq 0,\\
+        \lim_{z\to 0} f(z)\divslash z, &z=0,
+    \end{cases}
+\end{equation}
+其解析性是证明的关键. 本部分我们将致力于证明这一事实.
+
+\begin{restatable*}{theorem}{thmca}
+    如果函数$f(z)$在单位圆$|z|<1$内解析, 并且满足条件
+    \begin{equation}
+        f(0)=0\quad\text{与}\quad |f(z)|<1\quad (|z|<1).
+    \end{equation}
+    设有函数$g$满足
+    \begin{equation}
+        g(z) =
+        \begin{cases}
+            f(z)\divslash z, &z\neq 0,\\
+            \lim_{z\to 0} f(z)\divslash z, &z=0,
+        \end{cases}
+    \end{equation}
+    则$g(z)$也在单位圆$|z|<1$内解析.
+\end{restatable*}
+
+为此我们需要一点关于奇点分析的工具, 即为Laurent展开.
+
+\begin{theorem}[
+    Laurent引理{{\cite[定理5.2, 第181页]{zhong2013fu}}}]\label{lem: Lau}
+    在圆环$H\colon r<|z-a|<R\ (r\geq 0, R\leq +\infty)$内解析的函数$f(z)$必可展成双边幂级数
+    \begin{equation}
+        f(z) = \sum_{n=-\infty}^{\infty}c_n(z-a)^n,
+    \end{equation}
+    其中
+    \begin{equation}
+        c_n = \frac{1}{2\pi \mi}\int_{\Gamma}\frac{f(\zeta)}{(\zeta-a)^{n+1}}\diff\zeta\quad (n=0, \pm 1, \dotsc),
+    \end{equation}
+    $\Gamma$为圆周$\zeta-a=\rho\ (r<\rho<R)$, 并且展式是唯一的, 即$f(z)$及圆环$H$唯一决定了系数$c_n$.
+\end{theorem}
+
+现在我们就可以证明本部分中的主要结论了.
+
+\thmca
+
+\begin{proof}
+    设$f(z)$在圆环$H\colon 0<|z|<1$中有Laurent展开
+    \begin{equation}
+        f(z) = \sum_{n=1}^{\infty}c_nz^n,
+    \end{equation}
+    则由定理\ref{lem: Lau}知$f(z)\divslash z$在圆环$H$中有Laurent展开
+    \begin{equation}
+        \frac{f(z)}{z} = \sum_{n=0}^{\infty}c_{n+1}z^n,
+    \end{equation}
+    没有主要部分, 故0是$f(z)\divslash z$的可去奇点. 故$g(z)$在单位圆$|z|<1$内解析.
+\end{proof}

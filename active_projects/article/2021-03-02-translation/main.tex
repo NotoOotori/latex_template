@@ -1,0 +1,68 @@
+% -------------------- Packages --------------------
+
+\documentclass[a4paper, oneside]{ctexbook}
+\usepackage[biblatex]{packages}[2019/11/14]
+
+% -------------------- Settings --------------------
+
+% Title
+
+\title{\LaTeX 作业模板}
+\author{陈旭阳}
+\date{\today}
+
+% ntheorem
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\upshape\bfseries}
+\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremsymbol{}
+\newtheorem{definition}{定义}
+
+\theoremstyle{plain}
+\theoremheaderfont{\upshape\bfseries}
+\theorembodyfont{\itshape}
+\theoremseparator{.}
+\theoremsymbol{}
+\newtheorem{proposition}{命题}[section]
+
+\theoremstyle{plain}
+\theoremheaderfont{\upshape\bfseries}
+\theorembodyfont{\itshape}
+\theoremseparator{.}
+\theoremsymbol{}
+\newtheorem{corollary}[proposition]{推论}
+
+% -------------------- New commands --------------------
+
+\newcommand{\ideal}[1]{\mathfrak{#1}}
+\newcommand{\An}{\symup{A}^n}
+\renewcommand{\AA}[1]{\symup{A}^{#1}}
+\newcommand{\Pn}{\symup{P}^n}
+\newcommand{\PP}[1]{\symup{P}^{#1}}
+\newcommand{\lr}[3]{\left#1#3\right#2}
+
+% -------------------- Document --------------------
+
+\begin{document}
+    \maketitle
+
+    \frontmatter
+
+    \chapter{前言}
+
+    \input{data/preface.tex}
+
+    \chapter{介绍}
+
+    \input{data/introduction.tex}
+
+    \mainmatter
+    \renewcommand{\thechapter}{\Roman{chapter}}
+    \renewcommand{\thesection}{\arabic{section}}
+    \chapter{簇}
+
+    \input{data/chap01.tex}
+
+\end{document}

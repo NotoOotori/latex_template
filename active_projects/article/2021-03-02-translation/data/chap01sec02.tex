@@ -1,0 +1,155 @@
+为了定义射影簇, 我们将定义仿射簇的方法运用在射影空间中.
+
+设$k$是一个固定的代数闭域. 定义$k$上的\emph{$n$-射影空间}为$k$中的$n+1$非零元组$(a_0, \dotsc, a_n)$的等价类, 其中等价关系由$(a_0, \dotsc, a_n)\sim (\lambda a_0, \dotsc, \lambda a_n)$生成, 这里$\lambda\in k, \lambda\neq 0$, 记$k$上的$n$-射影空间为$\Pn_k$, 或者简记为$\Pn$. 另一种定义方法是说$\Pn$为集合$\symup{A}^{n+1} - \{(0, \dotsc, 0)\}$的商, 其中两个点仅当在同一条过原点的直线上视为等价.
+
+$\Pn$中间的一个元素称为一个点. 如果$P$是一个点, 那么点$P$的等价类中的任意元素$(a_0, \dotsc, a_n)$被称为$P$的\emph{一组齐次坐标}.
+
+设$S$为多项式环$k[x_0, \dotsc, x_n]$. 我们想要把它看成一个分次环, 因此我们要介绍分次环这个概念.
+
+如果一个环$S$作为Abelian群有直和分解$S = \bigoplus_{d\geq 0}S_d$, 满足对于任意的$d, e\geq 0$, 都有$S_d\cdot S_e\subseteq S_{d+e}$成立. $S_d$中的元素被称为\emph{$d$次齐次元}. 于是每个$S$中的元素都可以唯一写成齐次元的有限和. 环$S$的一个理想$\ideal{a}$被称为\emph{齐次理想}仅当$\ideal{a} = \bigoplus_{d\geq 0}(\ideal{a}\cap S_d)$. 我们需要一些关于齐次理想的基本事实. 一个理想是齐次的当且仅当它可以由齐次元素生成. 齐次理想的和, 乘积, 交以及根基依然是齐次理想. 为了验证一个齐次理想是素理想, 只需要说明对于两个\emph{齐次}元素$f, g$, 只要$fg\in \ideal{a}$就有$f\in \ideal{a}$或者$g\in \ideal{a}$成立.
+
+通过定义$S_d$为次数为$d$的关于$x_0, \dotsc, x_n$的单项式的线性组合的全体, 我们可以将$S$看成一个分次环. 对于一般的多项式$f\in S$, 我们不能拿它来定义$\Pn$上的函数, 因为一个点的齐次坐标是不唯一的. 不过, 如果$f$是$d$次齐次多项式, 那么$f(\lambda a_0, \dotsc, \lambda a_n) = \lambda^d f(a_0, \dotsc, a_n)$成立, 于是$f$是否等于0这件事与局部坐标的选取无关, 于是这样的$f$可以给出从$\Pn$到$\{0, 1\}$的映射, 其中当$f(a_0, \dotsc, a_n) = 0$时$f(P) = 0$, 当$f(a_0, \dotsc, a_n)\neq 0$时$f(P)=1$.
+
+于是我们可以讨论齐次多项式的零点, 即$Z(f) = \{P\in \Pn\vert f(P) = 0\}$. 若$T$是由$S$的齐次元素构成的集合, 那么我们定义$T$的\emph{零点集}为
+\begin{equation*}
+    Z(T) = \{P\in\Pn\vert \text{对于任意的$f\in T$都有$f(P)=0$成立}\}.
+\end{equation*}
+如果$\ideal{a}$是一个$S$的齐次理想, 我们定义$Z(\ideal(a)) = Z(T)$, 其中$T$为$\ideal{a}$中的齐次元素全体构成的集合. 因为$S$是一个N\"otherian环, 所以对于每个齐次元素集$T$都存在有限子集$f_1, \dotsc, f_r$使得$Z(T) = Z(f_1, \dotsc, f_r)$成立.
+
+\begin{definition}
+    $\Pn$的子集$Y$被称为\emph{代数集}仅当存在$S$的齐次元素子集$T$使得$Y = Z(T)$.
+\end{definition}
+
+\begin{proposition}
+    两个代数集的并是代数集. 一族代数集的交是代数集. 空集和全集都是代数集.
+\end{proposition}
+
+\begin{proof}
+    留给读者(与(1.1)的证明类似).
+\end{proof}
+
+\begin{definition}
+    定义$\Pn$上的\emph{Zariski拓扑}, 开集为代数集的余集.
+\end{definition}
+
+一旦我们有了拓扑空间, 在\S 1中给出的不可约子集和子集的维数的概念就可以应用了.
+
+\begin{definition}
+    一个\emph{射影代数簇}(或者简称为\emph{射影簇})是$\Pn$中的一个不可约代数集, 附有诱导拓扑结构. 射影簇的开子集称为\emph{拟射影簇}. 射影簇或者拟射影簇的\emph{维数}即为它们作为拓扑空间的维数.
+
+    设$Y$是$\Pn$的子集, 定义$Y$在$S$中的\emph{齐次理想}$I(Y)$为由$\{f\in S\vert \text{$f$齐次}\linebreak[0]\text{并且}\linebreak[0]\text{对于任意的$P\in Y$}\linebreak[0]\text{都有$f(P)=0$成立}\}$. 如果$Y$是一个代数集, 定义$Y$的\emph{齐次坐标环}为$S(Y)=S/I(Y)$. 后文(习题2.1-2.7)会研究射影空间中的代数集及其齐次理想的性质.
+\end{definition}
+
+我们的下一个目标是证明$n$-射影空间可以由$n$-仿射空间开覆盖, 于是每个射影(或者拟射影)簇可以由仿射(或者拟仿射)簇开覆盖. 我们先来介绍一些记号.
+
+设$f\in S$是一个线性齐次多项式, 称$f$的零点集为\emph{超平面}. 特别地, 我们记$x_i$的零点集为$H_i$, 其中$i=0, \dotsc, n$. 令$U_i$为开集$\Pn-H_i$, 则$\Pn$由$U_i$开覆盖, 这是因为如果$P=(a_0, \dotsc, a_n)$是一个点, 那么至少存在一个$a_i\neq 0$, 所以$P\in U_i$. 如下定义一个映射$\varphi_i\colon U_i\to \An$: 如果$P = (a_0, \dotsc, a_n)\in U_i$, 则$\varphi_i(P) = Q$, 其中$Q$的仿射坐标为
+\begin{equation*}
+    \lr(){\frac{a_0}{a_i}, \dotsc, \frac{a_n}{a_i}},
+\end{equation*}
+$a_i/a_i$项被省略了. 注意$\varphi_i$是良定的因为比值$a_j/a_i$与齐次坐标的选取无关.
+
+\begin{proposition}
+    如上定义的映射$\varphi_i$是一个从$U_i$到$\An$的同胚, 其中$U_i$为诱导拓扑, $\An$为Zariski拓扑.
+\end{proposition}
+
+\begin{proof}
+    显然$\varphi_i$是双射, 所以只需要证明$U_i$的闭子集与$\An$的闭子集由$\varphi$对应. 不妨假设$i=0$, 我们将$U_0$简记为$U$, 将$\varphi_0\colon U\to \An$简记为$\varphi$.
+
+    令$A = k[y_1, \dotsc, y_n]$, 我们将要定义从$S$的齐次元全体$S^h$到$A$的映射$\alpha$, 定义从$A$到$S^h$的映射$\beta$. 给定$f\in S^h$, 令$\alpha(f)=f(1, y_1, \dotsc, y_n)$; 另一方面, 给定次数为$e$的$g\in A$, 则$x_0^eg(x_1/x_0, \dotsc, x_n/x_0)$是一个$S$中次数为$e$的多项式, 它即是$\beta(g)$.
+
+    现在令$Y\subseteq U$是一个闭子集. 记$\overline{Y}$为其在$\Pn$中的闭包, 这是一个代数集, 因此存在子集$T\subseteq S^h$使得$\overline{Y}=Z(T)$. 令$T'=\alpha(T)$, 可以直接验证$\varphi(Y)=Z(T')$. 反过来的话, 令$W$为$\An$的闭子集, 则存在$A$的子集$T'$使得$W=Z(T')$, 很容易验证$\varphi^{-1}(W) = Z(\beta(T'))\cap U$. 因此$\varphi$和$\varphi^{-1}$均为闭映射, 因此$\varphi$是一个同胚.
+\end{proof}
+
+\begin{corollary}
+    若$Y$是一个射影(或者拟射影)簇, 那么$Y$由开集$Y\cap U_i, i=0, \dotsc, n$覆盖, 其中每一个开集由之前定义的$\varphi_i$与仿射(或者拟仿射)簇同构.
+\end{corollary}
+
+\subsection*{习题}
+\begin{enumerate}[\bfseries\thesection.1.]
+    \item 证明``齐次零点定理", 指的是如果$\ideal{a}\subseteq S$是一个齐次理想, 并且如果$f\in S$是一个次数大于0的齐次多项式, 并且满足$f(P) = 0$对任意的$P\in Z(\ideal(a))$包含于$\Pn$都成立, 那么存在$q>0$使得$f^q\in \ideal{a}$. [\emph{提示}: 将问题翻译到仿射坐标环为$S$的$(n+1)$-仿射空间中, 运用通常的零点定理(1.3A).]
+    \item 对于齐次理想$\ideal{a}\subseteq S$, 证明以下条件是等价的:
+        \begin{enumerate}[(i)]
+            \item $Z(\ideal{a}) = \varnothing\text{(空集)}$;
+            \item $\sqrt{\ideal{a}} = \text{$S$或$S_+ = \bigoplus_{d>0}S_d$}$;
+            \item 存在$d>0$使得$\ideal{a}\supseteq S_d$成立.
+        \end{enumerate}
+    \item
+        \begin{enumerate}
+            \item 如果$T_1\subseteq T_2$是$S^h$的子集, 那么$Z(T_1)\supseteq Z(T_2)$.
+            \item 如果$Y_1\subseteq Y_2$是$\Pn$的子集, 那么$I(Y_1)\supseteq I(Y_2)$.
+            \item 对于$\Pn$的任意两个子集$Y_1, Y_2$, 有$I(Y_1\cup Y_2) = I(Y_1)\cap I(Y_2)$.
+            \item 如果$a\subseteq S$是一个满足$Z(a)\neq\varnothing$的齐次理想, 那么$I(Z(\ideal{a}))=\sqrt{\ideal{a}}$.
+            \item 对于任意的子集$Y\subseteq\Pn$, 有$Z(I(Y))=\overline{Y}$.
+        \end{enumerate}
+    \item
+        \begin{enumerate}
+            \item 存在$\Pn$中的代数集全体到$S$中的不同于$S_+$的齐次根基理想全体的一对一反序对应, 由$Y\mapsto I(Y)$和$\ideal{a}\mapsto Z(\ideal{a})$给出. \emph{注意}: 因为$S_+$没有出现在这个对应之中, 所以这个理想有时被称为$S$的\emph{无关}极大理想.
+            \item 一个代数集$Y\subseteq \Pn$是不可约的(irreducible)当且仅当$I(Y)$是素理想.
+            \item 证明$\Pn$不可约.
+        \end{enumerate}
+    \item
+        \begin{enumerate}
+            \item $\Pn$是N\"otherian拓扑空间.
+            \item 每个$\Pn$中的代数集都可以唯一写成不可约代数集的有限并, 其中任何一个都不包含另一个. 这些不可约代数集称为这个代数集的\emph{不可约分支}.
+        \end{enumerate}
+    \item 设$Y$是一个射影簇, 齐次坐标环为$S(Y)$, 证明$\dim S(Y) = \dim Y + 1$. [\emph{提示}: 设$\varphi_i\colon U_i\to \An$为(2.2)中的同胚, 设$Y_i$为仿射簇$\varphi_i(Y\cap U_i)$, 设$A(Y_i)$为它的仿射坐标环. 先证明$A(Y_i)$即为局部化环$S(Y)_{x_i}$的次数为0的元素构成的子环, 再证明$S(Y)_{x_i}\cong A(Y_i)[x_i, x_i^{-1}]$. 再利用(1.7), (1.8A)和(习题1.10), 并检查超越次数(transcendence degrees), 最终可以证明当$Y_i$非空时有$\dim Y = \dim Y_i$.]
+    \item
+        \begin{enumerate}
+            \item $\dim \Pn = n$.
+            \item 如果$Y\subseteq\Pn$是一个拟仿射簇, 那么$\dim Y = \dim \overline{Y}$. [\emph{提示}: 利用(习题2.6)将问题转化为(1.10)的情形.]
+        \end{enumerate}
+    \item 一条射影簇$Y\subseteq\Pn$的维数为$n-1$当且仅当它恰为一个正次数的不可约齐次多项式$f$的零点集. 称$Y$为$\Pn$中的一个\emph{超曲面}.
+    \item \emph{仿射簇的射影闭包}. 设$Y\in\An$是一条仿射簇, 利用同胚$\varphi_0$可将$\An$视为$\Pn$中的一个开集. 于是我们可以讨论$Y$在$\Pn$中的闭包$\overline{Y}$, 称为$Y$的\emph{射影闭包}.
+        \begin{enumerate}
+            \item 回顾(2.2)的证明中的记号, 证明$I(\overline{Y})$是由$\beta(I(Y))$生成的理想.
+            \item 设$Y\subseteq\AA{3}$为(习题1.2)中定义的扭曲三次曲线(twisted cubic). 它的射影闭包$\overline{Y}\subseteq\PP{3}$称为$\PP{3}$中的扭曲三次曲线(twisted cubic curve). 寻找$I(Y)$与$I(\overline{Y})$的生成元, 并用这个例子说明如果$f_1, \dotsc, f_r$生成$I(Y)$, 那么$\beta(f_1), \dotsc, \beta(f_r)$不一定生成$I(\overline{Y})$.
+        \end{enumerate}
+    \item \emph{射影簇上的锥}. 设$Y\subseteq\Pn$为非空代数集, 令$\theta\colon\AA{n+1}-\{(0, \dotsc, 0)\}\to\Pn$将仿射坐标为$(a_0, \dotsc, a_n)$的点映到齐次坐标为$(a_0, \dotsc, a_n)$的点. 定义$Y$上的\emph{仿射锥}为
+        \begin{equation*}
+            C(Y)=\theta^{-1}(Y)\cup\{(0, \dotsc, 0)\}.
+        \end{equation*}
+        \begin{enumerate}
+            \item 证明$C(Y)$是$\AA{n+1}$的一个代数集, 理想等于$I(Y)$, 这里的$I(Y)$看成是$k[x_0, \dotsc, x_n]$的通常理想.
+            \item $C(Y)$不可约当且仅当$Y$不可约.
+            \item $\dim C(Y) = \dim Y + 1$.
+        \end{enumerate}
+        有时也会讨论$C(Y)$在$\PP{n+1}$中的仿射闭包$\overline{C(Y)}$, 称为$Y$上的\emph{仿射锥}.
+    \item \emph{$\Pn$中的线性簇}. 称被一个线性多项式定义的超曲面为一个\emph{超平面}.
+        \begin{enumerate}
+            \item 证明下列两个条件对于$\Pn$中的簇$Y$是等价的:
+                \begin{enumerate}[(i)]
+                    \item $I(Y)$可以由线性多项式生成.
+                    \item $Y$可以写成超平面的交.
+                \end{enumerate}
+                在这种情况下称$Y$为$\Pn$中的一条\emph{线性簇}.
+            \item 如果$Y$是$\Pn$中的一条$r$维线性簇, 证明$I(Y)$最少由$n-r$个线性多项式生成.
+            \item 设$Y, Z$是$\Pn$中的线性簇, $\dim Y = r$, $\dim Z = s$. 如果$r+s-n\geq 0$, 那么$Y\cap Z\neq \varnothing$. 此外, 如果$Y\cap Z\neq \varnothing$, 那么$Y\cap Z$为维数$\geq r+s-n$的线性簇. (将$\AA{n+1}$看成$k$上的线性空间, 然后在它的子空间上进行讨论.)
+        \end{enumerate}
+    \item \emph{$d$-{\upshape Uple} 嵌入}. 对于给定的$n, d>0$, 设$M_0, M_1, \dotsc, M_N$为所有的自变量为$x_0, \dotsc, x_n$的$d$次$n+1$元单项式, 其中$N = \binom{n+d}{d} - 1$. 我们定义映射$\rho_d\colon \Pn\to\PP{N}$, 将点$P = (a_0, \dotsc, a_n)$映到点$\rho_d(P) = (M_0(P), \dotsc, M_N(P))$, 其中$M_j(P)$即为将单项式$M_j$中的$x_i$都替换为$a_i$. 这被称为$\Pn$到$\PP{N}$的\emph{$d$-{\upshape Uple} 嵌入}. 例如, 如果$n=1, d=2$, 那么$N=2$, 并且$Y$在从$\PP{1}$到$\PP{2}$的2-uple嵌入的像为一条二次曲线.
+        \begin{enumerate}
+            \item 设$\theta\colon k[y_0, \dotsc, y_N]\to k[x_0, \dotsc, x_n]$为将$y_i$映到$M_i$的同态, 令$\ideal{a}$为$\theta$的核. 于是$\ideal{a}$是一个齐次素理想, 所以$Z(\ideal{a})$是$\PP{N}$的一条射影簇.
+            \item 证明$\rho_d$的像恰为$Z(\ideal{a})$. (有一个包含关系是简单的, 另一个包含关系需要一定的计算.)
+            \item 证明$\rho_d$是从$\Pn$到射影簇$Z(\ideal{a})$的同胚.
+            \item 证明$\PP{3}$中的扭曲三次曲线(习题2.9)与$\PP{1}$到$\PP{3}$的3-uple嵌入相同, 在坐标选取合适的情况下.
+        \end{enumerate}
+    \item 设$Y$为$\PP{2}$到$\PP{5}$的2-uple embedding的像. 这是\emph{Veronese}曲面. 如果$Z\subseteq Y$是一条闭曲线(一条\emph{曲线}是一条维数为1的簇), 证明存在超平面$V\subseteq\PP{5}$使得$V\cap Y=Z$.
+    \item \emph{Segre嵌入}. 定义$\psi\colon \PP{r}\times\PP{s}\to\PP{N}$, 将有序对$(a_0, \dotsc, a_r)\times(b_0, \dotsc, b_s)$映到$(\dotsc, a_ib_j, \dotsc)$, 为字典序, 其中$N = rs+r+s$. 有$\psi$良定并且是单射, 这被称为\emph{Segre嵌入}. 证明$\psi$的像是$\PP{N}$的\emph{子簇}. [\emph{提示}: 设$\PP{N}$的齐次坐标为$\{z_{ij}\vert i=0, \dotsc, r, j=0, \dotsc, s\}$, 构造同态$k[\{z_{ij}\}]\to k[x_0, \dotsc, x_r, y_0, \dotsc, y_s]$将$z_{ij}$映到$x_iy_j$, 令$\ideal{a}$为这个同态的核, 再证明$\psi$的像即为$Z(\ideal{a})$.]
+    \item \emph{$\PP{3}$中的二次曲面}. 考虑$\PP{3}$中由方程$xy-zw=0$定义的曲面$Q$(\emph{曲面}是指维数为2的代数簇).
+        \begin{enumerate}
+            \item 证明在适当选取坐标的情况下, $Q$等于$\PP{1}\times\PP{1}$在$\PP{3}$中的Segre嵌入.
+            \item 证明$Q$中包含了两族曲线(一条\emph{曲线}是指一条1维线性簇)$\{L_t\}, \{M_t\}$, 其中参数为$t\in \PP{1}$, 满足如果$L_t\neq L_u$, 则$L_t\cap L_u = \varnothing$; 如果$M_t\neq M_u$, 则$M_t\cap M_u=\varnothing$; 对任意的$t, u$都有$L_t\cap M_u = \text{一个点}$.
+            \item 证明$Q$中除了这些直线之外还包含其它曲线, 于是$Q$的Zariski拓扑并不由$\psi$同构于$\PP{1}\times\PP{1}$的乘积拓扑(其中每个$\PP{1}$的拓扑为Zariski拓扑).
+        \end{enumerate}
+    \item
+        \begin{enumerate}
+            \item 两条簇的交未必是簇. 比如说分别设$Q_1$和$Q_2$为$\PP{3}$中由方程$x^2-yw=0$和$xy-zw=0$给出的二次曲面. 证明$Q_1\cap Q_2$为一条扭曲三次曲线和一条直线的并.
+            \item 即使两条簇的交是簇, 但是交的理想未必等于理想的和. 比如说设$C$为$\PP{2}$中由方程$x^2-yz=0$给出的二次曲线, 设$L$为由$y=0$给出的直线, 证明$C\cap L$为一个点$P$, 但是$I(C)+I(L)\neq I(P)$.
+        \end{enumerate}
+    \item \emph{完全交}. $\PP{n}$中的一条$r$维的簇是\emph{(严格)完全交}仅当$I(Y)$可以由$n-r$个元素生成. $Y$是\emph{集合意义下的完全交}仅当$Y$可以写成$n-r$个超曲面的交.
+        \begin{enumerate}
+            \item 设$Y$为$\PP{n}$中的簇, 设$Y=Z(\ideal{a})$, 并假设$\ideal{a}$能被$q$个元素生成. 证明$\dim Y\geq n-q$.
+            \item 证明一个严格完全交是一个集合意义下的完全交.
+            \item (b)的逆命题是错的. 比如说设$Y$为$\PP{3}$中的扭曲二次曲线(习题2.9), 证明$I(Y)$不能由两个元素生成. 另一方面, 找到次数分别为2和3的两个超曲面$H_1$和$H_2$, 使得$Y = H_1\cap H_2$.
+            \item 是否每一条$\PP{3}$中的闭不可约曲线都是两个曲面在集合意义下的完全交是个未解决的问题.
+        \end{enumerate}
+\end{enumerate}

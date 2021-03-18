@@ -145,7 +145,7 @@
 % 定理类环境宏包
 % \usepackage{amsthm}
 % 也可以使用 ntheorem
-% \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
+\usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
 
 % 给自定义的宏后面自动加空白
 % \usepackage{xspace}
@@ -157,7 +157,10 @@
 % \def\myname{薛瑞尼}
 
 % 数学命令
-\newcommand{\BC}{\symbb{C}}
+\newcommand{\lr}[3]{\left#1#3\right#2}
+\newcommand{\CC}{\symbb{C}}
+\newcommand{\ZZ}{\symbb{Z}}
+\newcommand{\ideal}[1]{\symfrak{#1}}
 % \newcommand\dif{\mathop{}\!\mathrm{d}}  % 微分符号
 % \newcommand\real{{\mathbf{R}}}  % 实数集
 % \newcommand\abs[1]{\lvert#1\rvert}
@@ -176,5 +179,26 @@
 \usepackage{lipsum}
 \usepackage{zhlipsum}
 
+% 交叉引用
+\usepackage{varioref}
+\labelformat{section}{\S#1}
+\labelformat{subsection}{\S#1}
+
 % hyperref 宏包在最后调用
 \usepackage{hyperref}
+
+% One should always load \usepackage{hyperref} before the first use of \newtheorem to obtain correct handling and referencing of counters.
+\theoremstyle{plain}
+\theorembodyfont{\upshape}
+\newtheorem{theorem}{定理}[subsection]
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{conjection}[theorem]{猜想}
+\newtheorem{example}[theorem]{例}
+\theoremstyle{nonumberplain}
+\theorembodyfont{\upshape}
+\newtheorem{definition}{定义}
+\newtheorem{remark}{注}
+\newtheorem{proof}{证明}
+\newtheorem{proofsketch}{证明梗概}

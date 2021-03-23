@@ -160,7 +160,12 @@
 \newcommand{\lr}[3]{\left#1#3\right#2}
 \newcommand{\CC}{\symbb{C}}
 \newcommand{\ZZ}{\symbb{Z}}
+\newcommand{\NN}{\symbb{N}}
 \newcommand{\ideal}[1]{\symfrak{#1}}
+\newcommand{\axiom}[1]{\symsfup{#1}}
+\newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+\newcommand{\SAa}{\overline{S}^{-1}(A{\divslash}\ideal{a})}
+\newcommand{\SASa}{S^{-1}A{\divslash}S^{-1}\ideal{a}}
 % \newcommand\dif{\mathop{}\!\mathrm{d}}  % 微分符号
 % \newcommand\real{{\mathbf{R}}}  % 实数集
 % \newcommand\abs[1]{\lvert#1\rvert}
@@ -190,15 +195,24 @@
 % One should always load \usepackage{hyperref} before the first use of \newtheorem to obtain correct handling and referencing of counters.
 \theoremstyle{plain}
 \theorembodyfont{\upshape}
+\theoremindent0pt
+% \theoremprework{}
 \newtheorem{theorem}{定理}[subsection]
 \newtheorem{corollary}[theorem]{推论}
 \newtheorem{lemma}[theorem]{引理}
 \newtheorem{proposition}[theorem]{命题}
 \newtheorem{conjection}[theorem]{猜想}
-\newtheorem{example}[theorem]{例}
 \theoremstyle{nonumberplain}
 \theorembodyfont{\upshape}
+\theoremindent0pt
 \newtheorem{definition}{定义}
 \newtheorem{remark}{注}
 \newtheorem{proof}{证明}
 \newtheorem{proofsketch}{证明梗概}
+\newtheorem{example}{例}
+% \newenvironment{breakexample}{\begin{example}\leavevmode\vspace{-\baselineskip}}{\end{example}}
+
+% \makeatletter
+% \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}
+% \makeatother
+% TODO: footnote编号 以及圆圈

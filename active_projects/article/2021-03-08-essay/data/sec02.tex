@@ -2,11 +2,11 @@
 
 \section{代数}
 
-这一部分将从环的定义开始, 发展本文中所需要用到的代数基础, 主要包括局部化, 准素分解, 维数理论, 素谱等内容.
+这一部分将以域上的多项式环及其商环\footnote{即为域的有限生成代数, 不过本文中应该不会提到``代数"这一概念}为原型, 发展本文中所需要用到的代数基础, 主要包括局部化, 准素分解, 维数理论, 素谱等内容.
 
 \subsection{环与理想}
 
-这一小节中我们将要给出环和理想的基本概念, 以及
+这一小节中我们将要给出环和理想的基本概念, 以及理想的一些运算.
 
 设$A$为非空集合, 若在$A$中有两个二元运算(加法和乘法), 满足
 \begin{enumerate}
@@ -42,28 +42,28 @@
 
 设$B$为环$A$的子集, 则定义\emph{$B$生成的理想}为$A$中包含$B$的(在包含意义下)最小的理想, 该理想$=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in A, y_j\in B\}$. 由有限个元素$x_1, \dotsc, x_n$生成的理想记为$(x_1, \dotsc, x_n)$, 由一个元素$x$生成的理想记为$(x)$, 称可以由有限个元素生成的理想\emph{有限生成理想}, 称可以由一个元素生成的理想为\emph{主理想}.
 
-商群$A/\ideal{a}$有从$A$诱导的自然的环结构, 其中乘法由$(x+\ideal{a})(y+\ideal{a})=xy+\ideal{a}$定义. 称环$A/\ideal{a}$为\emph{$A$对$\ideal{a}$的商环}. 有一个从环到其商环的自然的\emph{投影映射}$\pi\colon A\to A/\ideal{a}$, 满足$\pi(x)=x+\ideal{a}$, 为满环同态. 下一个命题我们将在之后经常用到.
+商群$A{\divslash} \ideal{a}$有从$A$诱导的自然的环结构, 其中乘法由$(x+\ideal{a})(y+\ideal{a})=xy+\ideal{a}$定义. 称环$A{\divslash}\ideal{a}$为$A$对$\ideal{a}$的\emph{商环}. 有一个从环到其商环的自然的\emph{投影映射}$\pi\colon A\to A{\divslash}\ideal{a}$, 满足$\pi(x)=x+\ideal{a}$, 为满环同态. 商环有如下的\emph{泛性质}\parencite[5]{altman_term_2017}, 给定环$A$和$A$的理想$\ideal{a}$, 对于任意的环$B$以及核包含$\ideal{a}$的环同态$\phi\colon A\to B$, 存在唯一的环同态$\psi\colon A{\divslash}\ideal{a}\to B$使得$\psi\pi=\phi$成立, 并且满足该泛性质的环$A{\divslash}\ideal{a}$在同构意义下唯一.
 
-\begin{proposition}[{{\parencite{atiyah_introduction_1969}命题1.1, P2}}]\label{prop:quotidealcorr}
-    设$\ideal{a}$为环$A$的理想, 则$A$中包含$\ideal{a}$的理想全体与$A/\ideal{a}$中的理想全体有由投影映射$\pi$诱导出的保序双射.
+\begin{proposition}[{{\parencite[2, Proposition 1.1]{atiyah_introduction_1969}}}]\label{prop:quotidealcorr}
+    设$\ideal{a}$为环$A$的理想, 则$A$中包含$\ideal{a}$的理想全体与$A{\divslash}\ideal{a}$中的理想全体有由投影映射$\pi$诱导出的保序双射($\ideal{b}\leftrightarrow\ideal{b}{\divslash}\ideal{a}$).
 \end{proposition}
 
 \begin{remark}
-    由于\thref{prop:quotidealcorr}的成立, 在不致引起混淆的情况下我们会将$A$中包含$\ideal{a}$的某一个理想同时看作$A/\ideal{a}$的理想而不另加说明, 反之亦然.
+    由于\thref{prop:quotidealcorr}的成立, 在不致引起混淆的情况下我们会将$A$中包含$\ideal{a}$的某一个理想同时看作$A{\divslash}\ideal{a}$的理想而不另加说明, 反之亦然.
 \end{remark}
 
 对于环$A$的元素$x$, 如果存在$y\neq 0$使得$xy=0$, 则称$x$为\emph{零因子}. 如果非零环$A$中没有非零零因子, 则称环$A$为\emph{整环}. 对于$x\in A$, 如果存在整数$n>0$使得$x^n = 0$, 则称$x$为\emph{幂零元}. 幂零元为零因子, 反过来则不一定成立. 如果$x\in A$关于乘法可逆, 即存在$y\in A$使得$xy=1$, 则称$x$为\emph{单位}, 此时这样的$y$唯一, 记为$x^{-1}$. 环$A$的单位全体关于乘法有Abel群的结构. 如果环$A$非零, 且每个非零元都是单位, 则称$A$为\emph{域}.
 
 如果环$A$的理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为真包含于$A$的理想全体(在包含意义下)的极大元, 则称$\ideal{m}$为\emph{极大理想}. 有等价定义
-\begin{equation}
+\begin{equation*}
     \begin{aligned}
-        \ideal{p}\text{为素理想}&\Leftrightarrow A/\ideal{p}\text{是整环};\\
-        \ideal{m}\text{为极大理想}&\Leftrightarrow A/\ideal{m}\text{是域}.
+        \ideal{p}\text{为素理想}&\Leftrightarrow A{\divslash}\ideal{p}\text{是整环};\\
+        \ideal{m}\text{为极大理想}&\Leftrightarrow A{\divslash}\ideal{m}\text{是域}.
     \end{aligned}
-\end{equation}
-因此素理想为极大理想, 而下面一个著名的Zorn引理的引用保证了非零环中极大理想的存在性.
+\end{equation*}
+因此素理想为极大理想, 而Zorn引理可以保证非零环中极大理想的存在性.
 
-\begin{theorem}[{{\parencite{atiyah_introduction_1969}定理1.3, P3}}]\label{thm:maxideal}
+\begin{theorem}[{{\parencite[3, Theorem 1.3]{atiyah_introduction_1969}}}]\label{thm:maxideal}
     每个非零环都存在至少一个极大理想.
 \end{theorem}
 
@@ -71,21 +71,94 @@
     真包含于$A$的理想全体构成偏序集结构, 证明对于任意的全序子链$\{\ideal{a}_\lambda\}$, 都有$\bigcup_{\lambda}\ideal{a}_\lambda$是真包含于$A$的理想, 为该全序子链的上界, 故由Zorn引理可得该偏序集中存在极大元, 即环$A$中存在极大理想.
 \end{proofsketch}
 
-接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b}):=\{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用. 一个理想$\ideal{a}$的\emph{根基}定义为$\sqrt{\ideal{a}}:=\{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想.
+有的环有且仅有一个极大理想, 称这样的环为\emph{局部环}, 并称局部环对其唯一极大理想的商域为这个环的\emph{剩余域}.
 
-理想在环同态作用下的表现也是研究的重点. 给定环同态$f\colon A\to B$, 设$\ideal{a}$为$A$的理想, $\ideal{b}$为$B$的理想. $\ideal{a}$在$f$下的像$f(\ideal{a})$不一定为理想, 定义$\ideal{a}$的\emph{扩张}为$f(\ideal{a})$在$B$中生成的理想, 记作$\ideal{a}^e$. $\ideal{b}$在$f$下的原像$f^{-1}(\ideal{b})$一定是理想, 定义$\ideal{b}$的\emph{收缩}即为$f^{-1}(\ideal{b})$, 记作$\ideal{b}^c$. 若$B$的某个理想可以写成$A$的一个理想的扩张, 则称这个$B$的理想为\emph{扩张理想}, 类似地, 如果$A$的某个理想可以写成$B$的一个理想的收缩, 则称这个$A$的理想为\emph{收缩理想}. 要注意扩张与收缩是相对于$f$而言的, 只不过一般在语境下$f$的选取不会有混淆, 故没有显式提及$f$.
+接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b}):=\{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}:=\{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为根理想.
 
-\begin{proposition}[{{\parencite{atiyah_introduction_1969}命题1.17, P10}}]\label{prop:extencontr}
-    令$A, B, f, \ideal{a}, \ideal{b}$与上一段的定义相同, 则
+理想在环同态作用下的表现也是研究的重点. 给定环同态$f\colon A\to B$, 设$\ideal{a}$为$A$的理想, $\ideal{b}$为$B$的理想. $\ideal{a}$在$f$下的像$f(\ideal{a})$不一定为理想, 定义$\ideal{a}$的\emph{扩张}为$f(\ideal{a})$在$B$中生成的理想, 记作$\ideal{a}^e$. $\ideal{b}$在$f$下的原像$f^{-1}(\ideal{b})$一定是理想, 定义$\ideal{b}$的\emph{收缩}即为$f^{-1}(\ideal{b})$, 记作$\ideal{b}^c$. 若$B$的某个理想可以写成$A$的一个理想的扩张, 则称这个$B$的理想为\emph{扩张理想}, 类似地, 如果$A$的某个理想可以写成$B$的一个理想的收缩, 则称这个$A$的理想为\emph{收缩理想}. 要注意扩张与收缩是相对于$f$而言的, 只不过一般在语境下$f$的选取不会有混淆, 故没有显式提及$f$. 下面一个命题推广了\thref{prop:quotidealcorr}到一般形式.
+
+\begin{proposition}[{{\parencite[10, Proposition 1.17]{atiyah_introduction_1969}}}]\label{prop:extencontr}
+    设$f\colon A\to B$为环同态, 有理想$\ideal{a}\subseteq A, \ideal{b}\subseteq B$, 则
     \begin{enumerate}
         \item $\ideal{a}\subseteq\ideal{a}^{ec}, \ideal{b}\supseteq\ideal{b}^{ce}$,
         \item $\ideal{a}=\ideal{a}^{ece}, \ideal{b}=\ideal{b}^{cec}$,
-        \item $A$的收缩理想全体与$B$的扩张理想全体有保序的一一对应关系.
+        \item $A$的收缩理想全体与$B$的扩张理想全体有保序双射($\ideal{a}\mapsto\ideal{a}^e, \ideal{b}^c\mapsfrom\ideal{b}$).
     \end{enumerate}
 \end{proposition}
 
-\subsection{分式环}
+\subsection{分式环与局部化}
 
+分式环以及与之相关的局部化可以说是交换代数中最重要的技术之一了. 与商环类似, 分式环也可以对环进行简化, 商环保留不比给定理想小的理想, 分式环保留不比给定几何大的理想. 在()%TODO: localization
+中, 我们可以看到局部化的几何意义, 为研究在某个邻域或在某个点处的情况.
 
+若环$A$的子集$S$包含单位元1, 并且满足关于乘法封闭, 即对于任意的$x, y\in S$都有$xy\in S$成立, 则称$S$为$A$的\emph{乘法闭集}. 在$A\times S$上定义等价关系$\sim$, $(a, s)\sim (b, t)$当且仅当存在$u\in S$使得$u(at-bs)=0$成立, 记$A\times S$在该等价关系下的商为$S^{-1}A$. 在$S^{-1}A$上定义加法$a{\divslash} s+b{\divslash}t := (at+bs){\divslash}(st)$以及乘法$(a{\divslash}s)(b{\divslash}t)=(ab){\divslash}(st)$, 则$S^{-1}A$关于该加法与乘法有环的结构, 称为$A$关于$S$的\emph{分式环}. 有自然同态$f\colon A\to S^{-1}A$将$x$映到$x{\divslash}1$, 注意$f$不一定是单射. 分式环有如下的\emph{泛性质}\parencites[81, Theorem 11.3]{altman_term_2017}[37, Proposition 3.1]{atiyah_introduction_1969}, 给定环$A$, 乘法闭集$S$与之前定义的自然同态$f\colon A\to S^{-1}A$, 对于任意的环$B$以及将$S$中元素映到单位的环同态$\phi\colon A\to B$, 存在唯一的环同态$\psi\colon S^{-1}R\to B$使得$\psi f=\phi$成立, 并且满足该泛性质的环$S^{-1}A$在同构意义下唯一.
 
-\subsection{准素分解}\label{subsec:primdecom}
+接下来考察分式环中理想的扩张与收缩. 设$f\colon A\to S^{-1}A$为之前定义的自然环同态, $\ideal{a}$为$A$的理想, 则$\ideal{a}$的扩张$\ideal{a}^e=S^{-1}\ideal{a}:=\{a{\divslash}s\vert a\in\ideal{a}, s\in S\}$. 在证明主要命题之前我们需要用到商环与分式环之间的关系, 叙述如下.
+
+\begin{proposition}
+    取分式环与取商环可交换. 严格叙述如下, 设$A$为环, $\ideal{a}$为$A$的理想, $S$为$A$的乘法闭集, $\overline{S}=\pi(S)$为$S$在商环$A{\divslash}\ideal{a}$中的像仍为乘法闭集, 则环$\SASa$与环$\SAa$有典范同构, 即该同构与典范同态$A\to S^{-1}A\to \SASa$以及$A\to A{\divslash}\ideal{a}\to \SAa$可交换.
+\end{proposition}
+
+\begin{proof}
+    这里我们给出一个需要用到商环和分式环显式定义(而非只用泛性质)的证明\parencite{ortiz_localization_2019}.
+
+    首先考虑典范同态$A\to A{\divslash}\ideal{a}\to \SAa$, 将$x\in A$映到$(x+\ideal{a}){\divslash}(1+\ideal{a})$, 这个映射将$s\in S$映到$(s+\ideal{a}){\divslash}(1+\ideal{a})$是单位, 由分式环的泛性质知有同态$S^{-1}A\to \SAa$, 将$x{\divslash}s$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$, 而这个映射又将$S^{-1}\ideal{a}$的元素映到0, 于是由商环的泛性质知有同态$\phi\colon\SASa\to\SAa$将$x{\divslash}s + S^{-1}\ideal{a}$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$.
+
+    其次考虑典范同态$A\to S^{-1}A\to\SASa$, 将$x\in A$映到$x{\divslash}1+S^{-1}\ideal{a}$, 这个映射将$\ideal{a}$映到0, 由商环的泛性质知由有同态$A{\divslash}\ideal{a}\to\SASa$将$x+\ideal{a}$映到$x{\divslash}1+S^{-1}\ideal{a}$, 而这个映射又将$s\in\overline{S}^{-1}$映到$s{\divslash}1+S^{-1}\ideal{a}$是单位, 于是由分式环的泛性质知有同态$\psi\colon\SAa\to\SASa$将$(x+\ideal{a}){\divslash}(s+\ideal{a})$映到$x{\divslash}s + S^{-1}\ideal{a}$.
+
+    由构造发现$\phi, \psi$互为逆, 并且与典范同态可交换.
+\end{proof}
+
+\begin{proposition}[{{\parencite[41, Proposition 3.11]{atiyah_introduction_1969}}}]\label{prop:fracideal}
+    关于$S^{-1}A$的理想, 有如下命题成立.
+    \begin{enumerate}
+        \item\label{enum:prop-fracideal-1} $S^{-1}A$的每个理想都是扩张理想.
+        \item\label{enum:prop-fracideal-2} $S^{-1}A$的素理想全体与$A$的与$S$不交的素理想全体有保序双射($\ideal{p}\leftrightarrow S^{-1}\ideal{p}$).
+        \item\label{enum:prop-fracideal-3} $S^{-1}$运算与理想的和积交根均可交换(或分配). % TODO: 观察一下有没有必要补证明和extension contraction性质的命题
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \ref{enum:prop-fracideal-1} 设$\ideal{b}$为$S^{-1}A$的理想, 设$x{\divslash}s\in \ideal{b}$, 则$x{\divslash}1\in\ideal{b}$, 故$x\in\ideal{b}^c$, 因此$x{\divslash}s\in\ideal{b}^{ce}$, 于是我们证明了$\ideal{b}\subseteq\ideal{b}^{ce}$, 又由\thref{prop:extencontr}知一般情况下有$\ideal{b}\supseteq\ideal{b}^{ce}$, 于是$\ideal{b}=\ideal{b}^{ce}$, 即$S^{-1}A$的每个理想都是扩张理想.
+
+    \ref{enum:prop-fracideal-2} 只需要证明对于素理想$\ideal{p}\cap S=\varnothing$有$\ideal{p}^e$是素理想并且$\ideal{p}^{ec}=\ideal{p}$, 以及对于素理想$\ideal{q}\subseteq S^{-1}A$有$\ideal{q}^c$是与$S$不交的素理想并且$\ideal{q}^{ce}=\ideal{q}$. 我们已经知道对于素理想$\ideal{q}\subseteq B$有$\ideal{q}^c$为素理想, 并且由于其为扩张理想, 有$\ideal{q}=\ideal{q}^{ce}$成立.
+
+    先考察$A$中的收缩理想, 有$x\in\ideal{a}^{ec}$等价于存在$y\in\ideal{a}$与$s\in S$使得$x{\divslash}1=a{\divslash}s$, 故等价于存在$s\in S$使得$x{\divslash}s\in\ideal{a}$. 故$\ideal{a}$是收缩理想等价于$\ideal{a}\supseteq\ideal{a}^{ec}$, 也等价于如果存在$s\in S$使得$x{\divslash}s\in\ideal{a}$那么$x\in\ideal{a}$, 等价于$\pi(S)$中的元素都不是$A{\divslash}\ideal{a}$的零因子. 因此素理想$\ideal{p}\subseteq A$是收缩理想当且仅当$\ideal{p}\cap S=\varnothing$, 于是$\ideal{q}\subseteq S^{-1}A$满足$\ideal{q}^c\cap S=\varnothing$.
+
+    再证明$A$的素理想$\ideal{p}$的扩张$\ideal{p}^e$是素理想当且仅当$\ideal{p}\cap S=\varnothing$. 对于素理想$\ideal{p}\subseteq A$, 因为有同构$\overline{S}^{-1}(A{\divslash}\ideal{p})\cong S^{-1}A{\divslash}S^{-1}\ideal{p}$, 而$\overline{S}^{-1}(A{\divslash}\ideal{p})$为整环$A{\divslash}\ideal{p}$的分式域的子环, 故为整环或零环, 因此$S^{-1}\ideal{p}$为素理想或$(1)$, 而由分式环中扩张理想的显式表示知$S^{-1}\ideal{p}=(1)$当且仅当$\ideal{p}\cap S\neq\varnothing$, 即当$\ideal{p}\cap S=\varnothing$时有$\ideal{p}^e$为素理想, 证毕.
+\end{proof}
+
+\begin{example}\leavevmode\vspace{-\baselineskip}% TODO: Separate style and content
+    \begin{enumerate}
+        \item 设$\ideal{p}$为环$A$的素理想, 则$\ideal{p}$的余集$A-\ideal{p}$是乘法闭集, 称分式环$(A-\ideal{p})^{-1}A$为$A$在$\ideal{p}$的\emph{局部化}, 记作$A_{\ideal{p}}$. 根据\thref{prop:fracideal}, $A_{\ideal{p}}$的素理想与$A$的包含于$\ideal{p}$的素理想有保序双射, 则由于极大理想存在并且为素理想, 有$\ideal{p}^e$为$A_{\ideal{p}}$的唯一极大理想, 即$A_{\ideal{p}}$为局部环.
+        \item 设$f\in A$为环$A$的非零元, 则集合$\{f^n\vert n\in \NN\}$是乘法闭集, 记$A$关于该集合的分式环为$A_f$. 有时这也被称为$A$的\emph{局部化}.
+    \end{enumerate}
+\end{example}
+
+\subsection{Noether环与准素分解}\label{subsec:primdecom}
+
+前文说过, 我们的主要研究对象是域上的多项式环及其商环, 这一节中我们将证明这些环都是Noether环, 即满足某种有限条件. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在()% TODO: reference
+看到.
+
+\begin{proposition}[{{\parencite[74, Proposition 6.1; 75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noetherring}
+    对于环$A$, 以下三个命题等价.
+    \begin{enumerate}
+        \item\label{enum:prop-nr-chain} 环$A$中的每个理想升链$\ideal{a}_1\subseteq\ideal{a}_2\subseteq\dotsb$一定稳定, 即存在$n$使得$\ideal{a}_n=\ideal{a}_{n+1}=\dotsb$.
+        \item\label{enum:prop-nr-max} 环$A$中的任何一族理想$\{\ideal{a}_\lambda\}$都有极大元, 即存在$\lambda_0$使得对于任意的$\lambda$有$\ideal{a}_\lambda\subseteq\ideal{a}_{\lambda_0}$成立.
+        \item\label{enum:prop-nr-fnt} 环$A$中的每个理想都是有限生成的.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    $\ref{enum:prop-nr-chain}\Rightarrow\ref{enum:prop-nr-max}$ 假设\ref{enum:prop-nr-chain}成立, 对有偏序结构的理想族$\{\ideal{a}_\lambda\}$运用Zorn引理(\thref{thm:maxideal})即可.
+
+    $\ref{enum:prop-nr-max}\Rightarrow\ref{enum:prop-nr-fnt}$ 假设\ref{enum:prop-nr-fnt}不成立, 选择公理\footnote{这里只需要用到选择公理($\axiom{AC}$)的一个弱化版本非独立选择公理($\axiom{DC}$, Axiom of Dependent Choice).}保证了序列$\{x_n\}_{n\in\ZZ_+}\subseteq A$的存在, 其满足对于任意的$n\in\ZZ_+$都有$x_{n+1}\notin (x_1, \dotsc, x_n)$. 于是我们有理想族$\ideal{a}_n=(x_1, \dotsc, x_n)$, 满足$\ideal{a}_1\subsetneqq\ideal{a}_2\subsetneqq\dotsb$, 无极大元, 故\ref{enum:prop-nr-max}不成立.
+
+    $\ref{enum:prop-nr-fnt}\Rightarrow\ref{enum:prop-nr-chain}$ 假设\ref{enum:prop-nr-fnt}成立, 则对于任意的理想升链$\ideal{a}_1\subseteq\ideal{a}_2\subseteq\dotsb$, 都有它的上确界$\ideal{a}:=\bigcup_{j}\ideal{a}_{j}$是有限生成理想, 设其可由$x_1, \dotsc, x_n$生成. 设$c_1, \dotsc, c_n\in \ZZ^+$满足$x_j\in\ideal{a}_{c_j}$, 则对于$N=\max_{j=1}^nc_j$有$x_1, \dotsc, x_n\subseteq\ideal{a}_N$, 故$\ideal{a}_N=\ideal{a}_{N+1}=\dotsb$, 即该理想升链稳定.
+\end{proof}
+
+定义满足\thref{prop:noetherring}中条件的环为\emph{Noether环}, 其中条件\ref{enum:prop-nr-chain}称为\emph{升链条件}(a.c.c.), 条件\ref{enum:prop-nr-max}称为\emph{极大条件}, 这两个条件只与环$A$理想全体的偏序结构有关, 它们的等价在一般的偏序集中也成立.
+
+\begin{theorem}[Hilbert基定理{{\parencites[81, Theorem 7.5]{atiyah_introduction_1969}[201, Theorem 1]{zariski_commutative_1975}}}]
+    若$A$为Noether环, 则$A$上的多项式环$A[x_1, \dotsc, x_n]$为Noether环.
+\end{theorem}

@@ -2,11 +2,11 @@
 
 \section{代数}
 
-这一部分将以域上的多项式环及其商环\footnote{即为域的有限生成代数, 不过本文中应该不会提到``代数"这一概念}为原型, 发展本文中所需要用到的代数基础, 主要包括局部化, 准素分解, 维数理论, 素谱等内容.
+这一部分将以域的有限生成代数为原型, 发展本文中所需要用到的代数基础, 主要包括局部化, 准素分解, 维数理论, 素谱等内容.
 
 \subsection{环与理想}
 
-这一小节中我们将要给出环和理想的基本概念, 以及理想的一些运算.
+这一小节中我们将要给出环和理想的基本概念, 以及理想的一些运算. 在本节的最后, 我们将介绍模与代数的概念. 本文中不会以模作为主要工具, 但是引入其定义可以方便某些定理的叙述.
 
 设$A$为非空集合, 若在$A$中有两个二元运算(加法和乘法), 满足
 \begin{enumerate}
@@ -38,7 +38,7 @@
     \item $\ideal{a}$为$A$的加法子群;
     \item 若$x\in A, y\in\ideal{a}$, 则$xy\in\ideal{a}$,
 \end{enumerate}
-则称$\ideal{a}$为$A$的\emph{理想}.
+则称$\ideal{a}$为$A$的\emph{理想}. 若$\ideal{a}\neq A$, 则称$\ideal{a}$为\emph{真理想}.
 
 设$B$为环$A$的子集, 则定义\emph{$B$生成的理想}为$A$中包含$B$的(在包含意义下)最小的理想, 该理想$=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in A, y_j\in B\}$. 由有限个元素$x_1, \dotsc, x_n$生成的理想记为$(x_1, \dotsc, x_n)$, 由一个元素$x$生成的理想记为$(x)$, 称可以由有限个元素生成的理想\emph{有限生成理想}, 称可以由一个元素生成的理想为\emph{主理想}.
 
@@ -54,7 +54,7 @@
 
 对于环$A$的元素$x$, 如果存在$y\neq 0$使得$xy=0$, 则称$x$为\emph{零因子}. 如果非零环$A$中没有非零零因子, 则称环$A$为\emph{整环}. 对于$x\in A$, 如果存在整数$n>0$使得$x^n = 0$, 则称$x$为\emph{幂零元}. 幂零元为零因子, 反过来则不一定成立. 如果$x\in A$关于乘法可逆, 即存在$y\in A$使得$xy=1$, 则称$x$为\emph{单位}, 此时这样的$y$唯一, 记为$x^{-1}$. 环$A$的单位全体关于乘法有Abel群的结构. 如果环$A$非零, 且每个非零元都是单位, 则称$A$为\emph{域}.
 
-如果环$A$的理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为真包含于$A$的理想全体(在包含意义下)的极大元, 则称$\ideal{m}$为\emph{极大理想}. 有等价定义
+如果环$A$的理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为$A$的真理想全体(在包含意义下)的极大元, 则称$\ideal{m}$为\emph{极大理想}. 有等价定义
 \begin{equation*}
     \begin{aligned}
         \ideal{p}\text{为素理想}&\Leftrightarrow A{\divslash}\ideal{p}\text{是整环};\\
@@ -73,7 +73,15 @@
 
 有的环有且仅有一个极大理想, 称这样的环为\emph{局部环}, 并称局部环对其唯一极大理想的商域为这个环的\emph{剩余域}.
 
-接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b}):=\{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}:=\{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为根理想.
+接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b}):=\{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用. 一个理想$\ideal{a}$的\emph{根}定义为$\rad{a}:=\{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为根理想.
+
+\begin{proposition}\label{prop:radical}
+    设$\ideal{a}$为环$A$的理想, 则$\rad{a}$等于包含$\ideal{a}$的所有素理想的交.
+\end{proposition}
+
+\begin{proof}
+    %TODO: there should be a proof
+\end{proof}
 
 理想在环同态作用下的表现也是研究的重点. 给定环同态$f\colon A\to B$, 设$\ideal{a}$为$A$的理想, $\ideal{b}$为$B$的理想. $\ideal{a}$在$f$下的像$f(\ideal{a})$不一定为理想, 定义$\ideal{a}$的\emph{扩张}为$f(\ideal{a})$在$B$中生成的理想, 记作$\ideal{a}^e$. $\ideal{b}$在$f$下的原像$f^{-1}(\ideal{b})$一定是理想, 定义$\ideal{b}$的\emph{收缩}即为$f^{-1}(\ideal{b})$, 记作$\ideal{b}^c$. 若$B$的某个理想可以写成$A$的一个理想的扩张, 则称这个$B$的理想为\emph{扩张理想}, 类似地, 如果$A$的某个理想可以写成$B$的一个理想的收缩, 则称这个$A$的理想为\emph{收缩理想}. 要注意扩张与收缩是相对于$f$而言的, 只不过一般在语境下$f$的选取不会有混淆, 故没有显式提及$f$. 下面一个命题推广了\thref{prop:quotidealcorr}到一般形式.
 
@@ -82,8 +90,18 @@
     \begin{enumerate}
         \item $\ideal{a}\subseteq\ideal{a}^{ec}, \ideal{b}\supseteq\ideal{b}^{ce}$,
         \item $\ideal{a}=\ideal{a}^{ece}, \ideal{b}=\ideal{b}^{cec}$,
-        \item $A$的收缩理想全体与$B$的扩张理想全体有保序双射($\ideal{a}\mapsto\ideal{a}^e, \ideal{b}^c\mapsfrom\ideal{b}$).
+        \item\label{enum:prop-ec-corr} $A$的收缩理想全体与$B$的扩张理想全体有保序双射($\ideal{a}\mapsto\ideal{a}^e, \ideal{b}^c\mapsfrom\ideal{b}$).
     \end{enumerate}
+\end{proposition}
+
+我们需要有限生成模, 有限生成代数等概念来简化记号. 设$A$为环, $M$为Abel群, 如果给定环同态$\mu\colon A\to \Aut(M)$, 则称$M$为\emph{$A$-模}, 习惯上记$\mu(a)(x)$为$ax$, 其中$a\in A, x\in M$. 若$T\subseteq M$为$A$-模$M$的子集, 则称\emph{$T$生成的子模}$N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}. 设$A, B$为环, 如果给定环同态$\nu\colon A\to B$, 则称$B$为\emph{$A$-代数}, $\nu$诱导了$B$的$A$-模结构, 由$ax:=\nu(a)x$给出. 在不另加说明的情况下, $A$-代数的$A$-模结构默认为此, 若这个模结构是有限生成的, 则称$B$为\emph{有限$A$代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称\emph{$T$生成的子代数}$C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$, 同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 下面是几个关于有限代数和有限生成代数的基本事实.
+
+\begin{proposition}
+    设$\field{k}\subseteq\field{K}$为域, 则$\field{K}$为$\field{k}$的有限代数域扩张当且仅当$\field{K}$为有限$\field{k}$-代数.
+\end{proposition}
+
+\begin{proposition}\label{prop:fgalgebra}
+    设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为多元多项式环$A[X_1, \dotsc, X_n]$的商环.
 \end{proposition}
 
 \subsection{分式环与局部化}
@@ -95,12 +113,12 @@
 
 接下来考察分式环中理想的扩张与收缩. 设$f\colon A\to S^{-1}A$为之前定义的自然环同态, $\ideal{a}$为$A$的理想, 则$\ideal{a}$的扩张$\ideal{a}^e=S^{-1}\ideal{a}:=\{a{\divslash}s\vert a\in\ideal{a}, s\in S\}$. 在证明主要命题之前我们需要用到商环与分式环之间的关系, 叙述如下.
 
-\begin{proposition}
+\begin{proposition}[{{\parencite{ortiz_localization_2019}}}]
     取分式环与取商环可交换. 严格叙述如下, 设$A$为环, $\ideal{a}$为$A$的理想, $S$为$A$的乘法闭集, $\overline{S}=\pi(S)$为$S$在商环$A{\divslash}\ideal{a}$中的像仍为乘法闭集, 则环$\SASa$与环$\SAa$有典范同构, 即该同构与典范同态$A\to S^{-1}A\to \SASa$以及$A\to A{\divslash}\ideal{a}\to \SAa$可交换.
 \end{proposition}
 
 \begin{proof}
-    这里我们给出一个需要用到商环和分式环显式定义(而非只用泛性质)的证明\parencite{ortiz_localization_2019}.
+    这里我们给出一个需要用到商环和分式环显式定义(而非只用泛性质)的证明.
 
     首先考虑典范同态$A\to A{\divslash}\ideal{a}\to \SAa$, 将$x\in A$映到$(x+\ideal{a}){\divslash}(1+\ideal{a})$, 这个映射将$s\in S$映到$(s+\ideal{a}){\divslash}(1+\ideal{a})$是单位, 由分式环的泛性质知有同态$S^{-1}A\to \SAa$, 将$x{\divslash}s$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$, 而这个映射又将$S^{-1}\ideal{a}$的元素映到0, 于是由商环的泛性质知有同态$\phi\colon\SASa\to\SAa$将$x{\divslash}s + S^{-1}\ideal{a}$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$.
 
@@ -137,7 +155,7 @@
 
 \subsection{Noether环与准素分解}\label{subsec:primdecom}
 
-前文说过, 我们的主要研究对象是域上的多项式环及其商环, 这一节中我们将证明这些环都是Noether环, 即满足某种有限条件. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在()% TODO: reference
+前文说过, 我们的主要研究对象是域上的多项式环及其商环, 这一节中我们将证明这些环都是Noether环, 即它们满足某种有限条件, 并证明重要的Hilbert零点定理. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在()% TODO: reference
 看到.
 
 \begin{proposition}[{{\parencite[74, Proposition 6.1; 75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noetherring}
@@ -159,6 +177,68 @@
 
 定义满足\thref{prop:noetherring}中条件的环为\emph{Noether环}, 其中条件\ref{enum:prop-nr-chain}称为\emph{升链条件}(a.c.c.), 条件\ref{enum:prop-nr-max}称为\emph{极大条件}, 这两个条件只与环$A$理想全体的偏序结构有关, 它们的等价在一般的偏序集中也成立.
 
-\begin{theorem}[Hilbert基定理{{\parencites[81, Theorem 7.5]{atiyah_introduction_1969}[201, Theorem 1]{zariski_commutative_1975}}}]
-    若$A$为Noether环, 则$A$上的多项式环$A[x_1, \dotsc, x_n]$为Noether环.
+\begin{proposition}[{{\parencite[76, Proposition 6.6; 80, Proposition 7.3]{atiyah_introduction_1969}}}]\label{prop:noetherring2}
+    设$A$为Noether环, 则
+    \begin{enumerate}
+        \item\label{enum:prop-nr2-quot} 如果$\ideal{a}$为理想, 那么商环$A{\divslash}\ideal{a}$为Noether环;
+        \item\label{enum:prop-nr2-frac} 如果$S$为乘法闭集, 那么分式环$S^{-1}A$为Noether环.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \ref{enum:prop-nr2-quot} 由\thref{prop:quotidealcorr}知$A{\divslash}\ideal{a}$的理想全体与$A$的包含$\ideal{a}$的理想全体有保序双射, 故满足升链条件.
+
+    \ref{enum:prop-nr2-frac} 由\thref{prop:extencontr}\ref{enum:prop-ec-corr}和\thref{prop:fracideal}\ref{enum:prop-fracideal-3}知$S^{-1}A$的理想全体与$A$的收缩理想全体有保序双射, 故满足升链条件.
+\end{proof}
+
+\begin{theorem}[Hilbert基定理{{\parencites[81, Theorem 7.5]{atiyah_introduction_1969}[201, Theorem 1]{zariski_commutative_1975}{noauthor_hilberts_2020}}}]
+    若$A$为Noether环, 则有限生成$A$-代数为Noether环.
 \end{theorem}
+
+\begin{proof}
+    由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多元多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理($\axiom{DC}$)知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n:=(f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}:=(a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
+\end{proof}
+
+接下来我们来证明重要的Hilbert零点定理, 它建立了代数与几何联系的根基. 首先我们需要几个引理.
+
+\begin{proposition}[Artin-Tate引理{{\parencites[81, Proposition 7.8]{atiyah_introduction_1969}[Theorem 1]{artin_note_1951}}}]
+    设环$A\subseteq B\subseteq C$, $A$为Noether环, $C$为有限生成$A$-代数, $C$同时也为有限$B$-代数, 则$B$为有限生成$A$-代数.
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{theorem}[弱Hilbert零点定理{{\parencites[82, Proposition 7.9]{atiyah_introduction_1969}[Theorem 2]{artin_note_1951}}}]
+    设$\field{k}$是域, $E$为$\field{k}$的有限生成代数, 如果$E$也是域, 则$E$为$\field{k}$的有限代数域扩张. 特别地, 如果$\field{k}$为代数闭域, $A$为$\field{k}$的有限生成代数, $\ideal{m}$为$A$的极大理想, 则$A/\ideal{m}\cong \field{k}$.
+\end{theorem}
+
+\begin{proof}
+%TODO: rewrite module and noetherian module
+\end{proof}
+
+这一节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造准素分解的存在性, 再证明孤立素理想%TODO: FURTHER EXPLANATION!
+的唯一性.
+
+准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想. 设$A$为环, 若$A$的真理想$\ideal{q}$满足如果$xy\in \ideal{q}$那么$x\in\ideal{q}$或者$y\in\rad{q}$, 则称$\ideal{q}$为\emph{准素理想}, 有等价条件为$A{\divslash}\ideal{q}\neq 0$并且$A{\divslash}\ideal{q}$的每个零因子都是幂零元.
+
+\begin{proposition}[{{\parencite[50, Proposition 4.1; 51, Lemma 4.3]{atiyah_introduction_1969}}}]\label{prop:primary}\leavevmode
+    \begin{enumerate}
+        \item 设$\ideal{q}$为环$A$的准素理想, 则$\ideal{p}:=\rad{q}$为包含$\ideal{q}$的极小素理想, 称$\ideal{q}$为\emph{$\ideal{p}$-准素理想}.
+        \item\label{enum:prim-inte} 设$\ideal{q}_1, \dotsc, \ideal{q}_n$为环$A$的$\ideal{p}$-准素理想, 则$\bigcap_{j=1}^n\ideal{q}_j$为$\ideal{p}$-准素理想.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+环$A$中理想$\ideal{a}$的准素分解为将$\ideal{a}$写为有限个准素理想的交, 即$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$. 进一步地, 如果有$\rad{q}_j$两两不同, 并且对于每个$j$都有$\ideal{q}_j\nsupseteq\bigcap_{k\neq j}\ideal{q}_k$, 则称这个准素分解为\emph{既约的}. 利用\thref{prop:primary}\ref{enum:prim-inte}, 并且去除多余的项, 我们总可以将准素分解化为既约的. 一般来说准素分解不一定存在, 不过接下来我们将证明在Noether环上准素分解总是存在的.
+
+\begin{theorem}[Lasker–Noether定理{{\parencites[83, Theorem 7.13]{atiyah_introduction_1969}[209, Theorem 4]{zariski_commutative_1975}}}]
+    Noether环$A$的每个理想都有既约准素分解.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}

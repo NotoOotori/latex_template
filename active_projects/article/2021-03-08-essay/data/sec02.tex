@@ -73,10 +73,10 @@
 
 有的环有且仅有一个极大理想, 称这样的环为\emph{局部环}, 并称局部环对其唯一极大理想的商域为这个环的\emph{剩余域}.
 
-接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b}):=\{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用. 一个理想$\ideal{a}$的\emph{根}定义为$\rad{a}:=\{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为根理想.
+接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b}):=\{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用, 特别地, 记理想$\ideal{a}$的\emph{零化理想}为$\Ann(\ideal{a}):=((0){:}\ideal{a})$. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}:=\{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为根理想.
 
 \begin{proposition}\label{prop:radical}
-    设$\ideal{a}$为环$A$的理想, 则$\rad{a}$等于包含$\ideal{a}$的所有素理想的交.
+    设$\ideal{a}$为环$A$的理想, 则$\sqrt{\ideal{a}}$等于包含$\ideal{a}$的所有素理想的交.
 \end{proposition}
 
 \begin{proof}
@@ -220,25 +220,33 @@
 这一节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造准素分解的存在性, 再证明孤立素理想%TODO: FURTHER EXPLANATION!
 的唯一性.
 
-准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想. 设$A$为环, 若$A$的真理想$\ideal{q}$满足如果$xy\in \ideal{q}$那么$x\in\ideal{q}$或者$y\in\rad{q}$, 则称$\ideal{q}$为\emph{准素理想}, 有等价条件为$A{\divslash}\ideal{q}\neq 0$并且$A{\divslash}\ideal{q}$的每个零因子都是幂零元.
+准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想. 设$A$为环, 若$A$的真理想$\ideal{q}$满足如果$xy\in \ideal{q}$那么$x\in\ideal{q}$或者$y\in\sqrt{\ideal{q}}$, 则称$\ideal{q}$为\emph{准素理想}, 有等价条件为$A{\divslash}\ideal{q}\neq 0$并且$A{\divslash}\ideal{q}$的每个零因子都是幂零元. 显然素理想是准素理想, 准素理想的拉回是准素理想.
 
 \begin{proposition}[{{\parencite[50, Proposition 4.1; 51, Lemma 4.3]{atiyah_introduction_1969}}}]\label{prop:primary}\leavevmode
     \begin{enumerate}
-        \item 设$\ideal{q}$为环$A$的准素理想, 则$\ideal{p}:=\rad{q}$为包含$\ideal{q}$的极小素理想, 称$\ideal{q}$为\emph{$\ideal{p}$-准素理想}.
+        \item 设$\ideal{q}$为环$A$的准素理想, 则$\ideal{p}:=\sqrt{\ideal{q}}$为包含$\ideal{q}$的极小素理想, 称$\ideal{q}$为\emph{$\ideal{p}$-准素理想}.
         \item\label{enum:prim-inte} 设$\ideal{q}_1, \dotsc, \ideal{q}_n$为环$A$的$\ideal{p}$-准素理想, 则$\bigcap_{j=1}^n\ideal{q}_j$为$\ideal{p}$-准素理想.
     \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-
+%TODO: Need a proof here
 \end{proof}
 
-环$A$中理想$\ideal{a}$的准素分解为将$\ideal{a}$写为有限个准素理想的交, 即$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$. 进一步地, 如果有$\rad{q}_j$两两不同, 并且对于每个$j$都有$\ideal{q}_j\nsupseteq\bigcap_{k\neq j}\ideal{q}_k$, 则称这个准素分解为\emph{既约的}. 利用\thref{prop:primary}\ref{enum:prim-inte}, 并且去除多余的项, 我们总可以将准素分解化为既约的. 一般来说准素分解不一定存在, 不过接下来我们将证明在Noether环上准素分解总是存在的.
+环$A$中理想$\ideal{a}$的准素分解为将$\ideal{a}$写为有限个准素理想的交, 即$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$. 进一步地, 如果有$\sqrt{\ideal{q}_j}$两两不同, 并且对于每个$j$都有$\ideal{q}_j\nsupseteq\bigcap_{k\neq j}\ideal{q}_k$, 则称这个准素分解为\emph{既约的}. 利用\thref{prop:primary}\ref{enum:prim-inte}, 再去除多余的项, 我们总可以将准素分解化为既约的. 一般来说准素分解不一定存在, 不过我们即将证明在Noether环上准素分解总是存在的.
 
 \begin{theorem}[Lasker–Noether定理{{\parencites[83, Theorem 7.13]{atiyah_introduction_1969}[209, Theorem 4]{zariski_commutative_1975}}}]
     Noether环$A$的每个理想都有既约准素分解.
 \end{theorem}
 
 \begin{proof}
+    先给一个定义, 如果环$A$的一个理想$\ideal{a}$满足如果$\ideal{a}=\ideal{b}\cap\ideal{c}$则$\ideal{a}=\ideal{b}$或$\ideal{a}=\ideal{c}$, 则称$\ideal{a}$为\emph{不可约理想}, 一个理想若不是不可约的, 则称其为\emph{可约理想}. 这个证明将分为两步, 首先证明Noether环的每个理想都能分解成有限个不可约理想的交, 再证明Noether环的不可约理想总是准素理想.
 
+    考虑Noether环$A$中不能分解成有限个不可约理想的交的理想全体, 假设其非空, 因为满足极大条件, 所以存在极大元$\ideal{a}$, 显然$\ideal{a}$是可约的, 所以存在$\ideal{b}\cap\ideal{c}=\ideal{a}$, 满足$\ideal{b}, \ideal{c}\supsetneqq\ideal{a}$. 由$\ideal{a}$的极大性知$\ideal{b}, \ideal{c}$可以写成有限个不可约理想的交, 于是$\ideal{a}$也可以写成有限个不可约理想的交, 与定义矛盾. 于是得证第一步, Noether环的每个理想都能分解成有限个不可约理想的交.
+
+    设$\ideal{a}$为Noether环$A$的不可约理想, 那么零理想$(0)$是商环$A{\divslash}\ideal{a}$的不可约理想, 并且由于准素理想的拉回是准素理想, 所以我们只需要证明$(0)$是$A{\divslash}\ideal{a}$的准素理想. 调整记号, 我们只需要证明如果Noether环$A$的零理想$(0)$是不可约理想, 则它一定是准素理想. 考虑$xy=0$但$y\neq 0$, 有理想升链$\Ann((x))\subseteq\Ann((x^2))\subseteq\dotsb$, 由升链条件知该升链稳定, 即存在$n$使得$\Ann((x^n))=\Ann((x^{n+1}))=\dotsb$. 我们声称$(x^n)\cap (y)=(0)$, 如果$a\in (y)$, 则$ax=0$, 如果进一步地有$a\in (x^n)$, 设$a=bx^n$, 则$bx^{n+1}=ax=0$, 因此$b\in\Ann((x^{n+1}))=\Ann((x^n))$, 故$a=bx^n=0$. 因为$(0)$为不可约理想且$(y)\neq 0$, 所以$(x^n)=(0)$, 即$x^n=0$, 得证第二步, Noether环地不可约理想总是准素理想.
+
+    又由于每个准素分解都可以化为既约准素分解, 我们证明了Noether环$A$的每个理想都有既约准素分解.
 \end{proof}
+
+很自然地, 我们要考察准素分解的唯一性.

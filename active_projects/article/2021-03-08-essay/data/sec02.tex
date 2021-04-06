@@ -54,7 +54,20 @@
 
 对于环$A$的元素$x$, 如果存在$y\neq 0$使得$xy=0$, 则称$x$为\emph{零因子}. 如果非零环$A$中没有非零零因子, 则称环$A$为\emph{整环}. 对于$x\in A$, 如果存在整数$n>0$使得$x^n = 0$, 则称$x$为\emph{幂零元}. 幂零元为零因子, 反过来则不一定成立. 如果$x\in A$关于乘法可逆, 即存在$y\in A$使得$xy=1$, 则称$x$为\emph{单位}, 此时这样的$y$唯一, 记为$x^{-1}$. 环$A$的单位全体关于乘法有Abel群的结构. 如果环$A$非零, 且每个非零元都是单位, 则称$A$为\emph{域}.
 
-如果环$A$的理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为$A$的真理想全体(在包含意义下)的极大元, 则称$\ideal{m}$为\emph{极大理想}. 有等价定义
+如果环$A$的理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为$A$的真理想全体(在包含意义下)的极大元, 则称$\ideal{m}$为\emph{极大理想}. 素理想
+
+\begin{proposition}[{{\parencite[8, Proposition 1.11]{atiyah_introduction_1969}}}]\label{prop:prime}\leavevmode
+    \begin{enumerate}
+        \item\label{enum:prop-prime-avoid}(素回避引理) 设$\ideal{p}_1, \dotsc, \ideal{p}_n$为素理想, 理想$\ideal{a}$包含于$\bigcup_{j=1}^n\ideal{p}_j$, 则存在$j$使得$\ideal{a}\subseteq \ideal{p}_j$;
+        \item\label{enum:prop-prime-absorb}(素吸收引理) 设$\ideal{a}_1, \dotsc, \ideal{a}_n$为理想, 素理想$\ideal{p}$包含$\bigcap_{j=1}^n\ideal{a}_j$, 则存在$j$使得$\ideal{p}\supseteq\ideal{a}_j$. 如果进一步地$\ideal{p}=\bigcap_{j=1}^n$, 那么存在$j$使得$\ideal{p}=\ideal{a}_j$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    %TODO: proof!!
+\end{proof}
+
+素理想和极大理想有等价定义
 \begin{equation*}
     \begin{aligned}
         \ideal{p}\text{为素理想}&\Leftrightarrow A{\divslash}\ideal{p}\text{是整环};\\
@@ -67,15 +80,22 @@
     每个非零环都存在至少一个极大理想.
 \end{theorem}
 
-\begin{proofsketch}
-    真包含于$A$的理想全体构成偏序集结构, 证明对于任意的全序子链$\{\ideal{a}_\lambda\}$, 都有$\bigcup_{\lambda}\ideal{a}_\lambda$是真包含于$A$的理想, 为该全序子链的上界, 故由Zorn引理可得该偏序集中存在极大元, 即环$A$中存在极大理想.
-\end{proofsketch}
+\begin{proof}
+    真包含于$A$的理想全体构成偏序集结构. 对于任意的全序子链$\{\ideal{a}_\lambda\}$, 都有$\bigcup_{\lambda}\ideal{a}_\lambda$是真包含于$A$的理想, 为该全序子链的上界, 故由Zorn引理可得该偏序集中存在极大元, 即环$A$中存在极大理想.
+\end{proof}
 
 有的环有且仅有一个极大理想, 称这样的环为\emph{局部环}, 并称局部环对其唯一极大理想的商域为这个环的\emph{剩余域}.
 
 接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b}):=\{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用, 特别地, 记理想$\ideal{a}$的\emph{零化理想}为$\Ann(\ideal{a}):=((0){:}\ideal{a})$. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}:=\{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为根理想.
 
-\begin{proposition}\label{prop:radical}
+\begin{proposition}[{{\parencite[8, Exercise 1.12]{atiyah_introduction_1969}}}]\label{prop:idealquot}\leavevmode
+    \begin{enumerate}
+        \item\label{enum:prop-idealquot-firstcap} $(\bigcap_\lambda \ideal{a}_\lambda{:}\ideal{b})=\bigcap_{\lambda}(\ideal{a}_\lambda{:}\ideal{b})$;
+        \item $(\ideal{a}{:}\sum_{\lambda}\ideal{b}_\lambda)=\bigcap_{\lambda}(\ideal{a}{:}\ideal{b}_\lambda)$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}[{{\parencite[9, Proposition 1.14]{atiyah_introduction_1969}}}]\label{prop:radical}
     设$\ideal{a}$为环$A$的理想, 则$\sqrt{\ideal{a}}$等于包含$\ideal{a}$的所有素理想的交.
 \end{proposition}
 
@@ -100,7 +120,7 @@
     设$\field{k}\subseteq\field{K}$为域, 则$\field{K}$为$\field{k}$的有限代数域扩张当且仅当$\field{K}$为有限$\field{k}$-代数.
 \end{proposition}
 
-\begin{proposition}\label{prop:fgalgebra}
+\begin{proposition}[{{\parencite[52, Theorem 4.5]{atiyah_introduction_1969}}}]\label{prop:fgalgebra}
     设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为多元多项式环$A[X_1, \dotsc, X_n]$的商环.
 \end{proposition}
 
@@ -217,8 +237,7 @@
 %TODO: rewrite module and noetherian module
 \end{proof}
 
-这一节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明孤立素理想%TODO: FURTHER EXPLANATION!
-的唯一性.
+这一节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明从属素理想, 孤立素理想及其对应的孤立准素理想的唯一性.
 
 准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想. 设$A$为环, 若$A$的真理想$\ideal{q}$满足如果$xy\in \ideal{q}$那么$x\in\ideal{q}$或者$y\in\sqrt{\ideal{q}}$, 则称$\ideal{q}$为\emph{准素理想}, 有等价条件为$A{\divslash}\ideal{q}\neq 0$并且$A{\divslash}\ideal{q}$的每个零因子都是幂零元. 显然素理想是准素理想, 准素理想的拉回是准素理想.
 
@@ -244,9 +263,34 @@
 
     考虑Noether环$A$中不能分解成有限个不可约理想的交的理想全体, 假设其非空, 因为满足极大条件, 所以存在极大元$\ideal{a}$, 显然$\ideal{a}$是可约的, 所以存在$\ideal{b}\cap\ideal{c}=\ideal{a}$, 满足$\ideal{b}, \ideal{c}\supsetneqq\ideal{a}$. 由$\ideal{a}$的极大性知$\ideal{b}, \ideal{c}$可以写成有限个不可约理想的交, 于是$\ideal{a}$也可以写成有限个不可约理想的交, 与定义矛盾. 于是得证第一步, Noether环的每个理想都能分解成有限个不可约理想的交.
 
-    设$\ideal{a}$为Noether环$A$的不可约理想, 那么零理想$(0)$是商环$A{\divslash}\ideal{a}$的不可约理想, 并且由于准素理想的拉回是准素理想, 所以我们只需要证明$(0)$是$A{\divslash}\ideal{a}$的准素理想. 调整记号, 我们只需要证明如果Noether环$A$的零理想$(0)$是不可约理想, 则它一定是准素理想. 考虑$xy=0$但$y\neq 0$, 有理想升链$\Ann((x))\subseteq\Ann((x^2))\subseteq\dotsb$, 由升链条件知该升链稳定, 即存在$n$使得$\Ann((x^n))=\Ann((x^{n+1}))=\dotsb$. 我们声称$(x^n)\cap (y)=(0)$, 如果$a\in (y)$, 则$ax=0$, 如果进一步地有$a\in (x^n)$, 设$a=bx^n$, 则$bx^{n+1}=ax=0$, 因此$b\in\Ann((x^{n+1}))=\Ann((x^n))$, 故$a=bx^n=0$. 因为$(0)$为不可约理想且$(y)\neq 0$, 所以$(x^n)=(0)$, 即$x^n=0$, 得证第二步, Noether环地不可约理想总是准素理想.
+    设$\ideal{a}$为Noether环$A$的不可约理想, 那么零理想$(0)$是商环$A{\divslash}\ideal{a}$的不可约理想, 并且由于准素理想的拉回是准素理想, 所以我们只需要证明$(0)$是$A{\divslash}\ideal{a}$的准素理想. 调整记号, 我们只需要证明如果Noether环$A$的零理想$(0)$是不可约理想, 则它一定是准素理想. 考虑$xy=0$但$y\neq 0$, 有理想升链$\Ann((x))\subseteq\Ann((x^2))\subseteq\dotsb$, 由升链条件知该升链稳定, 即存在$n$使得$\Ann((x^n))=\Ann((x^{n+1}))=\dotsb$. 我们声称$(x^n)\cap (y)=(0)$, 如果$a\in (y)$, 则$ax=0$, 如果进一步地有$a\in (x^n)$, 设$a=bx^n$, 则$bx^{n+1}=ax=0$, 因此$b\in\Ann((x^{n+1}))=\Ann((x^n))$, 故$a=bx^n=0$. 因为$(0)$为不可约理想且$(y)\neq 0$, 所以$(x^n)=(0)$, 即$x^n=0$, 得证第二步, Noether环的不可约理想总是准素理想.
 
     又由于每个准素分解都可以化为既约准素分解, 我们证明了Noether环$A$的每个理想都有既约准素分解.
 \end{proof}
 
-很自然地, 我们要考察准素分解的唯一性.
+现在来考察准素分解的唯一性, 首先我们利用理想商这一工具来证明准素分解中从属素理想的唯一性.
+
+\begin{proposition}[{{\parencite[51, Lemma 4.4]{atiyah_introduction_1969}}}]\label{prop:idealquotprimary}
+    设$\ideal{q}$为环$A$的$\ideal{p}$-准素理想, $x\in A$, 则
+    \begin{enumerate}
+        \item 如果$x\in \ideal{q}$, 则$(\ideal{q}{:}(x))=(1)$;
+        \item 如果$x\notin\ideal{q}$, 则$(\ideal{q}{:}(x))$为$\ideal{p}$-准素理想, 故$\sqrt{(\ideal{q}{:}(x))}=\ideal{p}$;
+        \item 如果$x\notin\ideal{p}$, 则$(\ideal{q}{:}(x))=\ideal{q}$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    %TODO: PROOF!
+\end{proof}
+
+\begin{theorem}[{{\parencite[52, Theorem 4.5]{atiyah_introduction_1969}}}]
+    设$\ideal{a}$为环$A$的一个可准素分解的理想, 令$\ideal{a}=\bigcap_{j=1}^n \ideal{q}_j$为既约准素分解, 对于$j=1, \dotsc, n$记$\ideal{p}_j:=\sqrt{\ideal{q}_j}$, 则集合$\{\ideal{p}_1, \dotsc, \ideal{p}_n\}$恰为$\{\sqrt{(\ideal{a}{:}(x))}\vert x\in A\}$的素理想全体, 于是$\{\ideal{p}_1, \dotsc, \ideal{p}_n\}$与准素分解的选取无关, 称为$\ideal{a}$的\emph{从属素理想}.
+\end{theorem}
+
+\begin{proof}
+    首先证明能写成$\sqrt{(\ideal{a}{:}(x))}$形式的素理想一定是某一个$\ideal{p}_j$. 由\thref{prop:idealquot}\ref{enum:prop-idealquot-firstcap}和\thref{prop:idealquotprimary}, 有$\sqrt{(\ideal{a}{:}(x))}=\sqrt{\bigcap_{k=1}^n(\ideal{q}_k{:}(x))}=\bigcap_{x\notin\ideal{q}_k}\ideal{p}_k$. 如果$\sqrt{(\ideal{a}{:}(x))}$是素理想, 那么由\thref{prop:prime}\ref{enum:prop-prime-absorb}知存在$j$使得$\sqrt{(\ideal{a}{:}(x))}=\ideal{p}_j$.
+
+    再证明每个$\ideal{p}_j$都能写成$\sqrt{(\ideal{a}{:}(x))}$的形式. 由于准素分解的既约性, 所以对于每个$j$存在$x_j\notin\ideal{q}_j$, $x_j\in\bigcap_{k\neq j}\ideal{q}_k$, 而由上一步知$\sqrt{(\ideal{a}{:}(x_j))}=\bigcap_{x\notin\ideal{q}_k}\ideal{p}_k=\ideal{p}_j$. 遂得证.
+\end{proof}
+
+接着我们利用局部化这一工具来证明孤立素理想及对应的孤立准素理想的唯一性.

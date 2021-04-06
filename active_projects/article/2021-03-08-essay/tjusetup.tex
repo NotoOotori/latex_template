@@ -166,6 +166,7 @@
 \newcommand{\axiom}[1]{\symsfup{#1}}
 \newcommand{\field}[1]{#1}
 \newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+% \newcommand{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
 \newcommand{\SAa}{\overline{S}^{-1}(A{\divslash}\ideal{a})}
 \newcommand{\SASa}{S^{-1}A{\divslash}S^{-1}\ideal{a}}
 \DeclareMathOperator{\Aut}{Aut}
@@ -198,7 +199,7 @@
 
 % One should always load \usepackage{hyperref} before the first use of \newtheorem to obtain correct handling and referencing of counters.
 \theoremstyle{plain}
-\theorembodyfont{\upshape}
+\theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
 \theoremindent0pt
 % \theoremprework{}
 \newtheorem{theorem}{定理}[subsection]
@@ -207,12 +208,12 @@
 \newtheorem{proposition}[theorem]{命题}
 \newtheorem{conjection}[theorem]{猜想}
 \theoremstyle{nonumberplain}
-\theorembodyfont{\upshape}
+\theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
 \theoremindent0pt
 \newtheorem{definition}{定义}
 \newtheorem{remark}{注}
 \newtheorem{proof}{证明}
-\newtheorem{proofsketch}{证明梗概}
+% \newtheorem{proofsketch}{证明梗概}
 \newtheorem{example}{例}
 % \newenvironment{breakexample}{\begin{example}\leavevmode\vspace{-\baselineskip}}{\end{example}}
 

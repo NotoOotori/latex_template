@@ -1,3 +1,4 @@
 [submodule "templates/article/tjuthesis"]
 	path = templates/article/tjuthesis
 	url = https://github.com/NotoOotori/tjuthesis.git
+	branch = develop

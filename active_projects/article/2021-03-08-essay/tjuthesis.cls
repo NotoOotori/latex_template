@@ -249,7 +249,7 @@
 
 
 % 英文字体
-\setmainfont{Times New Roman}%
+\setmainfont{CMU Serif}%
 
 
 \mathchardef\ordinarycolon\mathcode`\:
@@ -296,7 +296,7 @@
     StylisticSet = 1,
     range = {cal, bfcal},
   ]
-  \setmathfont{Times New Roman}[
+  \setmathfont{CMU Serif}[
     range = \mathup/{num},
     Script = Arabic,
   ]

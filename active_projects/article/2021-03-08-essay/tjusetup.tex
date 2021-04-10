@@ -147,6 +147,7 @@
 % 也可以使用 ntheorem
 \usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
 
+
 % 给自定义的宏后面自动加空白
 % \usepackage{xspace}
 
@@ -163,7 +164,7 @@
 \newcommand{\NN}{\symbb{N}}
 \newcommand{\ideal}[1]{\symfrak{#1}}
 % \newcommand{\rad}[1]{\sqrt{\ideal{#1}}}
-\newcommand{\axiom}[1]{\symsfup{#1}}
+\newcommand{\axiom}[1]{\ensuremath{\symsfup{#1}}}
 \newcommand{\field}[1]{#1}
 \newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
 % \newcommand{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
@@ -197,6 +198,31 @@
 % hyperref 宏包在最后调用
 \usepackage{hyperref}
 
+\hypersetup{linktoc=all}% TOC中章节名称和页码都是超链接
+% \hypersetup{% 超链接样式
+%   colorlinks  =   true,
+%   linkcolor   =   cyan,
+%   anchorcolor =   black,
+%   citecolor   =   green,
+%   filecolor   =   cyan,
+%   menucolor   =   red,
+%   runcolor    =   filecolor,
+%   urlcolor    =   magenta,
+% }
+\hypersetup{% 书签
+  bookmarksopen = true,
+  bookmarksopenlevel = 2,
+  bookmarksnumbered = true,% 将章节编号放入书签中
+}
+\hypersetup{% PDF默认打开视图
+  pdfstartview        =   FitH,
+  pdfpagelayout       =   OneColumn,
+}
+\hypersetup{% PDF信息
+  pdftitle={\tjutitle},
+  pdfauthor={\tjuauthor},
+}
+
 % One should always load \usepackage{hyperref} before the first use of \newtheorem to obtain correct handling and referencing of counters.
 \theoremstyle{plain}
 \theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
@@ -222,4 +248,3 @@
 % \makeatletter
 % \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}
 % \makeatother
-% TODO: footnote编号 以及圆圈

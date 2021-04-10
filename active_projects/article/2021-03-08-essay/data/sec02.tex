@@ -48,6 +48,10 @@
     设$\ideal{a}$为环$A$的理想, 则$A$中包含$\ideal{a}$的理想全体与$A{\divslash}\ideal{a}$中的理想全体有由投影映射$\pi$诱导出的保序双射($\ideal{b}\leftrightarrow\ideal{b}{\divslash}\ideal{a}$).
 \end{proposition}
 
+\begin{proof}
+    保序显然, 再验证$\pi$将$A$中包含$\ideal{a}$的理想映到$A{\divslash}\ideal{a}$中的理想, $\pi^{-1}$将$A{\divslash}\ideal{a}$中的理想映到$A$中包含$\ideal{a}$的理想, 并且两者互为逆.
+\end{proof}
+
 \begin{remark}
     由于\thref{prop:quotidealcorr}的成立, 在不致引起混淆的情况下我们会将$A$中包含$\ideal{a}$的某一个理想同时看作$A{\divslash}\ideal{a}$的理想而不另加说明, 反之亦然.
 \end{remark}
@@ -76,7 +80,7 @@
         \ideal{m}\text{为极大理想}&\Leftrightarrow A{\divslash}\ideal{m}\text{是域}.
     \end{aligned}
 \end{equation*}
-因此素理想为极大理想, 而Zorn引理可以保证非零环中极大理想的存在性.
+因此素理想为极大理想, 而Zorn引理\footnote{Zorn引理的叙述如下: 如果一个非空偏序集的每个全序子链都有上界, 那么这个偏序集存在极大元. 在\axiom{ZF}公理系统下Zorn引理与选择公理\axiom{AC}等价\parencite[10, Theorem 2.2]{herrlich_axiom_2006}.}可以保证非零环中极大理想的存在性.
 
 \begin{theorem}[{{\parencite[3, Theorem 1.3]{atiyah_introduction_1969}}}]\label{thm:maxideal}
     每个非零环都存在至少一个极大理想.
@@ -103,7 +107,9 @@
 \end{proposition}
 
 \begin{proof}
-    %TODO: there should be a proof
+    先证$\subseteq$, 这一部分比较直接. 只需证如果$x^n\in\ideal{a}$, 那么$x$属于每个包含$\ideal{a}$的素理想, 这由素理想的定义可简单得出.
+
+    再证$\supseteq$, 这一部分需要用到Zorn引理. 反证, 如果有$f\in A$使得对于任意的$n\in\ZZ_+$都有$f^n\notin\ideal{a}$, 我们需要构造一个素理想$\ideal{p}\supseteq\ideal{a}$使得$f\notin\ideal{p}$. 考虑满足包含$\ideal{a}$并且对于任意$n\in\ZZ_+$都有$x^n\notin\ideal{a}$的理想$\ideal{a}$的全体$\Sigma$, 这构成一个非空偏序集, 满足任意全序子列的并集都是其上界, 故由Zorn引理知$\Sigma$存在极大元, 记极大元为$\ideal{p}$, 现在来证明$\ideal{p}$是素理想. 如果$x, y\notin\ideal{p}$, 则理想$(x)+\ideal{p}$与$(y)+\ideal{p}$不属于$\Sigma$, 由$\ideal{p}$的极大性知存在$m, n\in\ZZ_+$使得$f^m\in (x)+\ideal{p}$并且$f^n\in (y)+\ideal{q}$, 因此$f^{m+n}\in (xy)+\ideal{p}$, 故$(xy)+\ideal{p}\neq\ideal{p}$, 即$xy\notin\ideal{p}$. 于是$\ideal{p}$即为我们想找的素理想.
 \end{proof}
 
 理想在环同态作用下的表现也是研究的重点. 给定环同态$f\colon A\to B$, 设$\ideal{a}$为$A$的理想, $\ideal{b}$为$B$的理想. $\ideal{a}$在$f$下的像$f(\ideal{a})$不一定为理想, 定义$\ideal{a}$的\emph{扩张}为$f(\ideal{a})$在$B$中生成的理想, 记作$\ideal{a}^e$. $\ideal{b}$在$f$下的原像$f^{-1}(\ideal{b})$一定是理想, 定义$\ideal{b}$的\emph{收缩}即为$f^{-1}(\ideal{b})$, 记作$\ideal{b}^c$. 若$B$的某个理想可以写成$A$的一个理想的扩张, 则称这个$B$的理想为\emph{扩张理想}, 类似地, 如果$A$的某个理想可以写成$B$的一个理想的收缩, 则称这个$A$的理想为\emph{收缩理想}. 要注意扩张与收缩是相对于$f$而言的, 只不过一般在语境下$f$的选取不会有混淆, 故没有显式提及$f$. 显然扩张与收缩都具有保序性, 即如果$A$的理想$\ideal{a}_1\subseteq\ideal{a}_2$, $B$的理想$\ideal{b}_1\subseteq\ideal{b}_2$, 则$\ideal{a}_1^e\subseteq\ideal{a}_2^e$, $\ideal{b}_1^c\subseteq\ideal{b}_2^c$. 下面一个命题推广了\thref{prop:quotidealcorr}到一般形式.
@@ -173,7 +179,7 @@
     \begin{enumerate}
         \item\label{enum:prop-fracideal-1} $S^{-1}A$的每个理想都是扩张理想.
         \item\label{enum:prop-fracideal-2} $S^{-1}A$的素理想全体与$A$的与$S$不交的素理想全体有保序双射($\ideal{p}\leftrightarrow S^{-1}\ideal{p}$).
-        \item\label{enum:prop-fracideal-3} $S^{-1}$运算与理想的和积交根均可交换(或分配). % TODO: 观察一下有没有必要补证明和extension contraction性质的命题
+        \item\label{enum:prop-fracideal-3} $S^{-1}$运算与理想的和积交根均可交换(或分配). % TODO: 观察一下有没有必要补extension contraction性质的命题
     \end{enumerate}
 \end{proposition}
 
@@ -186,7 +192,7 @@
 
     再证明$A$的素理想$\ideal{p}$的扩张$\ideal{p}^e$是素理想当且仅当$\ideal{p}\cap S=\varnothing$. 对于素理想$\ideal{p}\subseteq A$, 因为有同构$\overline{S}^{-1}(A{\divslash}\ideal{p})\cong S^{-1}A{\divslash}S^{-1}\ideal{p}$, 而$\overline{S}^{-1}(A{\divslash}\ideal{p})$为整环$A{\divslash}\ideal{p}$的分式域的子环, 故为整环或零环, 因此$S^{-1}\ideal{p}$为素理想或$(1)$, 而由分式环中扩张理想的显式表示知$S^{-1}\ideal{p}=(1)$当且仅当$\ideal{p}\cap S\neq\varnothing$, 即当$\ideal{p}\cap S=\varnothing$时有$\ideal{p}^e$为素理想.
 
-    \ref{enum:prop-fracideal-3}% TODO: proof
+    \ref{enum:prop-fracideal-3}由\thref{prop:extencontrop}知$S^{-1}$与理想的和与积可交换, 再验证$S^{-1}(\ideal{a}\cap\ideal{b})=S^{-1}\ideal{a}\cap S^{-1}\ideal{a}\cap\ideal{b}$, 以及$S^{-1}\sqrt{\ideal{a}}=\sqrt{S^{-1}\ideal{a}}$即可.
 \end{proof}
 
 \begin{example}\leavevmode\vspace{-\baselineskip}% TODO: Separate style and content
@@ -213,7 +219,7 @@
 \begin{proof}
     $\ref{enum:prop-nr-chain}\Rightarrow\ref{enum:prop-nr-max}$ 假设\ref{enum:prop-nr-chain}成立, 对有偏序结构的理想族$\{\ideal{a}_\lambda\}$运用Zorn引理(\thref{thm:maxideal})即可.
 
-    $\ref{enum:prop-nr-max}\Rightarrow\ref{enum:prop-nr-fnt}$ 假设\ref{enum:prop-nr-fnt}不成立, 选择公理\footnote{这里只需要用到选择公理($\axiom{AC}$)的一个弱化版本非独立选择公理($\axiom{DC}$, Axiom of Dependent Choice).}保证了序列$\{x_n\}_{n\in\ZZ_+}\subseteq A$的存在, 其满足对于任意的$n\in\ZZ_+$都有$x_{n+1}\notin (x_1, \dotsc, x_n)$. 于是我们有理想族$\ideal{a}_n=(x_1, \dotsc, x_n)$, 满足$\ideal{a}_1\subsetneqq\ideal{a}_2\subsetneqq\dotsb$, 无极大元, 故\ref{enum:prop-nr-max}不成立.
+    $\ref{enum:prop-nr-max}\Rightarrow\ref{enum:prop-nr-fnt}$ 假设\ref{enum:prop-nr-fnt}不成立, 选择公理\footnote{这里只需要用到选择公理(\axiom{AC})的一个弱化版本非独立选择公理(\axiom{DC}, Axiom of Dependent Choice).}保证了序列$\{x_n\}_{n\in\ZZ_+}\subseteq A$的存在, 其满足对于任意的$n\in\ZZ_+$都有$x_{n+1}\notin (x_1, \dotsc, x_n)$. 于是我们有理想族$\ideal{a}_n=(x_1, \dotsc, x_n)$, 满足$\ideal{a}_1\subsetneqq\ideal{a}_2\subsetneqq\dotsb$, 无极大元, 故\ref{enum:prop-nr-max}不成立.
 
     $\ref{enum:prop-nr-fnt}\Rightarrow\ref{enum:prop-nr-chain}$ 假设\ref{enum:prop-nr-fnt}成立, 则对于任意的理想升链$\ideal{a}_1\subseteq\ideal{a}_2\subseteq\dotsb$, 都有它的上确界$\ideal{a}:=\bigcup_{j}\ideal{a}_{j}$是有限生成理想, 设其可由$x_1, \dotsc, x_n$生成. 设$c_1, \dotsc, c_n\in \ZZ^+$满足$x_j\in\ideal{a}_{c_j}$, 则对于$N=\max_{j=1}^nc_j$有$x_1, \dotsc, x_n\subseteq\ideal{a}_N$, 故$\ideal{a}_N=\ideal{a}_{N+1}=\dotsb$, 即该理想升链稳定.
 \end{proof}
@@ -239,7 +245,7 @@
 \end{theorem}
 
 \begin{proof}
-    由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多元多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理($\axiom{DC}$)知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n:=(f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}:=(a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
+    由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多元多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n:=(f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}:=(a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
 \end{proof}
 
 接下来我们来证明重要的Hilbert零点定理, 它建立了代数与几何联系的根基. 首先我们需要几个引理.
@@ -327,7 +333,7 @@
     如果$\ideal{p}\supseteq\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$, 那么由\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}知$\ideal{p}=\sqrt{\ideal{p}}\supseteq\sqrt{\bigcap_{j=1}^n\ideal{q}_j}=\bigcap_{j=1}^n\sqrt{\ideal{q}_j}=\bigcap_{j=1}^n\ideal{p}_j$, 所以存在$j$使得$\ideal{p}\supseteq\ideal{p}_j$, 于是$\ideal{p}$包含一个$\ideal{a}$的从属素理想.
 \end{proof}
 
-考察准素理想在局部化下的表现.
+现在来考察准素理想在局部化下的扩张与收缩.
 
 \begin{proposition}[{{\parencite[53, Proposition 4.8; 54, Proposition 4.9]{atiyah_introduction_1969}}}]\label{prop:primlocal}设$S$为环$A$的乘法闭集, 考虑典范同态$A\to S^{-1}A$.
     \begin{enumerate}

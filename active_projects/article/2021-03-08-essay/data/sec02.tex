@@ -19,11 +19,10 @@
     \item $A$的乘法满足结合律与交换律;
     \item 存在$1\in A$, 使得对于任意的$x\in A$都有$1x=x$成立,
 \end{enumerate}
-则称$A$为\emph{交换幺环}. 后文中\emph{环}指的都是交换幺环. 注意如果$1=0$, 则环中有且仅有一个元素, 称这样的环为\emph{零环}.
+则称$A$为\emph{交换幺环}. 后文中\emph{环}指的都是交换幺环. 注意如果$1=0$, 则环中有且仅有一个元素, 称这样的环为\emph{零环}\footnotemark .
+\footnotetext{需要注意的是, 在之后的一些定义中会排除零环, 比如说整环, 域等概念.}
 
-% 研究保持代数结构的映射为代数理论的核心, 而保持环结构的映射即为环同态, 定义如下.
-
-设$A, B$是两个环, 若映射$f\colon A\to B$满足
+研究保持代数结构的映射为代数理论的核心, 而保持环结构的映射即为环同态, 定义如下. 设$A, B$是两个环, 若映射$f\colon A\to B$满足
 \begin{enumerate}
     \item $f(x+y)=f(x)+f(y)$(即$f$为群同态, 同时还有$f(0)=0$与$f(-x)=-f(x)$成立);
     \item $f(xy)=f(x)f(y)$;
@@ -31,14 +30,13 @@
 \end{enumerate}
 则称$f$为从$A$到$B$的\emph{环同态}.
 
-% 理想在环论中的作用类似于正规子群在群论中的作用, 一个环可以与其理想做商得到商环, 商环中的理想与原来环中的理想有对应关系, 可以简化问题
-
-设$A$为环, 如果$A$的子集$\ideal{a}$满足
+理想在环论中的作用类似于正规子群在群论中的作用, 一个环可以与其理想做商得到商环, 商环中的理想与原来环中的理想有对应关系, 可以以此来简化问题. 设$A$为环, 如果$A$的子集$\ideal{a}$满足
 \begin{enumerate}
     \item $\ideal{a}$为$A$的加法子群;
     \item 若$x\in A, y\in\ideal{a}$, 则$xy\in\ideal{a}$,
 \end{enumerate}
-则称$\ideal{a}$为$A$的\emph{理想}. 若$\ideal{a}\neq A$, 则称$\ideal{a}$为\emph{真理想}.
+则称$\ideal{a}$为$A$的\emph{理想}. 若$\ideal{a}\neq A$, 则称$\ideal{a}$为\emph{真理想}\footnotemark .
+\footnotetext{与零环的情况相对应, 同样需要注意之后的一些定义中会只考虑真理想, 比如说素理想, 极大理想等概念, 为了保证素理想(极大理想)与整环(域)对应的简洁性.}
 
 设$B$为环$A$的子集, 则定义$B$\emph{生成的理想}为$A$中包含$B$的(在包含意义下)最小的理想, 该理想$=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in A, y_j\in B\}$. 由有限个元素$x_1, \dotsc, x_n$生成的理想记为$(x_1, \dotsc, x_n)$, 由一个元素$x$生成的理想记为$(x)$, 称可以由有限个元素生成的理想\emph{有限生成理想}, 称可以由一个元素生成的理想为\emph{主理想}.
 
@@ -58,7 +56,7 @@
 
 对于环$A$的元素$x$, 如果存在$y\neq 0$使得$xy=0$, 则称$x$为\emph{零因子}. 如果非零环$A$中没有非零零因子, 则称环$A$为\emph{整环}. 对于$x\in A$, 如果存在整数$n>0$使得$x^n = 0$, 则称$x$为\emph{幂零元}. 幂零元为零因子, 反过来则不一定成立. 如果$x\in A$关于乘法可逆, 即存在$y\in A$使得$xy=1$, 则称$x$为\emph{单位}, 此时这样的$y$唯一, 记为$x^{-1}$. 环$A$的单位全体关于乘法有Abel群的结构. 如果环$A$非零, 且每个非零元都是单位, 则称$A$为\emph{域}.
 
-如果环$A$的理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为$A$的真理想全体(在包含意义下)的极大元, 则称$\ideal{m}$为\emph{极大理想}. 素理想
+如果环$A$的真理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为$A$的真理想全体(在包含意义下)的极大元, 则称$\ideal{m}$为\emph{极大理想}. 素理想有一些很好的性质.
 
 \begin{proposition}[{{\parencite[8, Proposition 1.11]{atiyah_introduction_1969}}}]\label{prop:prime}\leavevmode
     \begin{enumerate}
@@ -80,7 +78,8 @@
         \ideal{m}\text{为极大理想}&\Leftrightarrow A{\divslash}\ideal{m}\text{是域}.
     \end{aligned}
 \end{equation*}
-因此素理想为极大理想, 而Zorn引理\footnote{Zorn引理的叙述如下: 如果一个非空偏序集的每个全序子链都有上界, 那么这个偏序集存在极大元. 在\axiom{ZF}公理系统下Zorn引理与选择公理\axiom{AC}等价\parencite[10, Theorem 2.2]{herrlich_axiom_2006}.}可以保证非零环中极大理想的存在性.
+因此素理想为极大理想, 而Zorn引理\footnotemark 可以保证非零环中极大理想的存在性.
+\footnotetext{Zorn引理的叙述如下: 如果一个非空偏序集的每个全序子链都有上界, 那么这个偏序集存在极大元. 在\axiom{ZF}公理系统下Zorn引理与选择公理\axiom{AC}等价\parencite[10, Theorem 2.2]{herrlich_axiom_2006}.}
 
 \begin{theorem}[{{\parencite[3, Theorem 1.3]{atiyah_introduction_1969}}}]\label{thm:maxideal}
     每个非零环都存在至少一个极大理想.
@@ -153,7 +152,7 @@
 
 \subsection{分式环与局部化}
 
-分式环以及与之相关的局部化可以说是交换代数中最重要的技术之一了. 与商环类似, 分式环也可以对环进行简化, 商环保留不比给定理想小的理想, 分式环保留不比给定几何大的理想. 在()%TODO: localization
+分式环以及与之相关的局部化可以说是交换代数中最重要的技术之一了. 与商环类似, 分式环也可以对环进行简化, 商环保留包含给定理想的理想, 分式环保留包含于给定集合的理想. 在()%TODO: localization
 中, 我们可以看到局部化的几何意义, 为研究在某个邻域或在某个点处的情况.
 
 若环$A$的子集$S$包含单位元1, 并且满足关于乘法封闭, 即对于任意的$x, y\in S$都有$xy\in S$成立, 则称$S$为$A$的\emph{乘法闭集}. 在$A\times S$上定义等价关系$\sim$, $(a, s)\sim (b, t)$当且仅当存在$u\in S$使得$u(at-bs)=0$成立, 记$A\times S$在该等价关系下的商为$S^{-1}A$. 在$S^{-1}A$上定义加法$a{\divslash} s+b{\divslash}t := (at+bs){\divslash}(st)$以及乘法$(a{\divslash}s)(b{\divslash}t)=(ab){\divslash}(st)$, 则$S^{-1}A$关于该加法与乘法有环的结构, 称为$A$关于$S$的\emph{分式环}. 有自然同态$f\colon A\to S^{-1}A$将$x$映到$x{\divslash}1$, 注意$f$不一定是单射. 分式环有如下的\emph{泛性质}\parencites[81, Theorem 11.3]{altman_term_2017}[37, Proposition 3.1]{atiyah_introduction_1969}, 给定环$A$, 乘法闭集$S$与之前定义的自然同态$f\colon A\to S^{-1}A$, 对于任意的环$B$以及将$S$中元素映到单位的环同态$\phi\colon A\to B$, 存在唯一的环同态$\psi\colon S^{-1}R\to B$使得$\psi f=\phi$成立, 并且满足该泛性质的环$S^{-1}A$在同构意义下唯一.
@@ -240,7 +239,7 @@
     \ref{enum:prop-nr2-frac} 由\thref{prop:extencontrcorr}\ref{enum:prop-ec-corr}和\thref{prop:fracideal}\ref{enum:prop-fracideal-3}知$S^{-1}A$的理想全体与$A$的收缩理想全体有保序双射, 故满足升链条件.
 \end{proof}
 
-\begin{theorem}[Hilbert基定理{{\parencites[81, Theorem 7.5]{atiyah_introduction_1969}[201, Theorem 1]{zariski_commutative_1975}{noauthor_hilberts_2020}}}]
+\begin{theorem}[Hilbert基定理{{\parencites[81, Theorem 7.5]{atiyah_introduction_1969}[201, Theorem 1]{zariski_commutative_1958}{noauthor_hilberts_2020}}}]
     若$A$为Noether环, 则有限生成$A$-代数为Noether环.
 \end{theorem}
 
@@ -283,7 +282,7 @@
 
 环$A$中理想$\ideal{a}$的准素分解为将$\ideal{a}$写为有限个准素理想的交, 即$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$. 进一步地, 如果有$\sqrt{\ideal{q}_j}$两两不同, 并且对于每个$j$都有$\ideal{q}_j\nsupseteq\bigcap_{k\neq j}\ideal{q}_k$, 则称这个准素分解为\emph{既约的}. 利用\thref{prop:primary}\ref{enum:prim-inte}, 再去除多余的项, 我们总可以将准素分解化为既约的. 一般来说准素分解不一定存在, 不过我们即将证明在Noether环上准素分解总是存在的.
 
-\begin{theorem}[Lasker–Noether定理{{\parencites[83, Theorem 7.13]{atiyah_introduction_1969}[209, Theorem 4]{zariski_commutative_1975}}}]
+\begin{theorem}[Lasker–Noether定理{{\parencites[83, Theorem 7.13]{atiyah_introduction_1969}[209, Theorem 4]{zariski_commutative_1958}}}]
     Noether环$A$的每个理想都有既约准素分解.
 \end{theorem}
 
@@ -360,3 +359,10 @@
 \begin{proof}
     设$\ideal{p}$为$\ideal{a}$的孤立从属素理想, 其对应的准素理想为$\ideal{q}$. 考察局部化$A_{\ideal{p}}$, 由$\ideal{p}$的极小性以及\thref{prop:primlocal}\ref{enum:prop-primlocal-decom}知$\ideal{a}^{ec}=\ideal{q}$, 又由\thref{prop:primuniq1}以及定义知$\ideal{a}$的孤立从属素理想由$\ideal{a}$唯一决定, 故孤立从属素理想对应的准素理想由$\ideal{a}$唯一决定.
 \end{proof}
+
+\subsection{维数理论}
+
+% 域的超越指数; Jacobson
+% height and depth; Zariski Vol I
+% Krull's Hauptidealsatz; Zariski Vol I followed by height and depth
+% minimal ideal theorem; Zariski Vol II

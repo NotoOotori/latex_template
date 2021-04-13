@@ -6,7 +6,7 @@
 
 \subsection{环与理想}
 
-这一小节中我们将要给出环和理想的基本概念, 以及理想的一些运算. 在本节的最后, 我们将介绍模与代数的概念. 本文中不会以模作为主要工具, 但是引入其定义可以方便某些定理的叙述.
+这一节中我们将要给出环和理想的基本概念, 以及理想的一些运算. 在本节的最后, 我们将介绍模与代数的概念. 本文中不会以模作为主要工具, 但是引入其定义可以方便某些定理的叙述.
 
 设$A$为非空集合, 若在$A$中有两个二元运算(加法和乘法), 满足
 \begin{enumerate}
@@ -362,7 +362,21 @@
 
 \subsection{维数理论}
 
-% 域的超越指数; Jacobson
+维数理论也是交换代数的重要话题, Atiyah-MacDonald\parencite[116--126, Chapter 11]{atiyah_introduction_1969}一书中介绍了一般的Noether局部环的维数理论, 需要模论以及完备化等技术. 限于篇幅原因, 这一节我们仅介绍域的有限生成代数的维数理论. 这一部分维数理论与域论关系密切, 因此我们将先介绍域论中的维数理论, 即超越基与超越次数;% TODO: 环中重要的是素理想 介绍素理想的高度与深度 介绍其与环维数的关系
+
+% TODO: need reference
+回顾线性空间的维数理论, 我们定义了线性空间中线性相关与线性无关的概念, 从而引出了Hamel基的概念, 并证明了Hamel基的存在性\footnotemark 及其在基数意义下的唯一性\parencite[44--46, 2.1]{ciarlet_linear_2013}. 我们将推广这个工作, 定义集合论意义下的相关关系, 并将其应用在域扩张中, 从而得到域扩张的超越基与超越次数.
+\footnotetext{任意非零线性空间都有Hamel基这个命题在\axiom{ZF}公理系统下等价于选择公理\axiom{AC}\parencite{blass_existence_1984}.}
+
+设$X$为非空集合, 用$\powerset{X}$表示$X$的\emph{幂集}, 即$X$的子集全体构成的集合, 用大写字母表示$\powerset{X}$的元素, 用小写字母表示$X$的元素. 考虑子集$\Delta\subseteq X\times \powerset{X}$, 称为从$X$到$\powerset{X}$的一个\emph{对应}, 如果$(x, S)\in \Delta$则记$x\prec S$. 如果$\Delta$满足
+\begin{enumerate}
+    \item 如果$x\in S$, 则$x\prec S$;
+    \item 若$x\prec S$, 则存在有限子集$F\subseteq S$使得$x\prec F$;
+    \item 如果$x\prec S$并且对于每个$y\in S$都有$y\prec T$, 那么有$x\prec T$;
+    \item (Steinitz对换公理) 如果$x\prec S$但是$x\nprec S-\{y\}$, 则$y\prec (S-\{y\})\cup\{x\}$.
+\end{enumerate}
+
+% 域的超越指数; Jacobson Vol II P514
 % height and depth; Zariski Vol I
 % Krull's Hauptidealsatz; Zariski Vol I followed by height and depth
 % minimal ideal theorem; Zariski Vol II

@@ -254,4 +254,10 @@
 % \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}
 % \makeatother
 
-% TODO: biblatex保留volume
+\appto\appendix{%
+  \theoremstyle{plain}%
+  \theoremheaderfont{\bfseries}%
+  \theorembodyfont{\upshape}%
+  \theoremindent0pt%
+  \renewtheorem{theorem}{定理}[section]%
+}% etoolbox

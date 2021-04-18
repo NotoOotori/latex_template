@@ -2,7 +2,7 @@
 
 \section{代数}
 
-这一部分将以域的有限生成代数为原型, 发展本文中所需要用到的代数基础, 主要包括局部化, 准素分解, 维数理论, 素谱等内容.
+这一部分将以域的多项式函数整环为原型, 发展本文中所需要用到的代数基础, 主要包括局部化, 准素分解, 维数理论, 素谱等内容.
 
 \subsection{环与理想}
 
@@ -54,6 +54,15 @@
     由于\thref{prop:quotidealcorr}的成立, 在不致引起混淆的情况下我们会将$A$中包含$\ideal{a}$的某一个理想同时看作$A{\divslash}\ideal{a}$的理想而不另加说明, 反之亦然.
 \end{remark}
 
+% TODO: https://proofwiki.org/wiki/Third_Isomorphism_Theorem/Rings
+\begin{proposition}[第三同构定理{{\parencite[126, Theorem 2.12 (ii)]{hungerford_algebra_1974}}}]\label{prop:thirdisomorphism}
+    设$A$为环, $\ideal{a}\subseteq\ideal{b}$为$A$的两个理想, 则$\ideal{b}{\divslash}\ideal{a}$是商环$A{\divslash}\ideal{a}$的理想, 并且有$(A{\divslash}\ideal{a}){\divslash}(\ideal{b}{\divslash}\ideal{a})\cong A{\divslash}\ideal{b}$.
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
 对于环$A$的元素$x$, 如果存在$y\neq 0$使得$xy=0$, 则称$x$为\emph{零因子}. 如果非零环$A$中没有非零零因子, 则称环$A$为\emph{整环}. 对于$x\in A$, 如果存在整数$n>0$使得$x^n = 0$, 则称$x$为\emph{幂零元}. 幂零元为零因子, 反过来则不一定成立. 如果$x\in A$关于乘法可逆, 即存在$y\in A$使得$xy=1$, 则称$x$为\emph{单位}, 此时这样的$y$唯一, 记为$x^{-1}$. 环$A$的单位全体关于乘法有Abel群的结构. 如果环$A$非零, 且每个非零元都是单位, 则称$A$为\emph{域}.
 
 如果环$A$的真理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为$A$的真理想全体(在包含意义下)的极大元, 则称$\ideal{m}$为\emph{极大理想}. 素理想有一些很好的性质.
@@ -93,7 +102,7 @@
 
 接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b}):=\{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用, 特别地, 记理想$\ideal{a}$的\emph{零化理想}为$\Ann(\ideal{a}):=((0){:}\ideal{a})$. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}:=\{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 很显然, 根运算具有保序性, 即如果$\ideal{a}\subseteq\ideal{b}$, 则$\sqrt{\ideal{a}}\subseteq\sqrt{\ideal{b}}$. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为\emph{根理想}.
 
-\begin{proposition}[{{\parencite[8, Exercise 1.12; 9, Exercise 1.13]{atiyah_introduction_1969}}}]\label{prop:idealop}\leavevmode
+\begin{proposition}[{{\parencite[8, Exercise 12; 9, Exercise 13]{atiyah_introduction_1969}}}]\label{prop:idealop}\leavevmode
     \begin{enumerate}
         \item\label{enum:prop-idealop-quot-firstcap} $(\bigcap_\lambda \ideal{a}_\lambda{:}\ideal{b})=\bigcap_{\lambda}(\ideal{a}_\lambda{:}\ideal{b})$;
         \item $(\ideal{a}{:}\sum_{\lambda}\ideal{b}_\lambda)=\bigcap_{\lambda}(\ideal{a}{:}\ideal{b}_\lambda)$;
@@ -196,6 +205,7 @@
 
 \begin{example}\leavevmode\vspace{-\baselineskip}% TODO: Separate style and content TODO: reference
     \begin{enumerate}
+        \item 设$A$为整环, $S=A-\{0\}$, 则$S^{-1}A$为域, 称为$A$的\emph{分式域}, 有时记为$K(A)$.
         \item 设$\ideal{p}$为环$A$的素理想, 则$\ideal{p}$的余集$A-\ideal{p}$是乘法闭集, 称分式环$(A-\ideal{p})^{-1}A$为$A$在$\ideal{p}$的\emph{局部化}, 记作$A_{\ideal{p}}$. 根据\thref{prop:fracideal}, $A_{\ideal{p}}$的素理想与$A$的包含于$\ideal{p}$的素理想有保序双射, 则由于极大理想存在并且为素理想, 有$\ideal{p}^e$为$A_{\ideal{p}}$的唯一极大理想, 即$A_{\ideal{p}}$为局部环.
         \item 设$f\in A$为环$A$的非零元, 则集合$\{f^n\vert n\in \NN\}$是乘法闭集, 记$A$关于该集合的分式环为$A_f$. 有时这也被称为$A$的\emph{局部化}.
     \end{enumerate}
@@ -251,7 +261,7 @@
 接下来我们来证明重要的Hilbert零点定理, 它建立了代数与几何联系的根基. 首先我们需要几个引理.
 
 \begin{proposition}[Artin-Tate引理{{\parencites[81, Proposition 7.8]{atiyah_introduction_1969}[Theorem 1]{artin_note_1951}}}]
-    设环$A\subseteq B\subseteq C$, $A$为Noether环, $C$为有限生成$A$-代数, $C$同时也为有限$B$-代数, 则$B$为有限生成$A$-代数.
+    设环$A\subseteq B\subseteq C$, 其中$A$为Noether环, $C$为有限生成$A$-代数, $C$同时也为有限$B$-代数, 则$B$为有限生成$A$-代数.
 \end{proposition}
 
 \begin{proof}
@@ -363,7 +373,7 @@
 
 \subsection{维数理论}
 
-维数理论也是交换代数的重要话题, Atiyah-MacDonald\parencite[116--126, Chapter 11]{atiyah_introduction_1969}一书中介绍了一般的Noether局部环的维数理论, 需要模论以及完备化等技术. 限于篇幅原因, 这一节我们仅介绍这样一类环的维数理论, 它既是整环又是域上的有限生成代数. 这一部分维数理论与域论关系密切, 因此我们将先介绍域论中的维数理论, 即超越基与超越次数;% TODO: 环中重要的是素理想 介绍素理想的高度与深度 介绍其与环维数的关系
+维数理论也是交换代数的重要话题, Atiyah-MacDonald\parencite[116--126, Chapter 11]{atiyah_introduction_1969}一书中介绍了一般的Noether局部环的维数理论, 需要模论以及完备化等技术. 限于篇幅原因, 这一节我们仅介绍域的多项式函数整环的维数理论. 这一部分维数理论与域论关系密切, 因此我们将先介绍域论中的维数理论, 即超越基与超越次数;% TODO: 环中重要的是素理想 介绍素理想的高度与深度 介绍其与环维数的关系
 
 % 域论的记号 代数相关代数无关 域扩张 F(S)
 
@@ -435,7 +445,7 @@
 \begin{proof}
     我们只证明满足公理\ref{enum:dependaxiom3}和\ref{enum:dependaxiom4}, 另外两个是显然的.
 
-    \ref{enum:dependaxiom3} ``如果$x\depend S$并且对于每个$y\in S$都有$y\depend T$, 那么有$x\depend T$". 我们需要一点关于域扩张次数的知识. 设非零多项式$f=y_0X^m+ y_1X^{m-1}+ \dotsb + y_m\in S[X]$使得$f(x)=0$, 记$K:=F(T)$, 记$S_0:=\{y_0, \dotsc, y_m\}$. 利用\thref{thm:fieldextdegreemulti}, 有$[K(S_0\cup\{x\}):K]=[K(S_0\cup\{x\}):K(S_0)][K(S_0):K]$, 又根据\thref{thm:fntfieldextdegree}有$[K(S_0\cup\{x\}):K(S_0)]$和$[K(S_0):K]=\prod [K(y_j):K]$均有限, 故$x$是$K=F(T)$的代数元.
+    \ref{enum:dependaxiom3} ``如果$x\depend S$并且对于每个$y\in S$都有$y\depend T$, 那么有$x\depend T$". 我们需要一点关于域扩张次数的知识. 设非零多项式$f=y_0X^m+ y_1X^{m-1}+ \dotsb + y_m\in S[X]$使得$f(x)=0$, 记$K:=F(T)$, 记$S_0:=\{y_0, \dotsc, y_m\}$. 利用\thref{thm:fieldextdegreemulti}, 有$[K(S_0\cup\{x\}):K]=[K(S_0\cup\{x\}):K(S_0)][K(S_0):K]$, 又根据\thref{thm:fntfieldextdegree}有$[K(S_0\cup\{x\}):K(S_0)]$和$[K(S_0):K]\leq\prod [K(y_j):K]$均有限, 故$x$是$K=F(T)$的代数元.
 
     \ref{enum:dependaxiom4} ``如果$x\depend S$但是$x\ndepend S-\{y\}$, 则$y\depend (S-\{y\})\cup\{x\}$". 设$T:=S-\{y\}$, $K:=F(T)$, 则$x$为$K$的超越元同时也为$K(y)$的代数元, 由\thref{prop:algbdependcrit}知$\{x, y\}$在$K$上代数相关, 因此存在非零多项式$f\in K[X, Y]$使得$f(x, y)=0$, 因为$x$为$K$的超越元, 所以$f$可以通过合并系数以及代入诱导出多项式$\tilde{f}\in K[x](Y)$使得$\tilde{f}(y)=0$, 从而得证$y$是$K(x)=F(T\cup\{x\})$上的代数元, 即$y\depend T\cup \{x\}$.
 \end{proof}
@@ -450,7 +460,60 @@
     \thref{thm:dependbase}和\thref{prop:algbdependcorr}.
 \end{proof}
 
-从而我们可以定义域扩张$F\subseteq E$的\emph{超越次数}为超越基的基数.
+利用\thref{thm:tranbasis}我们可以定义域扩张$F\subseteq E$的\emph{超越次数}为超越基的基数. 现在我们已经可以定义主要研究对象的维数了. 给定域$k$, 如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的\emph{多项式函数整环}. 记$K$为$A$的分式域, 域$k$的多项式函数整环$A$的\emph{维数}$\dim (A)$被定义为域扩张$k\subseteq K$的超越次数, 是有限数. 在剩下的部分中, 我们想要利用环论来刻画维数, 发现素理想在其中有类似于线性子空间的地位, 是构成维数的基本组成部分.
+
+如果$A$为多项式函数整环, 我们还可以定义素理想$\ideal{p}$的\emph{余维数}$\codim (\ideal{p})$为域扩张$k\subseteq A{\divslash}\ideal{p}$的超越次数.
+
+\begin{proposition}\label{prop:primeidealdim}
+    设$A$为多项式函数整环, $\ideal{p}$为$A$的素理想, 那么$\codim (\ideal{p})\leq\dim (A)$. 如果还有素理想$\ideal{q}$使得$\ideal{p}\subsetneqq\ideal{q}$, 那么$\codim (\ideal{p})>\codim (\ideal{q})$.
+\end{proposition}
+
+\begin{proof}
+    % TODO: proof
+\end{proof}
+
+设$\ideal{p}$为环$A$的素理想,  定义$\ideal{p}$的\emph{高度}$h(\ideal{p})$为满足存在素理想升链$\ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}$的$n$的上确界; 定义$\ideal{p}$的\emph{深度}$d(\ideal{p})$为满足存在素理想降链$\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A$的$d$的下确界. 根据定义, 考虑素理想$\ideal{p}\subsetneqq\ideal{q}$, 只要$h(\ideal{p})$与$h(\ideal{q})$中有一个有限, 那么有$h(\ideal{p})<h(\ideal{q})$, 只要$d(\ideal{p})$与$d(\ideal{q})$中有一个有限, 那么有$d(\ideal{p})>d(\ideal{q})$.
+
+\begin{proposition}[Noether正规化引理{{\parencite[69, Exercise 16]{atiyah_introduction_1969}}}]\label{prop:noethernormalization}
+    设非零环$A$为域$k$上的有限生成$k$-代数, 则存在$r$元子集$\{y_1, \dotsc, y_r\}\subseteq A$在$k$上代数无关, 并且$A$的每个元素都可以由$k[y_1, \dotsc, y_r]$整表示.% TODO: integral dependence
+\end{proposition}
+
+\begin{proof}
+    $k$无限的情况可以参考AM一书, 一般的情况可以看一下Wikipedia.
+    % https://en.wikipedia.org/wiki/Noether_normalization_lemma
+    % https://mathoverflow.net/questions/42275/choosing-the-algebraic-independent-elements-in-noethers-normalization-lemma/42363#42363
+\end{proof}
+
+\begin{proposition}[{{\parencite[91, Lemma]{zariski_commutative_1960}}}]\label{prop:heightoneideallemma}
+    设$A$为$k$的多项式函数整环, $\ideal{p}$为高度为一的素理想, 则$\codim (\ideal{p}) = \dim (A)-1$.
+\end{proposition}
+
+\begin{proof}
+    分类讨论, 如果是多项式环的话就是唯一分解整环, 非常简单; 否则的话利用\thref{prop:noethernormalization}来处理.
+\end{proof}
+
+\begin{theorem}[{{\parencite[193, Theorem 20]{zariski_commutative_1960}}}]\label{thm:ringdim}
+    设$A=k[x_1, \dotsc, x_n]$为$k$的多项式函数整环, $\ideal{p}$为$A$的素理想, 则有
+    \begin{enumerate}
+        \item\label{enum:thm-ringdim-height} $\codim(\ideal{p})+h(\ideal{p})=\dim (A)$,
+        \item\label{enum:thm-ringdim-depth} $\codim(\ideal{p})=d(\ideal{p})$.
+    \end{enumerate}
+    特别地, 有$\dim (A) = d((0))$.
+\end{theorem}
+
+\begin{proof}
+    我们用归纳法证明这两个命题. 由于需要利用商环来简化问题, 所以归纳有一点非同寻常, 需要写得仔细一点.
+
+    \ref{enum:thm-ringdim-height} 对$\dim (A)-\codim (\ideal{p})$进行归纳. 利用\thref{prop:primeidealdim}知$\codim (\ideal{p})\leq \dim (A)$, 而当$\codim (\ideal{p})=\dim (A)$时, 有$\ideal{p}=(0)$, 故$h(\ideal{p})=0$, 结论成立. 假设对于任意的满足条件的$A$和$\ideal{p}$以及$k\in\ZZ_+$, 当$\dim (A)-\codim (\ideal{p})< k$时结论成立, 那么对于给定的$A$和$\ideal{p}$, 考虑$\dim (A)-\codim (\ideal{p})=k$的情况, 不妨令$k\leq \dim (A)$. 首先由\thref{prop:primeidealdim}得$\dim (A)\geq\codim (\ideal{p}_0)>\codim (\ideal{p}_1)>\dotsb >\codim (\ideal{p}_{h-1})>\codim (\ideal{p})$, 因此$h(\ideal{p})\leq \dim (A)-\codim (\ideal{p})$. 另一方面, 因为$\ideal{p}\supseteqq (0)$, 所以存在素理想$\ideal{q}\subsetneqq \ideal{p}$使得$\ideal{q}$与$\ideal{p}$之间没有别的素理想, 即在多项式函数整环$A{\divslash}\ideal{q}$中有$h(\ideal{p}{\divslash}\ideal{q})=1$. 根据\thref{prop:heightoneideallemma}和\thref{prop:thirdisomorphism}, 有$\dim (A)-\codim (\ideal{q})=k-1$, 再由归纳假设得$h(\ideal{q})=\dim (A)-\codim (\ideal{p})-1$, 因此$h(\ideal{p})\geq h(\ideal{q})+1 = \dim (A)-\codim (\ideal{p})$, 得证.
+
+    \ref{enum:thm-ringdim-depth} 对$\codim (\ideal{p})$进行归纳. 当$\codim (\ideal{p})=0$时, 由\thref{prop:primeidealdim}知$\ideal{p}$一定为极大理想, 因此$d(\ideal{p})=0$, 结论成立. 假设对于任意满足条件的$A$和$\ideal{p}$以及$k\in\ZZ_+$, 当$\codim(\ideal{p})<k$时结论成立, 考虑$\codim(\ideal{p})=k$的情况, 不妨假设$k\leq \dim (A)$. 首先由\thref{prop:primeidealdim}得 $0\leq\codim (\ideal{p}_0)<\codim (\ideal{p}_1)<\dotsb <\codim (\ideal{p}_{d-1})<\codim (\ideal{p})$, 因此$d(\ideal{p})\leq \codim (\ideal{p})$. 另一方面, 考虑多项式函数整环$A{\divslash}\ideal{p}$中的一个高度为一的素理想$\ideal{q}{\divslash}\ideal{p}$, 根据\thref{prop:heightoneideallemma}和\thref{prop:thirdisomorphism}, 有$\codim (\ideal{q})=k-1$, 再由归纳假设得$d(\ideal{q})=\codim (\ideal{q})$, 故$d(\ideal{p})\geq d(\ideal{q})+1=\codim (\ideal{q})$, 得证.
+\end{proof}
+
+在唯一分解整环中, 利用素元和不可约元的等价性, 可以得到高度为一的素理想一定是主理想, 并且可以由一个素元生成\parencite[174, Exercise 21.32]{altman_term_2017}. 我们将要在Noether整环的情况下推广这一结论, 为后续的多项式函数整环的维数理论做好准备.
+
+\begin{theorem}[Krull主理想定理{{\parencite[238, Theorem 29]{zariski_commutative_1958}}}]\label{thm:krullhauptidealsatz}
+    设$(f)$为Noether整环$A$的一个非零真主理想, $\ideal{p}$为$(f)$的一个孤立从属素理想, 则$h(\ideal{p})=1$.
+\end{theorem}
 
 % 域的超越指数; Jacobson Vol II P514
 % height and depth; Zariski Vol I 似乎只有定义啊 P240

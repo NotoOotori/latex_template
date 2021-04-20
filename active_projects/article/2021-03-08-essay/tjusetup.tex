@@ -167,6 +167,9 @@
 \newcommand{\CC}{\symbb{C}}
 \newcommand{\ZZ}{\symbb{Z}}
 \newcommand{\NN}{\symbb{N}}
+\newcommand{\RR}{\symbb{R}}
+\newcommand{\AF}{\symbb{A}}
+\newcommand{\PP}{\symbb{P}}
 \newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
 % \newcommand{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
 \newcommand{\depend}{\prec}
@@ -248,7 +251,8 @@
 \newtheorem{definition}{定义}
 \newtheorem{remark}{注}
 \newtheorem{example}{例}
-% \theoremsymbol{\ensuremath{\square}}
+% \theoremsymbol{\ensuremath{\enclosesquare}}
+\theoremsymbol{\ensuremath{\boxdot}}
 \newtheorem{proof}{证明}
 \theoremsymbol{}
 % \newtheorem{proofsketch}{证明梗概}
@@ -265,3 +269,4 @@
   \theoremindent0pt%
   \renewtheorem{theorem}{定理}[section]%
 }% etoolbox
+\preto\section{\clearpage}

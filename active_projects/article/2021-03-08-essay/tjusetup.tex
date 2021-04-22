@@ -252,7 +252,7 @@
 \newtheorem{remark}{注}
 \newtheorem{example}{例}
 % \theoremsymbol{\ensuremath{\enclosesquare}}
-\theoremsymbol{\ensuremath{\boxdot}}
+\theoremsymbol{\ensuremath{\enclosesquare}}
 \newtheorem{proof}{证明}
 \theoremsymbol{}
 % \newtheorem{proofsketch}{证明梗概}
@@ -269,4 +269,9 @@
   \theoremindent0pt%
   \renewtheorem{theorem}{定理}[section]%
 }% etoolbox
-\preto\section{\clearpage}
+\makeatletter
+\newif\if@appendix
+\appto\appendix{\@appendixtrue}
+\appto\backmatter{\@appendixfalse}
+\preto\section{\if@appendix\else\clearpage\fi}
+\makeatother

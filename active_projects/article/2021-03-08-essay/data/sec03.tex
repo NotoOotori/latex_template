@@ -2,20 +2,19 @@
 
 \section{几何}
 
-古典代数几何关心的主要内容就是仿射空间或者射影空间中, 由多项式方程或者多项式方程组的解集的点集的几何. 不同于分析中常见的针对某一个特定的多项式方程或方程组进行研究, 我们将把所有这样的解集放在一起定义一个拓扑空间, 并研究这个拓扑空间的结构, 包括不可约性, 维数以及函数结构.
+古典代数几何关心的主要内容就是仿射空间或者射影空间中由多项式方程或者多项式方程组的解集的点集的几何. 不同于分析中常见的针对某一个特定的多项式方程或方程组进行研究, 我们将把所有这样的解集放在一起定义一个拓扑空间, 并研究这个拓扑空间的结构, 包括不可约性, 维数以及函数结构.
 
 由于基域非代数闭域的情况比较复杂, 所以这一部分中若未另加说明则只考虑基域为代数闭域的情况.
 
-\subsection{仿射代数簇}
+\subsection{仿射代数簇}\label{sec:varietyaffine}
 
 这一节我们将定义固定的代数闭域上的仿射代数簇, 定义以代数集为闭集的Zariski拓扑, 定义不可约闭集以及维数的概念.
 
 设$\field{k}$为固定的代数闭域, 定义$\field{k}$上的$n$-\emph{仿射空间}$\AF^n$为$\field{k}^n$, 即$\field{k}$的$n$元组全体. 称一个$P\in \AF^n$为一个\emph{点}, 若$P=(x_1, \dotsc, x_n)$, 则称这些$x_j\in\field{k}$为$P$的\emph{坐标}.
 
-设$A:=\field{k}[X_1, \dotsc, X_n]$为$\field{k}$的$n$元多项式环, 我们可以将$A$的元素看成从$\AF^n$到$k$的映射, 对于$f\in A$, $P\in \AF^n$, 记$f(P)=f(x_1, \dotsc, x_n)$. 于是我们可以讨论$f\in A$的\emph{零点}, 即为$\AF^n$的子集$Z(f):=\{P\in \AF^n\vert f(P)=0\}$. 更一般地, 我们还可以讨论$A$的子集$T$的\emph{公共零点集}$Z(T):=\{P\in \AF^n\vert f(P)=0, \forall f\in T\}$. 如果$\AF^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
+设$A\coloneq \field{k}[X_1, \dotsc, X_n]$为$\field{k}$的$n$元多项式环, 我们可以将$A$的元素看成从$\AF^n$到$k$的映射, 对于$f\in A$, $P\in \AF^n$, 记$f(P)=f(x_1, \dotsc, x_n)$. 于是我们可以讨论$f\in A$的\emph{零点}, 即为$\AF^n$的子集$Z(f)\coloneq \{P\in \AF^n\vert f(P)=0\}$. 更一般地, 我们还可以讨论$A$的子集$T$的\emph{零点集}$Z(T)\coloneq \{P\in \AF^n\vert f(P)=0, \forall f\in T\}$. 如果$\AF^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
 
-\begin{proposition}[{{\parencite[2, Proposition 1
-    1]{hartshorne_algebraic_1977}}}]\label{prop:zariskitopology}
+\begin{proposition}[{{\parencite[2, Proposition 1.1]{hartshorne_algebraic_1977}}}]\label{prop:affinezariskitopology}
     $\AF^n$的代数集满足拓扑空间中闭集的公理, 即
     \begin{enumerate}
         \item\label{enum:prop-zariski-topology-1} 空集与全集是代数集;
@@ -35,7 +34,7 @@
 
 回顾二维欧氏空间中二次曲线的分类, 多项式$XY\in \RR[X, Y]$虽然是二次的, 但是它所定义的解集可以写成两条直线的并, 被称为是退化的. 类似地, 我们想先对非退化的代数集展开研究, 这就引出了拓扑空间中不可约的概念.
 
-如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的. $\AF^n$的不可约闭子集被称为\emph{仿射代数簇}, 仿射代数簇的开子集被称为\emph{拟仿射代数簇}.
+如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的\parencite[13, Exercise 19]{atiyah_introduction_1969}. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的. $\AF^n$的不可约闭子集被称为\emph{仿射代数簇}, 仿射代数簇的开子集被称为\emph{拟仿射代数簇}.
 
 \begin{remark}
     这里仿射代数簇与拟仿射代数簇的定义依赖于到$\AF^n$的嵌入, 等到()% TODO: where
@@ -69,3 +68,45 @@
 \begin{example}
     考虑$\AF^1$的Zariski拓扑. 由于$\field{k}$为代数闭域, 每个正次数的多项式都可以分解成一次多项式的乘积, 因此$\AF^1$的代数集全体为$\AF^1$的有限集全体并上空集以及全集. 故$\AF^1$中有且仅有全集和单点集是不可约闭集, 从而$\AF^1$的维数为1.
 \end{example}
+
+\subsection{射影代数簇}
+
+这一节我们将在射影空间上用类似于仿射空间的方法来定义射影空间上的Zariski拓扑, 从而引出射影代数簇等相关概念. 我们还将证明在同胚的意义下, $n$-射影空间可以被$n$-仿射空间开覆盖, 从而每个(拟)射影代数簇都可以被(拟)仿射代数簇开覆盖.
+
+设$k$为固定的代数闭域, 定义$\field{k}$上的$n$-\emph{射影空间}$\PP^n$为商集$(\AF^{n+1}-\{(0, \dotsc, 0)\}){\divslash}{\sim}$, 其中两个点等价当且仅当它们在同一条过原点的直线上. 称一个$P\in\PP^n$为一个\emph{点}, 若$(n+1)$元组$(x_0, \dotsc, x_n)$在$P$对应的等价类中, 则称其为$P$的一组\emph{齐次坐标}.
+
+设$S\coloneq \field{k}[X_0, \dotsc, X_n]$为$k$的$n$元多项式环, 与仿射情形不同, 我们一般不能把$S$的元素看成从$\PP^n$到$\field{k}$的映射, 为了定义零点集, 我们需要引入多项式的次数这一概念. 定义单项式的\emph{次数}为$X_0, \dotsc, X_n$的指数之和, 如果多项式$f\in \PP^n$可以写成有限个次数为$d$的单项式的和, 则称多项式$f$为\emph{次数为$d$的齐次多项式}, 称次数为一的齐次多项式为\emph{线性齐次多项式}. 次数为$d$的齐次多项式$f$满足性质$f(\lambda x_0, \dotsc, \lambda x_n)=\lambda^d f(x_0, \dotsc, x_n)$, 于是可以把$S$的元素看成从$\PP^n$到$\{0, 1\}$的映射, 其中$f(P)=0$当且仅当存在$P$的一组齐次坐标$(x_0, \dotsc, x_n)$使得$f(x_0, \dotsc, x_n)=0$. 从而我们可以讨论一个齐次多项式的\emph{零点}, 即$Z(f)=\{P\in \PP^n\vert f(P)=0\}$, 以及一个由齐次多项式构成的集合$T$的\emph{零点集}, 即$Z(T)=\{P\in\PP^n\vert f(P)=0, \forall f\in T\}$. 如果$\PP^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
+
+\begin{proposition}[{{\parencite[9, Proposition 2.1]{hartshorne_algebraic_1977}}}]
+    $\PP^n$的代数集满足拓扑空间中闭集的公理, 即
+    \begin{enumerate}
+        \item 空集与全集是代数集;
+        \item 有限个代数集的并是代数集;
+        \item 任意代数集的交是代数集.
+    \end{enumerate}
+    如此可以在$\PP^n$中定义以代数集全体为闭集全体的拓扑空间结构, 称为\emph{Zariski}拓扑.
+\end{proposition}
+
+\begin{proof}
+    证明与\thref{prop:affinezariskitopology}的相当类似, 这里就不再重复了.
+\end{proof}
+
+利用\ref{sec:varietyaffine}关于拓扑空间的定义和性质, 称$\PP^n$的不可约闭子集为\emph{射影代数簇}, 射影代数簇的开子集被称为\emph{拟射影代数簇}.
+
+% TODO: properties of Zariski topology
+
+接下来我们将要构造$n$-射影空间中由$n$-仿射空间所构成的开覆盖, 这个构造与证明实射影空间是实微分流形中的构造\parencite[4--5, Definition 2.4]{flaherty_riemannian_1992}完全相同. 如果$f\in S$是一个齐次线性多项式, 则称$f$的零点集为一个\emph{超平面}. 特别地, 对于$j=0, \dotsc, n$, 记$H_j$为$X_j$的零点, 并记$U_j$为开集$\PP^n-H_j$. 定义映射$\varphi_j\colon U_j\to \AF^n$, 把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j, \dotsc, x_{j-1}{\divslash}x_j, x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$. 因为$x_j\neq 0$, 并且$x_i{\divslash}x_j$的取值与齐次坐标的选取无关, 因此$\varphi_j$是良定的.
+
+\begin{proposition}\parencite[10, Proposition 2.2; 11, Corollary 2.3]{hartshorne_algebraic_1977}
+    $\PP^n$可以被上述定义的开集族$U_j$开覆盖, 并且映射$\varphi_j$是$U_j$到$\AF^n$的同胚. 从而, 如果$Y$是一个(拟)射影代数簇, 则$Y$可以由开集族$Y\cap U_j$开覆盖, 并且$\varphi_j$诱导了从$Y\cap U_j$到(拟)仿射代数簇的同胚.
+\end{proposition}
+
+\begin{proof}
+    先证明第一个命题. 不妨重新编号取$j=0$, 记$U\coloneq U_0$, $\varphi\coloneq \varphi_0$. $\varphi$显然是双射, 只需要证明闭集的像是闭集, 并且闭集的原像也是闭集.
+
+    为了区别仿射空间与射影空间的多项式环, 我们在这里记$A\coloneq \field{k}[Y_1, \dotsc, Y_n]$. 记$S^h$为$S$的齐次多项式全体构成的集合, 我们将要定义从$S^h$到$A$的映射$\alpha$, 以及从$A$到$S^h$的映射$\beta$. 给定$f\in S^h$, 令$\alpha(f)=f(1, Y_1, \dotsc, Y_n)$; 另一方面, 给定次数为$d$的$g\in A$, 则$x_0^dg(X_1/X_0, \dotsc, X_n/X_0)$是一个$S$中次数为$d$的多项式, 它即是$\beta(g)$.
+
+    现在令$Y\subseteq U$是$U$的闭子集. 记$\overline{Y}$为其在$\PP^n$中的闭包, 这是一个代数集, 因此存在子集$T\subseteq S^h$使得$\overline{Y}=Z(T)$. 令$T'=\alpha(T)$, 可以直接验证$\varphi(Y)=Z(T')$, 即闭集的像是闭集. 反过来的话, 令$W$为$\AF^n$的闭子集, 则存在$A$的子集$T''$使得$W=Z(T'')$, 很容易验证$\varphi^{-1}(W) = Z(\beta(T''))\cap U$, 即闭集的原像是闭集. 于是得证$\varphi$是一个同胚.
+
+    再证明第二个命题. 只需要对$Y$是射影代数簇的情况, 证明$Y\cap U_j$是$U_j$中的不可约闭集. 注意到$Y\cap U_j$是不可约集$Y$的开子集, 故$Y\cap U_j$中的开集恰为$Y$中包含于$U_j$的开集\parencite[89, Lemma 16.2]{munkres_topology_2000}, 如果开集$V\subseteq Y\cap U_j$不稠密, 记$V$在$Y\cap U_j$中的闭包为$\overline{V}$, 那么$V$在$Y$中的闭包一定与$Y$的非空开集$Y\cap U_j-\overline{V}$不交\parencite[95, Theorem 17.5]{munkres_topology_2000}, 因此与$Y$是不可约集矛盾, 故$Y\cap U_j$不可约. 再由子拓扑的定义即可得到$Y\cap U_j$是$U_j$中的闭集.
+\end{proof}

@@ -164,12 +164,20 @@
 \DeclareMathOperator{\dim}{dim}
 \DeclareMathOperator{\codim}{codim}
 %https://tex.stackexchange.com/questions/175251/how-to-redefine-a-command-using-declaremathoperator
+\newcommand{\lr}[3]{\left#1#3\right#2}
+\newcommand{\ideal}[1]{\symfrak{#1}}
+% \newcommand{\rad}[1]{\sqrt{\ideal{#1}}}
+\newcommand{\axiom}[1]{\ensuremath{\symsfup{#1}}}
+\newcommand{\field}[1]{#1}
+\newcommand{\powerset}[1]{2^{#1}}
+
 \newcommand{\CC}{\symbb{C}}
 \newcommand{\ZZ}{\symbb{Z}}
 \newcommand{\NN}{\symbb{N}}
 \newcommand{\RR}{\symbb{R}}
 \newcommand{\AF}{\symbb{A}}
 \newcommand{\PP}{\symbb{P}}
+\newcommand{\kk}{\field{k}}
 \newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
 % \newcommand{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
 \newcommand{\depend}{\prec}
@@ -177,12 +185,6 @@
 \newcommand{\SAa}{\overline{S}^{-1}(A{\divslash}\ideal{a})}
 \newcommand{\SASa}{S^{-1}A{\divslash}S^{-1}\ideal{a}}
 
-\newcommand{\lr}[3]{\left#1#3\right#2}
-\newcommand{\ideal}[1]{\symfrak{#1}}
-% \newcommand{\rad}[1]{\sqrt{\ideal{#1}}}
-\newcommand{\axiom}[1]{\ensuremath{\symsfup{#1}}}
-\newcommand{\field}[1]{#1}
-\newcommand{\powerset}[1]{2^{#1}}
 % \newcommand\dif{\mathop{}\!\mathrm{d}}  % 微分符号
 % \newcommand\real{{\mathbf{R}}}  % 实数集
 % \newcommand\abs[1]{\lvert#1\rvert}
@@ -252,7 +254,7 @@
 \newtheorem{remark}{注}
 \newtheorem{example}{例}
 % \theoremsymbol{\ensuremath{\enclosesquare}}
-\theoremsymbol{\ensuremath{\enclosesquare}}
+\theoremsymbol{\ensuremath{\mdlgwhtsquare}}
 \newtheorem{proof}{证明}
 \theoremsymbol{}
 % \newtheorem{proofsketch}{证明梗概}

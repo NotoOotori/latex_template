@@ -10,9 +10,9 @@
 
 这一节我们将定义固定的代数闭域上的仿射代数簇, 定义以代数集为闭集的Zariski拓扑, 定义不可约闭集以及维数的概念.
 
-设$\field{k}$为固定的代数闭域, 定义$\field{k}$上的$n$-\emph{仿射空间}$\AF^n$为$\field{k}^n$, 即$\field{k}$的$n$元组全体. 称一个$P\in \AF^n$为一个\emph{点}, 若$P=(x_1, \dotsc, x_n)$, 则称这些$x_j\in\field{k}$为$P$的\emph{坐标}.
+设$\kk$为固定的代数闭域, 定义$\kk$上的$n$-\emph{仿射空间}$\AF^n$为$\kk^n$, 即$\kk$的$n$元组全体. 称一个$P\in \AF^n$为一个\emph{点}, 若$P=(x_1, \dotsc, x_n)$, 则称这些$x_j\in\kk$为$P$的\emph{坐标}.
 
-设$A\coloneq \field{k}[X_1, \dotsc, X_n]$为$\field{k}$的$n$元多项式环, 我们可以将$A$的元素看成从$\AF^n$到$k$的映射, 对于$f\in A$, $P\in \AF^n$, 记$f(P)=f(x_1, \dotsc, x_n)$. 于是我们可以讨论$f\in A$的\emph{零点}, 即为$\AF^n$的子集$Z(f)\coloneq \{P\in \AF^n\vert f(P)=0\}$. 更一般地, 我们还可以讨论$A$的子集$T$的\emph{零点集}$Z(T)\coloneq \{P\in \AF^n\vert f(P)=0, \forall f\in T\}$. 如果$\AF^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
+设$A\coloneq \kk[X_1, \dotsc, X_n]$为$\kk$的$n$元多项式环, 我们可以将$A$的元素看成从$\AF^n$到$k$的映射, 对于$f\in A$, $P\in \AF^n$, 记$f(P)=f(x_1, \dotsc, x_n)$. 于是我们可以讨论$f\in A$的\emph{零点}, 即为$\AF^n$的子集$Z(f)\coloneq \{P\in \AF^n\vert f(P)=0\}$. 更一般地, 我们还可以讨论$A$的子集$T$的\emph{零点集}$Z(T)\coloneq \{P\in \AF^n\vert f(P)=0, \forall f\in T\}$. 如果$\AF^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
 
 \begin{proposition}[{{\parencite[2, Proposition 1.1]{hartshorne_algebraic_1977}}}]\label{prop:affinezariskitopology}
     $\AF^n$的代数集满足拓扑空间中闭集的公理, 即
@@ -48,7 +48,7 @@
 \begin{proof}
     先利用Zorn引理证明有极大元. 考虑不可约集的全序子链$\{Y_\lambda\}$, 则断言它们的并$Y$一定是不可约集. 这是因为对于每两个$Y$的真闭子集$Z_1, Z_2$, 都可以找到$\lambda$使得$Z_1\cap Y_\lambda, Z_2\cap Y_\lambda$是$Y_\lambda$的真闭子集.
 
-    再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$O_1, O_2$, 则$O_1\cap Y, O_2\cap Y$是$Y$的非空开子集, 有非空交, 故$O_1, O_2$也有非空交.
+    再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交.
 
     最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
 \end{proof}
@@ -66,16 +66,16 @@
 拓扑空间$X$的\emph{维数}$\dim (X)$被定义为满足存在不可约闭子集升链$Z_0\subsetneqq Z_1\subsetneqq \dotsb \subsetneqq Z_n$的$n$的上确界. 定义仿射代数簇与拟仿射代数簇的\emph{维数}为它们作为拓扑空间的维数.
 
 \begin{example}
-    考虑$\AF^1$的Zariski拓扑. 由于$\field{k}$为代数闭域, 每个正次数的多项式都可以分解成一次多项式的乘积, 因此$\AF^1$的代数集全体为$\AF^1$的有限集全体并上空集以及全集. 故$\AF^1$中有且仅有全集和单点集是不可约闭集, 从而$\AF^1$的维数为1.
+    考虑$\AF^1$的Zariski拓扑. 由于$\kk$为代数闭域, 每个正次数的多项式都可以分解成一次多项式的乘积, 因此$\AF^1$的代数集全体为$\AF^1$的有限集全体并上空集以及全集. 故$\AF^1$中有且仅有全集和单点集是不可约闭集, 从而$\AF^1$的维数为1.
 \end{example}
 
 \subsection{射影代数簇}
 
 这一节我们将在射影空间上用类似于仿射空间的方法来定义射影空间上的Zariski拓扑, 从而引出射影代数簇等相关概念. 我们还将证明在同胚的意义下, $n$-射影空间可以被$n$-仿射空间开覆盖, 从而每个(拟)射影代数簇都可以被(拟)仿射代数簇开覆盖.
 
-设$k$为固定的代数闭域, 定义$\field{k}$上的$n$-\emph{射影空间}$\PP^n$为商集$(\AF^{n+1}-\{(0, \dotsc, 0)\}){\divslash}{\sim}$, 其中两个点等价当且仅当它们在同一条过原点的直线上. 称一个$P\in\PP^n$为一个\emph{点}, 若$(n+1)$元组$(x_0, \dotsc, x_n)$在$P$对应的等价类中, 则称其为$P$的一组\emph{齐次坐标}.
+设$k$为固定的代数闭域, 定义$\kk$上的$n$-\emph{射影空间}$\PP^n$为商集$(\AF^{n+1}-\{(0, \dotsc, 0)\}){\divslash}{\sim}$, 其中两个点等价当且仅当它们在同一条过原点的直线上. 称一个$P\in\PP^n$为一个\emph{点}, 若$(n+1)$元组$(x_0, \dotsc, x_n)$在$P$对应的等价类中, 则称其为$P$的一组\emph{齐次坐标}.
 
-设$S\coloneq \field{k}[X_0, \dotsc, X_n]$为$k$的$n$元多项式环, 与仿射情形不同, 我们一般不能把$S$的元素看成从$\PP^n$到$\field{k}$的映射, 为了定义零点集, 我们需要引入多项式的次数这一概念. 定义单项式的\emph{次数}为$X_0, \dotsc, X_n$的指数之和, 如果多项式$f\in \PP^n$可以写成有限个次数为$d$的单项式的和, 则称多项式$f$为\emph{次数为$d$的齐次多项式}, 称次数为一的齐次多项式为\emph{线性齐次多项式}. 次数为$d$的齐次多项式$f$满足性质$f(\lambda x_0, \dotsc, \lambda x_n)=\lambda^d f(x_0, \dotsc, x_n)$, 于是可以把$S$的元素看成从$\PP^n$到$\{0, 1\}$的映射, 其中$f(P)=0$当且仅当存在$P$的一组齐次坐标$(x_0, \dotsc, x_n)$使得$f(x_0, \dotsc, x_n)=0$. 从而我们可以讨论一个齐次多项式的\emph{零点}, 即$Z(f)=\{P\in \PP^n\vert f(P)=0\}$, 以及一个由齐次多项式构成的集合$T$的\emph{零点集}, 即$Z(T)=\{P\in\PP^n\vert f(P)=0, \forall f\in T\}$. 如果$\PP^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
+设$S\coloneq \kk [X_0, \dotsc, X_n]$为$k$的$n$元多项式环, 与仿射情形不同, 我们一般不能把$S$的元素看成从$\PP^n$到$\kk$的映射, 为了定义零点集, 我们需要引入多项式的次数这一概念. 定义单项式的\emph{次数}为$X_0, \dotsc, X_n$的指数之和, 如果多项式$f\in \PP^n$可以写成有限个次数为$d$的单项式的和, 则称多项式$f$为\emph{次数为$d$的齐次多项式}, 称次数为一的齐次多项式为\emph{线性齐次多项式}. 次数为$d$的齐次多项式$f$满足性质$f(\lambda x_0, \dotsc, \lambda x_n)=\lambda^d f(x_0, \dotsc, x_n)$, 于是可以把$S$的元素看成从$\PP^n$到$\{0, 1\}$的映射, 其中$f(P)=0$当且仅当存在$P$的一组齐次坐标$(x_0, \dotsc, x_n)$使得$f(x_0, \dotsc, x_n)=0$. 从而我们可以讨论一个齐次多项式的\emph{零点}, 即$Z(f)=\{P\in \PP^n\vert f(P)=0\}$, 以及一个由齐次多项式构成的集合$T$的\emph{零点集}, 即$Z(T)=\{P\in\PP^n\vert f(P)=0, \forall f\in T\}$. 如果$\PP^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
 
 \begin{proposition}[{{\parencite[9, Proposition 2.1]{hartshorne_algebraic_1977}}}]
     $\PP^n$的代数集满足拓扑空间中闭集的公理, 即
@@ -97,16 +97,60 @@
 
 接下来我们将要构造$n$-射影空间中由$n$-仿射空间所构成的开覆盖, 这个构造与证明实射影空间是实微分流形中的构造\parencite[4--5, Definition 2.4]{flaherty_riemannian_1992}完全相同. 如果$f\in S$是一个齐次线性多项式, 则称$f$的零点集为一个\emph{超平面}. 特别地, 对于$j=0, \dotsc, n$, 记$H_j$为$X_j$的零点, 并记$U_j$为开集$\PP^n-H_j$. 定义映射$\varphi_j\colon U_j\to \AF^n$, 把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j, \dotsc, x_{j-1}{\divslash}x_j, x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$. 因为$x_j\neq 0$, 并且$x_i{\divslash}x_j$的取值与齐次坐标的选取无关, 因此$\varphi_j$是良定的.
 
-\begin{proposition}\parencite[10, Proposition 2.2; 11, Corollary 2.3]{hartshorne_algebraic_1977}
+\begin{proposition}[{{\parencite[10, Proposition 2.2; 11, Corollary 2.3]{hartshorne_algebraic_1977}}}]
     $\PP^n$可以被上述定义的开集族$U_j$开覆盖, 并且映射$\varphi_j$是$U_j$到$\AF^n$的同胚. 从而, 如果$Y$是一个(拟)射影代数簇, 则$Y$可以由开集族$Y\cap U_j$开覆盖, 并且$\varphi_j$诱导了从$Y\cap U_j$到(拟)仿射代数簇的同胚.
 \end{proposition}
 
 \begin{proof}
     先证明第一个命题. 不妨重新编号取$j=0$, 记$U\coloneq U_0$, $\varphi\coloneq \varphi_0$. $\varphi$显然是双射, 只需要证明闭集的像是闭集, 并且闭集的原像也是闭集.
 
-    为了区别仿射空间与射影空间的多项式环, 我们在这里记$A\coloneq \field{k}[Y_1, \dotsc, Y_n]$. 记$S^h$为$S$的齐次多项式全体构成的集合, 我们将要定义从$S^h$到$A$的映射$\alpha$, 以及从$A$到$S^h$的映射$\beta$. 给定$f\in S^h$, 令$\alpha(f)=f(1, Y_1, \dotsc, Y_n)$; 另一方面, 给定次数为$d$的$g\in A$, 则$x_0^dg(X_1/X_0, \dotsc, X_n/X_0)$是一个$S$中次数为$d$的多项式, 它即是$\beta(g)$.
+    为了区别仿射空间与射影空间的多项式环, 我们在这里记$A\coloneq \kk [Y_1, \dotsc, Y_n]$. 记$S^h$为$S$的齐次多项式全体构成的集合, 我们将要定义从$S^h$到$A$的映射$\alpha$, 以及从$A$到$S^h$的映射$\beta$. 给定$f\in S^h$, 令$\alpha(f)=f(1, Y_1, \dotsc, Y_n)$; 另一方面, 给定次数为$d$的$g\in A$, 则$x_0^dg(X_1{\divslash}X_0, \dotsc, X_n{\divslash}X_0)$是一个$S$中次数为$d$的多项式, 它即是$\beta(g)$.
 
     现在令$Y\subseteq U$是$U$的闭子集. 记$\overline{Y}$为其在$\PP^n$中的闭包, 这是一个代数集, 因此存在子集$T\subseteq S^h$使得$\overline{Y}=Z(T)$. 令$T'=\alpha(T)$, 可以直接验证$\varphi(Y)=Z(T')$, 即闭集的像是闭集. 反过来的话, 令$W$为$\AF^n$的闭子集, 则存在$A$的子集$T''$使得$W=Z(T'')$, 很容易验证$\varphi^{-1}(W) = Z(\beta(T''))\cap U$, 即闭集的原像是闭集. 于是得证$\varphi$是一个同胚.
 
     再证明第二个命题. 只需要对$Y$是射影代数簇的情况, 证明$Y\cap U_j$是$U_j$中的不可约闭集. 注意到$Y\cap U_j$是不可约集$Y$的开子集, 故$Y\cap U_j$中的开集恰为$Y$中包含于$U_j$的开集\parencite[89, Lemma 16.2]{munkres_topology_2000}, 如果开集$V\subseteq Y\cap U_j$不稠密, 记$V$在$Y\cap U_j$中的闭包为$\overline{V}$, 那么$V$在$Y$中的闭包一定与$Y$的非空开集$Y\cap U_j-\overline{V}$不交\parencite[95, Theorem 17.5]{munkres_topology_2000}, 因此与$Y$是不可约集矛盾, 故$Y\cap U_j$不可约. 再由子拓扑的定义即可得到$Y\cap U_j$是$U_j$中的闭集.
 \end{proof}
+
+\subsection{代数簇的态射}
+
+之前我们定义了仿射代数簇和射影代数簇, 给出了其上的Zariski拓扑的结构. 事实上, 代数簇上面还有更精细的结构, 我们将在这一节中给出.
+
+一般来说, 如果给定了一个对象上的结构, 那么就会诱导出保持结构不变的映射, 在不同的语境下它们有不同的名字, 比如说映射, 线性映射, 环同态, 连续映射, 光滑映射等等. 在对这些具体情形的研究中, 我们发现很多时候这些保持结构不变的映射全体, 可以反过来决定一个对象的结构, 这就引出了范畴论的思想. 我们将分别给出仿射代数簇和射影代数簇上的函数结构, 从而定义代数簇之间的态射, 以此刻画代数簇的结构. 这之后我们将就可以定义簇的同构, 从而给仿射簇一个内蕴的定义.
+
+先令$Y$为$\AF^n$中的拟仿射代数簇, 记$A=\kk [X_1, \dotsc, X_n]$, $A$的元素可以看成$Y$到$\AF^n$的函数. 考虑从$Y$到$\kk$的函数$f$, 如果$f$在局部可以写成两个多项式的商的形式, 即满足存在$\AF^n$的开集$P\in U\subseteq Y$与多项式$g, h\in A$, 使得$h$在$U$上没有零点, 并且在$U$上有等式$f=g{\divslash}h$成立, 则称$f$\emph{在点$P\in Y$正规}. 如果$f$在$Y$的每个点都正规, 则称$f$在$Y$上\emph{正规}.
+
+\begin{proposition}[{{\parencite[15, Lemma 3.1]{hartshorne_algebraic_1977}}}]\label{prop:affineregularcontinuous}
+    设$f\colon Y\to \kk$是从$\AF^n$的拟仿射代数簇到$\kk$的正规函数, 若给像集$\kk$赋予$\AF^1$的Zariski拓扑结构, 则$f$是连续函数.
+\end{proposition}
+
+\begin{proof}
+    只需要证明闭集的原像是闭集. 因为$\AF^1$的非空真闭子集恰为有限子集, 因此只需要证明每个单点集$\{x\}$的原像$f^{-1}(x)=\{P\in Y\vert f(P)=x\}$是闭集即可. 利用\thref{prop:closedsetlocal}, 我们只需要证明在局部上是闭集就可以了. 考虑使得$f$能表示成两个多项式$g, h$的商的开集$U$, 则$f^{-1}(x)\cap U=\{P\in U\vert g(P)/h(P)=x\}$, 故$f^{-1}(x)\cap U=Z(g-xh)\cap U$为$U$中的闭集, 故得证.
+\end{proof}
+
+再令$Y$为$\PP^n$中的拟射影代数簇, 记$S=\kk [X_0, \dotsc, X_n]$, $S$中相同次数的齐次多项式的商可以看成$Y$到$\AF^n$的函数. 考虑从$Y$到$\kk$的函数$f$, 如果$f$在局部可以写成两个相同次数的齐次多项式的商的形式, 即满足存在$\PP^n$的开集$P\in U\subseteq Y$与次数相同的齐次多项式$g, h\in S$, 使得$h$在$U$上没有零点, 并且在$U$上有等式$f=g{\divslash}h$成立, 则称$f$\emph{在点$P\in Y$正规}. 如果$f$在$Y$的每个点都正规, 则称$f$在$Y$上\emph{正规}.
+
+\begin{proposition}[{{\parencite[15, Remark 3.1.1]{hartshorne_algebraic_1977}}}]\label{prop:projregularcontinuous}
+    设$f\colon Y\to \kk$是从$\PP^n$的拟射影代数簇到$\kk$的正规函数, 若给像集$\kk$赋予$\AF^1$的Zariski拓扑结构, 则$f$是连续函数.
+\end{proposition}
+
+\begin{proof}
+    与\thref{prop:affineregularcontinuous}的证明雷同.
+\end{proof}
+
+% P127 Ahlfors
+将之前定义的仿射代数簇, 拟仿射代数簇, 射影代数簇, 拟射影代数簇统称为\emph{代数簇}, 我们已经定义了代数簇上的正规函数. 类似于单复变函数中非零全纯函数的零点是孤立的\parencite[127]{ahlfors_complex_1978}, 代数簇上的函数也有很强的刚性.
+
+\begin{proposition}[{{\parencite[15, Remark 3.1.1]{hartshorne_algebraic_1977}}}]\label{prop:regularstiffness}
+    设$f, g$为代数簇$X$上的正规函数, 如果在某个非空开集$U$上有$f=g$, 那么在整个$X$上都有$f=g$.
+\end{proposition}
+
+\begin{proof}
+    只需注意$Z(f-g)\supseteq \overline{U}=X$即可.
+\end{proof}
+
+现在我们可以来定义代数簇之间的态射了. 设$\kk$为固定的代数闭域, $X, Y$为两个代数簇, $X$到$Y$的\emph{态射}即为连续映射$\varphi\colon X\to Y$, 并且满足对于每个开子集$V\subseteq Y$和每个正规函数$f\colon V\to \kk$都有复合函数$f\circ\varphi\colon\varphi^{-1}(V)\to \kk$是正规函数. 这定义了$k$上的代数簇所构成的范畴, 这是一个具体范畴.
+
+\subsection{有理映射}
+
+% Ex 2.14 The Segre Embedding
+% Ex 3.16 Products of Quasi-Projective Varieties

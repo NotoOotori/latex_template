@@ -41,6 +41,10 @@
     %定义了簇的同构之后我们才可以给出仿射簇与拟仿射簇的内蕴定义.
 \end{remark}
 
+\begin{proposition}
+    $\AF^n$是不可约的.
+\end{proposition}
+
 \begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
     拓扑空间$X$的不可约集全体在集合包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
 \end{proposition}
@@ -93,23 +97,41 @@
 
 利用\ref{sec:varietyaffine}关于拓扑空间的定义和性质, 称$\PP^n$的不可约闭子集为\emph{射影代数簇}, 射影代数簇的开子集被称为\emph{拟射影代数簇}.
 
+\begin{proposition}
+    $\PP^n$是不可约的.
+\end{proposition}
+
+\begin{proposition}\label{prop:projectiveprimeirreducible}
+    素理想不可约.
+\end{proposition}
+
 % TODO: properties of Zariski topology
 
 接下来我们将要构造$n$-射影空间中由$n$-仿射空间所构成的开覆盖, 这个构造与证明实射影空间是实微分流形中的构造\parencite[4--5, Definition 2.4]{flaherty_riemannian_1992}完全相同. 如果$f\in S$是一个齐次线性多项式, 则称$f$的零点集为一个\emph{超平面}. 特别地, 对于$j=0, \dotsc, n$, 记$H_j$为$X_j$的零点, 并记$U_j$为开集$\PP^n-H_j$. 定义映射$\varphi_j\colon U_j\to \AF^n$, 把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j, \dotsc, x_{j-1}{\divslash}x_j, x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$. 因为$x_j\neq 0$, 并且$x_i{\divslash}x_j$的取值与齐次坐标的选取无关, 因此$\varphi_j$是良定的.
 
-\begin{proposition}[{{\parencite[10, Proposition 2.2; 11, Corollary 2.3]{hartshorne_algebraic_1977}}}]
-    $\PP^n$可以被上述定义的开集族$U_j$开覆盖, 并且映射$\varphi_j$是$U_j$到$\AF^n$的同胚. 从而, 如果$Y$是一个(拟)射影代数簇, 则$Y$可以由开集族$Y\cap U_j$开覆盖, 并且$\varphi_j$诱导了从$Y\cap U_j$到(拟)仿射代数簇的同胚.
+\begin{proposition}[{{\parencite[10, Proposition 2.2]{hartshorne_algebraic_1977}}}]
+    $\PP^n$可以被上述定义的开集族$U_j$开覆盖, 并且映射$\varphi_j$是$U_j$到$\AF^n$的同胚.
 \end{proposition}
 
 \begin{proof}
-    先证明第一个命题. 不妨重新编号取$j=0$, 记$U\coloneq U_0$, $\varphi\coloneq \varphi_0$. $\varphi$显然是双射, 只需要证明闭集的像是闭集, 并且闭集的原像也是闭集.
+    不妨重新编号取$j=0$, 记$U\coloneq U_0$, $\varphi\coloneq \varphi_0$. $\varphi$显然是双射, 只需要证明闭集的像是闭集, 并且闭集的原像也是闭集.
 
     为了区别仿射空间与射影空间的多项式环, 我们在这里记$A\coloneq \kk [Y_1, \dotsc, Y_n]$. 记$S^h$为$S$的齐次多项式全体构成的集合, 我们将要定义从$S^h$到$A$的映射$\alpha$, 以及从$A$到$S^h$的映射$\beta$. 给定$f\in S^h$, 令$\alpha(f)=f(1, Y_1, \dotsc, Y_n)$; 另一方面, 给定次数为$d$的$g\in A$, 则$x_0^dg(X_1{\divslash}X_0, \dotsc, X_n{\divslash}X_0)$是一个$S$中次数为$d$的多项式, 它即是$\beta(g)$.
 
     现在令$Y\subseteq U$是$U$的闭子集. 记$\overline{Y}$为其在$\PP^n$中的闭包, 这是一个代数集, 因此存在子集$T\subseteq S^h$使得$\overline{Y}=Z(T)$. 令$T'=\alpha(T)$, 可以直接验证$\varphi(Y)=Z(T')$, 即闭集的像是闭集. 反过来的话, 令$W$为$\AF^n$的闭子集, 则存在$A$的子集$T''$使得$W=Z(T'')$, 很容易验证$\varphi^{-1}(W) = Z(\beta(T''))\cap U$, 即闭集的原像是闭集. 于是得证$\varphi$是一个同胚.
-
-    再证明第二个命题. 只需要对$Y$是射影代数簇的情况, 证明$Y\cap U_j$是$U_j$中的不可约闭集. 注意到$Y\cap U_j$是不可约集$Y$的开子集, 故$Y\cap U_j$中的开集恰为$Y$中包含于$U_j$的开集\parencite[89, Lemma 16.2]{munkres_topology_2000}, 如果开集$V\subseteq Y\cap U_j$不稠密, 记$V$在$Y\cap U_j$中的闭包为$\overline{V}$, 那么$V$在$Y$中的闭包一定与$Y$的非空开集$Y\cap U_j-\overline{V}$不交\parencite[95, Theorem 17.5]{munkres_topology_2000}, 因此与$Y$是不可约集矛盾, 故$Y\cap U_j$不可约. 再由子拓扑的定义即可得到$Y\cap U_j$是$U_j$中的闭集.
 \end{proof}
+
+\begin{proposition}[{{\parencite[11, Corollary 2.3]{hartshorne_algebraic_1977}}}]
+    如果$Y$是一个(拟)射影代数簇, 则$Y$可以由开集族$Y\cap U_j$开覆盖, 并且$\varphi_j$诱导了从$Y\cap U_j$到(拟)仿射代数簇的同胚.
+\end{proposition}
+
+\begin{proof}
+    只需要对$Y$是射影代数簇的情况, 证明$Y\cap U_j$是$U_j$中的不可约闭集. 注意到$Y\cap U_j$是不可约集$Y$的开子集, 故$Y\cap U_j$中的开集恰为$Y$中包含于$U_j$的开集\parencite[89, Lemma 16.2]{munkres_topology_2000}, 如果开集$V\subseteq Y\cap U_j$不稠密, 记$V$在$Y\cap U_j$中的闭包为$\overline{V}$, 那么$V$在$Y$中的闭包一定与$Y$的非空开集$Y\cap U_j-\overline{V}$不交\parencite[95, Theorem 17.5]{munkres_topology_2000}, 因此与$Y$是不可约集矛盾, 故$Y\cap U_j$不可约. 再由子拓扑的定义即可得到$Y\cap U_j$是$U_j$中的闭集.
+\end{proof}
+
+\begin{proposition}
+    设$Y$为拟仿射代数簇, 则$Y$同胚于某个$\PP^n$中的拟射影代数簇.
+\end{proposition}
 
 \subsection{代数簇的态射}
 
@@ -152,5 +174,40 @@
 
 \subsection{有理映射}
 
-% Ex 2.14 The Segre Embedding
-% Ex 3.16 Products of Quasi-Projective Varieties
+\thref{prop:regularstiffness}我们介绍了正规函数的刚性, 事实上代数簇之间的态射也具有的刚性, 由此我们可以引出有理映射以及双有理同构的概念, 双有理同构下的不变量也是代数几何的一个非常基础的课题. 为了证明态射的唯一性, 我们需要一些准备.
+
+设$r, s$为正整数, $N=(r+1)(s+1)-1$. 定义映射$\psi\colon \PP^r\times\PP^s\to\PP^N$, 将$((x_0, \dotsc, x_r), (y_0, \dotsc, y_s))$按照字典序映到$(\dotsc, x_jy_k, \dotsc)$, 则$\psi$为良定单射, 称为\emph{Segre嵌入}.
+
+\begin{proposition}[{{\parencite[13, Exercise 2.13]{hartshorne_algebraic_1977}}}]\label{prop:segreembedding}
+    上述定义的Segre嵌入的像是$\PP^N$中的射影代数簇.
+\end{proposition}
+
+\begin{proof}
+    设$\PP^N$中的齐次坐标对应的未定元为$\{Z_{jk}\vert j=0, \dotsc, r, k=0, \dotsc, s\}$, 考虑环同态$\kk [\{Z_{jk}\}]\to \kk [X_0, \dotsc, X_r, Y_0, \dotsc, Y_s]$将$Z_{jk}$映到$X_jY_k$, 这是个到整环的满同态, 设其核为素理想$\ideal{p}$. 不难证明$\Im (\psi)=Z(\ideal{p})$, 于是根据\thref{prop:projectiveprimeirreducible}可得像集为不可约闭集.
+\end{proof}
+
+利用\thref{prop:projectiveprimeirreducible}, 我们可以给$\PP^r\times\PP^s$赋予射影代数簇的结构. 要注意的是, $\PP^r\times\PP^s$作为射影代数簇的拓扑与乘积拓扑不同. 现在想要来定义两个拟射影代数簇的乘积.
+
+\begin{proposition}[{{\parencite[22, Exercise 3.16]{hartshorne_algebraic_1977}}}]\label{prop:projectiveproduct}
+    设$X\subseteq\PP^r$与$Y\subseteq\PP^s$为两个拟射影代数簇, 考虑$X\times Y\subseteq \PP^r\times\PP^s$. 则有
+    \begin{enumerate}
+        \item $X\times Y$是拟射影代数簇;
+        \item 如果$X, Y$都是射影代数簇, 那么$X\times Y$也是;
+        \item\label{enum:prop-projective-product-3} $X\times Y$与典范投影映射是$X$和$Y$在代数簇范畴中的乘积.
+    \end{enumerate}
+\end{proposition}
+
+现在我们可以来证明态射的唯一性了.
+
+\begin{proposition}
+    设$X, Y$为代数簇, $\varphi, \psi$为从$X$到$Y$的两个态射. 如果存在$\varphi$和$\psi$在某个非空开集上取值相同, 则$\varphi=\psi$.
+\end{proposition}
+
+\begin{proof}
+    因为每个代数簇都同构于某个$\PP^n$中的拟射影代数簇, 再复合上到$\PP^n$的包含映射, 我们可以不妨假设$Y=\PP^n$. 考虑射影代数簇$\PP^n\times \PP^n$, 根据\thref{prop:projectiveproduct}\ref{enum:prop-projective-product-3}, 存在乘积态射$\varphi\times \psi$. 记$\Delta=\{(P, P)\vert P\in \PP^n\}$为$\PP^n\times \PP^n$的对角线子集, 由方程$\{X_jY_k-X_kY_j=0\vert i, j=0, \dotsc, n\}$定义, 因此是$\PP^n\times \PP^n$的闭子集. 根据假设以及乘积态射的定义, 有$\varphi\times \psi(U)\subseteq \Delta$, 又根据\thref{prop:continuousimageclosure}, 得$\varphi\times \psi(X)\subseteq\Delta$, 于是根据乘积态射的定义可知$\varphi=\psi$.
+\end{proof}
+
+现在来定义代数簇之间的有理映射. 设$X, Y$为代数簇, 考虑由非空开集$U\subseteq X$和态射$\varphi_U\colon U\to Y$组成的二元组$\lr<>{U, \varphi_U}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lr<>{U, \varphi_U}$等价于$\lr<>{U, \varphi_U}$当且仅当$\varphi_U, \varphi_V$在非空开集$U\cap V$的取值相同. 于是一个从$X$到$Y$的\emph{有理映射}$\varphi$被定义为等价关系$\sim$下的一个等价类. 如果有理映射$\varphi$满足对于每一对$\lr<>{U, \varphi_U}$都有$\varphi_U$的像都在$Y$中稠密, 则称$\varphi$为\emph{控制有理映射}. $\varphi$为控制有理映射等价于对于某一对$\lr<>{U, \varphi_U}$成立$\varphi_U$的像都在$Y$中稠密\parencite{andrew_how_2016}.
+
+代数簇关于有理映射也构成一个范畴, 称这个范畴中的同构为\emph{双有理同构}. 一个非常惊人的事实是, 代数簇关于控制有理映射的范畴与$\kk$的有限生成域扩张关于域同态的范畴有范畴等价, 我们将在% TODO:
+()中介绍这一事实.

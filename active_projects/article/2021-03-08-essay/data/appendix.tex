@@ -2,7 +2,7 @@
 
 \section{基数}
 
-\begin{proposition}[{{\parencite[4]{jacobson_basic_1989}}}]\label{cor:cardcartcor}
+\begin{proposition}[{{\parencite[4]{jacobson_basic_1989}}}]\label{prop:cardcartcor}
     如果$A$非空, $B$为无限集并且$\vert B\vert\geq \vert A\vert$, 则$\vert A\times B\vert=\vert B\vert$.
 \end{proposition}
 
@@ -24,6 +24,6 @@
     设$X$为拓扑空间, $Y\subseteq X$, 则$Y$是$X$的闭集当且仅当存在$X$中的开覆盖$\bigcup U_\lambda\supseteq Y$使得每个$U_\lambda\cap Y$都是$U_\lambda$的闭集.
 \end{proposition}
 
-\begin{proposition}\label{prop:continuousimageclosure}
-    如果$f\colon X\to Y$是拓扑空间之间的连续函数, 集合$A\subseteq X$, 则$f(\overline{A})\subseteq\overline{f(A)}$.
+\begin{proposition}[{{\parencite[104, Theorem 18.1]{munkres_topology_2000}}}]\label{prop:continuousimageclosure}
+    如果$f\colon X\to Y$是拓扑空间之间的映射, 则$f$连续当且仅当对于任意的集合$A\subseteq X$都有$f(\overline{A})\subseteq\overline{f(A)}$.
 \end{proposition}

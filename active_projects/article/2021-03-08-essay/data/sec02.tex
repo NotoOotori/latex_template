@@ -100,7 +100,7 @@
 
 有的环有且仅有一个极大理想, 称这样的环为\emph{局部环}, 并称局部环对其唯一极大理想的商域为这个环的\emph{剩余域}.
 
-接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b})\coloneq \{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用, 特别地, 记理想$\ideal{a}$的\emph{零化理想}为$\Ann(\ideal{a})\coloneq ((0){:}\ideal{a})$. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}\coloneq \{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 很显然, 根运算具有保序性, 即如果$\ideal{a}\subseteq\ideal{b}$, 则$\sqrt{\ideal{a}}\subseteq\sqrt{\ideal{b}}$. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为\emph{根理想}.
+接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b})\coloneq \{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用, 特别地, 记理想$\ideal{a}$的\emph{零化理想}为$\Ann(\ideal{a})\coloneq ((0){:}\ideal{a})$. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}\coloneq \{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 很显然, 根运算具有保序性, 即如果$\ideal{a}\subseteq\ideal{b}$, 则$\sqrt{\ideal{a}}\subseteq\sqrt{\ideal{b}}$. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为\emph{根理想}. 称零理想$\ideal{a}$的根为环$A$的\emph{幂零根}, 记为$\nil$.
 
 \begin{proposition}[{{\parencite[8, Exercise 12; 9, Exercise 13]{atiyah_introduction_1969}}}]\label{prop:idealop}\leavevmode
     \begin{enumerate}
@@ -111,7 +111,7 @@
 \end{proposition}
 
 \begin{proposition}[{{\parencite[9, Proposition 1.14]{atiyah_introduction_1969}}}]\label{prop:scheinnullstellensatz}
-    设$\ideal{a}$为环$A$的理想, 则$\sqrt{\ideal{a}}$等于包含$\ideal{a}$的所有素理想的交.
+    设$\ideal{a}$为环$A$的理想, 则$\sqrt{\ideal{a}}$等于包含$\ideal{a}$的所有素理想的交. 特别地, $A$中所有素理想的交恰为$A$的幂零根.
 \end{proposition}
 
 \begin{proof}
@@ -258,24 +258,6 @@
     由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多元多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
 \end{proof}
 
-接下来我们来证明重要的Hilbert零点定理, 它建立了代数与几何联系的根基. 首先我们需要几个引理.
-
-\begin{proposition}[Artin-Tate引理{{\parencites[81, Proposition 7.8]{atiyah_introduction_1969}[Theorem 1]{artin_note_1951}}}]
-    设环$A\subseteq B\subseteq C$, 其中$A$为Noether环, $C$为有限生成$A$-代数, $C$同时也为有限$B$-代数, 则$B$为有限生成$A$-代数.
-\end{proposition}
-
-\begin{proof}
-
-\end{proof}
-
-\begin{theorem}[弱Hilbert零点定理{{\parencites[82, Proposition 7.9]{atiyah_introduction_1969}[Theorem 2]{artin_note_1951}}}]
-    设$\field{k}$是域, $E$为$\field{k}$的有限生成代数, 如果$E$也是域, 则$E$为$\field{k}$的有限代数域扩张. 特别地, 如果$\field{k}$为代数闭域, $A$为$\field{k}$的有限生成代数, $\ideal{m}$为$A$的极大理想, 则$A/\ideal{m}\cong \field{k}$.
-\end{theorem}
-
-\begin{proof}
-%TODO: rewrite module and noetherian module
-\end{proof}
-
 这一节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明从属素理想, 孤立从属素理想及其对应的孤立准素理想的唯一性.
 
 准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想. 设$A$为环, 若$A$的真理想$\ideal{q}$满足如果$xy\in \ideal{q}$那么$x\in\ideal{q}$或者$y\in\sqrt{\ideal{q}}$, 则称$\ideal{q}$为\emph{准素理想}, 有等价条件为$A{\divslash}\ideal{q}\neq 0$并且$A{\divslash}\ideal{q}$的每个零因子都是幂零元. 显然素理想是准素理想, 准素理想的拉回是准素理想.
@@ -420,7 +402,7 @@
 
     先考虑有限的情况, 我们将证明如果$B$有限, 则$C$有限, 并且$B$与$C$具有相同的基数. 设$B$有限, 即$B=\{x_1, x_2, \dotsc, x_n\}$为$n$元集合. 利用归纳法证明对于每个$0\leq k\leq n$都存在$y_i\in C$使得$\{y_1, \dotsc, y_k, x_{k+1}, \dotsc, x_n\}$为$n$元集合并且为$X$的基. 当$k=0$时因为$B$是基故命题成立, 假设命题对于$k-1$成立, 记$D_{k-1}\coloneq \{y_1, \dotsc, y_{k-1}, x_k, x_{k+1}, \dotsc, x_n\}$. 由基的定义以及归纳假设知, 一定存在$y\in C$使得$y\ndepend D_{k-1}-\{x_k\}$成立, 取一个这样的$y$为$y_k$从而得到$D_k\coloneq \{y_1, \dotsc, y_k, x_{k+1}, \dotsc, x_n\}$, 由\thref{prop:dependlemma}知$D_k$为无关集. 又由Steinitz对换公理知$x_k\depend D_k$, 故每个$D_{k-1}$的元素$x$都有$x\depend D_k$, 由于$D_{k-1}$是基, 所以每个$X$的元素$x$都有$x\depend D_{k}$, 遂得证$D_k$为$n$元集合且为$X$的基, 故由归纳法结论得证.
 
-    无限的情况比有限的要简单不少, 当$B$无限时, 由有限情况的结论知$C$一定无限, 还需要证明$B$与$C$具有相同的基数. 只需证明$\vert B\vert\leq \vert C\vert$. 对于每个$C$的元素$y$, 存在$B$的有限子集$B_y$使得$y\depend B_y$, 我们有$\vert \{B_y\}\vert\leq \vert C\vert$. 因为每个$B_y$都是有限的, 所以有$\vert\bigcup B_y\vert\leq \vert\ZZ\times C\vert$. 由于$C$是无限集, 由\thref{cor:cardcartcor}知$\vert\ZZ\times C\vert=\vert C\vert$, 又根据基的定义, 一定有$\bigcup B_y=B$, 于是有$\vert B\vert\leq\vert C\vert$, 得证.
+    无限的情况比有限的要简单不少, 当$B$无限时, 由有限情况的结论知$C$一定无限, 还需要证明$B$与$C$具有相同的基数. 只需证明$\vert B\vert\leq \vert C\vert$. 对于每个$C$的元素$y$, 存在$B$的有限子集$B_y$使得$y\depend B_y$, 我们有$\vert \{B_y\}\vert\leq \vert C\vert$. 因为每个$B_y$都是有限的, 所以有$\vert\bigcup B_y\vert\leq \vert\ZZ\times C\vert$. 由于$C$是无限集, 由\thref{prop:cardcartcor}知$\vert\ZZ\times C\vert=\vert C\vert$, 又根据基的定义, 一定有$\bigcup B_y=B$, 于是有$\vert B\vert\leq\vert C\vert$, 得证.
 \end{proof}
 
 现在我们可以来介绍域的超越基和超越指数了, 我们需要在域扩张的语境中定义一个相关关系, 从而应用之前介绍的相关关系的一般理论. 考虑域扩张$F\subseteq E$, 如果$n$元子集$\{x_1, \dotsc, x_n\}\subseteq E$满足将$f$映到$f(x_1, \dotsc, x_n)$的同态$F[X_1, \dotsc, X_n]\to E$有非零核, 则称该$n$元子集在$F$上\emph{代数相关}. 对于$E$的任意非空子集, 如果存在有限子集在$F$上代数相关, 则称其在$F$上\emph{代数相关}. 我们有如下的判别准则.
@@ -509,7 +491,43 @@
     \ref{enum:thm-ringdim-depth} 对$\codim (\ideal{p})$进行归纳. 当$\codim (\ideal{p})=0$时, 由\thref{prop:primeidealdim}知$\ideal{p}$一定为极大理想, 因此$d(\ideal{p})=0$, 结论成立. 假设对于任意满足条件的$A$和$\ideal{p}$以及$k\in\ZZ_+$, 当$\codim(\ideal{p})<k$时结论成立, 考虑$\codim(\ideal{p})=k$的情况, 不妨假设$k\leq \dim (A)$. 首先由\thref{prop:primeidealdim}得 $0\leq\codim (\ideal{p}_0)<\codim (\ideal{p}_1)<\dotsb <\codim (\ideal{p}_{d-1})<\codim (\ideal{p})$, 因此$d(\ideal{p})\leq \codim (\ideal{p})$. 另一方面, 考虑多项式函数整环$A{\divslash}\ideal{p}$中的一个高度为一的素理想$\ideal{q}{\divslash}\ideal{p}$, 根据\thref{prop:heightoneideallemma}和\thref{prop:thirdisomorphism}, 有$\codim (\ideal{q})=k-1$, 再由归纳假设得$d(\ideal{q})=\codim (\ideal{q})$, 故$d(\ideal{p})\geq d(\ideal{q})+1=\codim (\ideal{q})$, 得证.
 \end{proof}
 
-在唯一分解整环中, 利用素元和不可约元的等价性, 可以得到高度为一的素理想一定是主理想, 并且可以由一个素元生成\parencite[174, Exercise 21.32]{altman_term_2017}. 我们将要在Noether整环的情况下推广这一结论, 为后续的多项式函数整环的维数理论做好准备.
+利用维数理论我们可以证明Hilbert零点定理, 它建立了代数与几何之间的联系. 我们先来证一个简单的引理.
+
+\begin{proposition}[{{\parencite[195, Corollary 3]{zariski_commutative_1960}}}]\label{prop:ringdimprimeidealexist}
+    设$A$为$\kk$的多项式函数整环, $\dim (A)=r$, 则分别存在余维数为$0, 1, \dotsc, r$的素理想.
+\end{proposition}
+
+\begin{proof}
+    根据\thref{thm:ringdim}有$\codim (0)=d((0))=r$. 考虑素理想降链$A\supsetneqq \ideal{p}_0\supsetneqq \dotsb\supsetneqq \ideal{p}_r=(0)$, 因为$0\leq \codim (\ideal{p}_0)< \dotsb <\codim (\ideal{p}_r)=r$, 所以对于$j=0, \dotsc, r$一定有$\codim (\ideal{p}_j)=j$, 得证.
+\end{proof}
+
+\begin{theorem}[弱Hilbert零点定理{{\parencite[82, Proposition 7.9]{atiyah_introduction_1969}}}]
+    设$\field{k}$是域, $A$为$\field{k}$的多项式函数整环, 如果$A$也是域, 则$A$为$\field{k}$的有限代数域扩张. 特别地, 如果$\field{k}$为代数闭域, $A$为$\field{k}$的多项式函数整环, $\ideal{m}$为$A$的极大理想, 则$A/\ideal{m}\cong \field{k}$.
+\end{theorem}
+
+\begin{proof}
+    因为域只有$(0)$素理想, 余维数为0, 所以根据\thref{prop:ringdimprimeidealexist}知, 域扩张$\kk\subseteq A$的超越次数为0, 即为代数域扩张. 又$A$为有限生成$k$-代数, 故为有限代数域扩张.
+\end{proof}
+
+% 接下来我们来证明重要的Hilbert零点定理, 它建立了代数与几何联系的根基. 首先我们需要几个引理.
+
+% \begin{proposition}[Artin-Tate引理{{\parencites[81, Proposition 7.8]{atiyah_introduction_1969}[Theorem 1]{artin_note_1951}}}]
+%     设环$A\subseteq B\subseteq C$, 其中$A$为Noether环, $C$为有限生成$A$-代数, $C$同时也为有限$B$-代数, 则$B$为有限生成$A$-代数.
+% \end{proposition}
+
+% \begin{proof}
+
+% \end{proof}
+
+% \begin{theorem}[弱Hilbert零点定理{{\parencites[82, Proposition 7.9]{atiyah_introduction_1969}[Theorem 2]{artin_note_1951}}}]
+%     设$\field{k}$是域, $E$为$\field{k}$的有限生成代数, 如果$E$也是域, 则$E$为$\field{k}$的有限代数域扩张. 特别地, 如果$\field{k}$为代数闭域, $A$为$\field{k}$的有限生成代数, $\ideal{m}$为$A$的极大理想, 则$A/\ideal{m}\cong \field{k}$.
+% \end{theorem}
+
+% \begin{proof}
+% %TODO: rewrite module and noetherian module
+% \end{proof}
+
+在唯一分解整环中, 利用素元和不可约元的等价性, 可以得到高度为一的素理想一定是主理想, 并且可以由一个素元生成\parencite[174, Exercise 21.32]{altman_term_2017}. 我们将要在Noether整环的情况下推广这一结论, 并应用维数理论证明\thref{prop:heightoneideallemma}的逆命题成立.
 
 \begin{theorem}[Krull主理想定理{{\parencite[238, Theorem 29]{zariski_commutative_1958}}}]\label{thm:krullhauptidealsatz}
     设$(f)$为Noether整环$A$的一个非零真主理想, $\ideal{p}$为$(f)$的一个孤立从属素理想, 则$h(\ideal{p})=1$.
@@ -520,6 +538,123 @@
 % Krull's Hauptidealsatz; Zariski Vol I followed by height and depth
 % minimal ideal theorem; Zariski Vol II
 
-\subsection{素谱}
+\subsection{素谱}\label{subsec:primespec}
+
+这一节我们要介绍环的素谱及其上的Zariski拓扑结构, 它具有很好的函子性质, 也可以反映出一些环本身的性质.
+
+设$X$为环$A$的素理想全体构成的集合. 对每个$A$的子集$E$, 记$V(E)$为$A$中包含$E$的素理想全体, 是$X$的子集.
+
+\begin{proposition}[{{\parencite[12, Exercise 15]{atiyah_introduction_1969}}}]\label{prop:primespecclosedset}
+    上述定义的算子$V$有如下性质,
+    \begin{enumerate}
+        \item\label{enum:prop-prime-spec-closed-set-1} 如果$\ideal{a}$是由$A$的子集$E$生成的理想, 则$V(E)=V(\ideal{a})=V(\sqrt{\ideal{a}})$;
+        \item\label{enum:prop-prime-spec-closed-set-2} 如果$\sqrt{\ideal{a}}\neq\sqrt{\ideal{b}}$, 则$V(\ideal{a})\neq V(\ideal{b})$;
+        \item\label{enum:prop-prime-spec-closed-set-3} $V((0))=X$, $V((1))=\varnothing$;
+        \item\label{enum:prop-prime-spec-closed-set-4} 设$\{E_\lambda\}$为$A$的一族子集, 则$\bigcap V(E_\lambda)=V(\bigcup E_\lambda)$;
+        \item\label{enum:prop-prime-spec-closed-set-5} 如果$\ideal{a}, \ideal{b}$是$A$的两个理想, 则$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
+    \end{enumerate}
+    因此$V(E)$全体作为$X$的子集满足拓扑空间中闭集的公理, 如此可以在$X$中定义拓扑空间结构, 称为\emph{Zariski拓扑}, 称赋有Zariski拓扑的拓扑空间$X$为环$A$的\emph{素谱}, 记为$\Spec (A)$.
+\end{proposition}
+
+\begin{proof}
+    \ref{enum:prop-prime-spec-closed-set-1} 注意如果$x^n\in \ideal{p}$那么有$x\in\ideal{p}$.
+
+    \ref{enum:prop-prime-spec-closed-set-5} 不难证明$V(\ideal{a}\cap\ideal{b})=V(\ideal{a})\cup V(\ideal{b})$, 又由\ref{enum:prop-prime-spec-closed-set-1}和\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}, 即得$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
+\end{proof}
+
+素谱$\Spec (A)$有一组很特殊的拓扑基, 我们现在来介绍.
+
+\begin{proposition}[{{\parencite[12, Exercise 17]{atiyah_introduction_1969}}}]\label{prop:primespecbaseopenset}
+    对于$f\in A$, 记$X_f$为闭集$V((f))$的余集. 则这些$X_f$构成$\Spec (A)$的一组拓扑基, 并且满足
+    \begin{enumerate}
+        \item $X_f\cap X_g=X_{fg}$;
+        \item\label{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$是幂零元;
+        \item $X_f=X$当且仅当$f$是单位;
+        \item $X_f=X_g$当且仅当$\sqrt{(f)}=\sqrt{(g)}$;
+        \item\label{enum:prop-prime-spec-base-open-set-5} $X$是拟紧集\footnotemark;
+        \item\label{enum:prop-prime-spec-base-open-set-6} 每个$X_f$是拟紧集;
+        \item $X$中的开集为拟紧集当且仅当它是有限个$X_f$的并.
+    \end{enumerate}
+    称这些$X_f$为素谱$\Spec (A)$的\emph{基开集}.
+\end{proposition}
+\footnotetext{代数几何中对紧集的称法与其它领域中不同. 称每个开覆盖都有有限子覆盖的集合为\emph{拟紧集}, 称满足Hausdorff性质的拟紧集为\emph{紧集}.}
+
+\begin{proof}
+    \ref{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$属于$A$的幂零根, 也当且仅当$f$是幂零元.
+
+    \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证任意开覆盖都有有限子覆盖.
+
+    \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$\sum_{j=1}^n f_ig_i = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
+\end{proof}
+
+如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的\parencite[13, Exercise 19]{atiyah_introduction_1969}. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的.
+
+\begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
+    拓扑空间$X$的不可约集全体在集合包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
+\end{proposition}
+
+\begin{proof}
+    先利用Zorn引理证明有极大元. 考虑不可约集的全序子链$\{Y_\lambda\}$, 则断言它们的并$Y$一定是不可约集. 这是因为对于每两个$Y$的真闭子集$Z_1, Z_2$, 都可以找到$\lambda$使得$Z_1\cap Y_\lambda, Z_2\cap Y_\lambda$是$Y_\lambda$的真闭子集.
+
+    再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交.
+
+    最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
+\end{proof}
+
+\begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
+    素谱$X=\Spec (A)$的不可约闭集全体恰为素理想$\ideal{p}$对应的闭集$V(\ideal{p})$全体, 由此建立了$X$的不可约闭集全体到$A$的素理想全体的反序双射. 于是$X$不可约分支全体恰为极小素理想$\ideal{p}$所对应的闭集$V(\ideal{p})$全体.
+\end{proposition}
+
+\begin{proof}
+    因为$V$可以看成从$A$的素理想全体到$X$的闭集全体之间的保序单射, 所以只需证明$\sqrt{\ideal{a}}$为素理想当且仅当$V(\ideal{a})$不可约.
+
+    如果$\ideal{p}$是素理想, 若有$V(\ideal{p})=V(\sqrt{\ideal{a}})\cup V(\sqrt{\ideal{b}})=V(\sqrt{\ideal{ab}})$, 则根据\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}有$\ideal{p}=\sqrt{\ideal{ab}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$, 再根据\thref{prop:prime}\ref{enum:prop-prime-absorb}得$\ideal{p}=\sqrt{\ideal{a}}$或$\ideal{p}=\sqrt{\ideal{b}}$. 于是得$V(\ideal{p})$不能写成两个真闭子集得并, 故为不可约集.
+
+    如果$V(\sqrt{\ideal{a}})$是不可约集, 考虑$fg\in\sqrt{\ideal{a}}$. 则$V(\ideal{a})=(V(\ideal{a})\cap V((f)))\cap (V(\ideal{a})\cap V((g)))$可以写成两个闭子集的并. 于是有$V(\ideal{a})=V((f))$或者$V(\ideal{a})=V((g))$, 因此$f\in \sqrt{\ideal{a}}$或者$g\in \sqrt{\ideal{a}}$成立, 即$\sqrt{\ideal{a}}$为素理想.
+\end{proof}
+
+素谱运算实际上是环范畴到拓扑空间范畴的反变函子, 具有如下一些性质.
+
+\begin{proposition}[{{\parencite[13, Exercise 21]{atiyah_introduction_1969}}}]\label{prop:primespecfunctor}
+    设$\varphi\colon A\to B$为环同态, 记$X=\Spec (A)$, $Y=\Spec (B)$. $\varphi$诱导出了拓扑空间之间的映射$\varphi^*\colon Y\to X$, 满足
+    \begin{enumerate}
+        \item\label{enum:prop-prime-spec-functor-continuous} 如果$f\in A$, 那么$\varphi^{*-1}(X_f)=Y_{\varphi(f)}$. 因此$\varphi^*$是连续映射;
+        \item 如果$\ideal{a}$是$A$的理想, 那么$\varphi^{*-1}(V(\ideal{a}))=V(\ideal{a}^e)$;
+        \item 如果$\ideal{b}$是$B$的理想, 那么$\overline{\varphi^*(V(\ideal{b}))}=V(\ideal{b}^c)$;
+        \item\label{enum:prop-prime-spec-functor-surjective} 如果$\varphi$是满射, 那么$\varphi^*$为从$Y$到$X$的闭子集$V(\Ker (\varphi))$的同胚. 特别地, $\Spec (A)$与$\Spec (A{\divslash}\nil)$有自然同胚;
+        \item $\varphi^*(Y)$在$X$中稠密当且仅当$\Ker (\varphi)\subseteq \nil$;
+        \item\label{enum:prop-prime-spec-functor-composite} 如果$\psi\colon B\to C$为另一个环同态, 则$(\psi\circ\varphi)^*=\varphi^*\circ\psi^*$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \ref{enum:prop-prime-spec-functor-continuous} $\ideal{q}\in\varphi^{*-1}(V(X_f))$当且仅当$\varphi^*(\ideal{q})\in X_f$, 又当且仅当$f\notin \ideal{q}^c$, 还当且仅当$\varphi (f)\notin \ideal{q}$, 最后当且仅当$\ideal{q}\in Y_{\varphi (f)}$.
+
+    \ref{enum:prop-prime-spec-functor-surjective} 只需证明$\varphi^*(V(\ideal{b}))=V(\ideal{b}^c)$. 考虑素理想$\ideal{p}\in X$, 则$\ideal{p}\in\varphi^*(V(\ideal{b}))$当且仅当$\varphi(\ideal{p})\in V(\ideal{b})$, 也当且仅当$\varphi(\ideal{p})\supseteq\ideal{b}$, 故当且仅当$\ideal{p}\supseteq\ideal{b}^c$.
+
+    \ref{enum:prop-prime-spec-functor-composite} 注意$(\psi\circ\varphi)^{-1}=(\varphi^{-1}\circ\psi^{-1})$即可.
+\end{proof}
+
+对于环$A$, 其极大理想全体可以看成素谱$\Spec (A)$的子空间, 这个子空间被称为$A$的\emph{极大谱}, 记作$\MaxSpec (A)$. 因为一般来说极大理想的原像不一定是极大理想, 所以极大谱没有如\thref{prop:primespecfunctor}中所述的函子性质, 研究起来不是那么方便.
+
+正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\parencite[79, Exercise 5]{atiyah_introduction_1969}.
+
+\begin{proposition}
+    如果$A$是Noether环, 则$\Spec (A)$是Noether拓扑空间. 反之则不一定成立.
+\end{proposition}
+
+\begin{proof}
+    假设$A$是Noether环, 因为$\Spec (A)$中的闭集降链能诱导出$A$中的根式理想的升链, 故由\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}知闭集降链一定有限.
+
+    反过来, 我们需要寻找一个反例, 这个反例参考\parencite{brandenburg_non-noetherian_2017}. 设$\kk$为一个域, 考虑域的正整数元多项式环的商环$A=\kk [X_1, X_2, \dotsc]{\divslash}(X_1, X_2^2, \dotsc)$. 因为理想升链$(X_1)\subsetneqq (X_1, X_2)\dotsb$不稳定, 因此$A$不是Noether环. 但是因为幂零根$\nil=\ideal{m}\coloneq (X_1, X_2, \dotsc)$为极大理想, 故由\thref{prop:primespecfunctor}\ref{enum:prop-prime-spec-functor-surjective}我们知道$\Spec (A)\cong\Spec (A{\divslash}\nil)=\Spec (\kk)$仅有一个点, 因此一定是Noether拓扑空间.
+\end{proof}
+
+\begin{proposition}[{{\parencites[79, Exercise 7]{atiyah_introduction_1969}[5, Proposition 1.5]{hartshorne_algebraic_1977}}}]
+    Noether拓扑空间$X$中的不可约分支仅有有限个, 故Noether环$A$的极小素理想仅有有限个.
+\end{proposition}
+
+\begin{proof}
+    不会了, 参考Lasker-Noether定理的证明吧.
+\end{proof}
 
 % TODO: 代数闭域

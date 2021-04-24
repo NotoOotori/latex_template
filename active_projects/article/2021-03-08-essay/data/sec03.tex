@@ -1,6 +1,6 @@
 % !TeX root = ../main.tex
 
-\section{几何}
+\section{几何}\label{sec:geometry}
 
 古典代数几何关心的主要内容就是仿射空间或者射影空间中由多项式方程或者多项式方程组的解集的点集的几何. 不同于分析中常见的针对某一个特定的多项式方程或方程组进行研究, 我们将把所有这样的解集放在一起定义一个拓扑空间, 并研究这个拓扑空间的结构, 包括不可约性, 维数以及函数结构.
 
@@ -32,40 +32,18 @@
     \ref{enum:prop-zariski-topology-3} 根据定义即有$\bigcap Z(T_\lambda)=Z(\bigcup T_\lambda)$.
 \end{proof}
 
-回顾二维欧氏空间中二次曲线的分类, 多项式$XY\in \RR[X, Y]$虽然是二次的, 但是它所定义的解集可以写成两条直线的并, 被称为是退化的. 类似地, 我们想先对非退化的代数集展开研究, 这就引出了拓扑空间中不可约的概念.
-
-如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的\parencite[13, Exercise 19]{atiyah_introduction_1969}. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的. $\AF^n$的不可约闭子集被称为\emph{仿射代数簇}, 仿射代数簇的开子集被称为\emph{拟仿射代数簇}.
+回顾二维欧氏空间中二次曲线的分类, 多项式$XY\in \RR[X, Y]$虽然是二次的, 但是它所定义的解集可以写成两条直线的并, 被称为是退化的. 类似地, 我们想先对非退化的代数集展开研究, 这就引出了\ref{subsec:primespec}中定义过的拓扑空间中不可约的概念. $\AF^n$的不可约闭子集被称为\emph{仿射代数簇}, 仿射代数簇的开子集被称为\emph{拟仿射代数簇}.
 
 \begin{remark}
     这里仿射代数簇与拟仿射代数簇的定义依赖于到$\AF^n$的嵌入.%, 等到()% TODO: where
     %定义了簇的同构之后我们才可以给出仿射簇与拟仿射簇的内蕴定义.
 \end{remark}
 
-\begin{proposition}
-    $\AF^n$是不可约的.
+为了后续讨论的方便, 我们需要陈述一个事实, 证明将放在下一部分中.
+
+\begin{proposition}\label{prop:affineprimeirreducible}
+    如果$\ideal{p}$是$A$的素理想, 那么$Z(\ideal{p})$是$\AF^n$的不可约闭集. 特别地, $\AF^n$是仿射代数簇.
 \end{proposition}
-
-\begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
-    拓扑空间$X$的不可约集全体在集合包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
-\end{proposition}
-
-\begin{proof}
-    先利用Zorn引理证明有极大元. 考虑不可约集的全序子链$\{Y_\lambda\}$, 则断言它们的并$Y$一定是不可约集. 这是因为对于每两个$Y$的真闭子集$Z_1, Z_2$, 都可以找到$\lambda$使得$Z_1\cap Y_\lambda, Z_2\cap Y_\lambda$是$Y_\lambda$的真闭子集.
-
-    再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交.
-
-    最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
-\end{proof}
-
-我们在这一部分中研究的拓扑空间都满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 称这样的拓扑空间为\emph{Noether拓扑空间}.
-
-\begin{proposition}[{{\parencite[5, Proposition 1.5]{hartshorne_algebraic_1977}}}]
-    Noether拓扑空间$X$中的不可约分支仅有有限个.
-\end{proposition}
-
-\begin{proof}
-    不会了, 参考Lasker-Noether定理的证明吧.
-\end{proof}
 
 拓扑空间$X$的\emph{维数}$\dim (X)$被定义为满足存在不可约闭子集升链$Z_0\subsetneqq Z_1\subsetneqq \dotsb \subsetneqq Z_n$的$n$的上确界. 定义仿射代数簇与拟仿射代数簇的\emph{维数}为它们作为拓扑空间的维数.
 
@@ -97,19 +75,15 @@
 
 利用\ref{sec:varietyaffine}关于拓扑空间的定义和性质, 称$\PP^n$的不可约闭子集为\emph{射影代数簇}, 射影代数簇的开子集被称为\emph{拟射影代数簇}.
 
-\begin{proposition}
-    $\PP^n$是不可约的.
-\end{proposition}
+与仿射情形相同, 为了后续讨论的方便, 我们需要陈述一个事实, 证明将放在下一部分中.
 
 \begin{proposition}\label{prop:projectiveprimeirreducible}
-    素理想不可约.
+    如果$\ideal{p}$是$S$的素理想, 那么$Z(\ideal{p})$是$\PP^n$的不可约闭集. 特别地, $\PP^n$是射影代数簇.
 \end{proposition}
-
-% TODO: properties of Zariski topology
 
 接下来我们将要构造$n$-射影空间中由$n$-仿射空间所构成的开覆盖, 这个构造与证明实射影空间是实微分流形中的构造\parencite[4--5, Definition 2.4]{flaherty_riemannian_1992}完全相同. 如果$f\in S$是一个齐次线性多项式, 则称$f$的零点集为一个\emph{超平面}. 特别地, 对于$j=0, \dotsc, n$, 记$H_j$为$X_j$的零点, 并记$U_j$为开集$\PP^n-H_j$. 定义映射$\varphi_j\colon U_j\to \AF^n$, 把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j, \dotsc, x_{j-1}{\divslash}x_j, x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$. 因为$x_j\neq 0$, 并且$x_i{\divslash}x_j$的取值与齐次坐标的选取无关, 因此$\varphi_j$是良定的.
 
-\begin{proposition}[{{\parencite[10, Proposition 2.2]{hartshorne_algebraic_1977}}}]
+\begin{proposition}[{{\parencite[10, Proposition 2.2]{hartshorne_algebraic_1977}}}]\label{prop:projspaceopencoverhomeo}
     $\PP^n$可以被上述定义的开集族$U_j$开覆盖, 并且映射$\varphi_j$是$U_j$到$\AF^n$的同胚.
 \end{proposition}
 
@@ -121,7 +95,7 @@
     现在令$Y\subseteq U$是$U$的闭子集. 记$\overline{Y}$为其在$\PP^n$中的闭包, 这是一个代数集, 因此存在子集$T\subseteq S^h$使得$\overline{Y}=Z(T)$. 令$T'=\alpha(T)$, 可以直接验证$\varphi(Y)=Z(T')$, 即闭集的像是闭集. 反过来的话, 令$W$为$\AF^n$的闭子集, 则存在$A$的子集$T''$使得$W=Z(T'')$, 很容易验证$\varphi^{-1}(W) = Z(\beta(T''))\cap U$, 即闭集的原像是闭集. 于是得证$\varphi$是一个同胚.
 \end{proof}
 
-\begin{proposition}[{{\parencite[11, Corollary 2.3]{hartshorne_algebraic_1977}}}]
+\begin{proposition}[{{\parencite[11, Corollary 2.3]{hartshorne_algebraic_1977}}}]\label{prop:projvarietyopencoverhomeo}
     如果$Y$是一个(拟)射影代数簇, 则$Y$可以由开集族$Y\cap U_j$开覆盖, 并且$\varphi_j$诱导了从$Y\cap U_j$到(拟)仿射代数簇的同胚.
 \end{proposition}
 
@@ -132,6 +106,10 @@
 \begin{proposition}
     设$Y$为拟仿射代数簇, 则$Y$同胚于某个$\PP^n$中的拟射影代数簇.
 \end{proposition}
+
+\begin{proof}
+    利用上述定义的映射, 可以延拓到一个射影代数簇.% TODO:
+\end{proof}
 
 \subsection{代数簇的态射}
 
@@ -159,7 +137,6 @@
     与\thref{prop:affineregularcontinuous}的证明雷同.
 \end{proof}
 
-% P127 Ahlfors
 将之前定义的仿射代数簇, 拟仿射代数簇, 射影代数簇, 拟射影代数簇统称为\emph{代数簇}, 我们已经定义了代数簇上的正规函数. 类似于单复变函数中非零全纯函数的零点是孤立的\parencite[127]{ahlfors_complex_1978}, 代数簇上的函数也有很强的刚性.
 
 \begin{proposition}[{{\parencite[15, Remark 3.1.1]{hartshorne_algebraic_1977}}}]\label{prop:regularstiffness}
@@ -170,7 +147,11 @@
     只需注意$Z(f-g)\supseteq \overline{U}=X$即可.
 \end{proof}
 
+我们可以定义一些由函数构成的代数结构.% TODO: function field
+
 现在我们可以来定义代数簇之间的态射了. 设$\kk$为固定的代数闭域, $X, Y$为两个代数簇, $X$到$Y$的\emph{态射}即为连续映射$\varphi\colon X\to Y$, 并且满足对于每个开子集$V\subseteq Y$和每个正规函数$f\colon V\to \kk$都有复合函数$f\circ\varphi\colon\varphi^{-1}(V)\to \kk$是正规函数. 这定义了$k$上的代数簇所构成的范畴, 这是一个具体范畴.
+
+\thref{prop:projspaceopencoverhomeo}\thref{prop:projvarietyopencoverhomeo}中的映射实际上是同构.% TODO: prop
 
 \subsection{有理映射}
 
@@ -209,5 +190,5 @@
 
 现在来定义代数簇之间的有理映射. 设$X, Y$为代数簇, 考虑由非空开集$U\subseteq X$和态射$\varphi_U\colon U\to Y$组成的二元组$\lr<>{U, \varphi_U}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lr<>{U, \varphi_U}$等价于$\lr<>{U, \varphi_U}$当且仅当$\varphi_U, \varphi_V$在非空开集$U\cap V$的取值相同. 于是一个从$X$到$Y$的\emph{有理映射}$\varphi$被定义为等价关系$\sim$下的一个等价类. 如果有理映射$\varphi$满足对于每一对$\lr<>{U, \varphi_U}$都有$\varphi_U$的像都在$Y$中稠密, 则称$\varphi$为\emph{控制有理映射}. $\varphi$为控制有理映射等价于对于某一对$\lr<>{U, \varphi_U}$成立$\varphi_U$的像都在$Y$中稠密\parencite{andrew_how_2016}.
 
-代数簇关于有理映射也构成一个范畴, 称这个范畴中的同构为\emph{双有理同构}. 一个非常惊人的事实是, 代数簇关于控制有理映射的范畴与$\kk$的有限生成域扩张关于域同态的范畴有范畴等价, 我们将在% TODO:
+代数簇关于有理映射也构成一个范畴, 称这个范畴中的同构为\emph{双有理同构}. 一个非常惊人的事实是, 代数簇关于控制有理映射的范畴与$\kk$的有限生成域扩张关于域同态的范畴有范畴等价, 我们将在% TODO: where
 ()中介绍这一事实.

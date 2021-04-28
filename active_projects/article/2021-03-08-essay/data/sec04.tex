@@ -2,9 +2,77 @@
 
 \section{代数与几何的联系}
 
-% 极大谱和仿射空间同胚
+不加说明的情况下$k$依然指代数闭域.
+
+\subsection{理想与代数集}
+
+这一节我们将讨论仿射空间与射影空间的代数集与多项式环的理想的对应关系.
+
+先考虑仿射空间$\AF^n$的情况, 记$A\coloneq \kk [X_1, \dotsc, X_n]$. 对于多项式环$A$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\AF^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的多项式全体, 即$I(Y)\coloneq \{f\in A\vert f(x)=0, \forall x\in Y\}$, $I(Y)$一定是环$A$的理想, 并且如果$Y$为单点集, 则$I(Y)$为极大理想.
+
+\begin{proposition}[{{\parencite[3, Proposition 1.2; 4, Corollary 1.4]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradical}
+    设$Y, Y_1, Y_2$为$\AF^n$的子集, $T, T_1, T_2$为$A$的子集, $\ideal{a}$为$A$的理想, 则
+    \begin{enumerate}
+        \item\label{enum:prop-affine-galois-connection-closed-radical-1} $Z(T)=Z((T))=Z(\sqrt{(T)})$;
+        \item\label{enum:prop-affine-galois-connection-closed-radical-2} 如果$T_1\subseteq T_2$, 那么$Z(T_1)\supseteq Z(T_2)$;
+        \item\label{enum:prop-affine-galois-connection-closed-radical-3} $I(Y)=I(\overline{Y})$;
+        \item\label{enum:prop-affine-galois-connection-closed-radical-4} 如果$Y_1\subseteq Y_2$, 那么$I(Y_1)\supseteq I(Y_2)$;
+        \item\label{enum:prop-affine-galois-connection-closed-radical-5} $I(Y_1\cup Y_2)=I(Y_1)\cap I(Y_2)$;
+        \item\label{enum:prop-affine-galois-connection-closed-radical-nullstellensatz} (强Hilbert零点定理\parencite[85, Exercise 14]{atiyah_introduction_1969}) $I(Z(\ideal{a}))=\sqrt{a}$;
+        \item\label{enum:prop-affine-galois-connection-closed-radical-closure} $Z(I(Y))=\overline{Y}$;
+        \item\label{enum:prop-affine-galois-connection-closed-radical-8} 如果$\ideal{p}$是$A$的素理想, 那么$Z(\ideal{p})$是$\AF^n$的不可约闭集;
+        \item\label{enum:prop-affine-galois-connection-closed-radical-9} 如果$Y$是$\AF^n$的不可约闭集, 那么$I(Y)$是$A$的素理想.
+    \end{enumerate}
+    于是由$Z$和$I$, 我们可以建立$\AF^n$的代数集全体与$A$的根理想之间的反序双射, 将$\AF^n$的不可约闭集对应到$A$的素理想.
+\end{proposition}
+
+\begin{proof}
+    这里我们只证明\ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz}\ref{enum:prop-affine-galois-connection-closed-radical-closure}\ref{enum:prop-affine-galois-connection-closed-radical-8}和\ref{enum:prop-affine-galois-connection-closed-radical-9}.
+
+    \ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz} 根据\ref{enum:prop-affine-galois-connection-closed-radical-1}\ref{enum:prop-affine-galois-connection-closed-radical-2}和\ref{enum:prop-affine-galois-connection-closed-radical-4}知$I(Z(\ideal{a}))\supseteq\sqrt{\ideal{a}}$. 反过来, 假设$f\notin\sqrt{\ideal{a}}$, 根据\thref{prop:scheinnullstellensatz}知存在包含$\ideal{a}$的素理想$\ideal{p}$使得$f\notin\ideal{p}$. 设$B=(A{\divslash}\ideal{p})$, $C=B_{f}=B[1{\divslash}f]$, 则$C$为有限生成$\kk$-代数. 设$\ideal{m}$为$C$的一个极大理想, 则根据\thref{thm:hilbert-nullstellensatz-weak}知$D\coloneq C{\divslash}\ideal{m}\cong\kk$. 设$X_j\in A$在$D$的像为$x_j$, 则我们定义了一个点$x=(x_1, \dotsc, x_n)\in \AF^n$, 并且有$g\in A$在$D$的像为在$g(x)$. 于是我们有$x\in Z(\ideal{a})$但是$f(x)\neq 0$.
+
+    \ref{enum:prop-affine-galois-connection-closed-radical-closure} 根据定义有$Y\subseteq Z(I(Y))$, 而右边是闭集, 所以有$\overline{Y}\subseteq Z(I(Y))$. 反过来, 假设$W$为包含$Y$的闭子集, 则存在$A$的理想$\ideal{a}$使$W=Z(\ideal{a})$. 因此$Z(\ideal{a})\supseteq Y$, 再根据\ref{enum:prop-affine-galois-connection-closed-radical-3}得$I(Z(\ideal{a}))\subseteq I(Y)$. 又$\ideal{a}\subseteq I(Z(\ideal{a}))$, 因此由\ref{enum:prop-affine-galois-connection-closed-radical-2}有$W=Z(\ideal{a})\supseteq Z(I(Y))$. 故$Z(I(Y))=\overline{Y}$.
+
+    \ref{enum:prop-affine-galois-connection-closed-radical-8} 设有闭集$Y_1$和$Y_2$使得$Z(\ideal{p})=Y_1\cup Y_2$, 则由\ref{enum:prop-affine-galois-connection-closed-radical-4}和\ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz}知$\ideal{p}=I(Y_1)\cap I(Y_2)$, 由\thref{prop:prime}\ref{enum:prop-prime-absorb}知$\ideal{p}=I(Y_1)$或者$\ideal{p}=I(Y_2)$, 故由\ref{enum:prop-affine-galois-connection-closed-radical-closure}得$Z(\ideal{p})=Y_1$或$Z(\ideal{p})=Y_2$, 这就证明了$Z(\ideal{p})$是不可约集.
+
+    \ref{enum:prop-affine-galois-connection-closed-radical-9} 设$fg\in I(Y)$, 则由\thref{prop:affinezariskitopology}\ref{enum:prop-affine-zariski-topology-2}知$Y=(Y\cap Z(f))\cup (Y\cap Z(g))$, 因为$Y$是不可约闭集, 所以$Y\subseteq Z(f)$或者$Y\subseteq Z(g)$, 故$f\in I(Y)$或者$g\in I(Y)$.
+\end{proof}
+
+再考虑射影空间$\PP^^n$的情形, 记$S\coloneq \kk [X_0, \dotsc, X_n]$, $S$的齐次多项式全体为$\Shomo$, 次数为$d$的齐次多项式全体为$S_d$, $S_+=\sum_{d>0}S_d$为$S$的一个极大理想. 对于$\Shomo$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\PP^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的齐次多项式全体生成的理想.
+
+\begin{proposition}[{{\parencite[11, Exercise 2.1--2.4]{hartshorne_algebraic_1977}}}]\label{prop:projectivegaloisconnectionclosedradical}
+    设$Y, Y_1, Y_2$为$\PP^n$的子集, $T, T_1, T_2$为$\Shomo$的子集, $\ideal{a}$为$S$的齐次理想, 则
+    \begin{enumerate}
+        \item\label{enum:prop-projective-galois-connection-closed-radical-1} $Z(T)=Z((T))=Z(\sqrt{(T)})$;
+        \item\label{enum:prop-projective-galois-connection-closed-radical-2} 如果$T_1\subseteq T_2$, 那么$Z(T_1)\supseteq Z(T_2)$;
+        \item\label{enum:prop-projective-galois-connection-closed-radical-3} $I(Y)=I(\overline{Y})$;
+        \item\label{enum:prop-projective-galois-connection-closed-radical-4} 如果$Y_1\subseteq Y_2$, 那么$I(Y_1)\supseteq I(Y_2)$;
+        \item\label{enum:prop-projective-galois-connection-closed-radical-5} $I(Y_1\cup Y_2)=I(Y_1)\cap I(Y_2)$;
+        \item 下列三个条件等价.
+        \begin{enumerate}
+            \item $Z(\ideal{a})=\varnothing$;
+            \item $\sqrt{\ideal{a}}$等于$S$或$S_+$;
+            \item 对于某个$d>0$有$\ideal{a}\supseteq S_d$;
+        \end{enumerate}
+        \item\label{enum:prop-projective-galois-connection-closed-radical-nullstellensatz} 如果$Z(\ideal{a})\neq\varnothing$, 则$I(Z(\ideal{a}))=\sqrt{a}$;
+        \item\label{enum:prop-projective-galois-connection-closed-radical-closure} $Z(I(Y))=\overline{Y}$;
+        \item\label{enum:prop-projective-galois-connection-closed-radical-8} 如果$\ideal{p}$是$S$的齐次素理想且$\ideal{p}\neq S_+$, 那么$Z(\ideal{p})$是$\PP^n$的不可约闭集;
+        \item\label{enum:prop-projective-galois-connection-closed-radical-9} 如果$Y$是$\PP^n$的不可约闭集, 那么$I(Y)$是$S$的素理想且$I(Y)\neq S_+$.
+    \end{enumerate}
+    于是由$Z$和$I$, 我们可以建立$\PP^n$的代数集全体与$S$的不同于$S_+$的齐次根理想之间的反序双射, 将$\PP^n$的不可约闭集对应到$S$的不同于$S_+$的齐次素理想. 因为$S_+$不出现在这个对应中, 有时也称$S_+$为\emph{无关极大理想}.
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+% 射影空间
+% 函数环的刻画
+
 % Zariski Vol I P241 Theorem 30, 31
 % AM P69 Exercise 5.16
 % Hartshorne Ex 2.6
 
 \subsection{概型}
+
+% 极大谱和仿射空间同胚

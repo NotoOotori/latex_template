@@ -15,21 +15,19 @@
 设$A\coloneq \kk[X_1, \dotsc, X_n]$为$\kk$的$n$元多项式环, 我们可以将$A$的元素看成从$\AF^n$到$k$的映射, 对于$f\in A$, $P\in \AF^n$, 记$f(P)=f(x_1, \dotsc, x_n)$. 于是我们可以讨论$f\in A$的\emph{零点}, 即为$\AF^n$的子集$Z(f)\coloneq \{P\in \AF^n\vert f(P)=0\}$. 更一般地, 我们还可以讨论$A$的子集$T$的\emph{零点集}$Z(T)\coloneq \{P\in \AF^n\vert f(P)=0, \forall f\in T\}$. 如果$\AF^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
 
 \begin{proposition}[{{\parencite[2, Proposition 1.1]{hartshorne_algebraic_1977}}}]\label{prop:affinezariskitopology}
-    $\AF^n$的代数集满足拓扑空间中闭集的公理, 即
+    设$\Lambda$为任意指标集, $T_1, T_2\in A$, $\{T_\lambda\}_{\lambda\in\Lambda}\subseteq A$, 则
     \begin{enumerate}
-        \item\label{enum:prop-zariski-topology-1} 空集与全集是代数集;
-        \item\label{enum:prop-zariski-topology-2} 有限个代数集的并是代数集;
-        \item\label{enum:prop-zariski-topology-3} 任意代数集的交是代数集.
+        \item\label{enum:prop-affine-zariski-topology-1} $Z(A)=\varnothing, Z(0)=\AF^n$;
+        \item\label{enum:prop-affine-zariski-topology-2} $Z(T_1\cap T_2)=Z(T_1)\cup Z(T_2)$;
+        \item\label{enum:prop-affine-zariski-topology-3} $Z(\bigcup_{\lambda\in\Lambda} T_\lambda)=\bigcap_{\lambda\in\Lambda} Z(T_\lambda)$.
     \end{enumerate}
-    如此可以在$\AF^n$定义以代数集全体为闭集全体的拓扑空间结构, 称为\emph{Zariski拓扑}.
+    于是$\AF^n$的代数集满足拓扑空间中闭集的公理, 如此可以在$\AF^n$定义以代数集全体为闭集全体的拓扑空间结构, 称为\emph{Zariski拓扑}.
 \end{proposition}
 
 \begin{proof}
-    \ref{enum:prop-zariski-topology-1} 观察到若取$f=1, g=0$, 则有$Z(f)=\varnothing, Z(g)=\AF^n$.
+    \ref{enum:prop-affine-zariski-topology-2} 设$Y_1=Z(T_1), Y_2 = Z(T_2)$, 记$T_1T_2=\{g_1g_2\vert g_1\in T_1, g_2\in T_2\}$, 则我们断言$Y_1\cup Y_2 = Z(T_1T_2)$. 先证$\subseteq$. 如果$P\in Y_1\cup Y_2$, 则存在$g_1\in T_1, g_2\in T_2$使得$g_1(P)=g_2(P)=0$, 于是$(g_1g_2)(P)=0$. 再证$\supseteq$. 因为$(g_1g_2)(P)=0$蕴含$g_1(P)=0$或者$g_2(P)=0$, 于是有$Z(T_1T_2)\subseteq Z(T_1)\cup Z(T_2)=Y_1\cup Y_2$.
 
-    \ref{enum:prop-zariski-topology-2} 只需证两个代数集的并是代数集. 设$Y_1=Z(T_1), Y_2 = Z(T_2)$, 记$T_1T_2=\{g_1g_2\vert g_1\in T_1, g_2\in T_2\}$, 则我们断言$Y_1\cup Y_2 = Z(T_1T_2)$. 先证$\subseteq$. 如果$P\in Y_1\cup Y_2$, 则存在$g_1\in T_1, g_2\in T_2$使得$g_1(P)=g_2(P)=0$, 于是$(g_1g_2)(P)=0$. 再证$\supseteq$. 因为$(g_1g_2)(P)=0$蕴含$g_1(P)=0$或者$g_2(P)=0$, 于是有$Z(T_1T_2)\subseteq Z(T_1)\cup Z(T_2)=Y_1\cup Y_2$.
-
-    \ref{enum:prop-zariski-topology-3} 根据定义即有$\bigcap Z(T_\lambda)=Z(\bigcup T_\lambda)$.
+    \ref{enum:prop-affine-zariski-topology-3} 根据定义即有$\bigcap Z(T_\lambda)=Z(\bigcup T_\lambda)$.
 \end{proof}
 
 回顾二维欧氏空间中二次曲线的分类, 多项式$XY\in \RR[X, Y]$虽然是二次的, 但是它所定义的解集可以写成两条直线的并, 被称为是退化的. 类似地, 我们想先对非退化的代数集展开研究, 这就引出了\ref{subsec:primespec}中定义过的拓扑空间中不可约的概念. $\AF^n$的不可约闭子集被称为\emph{仿射代数簇}, 仿射代数簇的开子集被称为\emph{拟仿射代数簇}.
@@ -39,7 +37,7 @@
     %定义了簇的同构之后我们才可以给出仿射簇与拟仿射簇的内蕴定义.
 \end{remark}
 
-为了后续讨论的方便, 我们需要陈述一个事实, 证明将放在下一部分中.
+为了后续讨论的方便, 我们需要陈述一个事实, 证明将放在下一部分\thref{prop:affinegaloisconnectionclosedradical}中.
 
 \begin{proposition}\label{prop:affineprimeirreducible}
     如果$\ideal{p}$是$A$的素理想, 那么$Z(\ideal{p})$是$\AF^n$的不可约闭集. 特别地, $\AF^n$是仿射代数簇.
@@ -57,16 +55,16 @@
 
 设$k$为固定的代数闭域, 定义$\kk$上的$n$-\emph{射影空间}$\PP^n$为商集$(\AF^{n+1}-\{(0, \dotsc, 0)\}){\divslash}{\sim}$, 其中两个点等价当且仅当它们在同一条过原点的直线上. 称一个$P\in\PP^n$为一个\emph{点}, 若$(n+1)$元组$(x_0, \dotsc, x_n)$在$P$对应的等价类中, 则称其为$P$的一组\emph{齐次坐标}.
 
-设$S\coloneq \kk [X_0, \dotsc, X_n]$为$k$的$n$元多项式环, 与仿射情形不同, 我们一般不能把$S$的元素看成从$\PP^n$到$\kk$的映射, 为了定义零点集, 我们需要引入多项式的次数这一概念. 定义单项式的\emph{次数}为$X_0, \dotsc, X_n$的指数之和, 如果多项式$f\in \PP^n$可以写成有限个次数为$d$的单项式的和, 则称多项式$f$为\emph{次数为$d$的齐次多项式}, 称次数为一的齐次多项式为\emph{线性齐次多项式}. 次数为$d$的齐次多项式$f$满足性质$f(\lambda x_0, \dotsc, \lambda x_n)=\lambda^d f(x_0, \dotsc, x_n)$, 于是可以把$S$的元素看成从$\PP^n$到$\{0, 1\}$的映射, 其中$f(P)=0$当且仅当存在$P$的一组齐次坐标$(x_0, \dotsc, x_n)$使得$f(x_0, \dotsc, x_n)=0$. 从而我们可以讨论一个齐次多项式的\emph{零点}, 即$Z(f)=\{P\in \PP^n\vert f(P)=0\}$, 以及一个由齐次多项式构成的集合$T$的\emph{零点集}, 即$Z(T)=\{P\in\PP^n\vert f(P)=0, \forall f\in T\}$. 如果$\PP^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
+设$S\coloneq \kk [X_0, \dotsc, X_n]$为$k$的$n$元多项式环, 与仿射情形不同, 我们一般不能把$S$的元素看成从$\PP^n$到$\kk$的映射, 为了定义零点集, 我们需要引入多项式的次数这一概念. 定义单项式的\emph{次数}为$X_0, \dotsc, X_n$的指数之和, 如果多项式$f\in \PP^n$可以写成有限个次数为$d$的单项式的和, 则称多项式$f$为\emph{次数为$d$的齐次多项式}, 称次数为一的齐次多项式为\emph{线性齐次多项式}, 称可以如此定义次数的多项式为\emph{齐次多项式}, 记齐次多项式全体为$\Shomo$. 次数为$d$的齐次多项式$f$满足性质$f(\lambda x_0, \dotsc, \lambda x_n)=\lambda^d f(x_0, \dotsc, x_n)$, 于是可以把$S$的元素看成从$\PP^n$到$\{0, 1\}$的映射, 其中$f(P)=0$当且仅当存在$P$的一组齐次坐标$(x_0, \dotsc, x_n)$使得$f(x_0, \dotsc, x_n)=0$. 从而我们可以讨论一个齐次多项式的\emph{零点}, 即$Z(f)=\{P\in \PP^n\vert f(P)=0\}$, 以及一个由齐次多项式构成的集合$T\subseteq\Shomo$的\emph{零点集}, 即$Z(T)=\{P\in\PP^n\vert f(P)=0, \forall f\in T\}$. 如果$\PP^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
 
 \begin{proposition}[{{\parencite[9, Proposition 2.1]{hartshorne_algebraic_1977}}}]
-    $\PP^n$的代数集满足拓扑空间中闭集的公理, 即
+    设$\Lambda$为任意指标集, $T_1, T_2\in \Shomo$, $\{T_\lambda\}_{\lambda\in\Lambda}\subseteq \Shomo$, 则
     \begin{enumerate}
-        \item 空集与全集是代数集;
-        \item 有限个代数集的并是代数集;
-        \item 任意代数集的交是代数集.
+        \item $Z(\Shomo)=\varnothing, Z(0)=\AF^n$;
+        \item $Z(T_1\cap T_2)=Z(T_1)\cup Z(T_2)$;
+        \item $Z(\bigcup_{\lambda\in\Lambda} T_\lambda)=\bigcap_{\lambda\in\Lambda} Z(T_\lambda)$.
     \end{enumerate}
-    如此可以在$\PP^n$中定义以代数集全体为闭集全体的拓扑空间结构, 称为\emph{Zariski}拓扑.
+    于是$\PP^n$的代数集满足拓扑空间中闭集的公理, 如此可以在$\PP^n$定义以代数集全体为闭集全体的拓扑空间结构, 称为\emph{Zariski拓扑}.
 \end{proposition}
 
 \begin{proof}
@@ -147,11 +145,25 @@
     只需注意$Z(f-g)\supseteq \overline{U}=X$即可.
 \end{proof}
 
-我们可以定义一些由函数构成的代数结构.% TODO: function field
-
 现在我们可以来定义代数簇之间的态射了. 设$\kk$为固定的代数闭域, $X, Y$为两个代数簇, $X$到$Y$的\emph{态射}即为连续映射$\varphi\colon X\to Y$, 并且满足对于每个开子集$V\subseteq Y$和每个正规函数$f\colon V\to \kk$都有复合函数$f\circ\varphi\colon\varphi^{-1}(V)\to \kk$是正规函数. 这定义了$k$上的代数簇所构成的范畴, 这是一个具体范畴.
 
-\thref{prop:projspaceopencoverhomeo}\thref{prop:projvarietyopencoverhomeo}中的映射实际上是同构.% TODO: prop
+有了代数簇同构的定义, 我们可以重新考察之前定义过的代数簇之间的Zariski拓扑结构的同胚, 研究它们是不是代数簇结构的同构, 答案是肯定的.
+
+\begin{proposition}[{{\parencite[18, Proposition]{hartshorne_algebraic_1977}}}]
+    设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 则\thref{prop:projspaceopencoverhomeo}中定义的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的(拟)射影代数簇, 则\thref{prop:projvarietyopencoverhomeo}中$\varphi_j$诱导的从$Y\cap U_j$到(拟)仿射代数簇的同胚也是代数簇的同构.
+\end{proposition}
+
+\begin{proof}
+    对于第一个命题, 利用\thref{prop:projspaceopencoverhomeo}的证明中所定义的$\alpha$和$\beta$, 我们可以建立$U_j$和$\AF^n$由$\varphi_j$诱导的在每个局部的正规函数的对应, 因此它们作为代数簇是同构的. 第二个命题同理.
+\end{proof}
+
+在代数簇上我们可以定义一些函数环. 设$Y$是一个代数簇, 记$Y$的正规函数全体构成的环为$\OO (Y)$, 称为$Y$的\emph{整体函数环}.
+
+如果$P$是$Y$的一点, 考虑由包含$P$的开集$U$与$U$上的正规函数$f\colon U\to \kk$的二元组$\lr<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lr<>{U, f}$等价于$\lr<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$在$P$点的\emph{局部环}, 其实是$P$附近的函数芽全体构成的环, 记作$\OO_{Y, P}$, 在不引起混淆的情况下也记为$\OO_P$. $\OO_P$是局部环, 它的极大理想$\ideal{m}$为在$P$点取值为零的正规函数所在的函数芽, 剩余域$\OO_P{\divslash}\ideal{m}$同构于$\kk$.% TODO: direct limit
+
+考虑由非空开集$U$与$U$上的正规函数$f\colon U\to \kk$的二元组$\lr<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lr<>{U, f}$等价于$\lr<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$的\emph{函数域}, 记作$K(Y)$. $K(Y)$是域, 因为每个非零正规函数$f\colon U\to \kk$都在某个非空开子集$U-U\cap Z(f)$上没有零点.
+
+这三个环之间其实有包含关系, 不难发现存在单同态$\OO (Y)\to \OO_P\to K(Y)$, 因此我们经常会把$\OO (Y)$和$\OO_P$看作$K(Y)$的子环.
 
 \subsection{有理映射}
 

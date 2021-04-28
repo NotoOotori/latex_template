@@ -38,7 +38,7 @@
     \ref{enum:prop-affine-galois-connection-closed-radical-9} 设$fg\in I(Y)$, 则由\thref{prop:affinezariskitopology}\ref{enum:prop-affine-zariski-topology-2}知$Y=(Y\cap Z(f))\cup (Y\cap Z(g))$, 因为$Y$是不可约闭集, 所以$Y\subseteq Z(f)$或者$Y\subseteq Z(g)$, 故$f\in I(Y)$或者$g\in I(Y)$.
 \end{proof}
 
-再考虑射影空间$\PP^^n$的情形, 记$S\coloneq \kk [X_0, \dotsc, X_n]$, $S$的齐次多项式全体为$\Shomo$, 次数为$d$的齐次多项式全体为$S_d$, $S_+=\sum_{d>0}S_d$为$S$的一个极大理想. 对于$\Shomo$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\PP^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的齐次多项式全体生成的理想.
+再考虑射影空间$\PP^n$的情形, 记$S\coloneq \kk [X_0, \dotsc, X_n]$, $S$的齐次多项式全体为$\Shomo$, 次数为$d$的齐次多项式全体为$S_d$, $S_+=\sum_{d>0}S_d$为$S$的一个极大理想. 对于$\Shomo$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\PP^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的齐次多项式全体生成的理想.
 
 \begin{proposition}[{{\parencite[11, Exercise 2.1--2.4]{hartshorne_algebraic_1977}}}]\label{prop:projectivegaloisconnectionclosedradical}
     设$Y, Y_1, Y_2$为$\PP^n$的子集, $T, T_1, T_2$为$\Shomo$的子集, $\ideal{a}$为$S$的齐次理想, 则
@@ -63,7 +63,7 @@
 \end{proposition}
 
 \begin{proof}
-
+    只证\ref{enum:prop-projective-galois-connection-closed-radical-nullstellensatz}. 考虑$I(Z(\ideal{a}))\subseteq\ideal{a}$的情况. $\ideal{a}$也可以看成$n+1$维仿射空间$\AF^{n+1}$的多项式环$A=\kk [X_0, \dotsc, X_n]$的理想, 记$\ideal{a}$在$\AF^{n+1}$的零点集为$Y$. 考虑齐次多项式$f\in \Shomo$满足$f$在$Z(\ideal{a})\subseteq \PP^n$上均为0, 因为$Z(\ideal{a})\neq 0$且$f=0$的情况平凡, 不妨假设$f$的次数大于0, 则$f$看成$\AF^{n+1}$上的函数在$Y$上均为0, 由\thref{prop:affinegaloisconnectionclosedradical}\ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz}知$f\in\sqrt{\ideal{a}}$.
 \end{proof}
 
 % 射影空间

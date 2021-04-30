@@ -159,9 +159,9 @@
 
 在代数簇上我们可以定义一些函数环. 设$Y$是一个代数簇, 记$Y$的正规函数全体构成的环为$\OO (Y)$, 称为$Y$的\emph{整体函数环}.
 
-如果$P$是$Y$的一点, 考虑由包含$P$的开集$U$与$U$上的正规函数$f\colon U\to \kk$的二元组$\lr<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lr<>{U, f}$等价于$\lr<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$在$P$点的\emph{局部环}, 其实是$P$附近的函数芽全体构成的环, 记作$\OO_{Y, P}$, 在不引起混淆的情况下也记为$\OO_P$. $\OO_P$是局部环, 它的极大理想$\ideal{m}$为在$P$点取值为零的正规函数所在的函数芽, 剩余域$\OO_P{\divslash}\ideal{m}$同构于$\kk$.% TODO: direct limit
+如果$P$是$Y$的一点, 考虑由包含$P$的开集$U$与$U$上的正规函数$f\colon U\to \kk$的二元组$\lrbig<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lrbig<>{U, f}$等价于$\lrbig<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$在$P$点的\emph{局部环}, 其实是$P$附近的函数芽全体构成的环, 记作$\OO_{Y, P}$, 在不引起混淆的情况下也记为$\OO_P$. $\OO_P$是局部环, 它的唯一极大理想$\ideal{m}$为在$P$点取值为零的正规函数所在的函数芽, 剩余域$\OO_P{\divslash}\ideal{m}$同构于$\kk$.% TODO: direct limit
 
-考虑由非空开集$U$与$U$上的正规函数$f\colon U\to \kk$的二元组$\lr<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lr<>{U, f}$等价于$\lr<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$的\emph{函数域}, 记作$K(Y)$. $K(Y)$是域, 因为每个非零正规函数$f\colon U\to \kk$都在某个非空开子集$U-U\cap Z(f)$上没有零点.
+考虑由非空开集$U$与$U$上的正规函数$f\colon U\to \kk$的二元组$\lrbig<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lrbig<>{U, f}$等价于$\lrbig<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$的\emph{函数域}, 记作$K(Y)$, 称$K(Y)$的元素为\emph{有理函数}.因为每个非零正规函数$f\colon U\to \kk$都在某个非空开子集$U-U\cap Z(f)$上没有零点,  所以$K(Y)$是域.
 
 这三个环之间其实有包含关系, 不难发现存在单同态$\OO (Y)\to \OO_P\to K(Y)$, 因此我们经常会把$\OO (Y)$和$\OO_P$看作$K(Y)$的子环.
 
@@ -200,7 +200,7 @@
     因为每个代数簇都同构于某个$\PP^n$中的拟射影代数簇, 再复合上到$\PP^n$的包含映射, 我们可以不妨假设$Y=\PP^n$. 考虑射影代数簇$\PP^n\times \PP^n$, 根据\thref{prop:projectiveproduct}\ref{enum:prop-projective-product-3}, 存在乘积态射$\varphi\times \psi$. 记$\Delta=\{(P, P)\vert P\in \PP^n\}$为$\PP^n\times \PP^n$的对角线子集, 由方程$\{X_jY_k-X_kY_j=0\vert i, j=0, \dotsc, n\}$定义, 因此是$\PP^n\times \PP^n$的闭子集. 根据假设以及乘积态射的定义, 有$\varphi\times \psi(U)\subseteq \Delta$, 又根据\thref{prop:continuousimageclosure}, 得$\varphi\times \psi(X)\subseteq\Delta$, 于是根据乘积态射的定义可知$\varphi=\psi$.
 \end{proof}
 
-现在来定义代数簇之间的有理映射. 设$X, Y$为代数簇, 考虑由非空开集$U\subseteq X$和态射$\varphi_U\colon U\to Y$组成的二元组$\lr<>{U, \varphi_U}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lr<>{U, \varphi_U}$等价于$\lr<>{U, \varphi_U}$当且仅当$\varphi_U, \varphi_V$在非空开集$U\cap V$的取值相同. 于是一个从$X$到$Y$的\emph{有理映射}$\varphi$被定义为等价关系$\sim$下的一个等价类. 如果有理映射$\varphi$满足对于每一对$\lr<>{U, \varphi_U}$都有$\varphi_U$的像都在$Y$中稠密, 则称$\varphi$为\emph{控制有理映射}. $\varphi$为控制有理映射等价于对于某一对$\lr<>{U, \varphi_U}$成立$\varphi_U$的像都在$Y$中稠密\parencite{andrew_how_2016}.
+现在来定义代数簇之间的有理映射. 设$X, Y$为代数簇, 考虑由非空开集$U\subseteq X$和态射$\varphi_U\colon U\to Y$组成的二元组$\lrbig<>{U, \varphi_U}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lrbig<>{U, \varphi_U}$等价于$\lrbig<>{U, \varphi_U}$当且仅当$\varphi_U, \varphi_V$在非空开集$U\cap V$的取值相同. 于是一个从$X$到$Y$的\emph{有理映射}$\varphi$被定义为等价关系$\sim$下的一个等价类. 如果有理映射$\varphi$满足对于每一对$\lrbig<>{U, \varphi_U}$都有$\varphi_U$的像都在$Y$中稠密, 则称$\varphi$为\emph{控制有理映射}. $\varphi$为控制有理映射等价于对于某一对$\lrbig<>{U, \varphi_U}$成立$\varphi_U$的像都在$Y$中稠密\parencite{andrew_how_2016}.
 
 代数簇关于有理映射也构成一个范畴, 称这个范畴中的同构为\emph{双有理同构}. 一个非常惊人的事实是, 代数簇关于控制有理映射的范畴与$\kk$的有限生成域扩张关于域同态的范畴有范畴等价, 我们将在% TODO: where
 ()中介绍这一事实.

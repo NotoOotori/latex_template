@@ -100,7 +100,7 @@
 
 有的环有且仅有一个极大理想, 称这样的环为\emph{局部环}, 并称局部环对其唯一极大理想的商域为这个环的\emph{剩余域}.
 
-接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b})\coloneq \{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:primdecom}有重要的应用, 特别地, 记理想$\ideal{a}$的\emph{零化理想}为$\Ann(\ideal{a})\coloneq ((0){:}\ideal{a})$. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}\coloneq \{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 很显然, 根运算具有保序性, 即如果$\ideal{a}\subseteq\ideal{b}$, 则$\sqrt{\ideal{a}}\subseteq\sqrt{\ideal{b}}$. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为\emph{根理想}. 称零理想$\ideal{a}$的根为环$A$的\emph{幂零根}, 记为$\nil$.
+接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b})\coloneq \{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:algebra-primdecom}有重要的应用, 特别地, 记理想$\ideal{a}$的\emph{零化理想}为$\Ann(\ideal{a})\coloneq ((0){:}\ideal{a})$. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}\coloneq \{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 很显然, 根运算具有保序性, 即如果$\ideal{a}\subseteq\ideal{b}$, 则$\sqrt{\ideal{a}}\subseteq\sqrt{\ideal{b}}$. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为\emph{根理想}. 称零理想$\ideal{a}$的根为环$A$的\emph{幂零根}, 记为$\nil$.
 
 \begin{proposition}[{{\parencite[8, Exercise 12; 9, Exercise 13]{atiyah_introduction_1969}}}]\label{prop:idealop}\leavevmode
     \begin{enumerate}
@@ -159,16 +159,15 @@
     设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为多元多项式环$A[X_1, \dotsc, X_n]$的商环.
 \end{proposition}
 
-\subsection{分式环与局部化}
+\subsection{分式环与局部化}\label{subsec:algebra-localization}
 
-分式环以及与之相关的局部化可以说是交换代数中最重要的技术之一了. 与商环类似, 分式环也可以对环进行简化, 商环保留包含给定理想的理想, 分式环保留包含于给定集合的理想. 在()%TODO: localization
-中, 我们可以看到局部化的几何意义, 为研究在某个邻域或在某个点处的情况.
+分式环以及与之相关的局部化可以说是交换代数中最重要的技术之一了. 与商环类似, 分式环也可以对环进行简化, 商环保留包含给定理想的理想, 分式环保留包含于给定集合的理想. 在\ref{subsec:functionrings}中, 我们可以看到局部化的几何意义, 为研究在某个邻域或在某个点处的情况.
 
 若环$A$的子集$S$包含单位元1, 并且满足关于乘法封闭, 即对于任意的$x, y\in S$都有$xy\in S$成立, 则称$S$为$A$的\emph{乘法闭集}. 在$A\times S$上定义等价关系${\sim}$, $(a, s)\sim (b, t)$当且仅当存在$u\in S$使得$u(at-bs)=0$成立, 记$A\times S$在该等价关系下的商为$S^{-1}A$. 在$S^{-1}A$上定义加法$a{\divslash} s+b{\divslash}t \coloneq  (at+bs){\divslash}(st)$以及乘法$(a{\divslash}s)(b{\divslash}t)=(ab){\divslash}(st)$, 则$S^{-1}A$关于该加法与乘法有环的结构, 称为$A$关于$S$的\emph{分式环}. 有自然同态$f\colon A\to S^{-1}A$将$x$映到$x{\divslash}1$, 注意$f$不一定是单射. 分式环有如下的\emph{泛性质}\parencites[81, Theorem 11.3]{altman_term_2017}[37, Proposition 3.1]{atiyah_introduction_1969}, 给定环$A$, 乘法闭集$S$与之前定义的自然同态$f\colon A\to S^{-1}A$, 对于任意的环$B$以及将$S$中元素映到单位的环同态$\phi\colon A\to B$, 存在唯一的环同态$\psi\colon S^{-1}R\to B$使得$\psi f=\phi$成立, 并且满足该泛性质的环$S^{-1}A$在同构意义下唯一.
 
 接下来考察分式环中理想的扩张与收缩. 设$f\colon A\to S^{-1}A$为之前定义的自然环同态, $\ideal{a}$为$A$的理想, 则$\ideal{a}$的扩张$\ideal{a}^e=S^{-1}\ideal{a}\coloneq \{a{\divslash}s\vert a\in\ideal{a}, s\in S\}$. 在证明主要命题之前我们需要用到商环与分式环之间的关系, 叙述如下.
 
-\begin{proposition}[{{\parencite{ortiz_localization_2019}}}]
+\begin{proposition}[{{\parencite{ortiz_localization_2019}}}]\label{prop:localizationquotientcommute}
     取分式环与取商环可交换. 严格叙述如下, 设$A$为环, $\ideal{a}$为$A$的理想, $S$为$A$的乘法闭集, $\overline{S}=\pi(S)$为$S$在商环$A{\divslash}\ideal{a}$中的像仍为乘法闭集, 则环$\SASa$与环$\SAa$有典范同构, 即该同构与典范同态$A\to S^{-1}A\to \SASa$以及$A\to A{\divslash}\ideal{a}\to \SAa$可交换.
 \end{proposition}
 
@@ -203,15 +202,39 @@
     \ref{enum:prop-fracideal-3}由\thref{prop:extencontrop}知$S^{-1}$与理想的和与积可交换, 再验证$S^{-1}(\ideal{a}\cap\ideal{b})=S^{-1}\ideal{a}\cap S^{-1}\ideal{a}\cap\ideal{b}$, 以及$S^{-1}\sqrt{\ideal{a}}=\sqrt{S^{-1}\ideal{a}}$即可.
 \end{proof}
 
-\begin{example}\leavevmode\vspace{-\baselineskip}% TODO: Separate style and content TODO: reference
+\begin{example}\leavevmode\vspace{-\baselineskip}
     \begin{enumerate}
-        \item 设$A$为整环, $S=A-\{0\}$, 则$S^{-1}A$为域, 称为$A$的\emph{分式域}, 有时记为$K(A)$.
+        \item 设$A$为整环, $S=A-\{0\}$, 则$S^{-1}A$为域, 称为$A$的\emph{分式域}, 有时记为$K(A)$. 如果有域$F$满足有子环关系$A\subseteq F\subseteq K(A)$, 那么$F=K(A)$.
         \item 设$\ideal{p}$为环$A$的素理想, 则$\ideal{p}$的余集$A-\ideal{p}$是乘法闭集, 称分式环$(A-\ideal{p})^{-1}A$为$A$在$\ideal{p}$的\emph{局部化}, 记作$A_{\ideal{p}}$. 根据\thref{prop:fracideal}, $A_{\ideal{p}}$的素理想与$A$的包含于$\ideal{p}$的素理想有保序双射, 则由于极大理想存在并且为素理想, 有$\ideal{p}^e$为$A_{\ideal{p}}$的唯一极大理想, 即$A_{\ideal{p}}$为局部环.
         \item 设$f\in A$为环$A$的非零元, 则集合$\{f^n\vert n\in \NN\}$是乘法闭集, 记$A$关于该集合的分式环为$A_f$. 有时这也被称为$A$的\emph{局部化}.
     \end{enumerate}
 \end{example}
 
-\subsection{Noether环与准素分解}\label{subsec:primdecom}
+做累次分式环运算与只做一次分式环运算是等价的.
+
+\begin{proposition}[{{\parencite[43, Exercise 3]{atiyah_introduction_1969}}}]\label{prop:multilocalization}
+    设$S, T$为$A$的两个乘法闭集, 记$ST\coloneq \{st\vert s\in S, t\in T\}$也为$A$的乘法闭集, 记$T$在$S^{-1}A$中的像为$\overline{T}$为$S^{-1}A$的乘法闭集, 则环$(ST)^{-1}A$与$\overline{T}^{-1}(S^{-1}A)$典范同构, 即该同构与典范同态$A\to (ST)^{-1}A$和$A\to S^{-1}A\to \overline{T}^{-1}(S^{-1}A)$可交换. 特别地, 整环的分式环都可以典范地看成分式域的子环.
+\end{proposition}
+
+\begin{proof}
+    证明思路与\thref{prop:localizationquotientcommute}相同.
+
+    典范同态$x\in A\mapsto x{\divslash}1\in(ST)^{-1}A$将$S$的元素映到单位, 因此由分式环的泛性质得到同态$x{\divslash}s\in S^{-1}A\mapsto x{\divslash}1\in (ST)^{-1}A$, 这个同态将$\overline{T}$的元素映到单位, 于是我们得到了同态$\varphi\colon (x{\divslash}s){\divslash}(t{\divslash}s')=(x{\divslash}(ss')){\divslash}(t{\divslash}1)\in \overline{T}^{-1}(S^{-1}A)\mapsto (xs'){\divslash}(st)\in (ST)^{-1}A$.
+
+    另一方面, 典范同态$x\in A\mapsto x{\divslash}1\in S^{-1}\mapsto (x{\divslash}1){\divslash}(1{\divslash}1)\in \overline{T}^{-1}(S^{-1}A)$将$ST$的元素映到单位, 于是由分式环的泛性质可以得到同态$\psi\colon x{\divslash}(st)\in (ST)^{-1}A\mapsto (x{\divslash}s){\divslash}(t{\divslash}1)\in\overline{T}^{-1}(S^{-1}A)$.
+
+    两个同态$\varphi$和$\psi$互为逆, 并且与典范同态可交换.
+\end{proof}
+
+\begin{proposition}\label{prop:integraldomainlocalizationintersection}
+    设$A$为整环, $K(A)$为$A$的分式域, 则在$K(A)$中有$A=\bigcup_{\ideal{m}}A_{\ideal{m}}$.
+\end{proposition}
+
+\begin{proof}
+    只需证$\supseteq$. 对于$x\in K(A)-A$, 考虑包含理想$(x\colon A)$的极大理想$\ideal{m}$, 有$x\notin A_{\ideal{m}}$.
+\end{proof}
+
+\subsection{Noether环与准素分解}\label{subsec:algebra-primdecom}
 
 前文说过, 我们的主要研究对象是域上的多项式环及其商环, 这一节中我们将证明这些环都是Noether环, 即它们满足某种有限条件, 并证明重要的Hilbert零点定理. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在()% TODO: reference
 看到.
@@ -250,12 +273,12 @@
     \ref{enum:prop-nr2-frac} 由\thref{prop:extencontrcorr}\ref{enum:prop-ec-corr}和\thref{prop:fracideal}\ref{enum:prop-fracideal-3}知$S^{-1}A$的理想全体与$A$的收缩理想全体有保序双射, 故满足升链条件.
 \end{proof}
 
-\begin{theorem}[Hilbert基定理{{\parencites[81, Theorem 7.5]{atiyah_introduction_1969}[201, Theorem 1]{zariski_commutative_1958}{noauthor_hilberts_2020}}}]\label{thm:hilbertbasis}
+\begin{theorem}[Hilbert基定理{{\parencites[81, Theorem 7.5]{atiyah_introduction_1969}[201, Theorem 1]{zariski_commutative_1958}}}]\label{thm:hilbertbasis}
     若$A$为Noether环, 则有限生成$A$-代数为Noether环.
 \end{theorem}
 
 \begin{proof}
-    由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多元多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
+    这个证明参考了\parencite{noauthor_hilberts_2020}. 由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多元多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
 \end{proof}
 
 这一节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明从属素理想, 孤立从属素理想及其对应的孤立准素理想的唯一性.
@@ -353,7 +376,7 @@
     设$\ideal{p}$为$\ideal{a}$的孤立从属素理想, 其对应的准素理想为$\ideal{q}$. 考察局部化$A_{\ideal{p}}$, 由$\ideal{p}$的极小性以及\thref{prop:primlocal}\ref{enum:prop-primlocal-decom}知$\ideal{a}^{ec}=\ideal{q}$, 又由\thref{prop:primuniq1}以及定义知$\ideal{a}$的孤立从属素理想由$\ideal{a}$唯一决定, 故孤立从属素理想对应的准素理想由$\ideal{a}$唯一决定.
 \end{proof}
 
-\subsection{维数理论}
+\subsection{维数理论}\label{subsec:algebra-dimension}
 
 维数理论也是交换代数的重要话题, Atiyah-MacDonald\parencite[116--126, Chapter 11]{atiyah_introduction_1969}一书中介绍了一般的Noether局部环的维数理论, 需要模论以及完备化等技术. 限于篇幅原因, 这一节我们仅介绍域的多项式函数整环的维数理论. 这一部分维数理论与域论关系密切, 因此我们将先介绍域论中的维数理论, 即超越基与超越次数;% TODO: 环中重要的是素理想 介绍素理想的高度与深度 介绍其与环维数的关系
 

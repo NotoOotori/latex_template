@@ -410,7 +410,7 @@
 % 标题页
 \newcommand{\tjutitle}{\tju@title}
 \newcommand{\tjuauthor}{\tju@author}
-\renewcommand{\maketitle}{%
+\newcommand{\tjutitlepage}{%
   \clearpage
   \tju@titlepage
   \clearpage
@@ -529,6 +529,15 @@
   backend=biber,style=gb7714-2015,gbalign=right,gbpub=false,sortcites=true,doi=false
   ]{biblatex} % 需要 biblatex-gb7714-2015 宏包
 \bibliography{ref/refs}
+\newcommand\tjubibliography{\tju@bibliography}
+\newcommand\tju@bibliography{%
+  \begingroup%
+  \linespread{1.3}%
+  \sloppy\hbadness 10000\relax%
+  \printbibliography[heading=bibintoc]%
+  \fussy%
+  \endgroup%
+}
 \AtEveryBibitem{\clearfield{pagetotal}}
 % \AtEveryBibitem{\clearfield{volume}}% incollection会意外输出volume信息
 %%% 在驱动别名处理, 再处理文献类型标识.

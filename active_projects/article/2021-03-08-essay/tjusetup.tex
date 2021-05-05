@@ -146,7 +146,7 @@
 % \usepackage{amsthm}
 % 也可以使用 ntheorem
 \usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
-
+\numberwithin{equation}{subsection}
 
 % 给自定义的宏后面自动加空白
 % \usepackage{xspace}
@@ -246,6 +246,7 @@
 
 % hyperref 宏包在最后调用
 \usepackage{hyperref}
+\usepackage{bookmark}
 
 \hypersetup{linktoc=all}% TOC中章节名称和页码都是超链接
 % \hypersetup{% 超链接样式

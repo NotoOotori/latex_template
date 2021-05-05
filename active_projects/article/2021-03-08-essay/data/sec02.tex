@@ -4,7 +4,7 @@
 
 这一部分将以域的多项式函数整环为原型, 发展本文中所需要用到的代数基础, 主要包括局部化, 准素分解, 维数理论, 素谱等内容.
 
-\subsection{环与理想}
+\subsection{环与理想}\label{subsec:algebra-ring}
 
 这一节中我们将要给出环和理想的基本概念, 以及理想的一些运算. 在本节的最后, 我们将介绍模与代数的概念. 本文中不会以模作为主要工具, 但是引入其定义可以方便某些定理的叙述.
 
@@ -19,7 +19,7 @@
     \item $A$的乘法满足结合律与交换律;
     \item 存在$1\in A$, 使得对于任意的$x\in A$都有$1x=x$成立,
 \end{enumerate}
-则称$A$为\emph{交换幺环}. 后文中\emph{环}指的都是交换幺环. 注意如果$1=0$, 则环中有且仅有一个元素, 称这样的环为\emph{零环}\footnotemark .
+则称$A$为\emph{交换幺环}. 后文中\emph{环}指的都是交换幺环. 注意如果$1=0$, 则环中有且仅有一个元素, 称这样的环为\emph{零环}\footnotemark . 如果$B$是$A$的Abel子群且满足$1\in B$, 则称$B$为$A$的\emph{子环}.
 \footnotetext{需要注意的是, 在之后的一些定义中会排除零环, 比如说整环, 域等概念.}
 
 研究保持代数结构的映射为代数理论的核心, 而保持环结构的映射即为环同态, 定义如下. 设$A, B$是两个环, 若映射$f\colon A\to B$满足
@@ -226,15 +226,53 @@
 
 \subsection{模与链条件}
 
-我们需要有限生成模, 有限生成代数等概念来简化记号. 设$A$为环, $M$为Abel群, 如果给定环同态$\mu\colon A\to \Aut(M)$, 则称$M$为$A$-\emph{模}, 习惯上记$\mu(a)(x)$为$ax$, 其中$a\in A, x\in M$. 若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模}$N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}. 设$A, B$为环, 如果给定环同态$\nu\colon A\to B$, 则称$B$为$A$-\emph{代数}, $\nu$诱导了$B$的$A$-模结构, 由$ax\coloneq \nu(a)x$给出. 在不另加说明的情况下, $A$-代数的$A$-模结构默认为此, 若这个模结构是有限生成的, 则称$B$为\emph{有限$A$代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数}$C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$, 同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 下面是几个关于有限代数和有限生成代数的基本事实.
+现代交换代数强调对模的研究, 模的概念是环与理想的推广, 并且模范畴中任意的模都可以与其子模取商, 于是我们可以引入一些同调代数的技术, 比如正合列. 这一节我们将要介绍模的基本概念, 介绍偏序集中的链条件并研究Noether模的基本性质.
+
+设$A$为环, $M$为Abel群, 如果给定环同态$\mu\colon A\to \Aut(M)$, 则称$M$为$A$-\emph{模}, 习惯上记$\mu(a)(x)$为$ax$, 其中$a\in A, x\in M$.
+
+如果$N$是$A$-模$M$的Abel子群并且关于$A$的模运算封闭, 即对于任意$x\in N, a\in A$都有$ax\in N$, 则称$N$是$M$的\emph{子模}. 商群$M{\divslash}N$有自然的$A$-模结构, 即$a(x+N)\coloneq ax+N$, 称为$M$对$N$的\emph{商模}.
+
+若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模}$N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}.
+
+如果两个$A$-模$M, N$之间的映射$f\colon M\to N$满足对于任意的$x, y\in M$与$a\in A$都有$f(x+y)=f(x)+f(y)$以及$f(ax)=af(x)$成立, 则称$f$是$A$-模同态. $f$的核$\Ker (f)$是$M$的子模, $f$的像$\Im (f)$是$N$的子模, 商模$N{\divslash}\Im (f)$称为$f$的\emph{余核}.
+
+在\ref{subsec:algebra-ring}中我们介绍了理想之间的运算, 其中大部分运算也可以定义在子模上. 设$M$为$A$-模, $N, L$为$M$的子模, 则它们的\emph{和}$N+L\coloneq \{x+y\vert x\in N, y\in L\}$是子模, 为包含$N$和$L$的最小的子模. 它们的\emph{交}$N\cap L$也是子模. 一般地不能定义两个子模的积, 不过可以定义\emph{积}$\ideal{a}M\coloneq \{\sum_{j=1}^n a_jx_j\vert a_j\in\ideal{a}, x_j\in M, n\in\ZZ_+\}$, 其中$\ideal{a}$是$A$的理想, 是$M$的子模.
+
+现在来介绍正合列的概念. 如果一个$A$-模和$A$-模同态构成的序列
+\begin{equation}
+    \begin{tikzcd}
+        \dotsb \arrow[r] & M_{j-1} \arrow[r, "f_j"] & M_j \arrow[r, "f_{j+1}"] & M_{j+1} \arrow[r] & \dotsb\label{eqn:longexactsequence}
+    \end{tikzcd}
+\end{equation}
+满足$\Im (f_j)=\Ker (f_{j+1})$, 则称该序列在$M_j$处\emph{正合}, 如果该序列在每一个$M_j$处都正合, 则称这个序列是\emph{正合列}. 每个形如\ref{eqn:longexactsequence}的正合列都可以进行分拆, 记$N_j=\Im (f_j)=\Ker (f_{j+1})$, 则对于每个$j$都有序列
+\begin{equation}
+    \begin{tikzcd}
+        0 \arrow[r] & N_j \arrow[r] & M_j \arrow[r] & N_{j+1} \arrow[r] & 0\label{eqn:shortexactsequence}
+    \end{tikzcd}
+\end{equation}
+是正合列. 称形如\ref{eqn:shortexactsequence}的正合列为\emph{短正合列}.
+
+整相关是代数中非常重要的一个概念, 我们来简要这介绍这一概念并证明其与模之间的关系. 设$B$为环$A$的子环
+
+Proposition 5.1
 
 \begin{proposition}
     设$\field{k}\subseteq\field{K}$为域, 则$\field{K}$为$\field{k}$的有限代数域扩张当且仅当$\field{K}$为有限$\field{k}$-代数.
 \end{proposition}
 
+% TODO: 好像如果证到整相关了就可以了
+
+在介绍链条件之前来介绍一下代数这个概念. 设$A, B$为环, 如果给定环同态$\nu\colon A\to B$, 则称$B$为$A$-\emph{代数}, $\nu$诱导了$B$的$A$-模结构, 由$ax\coloneq \nu(a)x$给出. 在不另加说明的情况下, $A$-代数的$A$-模结构默认为此, 若这个模结构是有限生成的, 则称$B$为\emph{有限$A$-代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数}$C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$, 同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 有限生成代数有很好用的等价定义.
+
 \begin{proposition}[{{\parencite[52, Theorem 4.5]{atiyah_introduction_1969}}}]\label{prop:fgalgebra}
-    设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为多元多项式环$A[X_1, \dotsc, X_n]$的商环.
+    设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为某个多项式环$A[X_1, \dotsc, X_n]$的商环.
 \end{proposition}
+
+\begin{proof}
+    如果$B$为由$x_1, \dotsc, x_n$的$A$-代数, 由定义即可得满同态$A[X_1, \dotsc, X_n]\to B$将$X_j$映到$x_j$. 反之, 如果有满同态$A[X_1, \dotsc, X_n]\to B$, 设$X_j$的像为$x_j$, 则$B$可由$x_1, \dotsc, x_n$生成.
+\end{proof}
+
+链条件 有限生成模
 
 \subsection{Noether环与准素分解}\label{subsec:algebra-primdecom}
 
@@ -280,7 +318,7 @@
 \end{theorem}
 
 \begin{proof}
-    这个证明参考了\parencite{noauthor_hilberts_2020}. 由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多元多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
+    这个证明参考了\parencite{noauthor_hilberts_2020}. 由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
 \end{proof}
 
 这一节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明从属素理想, 孤立从属素理想及其对应的孤立准素理想的唯一性.
@@ -586,7 +624,7 @@
 齐次环中有一种特殊的局部化, 它在某种程度上对应了环的通常的局部化. 如果$A$是齐次环, $\ideal{p}$是$A$的齐次理想, 设$S\coloneq (A-\ideal{p})\cap A^h$为$A-\ideal{p}$中的齐次元全体构成的集合, 是一个乘法闭集, 则有通常的分式环$S^{-1}A$. $S^{-1}A$也是一个齐次环, 齐次元为可以写成$f{\divslash}g$的元素, 其中$f\in A^h$, 而$\deg (f{\divslash}g)\coloneq \deg (f)-\deg (g)$. 将$S^{-1}A$的零次元素全体构成的子环记作$A_{(\ideal{p})}$, 这是一个局部环, 极大理想为$S^{-1}\ideal{p}\cap A_{(\ideal{p})}$. 特别地, 如果A是整环并取$\ideal{p}=(0)$, 则$A_{((0))}$为域. 类似地, 如果$f\in A^h$是齐次元, 那么$A_(f)$为$A_f$的零次元素全体构成的子环.
 
 \begin{example}
-    域上的多元多项式环$A=k[X_1, \dotsc, X_n]$是齐次环, $A_d$即为次数为$d$的齐次多项式构成的Abel群, 若$d<0$则$A_d=\{0\}$. 此时$\bigoplus_{n\in\ZZ_+}A_n$是$A$的极大理想, 有时被称为$A$的\emph{无关极大理想}, 我们将在\thref{prop:projectivegaloisconnectionclosedradical}中看到这种称法的由来.
+    域上的多项式环$A=k[X_1, \dotsc, X_n]$是齐次环, $A_d$即为次数为$d$的齐次多项式构成的Abel群, 若$d<0$则$A_d=\{0\}$. 此时$\bigoplus_{n\in\ZZ_+}A_n$是$A$的极大理想, 有时被称为$A$的\emph{无关极大理想}, 我们将在\thref{prop:projectivegaloisconnectionclosedradical}中看到这种称法的由来.
 \end{example}
 
 % quotient; commute with localization?

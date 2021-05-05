@@ -22,10 +22,10 @@ Cayley, Clebsch, M. Noether和Picard想要把Riemann对曲线上Abel积分的研
 
 本文的主要内容是研究在概型出现之前的古典代数几何与交换环论之前的联系. 几何的直观性可以帮助理解代数的理论, 而代数的刚性可以做出更精细的结论. 本文第一部分将建立所需要的代数理论, 主要包括环的基础概念, 素谱, 局部化, Noether环中的准素分解, 分次环的分次理想与局部化, 域上多项式环中的维数理论等. 第二部分将介绍几何概念, 主要研究对象为仿射空间和射影空间中的代数簇或拟代数簇, 将介绍不可约, 维数等重要概念. 第三部分将建立代数理论与几何直观的联系, 找到其中存在的对应关系, 并指出可能存在的区别.
 
-本文中的定义大多采用如``如果\fbox{对象}满足\fbox{性质}, 那么称\fbox{对象}为\fbox{\emph{名称}}"的句式, 虽然逻辑上应该将关联词``如果\dots\dots 那么\dots\dots"替换为``仅当\dots\dots 才\dots\dots ", 不过为了方便以及符合平时的习惯, 我们仍然运用这个逻辑上存在问题的句式.% TODO: boxes
+本文中的定义大多采用如``如果\framebox[\width]{对象}满足\framebox[\width]{性质}, 那么称\framebox[\width]{对象}为\framebox[\width]{\emph{名称}}"的句式, 虽然逻辑上应该将关联词``如果\dots\dots 那么\dots\dots"替换为``仅当\dots\dots 才\dots\dots ", 不过为了方便以及符合平时的习惯, 我们仍然运用这个逻辑上存在问题的句式.% TODO: boxes
 
 本文中采用的集合论公理系统为包含选择公理的Zermelo-Fraenkel公理系统, 简称为\axiom{ZFC}公理系统, 为了保证非零环中极大理想的存在性(\thref{thm:maxideal}), 刻画理想的根基为包含其的素理想全体的并(\thref{prop:scheinnullstellensatz}), 偏序集的升链条件与极大条件的等价性().
 
-关于本文的记号, 设集合$Y, Z\subseteq X$, 我们将用$Y-Z$表示集合$Y$与$Z$余集的交, 即$\{x\in X\vert x\in Y\wedge x\notin Z\}$; 我们将用大写字母$X$, $Y$, $X_n$来表示多项式环中的未定元, 故$A[X_1, \dotsc, X_n]$表示$A$的$n$元多项式环.% 而用小写的字母$x$, $y$, $x_n$表示元素, 故$A[x_1, \dotsc, x_n]$表示由$x_1, \dotsc, x_n$生成的$A$-代数.
+关于本文的记号, 设集合$X\subset Y$, 我们将用$X-Y$表示集合$Y$在$X$中的余集, 即$\{x\in X\vert x\notin Y\}$; 我们将用大写字母$X$, $Y$, $X_n$来表示多项式环中的未定元, 故$A[X_1, \dotsc, X_n]$表示$A$的$n$元多项式环.% 而用小写的字母$x$, $y$, $x_n$表示元素, 故$A[x_1, \dotsc, x_n]$表示由$x_1, \dotsc, x_n$生成的$A$-代数.
 
 本文中有部分与主题相关度不是很大的命题的叙述与证明会放入附录中, 附录的小节用大写英文字母编号, 附录中的命题编号形如\thref{thm:fieldextdegreemulti}, 与正文中的命题编号(如\thref{thm:tranbasis})相区别.

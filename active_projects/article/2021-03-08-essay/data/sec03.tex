@@ -145,16 +145,30 @@
     只需注意$Z(f-g)\supseteq \overline{U}=X$即可.
 \end{proof}
 
-现在我们可以来定义代数簇之间的态射了. 设$\kk$为固定的代数闭域, $X, Y$为两个代数簇, $X$到$Y$的\emph{态射}即为连续映射$\varphi\colon X\to Y$, 并且满足对于每个开子集$V\subseteq Y$和每个正规函数$f\colon V\to \kk$都有复合函数$f\circ\varphi\colon\varphi^{-1}(V)\to \kk$是正规函数. 这定义了$k$上的代数簇所构成的范畴, 这是一个具体范畴.
+现在我们可以来定义代数簇之间的态射了. 设$\kk$为固定的代数闭域, $X, Y$为两个代数簇, $X$到$Y$的\emph{态射}即为连续映射$\varphi\colon X\to Y$, 并且满足对于每个开子集$V\subseteq Y$和每个正规函数$f\colon V\to \kk$都有复合函数$f\composite\varphi\colon\varphi^{-1}(V)\to \kk$是正规函数. 这定义了$k$上的代数簇所构成的范畴, 是一个具体范畴.
 
 有了代数簇同构的定义, 我们可以重新考察之前定义过的代数簇之间的Zariski拓扑结构的同胚, 研究它们是不是代数簇结构的同构, 答案是肯定的.
 
-\begin{proposition}[{{\parencite[18, Proposition]{hartshorne_algebraic_1977}}}]
+\begin{proposition}[{{\parencite[18, Proposition 3.3]{hartshorne_algebraic_1977}}}]\label{prop:projectiveopencoverisomorphism}
     设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 则\thref{prop:projspaceopencoverhomeo}中定义的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的(拟)射影代数簇, 则\thref{prop:projvarietyopencoverhomeo}中$\varphi_j$诱导的从$Y\cap U_j$到(拟)仿射代数簇的同胚也是代数簇的同构.
 \end{proposition}
 
 \begin{proof}
     对于第一个命题, 利用\thref{prop:projspaceopencoverhomeo}的证明中所定义的$\alpha$和$\beta$, 我们可以建立$U_j$和$\AF^n$由$\varphi_j$诱导的在每个局部的正规函数的对应, 因此它们作为代数簇是同构的. 第二个命题同理.
+\end{proof}
+
+下面一个命题阐述了任意代数簇到仿射代数簇的映射是态射当且仅当每个分量是正规函数, 我们将在\thref{thm:categoryisoaffinevariety}的构造中用到这一刻画.
+
+\begin{proposition}[{{\parencite[20, Lemma 3.6]{hartshorne_algebraic_1977}}}]\label{prop:morphismtoaffinevariety}
+    设$X$为任意代数簇, $Y\subseteq \AF^n$为仿射代数簇. 集合间的映射$\varphi\colon X\to Y$为态射当且仅当对于每个$Y$的坐标函数$X_j\subseteq \AF^n$都有$X_j\composite\varphi$是$X$上的正规函数.
+\end{proposition}
+
+\begin{proof}
+    如果$\varphi$是态射, 那么根据定义$X_j\composite\varphi$一定是正规函数. 另一方面, 如果每个$X_j\composite\varphi$都是正规函数, 那么对于每个多项式$f\in A(Y)$都有$f\composite \varphi$是正规函数. 考察
+    \begin{tikzcd}[cramped, sep=small]
+        X \arrow[r, "\varphi"] & Y \arrow[r, "f"] & \kk
+    \end{tikzcd}
+    , 因为$Y$的闭集都可以写成若干(可能无限)个多项式零点集的交, 又正规函数是连续的并且$\{0\}$为$\kk\cong \AF^1$中的闭集, 因此$Y$的闭集在$\varphi$下的原像是闭集, 故$\varphi$为连续映射. 最后, 因为正规函数被定义为在局部是多项式的商, 所以对于每个$Y$的开子集上的正规函数$g$都有$g\composite\varphi$是两个正规函数的商, 还是正规函数, 于是$\varphi$是态射.
 \end{proof}
 
 在代数簇上我们可以定义一些函数环. 设$Y$是一个代数簇, 记$Y$的正规函数全体构成的环为$\OO (Y)$, 称为$Y$的\emph{整体函数环}.

@@ -154,6 +154,21 @@
 % 定义所有的图片文件在 figures 子目录下
 % \graphicspath{{figures/}}
 
+\usepackage{tikz-cd}
+\tikzcdset{
+  arrow style=tikz,
+  diagrams={>={Straight Barb[scale=0.8]}}
+}
+% \newcommand{\tikzcdarrowdimens}[2]{%
+%     \tikzcdset{every arrow/.append style={line width=#1}}%
+%     \pgfmathdeclarefunction*{axis_height}{0}{%
+%         \begingroup%
+%         \pgfmathreturn#2%
+%         \endgroup%
+%     }%
+% }
+% \tikzcdarrowdimens{0.068em}{0.259em}% https://tex.stackexchange.com/a/423314
+
 % 定义自己常用的东西
 % \def\myname{薛瑞尼}
 
@@ -168,6 +183,10 @@
   \let\Im\relax
   \DeclareMathOperator{\Ker}{Ker}
   \DeclareMathOperator{\Im}{Im}
+  \let\min\relax
+  \DeclareMathOperator{\min}{min}
+  \ifdefined\Hom\let\Hom\relax\fi
+  \DeclareMathOperator{\Hom}{Hom}
   \DeclareMathOperator{\Spec}{Spec}
   \DeclareMathOperator{\MaxSpec}{MaxSpec}
   %https://tex.stackexchange.com/questions/175251/how-to-redefine-a-command-using-declaremathoperator
@@ -178,6 +197,7 @@
   % \newcommand{\rad}[1]{\sqrt{\ideal{#1}}}
   \newcommand{\axiom}[1]{\ensuremath{\symsfup{#1}}}
   \newcommand{\field}[1]{#1}
+  \newcommand{\cat}[1]{\symbfup{#1}}% Category
   \newcommand{\powerset}[1]{2^{#1}}
 
   \newcommand{\CC}{\symbb{C}}
@@ -189,6 +209,9 @@
   \newcommand{\kk}{\field{k}}
   \newcommand{\nil}{\symfrak{N}}
   \newcommand{\OO}{\symcal{O}}
+  \newcommand{\algebra}{\cat{Algr}}
+  \newcommand{\variety}{\cat{Var}}
+  \newcommand{\composite}{\vysmwhtcircle}
   % \newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}% defined by unicode-math
   % \newcommand{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
   \newcommand{\depend}{\prec}

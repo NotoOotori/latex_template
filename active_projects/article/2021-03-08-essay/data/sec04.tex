@@ -106,17 +106,50 @@
 \begin{theorem}[{{\parencite[11--12, Exercise 2.6; 18, Theorem 3.4]{hartshorne_algebraic_1977}}}]\label{thm:projectiverings}
     设$Y\subseteq\PP^n$为射影代数簇, 其齐次射影坐标环为$S(Y)$, 则
     \begin{enumerate}
-        \item $\dim (S(Y))=\dim (Y)+1$;
-        \item $\OO (Y)\cong\kk$;
-        \item 对于每个点$P\in Y$, 令$\ideal{m}_P\subseteq S(Y)$为在$P$点取值为零的齐次坐标函数所生成的极大理想, 则$\OO_P\cong S(Y)_{(\ideal{m}_P)}$;
-        \item $K(Y)\cong S(Y)_{(0)}$.
+        \item\label{enum:thm-projective-rings-1} $\dim (S(Y))=\dim (Y)+1$;
+        \item\label{enum:thm-projective-rings-2} $\OO (Y)\cong\kk$;
+        \item\label{enum:thm-projective-rings-3} 对于每个点$P\in Y$, 令$\ideal{m}_P\subseteq S(Y)$为在$P$点取值为零的齐次坐标函数所生成的极大理想, 则$\OO_P\cong S(Y)_{(\ideal{m}_P)}$;
+        \item\label{enum:thm-projective-rings-4} $K(Y)\cong S(Y)_{(0)}$.
     \end{enumerate}
 \end{theorem}
 
-% 我们将要证明某个范畴等价, 为此我们需要正规函数的刻画这样一个引理
+\begin{proof}
+    首先, 设$U_j\subseteq\PP^n$是由$X_j\neq 0$所定义的开集, 记$Y_j=Y\cap U_j$, 则由\thref{prop:projectiveopencoverisomorphism}知$\varphi_j$诱导出$Y_j$与$\AF^n$的某个仿射代数簇的同构. 有$S(Y)_{X_j}$同构于$A(Y_j)[X_j, X_j^{-1}]$, 通过计算域扩张的次数以及利用\thref{thm:affinerings}\ref{enum:thm-affine-rings-1}, 有$\dim (S(Y))=\dim (S(Y)_{X_j})=\dim (A(Y_j)[X_j, X_j^{-1}])=\dim (A(Y))+1=\dim (Y)+1$. 这证明了\ref{enum:thm-projective-rings-1}.
+
+    我们现在来构造仿射坐标环$A(Y_j)$与$S(Y)_{(X_j)}$之间的同构. 首先如\thref{prop:projspaceopencoverhomeo}中那样构造$\kk [Y_1, \dotsc, Y_n]$到$\kk [X_0, \dotsc, X_n]_{(X_j)}$的同构, 将$f$映到$f(X_0{\divslash}X_j, \dotsc, X_{j-1}{\divslash}X_j, X_{j+1}{\divslash}X_j, \dotsc, X_n{\divslash}X_j)$. 通过验证多项式的零点可以证明这个同构将$I(Y_j)$映到$I(Y)S_{(X_j)}$, 于是我们得到了同构$\varphi_j^*\colon A(Y_j)\cong S(Y)_{(X_j)}$.
+
+    设$P\in Y$为任意点, 存在$j$使得$P\in Y_j$, 记$\ideal{m}_P'$为$P$在$A(Y_j)$中对应的极大理想. 由\thref{thm:affinerings}\ref{enum:thm-affine-rings-4}可得$\OO_P\cong A(Y_j)_{\ideal{m}_P'}$. 通过验证多项式的零点可以证明$\varphi_{j}^*(\ideal{m}_P')=\ideal{m}_PS(Y)_{(X_j)}$. 因为$X_j\notin \ideal{m}_P$, 再根据\thref{prop:multilocalization}可得$A(Y_j)_{\ideal{m}_P'}\cong S(Y)_{\ideal{m}_P}$. 这证明了\ref{enum:thm-projective-rings-3}.
+
+    类似地, 由\thref{thm:affinerings}\ref{enum:thm-affine-rings-5}可得$K(Y)\cong K(Y_j)$同构于$A(Y_j)$的分式域, 再由$\varphi_j^*$得同构于$S(Y)_{(0)}$. 这证明了\ref{enum:thm-projective-rings-4}.
+
+    最后, 设$f\in\OO (Y)$是整体的正规函数, 于是对于每个$j$都有$f$在$Y_j$上正规, 于是根据\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}可以认为$f\in A(Y_j)$, 又由$\varphi_j^*$知$A(Y_j)\cong S(Y)_{(X_j)}$, 于是$f$可以写成$g_j{\divslash}X_j^{N_j}$的形式, 其中$g_j\in S(Y)$为$N_j$次的齐次多项式. 因为$S(Y)$是整环, 所以可以将$\OO (Y), K(Y), S(Y)$都看作$S(Y)$的分式域$L$的子环, 于是$X_j^{N_j}f\in S(Y)_{N_j}$, 其中$S(Y)_{N_j}$表示齐次环$S(Y)$中次数为$N_j$的齐次元全体. 取$N\geq \sum N_j$, 则$S(Y)_N$作为$\kk$-线性空间可以由次数为$N$的由$X_0, \dotsc, X_n$构成的单项式生成, 根据鸽笼原理知$f\cdot S(Y)_N\subseteq S(Y)_N$, 迭代即得对于每个$q>0$都有$f^q\cdot S(Y)_N$. 特别地, 取$X_j\notin I(Y)$, 则有对于每个$q>0$都有$X_0^Nf^q\in S(Y)$. 于是子环$S(Y)[f]\subseteq L$包含于$X_0^{-N}S(Y)$中, 而$X_0^{-N}S(Y)$是有限生成$S(Y)$-模. 因为$S(Y)$是Noether环, 所以$S(Y)[f]$是有限生成$S(Y)$-模, 于是$f$为$S(Y)$的整元, 又因为$f$的次数为零, 故存在$x_1, \dotsc, x_m\in S(Y)\cong \kk$使得$f^m+x_1f^{m-1}+\dotsb +x_m=0$成立. 于是$f$是$\kk$的代数元, 又$\kk$是代数闭域, 于是有$f\in \kk$, 这证明了\ref{enum:thm-projective-rings-1}.
+\end{proof}% TODO: Noether module 诺特环的有限生成模是诺特模 诺特模的子模是有限生成的 2.3 模与链条件(Noether环与Noether模) 2.4 准素分解
+
+\begin{theorem}{{\parencite[19, Proposition 3.5]{hartshorne_algebraic_1977}}}\label{thm:categoryisoaffinevariety}
+    设$X$是任意的代数簇, $Y$是仿射代数簇, 则存在双射
+    \begin{equation*}
+        \alpha\colon \Hom (X, Y)\to\Hom (A(Y), \OO (X)).
+    \end{equation*}
+    并且下图中定义的函子
+    \begin{equation*}
+        \begin{tikzcd}
+            X \arrow[r, mapsto] \arrow[d, "\varphi"] & A(X) \arrow[d, "\alpha (\varphi)"]\\
+            Y \arrow[r, mapsto] & A(Y)
+        \end{tikzcd}
+    \end{equation*}
+    给出了$k$的代数簇范畴与$k$的多项式函数整环范畴(态射为$\kk$-代数同态)的范畴等价.
+\end{theorem}
+
+\begin{proof}
+    \thref{prop:morphismtoaffinevariety}
+    \thref{thm:categoryequivalence}
+\end{proof}
+
+% dominant rational map 有限生成k代数
 
 \subsection{杂项}
 
+% 交理论 准素分解 维数理论
 % Zariski Vol I P241 Theorem 30, 31
 % AM P69 Exercise 5.16
 % Hartshorne Ex 2.6
@@ -129,3 +162,6 @@
 \subsection{代数群与Hopf代数}
 
 % Hartshorne Ex 3.21 Group Variety (Algebraic Group)
+% Basic examples
+% affine algebraic groups
+% Hopf algebra

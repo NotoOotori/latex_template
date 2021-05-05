@@ -149,16 +149,6 @@
     \end{equation*}
 \end{proposition}
 
-我们需要有限生成模, 有限生成代数等概念来简化记号. 设$A$为环, $M$为Abel群, 如果给定环同态$\mu\colon A\to \Aut(M)$, 则称$M$为$A$-\emph{模}, 习惯上记$\mu(a)(x)$为$ax$, 其中$a\in A, x\in M$. 若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模}$N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}. 设$A, B$为环, 如果给定环同态$\nu\colon A\to B$, 则称$B$为$A$-\emph{代数}, $\nu$诱导了$B$的$A$-模结构, 由$ax\coloneq \nu(a)x$给出. 在不另加说明的情况下, $A$-代数的$A$-模结构默认为此, 若这个模结构是有限生成的, 则称$B$为\emph{有限$A$代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数}$C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$, 同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 下面是几个关于有限代数和有限生成代数的基本事实.
-
-\begin{proposition}
-    设$\field{k}\subseteq\field{K}$为域, 则$\field{K}$为$\field{k}$的有限代数域扩张当且仅当$\field{K}$为有限$\field{k}$-代数.
-\end{proposition}
-
-\begin{proposition}[{{\parencite[52, Theorem 4.5]{atiyah_introduction_1969}}}]\label{prop:fgalgebra}
-    设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为多元多项式环$A[X_1, \dotsc, X_n]$的商环.
-\end{proposition}
-
 \subsection{分式环与局部化}\label{subsec:algebra-localization}
 
 分式环以及与之相关的局部化可以说是交换代数中最重要的技术之一了. 与商环类似, 分式环也可以对环进行简化, 商环保留包含给定理想的理想, 分式环保留包含于给定集合的理想. 在\ref{subsec:functionrings}中, 我们可以看到局部化的几何意义, 为研究在某个邻域或在某个点处的情况.
@@ -234,6 +224,18 @@
     只需证$\supseteq$. 对于$x\in K(A)-A$, 考虑包含理想$(x\colon A)$的极大理想$\ideal{m}$, 有$x\notin A_{\ideal{m}}$.
 \end{proof}
 
+\subsection{模与链条件}
+
+我们需要有限生成模, 有限生成代数等概念来简化记号. 设$A$为环, $M$为Abel群, 如果给定环同态$\mu\colon A\to \Aut(M)$, 则称$M$为$A$-\emph{模}, 习惯上记$\mu(a)(x)$为$ax$, 其中$a\in A, x\in M$. 若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模}$N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}. 设$A, B$为环, 如果给定环同态$\nu\colon A\to B$, 则称$B$为$A$-\emph{代数}, $\nu$诱导了$B$的$A$-模结构, 由$ax\coloneq \nu(a)x$给出. 在不另加说明的情况下, $A$-代数的$A$-模结构默认为此, 若这个模结构是有限生成的, 则称$B$为\emph{有限$A$代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数}$C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$, 同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 下面是几个关于有限代数和有限生成代数的基本事实.
+
+\begin{proposition}
+    设$\field{k}\subseteq\field{K}$为域, 则$\field{K}$为$\field{k}$的有限代数域扩张当且仅当$\field{K}$为有限$\field{k}$-代数.
+\end{proposition}
+
+\begin{proposition}[{{\parencite[52, Theorem 4.5]{atiyah_introduction_1969}}}]\label{prop:fgalgebra}
+    设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为多元多项式环$A[X_1, \dotsc, X_n]$的商环.
+\end{proposition}
+
 \subsection{Noether环与准素分解}\label{subsec:algebra-primdecom}
 
 前文说过, 我们的主要研究对象是域上的多项式环及其商环, 这一节中我们将证明这些环都是Noether环, 即它们满足某种有限条件, 并证明重要的Hilbert零点定理. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在()% TODO: reference
@@ -246,7 +248,7 @@
         \item\label{enum:prop-nr-max} 环$A$中的任何一族理想$\{\ideal{a}_\lambda\}$都有极大元, 即存在$\lambda_0$使得对于任意的$\lambda$有$\ideal{a}_\lambda\subseteq\ideal{a}_{\lambda_0}$成立.
         \item\label{enum:prop-nr-fnt} 环$A$中的每个理想都是有限生成的.
     \end{enumerate}
-\end{proposition}
+\end{proposition}% TODO: restate
 
 \begin{proof}
     $\ref{enum:prop-nr-chain}\Rightarrow\ref{enum:prop-nr-max}$ 假设\ref{enum:prop-nr-chain}成立, 对有偏序结构的理想族$\{\ideal{a}_\lambda\}$运用Zorn引理(\thref{thm:maxideal})即可.
@@ -587,10 +589,14 @@
     域上的多元多项式环$A=k[X_1, \dotsc, X_n]$是齐次环, $A_d$即为次数为$d$的齐次多项式构成的Abel群, 若$d<0$则$A_d=\{0\}$. 此时$\bigoplus_{n\in\ZZ_+}A_n$是$A$的极大理想, 有时被称为$A$的\emph{无关极大理想}, 我们将在\thref{prop:projectivegaloisconnectionclosedradical}中看到这种称法的由来.
 \end{example}
 
-% quotient
+% quotient; commute with localization?
 % primary decomposition
 
 \subsection{范畴论}
+
+\begin{theorem}\label{thm:categoryequivalence}
+
+\end{theorem}
 
 % 范畴 函子 自然变换 范畴等价
 % 模范畴的direct limit
@@ -680,7 +686,7 @@
         \item 如果$\ideal{b}$是$B$的理想, 那么$\overline{\varphi^*(V(\ideal{b}))}=V(\ideal{b}^c)$;
         \item\label{enum:prop-prime-spec-functor-surjective} 如果$\varphi$是满射, 那么$\varphi^*$为从$Y$到$X$的闭子集$V(\Ker (\varphi))$的同胚. 特别地, $\Spec (A)$与$\Spec (A{\divslash}\nil)$有自然同胚;
         \item $\varphi^*(Y)$在$X$中稠密当且仅当$\Ker (\varphi)\subseteq \nil$;
-        \item\label{enum:prop-prime-spec-functor-composite} 如果$\psi\colon B\to C$为另一个环同态, 则$(\psi\circ\varphi)^*=\varphi^*\circ\psi^*$.
+        \item\label{enum:prop-prime-spec-functor-composite} 如果$\psi\colon B\to C$为另一个环同态, 则$(\psi\composite\varphi)^*=\varphi^*\composite\psi^*$.
     \end{enumerate}
 \end{proposition}
 
@@ -689,12 +695,12 @@
 
     \ref{enum:prop-prime-spec-functor-surjective} 只需证明$\varphi^*(V(\ideal{b}))=V(\ideal{b}^c)$. 考虑素理想$\ideal{p}\in X$, 则$\ideal{p}\in\varphi^*(V(\ideal{b}))$当且仅当$\varphi(\ideal{p})\in V(\ideal{b})$, 也当且仅当$\varphi(\ideal{p})\supseteq\ideal{b}$, 故当且仅当$\ideal{p}\supseteq\ideal{b}^c$.
 
-    \ref{enum:prop-prime-spec-functor-composite} 注意$(\psi\circ\varphi)^{-1}=(\varphi^{-1}\circ\psi^{-1})$即可.
+    \ref{enum:prop-prime-spec-functor-composite} 注意$(\psi\composite\varphi)^{-1}=(\varphi^{-1}\composite\psi^{-1})$即可.
 \end{proof}
 
 对于环$A$, 其极大理想全体可以看成素谱$\Spec (A)$的子空间, 这个子空间被称为$A$的\emph{极大谱}, 记作$\MaxSpec (A)$. 因为一般来说极大理想的原像不一定是极大理想, 所以极大谱没有如\thref{prop:primespecfunctor}中所述的函子性质, 研究起来不是那么方便.
 
-正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\parencite[79, Exercise 5]{atiyah_introduction_1969}.
+正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\parencite[79, Exercise 5]{atiyah_introduction_1969}. $X$是Noether拓扑空间等价于每个由$X$的闭子集构成的非空集合都有极小元.
 
 \begin{proposition}
     如果$A$是Noether环, 则$\Spec (A)$是Noether拓扑空间. 反之则不一定成立.
@@ -711,5 +717,9 @@
 \end{proposition}
 
 \begin{proof}
-    不会了, 参考Lasker-Noether定理的证明吧.% TODO: Proof
+    证明分为两步, 先证明$X$可以表示成有限个两两不同的不可约分支的并, 再证明这种表示是唯一的.
+
+    设$\Sigma$为$X$的不能写成有限个不可约闭子空间的并的闭集全体, 假设$\Sigma$非空. 因为$X$是Noether拓扑空间, 故$\Sigma$有极小元, 记为$Y$. $Y$不是不可约集, 于是可以写成两个真闭子集$Y', Y''$的并$Y=Y'\cup Y''$, 又$Y', Y''$可以写成有限个不可约闭子空间的并, 于是得到$Y$可以写成有限个不可约闭子空间的并, 矛盾. 于是$X$可以写成有限个不可约闭子空间的并, 取极大元并抛去相同的项即得$X$可以写成有限个两两不同的不可约分支的并.
+
+    如果$X$可以以两种方式写成两两不同的不可约分支的并, 即有$X=X_1\cup\dotsb\cup X_m$以及$X=X_1'\cup\dotsb\cup X_n'$, 我们将证明对于每个$j=1, \dotsc, m$都存在$k$使得$X_j=X_k'$. 由于$X_j=\bigcup_{k=1}^m(X_j\cap X_k')$并且$X_j$不可约, 存在$k$使得$X_j\subseteq X_k'$. 同理, 存在$l$使得$X_k'\subseteq X_l$, 因此$X_j\subseteq X_l$, 有极大性得$j=l$, 即$X_j=X_k'$.
 \end{proof}

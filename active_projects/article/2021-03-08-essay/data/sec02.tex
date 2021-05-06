@@ -230,41 +230,39 @@
 
 设$A$为环, $M$为Abel群, 如果给定环同态$\mu\colon A\to \Aut(M)$, 则称$M$为$A$-\emph{模}, 习惯上记$\mu(a)(x)$为$ax$, 其中$a\in A, x\in M$.
 
-如果$N$是$A$-模$M$的Abel子群并且关于$A$的模运算封闭, 即对于任意$x\in N, a\in A$都有$ax\in N$, 则称$N$是$M$的\emph{子模}. 商群$M{\divslash}N$有自然的$A$-模结构, 即$a(x+N)\coloneq ax+N$, 称为$M$对$N$的\emph{商模}.
+如果$N$是$A$-模$M$的Abel子群并且关于$A$的模运算封闭, 即对于任意$x\in N, a\in A$都有$ax\in N$, 则称$N$是$M$的\emph{子模}. $A$有自然的$A$-模结构, $\ideal{a}$为$A$的子模当且仅当为$A$的理想, 于是在这种意义下模的概念是环与理想概念地推广. 商群$M{\divslash}N$有自然的$A$-模结构, 即$a(x+N)\coloneq ax+N$, 称为$M$对$N$的\emph{商模}.
 
 若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模}$N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}.
 
 如果两个$A$-模$M, N$之间的映射$f\colon M\to N$满足对于任意的$x, y\in M$与$a\in A$都有$f(x+y)=f(x)+f(y)$以及$f(ax)=af(x)$成立, 则称$f$是$A$-模同态. $f$的核$\Ker (f)$是$M$的子模, $f$的像$\Im (f)$是$N$的子模, 商模$N{\divslash}\Im (f)$称为$f$的\emph{余核}.
 
-在\ref{subsec:algebra-ring}中我们介绍了理想之间的运算, 其中大部分运算也可以定义在子模上. 设$M$为$A$-模, $N, L$为$M$的子模, 则它们的\emph{和}$N+L\coloneq \{x+y\vert x\in N, y\in L\}$是子模, 为包含$N$和$L$的最小的子模. 它们的\emph{交}$N\cap L$也是子模. 一般地不能定义两个子模的积, 不过可以定义\emph{积}$\ideal{a}M\coloneq \{\sum_{j=1}^n a_jx_j\vert a_j\in\ideal{a}, x_j\in M, n\in\ZZ_+\}$, 其中$\ideal{a}$是$A$的理想, 是$M$的子模.
+设$N$是$B$-模, 如果有环同态$f\colon A\to B$, 则$N$上有自然的$A$-模结构$ay\coloneq f(a)y$, 其中$y\in N, a\in A$. 特别地, 如果考虑$N=B$并赋有典范的$B$-模结构, 则称$B$以及$f\colon A\to B$为$A$-代数.
 
-现在来介绍正合列的概念. 如果一个$A$-模和$A$-模同态构成的序列
-\begin{equation}
-    \begin{tikzcd}
-        \dotsb \arrow[r] & M_{j-1} \arrow[r, "f_j"] & M_j \arrow[r, "f_{j+1}"] & M_{j+1} \arrow[r] & \dotsb\label{eqn:longexactsequence}
-    \end{tikzcd}
-\end{equation}
-满足$\Im (f_j)=\Ker (f_{j+1})$, 则称该序列在$M_j$处\emph{正合}, 如果该序列在每一个$M_j$处都正合, 则称这个序列是\emph{正合列}. 每个形如\ref{eqn:longexactsequence}的正合列都可以进行分拆, 记$N_j=\Im (f_j)=\Ker (f_{j+1})$, 则对于每个$j$都有序列
-\begin{equation}
-    \begin{tikzcd}
-        0 \arrow[r] & N_j \arrow[r] & M_j \arrow[r] & N_{j+1} \arrow[r] & 0\label{eqn:shortexactsequence}
-    \end{tikzcd}
-\end{equation}
-是正合列. 称形如\ref{eqn:shortexactsequence}的正合列为\emph{短正合列}.
+与有限维线性空间上的线性变换类似, 有限生成模上的自同态也可以由矩阵表示, 只不过就算给定了生成元矩阵表示也不唯一, 但是我们仍有如下命题, 是环上的Cayley-Hamilton定理的简单应用.
 
-整相关是代数中非常重要的一个概念, 我们来简要这介绍这一概念并证明其与模之间的关系. 设$B$为环$A$的子环
-
-Proposition 5.1
-
-\begin{proposition}
-    设$\field{k}\subseteq\field{K}$为域, 则$\field{K}$为$\field{k}$的有限代数域扩张当且仅当$\field{K}$为有限$\field{k}$-代数.
+\begin{proposition}[{{\parencite[21, Proposition 2.4]{atiyah_introduction_1969}}}]\label{prop:fgmoduleendomorphism}
+    设$M$为有限生成$A$-模, $\ideal{a}$为$A$的理想, $\varphi$为$M$上的$A$-模自同态, 并且满足$\varphi(M)\subseteq \ideal{a}M$. 则$\varphi$满足形如$\varphi^n+a_1\varphi^{n-1}+\dotsb +a_n=0$的方程, 其中每个$a_j\in \ideal{a}$.
 \end{proposition}
 
-% TODO: 好像如果证到整相关了就可以了
+\begin{proof}
+    设$x_1, \dotsc, x_n$是$M$的一组生成元, 因为$\varphi (x_j)\in \ideal{a}M$, 所以我们有$\varphi (x_j)=\sum_{k=1}^n t_{jk}x_k$, 其中$t_{jk}\in \ideal{a}$, 于是我们得到了以$\ideal{a}$中元素为系数的$n\times n$矩阵$T=(a_{jk})$. 根据\thref{thm:CayleyHamilton}, 有$T$的特征多项式$P_T(X)\in A[X]$是零化多项式, 故$P_T(\varphi)=0$. 又因为$P_T(X)$的系数均为$\ideal{a}$中元素, 所以我们得到了想要的方程.
+\end{proof}
 
-在介绍链条件之前来介绍一下代数这个概念. 设$A, B$为环, 如果给定环同态$\nu\colon A\to B$, 则称$B$为$A$-\emph{代数}, $\nu$诱导了$B$的$A$-模结构, 由$ax\coloneq \nu(a)x$给出. 在不另加说明的情况下, $A$-代数的$A$-模结构默认为此, 若这个模结构是有限生成的, 则称$B$为\emph{有限$A$-代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数}$C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$, 同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 有限生成代数有很好用的等价定义.
+有限生成模具有传递性.
 
-\begin{proposition}[{{\parencite[52, Theorem 4.5]{atiyah_introduction_1969}}}]\label{prop:fgalgebra}
+\begin{proposition}[{{\parencite[28, Proposition 2.16]{atiyah_introduction_1969}}}]\label{prop:fgmodule}
+    设$N$为有限生成$B$-模, 并且$B$为有限生成$A$-模, 则$N$为有限生成$A$-模.
+\end{proposition}
+
+\begin{proof}
+    设$N$的$B$-模结构可以由$y_1, \dotsc, y_n$生成, $B$的$A$-模结构可以由$x_1, \dotsc, x_m$生成, 则$N$的$A$-模结构可以由$\{x_jy_k\vert j=1, \dotsc, m, k=1, \dotsc, n\}$.
+\end{proof}
+
+设$B$为$A$-代数, 若$B$同时为有限生成$A$-模, 则称$B$为\emph{有限$A$-代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数}$C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$, 同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的\emph{多项式函数整环}, 这将是本文的主要研究对象.
+
+有限生成代数有很好用的等价定义.
+
+\begin{proposition}[{{\parencite[30]{atiyah_introduction_1969}}}]\label{prop:fgalgebra}
     设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为某个多项式环$A[X_1, \dotsc, X_n]$的商环.
 \end{proposition}
 
@@ -272,32 +270,90 @@ Proposition 5.1
     如果$B$为由$x_1, \dotsc, x_n$的$A$-代数, 由定义即可得满同态$A[X_1, \dotsc, X_n]\to B$将$X_j$映到$x_j$. 反之, 如果有满同态$A[X_1, \dotsc, X_n]\to B$, 设$X_j$的像为$x_j$, 则$B$可由$x_1, \dotsc, x_n$生成.
 \end{proof}
 
-链条件 有限生成模
+在\ref{subsec:algebra-ring}中我们介绍了理想之间的运算, 其中大部分运算也可以定义在子模上. 设$M$为$A$-模, $N, P$为$M$的子模, 则它们的\emph{和}$N+P\coloneq \{x+y\vert x\in N, y\in P\}$是子模, 为包含$N$和$L$的最小的子模. 它们的\emph{交}$N\cap P$也是子模. 一般地不能定义两个子模的积, 不过可以定义\emph{积}$\ideal{a}M\coloneq \{\sum_{j=1}^n a_jx_j\vert a_j\in\ideal{a}, x_j\in M, n\in\ZZ_+\}$, 其中$\ideal{a}$是$A$的理想, 是$M$的子模.
+
+设$N, P$是$A$-模$M$的子模, 定义$(N{:}P)=\{a\in A\vert aP\subseteq N\}$, 是$A$的理想. 特别地, 称$(0{:}M)$为$M$的\emph{零化子}, 记作$\Ann (M)$. 如果$\ideal{a}\subseteq \Ann (M)$, 则$M$有自然的$A{\divslash}\ideal{a}$-模的结构, 其中$\overline{a}x\coloneq ax$. 如果$\Ann (M)=0$, 则称$M$为\emph{忠实$A$-模}. 每个$A$-模$M$都是忠实$A{\divslash}\Ann (M)$-模.
+
+现在来介绍正合列的概念. 如果一个$A$-模和$A$-模同态构成的序列
+\begin{equation}
+    \begin{tikzcd}[cramped, sep=small]
+        \dotsb \arrow[r] & M_{j-1} \arrow[r, "f_j"] & M_j \arrow[r, "f_{j+1}"] & M_{j+1} \arrow[r] & \dotsb\label{eqn:longexactsequence}
+    \end{tikzcd}
+\end{equation}
+满足$\Im (f_j)=\Ker (f_{j+1})$, 则称该序列在$M_j$处\emph{正合}, 如果该序列在每一个$M_j$处都正合, 则称这个序列是\emph{正合列}. 每个形如\eqref{eqn:longexactsequence}的正合列都可以进行分拆, 记$N_j=\Im (f_j)=\Ker (f_{j+1})$, 则对于每个$j$都有序列
+\begin{equation}
+    \begin{tikzcd}[cramped, sep=small]
+        0 \arrow[r] & N_j \arrow[r] & M_j \arrow[r] & N_{j+1} \arrow[r] & 0\label{eqn:shortexactsequence}
+    \end{tikzcd}
+\end{equation}
+是正合列. 称形如\eqref{eqn:shortexactsequence}的正合列为\emph{短正合列}.
+
+整相关与整元是代数中非常重要的一个概念, 我们来简要这介绍这一概念并证明其与模之间的关系. 设$B$为环$A$的子环, 如果$x\in A$是某个以$B$中元素为系数的首一多项式的根, 即满足$x^n+b_1x^{n-1}+\dotsb +b_n=0$, 其中$b_1, \dotsc, b_n\in B$, 则称$x$是$B$的\emph{整元}. 特别地, 域上的代数元即为域上的整元.
+
+\begin{proposition}[{{\parencite[59, Proposition 5.1]{atiyah_introduction_1969}}}]\label{prop:integraldependence}
+    设$B$是$A$的子环, $x\in A$, 则下列命题等价.
+    \begin{enumerate}
+        \item\label{enum:prop-integral-dependence-1} $x$是$B$的整元.
+        \item\label{enum:prop-integral-dependence-2} $B[x]$是有限生成$B$-模.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    $\ref{enum:prop-integral-dependence-1}\Rightarrow\ref{enum:prop-integral-dependence-2}$ 如果$x$是$B$的整元, 则对任意的$r\geq 0$都有$x^{n+r}=-(b_1x^{n+r-1}+\dotsb +b_nx^r)$, 于是又归纳法可得每个$x^n$都可以在有$B$-模结构的$A$中由$1, x, \dotsc, x^{n-1}$表示, 因此$B[x]$的$B$-模结构可以由$1, x, \dotsc, x^{n-1}$生成, 即为有限生成$B$-模.
+
+    $\ref{enum:prop-integral-dependence-2}\Rightarrow\ref{enum:prop-integral-dependence-1}$ 注意到$B[x]$是忠实$B[x]$-模, 考虑$B[x]$上的$B[x]$-模自同态$\varphi$, 将$y\in B[x]$映到$xy$. 由\thref{prop:fgmoduleendomorphism}, 知存在$a_1, \dotsc, a_n\in A$使得$\varphi^n +a_1\varphi^{n-1}+\dotsb +a_n=0$, 即$x^n +a_1x^{n-1}+\dotsb +a_n\in \Ann (B[x])=\{0\}$.
+\end{proof}
+
+% \begin{proposition}
+%     设$\field{k}\subseteq\field{K}$为域, 则$\field{K}$为$\field{k}$的有限代数域扩张当且仅当$\field{K}$为有限$\field{k}$-代数.
+% \end{proposition}
+
+这一节的最后我们来介绍链条件与Noether模. 链条件是一种偏序集上的有限条件, 可以应用在环, 模, 拓扑空间等结构中, 而环的链条件是模的链条件的特殊情况, 所以我们先来对模的情况进行研究.
+
+\begin{proposition}[{{\parencite[74, Proposition 6.1]{atiyah_introduction_1969}}}]\label{prop:chaincondition}
+    对于偏序集$(\Sigma, \leq)$, 以下两个命题等价.
+    \begin{enumerate}
+        \item\label{enum:prop-chain-condition-chain} (升链条件)
+        \item\label{enum:prop-chain-condition-maximal} (极大条件)
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+如果$\Sigma$为$A$-模$M$的子模全体关于集合包含关系所定义的偏序集, 则\thref{prop:chaincondition}中\ref{enum:prop-chain-condition-chain}定义的条件称为\emph{升链条件}(a.c.c.), \ref{enum:prop-chain-condition-maximal}定义的条件称为\emph{极大条件}, 如果$\Sigma$满足任一条件, 则称$M$是\emph{Noether $A$-模}, 简称为\emph{Noether模}. 如果环$A$是Noether $A$-模, 则称$A$为\emph{Noether环}.
+
+\begin{proposition}[{{\parencite[75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noethermodule}
+    Noether模等价于子模有限生成
+\end{proposition}
+
+Noether环上的有限生成模
 
 \subsection{Noether环与准素分解}\label{subsec:algebra-primdecom}
 
-前文说过, 我们的主要研究对象是域上的多项式环及其商环, 这一节中我们将证明这些环都是Noether环, 即它们满足某种有限条件, 并证明重要的Hilbert零点定理. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在()% TODO: reference
+上一节中我们叙述了链条件并研究了Noether模, 这一节中我们将进一步研究Noether环的性质. 前文提到我们的主要研究对象是域的多项式函数整环, 我们将证明这些环都是Noether环, 并证明代数几何中非常重要的Hilbert零点定理. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在()% TODO: reference
 看到.
 
-\begin{proposition}[{{\parencite[74, Proposition 6.1; 75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noetherring}
-    对于环$A$, 以下三个命题等价.
-    \begin{enumerate}
-        \item\label{enum:prop-nr-chain} 环$A$中的每个理想升链$\ideal{a}_1\subseteq\ideal{a}_2\subseteq\dotsb$一定稳定, 即存在$n$使得$\ideal{a}_n=\ideal{a}_{n+1}=\dotsb$.
-        \item\label{enum:prop-nr-max} 环$A$中的任何一族理想$\{\ideal{a}_\lambda\}$都有极大元, 即存在$\lambda_0$使得对于任意的$\lambda$有$\ideal{a}_\lambda\subseteq\ideal{a}_{\lambda_0}$成立.
-        \item\label{enum:prop-nr-fnt} 环$A$中的每个理想都是有限生成的.
-    \end{enumerate}
-\end{proposition}% TODO: restate
+% \begin{proposition}[{{\parencite[74, Proposition 6.1; 75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noetherring}
+%     对于环$A$, 以下三个命题等价.
+%     \begin{enumerate}
+%         \item\label{enum:prop-nr-chain} 环$A$中的每个理想升链$\ideal{a}_1\subseteq\ideal{a}_2\subseteq\dotsb$一定稳定, 即存在$n$使得$\ideal{a}_n=\ideal{a}_{n+1}=\dotsb$.
+%         \item\label{enum:prop-nr-max} 环$A$中的任何一族理想$\{\ideal{a}_\lambda\}$都有极大元, 即存在$\lambda_0$使得对于任意的$\lambda$有$\ideal{a}_\lambda\subseteq\ideal{a}_{\lambda_0}$成立.
+%         \item\label{enum:prop-nr-fnt} 环$A$中的每个理想都是有限生成的.
+%     \end{enumerate}
+% \end{proposition}% TODO: restate
 
-\begin{proof}
-    $\ref{enum:prop-nr-chain}\Rightarrow\ref{enum:prop-nr-max}$ 假设\ref{enum:prop-nr-chain}成立, 对有偏序结构的理想族$\{\ideal{a}_\lambda\}$运用Zorn引理(\thref{thm:maxideal})即可.
+% \begin{proof}
+%     $\ref{enum:prop-nr-chain}\Rightarrow\ref{enum:prop-nr-max}$ 假设\ref{enum:prop-nr-chain}成立, 对有偏序结构的理想族$\{\ideal{a}_\lambda\}$运用Zorn引理(\thref{thm:maxideal})即可.
 
-    $\ref{enum:prop-nr-max}\Rightarrow\ref{enum:prop-nr-fnt}$ 假设\ref{enum:prop-nr-fnt}不成立, 选择公理\footnotemark 保证了序列$\{x_n\}_{n\in\ZZ_+}\subseteq A$的存在, 其满足对于任意的$n\in\ZZ_+$都有$x_{n+1}\notin (x_1, \dotsc, x_n)$. 于是我们有理想族$\ideal{a}_n=(x_1, \dotsc, x_n)$, 满足$\ideal{a}_1\subsetneqq\ideal{a}_2\subsetneqq\dotsb$, 无极大元, 故\ref{enum:prop-nr-max}不成立.
-    \footnotetext{{这里只需要用到选择公理(\axiom{AC})的一个弱化版本--相关选择公理(\axiom{DC}, Axiom of Dependent Choice).}}
+%     $\ref{enum:prop-nr-max}\Rightarrow\ref{enum:prop-nr-fnt}$ 假设\ref{enum:prop-nr-fnt}不成立, 选择公理\footnotemark 保证了序列$\{x_n\}_{n\in\ZZ_+}\subseteq A$的存在, 其满足对于任意的$n\in\ZZ_+$都有$x_{n+1}\notin (x_1, \dotsc, x_n)$. 于是我们有理想族$\ideal{a}_n=(x_1, \dotsc, x_n)$, 满足$\ideal{a}_1\subsetneqq\ideal{a}_2\subsetneqq\dotsb$, 无极大元, 故\ref{enum:prop-nr-max}不成立.
+%     \footnotetext{{这里只需要用到选择公理(\axiom{AC})的一个弱化版本--相关选择公理(\axiom{DC}, Axiom of Dependent Choice).}}
 
-    $\ref{enum:prop-nr-fnt}\Rightarrow\ref{enum:prop-nr-chain}$ 假设\ref{enum:prop-nr-fnt}成立, 则对于任意的理想升链$\ideal{a}_1\subseteq\ideal{a}_2\subseteq\dotsb$, 都有它的上确界$\ideal{a}\coloneq \bigcup_{j}\ideal{a}_{j}$是有限生成理想, 设其可由$x_1, \dotsc, x_n$生成. 设$c_1, \dotsc, c_n\in \ZZ^+$满足$x_j\in\ideal{a}_{c_j}$, 则对于$N=\max_{j=1}^nc_j$有$x_1, \dotsc, x_n\subseteq\ideal{a}_N$, 故$\ideal{a}_N=\ideal{a}_{N+1}=\dotsb$, 即该理想升链稳定.
-\end{proof}
+%     $\ref{enum:prop-nr-fnt}\Rightarrow\ref{enum:prop-nr-chain}$ 假设\ref{enum:prop-nr-fnt}成立, 则对于任意的理想升链$\ideal{a}_1\subseteq\ideal{a}_2\subseteq\dotsb$, 都有它的上确界$\ideal{a}\coloneq \bigcup_{j}\ideal{a}_{j}$是有限生成理想, 设其可由$x_1, \dotsc, x_n$生成. 设$c_1, \dotsc, c_n\in \ZZ^+$满足$x_j\in\ideal{a}_{c_j}$, 则对于$N=\max_{j=1}^nc_j$有$x_1, \dotsc, x_n\subseteq\ideal{a}_N$, 故$\ideal{a}_N=\ideal{a}_{N+1}=\dotsb$, 即该理想升链稳定.
+% \end{proof}
 
-定义满足\thref{prop:noetherring}中条件的环为\emph{Noether环}, 其中条件\ref{enum:prop-nr-chain}称为\emph{升链条件}(a.c.c.), 条件\ref{enum:prop-nr-max}称为\emph{极大条件}, 这两个条件只与环$A$理想全体的偏序结构有关, 它们的等价在一般的偏序集中也成立.
+% 定义满足\thref{prop:noetherring}中条件的环为\emph{Noether环}, 其中条件\ref{enum:prop-nr-chain}称为\emph{升链条件}(a.c.c.), 条件\ref{enum:prop-nr-max}称为\emph{极大条件}, 这两个条件只与环$A$理想全体的偏序结构有关, 它们的等价在一般的偏序集中也成立.
 
 \begin{proposition}[{{\parencite[76, Proposition 6.6; 80, Proposition 7.3]{atiyah_introduction_1969}}}]\label{prop:noetherring2}
     设$A$为Noether环, 则
@@ -333,7 +389,7 @@ Proposition 5.1
 \end{proposition}
 
 \begin{proof}
-%TODO: Need a proof here
+    %TODO: Need a proof here
 \end{proof}
 
 环$A$中理想$\ideal{a}$的准素分解为将$\ideal{a}$写为有限个准素理想的交, 即$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$. 进一步地, 如果有$\sqrt{\ideal{q}_j}$两两不同, 并且对于每个$j$都有$\ideal{q}_j\nsupseteq\bigcap_{k\neq j}\ideal{q}_k$, 则称这个准素分解为\emph{既约的}. 利用\thref{prop:primary}\ref{enum:prim-inte}, 再去除多余的项, 我们总可以将准素分解化为既约的. 一般来说准素分解不一定存在, 不过我们即将证明在Noether环上准素分解总是存在的.
@@ -505,7 +561,7 @@ Proposition 5.1
     \thref{thm:dependbase}和\thref{prop:algbdependcorr}.
 \end{proof}
 
-利用\thref{thm:tranbasis}我们可以定义域扩张$F\subseteq E$的\emph{超越次数}为超越基的基数. 现在我们已经可以定义主要研究对象的维数了. 给定域$k$, 如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的\emph{多项式函数整环}. 记$K$为$A$的分式域, 域$k$的多项式函数整环$A$的\emph{维数}$\dim (A)$被定义为域扩张$k\subseteq K$的超越次数, 是有限数. 在剩下的部分中, 我们想要利用环论来刻画维数, 发现素理想在其中有类似于线性子空间的地位, 是构成维数的基本组成部分.
+利用\thref{thm:tranbasis}我们可以定义域扩张$F\subseteq E$的\emph{超越次数}为超越基的基数. 现在我们已经可以定义主要研究对象的维数了. 给定域$k$, 回顾如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的多项式函数整环. 记$K$为$A$的分式域, 域$k$的多项式函数整环$A$的\emph{维数}$\dim (A)$被定义为域扩张$k\subseteq K$的超越次数, 是有限数. 在剩下的部分中, 我们想要利用环论来刻画维数, 发现素理想在其中有类似于线性子空间的地位, 是构成维数的基本组成部分.
 
 如果$A$为多项式函数整环, 我们还可以定义素理想$\ideal{p}$的\emph{余维数}$\codim (\ideal{p})$为域扩张$k\subseteq A{\divslash}\ideal{p}$的超越次数.
 
@@ -621,7 +677,7 @@ Proposition 5.1
     \end{enumerate}
 \end{proposition}
 
-齐次环中有一种特殊的局部化, 它在某种程度上对应了环的通常的局部化. 如果$A$是齐次环, $\ideal{p}$是$A$的齐次理想, 设$S\coloneq (A-\ideal{p})\cap A^h$为$A-\ideal{p}$中的齐次元全体构成的集合, 是一个乘法闭集, 则有通常的分式环$S^{-1}A$. $S^{-1}A$也是一个齐次环, 齐次元为可以写成$f{\divslash}g$的元素, 其中$f\in A^h$, 而$\deg (f{\divslash}g)\coloneq \deg (f)-\deg (g)$. 将$S^{-1}A$的零次元素全体构成的子环记作$A_{(\ideal{p})}$, 这是一个局部环, 极大理想为$S^{-1}\ideal{p}\cap A_{(\ideal{p})}$. 特别地, 如果A是整环并取$\ideal{p}=(0)$, 则$A_{((0))}$为域. 类似地, 如果$f\in A^h$是齐次元, 那么$A_(f)$为$A_f$的零次元素全体构成的子环.
+齐次环中有一种特殊的局部化, 它在某种程度上对应了环的通常的局部化. 如果$A$是齐次环, $\ideal{p}$是$A$的齐次理想, 设$S\coloneq (A-\ideal{p})\cap A^h$为$A-\ideal{p}$中的齐次元全体构成的集合, 是一个乘法闭集, 则有通常的分式环$S^{-1}A$. $S^{-1}A$也是一个齐次环, 齐次元为可以写成$f{\divslash}g$的元素, 其中$f\in A^h$, 而$\deg (f{\divslash}g)\coloneq \deg (f)-\deg (g)$. 将$S^{-1}A$的零次元素全体构成的子环记作$A_{(\ideal{p})}$, 这是一个局部环, 极大理想为$S^{-1}\ideal{p}\cap A_{(\ideal{p})}$. 特别地, 如果A是整环并取$\ideal{p}=(0)$, 则$A_{((0))}$为域. 类似地, 如果$f\in A^h$是齐次元, 那么$A_{(f)}$为$A_f$的零次元素全体构成的子环.
 
 \begin{example}
     域上的多项式环$A=k[X_1, \dotsc, X_n]$是齐次环, $A_d$即为次数为$d$的齐次多项式构成的Abel群, 若$d<0$则$A_d=\{0\}$. 此时$\bigoplus_{n\in\ZZ_+}A_n$是$A$的极大理想, 有时被称为$A$的\emph{无关极大理想}, 我们将在\thref{prop:projectivegaloisconnectionclosedradical}中看到这种称法的由来.

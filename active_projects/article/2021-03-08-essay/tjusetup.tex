@@ -21,7 +21,7 @@
   %
   title  = {代数理论的几何应用},
   % subtitle = {使用示例文档 v\version},
-  title* = {Geometric Application of Algebraic Theory},
+  title* = {Application of Algebra to Geometry},
   %
   % 学位
   %   1. 学术型
@@ -142,12 +142,6 @@
 % \usepackage{floatflt} % 图文混排用宏包
 % \usepackage{rotating} % 图形和表格的控制旋转
 
-% 定理类环境宏包
-% \usepackage{amsthm}
-% 也可以使用 ntheorem
-\usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
-\numberwithin{equation}{subsection}
-
 % 给自定义的宏后面自动加空白
 % \usepackage{xspace}
 
@@ -180,6 +174,8 @@
   \let\dim\relax
   \DeclareMathOperator{\dim}{dim}
   \DeclareMathOperator{\codim}{codim}
+  \let\det\relax
+  \DeclareMathOperator{\det}{det}
   \let\Im\relax
   \DeclareMathOperator{\Ker}{Ker}
   \DeclareMathOperator{\Im}{Im}
@@ -231,6 +227,45 @@
 % \newcommand\mA{{\MATRIX{A}}}
 % \newcommand\mK{{\MATRIX{K}}}
 
+% 定理类环境宏包
+% \usepackage{amsthm}
+% 也可以使用 ntheorem
+\usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
+\numberwithin{equation}{subsection}
+\makeatletter
+  \renewcommand\c@equation\c@theorem
+\makeatother
+
+% One should always load \usepackage{hyperref} before the first use of \newtheorem to obtain correct handling and referencing of counters.
+\AtBeginDocument{
+  \theoremstyle{plain}
+  \theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
+  \theoremindent0pt
+  % \theoremprework{}
+  \newtheorem{theorem}{定理}[subsection]
+  \newtheorem{corollary}[theorem]{推论}
+  \newtheorem{lemma}[theorem]{引理}
+  \newtheorem{proposition}[theorem]{命题}
+  % \newtheorem{axiom}[theorem]{公理}
+  % \newtheorem{conjection}[theorem]{猜想}
+  \theoremstyle{nonumberplain}
+  \theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
+  \theoremindent0pt
+  \newtheorem{definition}{定义}
+  \newtheorem{remark}{注}
+  \newtheorem{example}{例}
+  % \theoremsymbol{\ensuremath{\enclosesquare}}
+  \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
+  \newtheorem{proof}{证明}
+  \theoremsymbol{}
+  % \newtheorem{proofsketch}{证明梗概}
+  % \newenvironment{breakexample}{\begin{example}\leavevmode\vspace{-\baselineskip}}{\end{example}}
+
+  % \makeatletter
+  % \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}
+  % \makeatother
+}
+
 % 借用 ltxdoc 里面的几个命令方便写文档。
 % \DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
 % \providecommand\pkg[1]{{\sffamily#1}}
@@ -272,34 +307,6 @@
   pdftitle={\tjutitle},
   pdfauthor={\tjuauthor},
 }
-
-% One should always load \usepackage{hyperref} before the first use of \newtheorem to obtain correct handling and referencing of counters.
-\theoremstyle{plain}
-\theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
-\theoremindent0pt
-% \theoremprework{}
-\newtheorem{theorem}{定理}[subsection]
-\newtheorem{corollary}[theorem]{推论}
-\newtheorem{lemma}[theorem]{引理}
-\newtheorem{proposition}[theorem]{命题}
-% \newtheorem{axiom}[theorem]{公理}
-% \newtheorem{conjection}[theorem]{猜想}
-\theoremstyle{nonumberplain}
-\theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
-\theoremindent0pt
-\newtheorem{definition}{定义}
-\newtheorem{remark}{注}
-\newtheorem{example}{例}
-% \theoremsymbol{\ensuremath{\enclosesquare}}
-\theoremsymbol{\ensuremath{\mdlgwhtsquare}}
-\newtheorem{proof}{证明}
-\theoremsymbol{}
-% \newtheorem{proofsketch}{证明梗概}
-% \newenvironment{breakexample}{\begin{example}\leavevmode\vspace{-\baselineskip}}{\end{example}}
-
-% \makeatletter
-% \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}
-% \makeatother
 
 \appto\appendix{%
   \theoremstyle{plain}%

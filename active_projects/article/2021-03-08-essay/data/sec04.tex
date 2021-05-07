@@ -80,7 +80,7 @@
     设$Y\subseteq \AF^n$为仿射代数簇, 其仿射坐标环为$A(Y)$, 则
     \begin{enumerate}
         \item\label{enum:thm-affine-rings-1} $\dim (Y)=\dim A(Y)$;
-        \item\label{enum:thm-affine-rings-2} $\OO(Y)\cong A(Y)$;
+        \item\label{enum:thm-affine-rings-2} $\OO (Y)\cong A(Y)$, 于是$A(Y)$为同构不变量;
         \item\label{enum:thm-affine-rings-3} 对于每个点$P\in Y$, 令$\ideal{m}_P\subseteq A(Y)$为在$P$点取值为零的坐标函数全体所构成的极大理想, 则$P\mapsto \ideal{m}_P$给出了$Y$到$A(Y)$的极大理想全体之间的双射;
         \item\label{enum:thm-affine-rings-4} 对于每个点$P$, 都有$\OO_P\cong A(Y)_{\ideal{m}_P}$, 并且$\dim \OO_P=\dim Y$;
         \item\label{enum:thm-affine-rings-5} $K(Y)$同构于$A(Y)$的分式域, 于是$K(Y)$是$\kk$的有限域扩张, 超越次数等于$\dim (Y)$.
@@ -122,28 +122,39 @@
 
     类似地, 由\thref{thm:affinerings}\ref{enum:thm-affine-rings-5}可得$K(Y)\cong K(Y_j)$同构于$A(Y_j)$的分式域, 再由$\varphi_j^*$得同构于$S(Y)_{(0)}$. 这证明了\ref{enum:thm-projective-rings-4}.
 
-    最后, 设$f\in\OO (Y)$是整体的正规函数, 于是对于每个$j$都有$f$在$Y_j$上正规, 于是根据\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}可以认为$f\in A(Y_j)$, 又由$\varphi_j^*$知$A(Y_j)\cong S(Y)_{(X_j)}$, 于是$f$可以写成$g_j{\divslash}X_j^{N_j}$的形式, 其中$g_j\in S(Y)$为$N_j$次的齐次多项式. 因为$S(Y)$是整环, 所以可以将$\OO (Y), K(Y), S(Y)$都看作$S(Y)$的分式域$L$的子环, 于是$X_j^{N_j}f\in S(Y)_{N_j}$, 其中$S(Y)_{N_j}$表示齐次环$S(Y)$中次数为$N_j$的齐次元全体. 取$N\geq \sum N_j$, 则$S(Y)_N$作为$\kk$-线性空间可以由次数为$N$的由$X_0, \dotsc, X_n$构成的单项式生成, 根据鸽笼原理知$f\cdot S(Y)_N\subseteq S(Y)_N$, 迭代即得对于每个$q>0$都有$f^q\cdot S(Y)_N$. 特别地, 取$X_j\notin I(Y)$, 则有对于每个$q>0$都有$X_0^Nf^q\in S(Y)$. 于是子环$S(Y)[f]\subseteq L$包含于$X_0^{-N}S(Y)$中, 而$X_0^{-N}S(Y)$是有限生成$S(Y)$-模. 因为$S(Y)$是Noether环, 所以$S(Y)[f]$是有限生成$S(Y)$-模, 于是由\thref{prop:integraldependence}知$f$为$S(Y)$的整元, 又因为$f$的次数为零, 故存在$x_1, \dotsc, x_m\in S(Y)\cong \kk$使得$f^m+x_1f^{m-1}+\dotsb +x_m=0$成立. 于是$f$是$\kk$的代数元, 又$\kk$是代数闭域, 于是有$f\in \kk$, 这证明了\ref{enum:thm-projective-rings-1}.
-\end{proof}% TODO: Noether module 诺特环的有限生成模是诺特模 诺特模的子模是有限生成的
+    最后, 设$f\in\OO (Y)$是整体的正规函数, 于是对于每个$j$都有$f$在$Y_j$上正规, 于是根据\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}可以认为$f\in A(Y_j)$, 又由$\varphi_j^*$知$A(Y_j)\cong S(Y)_{(X_j)}$, 于是$f$可以写成$g_j{\divslash}X_j^{N_j}$的形式, 其中$g_j\in S(Y)$为$N_j$次的齐次多项式. 因为$S(Y)$是整环, 所以可以将$\OO (Y), K(Y), S(Y)$都看作$S(Y)$的分式域$L$的子环, 于是$X_j^{N_j}f\in S(Y)_{N_j}$, 其中$S(Y)_{N_j}$表示齐次环$S(Y)$中次数为$N_j$的齐次元全体. 取$N\geq \sum N_j$, 则$S(Y)_N$作为$\kk$-线性空间可以由次数为$N$的由$X_0, \dotsc, X_n$构成的单项式生成, 根据鸽笼原理知$f\cdot S(Y)_N\subseteq S(Y)_N$, 迭代即得对于每个$q>0$都有$f^q\cdot S(Y)_N$. 特别地, 取$X_j\notin I(Y)$, 则有对于每个$q>0$都有$X_0^Nf^q\in S(Y)$. 于是子环$S(Y)[f]\subseteq L$包含于$X_0^{-N}S(Y)$中, 而$X_0^{-N}S(Y)$是有限生成$S(Y)$-模, 又因为$S(Y)$是Noether环, 所以由\thref{prop:fgmoduleovernoetherring}和\thref{prop:noethermodule}得$S(Y)[f]$是有限生成$S(Y)$-模, 于是由\thref{prop:integraldependence}知$f$为$S(Y)$的整元, 又因为$f$的次数为零, 故存在$x_1, \dotsc, x_m\in S(Y)\cong \kk$使得$f^m+x_1f^{m-1}+\dotsb +x_m=0$成立. 于是$f$是$\kk$的代数元, 又$\kk$是代数闭域, 于是有$f\in \kk$, 这证明了\ref{enum:thm-projective-rings-1}.
+\end{proof}
 
 \begin{theorem}{{\parencite[19, Proposition 3.5]{hartshorne_algebraic_1977}}}\label{thm:categoryisoaffinevariety}
     设$X$是任意的代数簇, $Y$是仿射代数簇, 则存在双射
     \begin{equation*}
         \alpha\colon \Hom (X, Y)\to\Hom (A(Y), \OO (X)).
     \end{equation*}
-    并且下图中定义的函子
+    并且下图中定义的反变函子
     \begin{equation*}
-        \begin{tikzcd}
-            X \arrow[r, mapsto] \arrow[d, "\varphi"] & A(X) \arrow[d, "\alpha (\varphi)"]\\
-            Y \arrow[r, mapsto] & A(Y)
+        \begin{tikzcd}[sep=small]
+            X \arrow[dd, "\varphi"'] & \mapsto & A(X)\\
+            & \mapsto & \\
+            Y & \mapsto & A(Y) \arrow[uu, "\alpha (\varphi)"']
+            % \arrow[r, mapsto, from=U, to=V, inner sep=small]
         \end{tikzcd}
     \end{equation*}
     给出了$k$的代数簇范畴与$k$的多项式函数整环范畴(态射为$\kk$-代数同态)的范畴等价.
 \end{theorem}
 
 \begin{proof}
-    \thref{prop:morphismtoaffinevariety}
-    \thref{thm:categoryequivalence}
+    先来给出$\alpha$的定义. 因为每个态射$\varphi\colon X\to Y$可以通过复合将$Y$上的正规函数对应到$X$上的正规函数, 于是$\varphi$诱导了$\OO (Y)$到$\OO (X)$的$\kk$-代数同态. 又由\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}知有$k$-代数同构$\OO (Y)\cong A(Y)$, 故每个$\varphi$对应到了一个$A(Y)$到$\OO (X)$的$\kk$-代数同态, 于是我们得到了$\alpha$.
+
+    反过来, 如果给定了$\kk$-代数同态$h\colon A(Y)\to \OO (X)$. 将$Y$嵌入到某个$\AF^n$中, 假设$Y$为$\AF^n$的不可约闭子集, 于是$A(Y)=\kk [X_1, \dotsc, X_n]{\divslash} I(Y)$. 记$X_j\in \OO (Y)\cong A(Y)$为单项式$X_j\in A$所诱导的$Y$上的正规函数. 考虑$\xi_j=h(X_j)\in \OO (X)$, 是$X$上的正规函数, 于是我们可以定义$\psi\colon X\to \AF^n$将$P\in X$映到$(\xi_1 (P), \dotsc, \xi_n (P))\in \AF^n$.
+
+    现在证明$\Im (\psi)\subseteq Y$. 只需要证明对于$P\in X$以及$f\in I(Y)$有$f(\psi(P))=0$. 而因为$f$是多项式, $f\in I(Y)$, 并且$h$是代数同态, 所以$f(\psi(P))=f(\xi_1(P), \dotsc, \xi_n(P))=h(f(X_1, \dotsc, X_n))(P)=0$, 故得证$\psi$是$X$到$Y$的映射.
+
+    由\thref{prop:morphismtoaffinevariety}得上述构造的$\psi$是态射, 又由定义可得$\alpha(\varphi)$对应的$\psi$即为$\varphi$, 故得证$\alpha$是双射.
+
+    最后证明范畴等价. 我们已经证明了这个函子是fully faithful的, 又因为每个$k$的多项式函数整环都可以写成某个$k$的代数簇的仿射坐标环, 因此这个函子也是essentially surjective的, 于是由\thref{thm:categoryequivalence}知这个函子给出了范畴之间的等价.
 \end{proof}
+
+运用这个范畴等价, 我们可以得到更加深刻的结果.
 
 % dominant rational map 有限生成k代数
 

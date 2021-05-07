@@ -228,17 +228,17 @@
 
 现代交换代数强调对模的研究, 模的概念是环与理想的推广, 并且模范畴中任意的模都可以与其子模取商, 于是我们可以引入一些同调代数的技术, 比如正合列. 这一节我们将要介绍模的基本概念, 介绍偏序集中的链条件并研究Noether模的基本性质.
 
-设$A$为环, $M$为Abel群, 如果给定环同态$\mu\colon A\to \Aut(M)$, 则称$M$为$A$-\emph{模}, 习惯上记$\mu(a)(x)$为$ax$, 其中$a\in A, x\in M$.
+设$A$为环 (注意本文中环指的是交换幺环), $M$为Abel群, 如果给定环同态$\mu\colon A\to \Aut(M)$, 则称$M$为$A$-\emph{模}, 习惯上记$\mu(a)(x)$为$ax$, 其中$a\in A, x\in M$. 在不会出现混淆的情况下, 我们会省略$A$而直接称$M$为\emph{模}.
 
-如果$N$是$A$-模$M$的Abel子群并且关于$A$的模运算封闭, 即对于任意$x\in N, a\in A$都有$ax\in N$, 则称$N$是$M$的\emph{子模}. $A$有自然的$A$-模结构, $\ideal{a}$为$A$的子模当且仅当为$A$的理想, 于是在这种意义下模的概念是环与理想概念地推广. 商群$M{\divslash}N$有自然的$A$-模结构, 即$a(x+N)\coloneq ax+N$, 称为$M$对$N$的\emph{商模}.
-
-若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模}$N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}.
+如果$N$是$A$-模$M$的Abel子群并且关于$A$的模运算封闭, 即对于任意$x\in N, a\in A$都有$ax\in N$, 则称$N$是$M$的\emph{子模}. $A$有自然的$A$-模结构, $\ideal{a}$为$A$的子模当且仅当为$A$的理想, 于是在这种意义下模的概念是环与理想概念地推广. 商群$M{\divslash}N$有自然的$A$-模结构, 即$a(x+N)\coloneq ax+N$, 称为$M$对$N$的\emph{商模}. 作为环中\thref{prop:quotidealcorr}的推广, $M$中包含$N$的子模与商模$M{\divslash}N$的子模也有保序双射.
 
 如果两个$A$-模$M, N$之间的映射$f\colon M\to N$满足对于任意的$x, y\in M$与$a\in A$都有$f(x+y)=f(x)+f(y)$以及$f(ax)=af(x)$成立, 则称$f$是$A$-模同态. $f$的核$\Ker (f)$是$M$的子模, $f$的像$\Im (f)$是$N$的子模, 商模$N{\divslash}\Im (f)$称为$f$的\emph{余核}.
 
+若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模}$N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}. 特别地, $A^n\coloneq \bigoplus_{j=1}^n A$是有限生成$A$-模, 并且每个有限生成$A$-模都可以看作某个$A^n$的商模.
+
 设$N$是$B$-模, 如果有环同态$f\colon A\to B$, 则$N$上有自然的$A$-模结构$ay\coloneq f(a)y$, 其中$y\in N, a\in A$. 特别地, 如果考虑$N=B$并赋有典范的$B$-模结构, 则称$B$以及$f\colon A\to B$为$A$-代数.
 
-与有限维线性空间上的线性变换类似, 有限生成模上的自同态也可以由矩阵表示, 只不过就算给定了生成元矩阵表示也不唯一, 但是我们仍有如下命题, 是环上的Cayley-Hamilton定理的简单应用.
+与有限维线性空间上的线性变换类似, 有限生成模上的自同态也可以由矩阵表示, 虽然就算给定了生成元矩阵表示也不唯一, 但是我们仍有如下命题, 这是环上的Cayley-Hamilton定理的简单应用.
 
 \begin{proposition}[{{\parencite[21, Proposition 2.4]{atiyah_introduction_1969}}}]\label{prop:fgmoduleendomorphism}
     设$M$为有限生成$A$-模, $\ideal{a}$为$A$的理想, $\varphi$为$M$上的$A$-模自同态, 并且满足$\varphi(M)\subseteq \ideal{a}M$. 则$\varphi$满足形如$\varphi^n+a_1\varphi^{n-1}+\dotsb +a_n=0$的方程, 其中每个$a_j\in \ideal{a}$.
@@ -313,22 +313,62 @@
 \begin{proposition}[{{\parencite[74, Proposition 6.1]{atiyah_introduction_1969}}}]\label{prop:chaincondition}
     对于偏序集$(\Sigma, \leq)$, 以下两个命题等价.
     \begin{enumerate}
-        \item\label{enum:prop-chain-condition-chain} (升链条件)
-        \item\label{enum:prop-chain-condition-maximal} (极大条件)
+        \item\label{enum:prop-chain-condition-chain} $\Sigma$中每个升链$x_1\subseteq x_2\subseteq\dotsb$一定稳定, 即存在$n$使得$x_n=x_{n+1}=\dotsb$.
+        \item\label{enum:prop-chain-condition-maximal} $\Sigma$的任何非空子集都有极大元.
     \end{enumerate}
 \end{proposition}
 
 \begin{proof}
+    $\ref{enum:prop-chain-condition-chain}\Rightarrow\ref{enum:prop-chain-condition-maximal}$ 对$\Sigma$的每个非空子集应用Zorn引理即可.
 
+    $\ref{enum:prop-chain-condition-maximal}\Rightarrow\ref{enum:prop-chain-condition-chain}$ $\{x_n\}_{n\geq 0}$有极大元, 故稳定.
 \end{proof}
 
 如果$\Sigma$为$A$-模$M$的子模全体关于集合包含关系所定义的偏序集, 则\thref{prop:chaincondition}中\ref{enum:prop-chain-condition-chain}定义的条件称为\emph{升链条件}(a.c.c.), \ref{enum:prop-chain-condition-maximal}定义的条件称为\emph{极大条件}, 如果$\Sigma$满足任一条件, 则称$M$是\emph{Noether $A$-模}, 简称为\emph{Noether模}. 如果环$A$是Noether $A$-模, 则称$A$为\emph{Noether环}.
 
 \begin{proposition}[{{\parencite[75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noethermodule}
-    Noether模等价于子模有限生成
+    设$M$是模, 则$M$是Noether模当且仅当$M$的每个子模都是有限生成的.
 \end{proposition}
 
-Noether环上的有限生成模
+\begin{proof}
+    先证$\Rightarrow$. 对于$M$的子模$N$, 考虑$N$的有限生成子模全体构成的集合$\Sigma$, 是非空集合, 故由\thref{prop:chaincondition}得$\Sigma$有极大元, 记为$P$. 对于任意的$x\in N$都有$P+Ax$是$N$的有限生成子模, 于是$P+Ax=N$, 因此$P=N$, 即$N$也为有限生成的.
+
+    再证$\Leftarrow$. 考虑$M$的子模升链$M_1\subseteq M_2\subseteq \dotsb$, 则$N=\bigcup_{j=1}^\infty M_j$是$M$的子模, 故有限生成, 设可以由$x_1, \dotsc, x_r$生成. 设$n_j$满足$x_j\in M_{n_j}$, 取$n=\max_j n_j$则有$M_n=M_{n+1}=\dotsb$, 即该升链稳定.
+\end{proof}
+
+下面一个命题简洁而有力, 使我们可以将正合列的技术引入Noether模的研究中.
+
+\begin{proposition}[{{\parencite[75, Proposition 6.3]{atiyah_introduction_1969}}}]\label{prop:noethermoduleexactsequence}
+    设
+    \begin{tikzcd}[cramped, sep=small]
+        0 \arrow[r] & M' \arrow[r, "\alpha"] & M \arrow[r, "\beta"] & M'' \arrow[r] & 0
+    \end{tikzcd}
+    是一个由模构成的短正合列, 则$M$是Noether模当且仅当$M'$和$M''$都是Noether模. 特别地, 有限个Noether模的直和是Noether模, Noether模的子模和商模是Noether模.
+\end{proposition}
+
+\begin{proof}
+    先证$\Rightarrow$. 只需要注意$M'$ (或$M''$) 中的子模升链都可以提升到$M$中的子模升链, 并且只要$M$中对应的升链稳定那么在$M'$ (或$M''$) 中原来的升链就稳定.
+
+    再证$\Leftarrow$. 只需要注意$M$中的子模升链可以投影到$M'$和$M''$中的子模升链, 并且当这两个升链都稳定时$M$中原来的升链就稳定.
+
+    最后只需要对于模$M_1, M_2, \dotsc$归纳地考虑短正合列
+    \begin{tikzcd}[cramped, sep=small]
+        0 \arrow[r] & M_n \arrow[r] & \bigoplus_{j=1}^n M_j \arrow[r] & \bigoplus_{j=1}^{n-1} M_j \arrow[r] & 0
+    \end{tikzcd}
+    并对于模$M$与子模$N\subseteq M$考虑短正合列
+    \begin{tikzcd}[cramped, sep=small]
+        0 \arrow[r] & N \arrow[r] & M \arrow[r] & M{\divslash}N \arrow[r] & 0
+    \end{tikzcd}
+    即可.
+\end{proof}
+
+\begin{proposition}[{{\parencite[76, Proposition 6.5]{atiyah_introduction_1969}}}]\label{prop:fgmoduleovernoetherring}
+    设$A$是Noether环, $M$是有限生成$A$-模, 则$M$是Noether模.
+\end{proposition}
+
+\begin{proof}
+    $A^n$是有限个Noether模$A$的直和, 故由\thref{prop:noethermoduleexactsequence}得为Noether模. 又$M$是Noether模$A^n$的商模, 再由\thref{prop:noethermoduleexactsequence}得为Noether模.
+\end{proof}
 
 \subsection{Noether环与准素分解}\label{subsec:algebra-primdecom}
 

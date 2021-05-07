@@ -179,6 +179,8 @@
   \let\Im\relax
   \DeclareMathOperator{\Ker}{Ker}
   \DeclareMathOperator{\Im}{Im}
+  \let\max\relax
+  \DeclareMathOperator{\max}{max}
   \let\min\relax
   \DeclareMathOperator{\min}{min}
   \ifdefined\Hom\let\Hom\relax\fi
@@ -264,6 +266,14 @@
   % \makeatletter
   % \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}
   % \makeatother
+
+  % \appto\appendix{%
+  %   \theoremstyle{plain}%
+  %   \theoremheaderfont{\bfseries}%
+  %   \theorembodyfont{\upshape}%
+  %   \theoremindent0pt%
+  %   \renewtheorem{theorem}{定理}[section]%
+  % }% etoolbox
 }
 
 % 借用 ltxdoc 里面的几个命令方便写文档。
@@ -308,13 +318,6 @@
   pdfauthor={\tjuauthor},
 }
 
-\appto\appendix{%
-  \theoremstyle{plain}%
-  \theoremheaderfont{\bfseries}%
-  \theorembodyfont{\upshape}%
-  \theoremindent0pt%
-  \renewtheorem{theorem}{定理}[section]%
-}% etoolbox
 \makeatletter
 \newif\if@appendix
 \appto\appendix{\@appendixtrue}

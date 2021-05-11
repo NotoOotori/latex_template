@@ -152,7 +152,7 @@
 \tikzcdset{
   arrow style=tikz,
   diagrams={>={Straight Barb[scale=0.8]}}
-}
+}% from documentation
 % \newcommand{\tikzcdarrowdimens}[2]{%
 %     \tikzcdset{every arrow/.append style={line width=#1}}%
 %     \pgfmathdeclarefunction*{axis_height}{0}{%
@@ -187,47 +187,79 @@
   \DeclareMathOperator{\Hom}{Hom}
   \DeclareMathOperator{\Spec}{Spec}
   \DeclareMathOperator{\MaxSpec}{MaxSpec}
+  \DeclareMathOperator{\ob}{ob}
   %https://tex.stackexchange.com/questions/175251/how-to-redefine-a-command-using-declaremathoperator
-
-  \newcommand{\lr}[3]{\left#1#3\right#2}
-  \newcommand{\lrbig}[3]{\big#1#3\big#2}
-  \newcommand{\ideal}[1]{\symfrak{#1}}
-  % \newcommand{\rad}[1]{\sqrt{\ideal{#1}}}
-  \newcommand{\axiom}[1]{\ensuremath{\symsfup{#1}}}
-  \newcommand{\field}[1]{#1}
-  \newcommand{\cat}[1]{\symbfup{#1}}% Category
-  \newcommand{\powerset}[1]{2^{#1}}
-
-  \newcommand{\CC}{\symbb{C}}
-  \newcommand{\ZZ}{\symbb{Z}}
-  \newcommand{\NN}{\symbb{N}}
-  \newcommand{\RR}{\symbb{R}}
-  \newcommand{\AF}{\symbb{A}}
-  \newcommand{\PP}{\symbb{P}}
-  \newcommand{\kk}{\field{k}}
-  \newcommand{\nil}{\symfrak{N}}
-  \newcommand{\OO}{\symcal{O}}
-  \newcommand{\algebra}{\cat{Algr}}
-  \newcommand{\variety}{\cat{Var}}
-  \newcommand{\composite}{\vysmwhtcircle}
-  % \newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}% defined by unicode-math
-  % \newcommand{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
-  \newcommand{\depend}{\prec}
-  \newcommand{\ndepend}{\nprec}
-  \newcommand{\SAa}{\overline{S}^{-1}(A{\divslash}\ideal{a})}
-  \newcommand{\SASa}{S^{-1}A{\divslash}S^{-1}\ideal{a}}
-  \newcommand{\Shomo}{S^h}
 }
 
-% \newcommand\dif{\mathop{}\!\mathrm{d}}  % 微分符号
-% \newcommand\real{{\mathbf{R}}}  % 实数集
-% \newcommand\abs[1]{\lvert#1\rvert}
-% \newcommand\VECTOR{\symbf}  % 向量
-% \newcommand\MATRIX{\symbf}  % 矩阵
-% \newcommand\vn{{\VECTOR{n}}}
-% \newcommand\vx{{\VECTOR{x}}}
-% \newcommand\mA{{\MATRIX{A}}}
-% \newcommand\mK{{\MATRIX{K}}}
+\newcommand*{\lr}[3]{\left#1#3\right#2}
+\newcommand*{\lrbig}[3]{\big#1#3\big#2}
+\newcommand*{\ideal}[1]{\symfrak{#1}}
+% \newcommand*{\rad}[1]{\sqrt{\ideal{#1}}}
+\newcommand*{\axiom}[1]{\ensuremath{\symsfup{#1}}}
+\newcommand*{\field}[1]{#1}
+\newcommand*{\cat}[1]{\symbfup{#1}}% Category
+\newcommand*{\powerset}[1]{2^{#1}}
+
+\newcommand*{\CC}{\symbb{C}}
+\newcommand*{\ZZ}{\symbb{Z}}
+\newcommand*{\NN}{\symbb{N}}
+\newcommand*{\RR}{\symbb{R}}
+\newcommand*{\AF}{\symbb{A}}
+\newcommand*{\PP}{\symbb{P}}
+\newcommand*{\kk}{\field{k}}
+\newcommand*{\nil}{\symfrak{N}}
+\newcommand*{\OO}{\symcal{O}}
+\newcommand*{\algebra}{\cat{Algr}}
+\newcommand*{\variety}{\cat{Var}}
+\newcommand*{\composite}{\vysmwhtcircle}
+\newcommand*{\op}{\symup{op}}
+% \newcommand*{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}% defined by unicode-math
+% \newcommand*{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
+\newcommand*{\depend}{\prec}
+\newcommand*{\ndepend}{\nprec}
+\newcommand*{\SAa}{\overline{S}^{-1}(A{\divslash}\ideal{a})}
+\newcommand*{\SASa}{S^{-1}A{\divslash}S^{-1}\ideal{a}}
+\newcommand*{\Shomo}{S^h}
+
+%% functor diagram
+\makeatletter
+\newcommand*{\@covariantfunctordiagramwithoutcategory}[6]{%
+  #1 \arrow[dd, "#3"{left}] \& \mapsto \& |[alias=X]| #4\\
+  \& \mapsto \& \\
+  #2 \& \mapsto \& |[alias=Y]| #5
+  \arrow[from=X, to=Y, "#6"{right}]
+}
+\newcommand*{\@contravariantfunctordiagramwithoutcategory}[6]{%
+  #1 \arrow[dd, "#3"{left}] \& \mapsto \& |[alias=X]| #4\\
+  \& \mapsto \& \\
+  #2 \& \mapsto \& |[alias=Y]| #5
+  \arrow[from=Y, to=X, "#6"{right}]
+}
+\newcommand*{\@functordiagramwithoutcategory}{% X Y f F(X) F(Y) F(f)
+  \@ifstar{\@contravariantfunctordiagramwithoutcategory}{\@covariantfunctordiagramwithoutcategory}%
+}
+\newcommand*{\functordiagramwithoutcategory}{% X Y f F(X) F(Y) F(f)
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    \@ifstar{\@functordiagramwithoutcategory*}{\@functordiagramwithoutcategory}%
+  \end{tikzcd}
+}
+\newcommand*{\@functordiagram@nostar}[9]{%
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    #1 \arrow[rr, "#3"] \& \& #2\\
+    \@functordiagramwithoutcategory{#4}{#5}{#6}{#7}{#8}{#9}%
+  \end{tikzcd}%
+}
+\newcommand*{\@functordiagram@star}[9]{%
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    #1 \arrow[rr, "#3"] \& \& #2\\
+    \@functordiagramwithoutcategory*{#4}{#5}{#6}{#7}{#8}{#9}
+  \end{tikzcd}%
+}
+\newcommand*{\functordiagram}{% C D F X Y f F(X) F(Y) F(f)
+  \@ifstar{\@functordiagram@star}{\@functordiagram@nostar}%
+}
+\makeatother
+
 
 % 定理类环境宏包
 % \usepackage{amsthm}
@@ -245,6 +277,9 @@
   \theoremindent0pt
   % \theoremprework{}
   \newtheorem{theorem}{定理}[subsection]
+  \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
+  \newtheorem{theoremnoproof}[theorem]{定理}
+  \theoremsymbol{}
   \newtheorem{corollary}[theorem]{推论}
   \newtheorem{lemma}[theorem]{引理}
   \newtheorem{proposition}[theorem]{命题}
@@ -262,6 +297,7 @@
   \theoremsymbol{}
   % \newtheorem{proofsketch}{证明梗概}
   % \newenvironment{breakexample}{\begin{example}\leavevmode\vspace{-\baselineskip}}{\end{example}}
+  % TODO: theorem style
 
   % \makeatletter
   % \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}

@@ -157,7 +157,7 @@
 
 接下来考察分式环中理想的扩张与收缩. 设$f\colon A\to S^{-1}A$为之前定义的自然环同态, $\ideal{a}$为$A$的理想, 则$\ideal{a}$的扩张$\ideal{a}^e=S^{-1}\ideal{a}\coloneq \{a{\divslash}s\vert a\in\ideal{a}, s\in S\}$. 在证明主要命题之前我们需要用到商环与分式环之间的关系, 叙述如下.
 
-\begin{proposition}[{{\parencite{ortiz_localization_2019}}}]\label{prop:localizationquotientcommute}
+\begin{proposition}[{{\footfullcite{ortiz_localization_2019}}}]\label{prop:localizationquotientcommute}
     取分式环与取商环可交换. 严格叙述如下, 设$A$为环, $\ideal{a}$为$A$的理想, $S$为$A$的乘法闭集, $\overline{S}=\pi(S)$为$S$在商环$A{\divslash}\ideal{a}$中的像仍为乘法闭集, 则环$\SASa$与环$\SAa$有典范同构, 即该同构与典范同态$A\to S^{-1}A\to \SASa$以及$A\to A{\divslash}\ideal{a}\to \SAa$可交换.
 \end{proposition}
 
@@ -276,13 +276,13 @@
 
 现在来介绍正合列的概念. 如果一个$A$-模和$A$-模同态构成的序列
 \begin{equation}
-    \begin{tikzcd}[cramped, sep=small]
+    \begin{tikzcd}
         \dotsb \arrow[r] & M_{j-1} \arrow[r, "f_j"] & M_j \arrow[r, "f_{j+1}"] & M_{j+1} \arrow[r] & \dotsb\label{eqn:longexactsequence}
     \end{tikzcd}
 \end{equation}
 满足$\Im (f_j)=\Ker (f_{j+1})$, 则称该序列在$M_j$处\emph{正合}, 如果该序列在每一个$M_j$处都正合, 则称这个序列是\emph{正合列}. 每个形如\eqref{eqn:longexactsequence}的正合列都可以进行分拆, 记$N_j=\Im (f_j)=\Ker (f_{j+1})$, 则对于每个$j$都有序列
 \begin{equation}
-    \begin{tikzcd}[cramped, sep=small]
+    \begin{tikzcd}
         0 \arrow[r] & N_j \arrow[r] & M_j \arrow[r] & N_{j+1} \arrow[r] & 0\label{eqn:shortexactsequence}
     \end{tikzcd}
 \end{equation}
@@ -414,7 +414,7 @@
 \end{theorem}
 
 \begin{proof}
-    这个证明参考了\parencite{noauthor_hilberts_2020}. 由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
+    这个证明参考了\footfullcite{noauthor_hilberts_2020}. 由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
 \end{proof}
 
 这一节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明从属素理想, 孤立从属素理想及其对应的孤立准素理想的唯一性.
@@ -728,11 +728,105 @@
 
 \subsection{范畴论}
 
-\begin{theorem}\label{thm:categoryequivalence}
+随着同调代数这个工具的有力性得到了广泛的认可, 代数学家们开始重视起了对范畴论的研究, 即不光对代数结构本身进行研究, 也同时研究保持结构的这些映射. 这种想法也被进一步推广到了用对象之间的特定映射来刻画对象的结构, 甚至这里的``映射"可以不是通常的集合之间的映射, 只要可以良好定义复合运算即可. 范畴论的思想还体现在很多其它的领域中, 比如在\ref{sec:algebraandgeometry}中我们将看到一些代数对象构成的范畴与几何对象构成的范畴之间的同构, 这有助于我们增强对代数与几何之间关系的理解. 这一节中我们将介绍范畴论的基本想法, 包括范畴, 函子, 自然映射, 泛性质, 极限等定义. 限于篇幅原因, 对于这一节中的证明我们将只给出相关的构造以及证明的思路, 而不给出详细的证明. 此外, 还有一些结论我们难以或无法用这一节中所发展的技术去证明, 但之后确实会用到, 这些结论我们将会不带证明地进行叙述.
 
-\end{theorem}
+在范畴论的研究中我们会不可避免的遇到真类, 即不是集合的对象. 因为集合论的问题不是文章的重点, 所以我们将会尽量减少真类的出现, 尽可能对是集合的对象进行讨论.
 
-% 范畴 函子 自然变换 范畴等价
+一个\emph{范畴}$\cat{C}$包含如下信息.
+\begin{enumerate}
+    \item 有一个类, 其元素称为\emph{对象}, 用大写字母$X, Y, Z, \dotsc$或者小写的$c, c'$来表示;
+    \item 对于每一组对象$X, Y$, 都有一个类, 其元素称为从$X$到$Y$的\emph{态射}, 用小写字母$f, g, h, \dotsc$来表示, 并用$f\colon X\to Y$来表示$f$是从$X$到$Y$的态射. 如果$f\colon X\to Y$, 则称$X$是$f$的\emph{定义域}, $Y$是$f$的\emph{值域};
+    \item 对于每个对象$X$, 有一个特定的\emph{恒同态射}$1_X\colon X\to X$;
+    \item 对于每一组对象$X, Y, Z$以及态射$f\colon X\to Y, g\colon Y\to Z$, 有\emph{复合态射}$gf\colon X\to Z$, 并且满足
+    \begin{enumerate}
+        \item 对于每个态射$f\colon X\to Y$, 都有复合态射$f1_{X}=1_{Y}f=f$;
+        \item 对于每三个态射$f\colon X\to Y, g\colon Y\to Z, h\colon Z\to W$都有$(hg)f=h(gf)$, 记为$hgf$;
+    \end{enumerate}
+    即态射的``复合运算"满足结合律并有双侧单位元.
+\end{enumerate}
+
+如果范畴$\cat{D}$的对象类和每个态射类都是范畴$\cat{C}$相应的类的子类, 则称$\cat{D}$为$\cat{C}$的\emph{子范畴}.
+
+如果范畴$\cat{C}$的任一组对象之间的态射类都是集合, 则称$\cat{C}$是\emph{局部小的范畴}. 在这篇文章中我们关心的范畴都是局部小的, 不过在每处我们依然会写上这个范畴是局部小的的这一条件. 在局部小的范畴$\cat{C}$中, 我们记一组对象$X, Y$之间的态射全体所构成的集合为$\cat{C} (X, Y)$.
+
+在数学中, 两个对象的同构几乎总是一个非常核心的概念, 而范畴论中给了一个统一的解答. 如果范畴$\cat{C}$中两个对象$X, Y$之间的态射$f\colon X\to Y$满足存在$g\colon Y\to X$, 使得$fg=1_Y, gf=1_X$, 则称$f$是\emph{同构态射}. 对于两个对象$X, Y$, 如果存在$X$到$Y$的同构态射, 则称$X$和$Y$是\emph{同构的}, 记作$X\cong Y$.
+
+对于一个范畴$\cat{C}$, 我们可以把它的所有态射的定义域与值域交换, 从而得到它的对偶范畴$\cat{C}^{op}$. 严格来说, 范畴$\cat{C}$的\emph{对偶范畴}$\cat{C}^{op}$包含如下信息.
+\begin{enumerate}
+    \item 有与$\cat{C}$相同的对象类;
+    \item 对于每个$\cat{C}$中的态射$f\colon Y\to X$, 有一个态射$f^{\op}\colon X\to Y$;
+    \item 每个对象$X$的恒同态射即为$1_X^{\op}$;
+    \item 每两个态射$f^{\op}\colon X\to Y$与$g^{\op}\colon Y\to Z$的复合$g^{\op}f^{\op}\coloneq (fg)^{\op}$.
+\end{enumerate}
+我们将在之后反变函子的定义中用到对偶范畴的概念.
+
+在范畴论中函子是非常重要的概念, 它给出了两个范畴之间的态射.
+
+范畴$\cat{C}$到$\cat{D}$的\emph{函子}$F\colon \cat{C}\to \cat{D}$含有如下信息.
+\begin{enumerate}
+    \item 对于每个对象$c\in\cat{C}$, 有一个对象$Fc\in \cat{D}$;
+    \item 对于每个态射$f\colon c\to c'\in\cat{C}$, 有一个态射$Ff\colon Fc\to Fc'\in\cat{D}$, 并且满足两个\emph{函子性公理}.
+    \begin{enumerate}
+        \item 对于每对$\cat{C}$中的可复合函子$f, g$, 有$(Fg)(Ff)=F(gf)$;
+        \item 对于每个对象$c\in\cat{C}$, 都有$F(1_c)=1_{F_c}$.
+    \end{enumerate}
+\end{enumerate}
+简而言之, 一个函子由对象全体之间的映射和态射全体之间的映射所构成, 并保持范畴中所有的结构, 包括定义域, 值域, 复合与恒同态射. 函子$F\colon \cat{C}\to \cat{D}$含有的信息可以由下图来表示.
+\begin{equation*}
+    \functordiagram{\cat{C}}{\cat{D}}{F}{c}{c'}{f}{Fc}{Fc'}{Ff}
+    % \begin{tikzcd}[sep=small]
+    %     \cat{C} \arrow[rr, "F"] & & \cat{D}\\
+    %     c \arrow[dd, "f"'] & \mapsto & |[alias=X]| Fc\\
+    %     & \mapsto & \\
+    %     c' & \mapsto & |[alias=Y]| Fc'
+    %     \arrow[from=X, to=Y, "Ff"]
+    %   \end{tikzcd}
+\end{equation*}
+
+函子性的应用十分广泛, 很多重要的性质本质上就是函子性, 一个典型的例子就是因为基本群算子是从有基点的拓扑空间关于保持基点不变的连续函数在同伦等价意义下的范畴到群范畴之间的函子, 所以$D^2$上的Brouwer不动点定理成立\parencite[15, Theorem 1.3.3]{riehl_category_2017}.
+
+有的范畴之间的对应会让态射的定义域与值域交换, 比如说线性空间$X, Y$之间的线性映射$f\colon X\to Y$可以诱导出对偶空间$Y^*, X^*$之间的线性映射$f^*\colon Y^*\to X^*$, 这虽然满足一定的函子性质却不是刚才所定义的函子, 因此我们需要稍微推广一下函子的定义. 为了区别, 之前定义的函子被称为\emph{协变函子}. 如果$F$是从$\cat{C}^{\op}$到$\cat{D}$的协变函子, 则称$F$是从$\cat{C}$到$\cat{D}$\emph{反变函子}, 仍然记作$F\colon \cat{C}^{\op}\to\cat{D}$, 它含有的信息可以由下图来表示\footnotemark.
+\begin{equation*}
+    \functordiagram*{\cat{C}^{\op}}{\cat{D}}{F}{c}{c'}{f}{Fc}{Fc'}{Ff}
+    % \begin{tikzcd}[sep=small]
+    %     \cat{C}^{\op} \arrow[rr, "F"] & & \cat{D}\\
+    %     c \arrow[dd, "f"'] & \mapsto & |[alias=X]| Fc\\
+    %     & \mapsto & \\
+    %     c' & \mapsto & |[alias=Y]| Fc'
+    %     \arrow[from=Y, to=X, "Ff"']
+    %   \end{tikzcd}
+\end{equation*}
+\footnotetext{尽管反变函子的定义中出现了对偶范畴, 我们画图的时候依然以``正常"的方向来标识态射的定义域与值域. 所谓``正常"这个概念是比较模糊的, 因为每个范畴都可以看成它的对偶范畴的对偶范畴, 不过因为我们可以分清集合范畴$\cat{Set}$与$\cat{Set}^{\op}$哪个是``对偶范畴", 所以对于非常非常多的情况我们这样做都不会出现混淆.}
+
+% 自然变换
+我们现在来介绍自然变换这个概念. 给定范畴$\cat{C}, \cat{D}$以及函子$F, G\colon \cat{C}\rightrightarrows\cat{D}$, 一个从$F$到$G$的\emph{自然变换}$\alpha\colon F\Rightarrow G$含有如下信息.
+\begin{enumerate}
+    \item 对于每个对象$c\in\cat{C}$, 有一个态射$\alpha_c\colon Fc\to Gc$, 被称为这个自然变换的\emph{成分}, 满足对于任意的态射$f\colon c\to c'\in\cat{C}$, 下图交换,
+    \begin{equation*}
+        \begin{tikzcd}[row sep=large]
+            Fc \arrow[r, "\alpha_c"{above}] \arrow[d, "Ff"{left}] & Gc \arrow[d, "Gf"{right}] \\
+            Fc' \arrow[r, "\alpha_{c'}"{below}] & Gc'
+        \end{tikzcd}
+      \end{equation*}
+    即复合态射$(Gf)\alpha_c=\alpha_{c'}(Ff)$相等.
+\end{enumerate}
+如果每个$\alpha_c$都是同构态射, 那么称$\alpha$是\emph{自然同构}, 记作$\alpha\colon F\cong G$.
+
+在通常的语境下, 为了定义一个自然变换, 我们会给出这个自然变换的成分, 并说这些态射是``自然的", 而不显式说明函子是如何定义的, 态射是如何复合的等信息. 比如我们会说``一个有限维线性空间$V$和它对偶空间的对偶空间$V^{**}$是自然同构的", 表示的意思就是有限维线性空间范畴中的双对偶函子与恒同函子是自然同构的.
+
+% 画一下自然同态的边缘信息图
+
+% 范畴等价
+接下来我们来定义范畴等价的概念. 一个很直接的想法是要求存在函子$F\colon \cat{C}\leftrightarrows \cat{D}\colon G$使得$FG=1_{\cat{D}}, GF=1_{\cat{C}}$成立, 这样的话称范畴$\cat{C}$与$\cat{D}$\emph{同构}. 不过我们发现范畴同构的要求太强了\parencite[21]{riehl_category_2017}, 所以我们采取类似于同伦等价的方式来定义范畴等价的概念.
+
+一个\emph{范畴等价}包含两个函子$F\colon \cat{C}\leftrightarrows \cat{D}\colon G$与自然同构$FG\cong 1_{\cat{D}}, GF\cong 1_{\cat{C}}$. 如果范畴$\cat{C}, \cat{D}$之间存在范畴等价, 则称$\cat{C}$与$\cat{D}$是\emph{等价的}, 记作$\cat{C}\simeq\cat{D}$. 范畴等价定义了一个等价关系\parencite[30, Lemma 1.5.5]{riehl_category_2017}.
+
+可以通过函子的性质来判断一个函子是否能给出两个范畴之间的等价, 为此我们需要介绍一些概念. 考虑函子$F\colon\cat{C}\to\cat{D}$, 如果对于任意的$c, c'\in \cat{C}$, 映射$\cat{C}(c, c')\to \cat{D}(Fc, Fc')$是满射(或单射), 则称$F$是\emph{完全函子}(或\emph{忠实函子}); 如果对于每个对象$d\in \cat{D}$都有$c\in\cat{C}$使得$d$同构于$Fc$, 则称$F$是\emph{本质满射函子}. 如果一个忠实函子关于对象是单射, 则称其为一个范畴的\emph{嵌入}, 将定义域范畴对应到了值域范畴的子范畴; 如果这个函子还是完全函子, 则称其为一个范畴的\emph{完全嵌入}, 将定义域范畴对应到了值域范畴的\emph{完全子范畴}.
+
+\begin{theoremnoproof}[{{\parencite[31, Theorem 1.5.9]{riehl_category_2017}}}]\label{thm:categoryequivalence}
+    如果一个函子可以定义两个范畴之间的范畴等价, 那么这个函子是完全忠实并且本质满射的. 反过来, 如果假设选择公理(\axiom{AC}), 那么任何满足上述条件的函子都可以定义两个范畴之间的范畴等价.
+\end{theoremnoproof}
+
 % 模范畴的direct limit
 
 \subsection{素谱}\label{subsec:primespec}
@@ -843,7 +937,7 @@
 \begin{proof}
     假设$A$是Noether环, 因为$\Spec (A)$中的闭集降链能诱导出$A$中的根式理想的升链, 故由\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}知闭集降链一定有限.
 
-    反过来, 我们需要寻找一个反例, 这个反例参考\parencite{brandenburg_non-noetherian_2017}. 设$\kk$为一个域, 考虑域的正整数元多项式环的商环$A=\kk [X_1, X_2, \dotsc]{\divslash}(X_1, X_2^2, \dotsc)$. 因为理想升链$(X_1)\subsetneqq (X_1, X_2)\dotsb$不稳定, 因此$A$不是Noether环. 但是因为幂零根$\nil=\ideal{m}\coloneq (X_1, X_2, \dotsc)$为极大理想, 故由\thref{prop:primespecfunctor}\ref{enum:prop-prime-spec-functor-surjective}我们知道$\Spec (A)\cong\Spec (A{\divslash}\nil)=\Spec (\kk)$仅有一个点, 因此一定是Noether拓扑空间.
+    反过来, 我们需要寻找一个反例, 这个反例参考\footfullcite{brandenburg_non-noetherian_2017}. 设$\kk$为一个域, 考虑域的正整数元多项式环的商环$A=\kk [X_1, X_2, \dotsc]{\divslash}(X_1, X_2^2, \dotsc)$. 因为理想升链$(X_1)\subsetneqq (X_1, X_2)\dotsb$不稳定, 因此$A$不是Noether环. 但是因为幂零根$\nil=\ideal{m}\coloneq (X_1, X_2, \dotsc)$为极大理想, 故由\thref{prop:primespecfunctor}\ref{enum:prop-prime-spec-functor-surjective}我们知道$\Spec (A)\cong\Spec (A{\divslash}\nil)=\Spec (\kk)$仅有一个点, 因此一定是Noether拓扑空间.
 \end{proof}
 
 \begin{proposition}[{{\parencites[79, Exercise 7]{atiyah_introduction_1969}[5, Proposition 1.5]{hartshorne_algebraic_1977}}}]

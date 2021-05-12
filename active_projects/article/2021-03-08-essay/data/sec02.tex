@@ -10,30 +10,30 @@
 
 设$A$为非空集合, 若在$A$中有两个二元运算(加法和乘法), 满足
 \begin{enumerate}
-    \item $A$关于加法构成Abel群, 即
-    \begin{enumerate}
-        \item $A$的加法满足结合律与交换律,
-        \item 存在$0\in A$, 使得对任意的$x\in A$都有$0+x=x$成立,
-        \item 对于任意的$x\in A$, 存在$-x\in A$使得$x+(-x)=0$成立;
-    \end{enumerate}
-    \item $A$的乘法满足结合律与交换律;
-    \item 存在$1\in A$, 使得对于任意的$x\in A$都有$1x=x$成立,
+  \item $A$关于加法构成Abel群, 即
+  \begin{enumerate}
+    \item $A$的加法满足结合律与交换律,
+    \item 存在$0\in A$, 使得对任意的$x\in A$都有$0+x=x$成立,
+    \item 对于任意的$x\in A$, 存在$-x\in A$使得$x+(-x)=0$成立;
+  \end{enumerate}
+  \item $A$的乘法满足结合律与交换律;
+  \item 存在$1\in A$, 使得对于任意的$x\in A$都有$1x=x$成立,
 \end{enumerate}
 则称$A$为\emph{交换幺环}. 后文中\emph{环}指的都是交换幺环. 注意如果$1=0$, 则环中有且仅有一个元素, 称这样的环为\emph{零环}\footnotemark . 如果$B$是$A$的Abel子群且满足$1\in B$, 则称$B$为$A$的\emph{子环}.
 \footnotetext{需要注意的是, 在之后的一些定义中会排除零环, 比如说整环, 域等概念.}
 
 研究保持代数结构的映射为代数理论的核心, 而保持环结构的映射即为环同态, 定义如下. 设$A, B$是两个环, 若映射$f\colon A\to B$满足
 \begin{enumerate}
-    \item $f(x+y)=f(x)+f(y)$(即$f$为群同态, 同时还有$f(0)=0$与$f(-x)=-f(x)$成立);
-    \item $f(xy)=f(x)f(y)$;
-    \item $f(1)=1$,
+  \item $f(x+y)=f(x)+f(y)$(即$f$为群同态, 同时还有$f(0)=0$与$f(-x)=-f(x)$成立);
+  \item $f(xy)=f(x)f(y)$;
+  \item $f(1)=1$,
 \end{enumerate}
 则称$f$为从$A$到$B$的\emph{环同态}.
 
 理想在环论中的作用类似于正规子群在群论中的作用, 一个环可以与其理想做商得到商环, 商环中的理想与原来环中的理想有对应关系, 可以以此来简化问题. 设$A$为环, 如果$A$的子集$\ideal{a}$满足
 \begin{enumerate}
-    \item $\ideal{a}$为$A$的加法子群;
-    \item 若$x\in A, y\in\ideal{a}$, 则$xy\in\ideal{a}$,
+  \item $\ideal{a}$为$A$的加法子群;
+  \item 若$x\in A, y\in\ideal{a}$, 则$xy\in\ideal{a}$,
 \end{enumerate}
 则称$\ideal{a}$为$A$的\emph{理想}. 若$\ideal{a}\neq A$, 则称$\ideal{a}$为\emph{真理想}\footnotemark .
 \footnotetext{与零环的情况相对应, 同样需要注意之后的一些定义中会只考虑真理想, 比如说素理想, 极大理想等概念, 为了保证素理想(极大理想)与整环(域)对应的简洁性.}
@@ -43,20 +43,20 @@
 商群$A{\divslash} \ideal{a}$有从$A$诱导的自然的环结构, 其中乘法由$(x+\ideal{a})(y+\ideal{a})=xy+\ideal{a}$定义. 称环$A{\divslash}\ideal{a}$为$A$对$\ideal{a}$的\emph{商环}. 有一个从环到其商环的自然的\emph{投影映射}$\pi\colon A\to A{\divslash}\ideal{a}$, 满足$\pi(x)=x+\ideal{a}$, 为满环同态. 商环有如下的\emph{泛性质}\parencite[5]{altman_term_2017}, 给定环$A$和$A$的理想$\ideal{a}$, 对于任意的环$B$以及核包含$\ideal{a}$的环同态$\phi\colon A\to B$, 存在唯一的环同态$\psi\colon A{\divslash}\ideal{a}\to B$使得$\psi\pi=\phi$成立, 并且满足该泛性质的环$A{\divslash}\ideal{a}$在同构意义下唯一.
 
 \begin{proposition}[{{\parencite[2, Proposition 1.1]{atiyah_introduction_1969}}}]\label{prop:quotidealcorr}
-    设$\ideal{a}$为环$A$的理想, 则$A$中包含$\ideal{a}$的理想全体与$A{\divslash}\ideal{a}$中的理想全体有由投影映射$\pi$诱导出的保序双射($\ideal{b}\leftrightarrow\ideal{b}{\divslash}\ideal{a}$).
+  设$\ideal{a}$为环$A$的理想, 则$A$中包含$\ideal{a}$的理想全体与$A{\divslash}\ideal{a}$中的理想全体有由投影映射$\pi$诱导出的保序双射($\ideal{b}\leftrightarrow\ideal{b}{\divslash}\ideal{a}$).
 \end{proposition}
 
 \begin{proof}
-    保序显然, 再验证$\pi$将$A$中包含$\ideal{a}$的理想映到$A{\divslash}\ideal{a}$中的理想, $\pi^{-1}$将$A{\divslash}\ideal{a}$中的理想映到$A$中包含$\ideal{a}$的理想, 并且两者互为逆.
+  保序显然, 再验证$\pi$将$A$中包含$\ideal{a}$的理想映到$A{\divslash}\ideal{a}$中的理想, $\pi^{-1}$将$A{\divslash}\ideal{a}$中的理想映到$A$中包含$\ideal{a}$的理想, 并且两者互为逆.
 \end{proof}
 
 \begin{remark}
-    由于\thref{prop:quotidealcorr}的成立, 在不致引起混淆的情况下我们会将$A$中包含$\ideal{a}$的某一个理想同时看作$A{\divslash}\ideal{a}$的理想而不另加说明, 反之亦然.
+  由于\thref{prop:quotidealcorr}的成立, 在不致引起混淆的情况下我们会将$A$中包含$\ideal{a}$的某一个理想同时看作$A{\divslash}\ideal{a}$的理想而不另加说明, 反之亦然.
 \end{remark}
 
 % TODO: https://proofwiki.org/wiki/Third_Isomorphism_Theorem/Rings
 \begin{proposition}[第三同构定理{{\parencite[126, Theorem 2.12 (ii)]{hungerford_algebra_1974}}}]\label{prop:thirdisomorphism}
-    设$A$为环, $\ideal{a}\subseteq\ideal{b}$为$A$的两个理想, 则$\ideal{b}{\divslash}\ideal{a}$是商环$A{\divslash}\ideal{a}$的理想, 并且有$(A{\divslash}\ideal{a}){\divslash}(\ideal{b}{\divslash}\ideal{a})\cong A{\divslash}\ideal{b}$.
+  设$A$为环, $\ideal{a}\subseteq\ideal{b}$为$A$的两个理想, 则$\ideal{b}{\divslash}\ideal{a}$是商环$A{\divslash}\ideal{a}$的理想, 并且有$(A{\divslash}\ideal{a}){\divslash}(\ideal{b}{\divslash}\ideal{a})\cong A{\divslash}\ideal{b}$.
 \end{proposition}
 
 \begin{proof}
@@ -68,34 +68,34 @@
 如果环$A$的真理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为$A$的真理想全体(在包含意义下)的极大元, 则称$\ideal{m}$为\emph{极大理想}. 素理想有一些很好的性质.
 
 \begin{proposition}[{{\parencite[8, Proposition 1.11]{atiyah_introduction_1969}}}]\label{prop:prime}\leavevmode
-    \begin{enumerate}
-        \item\label{enum:prop-prime-avoid}(素回避引理) 设$\ideal{p}_1, \dotsc, \ideal{p}_n$为素理想, 理想$\ideal{a}\subseteq\bigcup_{j=1}^n\ideal{p}_j$, 则存在$j$使得$\ideal{a}\subseteq \ideal{p}_j$;
-        \item\label{enum:prop-prime-absorb}(素吸收引理) 设$\ideal{a}_1, \dotsc, \ideal{a}_n$为理想, 素理想$\ideal{p}\supseteq\bigcap_{j=1}^n\ideal{a}_j$, 则存在$j$使得$\ideal{p}\supseteq\ideal{a}_j$. 如果进一步地有$\ideal{p}=\bigcap_{j=1}^n\ideal{a}_j$, 那么存在$j$使得$\ideal{p}=\ideal{a}_j$.
-    \end{enumerate}
+  \begin{enumerate}
+    \item\label{enum:prop-prime-avoid}(素回避引理) 设$\ideal{p}_1, \dotsc, \ideal{p}_n$为素理想, 理想$\ideal{a}\subseteq\bigcup_{j=1}^n\ideal{p}_j$, 则存在$j$使得$\ideal{a}\subseteq \ideal{p}_j$;
+    \item\label{enum:prop-prime-absorb}(素吸收引理) 设$\ideal{a}_1, \dotsc, \ideal{a}_n$为理想, 素理想$\ideal{p}\supseteq\bigcap_{j=1}^n\ideal{a}_j$, 则存在$j$使得$\ideal{p}\supseteq\ideal{a}_j$. 如果进一步地有$\ideal{p}=\bigcap_{j=1}^n\ideal{a}_j$, 那么存在$j$使得$\ideal{p}=\ideal{a}_j$.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    \ref{enum:prop-prime-avoid} 考虑逆否命题, 如果对于任意的$j=1, \dotsc, n$都有$\ideal{a}\nsubseteq\ideal{p}_j$, 那么有$\ideal{a}\nsubseteq\bigcup_{j=1}^n\ideal{p}_j$. 对$n$进行归纳, 当$n=1$时命题显然成立, 假设命题对于$n-1$成立. 根据归纳假设, 对于每个$j=1, \dotsc, n$都存在$x_j\in \ideal{a}$但对于$k\neq j$都有$x_j\notin\ideal{p}_k$, 我们只需要证明对于其中某个$x_j$有$x_j\notin\ideal{p}_j$即可. 反证, 考查$x=\sum_{j}(\prod_{k\neq j}x_k)$, 有$x\in\ideal{a}$但$x$不是任何一个$\ideal{p}_j$的元素, 得到矛盾.
+  \ref{enum:prop-prime-avoid} 考虑逆否命题, 如果对于任意的$j=1, \dotsc, n$都有$\ideal{a}\nsubseteq\ideal{p}_j$, 那么有$\ideal{a}\nsubseteq\bigcup_{j=1}^n\ideal{p}_j$. 对$n$进行归纳, 当$n=1$时命题显然成立, 假设命题对于$n-1$成立. 根据归纳假设, 对于每个$j=1, \dotsc, n$都存在$x_j\in \ideal{a}$但对于$k\neq j$都有$x_j\notin\ideal{p}_k$, 我们只需要证明对于其中某个$x_j$有$x_j\notin\ideal{p}_j$即可. 反证, 考查$x=\sum_{j}(\prod_{k\neq j}x_k)$, 有$x\in\ideal{a}$但$x$不是任何一个$\ideal{p}_j$的元素, 得到矛盾.
 
-    \ref{enum:prop-prime-absorb} 证明第一个命题的逆否命题, 如果对于任意的$j$都有$\ideal{p}\nsubseteq\ideal{a}_j$, 则存在$x_j\in\ideal{a}_j$但$x_j\notin\ideal{p}$, 于是$x=\prod_j x_j$满足$x\in\bigcap_j\ideal{a}_j$但是$x\notin\ideal{p}$, 即得证$\ideal{p}\nsupseteq\bigcap_{j=1}^n\ideal{a}_j$.
+  \ref{enum:prop-prime-absorb} 证明第一个命题的逆否命题, 如果对于任意的$j$都有$\ideal{p}\nsubseteq\ideal{a}_j$, 则存在$x_j\in\ideal{a}_j$但$x_j\notin\ideal{p}$, 于是$x=\prod_j x_j$满足$x\in\bigcap_j\ideal{a}_j$但是$x\notin\ideal{p}$, 即得证$\ideal{p}\nsupseteq\bigcap_{j=1}^n\ideal{a}_j$.
 \end{proof}
 
 素理想和极大理想有等价定义
 \begin{equation*}
-    \begin{aligned}
-        \ideal{p}\text{为素理想}&\Leftrightarrow A{\divslash}\ideal{p}\text{是整环};\\
-        \ideal{m}\text{为极大理想}&\Leftrightarrow A{\divslash}\ideal{m}\text{是域}.
-    \end{aligned}
+  \begin{aligned}
+    \ideal{p}\text{为素理想}&\Leftrightarrow A{\divslash}\ideal{p}\text{是整环};\\
+    \ideal{m}\text{为极大理想}&\Leftrightarrow A{\divslash}\ideal{m}\text{是域}.
+  \end{aligned}
 \end{equation*}
 因此素理想为极大理想, 而Zorn引理\footnotemark 可以保证非零环中极大理想的存在性.
 \footnotetext{Zorn引理的叙述如下: 如果一个非空偏序集的每个全序子链都有上界, 那么这个偏序集存在极大元. 在\axiom{ZF}公理系统下Zorn引理与选择公理\axiom{AC}等价\parencite[10, Theorem 2.2]{herrlich_axiom_2006}.}
 
 \begin{theorem}[{{\parencite[3, Theorem 1.3]{atiyah_introduction_1969}}}]\label{thm:maxideal}
-    每个非零环都存在至少一个极大理想.
+  每个非零环都存在至少一个极大理想.
 \end{theorem}
 
 \begin{proof}
-    真包含于$A$的理想全体构成偏序集结构. 对于任意的全序子链$\{\ideal{a}_\lambda\}$, 都有$\bigcup_{\lambda}\ideal{a}_\lambda$是真包含于$A$的理想, 为该全序子链的上界, 故由Zorn引理可得该偏序集中存在极大元, 即环$A$中存在极大理想.
+  真包含于$A$的理想全体构成偏序集结构. 对于任意的全序子链$\{\ideal{a}_\lambda\}$, 都有$\bigcup_{\lambda}\ideal{a}_\lambda$是真包含于$A$的理想, 为该全序子链的上界, 故由Zorn引理可得该偏序集中存在极大元, 即环$A$中存在极大理想.
 \end{proof}
 
 有的环有且仅有一个极大理想, 称这样的环为\emph{局部环}, 并称局部环对其唯一极大理想的商域为这个环的\emph{剩余域}.
@@ -103,50 +103,50 @@
 接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和}$\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积}$\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交}$\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b})\coloneq \{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{subsec:algebra-primdecom}有重要的应用, 特别地, 记理想$\ideal{a}$的\emph{零化理想}为$\Ann(\ideal{a})\coloneq ((0){:}\ideal{a})$. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}\coloneq \{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 很显然, 根运算具有保序性, 即如果$\ideal{a}\subseteq\ideal{b}$, 则$\sqrt{\ideal{a}}\subseteq\sqrt{\ideal{b}}$. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为\emph{根理想}. 称零理想$\ideal{a}$的根为环$A$的\emph{幂零根}, 记为$\nil$.
 
 \begin{proposition}[{{\parencite[8, Exercise 12; 9, Exercise 13]{atiyah_introduction_1969}}}]\label{prop:idealop}\leavevmode
-    \begin{enumerate}
-        \item\label{enum:prop-idealop-quot-firstcap} $(\bigcap_\lambda \ideal{a}_\lambda{:}\ideal{b})=\bigcap_{\lambda}(\ideal{a}_\lambda{:}\ideal{b})$;
-        \item $(\ideal{a}{:}\sum_{\lambda}\ideal{b}_\lambda)=\bigcap_{\lambda}(\ideal{a}{:}\ideal{b}_\lambda)$;
-        \item\label{enum:prop-idealop-rad-inters} $\sqrt{\ideal{ab}}=\sqrt{\ideal{a}\cap\ideal{b}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$.
-    \end{enumerate}
+  \begin{enumerate}
+    \item\label{enum:prop-idealop-quot-firstcap} $(\bigcap_\lambda \ideal{a}_\lambda{:}\ideal{b})=\bigcap_{\lambda}(\ideal{a}_\lambda{:}\ideal{b})$;
+    \item $(\ideal{a}{:}\sum_{\lambda}\ideal{b}_\lambda)=\bigcap_{\lambda}(\ideal{a}{:}\ideal{b}_\lambda)$;
+    \item\label{enum:prop-idealop-rad-inters} $\sqrt{\ideal{ab}}=\sqrt{\ideal{a}\cap\ideal{b}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proposition}[{{\parencite[9, Proposition 1.14]{atiyah_introduction_1969}}}]\label{prop:scheinnullstellensatz}
-    设$\ideal{a}$为环$A$的理想, 则$\sqrt{\ideal{a}}$等于包含$\ideal{a}$的所有素理想的交. 特别地, $A$中所有素理想的交恰为$A$的幂零根.
+  设$\ideal{a}$为环$A$的理想, 则$\sqrt{\ideal{a}}$等于包含$\ideal{a}$的所有素理想的交. 特别地, $A$中所有素理想的交恰为$A$的幂零根.
 \end{proposition}
 
 \begin{proof}
-    先证$\subseteq$, 这一部分比较直接. 只需证如果$x^n\in\ideal{a}$, 那么$x$属于每个包含$\ideal{a}$的素理想, 这由素理想的定义可简单得出.
+  先证$\subseteq$, 这一部分比较直接. 只需证如果$x^n\in\ideal{a}$, 那么$x$属于每个包含$\ideal{a}$的素理想, 这由素理想的定义可简单得出.
 
-    再证$\supseteq$, 这一部分需要用到Zorn引理. 反证, 如果有$f\in A$使得对于任意的$n\in\ZZ_+$都有$f^n\notin\ideal{a}$, 我们需要构造一个素理想$\ideal{p}\supseteq\ideal{a}$使得$f\notin\ideal{p}$. 考虑满足包含$\ideal{a}$并且对于任意$n\in\ZZ_+$都有$x^n\notin\ideal{a}$的理想$\ideal{a}$的全体$\Sigma$, 这构成一个非空偏序集, 满足任意全序子列的并集都是其上界, 故由Zorn引理知$\Sigma$存在极大元, 记极大元为$\ideal{p}$, 现在来证明$\ideal{p}$是素理想. 如果$x, y\notin\ideal{p}$, 则理想$(x)+\ideal{p}$与$(y)+\ideal{p}$不属于$\Sigma$, 由$\ideal{p}$的极大性知存在$m, n\in\ZZ_+$使得$f^m\in (x)+\ideal{p}$并且$f^n\in (y)+\ideal{q}$, 因此$f^{m+n}\in (xy)+\ideal{p}$, 故$(xy)+\ideal{p}\neq\ideal{p}$, 即$xy\notin\ideal{p}$. 于是$\ideal{p}$即为我们想找的素理想.
+  再证$\supseteq$, 这一部分需要用到Zorn引理. 反证, 如果有$f\in A$使得对于任意的$n\in\ZZ_+$都有$f^n\notin\ideal{a}$, 我们需要构造一个素理想$\ideal{p}\supseteq\ideal{a}$使得$f\notin\ideal{p}$. 考虑满足包含$\ideal{a}$并且对于任意$n\in\ZZ_+$都有$x^n\notin\ideal{a}$的理想$\ideal{a}$的全体$\Sigma$, 这构成一个非空偏序集, 满足任意全序子列的并集都是其上界, 故由Zorn引理知$\Sigma$存在极大元, 记极大元为$\ideal{p}$, 现在来证明$\ideal{p}$是素理想. 如果$x, y\notin\ideal{p}$, 则理想$(x)+\ideal{p}$与$(y)+\ideal{p}$不属于$\Sigma$, 由$\ideal{p}$的极大性知存在$m, n\in\ZZ_+$使得$f^m\in (x)+\ideal{p}$并且$f^n\in (y)+\ideal{q}$, 因此$f^{m+n}\in (xy)+\ideal{p}$, 故$(xy)+\ideal{p}\neq\ideal{p}$, 即$xy\notin\ideal{p}$. 于是$\ideal{p}$即为我们想找的素理想.
 \end{proof}
 
 理想在环同态作用下的表现也是研究的重点. 给定环同态$f\colon A\to B$, 设$\ideal{a}$为$A$的理想, $\ideal{b}$为$B$的理想. $\ideal{a}$在$f$下的像$f(\ideal{a})$不一定为理想, 定义$\ideal{a}$的\emph{扩张}为$f(\ideal{a})$在$B$中生成的理想, 记作$\ideal{a}^e$. $\ideal{b}$在$f$下的原像$f^{-1}(\ideal{b})$一定是理想, 定义$\ideal{b}$的\emph{收缩}即为$f^{-1}(\ideal{b})$, 记作$\ideal{b}^c$. 若$B$的某个理想可以写成$A$的一个理想的扩张, 则称这个$B$的理想为\emph{扩张理想}, 类似地, 如果$A$的某个理想可以写成$B$的一个理想的收缩, 则称这个$A$的理想为\emph{收缩理想}. 要注意扩张与收缩是相对于$f$而言的, 只不过一般在语境下$f$的选取不会有混淆, 故没有显式提及$f$. 显然扩张与收缩都具有保序性, 即如果$A$的理想$\ideal{a}_1\subseteq\ideal{a}_2$, $B$的理想$\ideal{b}_1\subseteq\ideal{b}_2$, 则$\ideal{a}_1^e\subseteq\ideal{a}_2^e$, $\ideal{b}_1^c\subseteq\ideal{b}_2^c$. 下面一个命题推广了\thref{prop:quotidealcorr}到一般形式.
 
 \begin{proposition}[{{\parencite[10, Proposition 1.17]{atiyah_introduction_1969}}}]\label{prop:extencontrcorr}
-    设$f\colon A\to B$为环同态, 有理想$\ideal{a}\subseteq A, \ideal{b}\subseteq B$, 则
-    \begin{enumerate}
-        \item $\ideal{a}\subseteq\ideal{a}^{ec}, \ideal{b}\supseteq\ideal{b}^{ce}$,
-        \item $\ideal{a}=\ideal{a}^{ece}, \ideal{b}=\ideal{b}^{cec}$,
-        \item\label{enum:prop-ec-corr} $A$的收缩理想全体与$B$的扩张理想全体有保序双射($\ideal{a}\mapsto\ideal{a}^e, \ideal{b}^c\mapsfrom\ideal{b}$).
-    \end{enumerate}
+  设$f\colon A\to B$为环同态, 有理想$\ideal{a}\subseteq A, \ideal{b}\subseteq B$, 则
+  \begin{enumerate}
+    \item $\ideal{a}\subseteq\ideal{a}^{ec}, \ideal{b}\supseteq\ideal{b}^{ce}$,
+    \item $\ideal{a}=\ideal{a}^{ece}, \ideal{b}=\ideal{b}^{cec}$,
+    \item\label{enum:prop-ec-corr} $A$的收缩理想全体与$B$的扩张理想全体有保序双射($\ideal{a}\mapsto\ideal{a}^e, \ideal{b}^c\mapsfrom\ideal{b}$).
+  \end{enumerate}
 \end{proposition}
 
 \begin{proposition}[{{\parencite[10, Proposition 1.17]{atiyah_introduction_1969}}}]\label{prop:extencontrop}
-    设$\ideal{a}, \ideal{a}_1, \ideal{a}_2$为环$A$的理想, $\ideal{b}, \ideal{b}_1, \ideal{b}_2$为环$B$的理想, 则
-    \begin{equation*}
-        \begin{aligned}
-            &(\ideal{a}_1+\ideal{a}_2)^e=\ideal{a}_1^e+\ideal{a}_2^e,
-            &&\qquad(\ideal{b}_1+\ideal{b_2})^c\supseteq \ideal{b}_1^c+\ideal{b}_2^c,\\
-            &(\ideal{a}_1\cap\ideal{a}_2)^e\subseteq\ideal{a}_1^e\cap\ideal{a}_2^e,
-            &&\qquad(\ideal{b}_1\cap\ideal{b_2})^c= \ideal{b}_1^c\cap\ideal{b}_2^c,\\
-            &(\ideal{a}_1\ideal{a}_2)^e=\ideal{a}_1^e\ideal{a}_2^e,
-            &&\qquad(\ideal{b}_1\ideal{b_2})^c\supseteq\ideal{b}_1^c\ideal{b}_2^c,\\
-            &(\ideal{a}_1{:}\ideal{a}_2)^e\subseteq\ideal{a}_1^e{:}\ideal{a}_2^e,
-            &&\qquad(\ideal{b}_1{:}\ideal{b_2})^c= \ideal{b}_1^c{:}\ideal{b}_2^c,\\
-            &\sqrt{\ideal{a}}^e\subseteq\sqrt{\ideal{a}^e},
-            &&\qquad\sqrt{\ideal{b}}^c= \sqrt{\ideal{b}^c}.
-        \end{aligned}
-    \end{equation*}
+  设$\ideal{a}, \ideal{a}_1, \ideal{a}_2$为环$A$的理想, $\ideal{b}, \ideal{b}_1, \ideal{b}_2$为环$B$的理想, 则
+  \begin{equation*}
+    \begin{aligned}
+      &(\ideal{a}_1+\ideal{a}_2)^e=\ideal{a}_1^e+\ideal{a}_2^e,
+      &&\qquad(\ideal{b}_1+\ideal{b_2})^c\supseteq \ideal{b}_1^c+\ideal{b}_2^c,\\
+      &(\ideal{a}_1\cap\ideal{a}_2)^e\subseteq\ideal{a}_1^e\cap\ideal{a}_2^e,
+      &&\qquad(\ideal{b}_1\cap\ideal{b_2})^c= \ideal{b}_1^c\cap\ideal{b}_2^c,\\
+      &(\ideal{a}_1\ideal{a}_2)^e=\ideal{a}_1^e\ideal{a}_2^e,
+      &&\qquad(\ideal{b}_1\ideal{b_2})^c\supseteq\ideal{b}_1^c\ideal{b}_2^c,\\
+      &(\ideal{a}_1{:}\ideal{a}_2)^e\subseteq\ideal{a}_1^e{:}\ideal{a}_2^e,
+      &&\qquad(\ideal{b}_1{:}\ideal{b_2})^c= \ideal{b}_1^c{:}\ideal{b}_2^c,\\
+      &\sqrt{\ideal{a}}^e\subseteq\sqrt{\ideal{a}^e},
+      &&\qquad\sqrt{\ideal{b}}^c= \sqrt{\ideal{b}^c}.
+    \end{aligned}
+  \end{equation*}
 \end{proposition}
 
 \subsection{分式环与局部化}\label{subsec:algebra-localization}
@@ -158,70 +158,71 @@
 接下来考察分式环中理想的扩张与收缩. 设$f\colon A\to S^{-1}A$为之前定义的自然环同态, $\ideal{a}$为$A$的理想, 则$\ideal{a}$的扩张$\ideal{a}^e=S^{-1}\ideal{a}\coloneq \{a{\divslash}s\vert a\in\ideal{a}, s\in S\}$. 在证明主要命题之前我们需要用到商环与分式环之间的关系, 叙述如下.
 
 \begin{proposition}[{{\footfullcite{ortiz_localization_2019}}}]\label{prop:localizationquotientcommute}
-    取分式环与取商环可交换. 严格叙述如下, 设$A$为环, $\ideal{a}$为$A$的理想, $S$为$A$的乘法闭集, $\overline{S}=\pi(S)$为$S$在商环$A{\divslash}\ideal{a}$中的像仍为乘法闭集, 则环$\SASa$与环$\SAa$有典范同构, 即该同构与典范同态$A\to S^{-1}A\to \SASa$以及$A\to A{\divslash}\ideal{a}\to \SAa$可交换.
+  取分式环与取商环可交换. 严格叙述如下, 设$A$为环, $\ideal{a}$为$A$的理想, $S$为$A$的乘法闭集, $\overline{S}=\pi(S)$为$S$在商环$A{\divslash}\ideal{a}$中的像仍为乘法闭集, 则环$\SASa$与环$\SAa$有典范同构, 即该同构与典范同态$A\to S^{-1}A\to \SASa$以及$A\to A{\divslash}\ideal{a}\to \SAa$可交换.
 \end{proposition}
 
 \begin{proof}
-    这里我们给出一个需要用到商环和分式环显式定义(而非只用泛性质)的证明.
+  这里我们给出一个需要用到商环和分式环显式定义(而非只用泛性质)的证明.
 
-    首先考虑典范同态$A\to A{\divslash}\ideal{a}\to \SAa$, 将$x\in A$映到$(x+\ideal{a}){\divslash}(1+\ideal{a})$, 这个映射将$s\in S$映到$(s+\ideal{a}){\divslash}(1+\ideal{a})$是单位, 由分式环的泛性质知有同态$S^{-1}A\to \SAa$, 将$x{\divslash}s$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$, 而这个映射又将$S^{-1}\ideal{a}$的元素映到0, 于是由商环的泛性质知有同态$\phi\colon\SASa\to\SAa$将$x{\divslash}s + S^{-1}\ideal{a}$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$.
+  首先考虑典范同态$A\to A{\divslash}\ideal{a}\to \SAa$, 将$x\in A$映到$(x+\ideal{a}){\divslash}(1+\ideal{a})$, 这个映射将$s\in S$映到$(s+\ideal{a}){\divslash}(1+\ideal{a})$是单位, 由分式环的泛性质知有同态$S^{-1}A\to \SAa$, 将$x{\divslash}s$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$, 而这个映射又将$S^{-1}\ideal{a}$的元素映到0, 于是由商环的泛性质知有同态$\phi\colon\SASa\to\SAa$将$x{\divslash}s + S^{-1}\ideal{a}$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$.
 
-    其次考虑典范同态$A\to S^{-1}A\to\SASa$, 将$x\in A$映到$x{\divslash}1+S^{-1}\ideal{a}$, 这个映射将$\ideal{a}$映到0, 由商环的泛性质知由有同态$A{\divslash}\ideal{a}\to\SASa$将$x+\ideal{a}$映到$x{\divslash}1+S^{-1}\ideal{a}$, 而这个映射又将$s\in\overline{S}^{-1}$映到$s{\divslash}1+S^{-1}\ideal{a}$是单位, 于是由分式环的泛性质知有同态$\psi\colon\SAa\to\SASa$将$(x+\ideal{a}){\divslash}(s+\ideal{a})$映到$x{\divslash}s + S^{-1}\ideal{a}$.
+  其次考虑典范同态$A\to S^{-1}A\to\SASa$, 将$x\in A$映到$x{\divslash}1+S^{-1}\ideal{a}$, 这个映射将$\ideal{a}$映到0, 由商环的泛性质知由有同态$A{\divslash}\ideal{a}\to\SASa$将$x+\ideal{a}$映到$x{\divslash}1+S^{-1}\ideal{a}$, 而这个映射又将$s\in\overline{S}^{-1}$映到$s{\divslash}1+S^{-1}\ideal{a}$是单位, 于是由分式环的泛性质知有同态$\psi\colon\SAa\to\SASa$将$(x+\ideal{a}){\divslash}(s+\ideal{a})$映到$x{\divslash}s + S^{-1}\ideal{a}$.
 
-    由构造发现$\phi, \psi$互为逆, 并且与典范同态可交换.
+  由构造发现$\phi, \psi$互为逆, 并且与典范同态可交换.
 \end{proof}
 
 \begin{proposition}[{{\parencite[41, Proposition 3.11]{atiyah_introduction_1969}}}]\label{prop:fracideal}
-    关于$S^{-1}A$的理想, 有如下命题成立.
-    \begin{enumerate}
-        \item\label{enum:prop-fracideal-1} $S^{-1}A$的每个理想都是扩张理想.
-        \item\label{enum:prop-fracideal-2} $S^{-1}A$的素理想全体与$A$的与$S$不交的素理想全体有保序双射($\ideal{p}\leftrightarrow S^{-1}\ideal{p}$).
-        \item\label{enum:prop-fracideal-3} $S^{-1}$运算与理想的和积交根均可交换(或分配). % TODO: 观察一下有没有必要补extension contraction性质的命题
-    \end{enumerate}
+  关于$S^{-1}A$的理想, 有如下命题成立.
+  \begin{enumerate}
+    \item\label{enum:prop-fracideal-1} $S^{-1}A$的每个理想都是扩张理想.
+    \item\label{enum:prop-fracideal-2} $S^{-1}A$的素理想全体与$A$的与$S$不交的素理想全体有保序双射($\ideal{p}\leftrightarrow S^{-1}\ideal{p}$).
+    \item\label{enum:prop-fracideal-3} $S^{-1}$运算与理想的和积交根均可交换(或分配). % TODO: 观察一下有没有必要补extension contraction性质的命题
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    \ref{enum:prop-fracideal-1} 设$\ideal{b}$为$S^{-1}A$的理想, 设$x{\divslash}s\in \ideal{b}$, 则$x{\divslash}1\in\ideal{b}$, 故$x\in\ideal{b}^c$, 因此$x{\divslash}s\in\ideal{b}^{ce}$, 于是我们证明了$\ideal{b}\subseteq\ideal{b}^{ce}$, 又由\thref{prop:extencontrcorr}知一般情况下有$\ideal{b}\supseteq\ideal{b}^{ce}$, 于是$\ideal{b}=\ideal{b}^{ce}$, 即$S^{-1}A$的每个理想都是扩张理想.
+  \ref{enum:prop-fracideal-1} 设$\ideal{b}$为$S^{-1}A$的理想, 设$x{\divslash}s\in \ideal{b}$, 则$x{\divslash}1\in\ideal{b}$, 故$x\in\ideal{b}^c$, 因此$x{\divslash}s\in\ideal{b}^{ce}$, 于是我们证明了$\ideal{b}\subseteq\ideal{b}^{ce}$, 又由\thref{prop:extencontrcorr}知一般情况下有$\ideal{b}\supseteq\ideal{b}^{ce}$, 于是$\ideal{b}=\ideal{b}^{ce}$, 即$S^{-1}A$的每个理想都是扩张理想.
 
-    \ref{enum:prop-fracideal-2} 只需要证明对于素理想$\ideal{p}\cap S=\varnothing$有$\ideal{p}^e$是素理想并且$\ideal{p}^{ec}=\ideal{p}$, 以及对于素理想$\ideal{q}\subseteq S^{-1}A$有$\ideal{q}^c$是与$S$不交的素理想并且$\ideal{q}^{ce}=\ideal{q}$. 我们已经知道对于素理想$\ideal{q}\subseteq B$有$\ideal{q}^c$为素理想, 并且由于其为扩张理想, 有$\ideal{q}=\ideal{q}^{ce}$成立.
+  \ref{enum:prop-fracideal-2} 只需要证明对于素理想$\ideal{p}\cap S=\varnothing$有$\ideal{p}^e$是素理想并且$\ideal{p}^{ec}=\ideal{p}$, 以及对于素理想$\ideal{q}\subseteq S^{-1}A$有$\ideal{q}^c$是与$S$不交的素理想并且$\ideal{q}^{ce}=\ideal{q}$. 我们已经知道对于素理想$\ideal{q}\subseteq B$有$\ideal{q}^c$为素理想, 并且由于其为扩张理想, 有$\ideal{q}=\ideal{q}^{ce}$成立.
 
-    先考察$A$中的收缩理想, 有$x\in\ideal{a}^{ec}$等价于存在$y\in\ideal{a}$与$s\in S$使得$x{\divslash}1=a{\divslash}s$, 故等价于存在$s\in S$使得$x{\divslash}s\in\ideal{a}$. 故$\ideal{a}$是收缩理想等价于$\ideal{a}\supseteq\ideal{a}^{ec}$, 也等价于如果存在$s\in S$使得$x{\divslash}s\in\ideal{a}$那么$x\in\ideal{a}$, 等价于$\pi(S)$中的元素都不是$A{\divslash}\ideal{a}$的零因子. 因此素理想$\ideal{p}\subseteq A$是收缩理想当且仅当$\ideal{p}\cap S=\varnothing$, 于是$\ideal{q}\subseteq S^{-1}A$满足$\ideal{q}^c\cap S=\varnothing$.
+  先考察$A$中的收缩理想, 有$x\in\ideal{a}^{ec}$等价于存在$y\in\ideal{a}$与$s\in S$使得$x{\divslash}1=a{\divslash}s$, 故等价于存在$s\in S$使得$x{\divslash}s\in\ideal{a}$. 故$\ideal{a}$是收缩理想等价于$\ideal{a}\supseteq\ideal{a}^{ec}$, 也等价于如果存在$s\in S$使得$x{\divslash}s\in\ideal{a}$那么$x\in\ideal{a}$, 等价于$\pi(S)$中的元素都不是$A{\divslash}\ideal{a}$的零因子. 因此素理想$\ideal{p}\subseteq A$是收缩理想当且仅当$\ideal{p}\cap S=\varnothing$, 于是$\ideal{q}\subseteq S^{-1}A$满足$\ideal{q}^c\cap S=\varnothing$.
 
-    再证明$A$的素理想$\ideal{p}$的扩张$\ideal{p}^e$是素理想当且仅当$\ideal{p}\cap S=\varnothing$. 对于素理想$\ideal{p}\subseteq A$, 因为有同构$\overline{S}^{-1}(A{\divslash}\ideal{p})\cong S^{-1}A{\divslash}S^{-1}\ideal{p}$, 而$\overline{S}^{-1}(A{\divslash}\ideal{p})$为整环$A{\divslash}\ideal{p}$的分式域的子环, 故为整环或零环, 因此$S^{-1}\ideal{p}$为素理想或$(1)$, 而由分式环中扩张理想的显式表示知$S^{-1}\ideal{p}=(1)$当且仅当$\ideal{p}\cap S\neq\varnothing$, 即当$\ideal{p}\cap S=\varnothing$时有$\ideal{p}^e$为素理想.
+  再证明$A$的素理想$\ideal{p}$的扩张$\ideal{p}^e$是素理想当且仅当$\ideal{p}\cap S=\varnothing$. 对于素理想$\ideal{p}\subseteq A$, 因为有同构$\overline{S}^{-1}(A{\divslash}\ideal{p})\cong S^{-1}A{\divslash}S^{-1}\ideal{p}$, 而$\overline{S}^{-1}(A{\divslash}\ideal{p})$为整环$A{\divslash}\ideal{p}$的分式域的子环, 故为整环或零环, 因此$S^{-1}\ideal{p}$为素理想或$(1)$, 而由分式环中扩张理想的显式表示知$S^{-1}\ideal{p}=(1)$当且仅当$\ideal{p}\cap S\neq\varnothing$, 即当$\ideal{p}\cap S=\varnothing$时有$\ideal{p}^e$为素理想.
 
-    \ref{enum:prop-fracideal-3}由\thref{prop:extencontrop}知$S^{-1}$与理想的和与积可交换, 再验证$S^{-1}(\ideal{a}\cap\ideal{b})=S^{-1}\ideal{a}\cap S^{-1}\ideal{a}\cap\ideal{b}$, 以及$S^{-1}\sqrt{\ideal{a}}=\sqrt{S^{-1}\ideal{a}}$即可.
+  \ref{enum:prop-fracideal-3}由\thref{prop:extencontrop}知$S^{-1}$与理想的和与积可交换, 再验证$S^{-1}(\ideal{a}\cap\ideal{b})=S^{-1}\ideal{a}\cap S^{-1}\ideal{a}\cap\ideal{b}$, 以及$S^{-1}\sqrt{\ideal{a}}=\sqrt{S^{-1}\ideal{a}}$即可.
 \end{proof}
 
-\begin{example}\leavevmode\vspace{-\baselineskip}
-    \begin{enumerate}
-        \item 设$A$为整环, $S=A-\{0\}$, 则$S^{-1}A$为域, 称为$A$的\emph{分式域}, 有时记为$K(A)$. 如果有域$F$满足有子环关系$A\subseteq F\subseteq K(A)$, 那么$F=K(A)$.
-        \item 设$\ideal{p}$为环$A$的素理想, 则$\ideal{p}$的余集$A-\ideal{p}$是乘法闭集, 称分式环$(A-\ideal{p})^{-1}A$为$A$在$\ideal{p}$的\emph{局部化}, 记作$A_{\ideal{p}}$. 根据\thref{prop:fracideal}, $A_{\ideal{p}}$的素理想与$A$的包含于$\ideal{p}$的素理想有保序双射, 则由于极大理想存在并且为素理想, 有$\ideal{p}^e$为$A_{\ideal{p}}$的唯一极大理想, 即$A_{\ideal{p}}$为局部环.
-        \item 设$f\in A$为环$A$的非零元, 则集合$\{f^n\vert n\in \NN\}$是乘法闭集, 记$A$关于该集合的分式环为$A_f$. 有时这也被称为$A$的\emph{局部化}.
-    \end{enumerate}
+\begin{example}
+  有一些特别的分式环, 我们将要经常遇见.
+  \begin{enumerate}
+    \item 设$A$为整环, $S=A-\{0\}$, 则$S^{-1}A$为域, 称为$A$的\emph{分式域}, 有时记为$K(A)$. 如果有域$F$满足有子环关系$A\subseteq F\subseteq K(A)$, 那么$F=K(A)$.
+    \item 设$\ideal{p}$为环$A$的素理想, 则$\ideal{p}$的余集$A-\ideal{p}$是乘法闭集, 称分式环$(A-\ideal{p})^{-1}A$为$A$在$\ideal{p}$的\emph{局部化}, 记作$A_{\ideal{p}}$. 根据\thref{prop:fracideal}, $A_{\ideal{p}}$的素理想与$A$的包含于$\ideal{p}$的素理想有保序双射, 则由于极大理想存在并且为素理想, 有$\ideal{p}^e$为$A_{\ideal{p}}$的唯一极大理想, 即$A_{\ideal{p}}$为局部环.
+    \item 设$f\in A$为环$A$的非零元, 则集合$\{f^n\vert n\in \NN\}$是乘法闭集, 记$A$关于该集合的分式环为$A_f$. 有时这也被称为$A$的\emph{局部化}.
+  \end{enumerate}
 \end{example}
 
 做累次分式环运算与只做一次分式环运算是等价的.
 
 \begin{proposition}[{{\parencite[43, Exercise 3]{atiyah_introduction_1969}}}]\label{prop:multilocalization}
-    设$S, T$为$A$的两个乘法闭集, 记$ST\coloneq \{st\vert s\in S, t\in T\}$也为$A$的乘法闭集, 记$T$在$S^{-1}A$中的像为$\overline{T}$为$S^{-1}A$的乘法闭集, 则环$(ST)^{-1}A$与$\overline{T}^{-1}(S^{-1}A)$典范同构, 即该同构与典范同态$A\to (ST)^{-1}A$和$A\to S^{-1}A\to \overline{T}^{-1}(S^{-1}A)$可交换. 特别地, 整环的分式环都可以典范地看成分式域的子环.
+  设$S, T$为$A$的两个乘法闭集, 记$ST\coloneq \{st\vert s\in S, t\in T\}$也为$A$的乘法闭集, 记$T$在$S^{-1}A$中的像为$\overline{T}$为$S^{-1}A$的乘法闭集, 则环$(ST)^{-1}A$与$\overline{T}^{-1}(S^{-1}A)$典范同构, 即该同构与典范同态$A\to (ST)^{-1}A$和$A\to S^{-1}A\to \overline{T}^{-1}(S^{-1}A)$可交换. 特别地, 整环的分式环都可以典范地看成分式域的子环.
 \end{proposition}
 
 \begin{proof}
-    证明思路与\thref{prop:localizationquotientcommute}相同.
+  证明思路与\thref{prop:localizationquotientcommute}相同.
 
-    典范同态$x\in A\mapsto x{\divslash}1\in(ST)^{-1}A$将$S$的元素映到单位, 因此由分式环的泛性质得到同态$x{\divslash}s\in S^{-1}A\mapsto x{\divslash}1\in (ST)^{-1}A$, 这个同态将$\overline{T}$的元素映到单位, 于是我们得到了同态$\varphi\colon (x{\divslash}s){\divslash}(t{\divslash}s')=(x{\divslash}(ss')){\divslash}(t{\divslash}1)\in \overline{T}^{-1}(S^{-1}A)\mapsto (xs'){\divslash}(st)\in (ST)^{-1}A$.
+  典范同态$x\in A\mapsto x{\divslash}1\in(ST)^{-1}A$将$S$的元素映到单位, 因此由分式环的泛性质得到同态$x{\divslash}s\in S^{-1}A\mapsto x{\divslash}1\in (ST)^{-1}A$, 这个同态将$\overline{T}$的元素映到单位, 于是我们得到了同态$\varphi\colon (x{\divslash}s){\divslash}(t{\divslash}s')=(x{\divslash}(ss')){\divslash}(t{\divslash}1)\in \overline{T}^{-1}(S^{-1}A)\mapsto (xs'){\divslash}(st)\in (ST)^{-1}A$.
 
-    另一方面, 典范同态$x\in A\mapsto x{\divslash}1\in S^{-1}\mapsto (x{\divslash}1){\divslash}(1{\divslash}1)\in \overline{T}^{-1}(S^{-1}A)$将$ST$的元素映到单位, 于是由分式环的泛性质可以得到同态$\psi\colon x{\divslash}(st)\in (ST)^{-1}A\mapsto (x{\divslash}s){\divslash}(t{\divslash}1)\in\overline{T}^{-1}(S^{-1}A)$.
+  另一方面, 典范同态$x\in A\mapsto x{\divslash}1\in S^{-1}\mapsto (x{\divslash}1){\divslash}(1{\divslash}1)\in \overline{T}^{-1}(S^{-1}A)$将$ST$的元素映到单位, 于是由分式环的泛性质可以得到同态$\psi\colon x{\divslash}(st)\in (ST)^{-1}A\mapsto (x{\divslash}s){\divslash}(t{\divslash}1)\in\overline{T}^{-1}(S^{-1}A)$.
 
-    两个同态$\varphi$和$\psi$互为逆, 并且与典范同态可交换.
+  两个同态$\varphi$和$\psi$互为逆, 并且与典范同态可交换.
 \end{proof}
 
 \begin{proposition}\label{prop:integraldomainlocalizationintersection}
-    设$A$为整环, $K(A)$为$A$的分式域, 则在$K(A)$中有$A=\bigcup_{\ideal{m}}A_{\ideal{m}}$.
+  设$A$为整环, $K(A)$为$A$的分式域, 则在$K(A)$中有$A=\bigcup_{\ideal{m}}A_{\ideal{m}}$.
 \end{proposition}
 
 \begin{proof}
-    只需证$\supseteq$. 对于$x\in K(A)-A$, 考虑包含理想$(x\colon A)$的极大理想$\ideal{m}$, 有$x\notin A_{\ideal{m}}$.
+  只需证$\supseteq$. 对于$x\in K(A)-A$, 考虑包含理想$(x\colon A)$的极大理想$\ideal{m}$, 有$x\notin A_{\ideal{m}}$.
 \end{proof}
 
 \subsection{模与链条件}
@@ -241,21 +242,21 @@
 与有限维线性空间上的线性变换类似, 有限生成模上的自同态也可以由矩阵表示, 虽然就算给定了生成元矩阵表示也不唯一, 但是我们仍有如下命题, 这是环上的Cayley-Hamilton定理的简单应用.
 
 \begin{proposition}[{{\parencite[21, Proposition 2.4]{atiyah_introduction_1969}}}]\label{prop:fgmoduleendomorphism}
-    设$M$为有限生成$A$-模, $\ideal{a}$为$A$的理想, $\varphi$为$M$上的$A$-模自同态, 并且满足$\varphi(M)\subseteq \ideal{a}M$. 则$\varphi$满足形如$\varphi^n+a_1\varphi^{n-1}+\dotsb +a_n=0$的方程, 其中每个$a_j\in \ideal{a}$.
+  设$M$为有限生成$A$-模, $\ideal{a}$为$A$的理想, $\varphi$为$M$上的$A$-模自同态, 并且满足$\varphi(M)\subseteq \ideal{a}M$. 则$\varphi$满足形如$\varphi^n+a_1\varphi^{n-1}+\dotsb +a_n=0$的方程, 其中每个$a_j\in \ideal{a}$.
 \end{proposition}
 
 \begin{proof}
-    设$x_1, \dotsc, x_n$是$M$的一组生成元, 因为$\varphi (x_j)\in \ideal{a}M$, 所以我们有$\varphi (x_j)=\sum_{k=1}^n t_{jk}x_k$, 其中$t_{jk}\in \ideal{a}$, 于是我们得到了以$\ideal{a}$中元素为系数的$n\times n$矩阵$T=(a_{jk})$. 根据\thref{thm:CayleyHamilton}, 有$T$的特征多项式$P_T(X)\in A[X]$是零化多项式, 故$P_T(\varphi)=0$. 又因为$P_T(X)$的系数均为$\ideal{a}$中元素, 所以我们得到了想要的方程.
+  设$x_1, \dotsc, x_n$是$M$的一组生成元, 因为$\varphi (x_j)\in \ideal{a}M$, 所以我们有$\varphi (x_j)=\sum_{k=1}^n t_{jk}x_k$, 其中$t_{jk}\in \ideal{a}$, 于是我们得到了以$\ideal{a}$中元素为系数的$n\times n$矩阵$T=(a_{jk})$. 根据\thref{thm:CayleyHamilton}, 有$T$的特征多项式$P_T(X)\in A[X]$是零化多项式, 故$P_T(\varphi)=0$. 又因为$P_T(X)$的系数均为$\ideal{a}$中元素, 所以我们得到了想要的方程.
 \end{proof}
 
 有限生成模具有传递性.
 
 \begin{proposition}[{{\parencite[28, Proposition 2.16]{atiyah_introduction_1969}}}]\label{prop:fgmodule}
-    设$N$为有限生成$B$-模, 并且$B$为有限生成$A$-模, 则$N$为有限生成$A$-模.
+  设$N$为有限生成$B$-模, 并且$B$为有限生成$A$-模, 则$N$为有限生成$A$-模.
 \end{proposition}
 
 \begin{proof}
-    设$N$的$B$-模结构可以由$y_1, \dotsc, y_n$生成, $B$的$A$-模结构可以由$x_1, \dotsc, x_m$生成, 则$N$的$A$-模结构可以由$\{x_jy_k\vert j=1, \dotsc, m, k=1, \dotsc, n\}$.
+  设$N$的$B$-模结构可以由$y_1, \dotsc, y_n$生成, $B$的$A$-模结构可以由$x_1, \dotsc, x_m$生成, 则$N$的$A$-模结构可以由$\{x_jy_k\vert j=1, \dotsc, m, k=1, \dotsc, n\}$.
 \end{proof}
 
 设$B$为$A$-代数, 若$B$同时为有限生成$A$-模, 则称$B$为\emph{有限$A$-代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数}$C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$, 同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的\emph{多项式函数整环}, 这将是本文的主要研究对象.
@@ -263,11 +264,11 @@
 有限生成代数有很好用的等价定义.
 
 \begin{proposition}[{{\parencite[30]{atiyah_introduction_1969}}}]\label{prop:fgalgebra}
-    设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为某个多项式环$A[X_1, \dotsc, X_n]$的商环.
+  设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为某个多项式环$A[X_1, \dotsc, X_n]$的商环.
 \end{proposition}
 
 \begin{proof}
-    如果$B$为由$x_1, \dotsc, x_n$的$A$-代数, 由定义即可得满同态$A[X_1, \dotsc, X_n]\to B$将$X_j$映到$x_j$. 反之, 如果有满同态$A[X_1, \dotsc, X_n]\to B$, 设$X_j$的像为$x_j$, 则$B$可由$x_1, \dotsc, x_n$生成.
+  如果$B$为由$x_1, \dotsc, x_n$的$A$-代数, 由定义即可得满同态$A[X_1, \dotsc, X_n]\to B$将$X_j$映到$x_j$. 反之, 如果有满同态$A[X_1, \dotsc, X_n]\to B$, 设$X_j$的像为$x_j$, 则$B$可由$x_1, \dotsc, x_n$生成.
 \end{proof}
 
 在\ref{subsec:algebra-ring}中我们介绍了理想之间的运算, 其中大部分运算也可以定义在子模上. 设$M$为$A$-模, $N, P$为$M$的子模, 则它们的\emph{和}$N+P\coloneq \{x+y\vert x\in N, y\in P\}$是子模, 为包含$N$和$L$的最小的子模. 它们的\emph{交}$N\cap P$也是子模. 一般地不能定义两个子模的积, 不过可以定义\emph{积}$\ideal{a}M\coloneq \{\sum_{j=1}^n a_jx_j\vert a_j\in\ideal{a}, x_j\in M, n\in\ZZ_+\}$, 其中$\ideal{a}$是$A$的理想, 是$M$的子模.
@@ -276,32 +277,32 @@
 
 现在来介绍正合列的概念. 如果一个$A$-模和$A$-模同态构成的序列
 \begin{equation}
-    \begin{tikzcd}
-        \dotsb \arrow[r] & M_{j-1} \arrow[r, "f_j"] & M_j \arrow[r, "f_{j+1}"] & M_{j+1} \arrow[r] & \dotsb\label{eqn:longexactsequence}
-    \end{tikzcd}
+  \begin{tikzcd}
+    \dotsb \arrow[r] & M_{j-1} \arrow[r, "f_j"] & M_j \arrow[r, "f_{j+1}"] & M_{j+1} \arrow[r] & \dotsb\label{eqn:longexactsequence}
+  \end{tikzcd}
 \end{equation}
 满足$\Im (f_j)=\Ker (f_{j+1})$, 则称该序列在$M_j$处\emph{正合}, 如果该序列在每一个$M_j$处都正合, 则称这个序列是\emph{正合列}. 每个形如\eqref{eqn:longexactsequence}的正合列都可以进行分拆, 记$N_j=\Im (f_j)=\Ker (f_{j+1})$, 则对于每个$j$都有序列
 \begin{equation}
-    \begin{tikzcd}
-        0 \arrow[r] & N_j \arrow[r] & M_j \arrow[r] & N_{j+1} \arrow[r] & 0\label{eqn:shortexactsequence}
-    \end{tikzcd}
+  \begin{tikzcd}
+    0 \arrow[r] & N_j \arrow[r] & M_j \arrow[r] & N_{j+1} \arrow[r] & 0\label{eqn:shortexactsequence}
+  \end{tikzcd}
 \end{equation}
 是正合列. 称形如\eqref{eqn:shortexactsequence}的正合列为\emph{短正合列}.
 
 整相关与整元是代数中非常重要的一个概念, 我们来简要这介绍这一概念并证明其与模之间的关系. 设$B$为环$A$的子环, 如果$x\in A$是某个以$B$中元素为系数的首一多项式的根, 即满足$x^n+b_1x^{n-1}+\dotsb +b_n=0$, 其中$b_1, \dotsc, b_n\in B$, 则称$x$是$B$的\emph{整元}. 特别地, 域上的代数元即为域上的整元.
 
 \begin{proposition}[{{\parencite[59, Proposition 5.1]{atiyah_introduction_1969}}}]\label{prop:integraldependence}
-    设$B$是$A$的子环, $x\in A$, 则下列命题等价.
-    \begin{enumerate}
-        \item\label{enum:prop-integral-dependence-1} $x$是$B$的整元.
-        \item\label{enum:prop-integral-dependence-2} $B[x]$是有限生成$B$-模.
-    \end{enumerate}
+  设$B$是$A$的子环, $x\in A$, 则下列命题等价.
+  \begin{enumerate}
+    \item\label{enum:prop-integral-dependence-1} $x$是$B$的整元.
+    \item\label{enum:prop-integral-dependence-2} $B[x]$是有限生成$B$-模.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    $\ref{enum:prop-integral-dependence-1}\Rightarrow\ref{enum:prop-integral-dependence-2}$ 如果$x$是$B$的整元, 则对任意的$r\geq 0$都有$x^{n+r}=-(b_1x^{n+r-1}+\dotsb +b_nx^r)$, 于是又归纳法可得每个$x^n$都可以在有$B$-模结构的$A$中由$1, x, \dotsc, x^{n-1}$表示, 因此$B[x]$的$B$-模结构可以由$1, x, \dotsc, x^{n-1}$生成, 即为有限生成$B$-模.
+  $\ref{enum:prop-integral-dependence-1}\Rightarrow\ref{enum:prop-integral-dependence-2}$ 如果$x$是$B$的整元, 则对任意的$r\geq 0$都有$x^{n+r}=-(b_1x^{n+r-1}+\dotsb +b_nx^r)$, 于是又归纳法可得每个$x^n$都可以在有$B$-模结构的$A$中由$1, x, \dotsc, x^{n-1}$表示, 因此$B[x]$的$B$-模结构可以由$1, x, \dotsc, x^{n-1}$生成, 即为有限生成$B$-模.
 
-    $\ref{enum:prop-integral-dependence-2}\Rightarrow\ref{enum:prop-integral-dependence-1}$ 注意到$B[x]$是忠实$B[x]$-模, 考虑$B[x]$上的$B[x]$-模自同态$\varphi$, 将$y\in B[x]$映到$xy$. 由\thref{prop:fgmoduleendomorphism}, 知存在$a_1, \dotsc, a_n\in A$使得$\varphi^n +a_1\varphi^{n-1}+\dotsb +a_n=0$, 即$x^n +a_1x^{n-1}+\dotsb +a_n\in \Ann (B[x])=\{0\}$.
+  $\ref{enum:prop-integral-dependence-2}\Rightarrow\ref{enum:prop-integral-dependence-1}$ 注意到$B[x]$是忠实$B[x]$-模, 考虑$B[x]$上的$B[x]$-模自同态$\varphi$, 将$y\in B[x]$映到$xy$. 由\thref{prop:fgmoduleendomorphism}, 知存在$a_1, \dotsc, a_n\in A$使得$\varphi^n +a_1\varphi^{n-1}+\dotsb +a_n=0$, 即$x^n +a_1x^{n-1}+\dotsb +a_n\in \Ann (B[x])=\{0\}$.
 \end{proof}
 
 % \begin{proposition}
@@ -311,63 +312,63 @@
 这一节的最后我们来介绍链条件与Noether模. 链条件是一种偏序集上的有限条件, 可以应用在环, 模, 拓扑空间等结构中, 而环的链条件是模的链条件的特殊情况, 所以我们先来对模的情况进行研究.
 
 \begin{proposition}[{{\parencite[74, Proposition 6.1]{atiyah_introduction_1969}}}]\label{prop:chaincondition}
-    对于偏序集$(\Sigma, \leq)$, 以下两个命题等价.
-    \begin{enumerate}
-        \item\label{enum:prop-chain-condition-chain} $\Sigma$中每个升链$x_1\subseteq x_2\subseteq\dotsb$一定稳定, 即存在$n$使得$x_n=x_{n+1}=\dotsb$.
-        \item\label{enum:prop-chain-condition-maximal} $\Sigma$的任何非空子集都有极大元.
-    \end{enumerate}
+  对于偏序集$(\Sigma, \leq)$, 以下两个命题等价.
+  \begin{enumerate}
+    \item\label{enum:prop-chain-condition-chain} $\Sigma$中每个升链$x_1\subseteq x_2\subseteq\dotsb$一定稳定, 即存在$n$使得$x_n=x_{n+1}=\dotsb$.
+    \item\label{enum:prop-chain-condition-maximal} $\Sigma$的任何非空子集都有极大元.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    $\ref{enum:prop-chain-condition-chain}\Rightarrow\ref{enum:prop-chain-condition-maximal}$ 对$\Sigma$的每个非空子集应用Zorn引理即可.
+  $\ref{enum:prop-chain-condition-chain}\Rightarrow\ref{enum:prop-chain-condition-maximal}$ 对$\Sigma$的每个非空子集应用Zorn引理即可.
 
-    $\ref{enum:prop-chain-condition-maximal}\Rightarrow\ref{enum:prop-chain-condition-chain}$ $\{x_n\}_{n\geq 0}$有极大元, 故稳定.
+  $\ref{enum:prop-chain-condition-maximal}\Rightarrow\ref{enum:prop-chain-condition-chain}$ $\{x_n\}_{n\geq 0}$有极大元, 故稳定.
 \end{proof}
 
 如果$\Sigma$为$A$-模$M$的子模全体关于集合包含关系所定义的偏序集, 则\thref{prop:chaincondition}中\ref{enum:prop-chain-condition-chain}定义的条件称为\emph{升链条件}(a.c.c.), \ref{enum:prop-chain-condition-maximal}定义的条件称为\emph{极大条件}, 如果$\Sigma$满足任一条件, 则称$M$是\emph{Noether $A$-模}, 简称为\emph{Noether模}. 如果环$A$是Noether $A$-模, 则称$A$为\emph{Noether环}.
 
 \begin{proposition}[{{\parencite[75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noethermodule}
-    设$M$是模, 则$M$是Noether模当且仅当$M$的每个子模都是有限生成的.
+  设$M$是模, 则$M$是Noether模当且仅当$M$的每个子模都是有限生成的.
 \end{proposition}
 
 \begin{proof}
-    先证$\Rightarrow$. 对于$M$的子模$N$, 考虑$N$的有限生成子模全体构成的集合$\Sigma$, 是非空集合, 故由\thref{prop:chaincondition}得$\Sigma$有极大元, 记为$P$. 对于任意的$x\in N$都有$P+Ax$是$N$的有限生成子模, 于是$P+Ax=N$, 因此$P=N$, 即$N$也为有限生成的.
+  先证$\Rightarrow$. 对于$M$的子模$N$, 考虑$N$的有限生成子模全体构成的集合$\Sigma$, 是非空集合, 故由\thref{prop:chaincondition}得$\Sigma$有极大元, 记为$P$. 对于任意的$x\in N$都有$P+Ax$是$N$的有限生成子模, 于是$P+Ax=N$, 因此$P=N$, 即$N$也为有限生成的.
 
-    再证$\Leftarrow$. 考虑$M$的子模升链$M_1\subseteq M_2\subseteq \dotsb$, 则$N=\bigcup_{j=1}^\infty M_j$是$M$的子模, 故有限生成, 设可以由$x_1, \dotsc, x_r$生成. 设$n_j$满足$x_j\in M_{n_j}$, 取$n=\max_j n_j$则有$M_n=M_{n+1}=\dotsb$, 即该升链稳定.
+  再证$\Leftarrow$. 考虑$M$的子模升链$M_1\subseteq M_2\subseteq \dotsb$, 则$N=\bigcup_{j=1}^\infty M_j$是$M$的子模, 故有限生成, 设可以由$x_1, \dotsc, x_r$生成. 设$n_j$满足$x_j\in M_{n_j}$, 取$n=\max_j n_j$则有$M_n=M_{n+1}=\dotsb$, 即该升链稳定.
 \end{proof}
 
 下面一个命题简洁而有力, 使我们可以将正合列的技术引入Noether模的研究中.
 
 \begin{proposition}[{{\parencite[75, Proposition 6.3]{atiyah_introduction_1969}}}]\label{prop:noethermoduleexactsequence}
-    设
-    \begin{tikzcd}[cramped, sep=small]
-        0 \arrow[r] & M' \arrow[r, "\alpha"] & M \arrow[r, "\beta"] & M'' \arrow[r] & 0
-    \end{tikzcd}
-    是一个由模构成的短正合列, 则$M$是Noether模当且仅当$M'$和$M''$都是Noether模. 特别地, 有限个Noether模的直和是Noether模, Noether模的子模和商模是Noether模.
+  设
+  \begin{tikzcd}[cramped, sep=small]
+    0 \arrow[r] & M' \arrow[r, "\alpha"] & M \arrow[r, "\beta"] & M'' \arrow[r] & 0
+  \end{tikzcd}
+  是一个由模构成的短正合列, 则$M$是Noether模当且仅当$M'$和$M''$都是Noether模. 特别地, 有限个Noether模的直和是Noether模, Noether模的子模和商模是Noether模.
 \end{proposition}
 
 \begin{proof}
-    先证$\Rightarrow$. 只需要注意$M'$ (或$M''$) 中的子模升链都可以提升到$M$中的子模升链, 并且只要$M$中对应的升链稳定那么在$M'$ (或$M''$) 中原来的升链就稳定.
+  先证$\Rightarrow$. 只需要注意$M'$ (或$M''$) 中的子模升链都可以提升到$M$中的子模升链, 并且只要$M$中对应的升链稳定那么在$M'$ (或$M''$) 中原来的升链就稳定.
 
-    再证$\Leftarrow$. 只需要注意$M$中的子模升链可以投影到$M'$和$M''$中的子模升链, 并且当这两个升链都稳定时$M$中原来的升链就稳定.
+  再证$\Leftarrow$. 只需要注意$M$中的子模升链可以投影到$M'$和$M''$中的子模升链, 并且当这两个升链都稳定时$M$中原来的升链就稳定.
 
-    最后只需要对于模$M_1, M_2, \dotsc$归纳地考虑短正合列
-    \begin{tikzcd}[cramped, sep=small]
-        0 \arrow[r] & M_n \arrow[r] & \bigoplus_{j=1}^n M_j \arrow[r] & \bigoplus_{j=1}^{n-1} M_j \arrow[r] & 0
-    \end{tikzcd}
-    并对于模$M$与子模$N\subseteq M$考虑短正合列
-    \begin{tikzcd}[cramped, sep=small]
-        0 \arrow[r] & N \arrow[r] & M \arrow[r] & M{\divslash}N \arrow[r] & 0
-    \end{tikzcd}
-    即可.
+  最后只需要对于模$M_1, M_2, \dotsc$归纳地考虑短正合列
+  \begin{tikzcd}[cramped, sep=small]
+    0 \arrow[r] & M_n \arrow[r] & \bigoplus_{j=1}^n M_j \arrow[r] & \bigoplus_{j=1}^{n-1} M_j \arrow[r] & 0
+  \end{tikzcd}
+  并对于模$M$与子模$N\subseteq M$考虑短正合列
+  \begin{tikzcd}[cramped, sep=small]
+    0 \arrow[r] & N \arrow[r] & M \arrow[r] & M{\divslash}N \arrow[r] & 0
+  \end{tikzcd}
+  即可.
 \end{proof}
 
 \begin{proposition}[{{\parencite[76, Proposition 6.5]{atiyah_introduction_1969}}}]\label{prop:fgmoduleovernoetherring}
-    设$A$是Noether环, $M$是有限生成$A$-模, 则$M$是Noether模.
+  设$A$是Noether环, $M$是有限生成$A$-模, 则$M$是Noether模.
 \end{proposition}
 
 \begin{proof}
-    $A^n$是有限个Noether模$A$的直和, 故由\thref{prop:noethermoduleexactsequence}得为Noether模. 又$M$是Noether模$A^n$的商模, 再由\thref{prop:noethermoduleexactsequence}得为Noether模.
+  $A^n$是有限个Noether模$A$的直和, 故由\thref{prop:noethermoduleexactsequence}得为Noether模. 又$M$是Noether模$A^n$的商模, 再由\thref{prop:noethermoduleexactsequence}得为Noether模.
 \end{proof}
 
 \subsection{Noether环与准素分解}\label{subsec:algebra-primdecom}
@@ -396,25 +397,25 @@
 % 定义满足\thref{prop:noetherring}中条件的环为\emph{Noether环}, 其中条件\ref{enum:prop-nr-chain}称为\emph{升链条件}(a.c.c.), 条件\ref{enum:prop-nr-max}称为\emph{极大条件}, 这两个条件只与环$A$理想全体的偏序结构有关, 它们的等价在一般的偏序集中也成立.
 
 \begin{proposition}[{{\parencite[76, Proposition 6.6; 80, Proposition 7.3]{atiyah_introduction_1969}}}]\label{prop:noetherring2}
-    设$A$为Noether环, 则
-    \begin{enumerate}
-        \item\label{enum:prop-nr2-quot} 如果$\ideal{a}$为理想, 那么商环$A{\divslash}\ideal{a}$为Noether环;
-        \item\label{enum:prop-nr2-frac} 如果$S$为乘法闭集, 那么分式环$S^{-1}A$为Noether环.
-    \end{enumerate}
+  设$A$为Noether环, 则
+  \begin{enumerate}
+    \item\label{enum:prop-nr2-quot} 如果$\ideal{a}$为理想, 那么商环$A{\divslash}\ideal{a}$为Noether环;
+    \item\label{enum:prop-nr2-frac} 如果$S$为乘法闭集, 那么分式环$S^{-1}A$为Noether环.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    \ref{enum:prop-nr2-quot} 由\thref{prop:quotidealcorr}知$A{\divslash}\ideal{a}$的理想全体与$A$的包含$\ideal{a}$的理想全体有保序双射, 故满足升链条件.
+  \ref{enum:prop-nr2-quot} 由\thref{prop:quotidealcorr}知$A{\divslash}\ideal{a}$的理想全体与$A$的包含$\ideal{a}$的理想全体有保序双射, 故满足升链条件.
 
-    \ref{enum:prop-nr2-frac} 由\thref{prop:extencontrcorr}\ref{enum:prop-ec-corr}和\thref{prop:fracideal}\ref{enum:prop-fracideal-3}知$S^{-1}A$的理想全体与$A$的收缩理想全体有保序双射, 故满足升链条件.
+  \ref{enum:prop-nr2-frac} 由\thref{prop:extencontrcorr}\ref{enum:prop-ec-corr}和\thref{prop:fracideal}\ref{enum:prop-fracideal-3}知$S^{-1}A$的理想全体与$A$的收缩理想全体有保序双射, 故满足升链条件.
 \end{proof}
 
 \begin{theorem}[Hilbert基定理{{\parencites[81, Theorem 7.5]{atiyah_introduction_1969}[201, Theorem 1]{zariski_commutative_1958}}}]\label{thm:hilbertbasis}
-    若$A$为Noether环, 则有限生成$A$-代数为Noether环.
+  若$A$为Noether环, 则有限生成$A$-代数为Noether环.
 \end{theorem}
 
 \begin{proof}
-    这个证明参考了\footfullcite{noauthor_hilberts_2020}. 由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
+  这个证明参考了\footfullcite{noauthor_hilberts_2020}. 由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
 \end{proof}
 
 这一节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明从属素理想, 孤立从属素理想及其对应的孤立准素理想的唯一性.
@@ -422,94 +423,94 @@
 准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想. 设$A$为环, 若$A$的真理想$\ideal{q}$满足如果$xy\in \ideal{q}$那么$x\in\ideal{q}$或者$y\in\sqrt{\ideal{q}}$, 则称$\ideal{q}$为\emph{准素理想}, 有等价条件为$A{\divslash}\ideal{q}\neq 0$并且$A{\divslash}\ideal{q}$的每个零因子都是幂零元. 显然素理想是准素理想, 准素理想的拉回是准素理想.
 
 \begin{proposition}[{{\parencite[50, Proposition 4.1; 51, Lemma 4.3]{atiyah_introduction_1969}}}]\label{prop:primary}\leavevmode
-    \begin{enumerate}
-        \item 设$\ideal{q}$为环$A$的准素理想, 则$\ideal{p}\coloneq \sqrt{\ideal{q}}$为包含$\ideal{q}$的极小素理想, 称$\ideal{q}$为$\ideal{p}$-\emph{准素理想}.
-        \item\label{enum:prim-inte} 设$\ideal{q}_1, \dotsc, \ideal{q}_n$为环$A$的$\ideal{p}$-准素理想, 则$\bigcap_{j=1}^n\ideal{q}_j$为$\ideal{p}$-准素理想.
-    \end{enumerate}
+  \begin{enumerate}
+    \item 设$\ideal{q}$为环$A$的准素理想, 则$\ideal{p}\coloneq \sqrt{\ideal{q}}$为包含$\ideal{q}$的极小素理想, 称$\ideal{q}$为$\ideal{p}$-\emph{准素理想}.
+    \item\label{enum:prim-inte} 设$\ideal{q}_1, \dotsc, \ideal{q}_n$为环$A$的$\ideal{p}$-准素理想, 则$\bigcap_{j=1}^n\ideal{q}_j$为$\ideal{p}$-准素理想.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    %TODO: Need a proof here
+  %TODO: Need a proof here
 \end{proof}
 
 环$A$中理想$\ideal{a}$的准素分解为将$\ideal{a}$写为有限个准素理想的交, 即$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$. 进一步地, 如果有$\sqrt{\ideal{q}_j}$两两不同, 并且对于每个$j$都有$\ideal{q}_j\nsupseteq\bigcap_{k\neq j}\ideal{q}_k$, 则称这个准素分解为\emph{既约的}. 利用\thref{prop:primary}\ref{enum:prim-inte}, 再去除多余的项, 我们总可以将准素分解化为既约的. 一般来说准素分解不一定存在, 不过我们即将证明在Noether环上准素分解总是存在的.
 
 \begin{theorem}[Lasker–Noether定理{{\parencites[83, Theorem 7.13]{atiyah_introduction_1969}[209, Theorem 4]{zariski_commutative_1958}}}]\label{thm:laskernoether}
-    Noether环$A$的每个理想都有既约准素分解.
+  Noether环$A$的每个理想都有既约准素分解.
 \end{theorem}
 
 \begin{proof}
-    先给一个定义, 如果环$A$的一个理想$\ideal{a}$满足如果$\ideal{a}=\ideal{b}\cap\ideal{c}$则$\ideal{a}=\ideal{b}$或$\ideal{a}=\ideal{c}$, 则称$\ideal{a}$为\emph{不可约理想}, 一个理想若不是不可约的, 则称其为\emph{可约理想}. 这个证明将分为两步, 首先证明Noether环的每个理想都能分解成有限个不可约理想的交, 再证明Noether环的不可约理想总是准素理想.
+  先给一个定义, 如果环$A$的一个理想$\ideal{a}$满足如果$\ideal{a}=\ideal{b}\cap\ideal{c}$则$\ideal{a}=\ideal{b}$或$\ideal{a}=\ideal{c}$, 则称$\ideal{a}$为\emph{不可约理想}, 一个理想若不是不可约的, 则称其为\emph{可约理想}. 这个证明将分为两步, 首先证明Noether环的每个理想都能分解成有限个不可约理想的交, 再证明Noether环的不可约理想总是准素理想.
 
-    考虑Noether环$A$中不能分解成有限个不可约理想的交的理想全体, 假设其非空, 因为满足极大条件, 所以存在极大元$\ideal{a}$, 显然$\ideal{a}$是可约的, 所以存在$\ideal{b}\cap\ideal{c}=\ideal{a}$, 满足$\ideal{b}, \ideal{c}\supsetneqq\ideal{a}$. 由$\ideal{a}$的极大性知$\ideal{b}, \ideal{c}$可以写成有限个不可约理想的交, 于是$\ideal{a}$也可以写成有限个不可约理想的交, 与定义矛盾. 于是得证第一步, Noether环的每个理想都能分解成有限个不可约理想的交.
+  考虑Noether环$A$中不能分解成有限个不可约理想的交的理想全体, 假设其非空, 因为满足极大条件, 所以存在极大元$\ideal{a}$, 显然$\ideal{a}$是可约的, 所以存在$\ideal{b}\cap\ideal{c}=\ideal{a}$, 满足$\ideal{b}, \ideal{c}\supsetneqq\ideal{a}$. 由$\ideal{a}$的极大性知$\ideal{b}, \ideal{c}$可以写成有限个不可约理想的交, 于是$\ideal{a}$也可以写成有限个不可约理想的交, 与定义矛盾. 于是得证第一步, Noether环的每个理想都能分解成有限个不可约理想的交.
 
-    设$\ideal{a}$为Noether环$A$的不可约理想, 那么零理想$(0)$是商环$A{\divslash}\ideal{a}$的不可约理想, 并且由于准素理想的拉回是准素理想, 所以我们只需要证明$(0)$是$A{\divslash}\ideal{a}$的准素理想. 调整记号, 我们只需要证明如果Noether环$A$的零理想$(0)$是不可约理想, 则它一定是准素理想. 考虑$xy=0$但$y\neq 0$, 有理想升链$\Ann((x))\subseteq\Ann((x^2))\subseteq\dotsb$, 由升链条件知该升链稳定, 即存在$n$使得$\Ann((x^n))=\Ann((x^{n+1}))=\dotsb$. 我们声称$(x^n)\cap (y)=(0)$, 如果$a\in (y)$, 则$ax=0$, 如果进一步地有$a\in (x^n)$, 设$a=bx^n$, 则$bx^{n+1}=ax=0$, 因此$b\in\Ann((x^{n+1}))=\Ann((x^n))$, 故$a=bx^n=0$. 因为$(0)$为不可约理想且$(y)\neq 0$, 所以$(x^n)=(0)$, 即$x^n=0$, 得证第二步, Noether环的不可约理想总是准素理想.
+  设$\ideal{a}$为Noether环$A$的不可约理想, 那么零理想$(0)$是商环$A{\divslash}\ideal{a}$的不可约理想, 并且由于准素理想的拉回是准素理想, 所以我们只需要证明$(0)$是$A{\divslash}\ideal{a}$的准素理想. 调整记号, 我们只需要证明如果Noether环$A$的零理想$(0)$是不可约理想, 则它一定是准素理想. 考虑$xy=0$但$y\neq 0$, 有理想升链$\Ann((x))\subseteq\Ann((x^2))\subseteq\dotsb$, 由升链条件知该升链稳定, 即存在$n$使得$\Ann((x^n))=\Ann((x^{n+1}))=\dotsb$. 我们声称$(x^n)\cap (y)=(0)$, 如果$a\in (y)$, 则$ax=0$, 如果进一步地有$a\in (x^n)$, 设$a=bx^n$, 则$bx^{n+1}=ax=0$, 因此$b\in\Ann((x^{n+1}))=\Ann((x^n))$, 故$a=bx^n=0$. 因为$(0)$为不可约理想且$(y)\neq 0$, 所以$(x^n)=(0)$, 即$x^n=0$, 得证第二步, Noether环的不可约理想总是准素理想.
 
-    又由于每个准素分解都可以化为既约准素分解, 我们证明了Noether环$A$的每个理想都有既约准素分解.
+  又由于每个准素分解都可以化为既约准素分解, 我们证明了Noether环$A$的每个理想都有既约准素分解.
 \end{proof}
 
 现在来考察准素分解的唯一性, 首先我们利用理想商这一工具来证明准素分解中从属素理想的唯一性.
 
 \begin{proposition}[{{\parencite[51, Lemma 4.4]{atiyah_introduction_1969}}}]\label{prop:idealquotprimary}
-    设$\ideal{q}$为环$A$的$\ideal{p}$-准素理想, $x\in A$, 则
-    \begin{enumerate}
-        \item 如果$x\in \ideal{q}$, 则$(\ideal{q}{:}(x))=(1)$;
-        \item 如果$x\notin\ideal{q}$, 则$(\ideal{q}{:}(x))$为$\ideal{p}$-准素理想, 故$\sqrt{(\ideal{q}{:}(x))}=\ideal{p}$;
-        \item 如果$x\notin\ideal{p}$, 则$(\ideal{q}{:}(x))=\ideal{q}$.
-    \end{enumerate}
+  设$\ideal{q}$为环$A$的$\ideal{p}$-准素理想, $x\in A$, 则
+  \begin{enumerate}
+    \item 如果$x\in \ideal{q}$, 则$(\ideal{q}{:}(x))=(1)$;
+    \item 如果$x\notin\ideal{q}$, 则$(\ideal{q}{:}(x))$为$\ideal{p}$-准素理想, 故$\sqrt{(\ideal{q}{:}(x))}=\ideal{p}$;
+    \item 如果$x\notin\ideal{p}$, 则$(\ideal{q}{:}(x))=\ideal{q}$.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    %TODO: PROOF!
+  %TODO: PROOF!
 \end{proof}
 
 \begin{theorem}[{{\parencite[52, Theorem 4.5]{atiyah_introduction_1969}}}]\label{prop:primuniq1}
-    设$\ideal{a}$为环$A$的一个可准素分解的理想, 令$\ideal{a}=\bigcap_{j=1}^n \ideal{q}_j$为既约准素分解, 对于$j=1, \dotsc, n$记$\ideal{p}_j\coloneq \sqrt{\ideal{q}_j}$, 则集合$\{\ideal{p}_1, \dotsc, \ideal{p}_n\}$恰为$\{\sqrt{(\ideal{a}{:}(x))}\vert x\in A\}$的素理想全体, 于是$\{\ideal{p}_1, \dotsc, \ideal{p}_n\}$与既约准素分解的选取无关, 称为$\ideal{a}$的\emph{从属素理想}.
+  设$\ideal{a}$为环$A$的一个可准素分解的理想, 令$\ideal{a}=\bigcap_{j=1}^n \ideal{q}_j$为既约准素分解, 对于$j=1, \dotsc, n$记$\ideal{p}_j\coloneq \sqrt{\ideal{q}_j}$, 则集合$\{\ideal{p}_1, \dotsc, \ideal{p}_n\}$恰为$\{\sqrt{(\ideal{a}{:}(x))}\vert x\in A\}$的素理想全体, 于是$\{\ideal{p}_1, \dotsc, \ideal{p}_n\}$与既约准素分解的选取无关, 称为$\ideal{a}$的\emph{从属素理想}.
 \end{theorem}
 
 \begin{proof}
-    首先证明能写成$\sqrt{(\ideal{a}{:}(x))}$形式的素理想一定是某一个$\ideal{p}_j$. 由\thref{prop:idealop}\ref{enum:prop-idealop-quot-firstcap}和\thref{prop:idealquotprimary}, 有$\sqrt{(\ideal{a}{:}(x))}=\sqrt{\bigcap_{k=1}^n(\ideal{q}_k{:}(x))}=\bigcap_{x\notin\ideal{q}_k}\ideal{p}_k$. 如果$\sqrt{(\ideal{a}{:}(x))}$是素理想, 那么由\thref{prop:prime}\ref{enum:prop-prime-absorb}知存在$j$使得$\sqrt{(\ideal{a}{:}(x))}=\ideal{p}_j$.
+  首先证明能写成$\sqrt{(\ideal{a}{:}(x))}$形式的素理想一定是某一个$\ideal{p}_j$. 由\thref{prop:idealop}\ref{enum:prop-idealop-quot-firstcap}和\thref{prop:idealquotprimary}, 有$\sqrt{(\ideal{a}{:}(x))}=\sqrt{\bigcap_{k=1}^n(\ideal{q}_k{:}(x))}=\bigcap_{x\notin\ideal{q}_k}\ideal{p}_k$. 如果$\sqrt{(\ideal{a}{:}(x))}$是素理想, 那么由\thref{prop:prime}\ref{enum:prop-prime-absorb}知存在$j$使得$\sqrt{(\ideal{a}{:}(x))}=\ideal{p}_j$.
 
-    再证明每个$\ideal{p}_j$都能写成$\sqrt{(\ideal{a}{:}(x))}$的形式. 由于准素分解的既约性, 所以对于每个$j$存在$x_j\notin\ideal{q}_j$, $x_j\in\bigcap_{k\neq j}\ideal{q}_k$, 而由上一步知$\sqrt{(\ideal{a}{:}(x_j))}=\bigcap_{x\notin\ideal{q}_k}\ideal{p}_k=\ideal{p}_j$. 遂得证.
+  再证明每个$\ideal{p}_j$都能写成$\sqrt{(\ideal{a}{:}(x))}$的形式. 由于准素分解的既约性, 所以对于每个$j$存在$x_j\notin\ideal{q}_j$, $x_j\in\bigcap_{k\neq j}\ideal{q}_k$, 而由上一步知$\sqrt{(\ideal{a}{:}(x_j))}=\bigcap_{x\notin\ideal{q}_k}\ideal{p}_k=\ideal{p}_j$. 遂得证.
 \end{proof}
 
 接着我们证明孤立从属素理想的唯一性, 并利用局部化这一工具证明其对应的孤立准素理想的唯一性. 环$A$的可准素分解理想$\ideal{a}$的从属素理想全体中的极小元被称为\emph{孤立从属素理想}, 其余的从属素理想被称为\emph{嵌入从属素理想}. ``孤立"与``嵌入"的说法来源于代数几何, 我们将在(%TODO: isolated embedded
 )看到其几何意义, 下一个命题刻画了几何意义对应的代数意义.
 
 \begin{proposition}[{{\parencite[52, Proposition 4.6]{atiyah_introduction_1969}}}]
-    设$\ideal{a}$为环$A$的可准素分解理想. 则每个包含$\ideal{a}$的素理想$\ideal{p}$都包含一个$\ideal{a}$的孤立从属素理想. 因此$\ideal{a}$的孤立从属素理想恰为包含$\ideal{a}$的素理想全体中的极小元.
+  设$\ideal{a}$为环$A$的可准素分解理想. 则每个包含$\ideal{a}$的素理想$\ideal{p}$都包含一个$\ideal{a}$的孤立从属素理想. 因此$\ideal{a}$的孤立从属素理想恰为包含$\ideal{a}$的素理想全体中的极小元.
 \end{proposition}
 
 \begin{proof}
-    如果$\ideal{p}\supseteq\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$, 那么由\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}知$\ideal{p}=\sqrt{\ideal{p}}\supseteq\sqrt{\bigcap_{j=1}^n\ideal{q}_j}=\bigcap_{j=1}^n\sqrt{\ideal{q}_j}=\bigcap_{j=1}^n\ideal{p}_j$, 所以存在$j$使得$\ideal{p}\supseteq\ideal{p}_j$, 于是$\ideal{p}$包含一个$\ideal{a}$的从属素理想.
+  如果$\ideal{p}\supseteq\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$, 那么由\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}知$\ideal{p}=\sqrt{\ideal{p}}\supseteq\sqrt{\bigcap_{j=1}^n\ideal{q}_j}=\bigcap_{j=1}^n\sqrt{\ideal{q}_j}=\bigcap_{j=1}^n\ideal{p}_j$, 所以存在$j$使得$\ideal{p}\supseteq\ideal{p}_j$, 于是$\ideal{p}$包含一个$\ideal{a}$的从属素理想.
 \end{proof}
 
 现在来考察准素理想在局部化下的扩张与收缩.
 
 \begin{proposition}[{{\parencite[53, Proposition 4.8; 54, Proposition 4.9]{atiyah_introduction_1969}}}]\label{prop:primlocal}设$S$为环$A$的乘法闭集, 考虑典范同态$A\to S^{-1}A$.
-    \begin{enumerate}
-        \item\label{enum:prop-primlocal-exten} 设$\ideal{q}$为$\ideal{p}$-准素理想, 如果$S\cap\ideal{p}\neq\varnothing$, 则$\ideal{q}^e=(1)$. 如果$S\cap\ideal{p}=\varnothing$, 则$\ideal{q}^e$为$\ideal{p}^e$-准素理想, 并且$\ideal{q}^{ec}=\ideal{q}$;
-        \item\label{enum:prop-primlocal-decom} 设$\ideal{a}$为可准素分解的理想, 并且有既约准素分解$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$, 设$\ideal{p}_j=\sqrt{\ideal{q}_j}$, 则有
-        \begin{equation*}
-            \ideal{a}^{e}=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j^e,
-            \qquad \ideal{a}^{ec}=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j,
-        \end{equation*}
-        并且这两个都是既约准素分解.
-    \end{enumerate}
+  \begin{enumerate}
+    \item\label{enum:prop-primlocal-exten} 设$\ideal{q}$为$\ideal{p}$-准素理想, 如果$S\cap\ideal{p}\neq\varnothing$, 则$\ideal{q}^e=(1)$. 如果$S\cap\ideal{p}=\varnothing$, 则$\ideal{q}^e$为$\ideal{p}^e$-准素理想, 并且$\ideal{q}^{ec}=\ideal{q}$;
+    \item\label{enum:prop-primlocal-decom} 设$\ideal{a}$为可准素分解的理想, 并且有既约准素分解$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$, 设$\ideal{p}_j=\sqrt{\ideal{q}_j}$, 则有
+    \begin{equation*}
+      \ideal{a}^{e}=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j^e,
+      \qquad \ideal{a}^{ec}=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j,
+    \end{equation*}
+    并且这两个都是既约准素分解.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    \ref{enum:prop-primlocal-exten}% TODO: PROOF
+  \ref{enum:prop-primlocal-exten}% TODO: PROOF
 
-    \ref{enum:prop-primlocal-decom}因为$S$为乘法闭集, 所以$\ideal{p}_j\cap S\neq\varnothing$等价于$\ideal{q}_j\cap S\neq\varnothing$, 此时有$\ideal{q}_j^e=(1)$. 再由\ref{enum:prop-primlocal-exten}与\thref{prop:fracideal}\ref{enum:prop-fracideal-3}知, $\ideal{a}^e=(\bigcap_{j=1}^n\ideal{q}_j)^e\bigcap_{j=1}^n\ideal{q}_j^e=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j^e$. 现在证明这个$\ideal{a}^e$的准素分解是既约的. 如果有$\ideal{q}_j^e\supseteq\bigcap_{k\neq j}\ideal{q}_k^e$, 由\thref{prop:extencontrop}有$\ideal{q}_j^e\supseteq(\bigcap_{k\neq j}\ideal{q}_k)^e$, 由\ref{enum:prop-primlocal-exten}两边取收缩即与$\ideal{a}$准素分解的既约性矛盾, 又当$\ideal{p}_j\cap S=\varnothing$时有$\sqrt{\ideal{q}_j}^e=\ideal{p}_j^e$两两不同, 故这个$\ideal{a}^e$的准素分解为既约的. 再两边取拉回, 类似地由\ref{enum:prop-primlocal-exten}, \thref{prop:fracideal}\ref{enum:prop-fracideal-3}和\thref{prop:extencontrop}可得证$\ideal{a}^{ec}=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j$为既约准素分解.
+  \ref{enum:prop-primlocal-decom}因为$S$为乘法闭集, 所以$\ideal{p}_j\cap S\neq\varnothing$等价于$\ideal{q}_j\cap S\neq\varnothing$, 此时有$\ideal{q}_j^e=(1)$. 再由\ref{enum:prop-primlocal-exten}与\thref{prop:fracideal}\ref{enum:prop-fracideal-3}知, $\ideal{a}^e=(\bigcap_{j=1}^n\ideal{q}_j)^e\bigcap_{j=1}^n\ideal{q}_j^e=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j^e$. 现在证明这个$\ideal{a}^e$的准素分解是既约的. 如果有$\ideal{q}_j^e\supseteq\bigcap_{k\neq j}\ideal{q}_k^e$, 由\thref{prop:extencontrop}有$\ideal{q}_j^e\supseteq(\bigcap_{k\neq j}\ideal{q}_k)^e$, 由\ref{enum:prop-primlocal-exten}两边取收缩即与$\ideal{a}$准素分解的既约性矛盾, 又当$\ideal{p}_j\cap S=\varnothing$时有$\sqrt{\ideal{q}_j}^e=\ideal{p}_j^e$两两不同, 故这个$\ideal{a}^e$的准素分解为既约的. 再两边取拉回, 类似地由\ref{enum:prop-primlocal-exten}, \thref{prop:fracideal}\ref{enum:prop-fracideal-3}和\thref{prop:extencontrop}可得证$\ideal{a}^{ec}=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j$为既约准素分解.
 \end{proof}
 
 \begin{theorem}[{{\parencite[54, Corollary 4.11]{atiyah_introduction_1969}}}]
-    设$\ideal{a}$为环$A$的可准素分解理想, 则$\ideal{a}$的孤立从属素理想对应的准素理想由$\ideal{a}$唯一决定, 称为\emph{孤立准素理想}.
+  设$\ideal{a}$为环$A$的可准素分解理想, 则$\ideal{a}$的孤立从属素理想对应的准素理想由$\ideal{a}$唯一决定, 称为\emph{孤立准素理想}.
 \end{theorem}
 
 \begin{proof}
-    设$\ideal{p}$为$\ideal{a}$的孤立从属素理想, 其对应的准素理想为$\ideal{q}$. 考察局部化$A_{\ideal{p}}$, 由$\ideal{p}$的极小性以及\thref{prop:primlocal}\ref{enum:prop-primlocal-decom}知$\ideal{a}^{ec}=\ideal{q}$, 又由\thref{prop:primuniq1}以及定义知$\ideal{a}$的孤立从属素理想由$\ideal{a}$唯一决定, 故孤立从属素理想对应的准素理想由$\ideal{a}$唯一决定.
+  设$\ideal{p}$为$\ideal{a}$的孤立从属素理想, 其对应的准素理想为$\ideal{q}$. 考察局部化$A_{\ideal{p}}$, 由$\ideal{p}$的极小性以及\thref{prop:primlocal}\ref{enum:prop-primlocal-decom}知$\ideal{a}^{ec}=\ideal{q}$, 又由\thref{prop:primuniq1}以及定义知$\ideal{a}$的孤立从属素理想由$\ideal{a}$唯一决定, 故孤立从属素理想对应的准素理想由$\ideal{a}$唯一决定.
 \end{proof}
 
 \subsection{维数理论}\label{subsec:algebra-dimension}
@@ -523,82 +524,82 @@
 
 设$X$为非空集合, 用$\powerset{X}$表示$X$的\emph{幂集}, 即$X$的子集全体构成的集合, 用大写字母表示$\powerset{X}$的元素, 用小写字母表示$X$的元素. 考虑子集$\Delta\subseteq X\times \powerset{X}$, 即$\Delta$为从$X$到$\powerset{X}$的一个\emph{对应}, 如果$(x, S)\in \Delta$则记$x\depend S$. 如果$\Delta$满足
 \begin{enumerate}
-    \item\label{enum:dependaxiom1} 如果$x\in S$, 则$x\depend S$;
-    \item\label{enum:dependaxiom2} 若$x\depend S$, 则存在有限子集$F\subseteq S$使得$x\depend F$;
-    \item\label{enum:dependaxiom3} 如果$x\depend S$并且对于每个$y\in S$都有$y\depend T$, 那么有$x\depend T$;
-    \item\label{enum:dependaxiom4} (Steinitz对换公理) 如果$x\depend S$但是$x\ndepend S-\{y\}$, 则$y\depend (S-\{y\})\cup\{x\}$,
+  \item\label{enum:dependaxiom1} 如果$x\in S$, 则$x\depend S$;
+  \item\label{enum:dependaxiom2} 若$x\depend S$, 则存在有限子集$F\subseteq S$使得$x\depend F$;
+  \item\label{enum:dependaxiom3} 如果$x\depend S$并且对于每个$y\in S$都有$y\depend T$, 那么有$x\depend T$;
+  \item\label{enum:dependaxiom4} (Steinitz对换公理) 如果$x\depend S$但是$x\ndepend S-\{y\}$, 则$y\depend (S-\{y\})\cup\{x\}$,
 \end{enumerate}
 则称$\Delta$为一个$X$上的\emph{相关关系}. 给定相关关系$\Delta$, 如果子集$S\subseteq X$满足不存在$x\in S$使得$x\depend S-\{x\}$, 则称$S$为\emph{无关集}, 否则称$S$为\emph{相关集}. 如果$X$的无关子集$B$满足每个$x\in X$都有$x\depend B$, 则称$B$为$X$的一个\emph{基}.
 
 \begin{remark}
-    上述定义中, $S$与$B$均可以为空集.
+  上述定义中, $S$与$B$均可以为空集.
 \end{remark}
 
 \begin{example}
-    设$X$为有限维线性空间, 定义从$X$到$\powerset{X}$的对应$\Delta$为$x\depend S$当且仅当$x$能被$S$的某个有限子集线性表示, 则$\Delta$为$X$上的一个相关关系, $\Delta$意义下的无关集恰为线性空间中的线性无关集, $\Delta$意义下的基恰为线性空间的基.
+  设$X$为有限维线性空间, 定义从$X$到$\powerset{X}$的对应$\Delta$为$x\depend S$当且仅当$x$能被$S$的某个有限子集线性表示, 则$\Delta$为$X$上的一个相关关系, $\Delta$意义下的无关集恰为线性空间中的线性无关集, $\Delta$意义下的基恰为线性空间的基.
 \end{example}
 
 接下来我们将要证明基存在性以及基数意义下的唯一性, 思路与有限维线性空间的情况类似, 即研究极大无关集的性质. 首先我们需要一个引理保证无关集可以``扩张".
 
 \begin{proposition}[{{\parencite[123, Lemma 1]{jacobson_basic_1989}}}]\label{prop:dependlemma}
-    设$\Delta$为$X$上的相关关系, 如果$S\subseteq X$为无关集且$x\ndepend S$, 则$S\cup\{x\}$也为无关集.
+  设$\Delta$为$X$上的相关关系, 如果$S\subseteq X$为无关集且$x\ndepend S$, 则$S\cup\{x\}$也为无关集.
 \end{proposition}
 
 \begin{proof}
-    若假设$S\cup\{x\}$为无关集, 注意到有$x\ndepend S$, 故存在$y\in S$使得$y\depend (S-\{y\})\cup \{x\}$. 因为$S$无关, 故$y\ndepend S-\{y\}$, 故由Steinitz对换公理知$x\depend S$, 矛盾. 遂得证.
+  若假设$S\cup\{x\}$为无关集, 注意到有$x\ndepend S$, 故存在$y\in S$使得$y\depend (S-\{y\})\cup \{x\}$. 因为$S$无关, 故$y\ndepend S-\{y\}$, 故由Steinitz对换公理知$x\depend S$, 矛盾. 遂得证.
 \end{proof}
 
 \begin{theorem}[{{\parencite[123, Theorem 3.12]{jacobson_basic_1989}}}]\label{thm:dependbase}
-    设$\Delta$为$X$上的相关关系, 则存在$X$的一个基, 并且$X$的任意两个基具有相同的基数.
+  设$\Delta$为$X$上的相关关系, 则存在$X$的一个基, 并且$X$的任意两个基具有相同的基数.
 \end{theorem}
 %\footnotetext{如果一个集合$X$为空集, 则定义$X$的\emph{基数}为0; 如果存在$X$到$\{1, 2, \dotsc, n\}$的双射, 则定义$X$的\emph{基数}为$n$; 其余情况定义$X$的\emph{基数}为$\infty$. 其实把基数换成基数也成立, 证明只需要一点关于基数运算的性质, 不过没必要% 这里我们不给出基数的正式定义, 只定义两个非空集合\emph{具有相同的基数}当且仅当存在两个集合之间的双射, 并定义空集与且仅与空集\emph{具有相同的基数}.
 %}
 
 \begin{proof}
-    首先利用Zorn引理构造极大无关集, 并证明每个极大无关集都是一个基. 无关集全体作为$\powerset{X}$的子集, 有由集合包含关系定义的偏序关系. 考虑任一全序子链$\{S_\lambda\}$, 只需证明其并集$\tilde{S}\coloneq \bigcup_\lambda S_\lambda$也是无关集. 先考虑$\tilde{S}$有限的情况, 那么一定等于某个$S_\lambda$, 故为无关集. 再考虑$\tilde{S}$无限的情况, 反证存在$x\in \tilde{S}$使得$x\depend \tilde{S}-\{x\}$, 则由定义知存在有限子集$T\subseteq\tilde{S}$满足$x\in T$并且$x\depend T-\{x\}$. 由于全序子链$\{S_\lambda\}$的并$\tilde{S}$为无限集, 且$x\in \tilde{S}$, 故一定存在$S_\lambda$使得$x\in S_\lambda$并且$T\subseteq S_\lambda$, 故根据定义知$x\depend S_\lambda-\{x\}$, 与$S_\lambda$无关矛盾. 故得证无关集的全序子链的并为其上界, 根据Zorn引理知存在极大无关集, 由极大性及基的定义即可得到极大无关集总是基.
+  首先利用Zorn引理构造极大无关集, 并证明每个极大无关集都是一个基. 无关集全体作为$\powerset{X}$的子集, 有由集合包含关系定义的偏序关系. 考虑任一全序子链$\{S_\lambda\}$, 只需证明其并集$\tilde{S}\coloneq \bigcup_\lambda S_\lambda$也是无关集. 先考虑$\tilde{S}$有限的情况, 那么一定等于某个$S_\lambda$, 故为无关集. 再考虑$\tilde{S}$无限的情况, 反证存在$x\in \tilde{S}$使得$x\depend \tilde{S}-\{x\}$, 则由定义知存在有限子集$T\subseteq\tilde{S}$满足$x\in T$并且$x\depend T-\{x\}$. 由于全序子链$\{S_\lambda\}$的并$\tilde{S}$为无限集, 且$x\in \tilde{S}$, 故一定存在$S_\lambda$使得$x\in S_\lambda$并且$T\subseteq S_\lambda$, 故根据定义知$x\depend S_\lambda-\{x\}$, 与$S_\lambda$无关矛盾. 故得证无关集的全序子链的并为其上界, 根据Zorn引理知存在极大无关集, 由极大性及基的定义即可得到极大无关集总是基.
 
-    现在考虑两个基$B$和$C$, 需要证明它们有相同的基数. 若$B$为空集, 则由基的定义知$C$也为空集, 故基数相同. 于是只需要考虑$B$和$C$均非空的情况.
+  现在考虑两个基$B$和$C$, 需要证明它们有相同的基数. 若$B$为空集, 则由基的定义知$C$也为空集, 故基数相同. 于是只需要考虑$B$和$C$均非空的情况.
 
-    先考虑有限的情况, 我们将证明如果$B$有限, 则$C$有限, 并且$B$与$C$具有相同的基数. 设$B$有限, 即$B=\{x_1, x_2, \dotsc, x_n\}$为$n$元集合. 利用归纳法证明对于每个$0\leq k\leq n$都存在$y_i\in C$使得$\{y_1, \dotsc, y_k, x_{k+1}, \dotsc, x_n\}$为$n$元集合并且为$X$的基. 当$k=0$时因为$B$是基故命题成立, 假设命题对于$k-1$成立, 记$D_{k-1}\coloneq \{y_1, \dotsc, y_{k-1}, x_k, x_{k+1}, \dotsc, x_n\}$. 由基的定义以及归纳假设知, 一定存在$y\in C$使得$y\ndepend D_{k-1}-\{x_k\}$成立, 取一个这样的$y$为$y_k$从而得到$D_k\coloneq \{y_1, \dotsc, y_k, x_{k+1}, \dotsc, x_n\}$, 由\thref{prop:dependlemma}知$D_k$为无关集. 又由Steinitz对换公理知$x_k\depend D_k$, 故每个$D_{k-1}$的元素$x$都有$x\depend D_k$, 由于$D_{k-1}$是基, 所以每个$X$的元素$x$都有$x\depend D_{k}$, 遂得证$D_k$为$n$元集合且为$X$的基, 故由归纳法结论得证.
+  先考虑有限的情况, 我们将证明如果$B$有限, 则$C$有限, 并且$B$与$C$具有相同的基数. 设$B$有限, 即$B=\{x_1, x_2, \dotsc, x_n\}$为$n$元集合. 利用归纳法证明对于每个$0\leq k\leq n$都存在$y_i\in C$使得$\{y_1, \dotsc, y_k, x_{k+1}, \dotsc, x_n\}$为$n$元集合并且为$X$的基. 当$k=0$时因为$B$是基故命题成立, 假设命题对于$k-1$成立, 记$D_{k-1}\coloneq \{y_1, \dotsc, y_{k-1}, x_k, x_{k+1}, \dotsc, x_n\}$. 由基的定义以及归纳假设知, 一定存在$y\in C$使得$y\ndepend D_{k-1}-\{x_k\}$成立, 取一个这样的$y$为$y_k$从而得到$D_k\coloneq \{y_1, \dotsc, y_k, x_{k+1}, \dotsc, x_n\}$, 由\thref{prop:dependlemma}知$D_k$为无关集. 又由Steinitz对换公理知$x_k\depend D_k$, 故每个$D_{k-1}$的元素$x$都有$x\depend D_k$, 由于$D_{k-1}$是基, 所以每个$X$的元素$x$都有$x\depend D_{k}$, 遂得证$D_k$为$n$元集合且为$X$的基, 故由归纳法结论得证.
 
-    无限的情况比有限的要简单不少, 当$B$无限时, 由有限情况的结论知$C$一定无限, 还需要证明$B$与$C$具有相同的基数. 只需证明$\vert B\vert\leq \vert C\vert$. 对于每个$C$的元素$y$, 存在$B$的有限子集$B_y$使得$y\depend B_y$, 我们有$\vert \{B_y\}\vert\leq \vert C\vert$. 因为每个$B_y$都是有限的, 所以有$\vert\bigcup B_y\vert\leq \vert\ZZ\times C\vert$. 由于$C$是无限集, 由\thref{prop:cardcartcor}知$\vert\ZZ\times C\vert=\vert C\vert$, 又根据基的定义, 一定有$\bigcup B_y=B$, 于是有$\vert B\vert\leq\vert C\vert$, 得证.
+  无限的情况比有限的要简单不少, 当$B$无限时, 由有限情况的结论知$C$一定无限, 还需要证明$B$与$C$具有相同的基数. 只需证明$\vert B\vert\leq \vert C\vert$. 对于每个$C$的元素$y$, 存在$B$的有限子集$B_y$使得$y\depend B_y$, 我们有$\vert \{B_y\}\vert\leq \vert C\vert$. 因为每个$B_y$都是有限的, 所以有$\vert\bigcup B_y\vert\leq \vert\ZZ\times C\vert$. 由于$C$是无限集, 由\thref{prop:cardcartcor}知$\vert\ZZ\times C\vert=\vert C\vert$, 又根据基的定义, 一定有$\bigcup B_y=B$, 于是有$\vert B\vert\leq\vert C\vert$, 得证.
 \end{proof}
 
 现在我们可以来介绍域的超越基和超越指数了, 我们需要在域扩张的语境中定义一个相关关系, 从而应用之前介绍的相关关系的一般理论. 考虑域扩张$F\subseteq E$, 如果$n$元子集$\{x_1, \dotsc, x_n\}\subseteq E$满足将$f$映到$f(x_1, \dotsc, x_n)$的同态$F[X_1, \dotsc, X_n]\to E$有非零核, 则称该$n$元子集在$F$上\emph{代数相关}. 对于$E$的任意非空子集, 如果存在有限子集在$F$上代数相关, 则称其在$F$上\emph{代数相关}. 我们有如下的判别准则.
 
 \begin{proposition}[{{\parencite[515, Theorem 8.33]{jacobson_basic_1989}}}]\label{prop:algbdependcrit}
-    给定域扩张$F\subseteq E$, 非空子集$S\subseteq E$在$F$上代数相关当且仅当存在$a\in S$是域$F(S-\{a\})$的代数元.
+  给定域扩张$F\subseteq E$, 非空子集$S\subseteq E$在$F$上代数相关当且仅当存在$a\in S$是域$F(S-\{a\})$的代数元.
 \end{proposition}
 
 \begin{proof}
-    对于任意子集$T\subseteq E$, 如果$a$是$F(T)$的代数元, 则存在$T$的有限子集$U$使得$a$是$F(U)$的代数元, 因此可以只考虑$S$是有限的情况, 记$S=\{x_1, \dotsc, x_n\}$, 其中$x_j$两两不同, 记$S_j\coloneq S-\{x_j\}$.
+  对于任意子集$T\subseteq E$, 如果$a$是$F(T)$的代数元, 则存在$T$的有限子集$U$使得$a$是$F(U)$的代数元, 因此可以只考虑$S$是有限的情况, 记$S=\{x_1, \dotsc, x_n\}$, 其中$x_j$两两不同, 记$S_j\coloneq S-\{x_j\}$.
 
-    如果$S$在$F$上代数相关, 那么存在非零多项式$f\in F[X_1, \dotsc, X_n]$使得$f(x_1, \dotsc, x_n)=0$. 还需要证明存在$i$使得$x_i$为$F(S_i)$的代数元. 利用归纳法, 当$n=1$时由定义即得, 假设$n-1$时成立. 如果$\{x_1, \dotsc, x_{n-1}\}$代数无关, 因为$f$可以通过合并系数以及代入诱导出多项式$\tilde{f}\in F(x_1, \dotsc, x_{n-1})[X]$使得$\tilde{f}(x_n)=0$, 且归纳假设保证了$\tilde{f}$非零, 于是$x_n$为$F(S_n)$的代数元.
+  如果$S$在$F$上代数相关, 那么存在非零多项式$f\in F[X_1, \dotsc, X_n]$使得$f(x_1, \dotsc, x_n)=0$. 还需要证明存在$i$使得$x_i$为$F(S_i)$的代数元. 利用归纳法, 当$n=1$时由定义即得, 假设$n-1$时成立. 如果$\{x_1, \dotsc, x_{n-1}\}$代数无关, 因为$f$可以通过合并系数以及代入诱导出多项式$\tilde{f}\in F(x_1, \dotsc, x_{n-1})[X]$使得$\tilde{f}(x_n)=0$, 且归纳假设保证了$\tilde{f}$非零, 于是$x_n$为$F(S_n)$的代数元.
 
-    反之, 假设存在$j$使得$x_j$为$S_j$的代数元. 为了记号上的方便, 不妨重新编号, 使得$j=n$. 根据定义, 存在$g_1, \dotsc, g_m\in F(x_1, \dotsc, x_{n-1})$使得$g=X^m+g_1X^{m-1}+\dotsb+g_m\in F(x_1, \dotsc, x_{n-1})[X]$满足$g(x_n)=0$. 去分母, 存在$f_0, \dotsc, f_m\in F[X_1, \dotsc, X_{n-1}]$满足对每个$1\leq j<\leq n$, 有$g_jf_0(x_1, \dotsc, x_{n-1})=f_j(x_1, \dotsc, x_{n-1})$, 故$f\coloneq f_0(X_1, \dotsc, X_{n-1})X_n^m+f_1(X_1, \dotsc, X_{n-1})X_n^{m-1}+\dotsb+f_m(X_1, \dotsc, X_{n-1})$属于$F[X_1, \dotsc, X_n]$为非零多项式, 并且将$x_1, \dotsc, x_n$映到0, 故$S$在$F$上代数相关.
+  反之, 假设存在$j$使得$x_j$为$S_j$的代数元. 为了记号上的方便, 不妨重新编号, 使得$j=n$. 根据定义, 存在$g_1, \dotsc, g_m\in F(x_1, \dotsc, x_{n-1})$使得$g=X^m+g_1X^{m-1}+\dotsb+g_m\in F(x_1, \dotsc, x_{n-1})[X]$满足$g(x_n)=0$. 去分母, 存在$f_0, \dotsc, f_m\in F[X_1, \dotsc, X_{n-1}]$满足对每个$1\leq j<\leq n$, 有$g_jf_0(x_1, \dotsc, x_{n-1})=f_j(x_1, \dotsc, x_{n-1})$, 故$f\coloneq f_0(X_1, \dotsc, X_{n-1})X_n^m+f_1(X_1, \dotsc, X_{n-1})X_n^{m-1}+\dotsb+f_m(X_1, \dotsc, X_{n-1})$属于$F[X_1, \dotsc, X_n]$为非零多项式, 并且将$x_1, \dotsc, x_n$映到0, 故$S$在$F$上代数相关.
 \end{proof}
 
 给定域扩张$F\subseteq E$, 定义一个$E$到$\powerset{E}$的\emph{对应}$\Delta$为$x\depend S$当且仅当$x$为$F(S)$的代数元.
 \begin{proposition}[{{\parencite[516, Theorem 8.34]{jacobson_basic_1989}}}]\label{prop:algbdependcorr}
-    对于给定域扩张$F\subseteq E$, $\Delta$定义了一个相关关系.
+  对于给定域扩张$F\subseteq E$, $\Delta$定义了一个相关关系.
 \end{proposition}
 
 \begin{proof}
-    我们只证明满足公理\ref{enum:dependaxiom3}和\ref{enum:dependaxiom4}, 另外两个是显然的.
+  我们只证明满足公理\ref{enum:dependaxiom3}和\ref{enum:dependaxiom4}, 另外两个是显然的.
 
-    \ref{enum:dependaxiom3} ``如果$x\depend S$并且对于每个$y\in S$都有$y\depend T$, 那么有$x\depend T$". 我们需要一点关于域扩张次数的知识. 设非零多项式$f=y_0X^m+ y_1X^{m-1}+ \dotsb + y_m\in S[X]$使得$f(x)=0$, 记$K\coloneq F(T)$, 记$S_0\coloneq \{y_0, \dotsc, y_m\}$. 利用\thref{thm:fieldextdegreemulti}, 有$[K(S_0\cup\{x\}):K]=[K(S_0\cup\{x\}):K(S_0)][K(S_0):K]$, 又根据\thref{thm:fntfieldextdegree}有$[K(S_0\cup\{x\}):K(S_0)]$和$[K(S_0):K]\leq\prod [K(y_j):K]$均有限, 故$x$是$K=F(T)$的代数元.
+  \ref{enum:dependaxiom3} ``如果$x\depend S$并且对于每个$y\in S$都有$y\depend T$, 那么有$x\depend T$". 我们需要一点关于域扩张次数的知识. 设非零多项式$f=y_0X^m+ y_1X^{m-1}+ \dotsb + y_m\in S[X]$使得$f(x)=0$, 记$K\coloneq F(T)$, 记$S_0\coloneq \{y_0, \dotsc, y_m\}$. 利用\thref{thm:fieldextdegreemulti}, 有$[K(S_0\cup\{x\}):K]=[K(S_0\cup\{x\}):K(S_0)][K(S_0):K]$, 又根据\thref{thm:fntfieldextdegree}有$[K(S_0\cup\{x\}):K(S_0)]$和$[K(S_0):K]\leq\prod [K(y_j):K]$均有限, 故$x$是$K=F(T)$的代数元.
 
-    \ref{enum:dependaxiom4} ``如果$x\depend S$但是$x\ndepend S-\{y\}$, 则$y\depend (S-\{y\})\cup\{x\}$". 设$T\coloneq S-\{y\}$, $K\coloneq F(T)$, 则$x$为$K$的超越元同时也为$K(y)$的代数元, 由\thref{prop:algbdependcrit}知$\{x, y\}$在$K$上代数相关, 因此存在非零多项式$f\in K[X, Y]$使得$f(x, y)=0$, 因为$x$为$K$的超越元, 所以$f$可以通过合并系数以及代入诱导出多项式$\tilde{f}\in K[x](Y)$使得$\tilde{f}(y)=0$, 从而得证$y$是$K(x)=F(T\cup\{x\})$上的代数元, 即$y\depend T\cup \{x\}$.
+  \ref{enum:dependaxiom4} ``如果$x\depend S$但是$x\ndepend S-\{y\}$, 则$y\depend (S-\{y\})\cup\{x\}$". 设$T\coloneq S-\{y\}$, $K\coloneq F(T)$, 则$x$为$K$的超越元同时也为$K(y)$的代数元, 由\thref{prop:algbdependcrit}知$\{x, y\}$在$K$上代数相关, 因此存在非零多项式$f\in K[X, Y]$使得$f(x, y)=0$, 因为$x$为$K$的超越元, 所以$f$可以通过合并系数以及代入诱导出多项式$\tilde{f}\in K[x](Y)$使得$\tilde{f}(y)=0$, 从而得证$y$是$K(x)=F(T\cup\{x\})$上的代数元, 即$y\depend T\cup \{x\}$.
 \end{proof}
 
 对于域扩张$F\subseteq E$, $E$的相关关系$\Delta$意义下的基称为域扩张$F\subseteq E$的\emph{超越基}, 即$B$是超越基当且仅当$B$代数无关并且每个$x\in E$都为$F(B)$的代数元.
 
 \begin{theorem}[{{\parencite[516, Theorem 8.35]{jacobson_basic_1989}}}]\label{thm:tranbasis}
-    域扩张$F\subseteq E$有超越基, 并且任意两个超越基有相同的基数.
+  域扩张$F\subseteq E$有超越基, 并且任意两个超越基有相同的基数.
 \end{theorem}
 
 \begin{proof}
-    \thref{thm:dependbase}和\thref{prop:algbdependcorr}.
+  \thref{thm:dependbase}和\thref{prop:algbdependcorr}.
 \end{proof}
 
 利用\thref{thm:tranbasis}我们可以定义域扩张$F\subseteq E$的\emph{超越次数}为超越基的基数. 现在我们已经可以定义主要研究对象的维数了. 给定域$k$, 回顾如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的多项式函数整环. 记$K$为$A$的分式域, 域$k$的多项式函数整环$A$的\emph{维数}$\dim (A)$被定义为域扩张$k\subseteq K$的超越次数, 是有限数. 在剩下的部分中, 我们想要利用环论来刻画维数, 发现素理想在其中有类似于线性子空间的地位, 是构成维数的基本组成部分.
@@ -606,66 +607,66 @@
 如果$A$为多项式函数整环, 我们还可以定义素理想$\ideal{p}$的\emph{余维数}$\codim (\ideal{p})$为域扩张$k\subseteq A{\divslash}\ideal{p}$的超越次数.
 
 \begin{proposition}\label{prop:primeidealdim}
-    设$A$为多项式函数整环, $\ideal{p}$为$A$的素理想, 那么$\codim (\ideal{p})\leq\dim (A)$. 如果还有素理想$\ideal{q}$使得$\ideal{p}\subsetneqq\ideal{q}$, 那么$\codim (\ideal{p})>\codim (\ideal{q})$.
+  设$A$为多项式函数整环, $\ideal{p}$为$A$的素理想, 那么$\codim (\ideal{p})\leq\dim (A)$. 如果还有素理想$\ideal{q}$使得$\ideal{p}\subsetneqq\ideal{q}$, 那么$\codim (\ideal{p})>\codim (\ideal{q})$.
 \end{proposition}
 
 \begin{proof}
-    % TODO: proof
+  % TODO: proof
 \end{proof}
 
 设$\ideal{p}$为环$A$的素理想,  定义$\ideal{p}$的\emph{高度}$h(\ideal{p})$为满足存在素理想升链$\ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}$的$n$的上确界; 定义$\ideal{p}$的\emph{深度}$d(\ideal{p})$为满足存在素理想降链$\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A$的$d$的下确界. 根据定义, 考虑素理想$\ideal{p}\subsetneqq\ideal{q}$, 只要$h(\ideal{p})$与$h(\ideal{q})$中有一个有限, 那么有$h(\ideal{p})<h(\ideal{q})$, 只要$d(\ideal{p})$与$d(\ideal{q})$中有一个有限, 那么有$d(\ideal{p})>d(\ideal{q})$.
 
 \begin{proposition}[Noether正规化引理{{\parencite[69, Exercise 16]{atiyah_introduction_1969}}}]\label{prop:noethernormalization}
-    设非零环$A$为域$k$上的有限生成$k$-代数, 则存在$r$元子集$\{y_1, \dotsc, y_r\}\subseteq A$在$k$上代数无关, 并且$A$的每个元素都可以由$k[y_1, \dotsc, y_r]$整表示.% TODO: integral dependence
+  设非零环$A$为域$k$上的有限生成$k$-代数, 则存在$r$元子集$\{y_1, \dotsc, y_r\}\subseteq A$在$k$上代数无关, 并且$A$的每个元素都可以由$k[y_1, \dotsc, y_r]$整表示.% TODO: integral dependence
 \end{proposition}
 
 \begin{proof}
-    $k$无限的情况可以参考AM一书, 一般的情况可以看一下Wikipedia.
-    % https://en.wikipedia.org/wiki/Noether_normalization_lemma
-    % https://mathoverflow.net/questions/42275/choosing-the-algebraic-independent-elements-in-noethers-normalization-lemma/42363#42363
+  $k$无限的情况可以参考AM一书, 一般的情况可以看一下Wikipedia.
+  % https://en.wikipedia.org/wiki/Noether_normalization_lemma
+  % https://mathoverflow.net/questions/42275/choosing-the-algebraic-independent-elements-in-noethers-normalization-lemma/42363#42363
 \end{proof}
 
 \begin{proposition}[{{\parencite[91, Lemma]{zariski_commutative_1960}}}]\label{prop:heightoneideallemma}
-    设$A$为$k$的多项式函数整环, $\ideal{p}$为高度为一的素理想, 则$\codim (\ideal{p}) = \dim (A)-1$.
+  设$A$为$k$的多项式函数整环, $\ideal{p}$为高度为一的素理想, 则$\codim (\ideal{p}) = \dim (A)-1$.
 \end{proposition}
 
 \begin{proof}
-    分类讨论, 如果是多项式环的话就是唯一分解整环, 非常简单; 否则的话利用\thref{prop:noethernormalization}来处理.
+  分类讨论, 如果是多项式环的话就是唯一分解整环, 非常简单; 否则的话利用\thref{prop:noethernormalization}来处理.
 \end{proof}
 
 \begin{theorem}[{{\parencite[193, Theorem 20]{zariski_commutative_1960}}}]\label{thm:ringdim}
-    设$A=k[x_1, \dotsc, x_n]$为$k$的多项式函数整环, $\ideal{p}$为$A$的素理想, 则有
-    \begin{enumerate}
-        \item\label{enum:thm-ringdim-height} $\codim(\ideal{p})+h(\ideal{p})=\dim (A)$,
-        \item\label{enum:thm-ringdim-depth} $\codim(\ideal{p})=d(\ideal{p})$.
-    \end{enumerate}
-    特别地, 有$\dim (A) = d((0))$.
+  设$A=k[x_1, \dotsc, x_n]$为$k$的多项式函数整环, $\ideal{p}$为$A$的素理想, 则有
+  \begin{enumerate}
+    \item\label{enum:thm-ringdim-height} $\codim(\ideal{p})+h(\ideal{p})=\dim (A)$,
+    \item\label{enum:thm-ringdim-depth} $\codim(\ideal{p})=d(\ideal{p})$.
+  \end{enumerate}
+  特别地, 有$\dim (A) = d((0))$.
 \end{theorem}
 
 \begin{proof}
-    我们用归纳法证明这两个命题. 由于需要利用商环来简化问题, 所以归纳有一点非同寻常, 需要写得仔细一点.
+  我们用归纳法证明这两个命题. 由于需要利用商环来简化问题, 所以归纳有一点非同寻常, 需要写得仔细一点.
 
-    \ref{enum:thm-ringdim-height} 对$\dim (A)-\codim (\ideal{p})$进行归纳. 利用\thref{prop:primeidealdim}知$\codim (\ideal{p})\leq \dim (A)$, 而当$\codim (\ideal{p})=\dim (A)$时, 有$\ideal{p}=(0)$, 故$h(\ideal{p})=0$, 结论成立. 假设对于任意的满足条件的$A$和$\ideal{p}$以及$k\in\ZZ_+$, 当$\dim (A)-\codim (\ideal{p})< k$时结论成立, 那么对于给定的$A$和$\ideal{p}$, 考虑$\dim (A)-\codim (\ideal{p})=k$的情况, 不妨令$k\leq \dim (A)$. 首先由\thref{prop:primeidealdim}得$\dim (A)\geq\codim (\ideal{p}_0)>\codim (\ideal{p}_1)>\dotsb >\codim (\ideal{p}_{h-1})>\codim (\ideal{p})$, 因此$h(\ideal{p})\leq \dim (A)-\codim (\ideal{p})$. 另一方面, 因为$\ideal{p}\supseteqq (0)$, 所以存在素理想$\ideal{q}\subsetneqq \ideal{p}$使得$\ideal{q}$与$\ideal{p}$之间没有别的素理想, 即在多项式函数整环$A{\divslash}\ideal{q}$中有$h(\ideal{p}{\divslash}\ideal{q})=1$. 根据\thref{prop:heightoneideallemma}和\thref{prop:thirdisomorphism}, 有$\dim (A)-\codim (\ideal{q})=k-1$, 再由归纳假设得$h(\ideal{q})=\dim (A)-\codim (\ideal{p})-1$, 因此$h(\ideal{p})\geq h(\ideal{q})+1 = \dim (A)-\codim (\ideal{p})$, 得证.
+  \ref{enum:thm-ringdim-height} 对$\dim (A)-\codim (\ideal{p})$进行归纳. 利用\thref{prop:primeidealdim}知$\codim (\ideal{p})\leq \dim (A)$, 而当$\codim (\ideal{p})=\dim (A)$时, 有$\ideal{p}=(0)$, 故$h(\ideal{p})=0$, 结论成立. 假设对于任意的满足条件的$A$和$\ideal{p}$以及$k\in\ZZ_+$, 当$\dim (A)-\codim (\ideal{p})< k$时结论成立, 那么对于给定的$A$和$\ideal{p}$, 考虑$\dim (A)-\codim (\ideal{p})=k$的情况, 不妨令$k\leq \dim (A)$. 首先由\thref{prop:primeidealdim}得$\dim (A)\geq\codim (\ideal{p}_0)>\codim (\ideal{p}_1)>\dotsb >\codim (\ideal{p}_{h-1})>\codim (\ideal{p})$, 因此$h(\ideal{p})\leq \dim (A)-\codim (\ideal{p})$. 另一方面, 因为$\ideal{p}\supseteqq (0)$, 所以存在素理想$\ideal{q}\subsetneqq \ideal{p}$使得$\ideal{q}$与$\ideal{p}$之间没有别的素理想, 即在多项式函数整环$A{\divslash}\ideal{q}$中有$h(\ideal{p}{\divslash}\ideal{q})=1$. 根据\thref{prop:heightoneideallemma}和\thref{prop:thirdisomorphism}, 有$\dim (A)-\codim (\ideal{q})=k-1$, 再由归纳假设得$h(\ideal{q})=\dim (A)-\codim (\ideal{p})-1$, 因此$h(\ideal{p})\geq h(\ideal{q})+1 = \dim (A)-\codim (\ideal{p})$, 得证.
 
-    \ref{enum:thm-ringdim-depth} 对$\codim (\ideal{p})$进行归纳. 当$\codim (\ideal{p})=0$时, 由\thref{prop:primeidealdim}知$\ideal{p}$一定为极大理想, 因此$d(\ideal{p})=0$, 结论成立. 假设对于任意满足条件的$A$和$\ideal{p}$以及$k\in\ZZ_+$, 当$\codim(\ideal{p})<k$时结论成立, 考虑$\codim(\ideal{p})=k$的情况, 不妨假设$k\leq \dim (A)$. 首先由\thref{prop:primeidealdim}得 $0\leq\codim (\ideal{p}_0)<\codim (\ideal{p}_1)<\dotsb <\codim (\ideal{p}_{d-1})<\codim (\ideal{p})$, 因此$d(\ideal{p})\leq \codim (\ideal{p})$. 另一方面, 考虑多项式函数整环$A{\divslash}\ideal{p}$中的一个高度为一的素理想$\ideal{q}{\divslash}\ideal{p}$, 根据\thref{prop:heightoneideallemma}和\thref{prop:thirdisomorphism}, 有$\codim (\ideal{q})=k-1$, 再由归纳假设得$d(\ideal{q})=\codim (\ideal{q})$, 故$d(\ideal{p})\geq d(\ideal{q})+1=\codim (\ideal{q})$, 得证.
+  \ref{enum:thm-ringdim-depth} 对$\codim (\ideal{p})$进行归纳. 当$\codim (\ideal{p})=0$时, 由\thref{prop:primeidealdim}知$\ideal{p}$一定为极大理想, 因此$d(\ideal{p})=0$, 结论成立. 假设对于任意满足条件的$A$和$\ideal{p}$以及$k\in\ZZ_+$, 当$\codim(\ideal{p})<k$时结论成立, 考虑$\codim(\ideal{p})=k$的情况, 不妨假设$k\leq \dim (A)$. 首先由\thref{prop:primeidealdim}得 $0\leq\codim (\ideal{p}_0)<\codim (\ideal{p}_1)<\dotsb <\codim (\ideal{p}_{d-1})<\codim (\ideal{p})$, 因此$d(\ideal{p})\leq \codim (\ideal{p})$. 另一方面, 考虑多项式函数整环$A{\divslash}\ideal{p}$中的一个高度为一的素理想$\ideal{q}{\divslash}\ideal{p}$, 根据\thref{prop:heightoneideallemma}和\thref{prop:thirdisomorphism}, 有$\codim (\ideal{q})=k-1$, 再由归纳假设得$d(\ideal{q})=\codim (\ideal{q})$, 故$d(\ideal{p})\geq d(\ideal{q})+1=\codim (\ideal{q})$, 得证.
 \end{proof}
 
 利用维数理论我们可以证明Hilbert零点定理, 它建立了代数与几何之间的联系. 我们先来证一个简单的引理.
 
 \begin{proposition}[{{\parencite[195, Corollary 3]{zariski_commutative_1960}}}]\label{prop:ringdimprimeidealexist}
-    设$A$为$\kk$的多项式函数整环, $\dim (A)=r$, 则分别存在余维数为$0, 1, \dotsc, r$的素理想.
+  设$A$为$\kk$的多项式函数整环, $\dim (A)=r$, 则分别存在余维数为$0, 1, \dotsc, r$的素理想.
 \end{proposition}
 
 \begin{proof}
-    根据\thref{thm:ringdim}有$\codim (0)=d((0))=r$. 考虑素理想降链$A\supsetneqq \ideal{p}_0\supsetneqq \dotsb\supsetneqq \ideal{p}_r=(0)$, 因为$0\leq \codim (\ideal{p}_0)< \dotsb <\codim (\ideal{p}_r)=r$, 所以对于$j=0, \dotsc, r$一定有$\codim (\ideal{p}_j)=j$, 得证.
+  根据\thref{thm:ringdim}有$\codim (0)=d((0))=r$. 考虑素理想降链$A\supsetneqq \ideal{p}_0\supsetneqq \dotsb\supsetneqq \ideal{p}_r=(0)$, 因为$0\leq \codim (\ideal{p}_0)< \dotsb <\codim (\ideal{p}_r)=r$, 所以对于$j=0, \dotsc, r$一定有$\codim (\ideal{p}_j)=j$, 得证.
 \end{proof}
 
 \begin{theorem}[弱Hilbert零点定理{{\parencite[82, Proposition 7.9]{atiyah_introduction_1969}}}]\label{thm:hilbert-nullstellensatz-weak}
-    设$\field{k}$是域, $A$为$\field{k}$的多项式函数整环, 如果$A$也是域, 则$A$为$\field{k}$的有限代数域扩张. 特别地, 如果$\field{k}$为代数闭域, $A$为有限生成$\kk$-代数, $\ideal{m}$为$A$的极大理想, 则$A/\ideal{m}\cong \field{k}$.
+  设$\field{k}$是域, $A$为$\field{k}$的多项式函数整环, 如果$A$也是域, 则$A$为$\field{k}$的有限代数域扩张. 特别地, 如果$\field{k}$为代数闭域, $A$为有限生成$\kk$-代数, $\ideal{m}$为$A$的极大理想, 则$A/\ideal{m}\cong \field{k}$.
 \end{theorem}
 
 \begin{proof}
-    因为域只有$(0)$素理想, 余维数为0, 所以根据\thref{prop:ringdimprimeidealexist}知, 域扩张$\kk\subseteq A$的超越次数为0, 即为代数域扩张. 又$A$为有限生成$k$-代数, 故为有限代数域扩张.
+  因为域只有$(0)$素理想, 余维数为0, 所以根据\thref{prop:ringdimprimeidealexist}知, 域扩张$\kk\subseteq A$的超越次数为0, 即为代数域扩张. 又$A$为有限生成$k$-代数, 故为有限代数域扩张.
 \end{proof}
 
 % 接下来我们来证明重要的Hilbert零点定理, 它建立了代数与几何联系的根基. 首先我们需要几个引理.
@@ -689,7 +690,7 @@
 在唯一分解整环中, 利用素元和不可约元的等价性, 可以得到高度为一的素理想一定是主理想, 并且可以由一个素元生成\parencite[174, Exercise 21.32]{altman_term_2017}. 我们将要在Noether整环的情况下推广这一结论, 并应用维数理论证明\thref{prop:heightoneideallemma}的逆命题成立.
 
 \begin{theorem}[Krull主理想定理{{\parencite[238, Theorem 29]{zariski_commutative_1958}}}]\label{thm:krullhauptidealsatz}
-    设$(f)$为Noether整环$A$的一个非零真主理想, $\ideal{p}$为$(f)$的一个孤立从属素理想, 则$h(\ideal{p})=1$.
+  设$(f)$为Noether整环$A$的一个非零真主理想, $\ideal{p}$为$(f)$的一个孤立从属素理想, 则$h(\ideal{p})=1$.
 \end{theorem}
 
 % 域的超越指数; Jacobson Vol II P514
@@ -705,22 +706,22 @@
 %, $\bigoplus_{n\in\ZZ_+}A_n$是$A$的极大理想, 有时被称为$A$的\emph{无关极大理想}, 我们将在\thref{prop:projectivegaloisconnectionclosedradical}中看到这种称法的由来.
 
 \begin{proposition}
-    设$A$为齐次环, $\ideal{a}, \ideal{b}$为$A$的齐次理想, 则
-    \begin{enumerate}
-        \item $\ideal{a}$可以由齐次元生成;
-        \item $\ideal{a}+\ideal{b}, \ideal{a}\ideal{b}, \ideal{a}\cap\ideal{b}$是齐次理想;
-        \item $\ideal{a}$是素理想当且仅当对于每组齐次元$f, g\in\ideal{a}\cap A^h$, 都有$fg\in \ideal{a}\rightarrow f\in\ideal{a}\vee g\in\ideal{a}$.
-    \end{enumerate}
-    更进一步, 如果$A$还是Noether环, 即$A$为Noether齐次环, 则
-    \begin{enumerate}[resume*]
-        \item $\ideal{a}$可以由有限个齐次元生成.
-    \end{enumerate}
+  设$A$为齐次环, $\ideal{a}, \ideal{b}$为$A$的齐次理想, 则
+  \begin{enumerate}
+    \item $\ideal{a}$可以由齐次元生成;
+    \item $\ideal{a}+\ideal{b}, \ideal{a}\ideal{b}, \ideal{a}\cap\ideal{b}$是齐次理想;
+    \item $\ideal{a}$是素理想当且仅当对于每组齐次元$f, g\in\ideal{a}\cap A^h$, 都有$fg\in \ideal{a}\rightarrow f\in\ideal{a}\vee g\in\ideal{a}$.
+  \end{enumerate}
+  更进一步, 如果$A$还是Noether环, 即$A$为Noether齐次环, 则
+  \begin{enumerate}[resume*]
+    \item $\ideal{a}$可以由有限个齐次元生成.
+  \end{enumerate}
 \end{proposition}
 
 齐次环中有一种特殊的局部化, 它在某种程度上对应了环的通常的局部化. 如果$A$是齐次环, $\ideal{p}$是$A$的齐次理想, 设$S\coloneq (A-\ideal{p})\cap A^h$为$A-\ideal{p}$中的齐次元全体构成的集合, 是一个乘法闭集, 则有通常的分式环$S^{-1}A$. $S^{-1}A$也是一个齐次环, 齐次元为可以写成$f{\divslash}g$的元素, 其中$f\in A^h$, 而$\deg (f{\divslash}g)\coloneq \deg (f)-\deg (g)$. 将$S^{-1}A$的零次元素全体构成的子环记作$A_{(\ideal{p})}$, 这是一个局部环, 极大理想为$S^{-1}\ideal{p}\cap A_{(\ideal{p})}$. 特别地, 如果A是整环并取$\ideal{p}=(0)$, 则$A_{((0))}$为域. 类似地, 如果$f\in A^h$是齐次元, 那么$A_{(f)}$为$A_f$的零次元素全体构成的子环.
 
 \begin{example}
-    域上的多项式环$A=k[X_1, \dotsc, X_n]$是齐次环, $A_d$即为次数为$d$的齐次多项式构成的Abel群, 若$d<0$则$A_d=\{0\}$. 此时$\bigoplus_{n\in\ZZ_+}A_n$是$A$的极大理想, 有时被称为$A$的\emph{无关极大理想}, 我们将在\thref{prop:projectivegaloisconnectionclosedradical}中看到这种称法的由来.
+  域上的多项式环$A=k[X_1, \dotsc, X_n]$是齐次环, $A_d$即为次数为$d$的齐次多项式构成的Abel群, 若$d<0$则$A_d=\{0\}$. 此时$\bigoplus_{n\in\ZZ_+}A_n$是$A$的极大理想, 有时被称为$A$的\emph{无关极大理想}, 我们将在\thref{prop:projectivegaloisconnectionclosedradical}中看到这种称法的由来.
 \end{example}
 
 % quotient; commute with localization?
@@ -734,29 +735,39 @@
 
 一个\emph{范畴}$\cat{C}$包含如下信息.
 \begin{enumerate}
-    \item 有一个类, 其元素称为\emph{对象}, 用大写字母$X, Y, Z, \dotsc$或者小写的$c, c'$来表示;
-    \item 对于每一组对象$X, Y$, 都有一个类, 其元素称为从$X$到$Y$的\emph{态射}, 用小写字母$f, g, h, \dotsc$来表示, 并用$f\colon X\to Y$来表示$f$是从$X$到$Y$的态射. 如果$f\colon X\to Y$, 则称$X$是$f$的\emph{定义域}, $Y$是$f$的\emph{值域};
-    \item 对于每个对象$X$, 有一个特定的\emph{恒同态射}$1_X\colon X\to X$;
-    \item 对于每一组对象$X, Y, Z$以及态射$f\colon X\to Y, g\colon Y\to Z$, 有\emph{复合态射}$gf\colon X\to Z$, 并且满足
-    \begin{enumerate}
-        \item 对于每个态射$f\colon X\to Y$, 都有复合态射$f1_{X}=1_{Y}f=f$;
-        \item 对于每三个态射$f\colon X\to Y, g\colon Y\to Z, h\colon Z\to W$都有$(hg)f=h(gf)$, 记为$hgf$;
-    \end{enumerate}
-    即态射的``复合运算"满足结合律并有双侧单位元.
+  \item 有一个类, 其元素称为\emph{对象}, 用字母$X, Y, Z, \dotsc$或者小写的$c, c', x, y, \dotsc$来表示;
+  \item 对于每一组对象$X, Y$, 都有一个类, 其元素称为从$X$到$Y$的\emph{态射}, 用小写字母$f, g, h, \dotsc$来表示, 并用$f\colon X\to Y$来表示$f$是从$X$到$Y$的态射. 如果$f\colon X\to Y$, 则称$X$是$f$的\emph{定义域}, $Y$是$f$的\emph{值域};
+  \item 对于每个对象$X$, 有一个特定的\emph{恒同态射}$1_X\colon X\to X$;
+  \item 对于每一组对象$X, Y, Z$以及态射$f\colon X\to Y, g\colon Y\to Z$, 有\emph{复合态射}$gf\colon X\to Z$, 并且满足
+  \begin{enumerate}
+    \item 对于每个态射$f\colon X\to Y$, 都有复合态射$f1_{X}=1_{Y}f=f$;
+    \item 对于每三个态射$f\colon X\to Y, g\colon Y\to Z, h\colon Z\to W$都有$(hg)f=h(gf)$, 记为$hgf$;
+  \end{enumerate}
+  即态射的``复合运算"满足结合律并有双侧单位元.
 \end{enumerate}
 
 如果范畴$\cat{D}$的对象类和每个态射类都是范畴$\cat{C}$相应的类的子类, 则称$\cat{D}$为$\cat{C}$的\emph{子范畴}.
 
-如果范畴$\cat{C}$的任一组对象之间的态射类都是集合, 则称$\cat{C}$是\emph{局部小的范畴}. 在这篇文章中我们关心的范畴都是局部小的, 不过在每处我们依然会写上这个范畴是局部小的的这一条件. 在局部小的范畴$\cat{C}$中, 我们记一组对象$X, Y$之间的态射全体所构成的集合为$\cat{C} (X, Y)$.
+如果范畴$\cat{C}$的任一组对象之间的态射类都是集合, 则称$\cat{C}$是\emph{局部小范畴}. 在这篇文章中我们关心的范畴都是局部小的, 不过在每处我们依然会写上这个范畴是局部小的的这一条件. 在局部小的范畴$\cat{C}$中, 我们记一组对象$X, Y$之间的态射全体所构成的集合为$\cat{C} (X, Y)$.
+
+\begin{example}
+  很多我们熟悉的数学对象都构成范畴, 并且是局部小范畴.
+  \begin{enumerate}
+    \item $\cat{Set}$是以集合作为对象, 以集合之间的映射作为对应的定义域与值域之间的态射的范畴.
+    \item $\cat{Ring}$是以幺环作为对象, 以环同态作为态射的范畴. $\cat{CRing}$是以交换幺环作为对象, 以环同态作为态射的范畴, 是$\cat{Ring}$的子范畴.
+    \item 对于给定的幺环$R$, $\cat{Mod}_R$是以左$R$-模作为对象, 以$R$-模同态为态射的范畴.
+    \item 对于给定的域$\kk$, $\cat{Vect}_{\kk}$是以$\kk$-线性空间作为对象, 以$\kk$-线性映射为态射的范畴.
+  \end{enumerate}
+\end{example}
 
 在数学中, 两个对象的同构几乎总是一个非常核心的概念, 而范畴论中给了一个统一的解答. 如果范畴$\cat{C}$中两个对象$X, Y$之间的态射$f\colon X\to Y$满足存在$g\colon Y\to X$, 使得$fg=1_Y, gf=1_X$, 则称$f$是\emph{同构态射}. 对于两个对象$X, Y$, 如果存在$X$到$Y$的同构态射, 则称$X$和$Y$是\emph{同构的}, 记作$X\cong Y$.
 
-对于一个范畴$\cat{C}$, 我们可以把它的所有态射的定义域与值域交换, 从而得到它的对偶范畴$\cat{C}^{op}$. 严格来说, 范畴$\cat{C}$的\emph{对偶范畴}$\cat{C}^{op}$包含如下信息.
+对于一个范畴$\cat{C}$, 我们可以把它的所有态射的定义域与值域交换, 从而得到它的对偶范畴$\cat{C}^{\op}$. 严格来说, 范畴$\cat{C}$的\emph{对偶范畴}$\cat{C}^{\op}$包含如下信息.
 \begin{enumerate}
-    \item 有与$\cat{C}$相同的对象类;
-    \item 对于每个$\cat{C}$中的态射$f\colon Y\to X$, 有一个态射$f^{\op}\colon X\to Y$;
-    \item 每个对象$X$的恒同态射即为$1_X^{\op}$;
-    \item 每两个态射$f^{\op}\colon X\to Y$与$g^{\op}\colon Y\to Z$的复合$g^{\op}f^{\op}\coloneq (fg)^{\op}$.
+  \item 有与$\cat{C}$相同的对象类;
+  \item 对于每个$\cat{C}$中的态射$f\colon Y\to X$, 有一个态射$f^{\op}\colon X\to Y$;
+  \item 每个对象$X$的恒同态射即为$1_X^{\op}$;
+  \item 每两个态射$f^{\op}\colon X\to Y$与$g^{\op}\colon Y\to Z$的复合$g^{\op}f^{\op}\coloneq (fg)^{\op}$.
 \end{enumerate}
 我们将在之后反变函子的定义中用到对偶范畴的概念.
 
@@ -764,70 +775,185 @@
 
 范畴$\cat{C}$到$\cat{D}$的\emph{函子}$F\colon \cat{C}\to \cat{D}$含有如下信息.
 \begin{enumerate}
-    \item 对于每个对象$c\in\cat{C}$, 有一个对象$Fc\in \cat{D}$;
-    \item 对于每个态射$f\colon c\to c'\in\cat{C}$, 有一个态射$Ff\colon Fc\to Fc'\in\cat{D}$, 并且满足两个\emph{函子性公理}.
-    \begin{enumerate}
-        \item 对于每对$\cat{C}$中的可复合函子$f, g$, 有$(Fg)(Ff)=F(gf)$;
-        \item 对于每个对象$c\in\cat{C}$, 都有$F(1_c)=1_{F_c}$.
-    \end{enumerate}
+  \item 对于每个对象$c\in\cat{C}$, 有一个对象$Fc\in \cat{D}$;
+  \item 对于每个态射$f\colon c\to c'\in\cat{C}$, 有一个态射$Ff\colon Fc\to Fc'\in\cat{D}$,
+\end{enumerate}
+并且满足两个\emph{函子性公理}.
+\begin{enumerate}
+  \item 对于每对$\cat{C}$中的可复合函子$f, g$, 有$(Fg)(Ff)=F(gf)$;
+  \item 对于每个对象$c\in\cat{C}$, 都有$F(1_c)=1_{F_c}$.
 \end{enumerate}
 简而言之, 一个函子由对象全体之间的映射和态射全体之间的映射所构成, 并保持范畴中所有的结构, 包括定义域, 值域, 复合与恒同态射. 函子$F\colon \cat{C}\to \cat{D}$含有的信息可以由下图来表示.
-\begin{equation*}
-    \functordiagram{\cat{C}}{\cat{D}}{F}{c}{c'}{f}{Fc}{Fc'}{Ff}
-    % \begin{tikzcd}[sep=small]
-    %     \cat{C} \arrow[rr, "F"] & & \cat{D}\\
-    %     c \arrow[dd, "f"'] & \mapsto & |[alias=X]| Fc\\
-    %     & \mapsto & \\
-    %     c' & \mapsto & |[alias=Y]| Fc'
-    %     \arrow[from=X, to=Y, "Ff"]
-    %   \end{tikzcd}
-\end{equation*}
+\begin{equation}
+  \functordiagram{\cat{C}}{\cat{D}}{F}{c}{c'}{f}{Fc}{Fc'}{Ff}
+  % \begin{tikzcd}[sep=small]
+  %     \cat{C} \arrow[rr, "F"] & & \cat{D}\\
+  %     c \arrow[dd, "f"'] & \mapsto & |[alias=X]| Fc\\
+  %     & \mapsto & \\
+  %     c' & \mapsto & |[alias=Y]| Fc'
+  %     \arrow[from=X, to=Y, "Ff"]
+  %   \end{tikzcd}
+\end{equation}
 
-函子性的应用十分广泛, 很多重要的性质本质上就是函子性, 一个典型的例子就是因为基本群算子是从有基点的拓扑空间关于保持基点不变的连续函数在同伦等价意义下的范畴到群范畴之间的函子, 所以$D^2$上的Brouwer不动点定理成立\parencite[15, Theorem 1.3.3]{riehl_category_2017}.
+函子性的应用十分广泛, 很多重要的性质本质上就是函子性. 一个典型的例子就是因为基本群算子是从有基点的拓扑空间关于保持基点不变的连续函数在同伦等价意义下的范畴到群范畴之间的函子, 所以$D^2$上的Brouwer不动点定理成立\parencite[15, Theorem 1.3.3]{riehl_category_2017}.
 
 有的范畴之间的对应会让态射的定义域与值域交换, 比如说线性空间$X, Y$之间的线性映射$f\colon X\to Y$可以诱导出对偶空间$Y^*, X^*$之间的线性映射$f^*\colon Y^*\to X^*$, 这虽然满足一定的函子性质却不是刚才所定义的函子, 因此我们需要稍微推广一下函子的定义. 为了区别, 之前定义的函子被称为\emph{协变函子}. 如果$F$是从$\cat{C}^{\op}$到$\cat{D}$的协变函子, 则称$F$是从$\cat{C}$到$\cat{D}$\emph{反变函子}, 仍然记作$F\colon \cat{C}^{\op}\to\cat{D}$, 它含有的信息可以由下图来表示\footnotemark.
-\begin{equation*}
-    \functordiagram*{\cat{C}^{\op}}{\cat{D}}{F}{c}{c'}{f}{Fc}{Fc'}{Ff}
-    % \begin{tikzcd}[sep=small]
-    %     \cat{C}^{\op} \arrow[rr, "F"] & & \cat{D}\\
-    %     c \arrow[dd, "f"'] & \mapsto & |[alias=X]| Fc\\
-    %     & \mapsto & \\
-    %     c' & \mapsto & |[alias=Y]| Fc'
-    %     \arrow[from=Y, to=X, "Ff"']
-    %   \end{tikzcd}
-\end{equation*}
+\begin{equation}
+  \functordiagram*{\cat{C}^{\op}}{\cat{D}}{F}{c}{c'}{f}{Fc}{Fc'}{Ff}
+  % \begin{tikzcd}[sep=small]
+  %     \cat{C}^{\op} \arrow[rr, "F"] & & \cat{D}\\
+  %     c \arrow[dd, "f"'] & \mapsto & |[alias=X]| Fc\\
+  %     & \mapsto & \\
+  %     c' & \mapsto & |[alias=Y]| Fc'
+  %     \arrow[from=Y, to=X, "Ff"']
+  %   \end{tikzcd}
+\end{equation}
 \footnotetext{尽管反变函子的定义中出现了对偶范畴, 我们画图的时候依然以``正常"的方向来标识态射的定义域与值域. 所谓``正常"这个概念是比较模糊的, 因为每个范畴都可以看成它的对偶范畴的对偶范畴, 不过因为我们可以分清集合范畴$\cat{Set}$与$\cat{Set}^{\op}$哪个是``对偶范畴", 所以对于非常非常多的情况我们这样做都不会出现混淆.}
+% \clearpage
+
+\begin{example}
+  有几个重要的协变函子与反变我们将在这一节的后续部分用到, 因此在这里做介绍.
+  \begin{enumerate}
+    \item 给定范畴$\cat{C}$, \emph{恒同函子}$1_{\cat{C}}\colon\cat{C}\to\cat{C}$是保持对象与函子不变的函子, 所含信息可以由下图表示.
+      \begin{equation*}
+        \functordiagram{\cat{C}}{\cat{C}}{1_{\cat{C}}}{c}{c'}{f}{c}{c'}{f}
+      \end{equation*}
+    \item 给定范畴$\cat{C}, \cat{D}$与对象$d\in\cat{D}$, \emph{常函子}$d\colon \cat{C}\to\cat{D}$将每个对象映到$d\in D$, 并将每个态射映到恒同态射$1_d$.
+    \item 给定局部小范畴$\cat{C}$以及其中一个对象$c\in\cat{C}$, \emph{由$c$表示的同态函子}$\cat{C}(c, -)\colon \cat{C}\to\cat{Set}$和$\cat{C}(-, c)\colon \cat{C}^{\op}\to\cat{Set}$由下图定义.
+      \begin{equation*}
+        \functordiagram{\cat{C}}{\cat{Set}}{\cat{C}(c, -)}{x}{y}{f}{\cat{C}(c, x)}{\cat{C}(c, y)}{f_*}
+        \quad
+        \functordiagram*{\cat{C}^{\op}}{\cat{C}}{\cat{C}(-, c)}{x}{y}{f}{\cat{C}(x, c)}{\cat{C}(y, c)}{f^*}
+      \end{equation*}
+  \end{enumerate}
+\end{example}
 
 % 自然变换
 我们现在来介绍自然变换这个概念. 给定范畴$\cat{C}, \cat{D}$以及函子$F, G\colon \cat{C}\rightrightarrows\cat{D}$, 一个从$F$到$G$的\emph{自然变换}$\alpha\colon F\Rightarrow G$含有如下信息.
 \begin{enumerate}
-    \item 对于每个对象$c\in\cat{C}$, 有一个态射$\alpha_c\colon Fc\to Gc$, 被称为这个自然变换的\emph{成分}, 满足对于任意的态射$f\colon c\to c'\in\cat{C}$, 下图交换,
-    \begin{equation*}
-        \begin{tikzcd}[row sep=large]
-            Fc \arrow[r, "\alpha_c"{above}] \arrow[d, "Ff"{left}] & Gc \arrow[d, "Gf"{right}] \\
-            Fc' \arrow[r, "\alpha_{c'}"{below}] & Gc'
-        \end{tikzcd}
-      \end{equation*}
-    即复合态射$(Gf)\alpha_c=\alpha_{c'}(Ff)$相等.
+  \item 对于每个对象$c\in\cat{C}$, 有一个态射$\alpha_c\colon Fc\to Gc$, 被称为这个自然变换的\emph{分量}, 满足对于任意的态射$f\colon c\to c'\in\cat{C}$, 下图交换,
+  \begin{equation}
+    \begin{tikzcd}[row sep=large]
+      Fc \arrow[r, "\alpha_c"{above}] \arrow[d, "Ff"{left}] & Gc \arrow[d, "Gf"{right}] \\
+      Fc' \arrow[r, "\alpha_{c'}"{below}] & Gc'
+    \end{tikzcd}
+    \end{equation}
+  即复合态射$(Gf)\alpha_c=\alpha_{c'}(Ff)$相等.
 \end{enumerate}
 如果每个$\alpha_c$都是同构态射, 那么称$\alpha$是\emph{自然同构}, 记作$\alpha\colon F\cong G$.
 
-在通常的语境下, 为了定义一个自然变换, 我们会给出这个自然变换的成分, 并说这些态射是``自然的", 而不显式说明函子是如何定义的, 态射是如何复合的等信息. 比如我们会说``一个有限维线性空间$V$和它对偶空间的对偶空间$V^{**}$是自然同构的", 表示的意思就是有限维线性空间范畴中的双对偶函子与恒同函子是自然同构的.
+在通常的语境下, 为了定义一个自然变换, 我们会给出这个自然变换的每个分量, 并说这些态射是``自然的", 而不显式说明函子是如何定义的, 态射是如何复合的等信息. 比如我们会说``一个有限维线性空间$V$和它对偶空间的对偶空间$V^{**}$是自然同构的", 表示的意思就是有限维线性空间范畴中的双对偶函子与恒同函子是自然同构的.
 
 % 画一下自然同态的边缘信息图
+
+为了后续内容的需要, 我们介绍一下函子范畴的定义. 对于固定的范畴$\cat{C}$和$\cat{D}$, 有\emph{函子范畴}$\cat{D}^{\cat{C}}$, 其中的对象是函子$\cat{C}\to\cat{D}$, 态射即为函子之间的自然变换. 给定$F\colon \cat{C}\to \cat{D}$, 恒同态射$1_F$即为恒同自然变换$1_F\colon F\Rightarrow F$满足每个分量$(1_F)_c$都是恒同态射$1_{F_c}$. 如果$\alpha\colon F\Rightarrow G$和$\beta\colon G\Rightarrow H$是平行的函子$F, G, H\colon \cat{C}\to \cat{D}$之间的自然变换, 则定义它们的复合$\beta\alpha\colon F\Rightarrow$的分量$(\beta\alpha)_c\coloneq \beta_c\alpha_c$, 下图的交换性保证了$\beta\alpha$确实定义了一个自然变换\parencite[44, Lemma 1.7.1]{riehl_category_2017}.
+\begin{equation*}
+  \begin{tikzcd}[row sep=large]
+    Fc & Gc & Hc\\
+    Fc' & Gc' & Hc'
+    \arrow[from=1-1,]{1-2}[above]{\alpha_c}
+    \arrow[from=1-2,]{1-3}[above]{\beta_c}
+    \arrow[from=2-1,]{2-2}[below]{\alpha_{c'}}
+    \arrow[from=2-2,]{2-3}[below]{\beta_{c'}}
+    \arrow[from=1-1,]{2-1}[left]{Ff}
+    \arrow[from=1-2,]{2-2}[left]{Gf}
+    \arrow[from=1-3,]{2-3}[right]{Hf}
+  \end{tikzcd}
+\end{equation*}
+并且这里定义的复合满足定义\parencite[44, Corollary 1.7.2]{riehl_category_2017}, 故$\cat{D}^{\cat{C}}$是范畴. 不过一般来说, 就算$\cat{C}$和$\cat{D}$都是局部小范畴, $\cat{D}^{\cat{C}}$也不一定是局部小范畴.
 
 % 范畴等价
 接下来我们来定义范畴等价的概念. 一个很直接的想法是要求存在函子$F\colon \cat{C}\leftrightarrows \cat{D}\colon G$使得$FG=1_{\cat{D}}, GF=1_{\cat{C}}$成立, 这样的话称范畴$\cat{C}$与$\cat{D}$\emph{同构}. 不过我们发现范畴同构的要求太强了\parencite[21]{riehl_category_2017}, 所以我们采取类似于同伦等价的方式来定义范畴等价的概念.
 
 一个\emph{范畴等价}包含两个函子$F\colon \cat{C}\leftrightarrows \cat{D}\colon G$与自然同构$FG\cong 1_{\cat{D}}, GF\cong 1_{\cat{C}}$. 如果范畴$\cat{C}, \cat{D}$之间存在范畴等价, 则称$\cat{C}$与$\cat{D}$是\emph{等价的}, 记作$\cat{C}\simeq\cat{D}$. 范畴等价定义了一个等价关系\parencite[30, Lemma 1.5.5]{riehl_category_2017}.
 
-可以通过函子的性质来判断一个函子是否能给出两个范畴之间的等价, 为此我们需要介绍一些概念. 考虑函子$F\colon\cat{C}\to\cat{D}$, 如果对于任意的$c, c'\in \cat{C}$, 映射$\cat{C}(c, c')\to \cat{D}(Fc, Fc')$是满射(或单射), 则称$F$是\emph{完全函子}(或\emph{忠实函子}); 如果对于每个对象$d\in \cat{D}$都有$c\in\cat{C}$使得$d$同构于$Fc$, 则称$F$是\emph{本质满射函子}. 如果一个忠实函子关于对象是单射, 则称其为一个范畴的\emph{嵌入}, 将定义域范畴对应到了值域范畴的子范畴; 如果这个函子还是完全函子, 则称其为一个范畴的\emph{完全嵌入}, 将定义域范畴对应到了值域范畴的\emph{完全子范畴}.
+可以通过函子的性质来判断一个函子是否能给出两个范畴之间的等价, 为此我们需要介绍一些概念. 考虑函子$F\colon\cat{C}\to\cat{D}$, 如果对于任意的$c, c'\in \cat{C}$, 映射$\cat{C}(c, c')\to \cat{D}(Fc, Fc')$是满射 (或单射), 则称$F$是\emph{完全函子} (或\emph{忠实函子}); 如果对于每个对象$d\in \cat{D}$都有$c\in\cat{C}$使得$d$同构于$Fc$, 则称$F$是\emph{本质满射函子}. 如果一个忠实函子关于对象是单射, 则称其为一个范畴的\emph{嵌入}, 将定义域范畴对应到了值域范畴的子范畴; 如果这个函子还是完全函子, 则称其为一个范畴的\emph{完全嵌入}, 将定义域范畴对应到了值域范畴的\emph{完全子范畴}.
 
 \begin{theoremnoproof}[{{\parencite[31, Theorem 1.5.9]{riehl_category_2017}}}]\label{thm:categoryequivalence}
-    如果一个函子可以定义两个范畴之间的范畴等价, 那么这个函子是完全忠实并且本质满射的. 反过来, 如果假设选择公理(\axiom{AC}), 那么任何满足上述条件的函子都可以定义两个范畴之间的范畴等价.
+  如果一个函子可以定义两个范畴之间的范畴等价, 那么这个函子是完全忠实并且本质满射的. 反过来, 如果假设选择公理(\axiom{AC})成立, 那么任何满足上述条件的函子都可以定义两个范畴之间的范畴等价.
 \end{theoremnoproof}
 
-% 模范畴的direct limit
+\bigskip
+
+这一节的第二部分我们来介绍泛性质和函子的表示, 一方面是因为它们本身很重要, 我们将要统一并推广之前提到过的商环, 分式环等的泛性质, 另一方面是为介绍极限作铺垫.
+
+设$\cat{C}$为局部小范畴, $F$是从$\cat{C}$到$\cat{Set}$协变函子 (或反变函子), 如果$F$自然同构于某个对象$c$表示的同态函子$\cat{C}(c, -)$ (或$\cat{C}(-, c)$), 则称$F$\emph{可以由对象$c$表示}, 也称$F$为\emph{可表函子}, 这个自然同构也被称为$F$的一个\emph{表示}.
+
+于是我们关心什么时候一个函子是可表函子, 即关心同态函子到一个函子的自然同构. Yoneda引理解决了这一问题, 并告诉我们同态函子到一个函子的自然变换需要哪些信息.
+
+\begin{theorem}[Yoneda引理{{\parencite[57, Theorem 2.2.4]{riehl_category_2017}}}]\label{thm:yonedalemma}
+  设$\cat{C}$为局部小范畴, 设$F\colon \cat{C}\to\cat{Set}$, 对于任意的对象$c\in\cat{C}$, 存在双射$\Hom (\cat{C}(c, -), F)\cong Fc$, 将自然变换$\alpha\colon \cat{C}(c, -)\Rightarrow F$映到$\alpha_c(1_c)\in Fc$. 并且, 这个双射关于$c$和$F$是自然的.
+\end{theorem}
+
+\begin{proofhint}
+  我们已经定义了映射$\Phi\colon \Hom (\cat{C}(c, -), F)\to Fc$, 还需要定义$\Psi\colon Fc\to\Hom (\cat{C}(c, -))$, 并证明它们互为逆, 并且关于$c$和$F$是自然的.
+
+  第一步, 利用$\Psi(x)\colon \cat{C}(c, -)\Rightarrow F$的自然性, 以及$\Psi(x)_c(1_c)=x$一定成立, 来证明$\Psi$的唯一性, 有显式表达$\Psi(x)_d(f)\coloneq (Ff)(x)$.
+
+  第二步, 利用$F$的函子性证明$\Psi$的存在性, 即验证我们定义的唯一的$\Psi$的像中的每个元素一定是自然变换.
+
+  第三步, 利用定义验证$\Phi$和$\Psi$互为逆.
+
+  第四步, 利用定义验证$c$和$F$的自然性.
+\end{proofhint}
+
+Yoneda引理完全刻画了可表函子之间自然变换, 由此我们可以定义Yoneda嵌入.
+\begin{propositionnoproof}[Yoneda嵌入{{\parencite[60, Corollary 2.2.8]{riehl_category_2017}}}]
+  下图所定义的函子
+  \begin{equation*}
+    \functordiagram{\cat{C}}{\cat{Set}^{\cat{C}^{\op}}}{}{c}{d}{f}{\cat{C}(-, c)}{\cat{C}(-, d)}{f_*}
+    \quad
+    \functordiagram*{\cat{C}^{\op}}{\cat{Set}^{\cat{C}}}{}{c}{d}{f}{\cat{C}(c, -)}{\cat{C}(d, -)}{f^*}
+  \end{equation*}
+  定义了范畴的完全忠实嵌入.
+\end{propositionnoproof}
+
+% 利用Yoneda嵌入, 我们可以证明如果局部小范畴中的两个对象表示的函子自然同构当且仅当它们是同构的, 并且这两个对象中存在一个唯一的自然的同构, 于是我们可以定义可表函子的\emph{表示对象}.
+
+利用Yoneda引理, 我们还可以定义范畴论中的泛性质, 与我们之前所叙述过的商环, 分式环等的映射的泛性质有密切关系.
+
+给定局部小范畴$\cat{C}$与一个对象$c\in \cat{C}$, 一个$c$的\emph{泛性质}包含的信息有一个可表函子$F$, 和一个由\thref{thm:yonedalemma}定义了自然同构$\cat{C}(c, -)\cong F$或者$\cat{C}(-, c)\cong F$的\emph{泛对象}$x\in Fc$.
+
+\begin{example}
+    线性空间的张量积
+
+    \footnotemark
+\end{example}
+\footnotetext{利用\emph{元素范畴}的知识, 我们还可以从映射的泛性质中得到范畴论中的泛性质\parencite[68, Proposition 2.4.8]{riehl_category_2017}, 不过与本文的主要内容关系不大, 这里就不介绍了.}
+
+\bigskip
+
+这一节的最后一部分我们来介绍范畴论里的极限以及极限在函子下的性质, 我们还会给出层的定义以及滤子化上极限的构造, 在\ref{subsec:ag-affinescheme}中我们会用到这两个概念.
+
+给定范畴$\cat{J}$与$\cat{C}$, 称一个函子$F\colon \cat{J}\to \cat{C}$为一个\emph{形状为$J$的图}. 这个图的极限(或上极限)将会被定义为这个图上(或下)的泛锥, 于是我们先来介绍什么是锥.
+
+\emph{图$F\colon \cat{J}\to\cat{C}$上的以$c\in\cat{C}$为顶点的锥}是从常函子$c$到$F$的自然变换$\lambda\colon c\Rightarrow F$. 自然变换$\lambda$的分量全体$\{\lambda_j\colon c\to Fj\}_{j\in J}$被称为这个锥的\emph{腿}. 显式表述的话, 图$F\colon \cat{J}\to\cat{C}$上的以$c\in\cat{C}$为顶点的锥包含的信息为以$j\in J$为指标的一族函子$\lambda\colon c\to Fj$, 满足对于任意的态射$f\colon j\to k\in \cat{J}$, 下图是$\cat{C}$中的交换图.
+\begin{equation*}
+  \begin{tikzcd}[column sep=small]
+    & c & \\
+    Fj & & Fk
+    \arrow[from=1-2,]{2-1}[swap]{\lambda_j}
+    \arrow[from=1-2,]{2-3}[]{\lambda_k}
+    \arrow[from=2-1,]{2-3}[below]{Ff}
+  \end{tikzcd}
+\end{equation*}
+
+对偶地, \emph{图$F\colon \cat{J}\to\cat{C}$下的以$c\in\cat{C}$为底点的锥}是自然变换$\lambda\colon F\Rightarrow c$, \emph{腿}为分量全体$\{\lambda_j\colon Fj\to c\}_{j\in J}$. 自然条件即为对于任意的态射$f\colon j\to k\in \cat{J}$, 下图是$\cat{C}$中的交换图.
+\begin{equation*}
+  \begin{tikzcd}[column sep=small]
+    Fj & & Fk\\
+    & c &
+    \arrow[from=1-1,]{2-2}[swap]{\lambda_j}
+    \arrow[from=1-1,]{1-3}[]{Ff}
+    \arrow[from=1-3,]{2-2}[]{\lambda_k}
+  \end{tikzcd}
+\end{equation*}
+
+% limit 锥范畴 universal cone
+% 预层 层
+% 集合范畴的direct limit
+% 180 Ab Ring CRing Mod_R 都满足
+% 181 Theorem 5.6.5
 
 \subsection{素谱}\label{subsec:primespec}
 
@@ -836,94 +962,94 @@
 设$X$为环$A$的素理想全体构成的集合. 对每个$A$的子集$E$, 记$V(E)$为$A$中包含$E$的素理想全体, 是$X$的子集.
 
 \begin{proposition}[{{\parencite[12, Exercise 15]{atiyah_introduction_1969}}}]\label{prop:primespecclosedset}
-    上述定义的算子$V$有如下性质,
-    \begin{enumerate}
-        \item\label{enum:prop-prime-spec-closed-set-1} 如果$\ideal{a}$是由$A$的子集$E$生成的理想, 则$V(E)=V(\ideal{a})=V(\sqrt{\ideal{a}})$;
-        \item\label{enum:prop-prime-spec-closed-set-2} 如果$\sqrt{\ideal{a}}\neq\sqrt{\ideal{b}}$, 则$V(\ideal{a})\neq V(\ideal{b})$;
-        \item\label{enum:prop-prime-spec-closed-set-3} $V((0))=X$, $V((1))=\varnothing$;
-        \item\label{enum:prop-prime-spec-closed-set-4} 设$\{E_\lambda\}$为$A$的一族子集, 则$\bigcap V(E_\lambda)=V(\bigcup E_\lambda)$;
-        \item\label{enum:prop-prime-spec-closed-set-5} 如果$\ideal{a}, \ideal{b}$是$A$的两个理想, 则$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
-    \end{enumerate}
-    因此$V(E)$全体作为$X$的子集满足拓扑空间中闭集的公理, 如此可以在$X$中定义拓扑空间结构, 称为\emph{Zariski拓扑}, 称赋有Zariski拓扑的拓扑空间$X$为环$A$的\emph{素谱}, 记为$\Spec (A)$.
+  上述定义的算子$V$有如下性质,
+  \begin{enumerate}
+    \item\label{enum:prop-prime-spec-closed-set-1} 如果$\ideal{a}$是由$A$的子集$E$生成的理想, 则$V(E)=V(\ideal{a})=V(\sqrt{\ideal{a}})$;
+    \item\label{enum:prop-prime-spec-closed-set-2} 如果$\sqrt{\ideal{a}}\neq\sqrt{\ideal{b}}$, 则$V(\ideal{a})\neq V(\ideal{b})$;
+    \item\label{enum:prop-prime-spec-closed-set-3} $V((0))=X$, $V((1))=\varnothing$;
+    \item\label{enum:prop-prime-spec-closed-set-4} 设$\{E_\lambda\}$为$A$的一族子集, 则$\bigcap V(E_\lambda)=V(\bigcup E_\lambda)$;
+    \item\label{enum:prop-prime-spec-closed-set-5} 如果$\ideal{a}, \ideal{b}$是$A$的两个理想, 则$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
+  \end{enumerate}
+  因此$V(E)$全体作为$X$的子集满足拓扑空间中闭集的公理, 如此可以在$X$中定义拓扑空间结构, 称为\emph{Zariski拓扑}, 称赋有Zariski拓扑的拓扑空间$X$为环$A$的\emph{素谱}, 记为$\Spec (A)$.
 \end{proposition}
 
 \begin{proof}
-    \ref{enum:prop-prime-spec-closed-set-1} 注意如果$x^n\in \ideal{p}$那么有$x\in\ideal{p}$.
+  \ref{enum:prop-prime-spec-closed-set-1} 注意如果$x^n\in \ideal{p}$那么有$x\in\ideal{p}$.
 
-    \ref{enum:prop-prime-spec-closed-set-5} 不难证明$V(\ideal{a}\cap\ideal{b})=V(\ideal{a})\cup V(\ideal{b})$, 又由\ref{enum:prop-prime-spec-closed-set-1}和\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}, 即得$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
+  \ref{enum:prop-prime-spec-closed-set-5} 不难证明$V(\ideal{a}\cap\ideal{b})=V(\ideal{a})\cup V(\ideal{b})$, 又由\ref{enum:prop-prime-spec-closed-set-1}和\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}, 即得$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
 \end{proof}
 
 素谱$\Spec (A)$有一组很特殊的拓扑基, 我们现在来介绍.
 
 \begin{proposition}[{{\parencite[12, Exercise 17]{atiyah_introduction_1969}}}]\label{prop:primespecbaseopenset}
-    对于$f\in A$, 记$X_f$为闭集$V((f))$的余集. 则这些$X_f$构成$\Spec (A)$的一组拓扑基, 并且满足
-    \begin{enumerate}
-        \item $X_f\cap X_g=X_{fg}$;
-        \item\label{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$是幂零元;
-        \item $X_f=X$当且仅当$f$是单位;
-        \item $X_f=X_g$当且仅当$\sqrt{(f)}=\sqrt{(g)}$;
-        \item\label{enum:prop-prime-spec-base-open-set-5} $X$是拟紧集\footnotemark;
-        \item\label{enum:prop-prime-spec-base-open-set-6} 每个$X_f$是拟紧集;
-        \item $X$中的开集为拟紧集当且仅当它是有限个$X_f$的并.
-    \end{enumerate}
-    称这些$X_f$为素谱$\Spec (A)$的\emph{基开集}.
+  对于$f\in A$, 记$X_f$为闭集$V((f))$的余集. 则这些$X_f$构成$\Spec (A)$的一组拓扑基, 并且满足
+  \begin{enumerate}
+    \item $X_f\cap X_g=X_{fg}$;
+    \item\label{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$是幂零元;
+    \item $X_f=X$当且仅当$f$是单位;
+    \item $X_f=X_g$当且仅当$\sqrt{(f)}=\sqrt{(g)}$;
+    \item\label{enum:prop-prime-spec-base-open-set-5} $X$是拟紧集\footnotemark;
+    \item\label{enum:prop-prime-spec-base-open-set-6} 每个$X_f$是拟紧集;
+    \item $X$中的开集为拟紧集当且仅当它是有限个$X_f$的并.
+  \end{enumerate}
+  称这些$X_f$为素谱$\Spec (A)$的\emph{基开集}.
 \end{proposition}
 \footnotetext{代数几何中对紧集的称法与其它领域中不同. 称每个开覆盖都有有限子覆盖的集合为\emph{拟紧集}, 称满足Hausdorff性质的拟紧集为\emph{紧集}.}
 
 \begin{proof}
-    \ref{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$属于$A$的幂零根, 也当且仅当$f$是幂零元.
+  \ref{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$属于$A$的幂零根, 也当且仅当$f$是幂零元.
 
-    \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证任意开覆盖都有有限子覆盖.
+  \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证任意开覆盖都有有限子覆盖.
 
-    \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$\sum_{j=1}^n f_ig_i = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
+  \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$\sum_{j=1}^n f_ig_i = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
 \end{proof}
 
 如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的\parencite[13, Exercise 19]{atiyah_introduction_1969}. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的.
 
 \begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
-    拓扑空间$X$的不可约集全体在集合包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
+  拓扑空间$X$的不可约集全体在集合包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
 \end{proposition}
 
 \begin{proof}
-    先利用Zorn引理证明有极大元. 考虑不可约集的全序子链$\{Y_\lambda\}$, 则断言它们的并$Y$一定是不可约集. 这是因为对于每两个$Y$的真闭子集$Z_1, Z_2$, 都可以找到$\lambda$使得$Z_1\cap Y_\lambda, Z_2\cap Y_\lambda$是$Y_\lambda$的真闭子集.
+  先利用Zorn引理证明有极大元. 考虑不可约集的全序子链$\{Y_\lambda\}$, 则断言它们的并$Y$一定是不可约集. 这是因为对于每两个$Y$的真闭子集$Z_1, Z_2$, 都可以找到$\lambda$使得$Z_1\cap Y_\lambda, Z_2\cap Y_\lambda$是$Y_\lambda$的真闭子集.
 
-    再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交.
+  再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交.
 
-    最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
+  最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
 \end{proof}
 
 \begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
-    素谱$X=\Spec (A)$的不可约闭集全体恰为素理想$\ideal{p}$对应的闭集$V(\ideal{p})$全体, 由此建立了$X$的不可约闭集全体到$A$的素理想全体的反序双射. 于是$X$不可约分支全体恰为极小素理想$\ideal{p}$所对应的闭集$V(\ideal{p})$全体.
+  素谱$X=\Spec (A)$的不可约闭集全体恰为素理想$\ideal{p}$对应的闭集$V(\ideal{p})$全体, 由此建立了$X$的不可约闭集全体到$A$的素理想全体的反序双射. 于是$X$不可约分支全体恰为极小素理想$\ideal{p}$所对应的闭集$V(\ideal{p})$全体.
 \end{proposition}
 
 \begin{proof}
-    因为$V$可以看成从$A$的素理想全体到$X$的闭集全体之间的保序单射, 所以只需证明$\sqrt{\ideal{a}}$为素理想当且仅当$V(\ideal{a})$不可约.
+  因为$V$可以看成从$A$的素理想全体到$X$的闭集全体之间的保序单射, 所以只需证明$\sqrt{\ideal{a}}$为素理想当且仅当$V(\ideal{a})$不可约.
 
-    如果$\ideal{p}$是素理想, 若有$V(\ideal{p})=V(\sqrt{\ideal{a}})\cup V(\sqrt{\ideal{b}})=V(\sqrt{\ideal{ab}})$, 则根据\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}有$\ideal{p}=\sqrt{\ideal{ab}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$, 再根据\thref{prop:prime}\ref{enum:prop-prime-absorb}得$\ideal{p}=\sqrt{\ideal{a}}$或$\ideal{p}=\sqrt{\ideal{b}}$. 于是得$V(\ideal{p})$不能写成两个真闭子集得并, 故为不可约集.
+  如果$\ideal{p}$是素理想, 若有$V(\ideal{p})=V(\sqrt{\ideal{a}})\cup V(\sqrt{\ideal{b}})=V(\sqrt{\ideal{ab}})$, 则根据\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}有$\ideal{p}=\sqrt{\ideal{ab}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$, 再根据\thref{prop:prime}\ref{enum:prop-prime-absorb}得$\ideal{p}=\sqrt{\ideal{a}}$或$\ideal{p}=\sqrt{\ideal{b}}$. 于是得$V(\ideal{p})$不能写成两个真闭子集得并, 故为不可约集.
 
-    如果$V(\sqrt{\ideal{a}})$是不可约集, 考虑$fg\in\sqrt{\ideal{a}}$. 则$V(\ideal{a})=(V(\ideal{a})\cap V((f)))\cap (V(\ideal{a})\cap V((g)))$可以写成两个闭子集的并. 于是有$V(\ideal{a})=V((f))$或者$V(\ideal{a})=V((g))$, 因此$f\in \sqrt{\ideal{a}}$或者$g\in \sqrt{\ideal{a}}$成立, 即$\sqrt{\ideal{a}}$为素理想.
+  如果$V(\sqrt{\ideal{a}})$是不可约集, 考虑$fg\in\sqrt{\ideal{a}}$. 则$V(\ideal{a})=(V(\ideal{a})\cap V((f)))\cap (V(\ideal{a})\cap V((g)))$可以写成两个闭子集的并. 于是有$V(\ideal{a})=V((f))$或者$V(\ideal{a})=V((g))$, 因此$f\in \sqrt{\ideal{a}}$或者$g\in \sqrt{\ideal{a}}$成立, 即$\sqrt{\ideal{a}}$为素理想.
 \end{proof}
 
 素谱运算实际上是环范畴到拓扑空间范畴的反变函子, 具有如下一些性质.
 
 \begin{proposition}[{{\parencite[13, Exercise 21]{atiyah_introduction_1969}}}]\label{prop:primespecfunctor}
-    设$\varphi\colon A\to B$为环同态, 记$X=\Spec (A)$, $Y=\Spec (B)$. $\varphi$诱导出了拓扑空间之间的映射$\varphi^*\colon Y\to X$, 满足
-    \begin{enumerate}
-        \item\label{enum:prop-prime-spec-functor-continuous} 如果$f\in A$, 那么$\varphi^{*-1}(X_f)=Y_{\varphi(f)}$. 因此$\varphi^*$是连续映射;
-        \item 如果$\ideal{a}$是$A$的理想, 那么$\varphi^{*-1}(V(\ideal{a}))=V(\ideal{a}^e)$;
-        \item 如果$\ideal{b}$是$B$的理想, 那么$\overline{\varphi^*(V(\ideal{b}))}=V(\ideal{b}^c)$;
-        \item\label{enum:prop-prime-spec-functor-surjective} 如果$\varphi$是满射, 那么$\varphi^*$为从$Y$到$X$的闭子集$V(\Ker (\varphi))$的同胚. 特别地, $\Spec (A)$与$\Spec (A{\divslash}\nil)$有自然同胚;
-        \item $\varphi^*(Y)$在$X$中稠密当且仅当$\Ker (\varphi)\subseteq \nil$;
-        \item\label{enum:prop-prime-spec-functor-composite} 如果$\psi\colon B\to C$为另一个环同态, 则$(\psi\composite\varphi)^*=\varphi^*\composite\psi^*$.
-    \end{enumerate}
+  设$\varphi\colon A\to B$为环同态, 记$X=\Spec (A)$, $Y=\Spec (B)$. $\varphi$诱导出了拓扑空间之间的映射$\varphi^*\colon Y\to X$, 满足
+  \begin{enumerate}
+    \item\label{enum:prop-prime-spec-functor-continuous} 如果$f\in A$, 那么$\varphi^{*-1}(X_f)=Y_{\varphi(f)}$. 因此$\varphi^*$是连续映射;
+    \item 如果$\ideal{a}$是$A$的理想, 那么$\varphi^{*-1}(V(\ideal{a}))=V(\ideal{a}^e)$;
+    \item 如果$\ideal{b}$是$B$的理想, 那么$\overline{\varphi^*(V(\ideal{b}))}=V(\ideal{b}^c)$;
+    \item\label{enum:prop-prime-spec-functor-surjective} 如果$\varphi$是满射, 那么$\varphi^*$为从$Y$到$X$的闭子集$V(\Ker (\varphi))$的同胚. 特别地, $\Spec (A)$与$\Spec (A{\divslash}\nil)$有自然同胚;
+    \item $\varphi^*(Y)$在$X$中稠密当且仅当$\Ker (\varphi)\subseteq \nil$;
+    \item\label{enum:prop-prime-spec-functor-composite} 如果$\psi\colon B\to C$为另一个环同态, 则$(\psi\composite\varphi)^*=\varphi^*\composite\psi^*$.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-    \ref{enum:prop-prime-spec-functor-continuous} $\ideal{q}\in\varphi^{*-1}(V(X_f))$当且仅当$\varphi^*(\ideal{q})\in X_f$, 又当且仅当$f\notin \ideal{q}^c$, 还当且仅当$\varphi (f)\notin \ideal{q}$, 最后当且仅当$\ideal{q}\in Y_{\varphi (f)}$.
+  \ref{enum:prop-prime-spec-functor-continuous} $\ideal{q}\in\varphi^{*-1}(V(X_f))$当且仅当$\varphi^*(\ideal{q})\in X_f$, 又当且仅当$f\notin \ideal{q}^c$, 还当且仅当$\varphi (f)\notin \ideal{q}$, 最后当且仅当$\ideal{q}\in Y_{\varphi (f)}$.
 
-    \ref{enum:prop-prime-spec-functor-surjective} 只需证明$\varphi^*(V(\ideal{b}))=V(\ideal{b}^c)$. 考虑素理想$\ideal{p}\in X$, 则$\ideal{p}\in\varphi^*(V(\ideal{b}))$当且仅当$\varphi(\ideal{p})\in V(\ideal{b})$, 也当且仅当$\varphi(\ideal{p})\supseteq\ideal{b}$, 故当且仅当$\ideal{p}\supseteq\ideal{b}^c$.
+  \ref{enum:prop-prime-spec-functor-surjective} 只需证明$\varphi^*(V(\ideal{b}))=V(\ideal{b}^c)$. 考虑素理想$\ideal{p}\in X$, 则$\ideal{p}\in\varphi^*(V(\ideal{b}))$当且仅当$\varphi(\ideal{p})\in V(\ideal{b})$, 也当且仅当$\varphi(\ideal{p})\supseteq\ideal{b}$, 故当且仅当$\ideal{p}\supseteq\ideal{b}^c$.
 
-    \ref{enum:prop-prime-spec-functor-composite} 注意$(\psi\composite\varphi)^{-1}=(\varphi^{-1}\composite\psi^{-1})$即可.
+  \ref{enum:prop-prime-spec-functor-composite} 注意$(\psi\composite\varphi)^{-1}=(\varphi^{-1}\composite\psi^{-1})$即可.
 \end{proof}
 
 对于环$A$, 其极大理想全体可以看成素谱$\Spec (A)$的子空间, 这个子空间被称为$A$的\emph{极大谱}, 记作$\MaxSpec (A)$. 因为一般来说极大理想的原像不一定是极大理想, 所以极大谱没有如\thref{prop:primespecfunctor}中所述的函子性质, 研究起来不是那么方便.
@@ -931,23 +1057,23 @@
 正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\parencite[79, Exercise 5]{atiyah_introduction_1969}. $X$是Noether拓扑空间等价于每个由$X$的闭子集构成的非空集合都有极小元.
 
 \begin{proposition}
-    如果$A$是Noether环, 则$\Spec (A)$是Noether拓扑空间. 反之则不一定成立.
+  如果$A$是Noether环, 则$\Spec (A)$是Noether拓扑空间. 反之则不一定成立.
 \end{proposition}
 
 \begin{proof}
-    假设$A$是Noether环, 因为$\Spec (A)$中的闭集降链能诱导出$A$中的根式理想的升链, 故由\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}知闭集降链一定有限.
+  假设$A$是Noether环, 因为$\Spec (A)$中的闭集降链能诱导出$A$中的根式理想的升链, 故由\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}知闭集降链一定有限.
 
-    反过来, 我们需要寻找一个反例, 这个反例参考\footfullcite{brandenburg_non-noetherian_2017}. 设$\kk$为一个域, 考虑域的正整数元多项式环的商环$A=\kk [X_1, X_2, \dotsc]{\divslash}(X_1, X_2^2, \dotsc)$. 因为理想升链$(X_1)\subsetneqq (X_1, X_2)\dotsb$不稳定, 因此$A$不是Noether环. 但是因为幂零根$\nil=\ideal{m}\coloneq (X_1, X_2, \dotsc)$为极大理想, 故由\thref{prop:primespecfunctor}\ref{enum:prop-prime-spec-functor-surjective}我们知道$\Spec (A)\cong\Spec (A{\divslash}\nil)=\Spec (\kk)$仅有一个点, 因此一定是Noether拓扑空间.
+  反过来, 我们需要寻找一个反例, 这个反例参考\footfullcite{brandenburg_non-noetherian_2017}. 设$\kk$为一个域, 考虑域的正整数元多项式环的商环$A=\kk [X_1, X_2, \dotsc]{\divslash}(X_1, X_2^2, \dotsc)$. 因为理想升链$(X_1)\subsetneqq (X_1, X_2)\dotsb$不稳定, 因此$A$不是Noether环. 但是因为幂零根$\nil=\ideal{m}\coloneq (X_1, X_2, \dotsc)$为极大理想, 故由\thref{prop:primespecfunctor}\ref{enum:prop-prime-spec-functor-surjective}我们知道$\Spec (A)\cong\Spec (A{\divslash}\nil)=\Spec (\kk)$仅有一个点, 因此一定是Noether拓扑空间.
 \end{proof}
 
 \begin{proposition}[{{\parencites[79, Exercise 7]{atiyah_introduction_1969}[5, Proposition 1.5]{hartshorne_algebraic_1977}}}]
-    Noether拓扑空间$X$中的不可约分支仅有有限个, 故Noether环$A$的极小素理想仅有有限个.
+  Noether拓扑空间$X$中的不可约分支仅有有限个, 故Noether环$A$的极小素理想仅有有限个.
 \end{proposition}
 
 \begin{proof}
-    证明分为两步, 先证明$X$可以表示成有限个两两不同的不可约分支的并, 再证明这种表示是唯一的.
+  证明分为两步, 先证明$X$可以表示成有限个两两不同的不可约分支的并, 再证明这种表示是唯一的.
 
-    设$\Sigma$为$X$的不能写成有限个不可约闭子空间的并的闭集全体, 假设$\Sigma$非空. 因为$X$是Noether拓扑空间, 故$\Sigma$有极小元, 记为$Y$. $Y$不是不可约集, 于是可以写成两个真闭子集$Y', Y''$的并$Y=Y'\cup Y''$, 又$Y', Y''$可以写成有限个不可约闭子空间的并, 于是得到$Y$可以写成有限个不可约闭子空间的并, 矛盾. 于是$X$可以写成有限个不可约闭子空间的并, 取极大元并抛去相同的项即得$X$可以写成有限个两两不同的不可约分支的并.
+  设$\Sigma$为$X$的不能写成有限个不可约闭子空间的并的闭集全体, 假设$\Sigma$非空. 因为$X$是Noether拓扑空间, 故$\Sigma$有极小元, 记为$Y$. $Y$不是不可约集, 于是可以写成两个真闭子集$Y', Y''$的并$Y=Y'\cup Y''$, 又$Y', Y''$可以写成有限个不可约闭子空间的并, 于是得到$Y$可以写成有限个不可约闭子空间的并, 矛盾. 于是$X$可以写成有限个不可约闭子空间的并, 取极大元并抛去相同的项即得$X$可以写成有限个两两不同的不可约分支的并.
 
-    如果$X$可以以两种方式写成两两不同的不可约分支的并, 即有$X=X_1\cup\dotsb\cup X_m$以及$X=X_1'\cup\dotsb\cup X_n'$, 我们将证明对于每个$j=1, \dotsc, m$都存在$k$使得$X_j=X_k'$. 由于$X_j=\bigcup_{k=1}^m(X_j\cap X_k')$并且$X_j$不可约, 存在$k$使得$X_j\subseteq X_k'$. 同理, 存在$l$使得$X_k'\subseteq X_l$, 因此$X_j\subseteq X_l$, 有极大性得$j=l$, 即$X_j=X_k'$.
+  如果$X$可以以两种方式写成两两不同的不可约分支的并, 即有$X=X_1\cup\dotsb\cup X_m$以及$X=X_1'\cup\dotsb\cup X_n'$, 我们将证明对于每个$j=1, \dotsc, m$都存在$k$使得$X_j=X_k'$. 由于$X_j=\bigcup_{k=1}^m(X_j\cap X_k')$并且$X_j$不可约, 存在$k$使得$X_j\subseteq X_k'$. 同理, 存在$l$使得$X_k'\subseteq X_l$, 因此$X_j\subseteq X_l$, 有极大性得$j=l$, 即$X_j=X_k'$.
 \end{proof}

@@ -5,27 +5,27 @@
 \subsection{基数}
 
 \begin{proposition}[{{\parencite[4]{jacobson_basic_1989}}}]\label{prop:cardcartcor}
-    如果$A$非空, $B$为无限集并且$\vert B\vert\geq \vert A\vert$, 则$\vert A\times B\vert=\vert B\vert$.
+  如果$A$非空, $B$为无限集并且$\vert B\vert\geq \vert A\vert$, 则$\vert A\times B\vert=\vert B\vert$.
 \end{proposition}
 
 \subsection{域论}
 
 \begin{proposition}\label{thm:fntfieldextdegree}% TODO: reference
-    给定域扩张$F\subseteq E$, 如果有不同的元素$x, y\in E$, 则$[F(x, y):F]\leq [F(x):F][F(y):F]$.
+  给定域扩张$F\subseteq E$, 如果有不同的元素$x, y\in E$, 则$[F(x, y):F]\leq [F(x):F][F(y):F]$.
 \end{proposition}
 
 \begin{theorem}\label{thm:fieldextdegreemulti}% TODO: reference
-    域扩张的次数具有可乘性, 即若有三个域$F\subseteq E\subseteq K$, 则$[K:F]=[K:E][E:F]$.
+  域扩张的次数具有可乘性, 即若有三个域$F\subseteq E\subseteq K$, 则$[K:F]=[K:E][E:F]$.
 \end{theorem}
 
 \subsection{拓扑}
 
 \begin{proposition}\label{prop:closedsetlocal}
-    设$X$为拓扑空间, $Y\subseteq X$, 则$Y$是$X$的闭集当且仅当存在$X$中的开覆盖$\bigcup U_\lambda\supseteq Y$使得每个$U_\lambda\cap Y$都是$U_\lambda$的闭集.
+  设$X$为拓扑空间, $Y\subseteq X$, 则$Y$是$X$的闭集当且仅当存在$X$中的开覆盖$\bigcup U_\lambda\supseteq Y$使得每个$U_\lambda\cap Y$都是$U_\lambda$的闭集.
 \end{proposition}
 
 \begin{proposition}[{{\parencite[104, Theorem 18.1]{munkres_topology_2000}}}]\label{prop:continuousimageclosure}
-    如果$f\colon X\to Y$是拓扑空间之间的映射, 则$f$连续当且仅当对于任意的集合$A\subseteq X$都有$f(\overline{A})\subseteq\overline{f(A)}$.
+  如果$f\colon X\to Y$是拓扑空间之间的映射, 则$f$连续当且仅当对于任意的集合$A\subseteq X$都有$f(\overline{A})\subseteq\overline{f(A)}$.
 \end{proposition}
 
 \subsection{Cayley-Hamilton定理}
@@ -33,5 +33,5 @@
 如果这一节有证明的话会按照\footfullcite{__trivia_2020}的思路来证明交换幺环上的Cayley-Hamilton定理. 不然的话就告诉一下可以用伴随矩阵来证明\parencite[369, Exercise 6.9]{aluffi_algebra_2009}.
 
 \begin{theorem}[Cayley-Hamilton定理]\label{thm:CayleyHamilton}
-    设$T$为环$A$上的$n\times n$矩阵, $P_T(X)\coloneq \det (XI-A)\in A[X]$为$T$的特征多项式, 则$P_T(T)=0$为零矩阵.
+  设$T$为环$A$上的$n\times n$矩阵, $P_T(X)\coloneq \det (XI-A)\in A[X]$为$T$的特征多项式, 则$P_T(T)=0$为零矩阵.
 \end{theorem}

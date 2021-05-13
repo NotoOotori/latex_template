@@ -748,7 +748,7 @@
 
 如果范畴$\cat{D}$的对象类和每个态射类都是范畴$\cat{C}$相应的类的子类, 则称$\cat{D}$为$\cat{C}$的\emph{子范畴}.
 
-如果范畴$\cat{C}$的任一组对象之间的态射类都是集合, 则称$\cat{C}$是\emph{局部小范畴}. 在这篇文章中我们关心的范畴都是局部小的, 不过在每处我们依然会写上这个范畴是局部小的的这一条件. 在局部小的范畴$\cat{C}$中, 我们记一组对象$X, Y$之间的态射全体所构成的集合为$\cat{C} (X, Y)$.
+如果范畴$\cat{C}$中的态射全体构成集合, 则称$\cat{C}$是\emph{小范畴}. 如果范畴$\cat{C}$的任一组对象之间的态射类都是集合, 则称$\cat{C}$是\emph{局部小范畴}. 在这篇文章中我们关心的范畴都是局部小的, 不过在每处我们依然会写上这个范畴是局部小的的这一条件. 在局部小的范畴$\cat{C}$中, 我们记一组对象$X, Y$之间的态射全体所构成的集合为$\cat{C} (X, Y)$.
 
 \begin{example}
   很多我们熟悉的数学对象都构成范畴, 并且是局部小范畴.
@@ -860,7 +860,8 @@
     \arrow[from=1-3,]{2-3}[right]{Hf}
   \end{tikzcd}
 \end{equation*}
-并且这里定义的复合满足定义\parencite[44, Corollary 1.7.2]{riehl_category_2017}, 故$\cat{D}^{\cat{C}}$是范畴. 不过一般来说, 就算$\cat{C}$和$\cat{D}$都是局部小范畴, $\cat{D}^{\cat{C}}$也不一定是局部小范畴.
+并且这里定义的复合满足定义\parencite[44, Corollary 1.7.2]{riehl_category_2017}, 故$\cat{D}^{\cat{C}}$是范畴. 如果$\cat{C}$是局部小范畴, $\cat{J}$是小范畴, 那么$\cat{D}^{\cat{C}}$会是局部小范畴. 不过一般来说, 如果$\cat{C}$和$\cat{D}$都是局部小范畴, 那么$\cat{D}^{\cat{C}}$就
+不一定是局部小范畴.
 
 % 范畴等价
 接下来我们来定义范畴等价的概念. 一个很直接的想法是要求存在函子$F\colon \cat{C}\leftrightarrows \cat{D}\colon G$使得$FG=1_{\cat{D}}, GF=1_{\cat{C}}$成立, 这样的话称范畴$\cat{C}$与$\cat{D}$\emph{同构}. 不过我们发现范畴同构的要求太强了\parencite[21]{riehl_category_2017}, 所以我们采取类似于同伦等价的方式来定义范畴等价的概念.
@@ -915,7 +916,7 @@ Yoneda引理完全刻画了可表函子之间自然变换, 由此我们可以定
 给定局部小范畴$\cat{C}$与一个对象$c\in \cat{C}$, 一个$c$的\emph{泛性质}包含的信息有一个可表函子$F$, 和一个由\thref{thm:yonedalemma}定义了自然同构$\cat{C}(c, -)\cong F$或者$\cat{C}(-, c)\cong F$的\emph{泛对象}$x\in Fc$.
 
 \begin{example}
-    线性空间的张量积
+    线性空间的张量积% TODO: example of universal property
 
     \footnotemark
 \end{example}
@@ -925,7 +926,7 @@ Yoneda引理完全刻画了可表函子之间自然变换, 由此我们可以定
 
 这一节的最后一部分我们来介绍范畴论里的极限以及极限在函子下的性质, 我们还会给出层的定义以及滤子化上极限的构造, 在\ref{subsec:ag-affinescheme}中我们会用到这两个概念.
 
-给定范畴$\cat{J}$与$\cat{C}$, 称一个函子$F\colon \cat{J}\to \cat{C}$为一个\emph{形状为$J$的图}. 这个图的极限(或上极限)将会被定义为这个图上(或下)的泛锥, 于是我们先来介绍什么是锥.
+给定范畴$\cat{J}$与$\cat{C}$, 称一个函子$F\colon \cat{J}\to \cat{C}$为一个\emph{$\cat{C}$中的形状为$J$的图}. 这个图的极限(或上极限)将会被定义为这个图上(或下)的泛锥, 于是我们先来介绍什么是锥.
 
 \emph{图$F\colon \cat{J}\to\cat{C}$上的以$c\in\cat{C}$为顶点的锥}是从常函子$c$到$F$的自然变换$\lambda\colon c\Rightarrow F$. 自然变换$\lambda$的分量全体$\{\lambda_j\colon c\to Fj\}_{j\in J}$被称为这个锥的\emph{腿}. 显式表述的话, 图$F\colon \cat{J}\to\cat{C}$上的以$c\in\cat{C}$为顶点的锥包含的信息为以$j\in J$为指标的一族函子$\lambda\colon c\to Fj$, 满足对于任意的态射$f\colon j\to k\in \cat{J}$, 下图是$\cat{C}$中的交换图.
 \begin{equation*}
@@ -949,8 +950,16 @@ Yoneda引理完全刻画了可表函子之间自然变换, 由此我们可以定
   \end{tikzcd}
 \end{equation*}
 
-% limit 锥范畴 universal cone
-% 预层 层
+现在我们可以来介绍极限与上极限的定义了. 设$\cat{C}$是局部小范畴$\cat{J}$是小范畴, 给定图$F\colon\cat{J}\to\cat{C}$, 则存在函子$\Cone(-, F)\colon \cat{C}^{\op}\to\cat{Set}$将$c\in \cat{C}$映到图$F$上的以$c$为顶点的锥. $F$的一个\emph{极限}即为函子$\Cone (-, F)$的一个表示, 包含的信息为一个对象$\lim (F)\in \cat{C}$和一个泛锥$\lambda\colon\lim (F)\Rightarrow F$, 这个泛锥定义了自然同构$\cat{C}(-, \lim (F))\cong \Cone (-, F)$, 被称为\emph{极限锥}.
+
+对偶地, 对于局部小范畴$\cat{C}$中的形状为小范畴$\cat{J}$的图$F$, 也存在函子$\Cone(F, -)\colon \cat{C}\to\cat{Set}$将$c\in \cat{C}$映到图$F$下的以$c$为底点的锥. $F$的一个\emph{上极限}即为函子$\Cone (F, -)$的一个表示, 包含的信息为一个对象$\colim (F)\in \cat{C}$和一个泛锥$\lambda\colon F\Rightarrow \colim (F)$, 这个泛锥定义了自然同构$\cat{C}(\colim (F), -)\cong \Cone (F, -)$, 被称为\emph{上极限锥}.
+
+% TODO: 函子 创造 预层 层
+
+最后我们来介绍滤子化上极限. 如果范畴$\cat{J}$中的每一个有限图都存在其下的锥, 那么称$\cat{J}$为\emph{滤子化的}. 考虑$\cat{Set}$中的形状为滤子化范畴$\cat{J}$的图$F\colon \cat{J}\to\cat{Set}$, 则其上极限$\colim (F)$可以表示成余积$\amalg_{j\in J}Fj$在等价关系下的商, 其中$x\in Fj$等价于$y\in Fk$当且仅当存在态射$f\colon j\to t\in\cat{J}$和$g\colon k\to t\in \cat{J}$使得$(Ff)(x)=(Fg)(y)$成立. 有时滤子化上极限.
+
+虽然我们只是在$\cat{Set}$中构造了滤子化上极限, 但是用进阶的范畴论知识可以证明$\cat{Ab}, \linebreak[0]\cat{Ring}, \linebreak[0]\cat{CRing}, \linebreak[0]\cat{Mod}_R$的滤子化上极限都可以通过遗忘函子从$\cat{Set}$中创造\parencite[180; 181, Theorem 5.6.5]{riehl_category_2017}, 因此我们统一得到了这些范畴中的滤子化上极限的构造方法.
+
 % 集合范畴的direct limit
 % 180 Ab Ring CRing Mod_R 都满足
 % 181 Theorem 5.6.5

@@ -325,7 +325,7 @@
   $\ref{enum:prop-chain-condition-maximal}\Rightarrow\ref{enum:prop-chain-condition-chain}$ $\{x_n\}_{n\geq 0}$有极大元, 故稳定.
 \end{proof}
 
-如果$\Sigma$为$A$-模$M$的子模全体关于集合包含关系所定义的偏序集, 则\thref{prop:chaincondition}中\ref{enum:prop-chain-condition-chain}定义的条件称为\emph{升链条件}(a.c.c.), \ref{enum:prop-chain-condition-maximal}定义的条件称为\emph{极大条件}, 如果$\Sigma$满足任一条件, 则称$M$是\emph{Noether $A$-模}, 简称为\emph{Noether模}. 如果环$A$是Noether $A$-模, 则称$A$为\emph{Noether环}.
+如果$\Sigma$为$A$-模$M$的子模全体关于集合被包含关系所定义的偏序集, 则\thref{prop:chaincondition}中\ref{enum:prop-chain-condition-chain}定义的条件称为\emph{升链条件}(a.c.c.), \ref{enum:prop-chain-condition-maximal}定义的条件称为\emph{极大条件}, 如果$\Sigma$满足任一条件, 则称$M$是\emph{Noether $A$-模}, 简称为\emph{Noether模}. 如果环$A$是Noether $A$-模, 则称$A$为\emph{Noether环}.
 
 \begin{proposition}[{{\parencite[75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noethermodule}
   设$M$是模, 则$M$是Noether模当且仅当$M$的每个子模都是有限生成的.
@@ -556,7 +556,7 @@
 %}
 
 \begin{proof}
-  首先利用Zorn引理构造极大无关集, 并证明每个极大无关集都是一个基. 无关集全体作为$\powerset{X}$的子集, 有由集合包含关系定义的偏序关系. 考虑任一全序子链$\{S_\lambda\}$, 只需证明其并集$\tilde{S}\coloneq \bigcup_\lambda S_\lambda$也是无关集. 先考虑$\tilde{S}$有限的情况, 那么一定等于某个$S_\lambda$, 故为无关集. 再考虑$\tilde{S}$无限的情况, 反证存在$x\in \tilde{S}$使得$x\depend \tilde{S}-\{x\}$, 则由定义知存在有限子集$T\subseteq\tilde{S}$满足$x\in T$并且$x\depend T-\{x\}$. 由于全序子链$\{S_\lambda\}$的并$\tilde{S}$为无限集, 且$x\in \tilde{S}$, 故一定存在$S_\lambda$使得$x\in S_\lambda$并且$T\subseteq S_\lambda$, 故根据定义知$x\depend S_\lambda-\{x\}$, 与$S_\lambda$无关矛盾. 故得证无关集的全序子链的并为其上界, 根据Zorn引理知存在极大无关集, 由极大性及基的定义即可得到极大无关集总是基.
+  首先利用Zorn引理构造极大无关集, 并证明每个极大无关集都是一个基. 无关集全体作为$\powerset{X}$的子集, 有由集合被包含关系定义的偏序关系. 考虑任一全序子链$\{S_\lambda\}$, 只需证明其并集$\tilde{S}\coloneq \bigcup_\lambda S_\lambda$也是无关集. 先考虑$\tilde{S}$有限的情况, 那么一定等于某个$S_\lambda$, 故为无关集. 再考虑$\tilde{S}$无限的情况, 反证存在$x\in \tilde{S}$使得$x\depend \tilde{S}-\{x\}$, 则由定义知存在有限子集$T\subseteq\tilde{S}$满足$x\in T$并且$x\depend T-\{x\}$. 由于全序子链$\{S_\lambda\}$的并$\tilde{S}$为无限集, 且$x\in \tilde{S}$, 故一定存在$S_\lambda$使得$x\in S_\lambda$并且$T\subseteq S_\lambda$, 故根据定义知$x\depend S_\lambda-\{x\}$, 与$S_\lambda$无关矛盾. 故得证无关集的全序子链的并为其上界, 根据Zorn引理知存在极大无关集, 由极大性及基的定义即可得到极大无关集总是基.
 
   现在考虑两个基$B$和$C$, 需要证明它们有相同的基数. 若$B$为空集, 则由基的定义知$C$也为空集, 故基数相同. 于是只需要考虑$B$和$C$均非空的情况.
 
@@ -741,7 +741,7 @@
   \item 对于每一组对象$X, Y, Z$以及态射$f\colon X\to Y, g\colon Y\to Z$, 有\emph{复合态射}$gf\colon X\to Z$, 并且满足
   \begin{enumerate}
     \item 对于每个态射$f\colon X\to Y$, 都有复合态射$f1_{X}=1_{Y}f=f$;
-    \item 对于每三个态射$f\colon X\to Y, g\colon Y\to Z, h\colon Z\to W$都有$(hg)f=h(gf)$, 记为$hgf$;
+    \item 对于每三个态射$f\colon X\to Y, g\colon Y\to Z, h\colon Z\to W$都有$(hg)f=h(gf)$, 故可记为$hgf$;
   \end{enumerate}
   即态射的``复合运算"满足结合律并有双侧单位元.
 \end{enumerate}
@@ -752,11 +752,19 @@
 
 \begin{example}
   很多我们熟悉的数学对象都构成范畴, 并且是局部小范畴.
-  \begin{enumerate}
+  \begin{enumerate}\label{exm:concretecategory}
     \item $\cat{Set}$是以集合作为对象, 以集合之间的映射作为对应的定义域与值域之间的态射的范畴.
+    \item $\cat{Ab}$是以Abel群作为对象, 以群同态作为态射的范畴.
     \item $\cat{Ring}$是以幺环作为对象, 以环同态作为态射的范畴. $\cat{CRing}$是以交换幺环作为对象, 以环同态作为态射的范畴, 是$\cat{Ring}$的子范畴.
     \item 对于给定的幺环$R$, $\cat{Mod}_R$是以左$R$-模作为对象, 以$R$-模同态为态射的范畴.
     \item 对于给定的域$\kk$, $\cat{Vect}_{\kk}$是以$\kk$-线性空间作为对象, 以$\kk$-线性映射为态射的范畴.
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  还有一些我们熟悉的数学对象也可以被看成范畴, 只不过其中的态射不是通常的集合之间的映射.
+  \begin{enumerate}
+    \item 偏序集$(\cat{P}, \leq)$可以被看成范畴. $\emph{P}$的元素是范畴的对象, 并且对象$x, y$之间存在唯一的态射$x\to y$仅当$x\leq y$, 否则$x, y$之间不存在态射. 特别地, 拓扑空间$X$的开集全体关于集合被包含关系可以被看成范畴, 记作$\cat{Top}(X)$.
   \end{enumerate}
 \end{example}
 
@@ -819,12 +827,14 @@
         \functordiagram{\cat{C}}{\cat{C}}{1_{\cat{C}}}{c}{c'}{f}{c}{c'}{f}
       \end{equation*}
     \item 给定范畴$\cat{C}, \cat{D}$与对象$d\in\cat{D}$, \emph{常函子}$d\colon \cat{C}\to\cat{D}$将每个对象映到$d\in D$, 并将每个态射映到恒同态射$1_d$.
+    \item 对于\thref{exm:concretecategory}中的范畴, 可以定义其到$\cat{Set}$的\emph{遗忘函子}, 将对象映到其对应的集合, 将态射映到其对应的集合之间的映射, 相当于``遗忘"了其上的结构.
     \item 给定局部小范畴$\cat{C}$以及其中一个对象$c\in\cat{C}$, \emph{由$c$表示的同态函子}$\cat{C}(c, -)\colon \cat{C}\to\cat{Set}$和$\cat{C}(-, c)\colon \cat{C}^{\op}\to\cat{Set}$由下图定义.
       \begin{equation*}
         \functordiagram{\cat{C}}{\cat{Set}}{\cat{C}(c, -)}{x}{y}{f}{\cat{C}(c, x)}{\cat{C}(c, y)}{f_*}
         \quad
         \functordiagram*{\cat{C}^{\op}}{\cat{C}}{\cat{C}(-, c)}{x}{y}{f}{\cat{C}(x, c)}{\cat{C}(y, c)}{f^*}
       \end{equation*}
+    \item 对于一般的小范畴$\cat{C}$, 称函子$\cat{C}^{\op}\to\cat{Set}$为集合取值的\emph{预层}. 特别地, $\cat{C}$可以取拓扑空间$X$的开集族构成的偏序范畴$\cat{Top}(X)$, 开集$U$的取值$F(U)$即为$U$上的连续实值函数全体. 我们也可以将$\cat{Set}$替换为$\cat{Ab}, \cat{Ring}, \cat{Mod}_R$等后来我们称作``代数理论模型的范畴"的范畴, 仍保有类似的性质.
   \end{enumerate}
 \end{example}
 
@@ -898,7 +908,7 @@
   第四步, 利用定义验证$c$和$F$的自然性.
 \end{proofhint}
 
-Yoneda引理完全刻画了可表函子之间自然变换, 由此我们可以定义Yoneda嵌入.
+\thref{thm:yonedalemma}完全刻画了可表函子之间自然变换, 由此我们可以定义Yoneda嵌入.
 \begin{propositionnoproof}[Yoneda嵌入{{\parencite[60, Corollary 2.2.8]{riehl_category_2017}}}]
   下图所定义的函子
   \begin{equation*}
@@ -911,14 +921,35 @@ Yoneda引理完全刻画了可表函子之间自然变换, 由此我们可以定
 
 % 利用Yoneda嵌入, 我们可以证明如果局部小范畴中的两个对象表示的函子自然同构当且仅当它们是同构的, 并且这两个对象中存在一个唯一的自然的同构, 于是我们可以定义可表函子的\emph{表示对象}.
 
-利用Yoneda引理, 我们还可以定义范畴论中的泛性质, 与我们之前所叙述过的商环, 分式环等的映射的泛性质有密切关系.
+利用\thref{thm:yonedalemma}, 我们还可以定义范畴论中的泛性质, 与我们之前所叙述过的商环, 分式环等的映射的泛性质有密切关系.
 
 给定局部小范畴$\cat{C}$与一个对象$c\in \cat{C}$, 一个$c$的\emph{泛性质}包含的信息有一个可表函子$F$, 和一个由\thref{thm:yonedalemma}定义了自然同构$\cat{C}(c, -)\cong F$或者$\cat{C}(-, c)\cong F$的\emph{泛对象}$x\in Fc$.
 
 \begin{example}
-    线性空间的张量积% TODO: example of universal property
+  我们来用线性空间的张量积这个例子来演示一下如何从函子的表示来得到映射的泛性质\footnotemark.
 
-    \footnotemark
+  给定域$\kk$以及$\kk$-线性空间$V$和$W$, 可以定义函子$\Bilin (V, W; -)\colon\cat{Vect}_{\kk}\to\cat{Set}$, 将线性空间$U$映到双线性函数$V\times W\to U$全体构成的集合. 函子$\Bilin (V, W; -)$的表示可以定义一个$\kk$-线性空间, 记作$V\otimes_{\kk}W$, 有自然同构$\alpha\colon\cat{Vect}_{\kk}(V\otimes_{\kk}W, -\cong \Bilin (V, W; -)$, 并且由\thref{thm:yonedalemma}知这个自然同构定义了$\Bilin (V, W; V\otimes_{\kk} W)$中的泛对象, 为双线性映射$\otimes\colon V\times W\to V\otimes_{\kk} W$.
+
+  设自然同构$\alpha$将双线性函数$f\colon V\times W\to U$对应到$\alpha_{U}(f)\coloneq\overline{f}\colon V\otimes_{\kk}W\to U$, 考虑$\overline{f}$诱导出的自然性交换图,
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      \cat{Vect}_{\kk}(V\otimes_{\kk}W, V\otimes_{\kk}W) \arrow[r, "\cong"{above}] \arrow[d, "\overline{f}_*"{left}] & \Bilin (V, W; V\otimes_{\kk}W) \arrow[d, "\overline{f}_*"{right}] \\
+      \cat{Vect}_{\kk}(V\otimes_{\kk}W, U) \arrow[r, "\cong"{below}] & \Bilin (V, W; U)
+    \end{tikzcd}
+  \end{equation*}
+  考虑$1_{V\otimes_{\kk}W}\in \cat{Vect}_{\kk}(V\otimes_{\kk}W, V\otimes_{\kk}W)$, 可以证明$f=\overline{f}\composite\otimes$, 即我们可以得到下图中所述的映射的泛性质,
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      V\times W & V\otimes_{\kk} W\\
+      & U
+      \arrow[from=1-1,]{2-2}[swap]{f}
+      \arrow[from=1-1,]{1-2}[]{\otimes}
+      \arrow[from=1-2,dashed,]{2-2}[]{\overline{f}}[swap]{\exists !}
+    \end{tikzcd}
+  \end{equation*}
+  即对于任意的线性空间$U$以及双线性映射$f\colon V\times W\to U$, 存在唯一的线性映射$\overline{f}\colon V\otimes_{\kk}W\to U$使得$f=\overline{f}\composite\otimes$成立.
+
+  利用映射的泛性质, 我们可以显式构造出$V\otimes_{\kk} W$, 从而证明其存在性以及函子$\Bilin (V, W; -)$的可表性.
 \end{example}
 \footnotetext{利用\emph{元素范畴}的知识, 我们还可以从映射的泛性质中得到范畴论中的泛性质\parencite[68, Proposition 2.4.8]{riehl_category_2017}, 不过与本文的主要内容关系不大, 这里就不介绍了.}
 
@@ -954,15 +985,23 @@ Yoneda引理完全刻画了可表函子之间自然变换, 由此我们可以定
 
 对偶地, 对于局部小范畴$\cat{C}$中的形状为小范畴$\cat{J}$的图$F$, 也存在函子$\Cone(F, -)\colon \cat{C}\to\cat{Set}$将$c\in \cat{C}$映到图$F$下的以$c$为底点的锥. $F$的一个\emph{上极限}即为函子$\Cone (F, -)$的一个表示, 包含的信息为一个对象$\colim (F)\in \cat{C}$和一个泛锥$\lambda\colon F\Rightarrow \colim (F)$, 这个泛锥定义了自然同构$\cat{C}(\colim (F), -)\cong \Cone (F, -)$, 被称为\emph{上极限锥}.
 
-% TODO: 函子 创造 预层 层
+% \begin{example}
+%   有几个重要的极限的例子我们经常会用到.
+%   \begin{enumerate}
+%     \item
+%   \end{enumerate}
+% \end{example}
 
-最后我们来介绍滤子化上极限. 如果范畴$\cat{J}$中的每一个有限图都存在其下的锥, 那么称$\cat{J}$为\emph{滤子化的}. 考虑$\cat{Set}$中的形状为滤子化范畴$\cat{J}$的图$F\colon \cat{J}\to\cat{Set}$, 则其上极限$\colim (F)$可以表示成余积$\amalg_{j\in J}Fj$在等价关系下的商, 其中$x\in Fj$等价于$y\in Fk$当且仅当存在态射$f\colon j\to t\in\cat{J}$和$g\colon k\to t\in \cat{J}$使得$(Ff)(x)=(Fg)(y)$成立. 有时滤子化上极限.
+考虑由部分$\cat{C}$中的形状为$\cat{J}$的图$K\colon \cat{J}\to\cat{C}$构成的类, 以及函子$F\colon \cat{C}\to\cat{D}$,
+\begin{enumerate}
+  \item 如果对于任意的图$K\colon\cat{J}\to\cat{C}$和$K$上的极限锥, 这个锥在$F$的像都定义了复合图$FK\colon \cat{J}\to\cat{D}$上的极限锥, 那么称$F$\emph{保持}这些极限;
+  \item 如果对于图$K\colon\cat{J}\to\cat{C}$上的任意的锥, 只要在$F$的像下是$FK\colon \cat{J}\to\cat{D}$上的极限锥那么它就是$K$上的极限锥, 则称$F$\emph{反映}这些极限;
+  \item 如果只要$FK\colon \cat{J}\to\cat{D}$在$\cat{D}$中有极限就存在$FK$上的极限锥使其可以被提升称为$K$上的极限锥, 并且$F$反映这些图的极限, 则称$F$\emph{创造}这些极限.
+\end{enumerate}
 
-虽然我们只是在$\cat{Set}$中构造了滤子化上极限, 但是用进阶的范畴论知识可以证明$\cat{Ab}, \linebreak[0]\cat{Ring}, \linebreak[0]\cat{CRing}, \linebreak[0]\cat{Mod}_R$的滤子化上极限都可以通过遗忘函子从$\cat{Set}$中创造\parencite[180; 181, Theorem 5.6.5]{riehl_category_2017}, 因此我们统一得到了这些范畴中的滤子化上极限的构造方法.
+最后我们来介绍滤子化上极限. 如果范畴$\cat{J}$中的每一个有限图都存在其下的锥, 那么称$\cat{J}$为\emph{滤子化的}. 考虑$\cat{Set}$中的形状为滤子化范畴$\cat{J}$的图$F\colon \cat{J}\to\cat{Set}$, 则其上极限$\colim (F)$可以表示成余积$\amalg_{j\in J}Fj$在等价关系下的商, 其中$x\in Fj$等价于$y\in Fk$当且仅当存在态射$f\colon j\to t\in\cat{J}$和$g\colon k\to t\in \cat{J}$使得$(Ff)(x)=(Fg)(y)$成立. 当$\cat{J}$为偏序范畴的时候, 也称滤子化上极限为直极限, 记为$\dlim_{j\in J}Fj$.
 
-% 集合范畴的direct limit
-% 180 Ab Ring CRing Mod_R 都满足
-% 181 Theorem 5.6.5
+虽然我们只是在$\cat{Set}$中构造了滤子化上极限, 但是用进阶的范畴论知识可以证明\emph{代数理论模型的范畴}, 包括$\cat{Ab}, \linebreak[0]\cat{Ring}, \linebreak[0]\cat{CRing}, \linebreak[0]\cat{Mod}_R$中的极限和滤子化上极限都可以通过遗忘函子从$\cat{Set}$中创造\parencite[180; 181, Theorem 5.6.5]{riehl_category_2017}, 因此我们统一得到了这些范畴中的滤子化上极限的构造方法.
 
 \subsection{素谱}\label{subsec:primespec}
 
@@ -1016,7 +1055,7 @@ Yoneda引理完全刻画了可表函子之间自然变换, 由此我们可以定
 如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的\parencite[13, Exercise 19]{atiyah_introduction_1969}. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的.
 
 \begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
-  拓扑空间$X$的不可约集全体在集合包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
+  拓扑空间$X$的不可约集全体在集合被包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
 \end{proposition}
 
 \begin{proof}

@@ -214,6 +214,7 @@
   \DeclareMathOperator{\lim}{lim}
   \ifdefined\colim\let\colim\relax\fi
   \DeclareMathOperator{\colim}{colim}
+  \DeclareMathOperator{\Bilin}{Bilin}
   %https://tex.stackexchange.com/questions/175251/how-to-redefine-a-command-using-declaremathoperator
 }
 
@@ -240,6 +241,7 @@
 \newcommand*{\composite}{\vysmwhtcircle}
 \newcommand*{\op}{\symup{op}}
 \newcommand*{\Cone}{\symup{Cone}}
+\newcommand*{\dlim}{\lim}% TODO: direct limit
 % \newcommand*{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}% defined by unicode-math
 % \newcommand*{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
 \newcommand*{\depend}{\prec}
@@ -289,9 +291,9 @@
 
 % enumerate中的公式
 \makeatletter%
-\appto{\equation}{%
-    \hspace*{-\@totalleftmargin}%
-}
+\apptocmd{\mathdisplay}{%
+  \hspace*{-\@totalleftmargin}%
+}{}{}
 \makeatother%
 
 % 借用 ltxdoc 里面的几个命令方便写文档。

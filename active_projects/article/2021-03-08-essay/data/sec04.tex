@@ -68,7 +68,7 @@
 
 % 射影空间
 % 函数环的刻画
-\subsection{函数环}\label{subsec:functionrings}
+\subsection{函数环}\label{subsec:geometry-functionrings}
 
 这一节中我们要定义仿射空间代数集的仿射坐标环, 以及射影空间中代数集的射影坐标环, 并研究它们与代数簇上的整体函数环, 在某点的局部环以及函数域的关系.
 
@@ -198,8 +198,43 @@
 % Zariski Vol I P241 Theorem 30, 31
 % AM P69 Exercise 5.16
 % Hartshorne Ex 2.6
+% Hartshorne Exm II.2.4 embedded points
 
-\subsection{仿射概型}\label{subsec:ag-affinescheme}
+\subsection{概型}\label{subsec:ag-affinescheme}
+
+现代代数几何的主要语言从固定域上的代数簇发展到了概型. 概型这个概念是簇及其上的函数环的推广, 对于给定的代数闭域可以构造从簇范畴到概型范畴的完全忠实函子, 并且利用概型的语言我们可以对更一般更本质的对象进行研究, 可以允许局部环内有幂零元, 可以考察在基域的变换下对象的变换等等. 这一节中我们将要引入层的语言, 介绍仿射概型的定义及基本性质, 并简单叙述概型的定义及概型之间的态射.
+
+回顾在\ref{subsec:algebra-category}我们定义了拓扑空间$X$上集合取值的预层是函子$F\colon \cat{Top}(X)^{\op}\to\cat{Set}$. 为了更符合直觉, 这一节中我们考虑的都是Abel群取值的预层, 为函子$\sheaf{F}\colon \cat{Top}(X)^{\op}\to\cat{Ab}$, 注意$\sheaf{F}(\varnothing)=0$为平凡Abel群. 称$\sheaf{F}(U)$中的元素为$\sheaf{F}$在$U$上的\emph{截面}, 有时也记$\sheaf{F}(U)$为$\Gamma (U, \sheaf{F})$. 称映射$\rho_{UV}\coloneq \sheaf{F}(U\to V)$为\emph{限制映射}, 对于$s\in \sheaf{F}(U)$有时也记$\rho_{UV}(s)$为$s\restrict{V}$.
+
+大体上说一个层就是可以由局部信息决定的预层. 利用范畴论的语言, 对于Abel群取值的预层$\sheaf{F}$, 定义由$U_\lambda\subseteq U$构成的开集族$\{U_\lambda\}$\emph{覆盖}$U$如果它们及其两两的交以及所有可能的态射所定义的$\cat{Top}(X)$中的图的上极限为$U$, 如果$\sheaf{F}$保持这些上极限, 则称$\sheaf{F}$是\emph{层}. 显式地说, 如果预层$\sheaf{F}$满足对于任意的开集$U$和任意$U$的开覆盖$\{V_\lambda\}$都有
+\begin{enumerate}
+  \item 如果$s\in\sheaf{F}$满足对于每个$\lambda$都有$s\restrict{V_{\lambda}}=0$, 就有$s=0$;
+  \item 如果存在一族截面$\{s_\lambda\in\sheaf{F(V_\lambda)}\}$满足任两个截面在其交上的限制相等, 则存在$s\in\sheaf{F(U)}$使得对于任意的$\lambda$都有$s\restrict{V_\lambda}=s_{\lambda}$;
+\end{enumerate}
+则$\sheaf{F}$是层.
+
+如果$\sheaf{F}$是拓扑空间$X$上的预层, 设$P$为$X$的一点, 则包含$P$点的开集全体所对应的Abel群的直极限称为$P$点处的\emph{茎}, 记为$\sheaf{F}_P$, 称自然映射$\sheaf{F}(U)\to \sheaf{F}_P$将截面$s$映到$P$点处的\emph{芽}.
+
+\begin{example}
+  在\ref{subsec:geometry-functionrings}中我们定义了代数簇上的整体函数环与任一点处的局部环, 其实这定义了代数簇上的环值的层结构. $\sheaf{F}(U)\coloneq\OO (U)$定义为$U$上的正规函数全体, $\sheaf{F}(U\to V)$定义为包含映射$\OO (V)\to \OO(U)$, 则$\sheaf{F}$是层, 并且在$P$点处的茎即为局部环$\OO_P$.
+\end{example}
+
+既然预层被定义为函子, 那么很自然预层之间的态射被定义为函子之间的自然变换, 层之间的态射也被定义为函子之间的自然变换. 下面一个命题阐释了层的结构可以由它的局部性质决定.
+
+\begin{proposition}
+  设$\varphi\colon \sheaf{F}\to\sheaf{G}$是拓扑空间$X$上的两个层之间的态射, 则$\varphi$是同构当且仅当在每个点$P$处诱导的茎之间的映射$\varphi_P\colon \sheaf{F}_P\to\sheaf{G}_P$是同构.
+\end{proposition}
+
+\begin{proof}
+  $\Rightarrow$显然. 对于$\Leftarrow$, 只需要证明每个$\varphi (U)\colon \varphi (V)$是双射即可. 不难用层的截面的局部性质证明核为0, 故为单射. 再利用局部上的满射在局部开邻域构造截面, 并利用之前证明的单射将局部的截面拼成整体的截面.
+\end{proof}
+
+我们还可以讨论底拓扑空间变化的情况下层结构的变化. 设$f\colon X\to Y$是拓扑空间之间的连续映射, 对于任意$X$上的层$\sheaf{F}$, 定义\emph{像层}$f_*\sheaf{F}$满足$(f_*\sheaf{F})(V)=\sheaf{F}(f^{-1}(V))$.
+
+\bigskip
+% 仿射概型
+% locally ringed space
+% 范畴嵌入, 没有新的范畴同构 有个范畴等价 https://mathoverflow.net/questions/157973/classical-algebraic-varieties-vs-k-schemes-vs-schemes
 
 % 极大谱和仿射空间同胚 更一般地 我们有
 \thref{thm:affinerings}

@@ -151,7 +151,7 @@
 
 \subsection{分式环与局部化}\label{subsec:algebra-localization}
 
-分式环以及与之相关的局部化可以说是交换代数中最重要的技术之一了. 与商环类似, 分式环也可以对环进行简化, 商环保留包含给定理想的理想, 分式环保留包含于给定集合的理想. 在\ref{subsec:functionrings}中, 我们可以看到局部化的几何意义, 为研究在某个邻域或在某个点处的情况.
+分式环以及与之相关的局部化可以说是交换代数中最重要的技术之一了. 与商环类似, 分式环也可以对环进行简化, 商环保留包含给定理想的理想, 分式环保留包含于给定集合的理想. 在\ref{subsec:geometry-functionrings}中, 我们可以看到局部化的几何意义, 为研究在某个邻域或在某个点处的情况.
 
 若环$A$的子集$S$包含单位元1, 并且满足关于乘法封闭, 即对于任意的$x, y\in S$都有$xy\in S$成立, 则称$S$为$A$的\emph{乘法闭集}. 在$A\times S$上定义等价关系${\sim}$, $(a, s)\sim (b, t)$当且仅当存在$u\in S$使得$u(at-bs)=0$成立, 记$A\times S$在该等价关系下的商为$S^{-1}A$. 在$S^{-1}A$上定义加法$a{\divslash} s+b{\divslash}t \coloneq  (at+bs){\divslash}(st)$以及乘法$(a{\divslash}s)(b{\divslash}t)=(ab){\divslash}(st)$, 则$S^{-1}A$关于该加法与乘法有环的结构, 称为$A$关于$S$的\emph{分式环}. 有自然同态$f\colon A\to S^{-1}A$将$x$映到$x{\divslash}1$, 注意$f$不一定是单射. 分式环有如下的\emph{泛性质}\parencites[81, Theorem 11.3]{altman_term_2017}[37, Proposition 3.1]{atiyah_introduction_1969}, 给定环$A$, 乘法闭集$S$与之前定义的自然同态$f\colon A\to S^{-1}A$, 对于任意的环$B$以及将$S$中元素映到单位的环同态$\phi\colon A\to B$, 存在唯一的环同态$\psi\colon S^{-1}R\to B$使得$\psi f=\phi$成立, 并且满足该泛性质的环$S^{-1}A$在同构意义下唯一.
 
@@ -727,7 +727,7 @@
 % quotient; commute with localization?
 % primary decomposition
 
-\subsection{范畴论}
+\subsection{范畴论}\label{subsec:algebra-category}
 
 随着同调代数这个工具的有力性得到了广泛的认可, 代数学家们开始重视起了对范畴论的研究, 即不光对代数结构本身进行研究, 也同时研究保持结构的这些映射. 这种想法也被进一步推广到了用对象之间的特定映射来刻画对象的结构, 甚至这里的``映射"可以不是通常的集合之间的映射, 只要可以良好定义复合运算即可. 范畴论的思想还体现在很多其它的领域中, 比如在\ref{sec:algebraandgeometry}中我们将看到一些代数对象构成的范畴与几何对象构成的范畴之间的同构, 这有助于我们增强对代数与几何之间关系的理解. 这一节中我们将介绍范畴论的基本想法, 包括范畴, 函子, 自然映射, 泛性质, 极限等定义. 限于篇幅原因, 对于这一节中的证明我们将只给出相关的构造以及证明的思路, 而不给出详细的证明. 此外, 还有一些结论我们难以或无法用这一节中所发展的技术去证明, 但之后确实会用到, 这些结论我们将会不带证明地进行叙述.
 
@@ -834,7 +834,7 @@
         \quad
         \functordiagram*{\cat{C}^{\op}}{\cat{C}}{\cat{C}(-, c)}{x}{y}{f}{\cat{C}(x, c)}{\cat{C}(y, c)}{f^*}
       \end{equation*}
-    \item 对于一般的小范畴$\cat{C}$, 称函子$\cat{C}^{\op}\to\cat{Set}$为集合取值的\emph{预层}. 特别地, $\cat{C}$可以取拓扑空间$X$的开集族构成的偏序范畴$\cat{Top}(X)$, 开集$U$的取值$F(U)$即为$U$上的连续实值函数全体. 我们也可以将$\cat{Set}$替换为$\cat{Ab}, \cat{Ring}, \cat{Mod}_R$等后来我们称作``代数理论模型的范畴"的范畴, 仍保有类似的性质.
+    \item 对于一般的小范畴$\cat{C}$, 称函子$F\colon \cat{C}^{\op}\to\cat{Set}$为集合取值的\emph{预层}. 特别地, $\cat{C}$可以取拓扑空间$X$的开集族构成的偏序范畴$\cat{Top}(X)$, 开集$U$的取值$F(U)$即为$U$上的连续实值函数全体, 定义$F(\varnothing)=0$等于$\cat{C}$的终对象. 我们也可以将$\cat{Set}$替换为$\cat{Ab}, \cat{Ring}, \cat{Mod}_R$等后来我们称作``代数理论模型的范畴"的范畴, 仍保有类似的性质.
   \end{enumerate}
 \end{example}
 
@@ -928,7 +928,7 @@
 \begin{example}
   我们来用线性空间的张量积这个例子来演示一下如何从函子的表示来得到映射的泛性质\footnotemark.
 
-  给定域$\kk$以及$\kk$-线性空间$V$和$W$, 可以定义函子$\Bilin (V, W; -)\colon\cat{Vect}_{\kk}\to\cat{Set}$, 将线性空间$U$映到双线性函数$V\times W\to U$全体构成的集合. 函子$\Bilin (V, W; -)$的表示可以定义一个$\kk$-线性空间, 记作$V\otimes_{\kk}W$, 有自然同构$\alpha\colon\cat{Vect}_{\kk}(V\otimes_{\kk}W, -\cong \Bilin (V, W; -)$, 并且由\thref{thm:yonedalemma}知这个自然同构定义了$\Bilin (V, W; V\otimes_{\kk} W)$中的泛对象, 为双线性映射$\otimes\colon V\times W\to V\otimes_{\kk} W$.
+  给定域$\kk$以及$\kk$-线性空间$V$和$W$, 可以定义函子$\Bilin (V, W; -)\colon\cat{Vect}_{\kk}\to\cat{Set}$, 将线性空间$U$映到双线性函数$V\times W\to U$全体构成的集合. 函子$\Bilin (V, W; -)$的表示可以定义一个$\kk$-线性空间, 记作$V\otimes_{\kk}W$, 有自然同构$\alpha\colon\cat{Vect}_{\kk}(V\otimes_{\kk}W, -)\cong \Bilin (V, W; -)$, 并且由\thref{thm:yonedalemma}知这个自然同构定义了$\Bilin (V, W; V\otimes_{\kk} W)$中的泛对象, 为双线性映射$\otimes\colon V\times W\to V\otimes_{\kk} W$.
 
   设自然同构$\alpha$将双线性函数$f\colon V\times W\to U$对应到$\alpha_{U}(f)\coloneq\overline{f}\colon V\otimes_{\kk}W\to U$, 考虑$\overline{f}$诱导出的自然性交换图,
   \begin{equation*}
@@ -957,7 +957,7 @@
 
 这一节的最后一部分我们来介绍范畴论里的极限以及极限在函子下的性质, 我们还会给出层的定义以及滤子化上极限的构造, 在\ref{subsec:ag-affinescheme}中我们会用到这两个概念.
 
-给定范畴$\cat{J}$与$\cat{C}$, 称一个函子$F\colon \cat{J}\to \cat{C}$为一个\emph{$\cat{C}$中的形状为$J$的图}. 这个图的极限(或上极限)将会被定义为这个图上(或下)的泛锥, 于是我们先来介绍什么是锥.
+给定范畴$\cat{J}$与$\cat{C}$, 称一个函子$F\colon \cat{J}\to \cat{C}$为一个$\cat{C}$中的形状为$J$的\emph{图}. 这个图的极限(或上极限)将会被定义为这个图上(或下)的泛锥, 于是我们先来介绍什么是锥.
 
 \emph{图$F\colon \cat{J}\to\cat{C}$上的以$c\in\cat{C}$为顶点的锥}是从常函子$c$到$F$的自然变换$\lambda\colon c\Rightarrow F$. 自然变换$\lambda$的分量全体$\{\lambda_j\colon c\to Fj\}_{j\in J}$被称为这个锥的\emph{腿}. 显式表述的话, 图$F\colon \cat{J}\to\cat{C}$上的以$c\in\cat{C}$为顶点的锥包含的信息为以$j\in J$为指标的一族函子$\lambda\colon c\to Fj$, 满足对于任意的态射$f\colon j\to k\in \cat{J}$, 下图是$\cat{C}$中的交换图.
 \begin{equation*}
@@ -999,11 +999,11 @@
   \item 如果只要$FK\colon \cat{J}\to\cat{D}$在$\cat{D}$中有极限就存在$FK$上的极限锥使其可以被提升称为$K$上的极限锥, 并且$F$反映这些图的极限, 则称$F$\emph{创造}这些极限.
 \end{enumerate}
 
-最后我们来介绍滤子化上极限. 如果范畴$\cat{J}$中的每一个有限图都存在其下的锥, 那么称$\cat{J}$为\emph{滤子化的}. 考虑$\cat{Set}$中的形状为滤子化范畴$\cat{J}$的图$F\colon \cat{J}\to\cat{Set}$, 则其上极限$\colim (F)$可以表示成余积$\amalg_{j\in J}Fj$在等价关系下的商, 其中$x\in Fj$等价于$y\in Fk$当且仅当存在态射$f\colon j\to t\in\cat{J}$和$g\colon k\to t\in \cat{J}$使得$(Ff)(x)=(Fg)(y)$成立. 当$\cat{J}$为偏序范畴的时候, 也称滤子化上极限为直极限, 记为$\dlim_{j\in J}Fj$.
+最后我们来介绍滤子化上极限. 如果范畴$\cat{J}$中的每一个有限图都存在其下的锥, 那么称$\cat{J}$为\emph{滤子化的}. 考虑$\cat{Set}$中的形状为滤子化范畴$\cat{J}$的图$F\colon \cat{J}\to\cat{Set}$, 则其上极限$\colim (F)$可以表示成余积$\amalg_{j\in J}Fj$在等价关系下的商, 其中$x\in Fj$等价于$y\in Fk$当且仅当存在态射$f\colon j\to t\in\cat{J}$和$g\colon k\to t\in \cat{J}$使得$(Ff)(x)=(Fg)(y)$成立. 当$\cat{J}$为偏序范畴的时候, 也称滤子化上极限为\emph{直极限}, 记为$\dlim_{j\in J}Fj$. 直极限的直观意义之将对象的信息``整合"起来, 拼成一个``大"的对象.
 
 虽然我们只是在$\cat{Set}$中构造了滤子化上极限, 但是用进阶的范畴论知识可以证明\emph{代数理论模型的范畴}, 包括$\cat{Ab}, \linebreak[0]\cat{Ring}, \linebreak[0]\cat{CRing}, \linebreak[0]\cat{Mod}_R$中的极限和滤子化上极限都可以通过遗忘函子从$\cat{Set}$中创造\parencite[180; 181, Theorem 5.6.5]{riehl_category_2017}, 因此我们统一得到了这些范畴中的滤子化上极限的构造方法.
 
-\subsection{素谱}\label{subsec:primespec}
+\subsection{素谱}\label{subsec:algebra-primespec}
 
 这一节我们要介绍环的素谱及其上的Zariski拓扑结构, 它具有很好的函子性质, 也可以反映出一些环本身的性质.
 

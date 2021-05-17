@@ -68,7 +68,7 @@
 
 % 射影空间
 % 函数环的刻画
-\subsection{函数环}\label{subsec:geometry-functionrings}
+\subsection{函数环}\label{subsec:ag-functionrings}
 
 这一节中我们要定义仿射空间代数集的仿射坐标环, 以及射影空间中代数集的射影坐标环, 并研究它们与代数簇上的整体函数环, 在某点的局部环以及函数域的关系.
 
@@ -200,9 +200,9 @@
 % Hartshorne Ex 2.6
 % Hartshorne Exm II.2.4 embedded points
 
-\subsection{概型}\label{subsec:ag-affinescheme}
+\subsection{概形}\label{subsec:ag-affinescheme}
 
-现代代数几何的主要语言从固定域上的代数簇发展到了概型. 概型这个概念是簇及其上的函数环的推广, 对于给定的代数闭域可以构造从簇范畴到概型范畴的完全忠实函子, 并且利用概型的语言我们可以对更一般更本质的对象进行研究, 可以允许局部环内有幂零元, 可以考察在基域的变换下对象的变换等等. 这一节中我们将要引入层的语言, 介绍仿射概型的定义及基本性质, 并简单叙述概型的定义及概型之间的态射.
+现代代数几何的主要语言从固定域上的代数簇发展到了概形. 概形这个概念是簇及其上的函数环的推广, 对于给定的代数闭域可以构造从簇范畴到概形范畴的完全忠实函子, 并且利用概形的语言我们可以对更一般更本质的对象进行研究, 可以允许局部环内有幂零元, 可以考察在基域的变换下对象的变换等等. 这一节中我们将要引入层的语言, 介绍仿射概形的定义及基本性质, 并简单叙述概形的定义及概形之间的态射.
 
 回顾在\ref{subsec:algebra-category}我们定义了拓扑空间$X$上集合取值的预层是函子$F\colon \cat{Top}(X)^{\op}\to\cat{Set}$. 为了更符合直觉, 这一节中我们考虑的都是Abel群取值的预层, 为函子$\sheaf{F}\colon \cat{Top}(X)^{\op}\to\cat{Ab}$, 注意$\sheaf{F}(\varnothing)=0$为平凡Abel群. 称$\sheaf{F}(U)$中的元素为$\sheaf{F}$在$U$上的\emph{截面}, 有时也记$\sheaf{F}(U)$为$\Gamma (U, \sheaf{F})$. 称映射$\rho_{UV}\coloneq \sheaf{F}(U\to V)$为\emph{限制映射}, 对于$s\in \sheaf{F}(U)$有时也记$\rho_{UV}(s)$为$s\restrict{V}$.
 
@@ -216,31 +216,64 @@
 如果$\sheaf{F}$是拓扑空间$X$上的预层, 设$P$为$X$的一点, 则包含$P$点的开集全体所对应的Abel群的直极限称为$P$点处的\emph{茎}, 记为$\sheaf{F}_P$, 称自然映射$\sheaf{F}(U)\to \sheaf{F}_P$将截面$s$映到$P$点处的\emph{芽}.
 
 \begin{example}
-  在\ref{subsec:geometry-functionrings}中我们定义了代数簇上的整体函数环与任一点处的局部环, 其实这定义了代数簇上的环值的层结构. $\sheaf{F}(U)\coloneq\OO (U)$定义为$U$上的正规函数全体, $\sheaf{F}(U\to V)$定义为包含映射$\OO (V)\to \OO(U)$, 则$\sheaf{F}$是层, 并且在$P$点处的茎即为局部环$\OO_P$.
+  在\ref{subsec:ag-functionrings}中我们定义了代数簇上的整体函数环与任一点处的局部环, 其实这定义了代数簇上的环值的层结构. $\sheaf{F}(U)\coloneq\OO (U)$定义为$U$上的正规函数全体, $\sheaf{F}(U\to V)$定义为包含映射$\OO (V)\to \OO(U)$, 则$\sheaf{F}$是层, 并且在$P$点处的茎即为局部环$\OO_P$. 称$\OO$为仿射簇上的\emph{正规函数层}.
 \end{example}
 
 既然预层被定义为函子, 那么很自然预层之间的态射被定义为函子之间的自然变换, 层之间的态射也被定义为函子之间的自然变换. 下面一个命题阐释了层的结构可以由它的局部性质决定.
 
-\begin{proposition}
+\begin{proposition}[{{\parencite[63, Theorem 1.1]{hartshorne_algebraic_1977}}}]
   设$\varphi\colon \sheaf{F}\to\sheaf{G}$是拓扑空间$X$上的两个层之间的态射, 则$\varphi$是同构当且仅当在每个点$P$处诱导的茎之间的映射$\varphi_P\colon \sheaf{F}_P\to\sheaf{G}_P$是同构.
 \end{proposition}
 
 \begin{proof}
-  $\Rightarrow$显然. 对于$\Leftarrow$, 只需要证明每个$\varphi (U)\colon \varphi (V)$是双射即可. 不难用层的截面的局部性质证明核为0, 故为单射. 再利用局部上的满射在局部开邻域构造截面, 并利用之前证明的单射将局部的截面拼成整体的截面.
+  $\Rightarrow$显然. 对于$\Leftarrow$, 只需要证明每个$\varphi (U)\colon \sheaf{F}(U)\to\sheaf{G}(U)$是双射即可. 因为$\varphi(s)\restrict{U}=0$蕴含着在每个局部$U_P$有$\varphi(s)\restrict{U_P}=0$, 故为单射. 另一方面, 对于$t\in \sheaf{G}(U)$, 再利用茎上的满射可以在每个点的某个局部$U_P$上构造截面$s(P)$使得$\varphi(s(P))=t\restrict{U_P}$, 并利用之前证明的单射可以将局部的截面$s(P)$拼成整体的截面$s$, 并有$\varphi(s)=t$.
 \end{proof}
 
 我们还可以讨论底拓扑空间变化的情况下层结构的变化. 设$f\colon X\to Y$是拓扑空间之间的连续映射, 对于任意$X$上的层$\sheaf{F}$, 定义\emph{像层}$f_*\sheaf{F}$满足$(f_*\sheaf{F})(V)=\sheaf{F}(f^{-1}(V))$.
 
+% TODO: restricted sheaf
+
 \bigskip
-% 仿射概型
+
+现在可以来重新考察环的素谱这一概念. \ref{subsec:algebra-primespec}中我们已经定义了素谱上的Zariski拓扑, 现在我们再在其上定义环值的层结构, 使其具有类似于仿射簇的结构.
+
+设$A$为环, $\Spec (A)$为其素谱, 我们来定义层$\sheaf{O}\colon \cat{Top}(\Spec (A))\to \cat{Ring}$. 对于每个开集$U\subseteq \Spec (A)$, 定义$\sheaf{O}(U)$为在局部能写成$A$的元素之商的函数$s\colon U\to \amalg_{\ideal{p}\in U}A_{\ideal{p}}$全体构成的环. 不难验证$\sheaf{O}(U)$是环, 以及$\sheaf{O}$是层. 现在默认环的素谱上也赋有刚才所定义的层结构.
+
+我们发现环的素谱有类似于仿射簇上的正规函数层的性质, 并且从素谱可以重新构造出原本的环. 回顾记号$\Spec(A)_{f}$表示闭集$V((f))$的余集.
+
+\begin{proposition}[{{\parencite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]
+  设$A$为环, $(\Spec (A), \OO)$为其素谱, 则
+  \begin{enumerate}
+    \item 对于任意的$\ideal{p}\in\Spec (A)$, 层$\OO$的茎$\OO_P$同构于局部环$A_{\ideal{p}}$;
+    \item 对于任意的元素$f\in A$, 环$\OO(\Spec (A)_f)$同构于局部化环$A_f$. 特别地, $\OO (\Spec (A))\cong A$
+  \end{enumerate}
+\end{proposition}
+% TODO: 简单证明一下.
+
+为了定义素谱之间的态射, 我们需要引入赋环空间的概念. % TODO: ringed space
+
+\begin{propositionnoproof}[{{\parencite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]
+  素谱定义了环范畴到局部赋环空间范畴之间的完全反变函子.
+\end{propositionnoproof}
+
+现在终于可以来定义概形这个概念了. 定义\emph{仿射概形}是局部赋环空间$(X, \OO_X)$, 并且同构于某个环的素谱. 定义\emph{概形}是局部赋环空间$(X, \OO_X)$, 并且满足每个点处都有邻域$U$使得子拓扑空间$U$以及限制层$\OO_X\restrict{U}$是仿射概形. 称$X$为\emph{底拓扑空间}, 通常用$X$表示整个概型的结构, 而用$\sp (X)$表示它的拓扑空间结构. 概形之间的态射即为局部赋环空间之间的态射.
+
+如果存在概形态射$f\colon X\to \Spec \kk$, 则称$f$是$\kk$\emph{上的概形}. 如果概形之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}.
+
+我们可以证明, 对于代数闭域$\kk$, 存在从$\kk$上的簇范畴到$\kk$上的概形范畴的完全忠实函子$t$, 并且对于每个簇$V$, 它的拓扑空间结构同胚于$\sp (t(V))$的闭点全体所构成的子空间, 并且$V$的正规函数层可以通过这个同胚由$t(V)$的结构层的限制所得到\parencite[78, Proposition 2.6]{hartshorne_algebraic_1977}.
+% TODO: 不过这个函子不是injective on objects????? fully faithful create isomorphism?
+
 % locally ringed space
-% 范畴嵌入, 没有新的范畴同构 有个范畴等价 https://mathoverflow.net/questions/157973/classical-algebraic-varieties-vs-k-schemes-vs-schemes
+% 仿射概形
+% 是不是来个例子 比如说k[x]
+% 没有范畴嵌入 是不是仿射簇同构于其素谱拓扑空间的闭点所构成的子空间
+% 没有新的范畴同构 有个范畴等价 https://mathoverflow.net/questions/157973/classical-algebraic-varieties-vs-k-schemes-vs-schemes
+% finite type P84
+% 这件事情我们就先不管了 https://math.stackexchange.com/a/241695
 
 % 极大谱和仿射空间同胚 更一般地 我们有
 \thref{thm:affinerings}
 % 准素分解 孤立 嵌入 似乎不太适合在这里 但可以说一下两个定理证明的类似之处
-% 素谱, 赋环空间
-% 叙述以下范畴嵌入, 新的范畴同构
 
 \subsection{代数群与Hopf代数}
 

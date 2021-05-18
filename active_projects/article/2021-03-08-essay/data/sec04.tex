@@ -229,9 +229,19 @@
   $\Rightarrow$显然. 对于$\Leftarrow$, 只需要证明每个$\varphi (U)\colon \sheaf{F}(U)\to\sheaf{G}(U)$是双射即可. 因为$\varphi(s)\restrict{U}=0$蕴含着在每个局部$U_P$有$\varphi(s)\restrict{U_P}=0$, 故为单射. 另一方面, 对于$t\in \sheaf{G}(U)$, 再利用茎上的满射可以在每个点的某个局部$U_P$上构造截面$s(P)$使得$\varphi(s(P))=t\restrict{U_P}$, 并利用之前证明的单射可以将局部的截面$s(P)$拼成整体的截面$s$, 并有$\varphi(s)=t$.
 \end{proof}
 
-我们还可以讨论底拓扑空间变化的情况下层结构的变化. 设$f\colon X\to Y$是拓扑空间之间的连续映射, 对于任意$X$上的层$\sheaf{F}$, 定义\emph{像层}$f_*\sheaf{F}$满足$(f_*\sheaf{F})(V)=\sheaf{F}(f^{-1}(V))$.
+\begin{proposition}[{{\parencite[64, Proposition-Definition 1.2]{hartshorne_algebraic_1977}}}]
+  给定拓扑空间$X$, 设$\sheaf{F}$为其上的预层, 记$X$上的预层全体关于之前所定义的态射所构成的范畴为$\cat{Presheaf}$, 则函子$\cat{Presheaf}(\sheaf{F}, -)\colon \cat{Sheaf}\to \cat{Set}$是可表函子, 记泛对象为$\sheaf{F}^+$, 称为预层$\sheaf{F}$\emph{对应的层}.
+\end{proposition}
 
-% TODO: restricted sheaf
+\begin{proof}
+  只叙述$\sheaf{F}^+$的构造. 对于开集$U$, 定义$\sheaf{F}^+(U)$为函数$s\colon U\to \bigcup_{P\in U}\sheaf{F}_P$全体, 并且对于每个$P\in U$, 这些函数被要求满足
+  \begin{enumerate}
+    \item $s(P)\in\sheaf{F}_P$;
+    \item 存在$P$的邻域$V\subseteq U$和元素$t\in \sheaf{F}(V)$满足对于任意的$Q\in V$, 芽$t_Q=s(Q)$.
+  \end{enumerate}
+\end{proof}
+
+我们还可以讨论底拓扑空间变化的情况下层结构的变化. 设$f\colon X\to Y$是拓扑空间之间的连续映射, 对于任意$X$上的层$\sheaf{F}$, 定义其在$Y$上的\emph{像层}$f_*\sheaf{F}$满足$(f_*\sheaf{F})(V)=\sheaf{F}(f^{-1}(V))$. 对于$Y$上的层$\sheaf{G}$, 定义其在$X$上的\emph{原像层}$f^{-1}\sheaf{G}$为预层$U\mapsto\dlim \sheaf{G}(V)$对应的层, 其中直极限是对所有的包含$f(U)$的开集$V\subseteq Y$来取的. 特别地, 对于$X$的子空间$Z$, 我们可以利用包含映射定义$X$上的层$\sheaf{G}$在$Z$上的\emph{限制}, 通常记为$\sheaf{F}\restrict{Z}$. 注意$\sheaf{F}\restrict{Z}$在每个点$P$处的茎即为$\sheaf{F}_P$.
 
 \bigskip
 
@@ -241,16 +251,25 @@
 
 我们发现环的素谱有类似于仿射簇上的正规函数层的性质, 并且从素谱可以重新构造出原本的环. 回顾记号$\Spec(A)_{f}$表示闭集$V((f))$的余集.
 
-\begin{proposition}[{{\parencite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]
+\begin{proposition}[{{\parencite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]\label{prop:primespectrumsheaf}
   设$A$为环, $(\Spec (A), \OO)$为其素谱, 则
   \begin{enumerate}
-    \item 对于任意的$\ideal{p}\in\Spec (A)$, 层$\OO$的茎$\OO_P$同构于局部环$A_{\ideal{p}}$;
-    \item 对于任意的元素$f\in A$, 环$\OO(\Spec (A)_f)$同构于局部化环$A_f$. 特别地, $\OO (\Spec (A))\cong A$
+    \item\label{enum:prop-prime-spectrum-sheaf-1} 对于任意的$\ideal{p}\in\Spec (A)$, 层$\OO$的茎$\OO_P$同构于局部环$A_{\ideal{p}}$;
+    \item\label{enum:prop-prime-spectrum-sheaf-2} 对于任意的元素$f\in A$, 环$\OO(\Spec (A)_f)$同构于局部化环$A_f$. 特别地, $\OO (\Spec (A))\cong A$.
   \end{enumerate}
 \end{proposition}
-% TODO: 简单证明一下.
 
-为了定义素谱之间的态射, 我们需要引入赋环空间的概念. % TODO: ringed space
+\begin{proof}
+  \ref{enum:prop-prime-spectrum-sheaf-1} 利用直极限的定义可以构造同态$\varphi\colon \OO_{\ideal{p}}\to A_{\ideal{p}}$, 将$\ideal{p}$点邻域的截面$s$映到$s(\ideal{p})\in A_{\ideal{p}}$. 对于每个$a{\divslash}f\in A_{\ideal{p}}$, 则存在$s\in\OO (\Spec (A))_f$使得对于任意的$\ideal{q}\in \OO (\Spec (A))_f$都有$s(\ideal{q})=a{\divslash}f$, 因此$\varphi$为满射. 又如果截面$s$使得$s(\ideal{p})=0$, 则在邻域$U'$有$s(\ideal{q})=a{\divslash}f$, 因此存在$x\in A-\ideal{p}$使得$ax=0$. 则$s$在开集$\Spec (A)_x\cap U'$上的限制为零, 因此$\varphi$为单射.
+
+  \ref{enum:prop-prime-spectrum-sheaf-2} 定义$\psi\colon A_f\to \OO (\Spec (A)_f)$将$a{\divslash}f^n$映到截面$s\in \OO (\Spec (A)_f)$, $s$将每个$\ideal{p}$都映到$a{\divslash}f^n$. 首先, 如果$\psi(a{\divslash}f^n)=0$, 则可以推出$V(\Ann a)\cap \Spec (A)_f=\varnothing$, 于是$f^ma=0$, 故$\psi$为单射. 另一方面, 设$s\in \OO (\Spec (A)_f)$, 先证明$\Spec (A)_f$可以由开子集$D(h_j)$覆盖, 并且$s$在$D(h_j)$上可以由$a_j{\divslash}h_j$表示. 再利用$\Spec (A)$的拓扑基的拟紧性, 可以假设这些$D(h_j)$是有限的. 接着利用上述表述的在交集处的相容性, 可以不妨假设对于任意的$j,k$都有$h_ka_j=h_ja_k$. 最后对于$f^n=\sum b_jh_j$构造$a=\sum b_ja_j$, 则在$\Spec (A)_{h_j}$上有$a{\divslash}f^n=a_j{\divslash}h_j$, 因此$\psi (a{\divslash}f^n)=s$, 得证$\psi$为满射.
+\end{proof}
+
+为了定义素谱之间的态射, 我们需要引入赋环空间的概念. \emph{赋环空间}包含的信息为一个拓扑空间$X$和$X$上的一个环值的层$\OO_X$. 两个赋环空间$(X, \OO_X)$和$(Y, \OO_Y)$之间的\emph{态射}包含的信息为连续映射$f\colon X\to Y$和层态射$f^\mathoctothorpe\colon \OO_Y\to f_*\OO_X$. 如果赋环空间$(X, \OO_X)$满足对于每个$P\in X$都有茎$\OO_{X, P}$是局部环, 则称其为\emph{局部赋环空间}. 局部赋环空间之间的\emph{态射}为赋环空间之间的态射$(f, f^\mathoctothorpe)$, 额外要求在每个点$P\in X$处诱导映射
+\begin{equation*}
+  f^\mathoctothorpe_P\colon \OO_{Y, f(P)}=\dlim \OO_Y(V)\to \dlim\OO_X (f^{-1}V) \to \OO_{X, P}
+\end{equation*}
+是局部环之间的\emph{局部同态}, 即满足值域的唯一极大理想的原像是定义域的极大理想.
 
 \begin{propositionnoproof}[{{\parencite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]
   素谱定义了环范畴到局部赋环空间范畴之间的完全反变函子.
@@ -258,10 +277,9 @@
 
 现在终于可以来定义概形这个概念了. 定义\emph{仿射概形}是局部赋环空间$(X, \OO_X)$, 并且同构于某个环的素谱. 定义\emph{概形}是局部赋环空间$(X, \OO_X)$, 并且满足每个点处都有邻域$U$使得子拓扑空间$U$以及限制层$\OO_X\restrict{U}$是仿射概形. 称$X$为\emph{底拓扑空间}, 通常用$X$表示整个概型的结构, 而用$\sp (X)$表示它的拓扑空间结构. 概形之间的态射即为局部赋环空间之间的态射.
 
-如果存在概形态射$f\colon X\to \Spec \kk$, 则称$f$是$\kk$\emph{上的概形}. 如果概形之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}.
+如果存在概形态射$f\colon X\to S$, 则称$f$是$S$\emph{上的概形}, 特别地, 如果$S=\Spec (A)$, 也称$f$是$A$\emph{上的概型}. 如果概形之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}. $S$上的概形之间的态射自然被要求要与给定的到$S$的态射可交换.
 
 我们可以证明, 对于代数闭域$\kk$, 存在从$\kk$上的簇范畴到$\kk$上的概形范畴的完全忠实函子$t$, 并且对于每个簇$V$, 它的拓扑空间结构同胚于$\sp (t(V))$的闭点全体所构成的子空间, 并且$V$的正规函数层可以通过这个同胚由$t(V)$的结构层的限制所得到\parencite[78, Proposition 2.6]{hartshorne_algebraic_1977}.
-% TODO: 不过这个函子不是injective on objects????? fully faithful create isomorphism?
 
 % locally ringed space
 % 仿射概形
@@ -272,7 +290,7 @@
 % 这件事情我们就先不管了 https://math.stackexchange.com/a/241695
 
 % 极大谱和仿射空间同胚 更一般地 我们有
-\thref{thm:affinerings}
+% \thref{thm:affinerings}
 % 准素分解 孤立 嵌入 似乎不太适合在这里 但可以说一下两个定理证明的类似之处
 
 \subsection{代数群与Hopf代数}

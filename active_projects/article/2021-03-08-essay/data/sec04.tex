@@ -68,13 +68,13 @@
 
 % 射影空间
 % 函数环的刻画
-\subsection{函数环}\label{subsec:ag-functionrings}
+\subsection{函数环}\label{sec:ag-functionrings}
 
 这一节中我们要定义仿射空间代数集的仿射坐标环, 以及射影空间中代数集的射影坐标环, 并研究它们与代数簇上的整体函数环, 在某点的局部环以及函数域的关系.
 
 如果$Y\subseteq \AF^n$是仿射空间中的代数集, 若将$A$中元素看作为$Y$上的函数, 则$A$在由函数相等定义的等价关系下的商环即为$A(Y)\coloneq A{\divslash}I(Y)$, 称为$Y$的\emph{仿射坐标环}. 如果$Y$是仿射代数簇, 则$A(Y)$也为多项式函数整环.
 
-现在我们可以来仔细考察仿射代数簇上定义的环与放射坐标环之间的关系, 并将代数的分式环理论\ref{subsec:algebra-localization}和维数理论\ref{subsec:algebra-dimension}应用到几何的研究中.
+现在我们可以来仔细考察仿射代数簇上定义的环与放射坐标环之间的关系, 并将代数的分式环理论\ref{sec:algebra-localization}和维数理论\ref{sec:algebra-dimension}应用到几何的研究中.
 
 \begin{theorem}[{{\parencite[6, Proposition 1.7; 17, Theorem 3.2]{hartshorne_algebraic_1977}}}]\label{thm:affinerings}
   设$Y\subseteq \AF^n$为仿射代数簇, 其仿射坐标环为$A(Y)$, 则
@@ -200,11 +200,134 @@
 % Hartshorne Ex 2.6
 % Hartshorne Exm II.2.4 embedded points
 
-\subsection{概形}\label{subsec:ag-affinescheme}
+\subsection{概形}\label{sec:ag-affinescheme}
 
 现代代数几何的主要语言从固定域上的代数簇发展到了概形. 概形这个概念是簇及其上的函数环的推广, 对于给定的代数闭域可以构造从簇范畴到概形范畴的完全忠实函子, 并且利用概形的语言我们可以对更一般更本质的对象进行研究, 可以允许局部环内有幂零元, 可以考察在基域的变换下对象的变换等等. 这一节中我们将要引入层的语言, 介绍仿射概形的定义及基本性质, 并简单叙述概形的定义及概形之间的态射.
 
-回顾在\ref{subsec:algebra-category}我们定义了拓扑空间$X$上集合取值的预层是函子$F\colon \cat{Top}(X)^{\op}\to\cat{Set}$. 为了更符合直觉, 这一节中我们考虑的都是Abel群取值的预层, 为函子$\sheaf{F}\colon \cat{Top}(X)^{\op}\to\cat{Ab}$, 注意$\sheaf{F}(\varnothing)=0$为平凡Abel群. 称$\sheaf{F}(U)$中的元素为$\sheaf{F}$在$U$上的\emph{截面}, 有时也记$\sheaf{F}(U)$为$\Gamma (U, \sheaf{F})$. 称映射$\rho_{UV}\coloneq \sheaf{F}(U\to V)$为\emph{限制映射}, 对于$s\in \sheaf{F}(U)$有时也记$\rho_{UV}(s)$为$s\restrict{V}$.
+\subsubsection{素谱}\label{sec:algebra-primespec}
+
+这一节我们要介绍环的素谱及其上的Zariski拓扑结构, 它具有很好的函子性质, 也可以反映出一些环本身的性质.
+
+设$X$为环$A$的素理想全体构成的集合. 对每个$A$的子集$E$, 记$V(E)$为$A$中包含$E$的素理想全体, 是$X$的子集.
+
+\begin{proposition}[{{\parencite[12, Exercise 15]{atiyah_introduction_1969}}}]\label{prop:primespecclosedset}
+  上述定义的算子$V$有如下性质,
+  \begin{enumerate}
+    \item\label{enum:prop-prime-spec-closed-set-1} 如果$\ideal{a}$是由$A$的子集$E$生成的理想, 则$V(E)=V(\ideal{a})=V(\sqrt{\ideal{a}})$;
+    \item\label{enum:prop-prime-spec-closed-set-2} 如果$\sqrt{\ideal{a}}\neq\sqrt{\ideal{b}}$, 则$V(\ideal{a})\neq V(\ideal{b})$;
+    \item\label{enum:prop-prime-spec-closed-set-3} $V((0))=X$, $V((1))=\varnothing$;
+    \item\label{enum:prop-prime-spec-closed-set-4} 设$\{E_\lambda\}$为$A$的一族子集, 则$\bigcap V(E_\lambda)=V(\bigcup E_\lambda)$;
+    \item\label{enum:prop-prime-spec-closed-set-5} 如果$\ideal{a}, \ideal{b}$是$A$的两个理想, 则$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
+  \end{enumerate}
+  因此$V(E)$全体作为$X$的子集满足拓扑空间中闭集的公理, 如此可以在$X$中定义拓扑空间结构, 称为\emph{Zariski拓扑}, 称赋有Zariski拓扑的拓扑空间$X$为环$A$的\emph{素谱}, 记为$\Spec (A)$.
+\end{proposition}
+
+\begin{proof}
+  \ref{enum:prop-prime-spec-closed-set-1} 注意如果$x^n\in \ideal{p}$那么有$x\in\ideal{p}$.
+
+  \ref{enum:prop-prime-spec-closed-set-5} 不难证明$V(\ideal{a}\cap\ideal{b})=V(\ideal{a})\cup V(\ideal{b})$, 又由\ref{enum:prop-prime-spec-closed-set-1}和\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}, 即得$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
+\end{proof}
+
+素谱$\Spec (A)$有一组很特殊的拓扑基, 我们现在来介绍.
+
+\begin{proposition}[{{\parencite[12, Exercise 17]{atiyah_introduction_1969}}}]\label{prop:primespecbaseopenset}
+  对于$f\in A$, 记$X_f$为闭集$V((f))$的余集. 则这些$X_f$构成$\Spec (A)$的一组拓扑基, 并且满足
+  \begin{enumerate}
+    \item $X_f\cap X_g=X_{fg}$;
+    \item\label{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$是幂零元;
+    \item $X_f=X$当且仅当$f$是单位;
+    \item $X_f=X_g$当且仅当$\sqrt{(f)}=\sqrt{(g)}$;
+    \item\label{enum:prop-prime-spec-base-open-set-5} $X$是拟紧集\footnotemark;
+    \item\label{enum:prop-prime-spec-base-open-set-6} 每个$X_f$是拟紧集;
+    \item $X$中的开集为拟紧集当且仅当它是有限个$X_f$的并.
+  \end{enumerate}
+  称这些$X_f$为素谱$\Spec (A)$的\emph{基开集}.
+\end{proposition}
+\footnotetext{代数几何中对紧集的称法与其它领域中不同. 称每个开覆盖都有有限子覆盖的集合为\emph{拟紧集}, 称满足Hausdorff性质的拟紧集为\emph{紧集}.}
+
+\begin{proof}
+  \ref{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$属于$A$的幂零根, 也当且仅当$f$是幂零元.
+
+  \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证任意开覆盖都有有限子覆盖.
+
+  \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$\sum_{j=1}^n f_ig_i = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
+\end{proof}
+
+如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的\parencite[13, Exercise 19]{atiyah_introduction_1969}. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的.
+
+\begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
+  拓扑空间$X$的不可约集全体在集合被包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
+\end{proposition}
+
+\begin{proof}
+  先利用Zorn引理证明有极大元. 考虑不可约集的全序子链$\{Y_\lambda\}$, 则断言它们的并$Y$一定是不可约集. 这是因为对于每两个$Y$的真闭子集$Z_1, Z_2$, 都可以找到$\lambda$使得$Z_1\cap Y_\lambda, Z_2\cap Y_\lambda$是$Y_\lambda$的真闭子集.
+
+  再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交.
+
+  最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
+\end{proof}
+
+\begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
+  素谱$X=\Spec (A)$的不可约闭集全体恰为素理想$\ideal{p}$对应的闭集$V(\ideal{p})$全体, 由此建立了$X$的不可约闭集全体到$A$的素理想全体的反序双射. 于是$X$不可约分支全体恰为极小素理想$\ideal{p}$所对应的闭集$V(\ideal{p})$全体.
+\end{proposition}
+
+\begin{proof}
+  因为$V$可以看成从$A$的素理想全体到$X$的闭集全体之间的保序单射, 所以只需证明$\sqrt{\ideal{a}}$为素理想当且仅当$V(\ideal{a})$不可约.
+
+  如果$\ideal{p}$是素理想, 若有$V(\ideal{p})=V(\sqrt{\ideal{a}})\cup V(\sqrt{\ideal{b}})=V(\sqrt{\ideal{ab}})$, 则根据\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}有$\ideal{p}=\sqrt{\ideal{ab}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$, 再根据\thref{prop:prime}\ref{enum:prop-prime-absorb}得$\ideal{p}=\sqrt{\ideal{a}}$或$\ideal{p}=\sqrt{\ideal{b}}$. 于是得$V(\ideal{p})$不能写成两个真闭子集得并, 故为不可约集.
+
+  如果$V(\sqrt{\ideal{a}})$是不可约集, 考虑$fg\in\sqrt{\ideal{a}}$. 则$V(\ideal{a})=(V(\ideal{a})\cap V((f)))\cap (V(\ideal{a})\cap V((g)))$可以写成两个闭子集的并. 于是有$V(\ideal{a})=V((f))$或者$V(\ideal{a})=V((g))$, 因此$f\in \sqrt{\ideal{a}}$或者$g\in \sqrt{\ideal{a}}$成立, 即$\sqrt{\ideal{a}}$为素理想.
+\end{proof}
+
+素谱运算实际上是环范畴到拓扑空间范畴的反变函子, 具有如下一些性质.
+
+\begin{proposition}[{{\parencite[13, Exercise 21]{atiyah_introduction_1969}}}]\label{prop:primespecfunctor}
+  设$\varphi\colon A\to B$为环同态, 记$X=\Spec (A)$, $Y=\Spec (B)$. $\varphi$诱导出了拓扑空间之间的映射$\varphi^*\colon Y\to X$, 满足
+  \begin{enumerate}
+    \item\label{enum:prop-prime-spec-functor-continuous} 如果$f\in A$, 那么$\varphi^{*-1}(X_f)=Y_{\varphi(f)}$. 因此$\varphi^*$是连续映射;
+    \item 如果$\ideal{a}$是$A$的理想, 那么$\varphi^{*-1}(V(\ideal{a}))=V(\ideal{a}^e)$;
+    \item 如果$\ideal{b}$是$B$的理想, 那么$\overline{\varphi^*(V(\ideal{b}))}=V(\ideal{b}^c)$;
+    \item\label{enum:prop-prime-spec-functor-surjective} 如果$\varphi$是满射, 那么$\varphi^*$为从$Y$到$X$的闭子集$V(\Ker (\varphi))$的同胚. 特别地, $\Spec (A)$与$\Spec (A{\divslash}\nil)$有自然同胚;
+    \item $\varphi^*(Y)$在$X$中稠密当且仅当$\Ker (\varphi)\subseteq \nil$;
+    \item\label{enum:prop-prime-spec-functor-composite} 如果$\psi\colon B\to C$为另一个环同态, 则$(\psi\composite\varphi)^*=\varphi^*\composite\psi^*$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \ref{enum:prop-prime-spec-functor-continuous} $\ideal{q}\in\varphi^{*-1}(V(X_f))$当且仅当$\varphi^*(\ideal{q})\in X_f$, 又当且仅当$f\notin \ideal{q}^c$, 还当且仅当$\varphi (f)\notin \ideal{q}$, 最后当且仅当$\ideal{q}\in Y_{\varphi (f)}$.
+
+  \ref{enum:prop-prime-spec-functor-surjective} 只需证明$\varphi^*(V(\ideal{b}))=V(\ideal{b}^c)$. 考虑素理想$\ideal{p}\in X$, 则$\ideal{p}\in\varphi^*(V(\ideal{b}))$当且仅当$\varphi(\ideal{p})\in V(\ideal{b})$, 也当且仅当$\varphi(\ideal{p})\supseteq\ideal{b}$, 故当且仅当$\ideal{p}\supseteq\ideal{b}^c$.
+
+  \ref{enum:prop-prime-spec-functor-composite} 注意$(\psi\composite\varphi)^{-1}=(\varphi^{-1}\composite\psi^{-1})$即可.
+\end{proof}
+
+对于环$A$, 其极大理想全体可以看成素谱$\Spec (A)$的子空间, 这个子空间被称为$A$的\emph{极大谱}, 记作$\MaxSpec (A)$. 因为一般来说极大理想的原像不一定是极大理想, 所以极大谱没有如\thref{prop:primespecfunctor}中所述的函子性质, 研究起来不是那么方便.
+
+正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\parencite[79, Exercise 5]{atiyah_introduction_1969}. $X$是Noether拓扑空间等价于每个由$X$的闭子集构成的非空集合都有极小元.
+
+\begin{proposition}
+  如果$A$是Noether环, 则$\Spec (A)$是Noether拓扑空间. 反之则不一定成立.
+\end{proposition}
+
+\begin{proof}
+  假设$A$是Noether环, 因为$\Spec (A)$中的闭集降链能诱导出$A$中的根式理想的升链, 故由\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}知闭集降链一定有限.
+
+  反过来, 我们需要寻找一个反例, 这个反例参考\footfullcite{brandenburg_non-noetherian_2017}. 设$\kk$为一个域, 考虑域的正整数元多项式环的商环$A=\kk [X_1, X_2, \dotsc]{\divslash}(X_1, X_2^2, \dotsc)$. 因为理想升链$(X_1)\subsetneqq (X_1, X_2)\dotsb$不稳定, 因此$A$不是Noether环. 但是因为幂零根$\nil=\ideal{m}\coloneq (X_1, X_2, \dotsc)$为极大理想, 故由\thref{prop:primespecfunctor}\ref{enum:prop-prime-spec-functor-surjective}我们知道$\Spec (A)\cong\Spec (A{\divslash}\nil)=\Spec (\kk)$仅有一个点, 因此一定是Noether拓扑空间.
+\end{proof}
+
+\begin{proposition}[{{\parencites[79, Exercise 7]{atiyah_introduction_1969}[5, Proposition 1.5]{hartshorne_algebraic_1977}}}]
+  Noether拓扑空间$X$中的不可约分支仅有有限个, 故Noether环$A$的极小素理想仅有有限个.
+\end{proposition}
+
+\begin{proof}
+  证明分为两步, 先证明$X$可以表示成有限个两两不同的不可约分支的并, 再证明这种表示是唯一的.
+
+  设$\Sigma$为$X$的不能写成有限个不可约闭子空间的并的闭集全体, 假设$\Sigma$非空. 因为$X$是Noether拓扑空间, 故$\Sigma$有极小元, 记为$Y$. $Y$不是不可约集, 于是可以写成两个真闭子集$Y', Y''$的并$Y=Y'\cup Y''$, 又$Y', Y''$可以写成有限个不可约闭子空间的并, 于是得到$Y$可以写成有限个不可约闭子空间的并, 矛盾. 于是$X$可以写成有限个不可约闭子空间的并, 取极大元并抛去相同的项即得$X$可以写成有限个两两不同的不可约分支的并.
+
+  如果$X$可以以两种方式写成两两不同的不可约分支的并, 即有$X=X_1\cup\dotsb\cup X_m$以及$X=X_1'\cup\dotsb\cup X_n'$, 我们将证明对于每个$j=1, \dotsc, m$都存在$k$使得$X_j=X_k'$. 由于$X_j=\bigcup_{k=1}^m(X_j\cap X_k')$并且$X_j$不可约, 存在$k$使得$X_j\subseteq X_k'$. 同理, 存在$l$使得$X_k'\subseteq X_l$, 因此$X_j\subseteq X_l$, 有极大性得$j=l$, 即$X_j=X_k'$.
+\end{proof}
+
+回顾在\ref{sec:algebra-category}我们定义了拓扑空间$X$上集合取值的预层是函子$F\colon \cat{Top}(X)^{\op}\to\cat{Set}$. 为了更符合直觉, 这一节中我们考虑的都是Abel群取值的预层, 为函子$\sheaf{F}\colon \cat{Top}(X)^{\op}\to\cat{Ab}$, 注意$\sheaf{F}(\varnothing)=0$为平凡Abel群. 称$\sheaf{F}(U)$中的元素为$\sheaf{F}$在$U$上的\emph{截面}, 有时也记$\sheaf{F}(U)$为$\Gamma (U, \sheaf{F})$. 称映射$\rho_{UV}\coloneq \sheaf{F}(U\to V)$为\emph{限制映射}, 对于$s\in \sheaf{F}(U)$有时也记$\rho_{UV}(s)$为$s\restrict{V}$.
 
 大体上说一个层就是可以由局部信息决定的预层. 利用范畴论的语言, 对于Abel群取值的预层$\sheaf{F}$, 定义由$U_\lambda\subseteq U$构成的开集族$\{U_\lambda\}$\emph{覆盖}$U$如果它们及其两两的交以及所有可能的态射所定义的$\cat{Top}(X)$中的图的上极限为$U$, 如果$\sheaf{F}$保持这些上极限, 则称$\sheaf{F}$是\emph{层}. 显式地说, 如果预层$\sheaf{F}$满足对于任意的开集$U$和任意$U$的开覆盖$\{V_\lambda\}$都有
 \begin{enumerate}
@@ -216,7 +339,7 @@
 如果$\sheaf{F}$是拓扑空间$X$上的预层, 设$P$为$X$的一点, 则包含$P$点的开集全体所对应的Abel群的直极限称为$P$点处的\emph{茎}, 记为$\sheaf{F}_P$, 称自然映射$\sheaf{F}(U)\to \sheaf{F}_P$将截面$s$映到$P$点处的\emph{芽}.
 
 \begin{example}
-  在\ref{subsec:ag-functionrings}中我们定义了代数簇上的整体函数环与任一点处的局部环, 其实这定义了代数簇上的环值的层结构. $\sheaf{F}(U)\coloneq\OO (U)$定义为$U$上的正规函数全体, $\sheaf{F}(U\to V)$定义为包含映射$\OO (V)\to \OO(U)$, 则$\sheaf{F}$是层, 并且在$P$点处的茎即为局部环$\OO_P$. 称$\OO$为仿射簇上的\emph{正规函数层}.
+  在\ref{sec:ag-functionrings}中我们定义了代数簇上的整体函数环与任一点处的局部环, 其实这定义了代数簇上的环值的层结构. $\sheaf{F}(U)\coloneq\OO (U)$定义为$U$上的正规函数全体, $\sheaf{F}(U\to V)$定义为包含映射$\OO (V)\to \OO(U)$, 则$\sheaf{F}$是层, 并且在$P$点处的茎即为局部环$\OO_P$. 称$\OO$为仿射簇上的\emph{正规函数层}.
 \end{example}
 
 既然预层被定义为函子, 那么很自然预层之间的态射被定义为函子之间的自然变换, 层之间的态射也被定义为函子之间的自然变换. 下面一个命题阐释了层的结构可以由它的局部性质决定.
@@ -245,7 +368,7 @@
 
 \bigskip
 
-现在可以来重新考察环的素谱这一概念. \ref{subsec:algebra-primespec}中我们已经定义了素谱上的Zariski拓扑, 现在我们再在其上定义环值的层结构, 使其具有类似于仿射簇的结构.
+现在可以来重新考察环的素谱这一概念. \ref{sec:algebra-primespec}中我们已经定义了素谱上的Zariski拓扑, 现在我们再在其上定义环值的层结构, 使其具有类似于仿射簇的结构.
 
 设$A$为环, $\Spec (A)$为其素谱, 我们来定义层$\sheaf{O}\colon \cat{Top}(\Spec (A))\to \cat{Ring}$. 对于每个开集$U\subseteq \Spec (A)$, 定义$\sheaf{O}(U)$为在局部能写成$A$的元素之商的函数$s\colon U\to \amalg_{\ideal{p}\in U}A_{\ideal{p}}$全体构成的环. 不难验证$\sheaf{O}(U)$是环, 以及$\sheaf{O}$是层. 现在默认环的素谱上也赋有刚才所定义的层结构.
 
@@ -292,10 +415,3 @@
 % 极大谱和仿射空间同胚 更一般地 我们有
 % \thref{thm:affinerings}
 % 准素分解 孤立 嵌入 似乎不太适合在这里 但可以说一下两个定理证明的类似之处
-
-\subsection{代数群与Hopf代数}
-
-% Hartshorne Ex 3.21 Group Variety (Algebraic Group)
-% Basic examples
-% affine algebraic groups
-% Hopf algebra

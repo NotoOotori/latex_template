@@ -35,3 +35,288 @@
 \begin{theorem}[Cayley-Hamilton定理]\label{thm:CayleyHamilton}
   设$T$为环$A$上的$n\times n$矩阵, $P_T(X)\coloneq \det (XI-A)\in A[X]$为$T$的特征多项式, 则$P_T(T)=0$为零矩阵.
 \end{theorem}
+
+\section{范畴论}\label{sec:algebra-category}
+
+随着同调代数这个工具的有力性得到了广泛的认可, 代数学家们开始重视起了对范畴论的研究, 即不光对代数结构本身进行研究, 也同时研究保持结构的这些映射. 这种想法也被进一步推广到了用对象之间的特定映射来刻画对象的结构, 甚至这里的``映射"可以不是通常的集合之间的映射, 只要可以良好定义复合运算即可. 范畴论的思想还体现在很多其它的领域中, 比如在\ref{sec:algebraandgeometry}中我们将看到一些代数对象构成的范畴与几何对象构成的范畴之间的同构, 这有助于我们增强对代数与几何之间关系的理解. 这一节中我们将介绍范畴论的基本想法, 包括范畴, 函子, 自然映射, 泛性质, 极限等定义. 限于篇幅原因, 对于这一节中的证明我们将只给出相关的构造以及证明的思路, 而不给出详细的证明. 此外, 还有一些结论我们难以或无法用这一节中所发展的技术去证明, 但之后确实会用到, 这些结论我们将会不带证明地进行叙述.
+
+在范畴论的研究中我们会不可避免的遇到真类, 即不是集合的对象. 因为集合论的问题不是文章的重点, 所以我们将会尽量减少真类的出现, 尽可能对是集合的对象进行讨论.
+
+\subsection{范畴与函子}
+
+一个\emph{范畴}$\cat{C}$包含如下信息.
+\begin{enumerate}
+  \item 有一个类, 其元素称为\emph{对象}, 通常用字母$X, Y, Z, \dotsc$或者小写的$c, c', x, y, \dotsc$来表示;
+  \item 对于每一组对象$X, Y$, 都有一个类, 其元素称为从$X$到$Y$的\emph{态射}, 一般用小写字母$f, g, h, \dotsc$来表示, 并用$f\colon X\to Y$来表示$f$是从$X$到$Y$的态射. 如果$f\colon X\to Y$, 则称$X$是$f$的\emph{定义域}, $Y$是$f$的\emph{值域};
+  \item 对于每个对象$X$, 有一个特定的\emph{恒同态射}$1_X\colon X\to X$;
+  \item 对于每一组对象$X, Y, Z$以及态射$f\colon X\to Y, g\colon Y\to Z$, 有\emph{复合态射}$gf\colon X\to Z$, 并且满足
+  \begin{enumerate}
+    \item 对于每个态射$f\colon X\to Y$, 都有复合态射$f1_{X}=1_{Y}f=f$;
+    \item 对于每三个态射$f\colon X\to Y, g\colon Y\to Z, h\colon Z\to W$都有$(hg)f=h(gf)$, 故可记为$hgf$;
+  \end{enumerate}
+  即态射的``复合运算"满足结合律并有双侧单位元.
+\end{enumerate}
+
+如果范畴$\cat{D}$的对象类和每个态射类都是范畴$\cat{C}$相应的类的子类, 则称$\cat{D}$为$\cat{C}$的\emph{子范畴}.
+
+如果范畴$\cat{C}$中的态射全体构成集合, 则称$\cat{C}$是\emph{小范畴}. 如果范畴$\cat{C}$的任一组对象之间的态射类都是集合, 则称$\cat{C}$是\emph{局部小范畴}. 在这篇文章中我们关心的范畴都是局部小的, 不过在每处我们依然会写上这个范畴是局部小的的这一条件. 在局部小的范畴$\cat{C}$中, 我们记一组对象$X, Y$之间的态射全体所构成的集合为$\cat{C} (X, Y)$.
+
+\begin{example}
+  很多我们熟悉的数学对象都构成范畴, 并且是局部小范畴.
+  \begin{enumerate}\label{exm:concretecategory}
+    \item $\cat{Set}$是以集合作为对象, 以集合之间的映射作为对应的定义域与值域之间的态射的范畴.
+    \item $\cat{Ab}$是以Abel群作为对象, 以群同态作为态射的范畴.
+    \item $\cat{Ring}$是以幺环作为对象, 以环同态作为态射的范畴. $\cat{CRing}$是以交换幺环作为对象, 以环同态作为态射的范畴, 是$\cat{Ring}$的子范畴.
+    \item 对于给定的幺环$R$, $\cat{Mod}_R$是以左$R$-模作为对象, 以$R$-模同态为态射的范畴.
+    \item 对于给定的域$\kk$, $\cat{Vect}_{\kk}$是以$\kk$-线性空间作为对象, 以$\kk$-线性映射为态射的范畴.
+  \end{enumerate}
+\end{example}
+
+\begin{example}
+  还有一些我们熟悉的数学对象也可以被看成范畴, 只不过其中的态射不是通常的集合之间的映射.
+  \begin{enumerate}
+    \item 偏序集$(\cat{P}, \leq)$可以被看成范畴. $\emph{P}$的元素是范畴的对象, 并且对象$x, y$之间存在唯一的态射$x\to y$仅当$x\leq y$, 否则$x, y$之间不存在态射. 特别地, 拓扑空间$X$的开集全体关于集合被包含关系可以被看成范畴, 记作$\cat{Top}(X)$.
+  \end{enumerate}
+\end{example}
+
+在数学中, 两个对象的同构几乎总是一个非常核心的概念, 而范畴论中给了一个统一的解答. 如果范畴$\cat{C}$中两个对象$X, Y$之间的态射$f\colon X\to Y$满足存在$g\colon Y\to X$, 使得$fg=1_Y, gf=1_X$, 则称$f$是\emph{同构态射}. 对于两个对象$X, Y$, 如果存在$X$到$Y$的同构态射, 则称$X$和$Y$是\emph{同构的}, 记作$X\cong Y$.
+
+对于一个范畴$\cat{C}$, 我们可以把它的所有态射的定义域与值域交换, 从而得到它的对偶范畴$\cat{C}^{\op}$. 严格来说, 范畴$\cat{C}$的\emph{对偶范畴}$\cat{C}^{\op}$包含如下信息.
+\begin{enumerate}
+  \item 有与$\cat{C}$相同的对象类;
+  \item 对于每个$\cat{C}$中的态射$f\colon Y\to X$, 有一个态射$f^{\op}\colon X\to Y$;
+  \item 每个对象$X$的恒同态射即为$1_X^{\op}$;
+  \item 每两个态射$f^{\op}\colon X\to Y$与$g^{\op}\colon Y\to Z$的复合$g^{\op}f^{\op}\coloneq (fg)^{\op}$.
+\end{enumerate}
+我们将在之后反变函子的定义中用到对偶范畴的概念.
+
+在范畴论中函子是非常重要的概念, 它给出了两个范畴之间的态射.
+
+范畴$\cat{C}$到$\cat{D}$的\emph{函子}$F\colon \cat{C}\to \cat{D}$含有如下信息.
+\begin{enumerate}
+  \item 对于每个对象$c\in\cat{C}$, 有一个对象$Fc\in \cat{D}$;
+  \item 对于每个态射$f\colon c\to c'\in\cat{C}$, 有一个态射$Ff\colon Fc\to Fc'\in\cat{D}$,
+\end{enumerate}
+并且满足两个\emph{函子性公理}.
+\begin{enumerate}
+  \item 对于每对$\cat{C}$中的可复合函子$f, g$, 有$(Fg)(Ff)=F(gf)$;
+  \item 对于每个对象$c\in\cat{C}$, 都有$F(1_c)=1_{F_c}$.
+\end{enumerate}
+简而言之, 一个函子由对象全体之间的映射和态射全体之间的映射所构成, 并保持范畴中所有的结构, 包括定义域, 值域, 复合与恒同态射. 函子$F\colon \cat{C}\to \cat{D}$含有的信息可以由下图来表示.
+\begin{equation}
+  \functordiagram{\cat{C}}{\cat{D}}{F}{c}{c'}{f}{Fc}{Fc'}{Ff}
+  % \begin{tikzcd}[sep=small]
+  %     \cat{C} \arrow[rr, "F"] & & \cat{D}\\
+  %     c \arrow[dd, "f"'] & \mapsto & |[alias=X]| Fc\\
+  %     & \mapsto & \\
+  %     c' & \mapsto & |[alias=Y]| Fc'
+  %     \arrow[from=X, to=Y, "Ff"]
+  %   \end{tikzcd}
+\end{equation}
+
+函子性的应用十分广泛, 很多重要的性质本质上就是函子性. 一个典型的例子就是因为基本群算子是从有基点的拓扑空间关于保持基点不变的连续函数在同伦等价意义下的范畴到群范畴之间的函子, 所以$D^2$上的Brouwer不动点定理成立\parencite[15, Theorem 1.3.3]{riehl_category_2017}.
+
+有的范畴之间的对应会让态射的定义域与值域交换, 比如说线性空间$X, Y$之间的线性映射$f\colon X\to Y$可以诱导出对偶空间$Y^*, X^*$之间的线性映射$f^*\colon Y^*\to X^*$, 这虽然满足一定的函子性质却不是刚才所定义的函子, 因此我们需要稍微推广一下函子的定义. 为了区别, 之前定义的函子被称为\emph{协变函子}. 如果$F$是从$\cat{C}^{\op}$到$\cat{D}$的协变函子, 则称$F$是从$\cat{C}$到$\cat{D}$\emph{反变函子}, 仍然记作$F\colon \cat{C}^{\op}\to\cat{D}$, 它含有的信息可以由下图来表示\footnotemark.
+\begin{equation}
+  \functordiagram*{\cat{C}^{\op}}{\cat{D}}{F}{c}{c'}{f}{Fc}{Fc'}{Ff}
+  % \begin{tikzcd}[sep=small]
+  %     \cat{C}^{\op} \arrow[rr, "F"] & & \cat{D}\\
+  %     c \arrow[dd, "f"'] & \mapsto & |[alias=X]| Fc\\
+  %     & \mapsto & \\
+  %     c' & \mapsto & |[alias=Y]| Fc'
+  %     \arrow[from=Y, to=X, "Ff"']
+  %   \end{tikzcd}
+\end{equation}
+\footnotetext{尽管反变函子的定义中出现了对偶范畴, 我们画图的时候依然以``正常"的方向来标识态射的定义域与值域. 所谓``正常"这个概念是比较模糊的, 因为每个范畴都可以看成它的对偶范畴的对偶范畴, 不过因为我们可以分清集合范畴$\cat{Set}$与$\cat{Set}^{\op}$哪个是``对偶范畴", 所以对于非常非常多的情况我们这样做都不会出现混淆.}
+% \clearpage
+
+\begin{example}
+  有几个重要的协变函子与反变我们将在这一节的后续部分用到, 因此在这里做介绍.
+  \begin{enumerate}
+    \item 给定范畴$\cat{C}$, \emph{恒同函子}$1_{\cat{C}}\colon\cat{C}\to\cat{C}$是保持对象与函子不变的函子, 所含信息可以由下图表示.
+      \begin{equation*}
+        \functordiagram{\cat{C}}{\cat{C}}{1_{\cat{C}}}{c}{c'}{f}{c}{c'}{f}
+      \end{equation*}
+    \item 给定范畴$\cat{C}, \cat{D}$与对象$d\in\cat{D}$, \emph{常函子}$d\colon \cat{C}\to\cat{D}$将每个对象映到$d\in D$, 并将每个态射映到恒同态射$1_d$.
+    \item 对于\thref{exm:concretecategory}中的范畴, 可以定义其到$\cat{Set}$的\emph{遗忘函子}, 将对象映到其对应的集合, 将态射映到其对应的集合之间的映射, 相当于``遗忘"了其上的结构.
+    \item 给定局部小范畴$\cat{C}$以及其中一个对象$c\in\cat{C}$, \emph{由$c$表示的同态函子}$\cat{C}(c, -)\colon \cat{C}\to\cat{Set}$和$\cat{C}(-, c)\colon \cat{C}^{\op}\to\cat{Set}$由下图定义.
+      \begin{equation*}
+        \functordiagram{\cat{C}}{\cat{Set}}{\cat{C}(c, -)}{x}{y}{f}{\cat{C}(c, x)}{\cat{C}(c, y)}{f_*}
+        \quad
+        \functordiagram*{\cat{C}^{\op}}{\cat{C}}{\cat{C}(-, c)}{x}{y}{f}{\cat{C}(x, c)}{\cat{C}(y, c)}{f^*}
+      \end{equation*}
+    \item 对于一般的小范畴$\cat{C}$, 称函子$F\colon \cat{C}^{\op}\to\cat{Set}$为集合取值的\emph{预层}. 特别地, $\cat{C}$可以取拓扑空间$X$的开集族构成的偏序范畴$\cat{Top}(X)$, 开集$U$的取值$F(U)$即为$U$上的连续实值函数全体, 定义$F(\varnothing)=0$等于$\cat{C}$的终对象. 我们也可以将$\cat{Set}$替换为$\cat{Ab}, \cat{Ring}, \cat{Mod}_R$等后来我们称作``代数理论模型的范畴"的范畴, 仍保有类似的性质.
+  \end{enumerate}
+\end{example}
+
+% 自然变换
+我们现在来介绍自然变换这个概念. 给定范畴$\cat{C}, \cat{D}$以及函子$F, G\colon \cat{C}\rightrightarrows\cat{D}$, 一个从$F$到$G$的\emph{自然变换}$\alpha\colon F\Rightarrow G$含有如下信息.
+\begin{enumerate}
+  \item 对于每个对象$c\in\cat{C}$, 有一个态射$\alpha_c\colon Fc\to Gc$, 被称为这个自然变换的\emph{分量}, 满足对于任意的态射$f\colon c\to c'\in\cat{C}$, 下图交换,
+  \begin{equation}
+    \begin{tikzcd}[row sep=large]
+      Fc \arrow[r, "\alpha_c"{above}] \arrow[d, "Ff"{left}] & Gc \arrow[d, "Gf"{right}] \\
+      Fc' \arrow[r, "\alpha_{c'}"{below}] & Gc'
+    \end{tikzcd}
+    \end{equation}
+  即复合态射$(Gf)\alpha_c=\alpha_{c'}(Ff)$相等.
+\end{enumerate}
+如果每个$\alpha_c$都是同构态射, 那么称$\alpha$是\emph{自然同构}, 记作$\alpha\colon F\cong G$.
+
+在通常的语境下, 为了定义一个自然变换, 我们会给出这个自然变换的每个分量, 并说这些态射是``自然的", 而不显式说明函子是如何定义的, 态射是如何复合的等信息. 比如我们会说``一个有限维线性空间$V$和它对偶空间的对偶空间$V^{**}$是自然同构的", 表示的意思就是有限维线性空间范畴中的双对偶函子与恒同函子是自然同构的.
+
+% 画一下自然同态的边缘信息图
+
+为了后续内容的需要, 我们介绍一下函子范畴的定义. 对于固定的范畴$\cat{C}$和$\cat{D}$, 有\emph{函子范畴}$\cat{D}^{\cat{C}}$, 其中的对象是函子$\cat{C}\to\cat{D}$, 态射即为函子之间的自然变换. 给定$F\colon \cat{C}\to \cat{D}$, 恒同态射$1_F$即为恒同自然变换$1_F\colon F\Rightarrow F$满足每个分量$(1_F)_c$都是恒同态射$1_{F_c}$. 如果$\alpha\colon F\Rightarrow G$和$\beta\colon G\Rightarrow H$是平行的函子$F, G, H\colon \cat{C}\to \cat{D}$之间的自然变换, 则定义它们的复合$\beta\alpha\colon F\Rightarrow$的分量$(\beta\alpha)_c\coloneq \beta_c\alpha_c$, 下图的交换性保证了$\beta\alpha$确实定义了一个自然变换\parencite[44, Lemma 1.7.1]{riehl_category_2017}.
+\begin{equation*}
+  \begin{tikzcd}[row sep=large]
+    Fc & Gc & Hc\\
+    Fc' & Gc' & Hc'
+    \arrow[from=1-1,]{1-2}[above]{\alpha_c}
+    \arrow[from=1-2,]{1-3}[above]{\beta_c}
+    \arrow[from=2-1,]{2-2}[below]{\alpha_{c'}}
+    \arrow[from=2-2,]{2-3}[below]{\beta_{c'}}
+    \arrow[from=1-1,]{2-1}[left]{Ff}
+    \arrow[from=1-2,]{2-2}[left]{Gf}
+    \arrow[from=1-3,]{2-3}[right]{Hf}
+  \end{tikzcd}
+\end{equation*}
+并且这里定义的复合满足定义\parencite[44, Corollary 1.7.2]{riehl_category_2017}, 故$\cat{D}^{\cat{C}}$是范畴. 如果$\cat{C}$是局部小范畴, $\cat{J}$是小范畴, 那么$\cat{D}^{\cat{C}}$会是局部小范畴. 不过一般来说, 如果$\cat{C}$和$\cat{D}$都是局部小范畴, 那么$\cat{D}^{\cat{C}}$就
+不一定是局部小范畴.
+
+% 范畴等价
+接下来我们来定义范畴等价的概念. 一个很直接的想法是要求存在函子$F\colon \cat{C}\leftrightarrows \cat{D}\colon G$使得$FG=1_{\cat{D}}, GF=1_{\cat{C}}$成立, 这样的话称范畴$\cat{C}$与$\cat{D}$\emph{同构}. 不过我们发现范畴同构的要求太强了\parencite[21]{riehl_category_2017}, 所以我们采取类似于同伦等价的方式来定义范畴等价的概念.
+
+一个\emph{范畴等价}包含两个函子$F\colon \cat{C}\leftrightarrows \cat{D}\colon G$与自然同构$FG\cong 1_{\cat{D}}, GF\cong 1_{\cat{C}}$. 如果范畴$\cat{C}, \cat{D}$之间存在范畴等价, 则称$\cat{C}$与$\cat{D}$是\emph{等价的}, 记作$\cat{C}\simeq\cat{D}$. 范畴等价定义了一个等价关系\parencite[30, Lemma 1.5.5]{riehl_category_2017}.
+
+可以通过函子的性质来判断一个函子是否能给出两个范畴之间的等价, 为此我们需要介绍一些概念. 考虑函子$F\colon\cat{C}\to\cat{D}$, 如果对于任意的$c, c'\in \cat{C}$, 映射$\cat{C}(c, c')\to \cat{D}(Fc, Fc')$是满射 (或单射), 则称$F$是\emph{完全函子} (或\emph{忠实函子}); 如果对于每个对象$d\in \cat{D}$都有$c\in\cat{C}$使得$d$同构于$Fc$, 则称$F$是\emph{本质满射函子}. 如果一个忠实函子关于对象是单射, 则称其为一个范畴的\emph{嵌入}, 将定义域范畴对应到了值域范畴的子范畴; 如果这个函子还是完全函子, 则称其为一个范畴的\emph{完全嵌入}, 将定义域范畴对应到了值域范畴的\emph{完全子范畴}.
+
+\begin{theoremnoproof}[{{\parencite[31, Theorem 1.5.9]{riehl_category_2017}}}]\label{thm:categoryequivalence}
+  如果一个函子可以定义两个范畴之间的范畴等价, 那么这个函子是完全忠实并且本质满射的. 反过来, 如果假设选择公理(\axiom{AC})成立, 那么任何满足上述条件的函子都可以定义两个范畴之间的范畴等价.
+\end{theoremnoproof}
+
+\subsection{函子的表示与Yoneda引理}
+
+第二节我们来介绍泛性质和函子的表示, 一方面是因为它们本身很重要, 我们将要统一并推广之前提到过的商环, 分式环等的泛性质, 另一方面是为介绍极限作铺垫.
+
+设$\cat{C}$为局部小范畴, $F$是从$\cat{C}$到$\cat{Set}$协变函子 (或反变函子), 如果$F$自然同构于某个对象$c$表示的同态函子$\cat{C}(c, -)$ (或$\cat{C}(-, c)$), 则称$F$\emph{可以由对象$c$表示}, 也称$F$为\emph{可表函子}, 这个自然同构也被称为$F$的一个\emph{表示}.
+
+于是我们关心什么时候一个函子是可表函子, 即关心同态函子到一个函子的自然同构. Yoneda引理解决了这一问题, 并告诉我们同态函子到一个函子的自然变换需要哪些信息.
+
+\begin{theorem}[Yoneda引理{{\parencite[57, Theorem 2.2.4]{riehl_category_2017}}}]\label{thm:yonedalemma}
+  设$\cat{C}$为局部小范畴, 设$F\colon \cat{C}\to\cat{Set}$, 对于任意的对象$c\in\cat{C}$, 存在双射$\Hom (\cat{C}(c, -), F)\cong Fc$, 将自然变换$\alpha\colon \cat{C}(c, -)\Rightarrow F$映到$\alpha_c(1_c)\in Fc$. 并且, 这个双射关于$c$和$F$是自然的.
+\end{theorem}
+
+\begin{proofhint}
+  我们已经定义了映射$\Phi\colon \Hom (\cat{C}(c, -), F)\to Fc$, 还需要定义$\Psi\colon Fc\to\Hom (\cat{C}(c, -))$, 并证明它们互为逆, 并且关于$c$和$F$是自然的.
+
+  第一步, 利用$\Psi(x)\colon \cat{C}(c, -)\Rightarrow F$的自然性, 以及$\Psi(x)_c(1_c)=x$一定成立, 来证明$\Psi$的唯一性, 有显式表达$\Psi(x)_d(f)\coloneq (Ff)(x)$.
+
+  第二步, 利用$F$的函子性证明$\Psi$的存在性, 即验证我们定义的唯一的$\Psi$的像中的每个元素一定是自然变换.
+
+  第三步, 利用定义验证$\Phi$和$\Psi$互为逆.
+
+  第四步, 利用定义验证$c$和$F$的自然性.
+\end{proofhint}
+
+\thref{thm:yonedalemma}完全刻画了可表函子之间自然变换, 由此我们可以定义Yoneda嵌入.
+\begin{propositionnoproof}[Yoneda嵌入{{\parencite[60, Corollary 2.2.8]{riehl_category_2017}}}]
+  下图所定义的函子
+  \begin{equation*}
+    \functordiagram{\cat{C}}{\cat{Set}^{\cat{C}^{\op}}}{}{c}{d}{f}{\cat{C}(-, c)}{\cat{C}(-, d)}{f_*}
+    \quad
+    \functordiagram*{\cat{C}^{\op}}{\cat{Set}^{\cat{C}}}{}{c}{d}{f}{\cat{C}(c, -)}{\cat{C}(d, -)}{f^*}
+  \end{equation*}
+  定义了范畴的完全忠实嵌入.
+\end{propositionnoproof}
+
+% 利用Yoneda嵌入, 我们可以证明如果局部小范畴中的两个对象表示的函子自然同构当且仅当它们是同构的, 并且这两个对象中存在一个唯一的自然的同构, 于是我们可以定义可表函子的\emph{表示对象}.
+
+利用\thref{thm:yonedalemma}, 我们还可以定义范畴论中的泛性质, 与我们之前所叙述过的商环, 分式环等的映射的泛性质有密切关系.
+
+给定局部小范畴$\cat{C}$与一个对象$c\in \cat{C}$, 一个$c$的\emph{泛性质}包含的信息有一个可表函子$F$, 和一个\emph{泛对象}$x\in Fc$, 其中$x$可以通过\thref{thm:yonedalemma}定义自然同构$\cat{C}(c, -)\cong F$或$\cat{C}(-, c)\cong F$.
+
+\begin{example}
+  我们来用线性空间的张量积这个例子来演示一下如何从函子的表示来得到映射的泛性质\footnotemark.
+
+  给定域$\kk$以及$\kk$-线性空间$V$和$W$, 可以定义函子$\Bilin (V, W; -)\colon\cat{Vect}_{\kk}\to\cat{Set}$, 将线性空间$U$映到双线性函数$V\times W\to U$全体构成的集合. 函子$\Bilin (V, W; -)$的表示可以定义一个$\kk$-线性空间, 记作$V\otimes_{\kk}W$, 有自然同构$\alpha\colon\cat{Vect}_{\kk}(V\otimes_{\kk}W, -)\cong \Bilin (V, W; -)$, 并且由\thref{thm:yonedalemma}知这个自然同构定义了$\Bilin (V, W; V\otimes_{\kk} W)$中的泛对象, 为双线性映射$\otimes\colon V\times W\to V\otimes_{\kk} W$.
+
+  设自然同构$\alpha$将双线性函数$f\colon V\times W\to U$对应到$\alpha_{U}(f)\coloneq\overline{f}\colon V\otimes_{\kk}W\to U$, 考虑$\overline{f}$诱导出的自然性交换图,
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      \cat{Vect}_{\kk}(V\otimes_{\kk}W, V\otimes_{\kk}W) \arrow[r, "\cong"{above}] \arrow[d, "\overline{f}_*"{left}] & \Bilin (V, W; V\otimes_{\kk}W) \arrow[d, "\overline{f}_*"{right}] \\
+      \cat{Vect}_{\kk}(V\otimes_{\kk}W, U) \arrow[r, "\cong"{below}] & \Bilin (V, W; U)
+    \end{tikzcd}
+  \end{equation*}
+  考虑$1_{V\otimes_{\kk}W}\in \cat{Vect}_{\kk}(V\otimes_{\kk}W, V\otimes_{\kk}W)$, 可以证明$f=\overline{f}\composite\otimes$, 即我们可以得到下图中所述的映射的泛性质,
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      V\times W & V\otimes_{\kk} W\\
+      & U
+      \arrow[from=1-1,]{2-2}[swap]{f}
+      \arrow[from=1-1,]{1-2}[]{\otimes}
+      \arrow[from=1-2,dashed,]{2-2}[]{\overline{f}}[swap]{\exists !}
+    \end{tikzcd}
+  \end{equation*}
+  即对于任意的线性空间$U$以及双线性映射$f\colon V\times W\to U$, 存在唯一的线性映射$\overline{f}\colon V\otimes_{\kk}W\to U$使得$f=\overline{f}\composite\otimes$成立.
+
+  利用映射的泛性质, 我们可以显式构造出$V\otimes_{\kk} W$, 从而证明其存在性以及函子$\Bilin (V, W; -)$的可表性.
+\end{example}
+\footnotetext{利用\emph{元素范畴}的知识, 我们还可以从映射的泛性质中得到范畴论中的泛性质\parencite[68, Proposition 2.4.8]{riehl_category_2017}, 不过与本文的主要内容关系不大, 这里就不介绍了.}
+
+\subsection{极限}
+
+最后一节我们来介绍范畴论里的极限以及极限在函子下的性质, 我们还会给出层的定义以及滤子化上极限的构造, 在\ref{sec:ag-affinescheme}中我们会用到这两个概念.
+
+给定范畴$\cat{J}$与$\cat{C}$, 称一个函子$F\colon \cat{J}\to \cat{C}$为一个$\cat{C}$中的形状为$J$的\emph{图}. 这个图的极限(或上极限)将会被定义为这个图上(或下)的泛锥, 于是我们先来介绍什么是锥.
+
+\emph{图$F\colon \cat{J}\to\cat{C}$上的以$c\in\cat{C}$为顶点的锥}是从常函子$c$到$F$的自然变换$\lambda\colon c\Rightarrow F$. 自然变换$\lambda$的分量全体$\{\lambda_j\colon c\to Fj\}_{j\in J}$被称为这个锥的\emph{腿}. 显式表述的话, 图$F\colon \cat{J}\to\cat{C}$上的以$c\in\cat{C}$为顶点的锥包含的信息为以$j\in J$为指标的一族函子$\lambda\colon c\to Fj$, 满足对于任意的态射$f\colon j\to k\in \cat{J}$, 下图是$\cat{C}$中的交换图.
+\begin{equation*}
+  \begin{tikzcd}[column sep=small]
+    & c & \\
+    Fj & & Fk
+    \arrow[from=1-2,]{2-1}[swap]{\lambda_j}
+    \arrow[from=1-2,]{2-3}[]{\lambda_k}
+    \arrow[from=2-1,]{2-3}[below]{Ff}
+  \end{tikzcd}
+\end{equation*}
+
+对偶地, \emph{图$F\colon \cat{J}\to\cat{C}$下的以$c\in\cat{C}$为底点的锥}是自然变换$\lambda\colon F\Rightarrow c$, \emph{腿}为分量全体$\{\lambda_j\colon Fj\to c\}_{j\in J}$. 自然条件即为对于任意的态射$f\colon j\to k\in \cat{J}$, 下图是$\cat{C}$中的交换图.
+\begin{equation*}
+  \begin{tikzcd}[column sep=small]
+    Fj & & Fk\\
+    & c &
+    \arrow[from=1-1,]{2-2}[swap]{\lambda_j}
+    \arrow[from=1-1,]{1-3}[]{Ff}
+    \arrow[from=1-3,]{2-2}[]{\lambda_k}
+  \end{tikzcd}
+\end{equation*}
+
+现在我们可以来介绍极限与上极限的定义了. 设$\cat{C}$是局部小范畴$\cat{J}$是小范畴, 给定图$F\colon\cat{J}\to\cat{C}$, 则存在函子$\Cone(-, F)\colon \cat{C}^{\op}\to\cat{Set}$将$c\in \cat{C}$映到图$F$上的以$c$为顶点的锥. $F$的一个\emph{极限}即为函子$\Cone (-, F)$的一个表示, 包含的信息为一个对象$\lim (F)\in \cat{C}$和一个泛锥$\lambda\colon\lim (F)\Rightarrow F$, 这个泛锥定义了自然同构$\cat{C}(-, \lim (F))\cong \Cone (-, F)$, 被称为\emph{极限锥}.
+
+对偶地, 对于局部小范畴$\cat{C}$中的形状为小范畴$\cat{J}$的图$F$, 也存在函子$\Cone(F, -)\colon \cat{C}\to\cat{Set}$将$c\in \cat{C}$映到图$F$下的以$c$为底点的锥. $F$的一个\emph{上极限}即为函子$\Cone (F, -)$的一个表示, 包含的信息为一个对象$\colim (F)\in \cat{C}$和一个泛锥$\lambda\colon F\Rightarrow \colim (F)$, 这个泛锥定义了自然同构$\cat{C}(\colim (F), -)\cong \Cone (F, -)$, 被称为\emph{上极限锥}.
+
+% \begin{example}
+%   有几个重要的极限的例子我们经常会用到.
+%   \begin{enumerate}
+%     \item
+%   \end{enumerate}
+% \end{example}
+
+考虑由部分$\cat{C}$中的形状为$\cat{J}$的图$K\colon \cat{J}\to\cat{C}$构成的类, 以及函子$F\colon \cat{C}\to\cat{D}$,
+\begin{enumerate}
+  \item 如果对于任意的图$K\colon\cat{J}\to\cat{C}$和$K$上的极限锥, 这个锥在$F$的像都定义了复合图$FK\colon \cat{J}\to\cat{D}$上的极限锥, 那么称$F$\emph{保持}这些极限;
+  \item 如果对于图$K\colon\cat{J}\to\cat{C}$上的任意的锥, 只要在$F$的像下是$FK\colon \cat{J}\to\cat{D}$上的极限锥那么它就是$K$上的极限锥, 则称$F$\emph{反映}这些极限;
+  \item 如果只要$FK\colon \cat{J}\to\cat{D}$在$\cat{D}$中有极限就存在$FK$上的极限锥使其可以被提升称为$K$上的极限锥, 并且$F$反映这些图的极限, 则称$F$\emph{创造}这些极限.
+\end{enumerate}
+
+最后我们来介绍滤子化上极限. 如果范畴$\cat{J}$中的每一个有限图都存在其下的锥, 那么称$\cat{J}$为\emph{滤子化的}. 考虑$\cat{Set}$中的形状为滤子化范畴$\cat{J}$的图$F\colon \cat{J}\to\cat{Set}$, 则其上极限$\colim (F)$可以表示成余积$\amalg_{j\in J}Fj$在等价关系下的商, 其中$x\in Fj$等价于$y\in Fk$当且仅当存在态射$f\colon j\to t\in\cat{J}$和$g\colon k\to t\in \cat{J}$使得$(Ff)(x)=(Fg)(y)$成立. 当$\cat{J}$为偏序范畴的时候, 也称滤子化上极限为\emph{直极限}, 记为$\dlim_{j\in J}Fj$. 直极限的直观意义之将对象的信息``整合"起来, 拼成一个``大"的对象.
+
+虽然我们只是在$\cat{Set}$中构造了滤子化上极限, 但是用进阶的范畴论知识可以证明\emph{代数理论模型的范畴}, 包括$\cat{Ab}, \linebreak[0]\cat{Ring}, \linebreak[0]\cat{CRing}, \linebreak[0]\cat{Mod}_R$中的极限和滤子化上极限都可以通过遗忘函子从$\cat{Set}$中创造\parencite[180; 181, Theorem 5.6.5]{riehl_category_2017}, 因此我们统一得到了这些范畴中的滤子化上极限的构造方法.
+
+\section{代数群与Hopf代数}
+
+% Hartshorne Ex 3.21 Group Variety (Algebraic Group)
+% Basic examples
+% affine algebraic groups
+% Hopf algebra

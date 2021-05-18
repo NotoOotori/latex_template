@@ -151,13 +151,13 @@
   % \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}
   % \makeatother
 
-  % \appto\appendix{%
-  %   \theoremstyle{plain}%
-  %   \theoremheaderfont{\bfseries}%
-  %   \theorembodyfont{\upshape}%
-  %   \theoremindent0pt%
-  %   \renewtheorem{theorem}{定理}[section]%
-  % }% etoolbox
+  \appto\appendix{%
+    \theoremstyle{plain}%
+    \theoremheaderfont{\bfseries}%
+    \theorembodyfont{\upshape}%
+    \theoremindent0pt%
+    \renewtheorem{theorem}{定理}[section]%
+  }% etoolbox
 }
 
 % 给自定义的宏后面自动加空白

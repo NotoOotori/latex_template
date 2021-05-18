@@ -151,13 +151,33 @@
   % \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}
   % \makeatother
 
-  \appto\appendix{%
-    \theoremstyle{plain}%
-    \theoremheaderfont{\bfseries}%
-    \theorembodyfont{\upshape}%
-    \theoremindent0pt%
-    \renewtheorem{theorem}{定理}[section]%
-  }% etoolbox
+  % \appto\appendix{%
+  %   \theoremstyle{plain}%
+  %   \theoremheaderfont{\bfseries}%
+  %   \theorembodyfont{\upshape}%
+  %   \theoremindent0pt%
+  %   \renewtheorem{theorem}{定理}[section]%
+  %   \renewtheorem{corollary}[theorem]{推论}
+  %   \renewtheorem{lemma}[theorem]{引理}
+  %   \renewtheorem{proposition}[theorem]{命题}
+  %   \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
+  %   \renewtheorem{theoremnoproof}[theorem]{定理}
+  %   \renewtheorem{propositionnoproof}[theorem]{命题}
+  %   \theoremsymbol{}
+  %   % \newtheorem{axiom}[theorem]{公理}
+  %   % \newtheorem{conjection}[theorem]{猜想}
+  %   \renewtheorem{definition}[theorem]{定义}
+  %   \renewtheorem{remark}[theorem]{注}
+  %   \renewtheorem{example}[theorem]{例}
+  %   \theoremstyle{nonumberplain}
+  %   \theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
+  %   \theoremindent0pt
+  %   % \theoremsymbol{\ensuremath{\enclosesquare}}
+  %   \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
+  %   \renewtheorem{proof}{证明}
+  %   \renewtheorem{proofhint}{证明思路}
+  %   \theoremsymbol{}
+  % }% etoolbox
 }
 
 % 给自定义的宏后面自动加空白
@@ -309,9 +329,12 @@
 \usepackage{zhlipsum}
 
 % 交叉引用
-\usepackage{varioref}
-\labelformat{section}{\S#1}
-\labelformat{subsection}{\S#1}
+\AtEndPreamble{
+  \usepackage{varioref}
+  \labelformat{section}{\S#1}
+  \labelformat{subsection}{\S#1}
+  \labelformat{subsubsection}{\S#1}
+}
 
 \makeatletter
 \newif\if@appendix

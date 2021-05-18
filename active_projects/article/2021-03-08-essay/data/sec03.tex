@@ -115,37 +115,37 @@
 
 一般来说, 如果给定了一个对象上的结构, 那么就会诱导出保持结构不变的映射, 在不同的语境下它们有不同的名字, 比如说映射, 线性映射, 环同态, 连续映射, 光滑映射等等. 在对这些具体情形的研究中, 我们发现很多时候这些保持结构不变的映射全体, 可以反过来决定一个对象的结构, 这就引出了范畴论的思想. 我们将分别给出仿射代数簇和射影代数簇上的函数结构, 从而定义代数簇之间的态射, 以此刻画代数簇的结构. 这之后我们将就可以定义簇的同构, 从而给仿射簇一个内蕴的定义.
 
-先令$Y$为$\AF^n$中的拟仿射代数簇, 记$A=\kk [X_1, \dotsc, X_n]$, $A$的元素可以看成$Y$到$\AF^n$的函数. 考虑从$Y$到$\kk$的函数$f$, 如果$f$在局部可以写成两个多项式的商的形式, 即满足存在$\AF^n$的开集$P\in U\subseteq Y$与多项式$g, h\in A$, 使得$h$在$U$上没有零点, 并且在$U$上有等式$f=g{\divslash}h$成立, 则称$f$\emph{在点$P\in Y$正规}. 如果$f$在$Y$的每个点都正规, 则称$f$在$Y$上\emph{正规}.
+先令$Y$为$\AF^n$中的拟仿射代数簇, 记$A=\kk [X_1, \dotsc, X_n]$, $A$的元素可以看成$Y$到$\AF^n$的函数. 考虑从$Y$到$\kk$的函数$f$, 如果$f$在局部可以写成两个多项式的商的形式, 即满足存在$\AF^n$的开集$P\in U\subseteq Y$与多项式$g, h\in A$, 使得$h$在$U$上没有零点, 并且在$U$上有等式$f=g{\divslash}h$成立, 则称$f$\emph{在点$P\in Y$}. 如果$f$在$Y$的每个点都, 则称$f$在$Y$上\emph{}.
 
 \begin{proposition}[{{\parencite[15, Lemma 3.1]{hartshorne_algebraic_1977}}}]\label{prop:affineregularcontinuous}
-  设$f\colon Y\to \kk$是从$\AF^n$的拟仿射代数簇到$\kk$的正规函数, 若给像集$\kk$赋予$\AF^1$的Zariski拓扑结构, 则$f$是连续函数.
+  设$f\colon Y\to \kk$是从$\AF^n$的拟仿射代数簇到$\kk$的正则函数, 若给像集$\kk$赋予$\AF^1$的Zariski拓扑结构, 则$f$是连续函数.
 \end{proposition}
 
 \begin{proof}
   只需要证明闭集的原像是闭集. 因为$\AF^1$的非空真闭子集恰为有限子集, 因此只需要证明每个单点集$\{x\}$的原像$f^{-1}(x)=\{P\in Y\vert f(P)=x\}$是闭集即可. 利用\thref{prop:closedsetlocal}, 我们只需要证明在局部上是闭集就可以了. 考虑使得$f$能表示成两个多项式$g, h$的商的开集$U$, 则$f^{-1}(x)\cap U=\{P\in U\vert g(P)/h(P)=x\}$, 故$f^{-1}(x)\cap U=Z(g-xh)\cap U$为$U$中的闭集, 故得证.
 \end{proof}
 
-再令$Y$为$\PP^n$中的拟射影代数簇, 记$S=\kk [X_0, \dotsc, X_n]$, $S$中相同次数的齐次多项式的商可以看成$Y$到$\AF^n$的函数. 考虑从$Y$到$\kk$的函数$f$, 如果$f$在局部可以写成两个相同次数的齐次多项式的商的形式, 即满足存在$\PP^n$的开集$P\in U\subseteq Y$与次数相同的齐次多项式$g, h\in S$, 使得$h$在$U$上没有零点, 并且在$U$上有等式$f=g{\divslash}h$成立, 则称$f$\emph{在点$P\in Y$正规}. 如果$f$在$Y$的每个点都正规, 则称$f$在$Y$上\emph{正规}.
+再令$Y$为$\PP^n$中的拟射影代数簇, 记$S=\kk [X_0, \dotsc, X_n]$, $S$中相同次数的齐次多项式的商可以看成$Y$到$\AF^n$的函数. 考虑从$Y$到$\kk$的函数$f$, 如果$f$在局部可以写成两个相同次数的齐次多项式的商的形式, 即满足存在$\PP^n$的开集$P\in U\subseteq Y$与次数相同的齐次多项式$g, h\in S$, 使得$h$在$U$上没有零点, 并且在$U$上有等式$f=g{\divslash}h$成立, 则称$f$\emph{在点$P\in Y$}. 如果$f$在$Y$的每个点都, 则称$f$在$Y$上\emph{}.
 
 \begin{proposition}[{{\parencite[15, Remark 3.1.1]{hartshorne_algebraic_1977}}}]\label{prop:projregularcontinuous}
-  设$f\colon Y\to \kk$是从$\PP^n$的拟射影代数簇到$\kk$的正规函数, 若给像集$\kk$赋予$\AF^1$的Zariski拓扑结构, 则$f$是连续函数.
+  设$f\colon Y\to \kk$是从$\PP^n$的拟射影代数簇到$\kk$的正则函数, 若给像集$\kk$赋予$\AF^1$的Zariski拓扑结构, 则$f$是连续函数.
 \end{proposition}
 
 \begin{proof}
   与\thref{prop:affineregularcontinuous}的证明雷同.
 \end{proof}
 
-将之前定义的仿射代数簇, 拟仿射代数簇, 射影代数簇, 拟射影代数簇统称为\emph{代数簇}, 我们已经定义了代数簇上的正规函数. 类似于单复变函数中非零全纯函数的零点是孤立的\parencite[127]{ahlfors_complex_1978}, 代数簇上的函数也有很强的刚性.
+将之前定义的仿射代数簇, 拟仿射代数簇, 射影代数簇, 拟射影代数簇统称为\emph{代数簇}, 我们已经定义了代数簇上的正则函数. 类似于单复变函数中非零全纯函数的零点是孤立的\parencite[127]{ahlfors_complex_1978}, 代数簇上的函数也有很强的刚性.
 
 \begin{proposition}[{{\parencite[15, Remark 3.1.1]{hartshorne_algebraic_1977}}}]\label{prop:regularstiffness}
-  设$f, g$为代数簇$X$上的正规函数, 如果在某个非空开集$U$上有$f=g$, 那么在整个$X$上都有$f=g$.
+  设$f, g$为代数簇$X$上的正则函数, 如果在某个非空开集$U$上有$f=g$, 那么在整个$X$上都有$f=g$.
 \end{proposition}
 
 \begin{proof}
   只需注意$Z(f-g)\supseteq \overline{U}=X$即可.
 \end{proof}
 
-现在我们可以来定义代数簇之间的态射了. 设$\kk$为固定的代数闭域, $X, Y$为两个代数簇, $X$到$Y$的\emph{态射}即为连续映射$\varphi\colon X\to Y$, 并且满足对于每个开子集$V\subseteq Y$和每个正规函数$f\colon V\to \kk$都有复合函数$f\composite\varphi\colon\varphi^{-1}(V)\to \kk$是正规函数. 这定义了$k$上的代数簇所构成的范畴, 是一个具体范畴.
+现在我们可以来定义代数簇之间的态射了. 设$\kk$为固定的代数闭域, $X, Y$为两个代数簇, $X$到$Y$的\emph{态射}即为连续映射$\varphi\colon X\to Y$, 并且满足对于每个开子集$V\subseteq Y$和每个正则函数$f\colon V\to \kk$都有复合函数$f\composite\varphi\colon\varphi^{-1}(V)\to \kk$是正则函数. 这定义了$k$上的代数簇所构成的范畴, 是一个具体范畴.
 
 有了代数簇同构的定义, 我们可以重新考察之前定义过的代数簇之间的Zariski拓扑结构的同胚, 研究它们是不是代数簇结构的同构, 答案是肯定的.
 
@@ -154,39 +154,45 @@
 \end{proposition}
 
 \begin{proof}
-  对于第一个命题, 利用\thref{prop:projspaceopencoverhomeo}的证明中所定义的$\alpha$和$\beta$, 我们可以建立$U_j$和$\AF^n$由$\varphi_j$诱导的在每个局部的正规函数的对应, 因此它们作为代数簇是同构的. 第二个命题同理.
+  对于第一个命题, 利用\thref{prop:projspaceopencoverhomeo}的证明中所定义的$\alpha$和$\beta$, 我们可以建立$U_j$和$\AF^n$由$\varphi_j$诱导的在每个局部的正则函数的对应, 因此它们作为代数簇是同构的. 第二个命题同理.
 \end{proof}
 
-下面一个命题阐述了任意代数簇到仿射代数簇的映射是态射当且仅当每个分量是正规函数, 我们将在\thref{thm:categoryisoaffinevariety}的构造中用到这一刻画.
+下面一个命题阐述了任意代数簇到仿射代数簇的映射是态射当且仅当每个分量是正则函数, 我们将在\thref{thm:categoryisoaffinevariety}的构造中用到这一刻画.
 
 \begin{proposition}[{{\parencite[20, Lemma 3.6]{hartshorne_algebraic_1977}}}]\label{prop:morphismtoaffinevariety}
-  设$X$为任意代数簇, $Y\subseteq \AF^n$为仿射代数簇. 集合间的映射$\varphi\colon X\to Y$为态射当且仅当对于每个$Y$的坐标函数$X_j\subseteq \AF^n$都有$X_j\composite\varphi$是$X$上的正规函数.
+  设$X$为任意代数簇, $Y\subseteq \AF^n$为仿射代数簇. 集合间的映射$\varphi\colon X\to Y$为态射当且仅当对于每个$Y$的坐标函数$X_j\subseteq \AF^n$都有$X_j\composite\varphi$是$X$上的正则函数.
 \end{proposition}
 
 \begin{proof}
-  如果$\varphi$是态射, 那么根据定义$X_j\composite\varphi$一定是正规函数. 另一方面, 如果每个$X_j\composite\varphi$都是正规函数, 那么对于每个多项式$f\in A(Y)$都有$f\composite \varphi$是正规函数. 考察
+  如果$\varphi$是态射, 那么根据定义$X_j\composite\varphi$一定是正则函数. 另一方面, 如果每个$X_j\composite\varphi$都是正则函数, 那么对于每个多项式$f\in A(Y)$都有$f\composite \varphi$是正则函数. 考察
   \begin{tikzcd}[cramped, sep=small]
     X \arrow[r, "\varphi"] & Y \arrow[r, "f"] & \kk
   \end{tikzcd}
-  , 因为$Y$的闭集都可以写成若干(可能无限)个多项式零点集的交, 又正规函数是连续的并且$\{0\}$为$\kk\cong \AF^1$中的闭集, 因此$Y$的闭集在$\varphi$下的原像是闭集, 故$\varphi$为连续映射. 最后, 因为正规函数被定义为在局部是多项式的商, 所以对于每个$Y$的开子集上的正规函数$g$都有$g\composite\varphi$是两个正规函数的商, 还是正规函数, 于是$\varphi$是态射.
+  , 因为$Y$的闭集都可以写成若干(可能无限)个多项式零点集的交, 又正则函数是连续的并且$\{0\}$为$\kk\cong \AF^1$中的闭集, 因此$Y$的闭集在$\varphi$下的原像是闭集, 故$\varphi$为连续映射. 最后, 因为正则函数被定义为在局部是多项式的商, 所以对于每个$Y$的开子集上的正则函数$g$都有$g\composite\varphi$是两个正则函数的商, 还是正则函数, 于是$\varphi$是态射.
 \end{proof}
 
-在代数簇上我们可以定义一些函数环. 设$Y$是一个代数簇, 记$Y$的正规函数全体构成的环为$\OO (Y)$, 称为$Y$的\emph{整体函数环}.
+在代数簇上我们可以定义一些函数环. 设$Y$是一个代数簇, 记$Y$的正则函数全体构成的环为$\OO (Y)$, 称为$Y$的\emph{整体函数环}.
 
-如果$P$是$Y$的一点, 考虑由包含$P$的开集$U$与$U$上的正规函数$f\colon U\to \kk$的二元组$\lrbig<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lrbig<>{U, f}$等价于$\lrbig<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$在$P$点的\emph{局部环}, 其实是$P$附近的函数芽全体构成的环, 记作$\OO_{Y, P}$, 在不引起混淆的情况下也记为$\OO_P$. $\OO_P$是局部环, 它的唯一极大理想$\ideal{m}$为在$P$点取值为零的正规函数所在的函数芽, 剩余域$\OO_P{\divslash}\ideal{m}$同构于$\kk$.% TODO: direct limit
+如果$P$是$Y$的一点, 考虑由包含$P$的开集$U$与$U$上的正则函数$f\colon U\to \kk$的二元组$\lrbig<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lrbig<>{U, f}$等价于$\lrbig<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$在$P$点的\emph{局部环}, 其实是$P$附近的函数芽全体构成的环, 记作$\OO_{Y, P}$, 在不引起混淆的情况下也记为$\OO_P$. $\OO_P$是局部环, 它的唯一极大理想$\ideal{m}$为在$P$点取值为零的正则函数所在的函数芽, 剩余域$\OO_P{\divslash}\ideal{m}$同构于$\kk$.% TODO: direct limit
 
-考虑由非空开集$U$与$U$上的正规函数$f\colon U\to \kk$的二元组$\lrbig<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lrbig<>{U, f}$等价于$\lrbig<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$的\emph{函数域}, 记作$K(Y)$, 称$K(Y)$的元素为\emph{有理函数}.因为每个非零正规函数$f\colon U\to \kk$都在某个非空开子集$U-U\cap Z(f)$上没有零点, 所以$K(Y)$是域.
+考虑由非空开集$U$与$U$上的正则函数$f\colon U\to \kk$的二元组$\lrbig<>{U, f}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lrbig<>{U, f}$等价于$\lrbig<>{V, g}$当且仅当$f$和$g$在非空开集$U\cap V$的取值相同. 等价关系$\sim$下的商集被定义为$Y$的\emph{函数域}, 记作$K(Y)$, 称$K(Y)$的元素为\emph{有理函数}.因为每个非零正则函数$f\colon U\to \kk$都在某个非空开子集$U-U\cap Z(f)$上没有零点, 所以$K(Y)$是域.
 
 这三个环之间其实有包含关系, 不难发现存在单同态$\OO (Y)\to \OO_P\to K(Y)$, 因此我们经常会把$\OO (Y)$和$\OO_P$看作$K(Y)$的子环. 这三个环在代数簇的同构下保持不变, 因此是同构不变量.
 
-\subsection{有理映射}
+\subsection{代数簇的有理映射}
 
-\thref{prop:regularstiffness}我们介绍了正规函数的刚性, 事实上代数簇之间的态射也具有的刚性, 由此我们可以引出有理映射以及双有理同构的概念, 双有理同构下的不变量也是代数几何的一个非常基础的课题. 为了证明态射的唯一性, 我们需要一些准备.
+\thref{prop:regularstiffness}我们介绍了正则函数的刚性, 事实上代数簇之间的态射也具有的刚性, 由此我们可以引出有理映射以及双有理同构的概念, 双有理同构下的不变量也是代数几何的一个非常基础的课题.
 
-设$r, s$为正整数, $N=(r+1)(s+1)-1$. 定义映射$\psi\colon \PP^r\times\PP^s\to\PP^N$, 将$((x_0, \dotsc, x_r), (y_0, \dotsc, y_s))$按照字典序映到$(\dotsc, x_jy_k, \dotsc)$, 则$\psi$为良定单射, 称为\emph{Segre嵌入}.
+设$X, Y$为代数簇, 考虑由非空开集$U\subseteq X$和态射$\varphi_U\colon U\to Y$组成的二元组$\lrbig<>{U, \varphi_U}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lrbig<>{U, \varphi_U}$等价于$\lrbig<>{U, \varphi_U}$当且仅当$\varphi_U, \varphi_V$在非空开集$U\cap V$的某个非空开子集上的取值相同. 于是一个从$X$到$Y$的\emph{有理映射}$\varphi$被定义为等价关系$\sim$下的一个等价类.
+
+如果有了态射的刚性, 那么在有理映射的定义中, 可以将``$\varphi_U, \varphi_V$在非空开集$U\cap V$的某个非空开子集上的取值相同"改为``$\varphi_U, \varphi_V$在非空开集$U\cap V$上的取值相同", 定义的仍是等价关系. 为此我们来进一步研究代数簇之间态射的性质
+
+\begin{definition}
+  设$r, s$为正整数, $N=(r+1)(s+1)-1$. 定义映射$\psi\colon \PP^r\times\PP^s\to\PP^N$, 将$((x_0, \dotsc, x_r), (y_0, \dotsc, y_s))$按照字典序映到$(\dotsc, x_jy_k, \dotsc)$, 则$\psi$为良定单射, 称为\emph{Segre嵌入}.
+\end{definition}
 
 \begin{proposition}[{{\parencite[13, Exercise 2.13]{hartshorne_algebraic_1977}}}]\label{prop:segreembedding}
-  上述定义的Segre嵌入的像是$\PP^N$中的射影代数簇.
+  上述定义的Segre嵌入$\psi\colon \PP^r\times\PP^s\to\PP^N$的像是$\PP^N$中的射影代数簇.
 \end{proposition}
 
 \begin{proof}
@@ -214,4 +220,4 @@
   因为每个代数簇都同构于某个$\PP^n$中的拟射影代数簇, 再复合上到$\PP^n$的包含映射, 我们可以不妨假设$Y=\PP^n$. 考虑射影代数簇$\PP^n\times \PP^n$, 根据\thref{prop:projectiveproduct}\ref{enum:prop-projective-product-3}, 存在乘积态射$\varphi\times \psi$. 记$\Delta=\{(P, P)\vert P\in \PP^n\}$为$\PP^n\times \PP^n$的对角线子集, 由方程$\{X_jY_k-X_kY_j=0\vert i, j=0, \dotsc, n\}$定义, 因此是$\PP^n\times \PP^n$的闭子集. 根据假设以及乘积态射的定义, 有$\varphi\times \psi(U)\subseteq \Delta$, 又根据\thref{prop:continuousimageclosure}, 得$\varphi\times \psi(X)\subseteq\Delta$, 于是根据乘积态射的定义可知$\varphi=\psi$.
 \end{proof}
 
-现在来定义代数簇之间的有理映射. 设$X, Y$为代数簇, 考虑由非空开集$U\subseteq X$和态射$\varphi_U\colon U\to Y$组成的二元组$\lrbig<>{U, \varphi_U}$全体构成的集合, 在上面定义等价关系$\sim$, 其中$\lrbig<>{U, \varphi_U}$等价于$\lrbig<>{U, \varphi_U}$当且仅当$\varphi_U, \varphi_V$在非空开集$U\cap V$的取值相同. 于是一个从$X$到$Y$的\emph{有理映射}$\varphi$被定义为等价关系$\sim$下的一个等价类. 如果有理映射$\varphi$满足对于每一对$\lrbig<>{U, \varphi_U}$都有$\varphi_U$的像都在$Y$中稠密, 则称$\varphi$为\emph{控制有理映射}. $\varphi$为控制有理映射等价于对于某一对$\lrbig<>{U, \varphi_U}$成立$\varphi_U$的像都在$Y$中稠密\footfullcite{andrew_how_2016}. 代数簇关于有理映射也构成一个范畴, 称这个范畴中的同构为\emph{双有理同构}.
+如果有理映射$\varphi$满足对于某一对 (因此也对于任何一对) $\lrbig<>{U, \varphi_U}$都有$\varphi_U$的像都在$Y$中稠密, 则称$\varphi$为\emph{控制有理映射}. $\varphi$为控制有理映射等价于对于某一对$\lrbig<>{U, \varphi_U}$成立$\varphi_U$的像都在$Y$中稠密\footfullcite{andrew_how_2016}. 代数簇关于有理映射也构成一个范畴, 称这个范畴中的同构为\emph{双有理同构}.

@@ -72,7 +72,7 @@
 
 这一节中我们要定义仿射空间代数集的仿射坐标环, 以及射影空间中代数集的射影坐标环, 并研究它们与代数簇上的整体函数环, 在某点的局部环以及函数域的关系.
 
-如果$Y\subseteq \AF^n$是仿射空间中的代数集, 若将$A$中元素看作为$Y$上的函数, 则$A$在由函数相等定义的等价关系下的商环即为$A(Y)\coloneq A{\divslash}I(Y)$, 称为$Y$的\emph{仿射坐标环}. 如果$Y$是仿射代数簇, 则$A(Y)$也为多项式函数整环.
+如果$Y\subseteq \AF^n$是仿射空间中的代数集, 若将$A$中元素看作为$Y$上的函数, 则$A$在由函数相等定义的等价关系下的商环即为$A(Y)\coloneq A{\divslash}I(Y)$, 称为$Y$的\emph{仿射坐标环}. 如果$Y$是仿射代数簇, 则$A(Y)$也为有限生成整环.
 
 现在我们可以来仔细考察仿射代数簇上定义的环与放射坐标环之间的关系, 并将代数的分式环理论\ref{sec:algebra-localization}和维数理论\ref{sec:algebra-dimension}应用到几何的研究中.
 
@@ -90,13 +90,13 @@
 \begin{proof}
   根据\thref{prop:affinegaloisconnectionclosedradical}知$Y$的不可约闭子集全体到$A$的包含$I(Y)$的素理想全体之间有反序双射, 故由\thref{prop:quotidealcorr}知到$A(Y)$的素理想全体之间也有反序双射. 因此$Y$的不可约闭子集降链与$A(Y)$的素理想升链之间有保长度的双射, 于是由\thref{thm:ringdim}知$\dim (Y)=\dim (A(Y))$, \ref{enum:thm-affine-rings-1}得证.
 
-  因为每个$A$的元素都能看成$Y$上的正规函数, 于是有同态$A\to \OO (Y)$, 又这个同态的核恰为$I(Y)$, 于是我们有单同态$\alpha\colon A(Y)\to \OO (Y)$.
+  因为每个$A$的元素都能看成$Y$上的正则函数, 于是有同态$A\to \OO (Y)$, 又这个同态的核恰为$I(Y)$, 于是我们有单同态$\alpha\colon A(Y)\to \OO (Y)$.
 
-  利用\thref{prop:quotidealcorr}我们知道$Y$与$A$中包含$I(Y)$的极大理想全体之间存在双射, 即与$A(Y)$的极大理想全体之间存在一一对应. 利用上述定义的$\alpha$将$A(Y)$的元素看作$Y$上的正规函数, 我们有点$P$对应的极大理想即为$\ideal{m}_{P}=\{f\in A(Y)\vert f(P)=0\}$, 故\ref{enum:thm-affine-rings-3}得证.
+  利用\thref{prop:quotidealcorr}我们知道$Y$与$A$中包含$I(Y)$的极大理想全体之间存在双射, 即与$A(Y)$的极大理想全体之间存在一一对应. 利用上述定义的$\alpha$将$A(Y)$的元素看作$Y$上的正则函数, 我们有点$P$对应的极大理想即为$\ideal{m}_{P}=\{f\in A(Y)\vert f(P)=0\}$, 故\ref{enum:thm-affine-rings-3}得证.
 
-  对于每个$P\in Y$, 将$\OO (Y)$看作$\OO_P$的子环, 我们可以得到单同态$A(Y)\to \OO_P$, 这个同态将每个$\ideal{m}_P$外的元素都映到单位, 于是我们可以得到单同态$A(Y)_{\ideal{m}_{P}}\to \OO_P$. 根据正规函数的定义, 正规函数在局部上可以写成两个多项式的商, 其中分母在局部没有零点, 于是有这个同态也是满射, 因此$A(Y)_{\ideal{m}_P}\cong \OO_P$. 因为$\OO_P$是整环, 对$\ideal{p}=(0)\subseteq \OO_P$利用\thref{thm:ringdim}和\thref{prop:fracideal}\ref{enum:prop-fracideal-2}可得$\dim \OO_P$等于极大理想$\ideal{m}_P$在$A(Y)$的高度$h(\ideal{m}_P)$. 又因为$A(Y){\divslash}\ideal{m}_P\cong \kk$, 即$\codim (\ideal{m}_P)=0$, 故利用\ref{enum:thm-affine-rings-1}和\thref{thm:ringdim}知$h(\ideal{m}_P)=\dim A(Y)=\dim (Y)$, 于是$\dim (\OO_P)=\dim (Y)$, \ref{enum:thm-affine-rings-4}得证.
+  对于每个$P\in Y$, 将$\OO (Y)$看作$\OO_P$的子环, 我们可以得到单同态$A(Y)\to \OO_P$, 这个同态将每个$\ideal{m}_P$外的元素都映到单位, 于是我们可以得到单同态$A(Y)_{\ideal{m}_{P}}\to \OO_P$. 根据正则函数的定义, 正则函数在局部上可以写成两个多项式的商, 其中分母在局部没有零点, 于是有这个同态也是满射, 因此$A(Y)_{\ideal{m}_P}\cong \OO_P$. 因为$\OO_P$是整环, 对$\ideal{p}=(0)\subseteq \OO_P$利用\thref{thm:ringdim}和\thref{prop:fracideal}\ref{enum:prop-fracideal-2}可得$\dim \OO_P$等于极大理想$\ideal{m}_P$在$A(Y)$的高度$h(\ideal{m}_P)$. 又因为$A(Y){\divslash}\ideal{m}_P\cong \kk$, 即$\codim (\ideal{m}_P)=0$, 故利用\ref{enum:thm-affine-rings-1}和\thref{thm:ringdim}知$h(\ideal{m}_P)=\dim A(Y)=\dim (Y)$, 于是$\dim (\OO_P)=\dim (Y)$, \ref{enum:thm-affine-rings-4}得证.
 
-  根据\ref{enum:thm-affine-rings-3}和\thref{prop:multilocalization}, 对于每个$P\in Y$都有分式域$K(A(Y))\cong K(A(Y)_{\ideal{m}_P})\cong K(\OO_P)$. 因为典范单同态$\OO_P\to K(Y)$诱导出的映射$\amalg_{P\in Y}\OO_P\to K(Y)$是满射, 即每个有理函数都能看成某个$\OO_Y$中的元素, 因此对于每个$P$都有$K(\OO_P)\cong K(Y)$, 故$K(A(Y))\cong K(Y)$. 因为$A(Y)$是有限生成$\kk$-代数, 所以$K(Y)\cong K(A(Y))$是$\kk$的有限域扩张, 并且根据域的多项式函数整环维数的定义, 有$\dim (Y)$即为域扩张的超越次数, \ref{enum:thm-affine-rings-5}得证.
+  根据\ref{enum:thm-affine-rings-3}和\thref{prop:multilocalization}, 对于每个$P\in Y$都有分式域$K(A(Y))\cong K(A(Y)_{\ideal{m}_P})\cong K(\OO_P)$. 因为典范单同态$\OO_P\to K(Y)$诱导出的映射$\amalg_{P\in Y}\OO_P\to K(Y)$是满射, 即每个有理函数都能看成某个$\OO_Y$中的元素, 因此对于每个$P$都有$K(\OO_P)\cong K(Y)$, 故$K(A(Y))\cong K(Y)$. 因为$A(Y)$是有限生成$\kk$-代数, 所以$K(Y)\cong K(A(Y))$是$\kk$的有限域扩张, 并且根据域的有限生成整环维数的定义, 有$\dim (Y)$即为域扩张的超越次数, \ref{enum:thm-affine-rings-5}得证.
 
   最后, 利用\ref{enum:thm-affine-rings-3}和\ref{enum:thm-affine-rings-4}, 并将每个环都看成分式域$K(Y)$的子环, 我们有$A(Y)\subseteq\OO (Y)\subseteq \bigcap_{\ideal{m}} A(Y)_{\ideal{m}}$. 而\thref{prop:integraldomainlocalizationintersection}证明了$\bigcap_{\ideal{m}} A(Y)_{\ideal{m}}= A(Y)$, 因此我们有$A(Y)\cong \OO(Y)$, 这证明了\ref{enum:thm-affine-rings-2}.
 \end{proof}
@@ -122,7 +122,7 @@
 
   类似地, 由\thref{thm:affinerings}\ref{enum:thm-affine-rings-5}可得$K(Y)\cong K(Y_j)$同构于$A(Y_j)$的分式域, 再由$\varphi_j^*$得同构于$S(Y)_{(0)}$. 这证明了\ref{enum:thm-projective-rings-4}.
 
-  最后, 设$f\in\OO (Y)$是整体的正规函数, 于是对于每个$j$都有$f$在$Y_j$上正规, 于是根据\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}可以认为$f\in A(Y_j)$, 又由$\varphi_j^*$知$A(Y_j)\cong S(Y)_{(X_j)}$, 于是$f$可以写成$g_j{\divslash}X_j^{N_j}$的形式, 其中$g_j\in S(Y)$为$N_j$次的齐次多项式. 因为$S(Y)$是整环, 所以可以将$\OO (Y), K(Y), S(Y)$都看作$S(Y)$的分式域$L$的子环, 于是$X_j^{N_j}f\in S(Y)_{N_j}$, 其中$S(Y)_{N_j}$表示齐次环$S(Y)$中次数为$N_j$的齐次元全体. 取$N\geq \sum N_j$, 则$S(Y)_N$作为$\kk$-线性空间可以由次数为$N$的由$X_0, \dotsc, X_n$构成的单项式生成, 根据鸽笼原理知$f\cdot S(Y)_N\subseteq S(Y)_N$, 迭代即得对于每个$q>0$都有$f^q\cdot S(Y)_N$. 特别地, 取$X_j\notin I(Y)$, 则有对于每个$q>0$都有$X_0^Nf^q\in S(Y)$. 于是子环$S(Y)[f]\subseteq L$包含于$X_0^{-N}S(Y)$中, 而$X_0^{-N}S(Y)$是有限生成$S(Y)$-模, 又因为$S(Y)$是Noether环, 所以由\thref{prop:fgmoduleovernoetherring}和\thref{prop:noethermodule}得$S(Y)[f]$是有限生成$S(Y)$-模, 于是由\thref{prop:integraldependence}知$f$为$S(Y)$的整元, 又因为$f$的次数为零, 故存在$x_1, \dotsc, x_m\in S(Y)\cong \kk$使得$f^m+x_1f^{m-1}+\dotsb +x_m=0$成立. 于是$f$是$\kk$的代数元, 又$\kk$是代数闭域, 于是有$f\in \kk$, 这证明了\ref{enum:thm-projective-rings-1}.
+  最后, 设$f\in\OO (Y)$是整体的正则函数, 于是对于每个$j$都有$f$在$Y_j$上, 于是根据\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}可以认为$f\in A(Y_j)$, 又由$\varphi_j^*$知$A(Y_j)\cong S(Y)_{(X_j)}$, 于是$f$可以写成$g_j{\divslash}X_j^{N_j}$的形式, 其中$g_j\in S(Y)$为$N_j$次的齐次多项式. 因为$S(Y)$是整环, 所以可以将$\OO (Y), K(Y), S(Y)$都看作$S(Y)$的分式域$L$的子环, 于是$X_j^{N_j}f\in S(Y)_{N_j}$, 其中$S(Y)_{N_j}$表示齐次环$S(Y)$中次数为$N_j$的齐次元全体. 取$N\geq \sum N_j$, 则$S(Y)_N$作为$\kk$-线性空间可以由次数为$N$的由$X_0, \dotsc, X_n$构成的单项式生成, 根据鸽笼原理知$f\cdot S(Y)_N\subseteq S(Y)_N$, 迭代即得对于每个$q>0$都有$f^q\cdot S(Y)_N$. 特别地, 取$X_j\notin I(Y)$, 则有对于每个$q>0$都有$X_0^Nf^q\in S(Y)$. 于是子环$S(Y)[f]\subseteq L$包含于$X_0^{-N}S(Y)$中, 而$X_0^{-N}S(Y)$是有限生成$S(Y)$-模, 又因为$S(Y)$是Noether环, 所以由\thref{prop:fgmoduleovernoetherring}和\thref{prop:noethermodule}得$S(Y)[f]$是有限生成$S(Y)$-模, 于是由\thref{prop:integraldependence}知$f$为$S(Y)$的整元, 又因为$f$的次数为零, 故存在$x_1, \dotsc, x_m\in S(Y)\cong \kk$使得$f^m+x_1f^{m-1}+\dotsb +x_m=0$成立. 于是$f$是$\kk$的代数元, 又$\kk$是代数闭域, 于是有$f\in \kk$, 这证明了\ref{enum:thm-projective-rings-1}.
 \end{proof}
 
 \begin{theorem}[{{\parencite[19, Proposition 3.5]{hartshorne_algebraic_1977}}}]\label{thm:categoryisoaffinevariety}
@@ -138,19 +138,19 @@
       Y & \mapsto & A(Y) \arrow[uu, "\alpha (\varphi)"']
     \end{tikzcd}
   \end{equation*}
-  给出了$k$的仿射代数簇范畴与$k$的多项式函数整环范畴(态射为$\kk$-代数同态)的反变范畴等价.
+  给出了$k$的仿射代数簇范畴与$k$的有限生成整环范畴(态射为$\kk$-代数同态)的反变范畴等价.
 \end{theorem}
 
 \begin{proof}
-  先来给出$\alpha$的定义. 因为每个态射$\varphi\colon X\to Y$可以通过复合将$Y$上的正规函数对应到$X$上的正规函数, 于是$\varphi$诱导了$\OO (Y)$到$\OO (X)$的$\kk$-代数同态. 又由\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}知有$k$-代数同构$\OO (Y)\cong A(Y)$, 故每个$\varphi$对应到了一个$A(Y)$到$\OO (X)$的$\kk$-代数同态, 于是我们得到了$\alpha$.
+  先来给出$\alpha$的定义. 因为每个态射$\varphi\colon X\to Y$可以通过复合将$Y$上的正则函数对应到$X$上的正则函数, 于是$\varphi$诱导了$\OO (Y)$到$\OO (X)$的$\kk$-代数同态. 又由\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}知有$k$-代数同构$\OO (Y)\cong A(Y)$, 故每个$\varphi$对应到了一个$A(Y)$到$\OO (X)$的$\kk$-代数同态, 于是我们得到了$\alpha$.
 
-  反过来, 如果给定了$\kk$-代数同态$h\colon A(Y)\to \OO (X)$, 我们来构造态射$X\to Y$. 将$Y$嵌入到某个$\AF^n$中, 假设$Y$为$\AF^n$的不可约闭子集, 于是$A(Y)=\kk [X_1, \dotsc, X_n]{\divslash} I(Y)$. 记$X_j\in \OO (Y)\cong A(Y)$为单项式$X_j\in A$所诱导的$Y$上的正规函数. 考虑$\xi_j=h(X_j)\in \OO (X)$, 是$X$上的正规函数, 于是我们可以定义$\psi\colon X\to \AF^n$将$P\in X$映到$(\xi_1 (P), \dotsc, \xi_n (P))\in \AF^n$.
+  反过来, 如果给定了$\kk$-代数同态$h\colon A(Y)\to \OO (X)$, 我们来构造态射$X\to Y$. 将$Y$嵌入到某个$\AF^n$中, 假设$Y$为$\AF^n$的不可约闭子集, 于是$A(Y)=\kk [X_1, \dotsc, X_n]{\divslash} I(Y)$. 记$X_j\in \OO (Y)\cong A(Y)$为单项式$X_j\in A$所诱导的$Y$上的正则函数. 考虑$\xi_j=h(X_j)\in \OO (X)$, 是$X$上的正则函数, 于是我们可以定义$\psi\colon X\to \AF^n$将$P\in X$映到$(\xi_1 (P), \dotsc, \xi_n (P))\in \AF^n$.
 
   现在证明$\Im (\psi)\subseteq Y$. 只需要证明对于$P\in X$以及$f\in I(Y)$有$f(\psi(P))=0$. 而因为$f$是多项式, $f\in I(Y)$, 并且$h$是代数同态, 所以$f(\psi(P))=f(\xi_1(P), \dotsc, \xi_n(P))=h(f(X_1, \dotsc, X_n))(P)=0$, 故得证$\psi$是$X$到$Y$的映射.
 
   由\thref{prop:morphismtoaffinevariety}得上述构造的$\psi$是态射, 又由定义可得$\alpha(\varphi)$对应的$\psi$即为$\varphi$, 故得证$\alpha$是双射.
 
-  最后证明范畴等价. 函子性由构造可显然得出, 并且我们已经证明了这个函子是完全忠实的, 又因为每个$k$的多项式函数整环都可以写成某个$k$的代数簇的仿射坐标环, 因此这个函子也是本质满射的, 于是由\thref{thm:categoryequivalence}知这个函子给出了范畴之间的等价.
+  最后证明范畴等价. 函子性由构造可显然得出, 并且我们已经证明了这个函子是完全忠实的, 又因为每个$k$的有限生成整环都可以写成某个$k$的代数簇的仿射坐标环, 因此这个函子也是本质满射的, 于是由\thref{thm:categoryequivalence}知这个函子给出了范畴之间的等价.
 \end{proof}
 
 \thref{thm:categoryisoaffinevariety}给出了与仿射代数簇范畴等价的代数范畴, 利用这个事实, 我们可以证明每个代数簇在局部上都能找到仿射开子集. 继而我们可以证明代数簇以控制有理映射作为态射的范畴与有限生成域扩张的范畴有反变范畴等价. 如果一个代数簇同构于某个仿射代数簇, 则称它是\emph{仿射的}.
@@ -186,9 +186,9 @@
 \begin{proof}
   先来给出$\beta$的定义. 设控制有理映射$\varphi\colon X\to Y$可以由$\lrbig<>{U, \varphi_U}$表示, 设$\lrbig<>{V, f}\in K(Y)$, 则定义$\beta(\varphi)=\lrbig<>{\varphi_{U}^{-1}(V), f\composite \varphi_U}$. 因为$\varphi$是控制有理映射, 所以$\varphi_{U}^{-1}(V)$是非空开集, 并且$f\composite \varphi_U$定义了$\varphi_{U}^{-1}(V)$上的有理映射.
 
-  反过来, 如果$\theta\colon K(Y)\to K(X)$是$\kk$-代数同态, 我们来构造控制有理映射$X\to Y$. 由\thref{prop:affinetopologicalbasis}, 不妨假设$Y$是仿射的, 仿射坐标环为$A(Y)$是$A\coloneq \kk [Y_1, \dotsc, Y_n]$的商环. 因为$\theta(Y_1), \dotsc, \theta(Y_n)$是$X$上的有理函数, 所以存在非空开集$U\subseteq X$使得每个$\theta(Y_j)$是正规函数. 由于域之间的环同态一定是单射, 所以$\theta$可以定义$k$-代数单同态$A(Y)\to \OO (U)$, 而由\thref{thm:categoryisoaffinevariety}知这给出了态射$\varphi\colon U\to Y$. 根据构造, $f\in\Ker (A(Y)\to \OO (U))$当且仅当$f(\overline{\varphi (U)})=0$, 因而$\Ker (A(Y)\to \OO (U))=0$当且仅当$\overline{\Im (\varphi)}=Y$\footfullcite{e_defining_2017}, 于是我们得到了控制有理映射$X\colon Y$. 不难验证我们由此给出了$\beta$的逆.
+  反过来, 如果$\theta\colon K(Y)\to K(X)$是$\kk$-代数同态, 我们来构造控制有理映射$X\to Y$. 由\thref{prop:affinetopologicalbasis}, 不妨假设$Y$是仿射的, 仿射坐标环为$A(Y)$是$A\coloneq \kk [Y_1, \dotsc, Y_n]$的商环. 因为$\theta(Y_1), \dotsc, \theta(Y_n)$是$X$上的有理函数, 所以存在非空开集$U\subseteq X$使得每个$\theta(Y_j)$是正则函数. 由于域之间的环同态一定是单射, 所以$\theta$可以定义$k$-代数单同态$A(Y)\to \OO (U)$, 而由\thref{thm:categoryisoaffinevariety}知这给出了态射$\varphi\colon U\to Y$. 根据构造, $f\in\Ker (A(Y)\to \OO (U))$当且仅当$f(\overline{\varphi (U)})=0$, 因而$\Ker (A(Y)\to \OO (U))=0$当且仅当$\overline{\Im (\varphi)}=Y$\footfullcite{e_defining_2017}, 于是我们得到了控制有理映射$X\to Y$. 不难验证我们由此给出了$\beta$的逆.
 
-  最后证明范畴等价. 因为一个代数簇的有理函数域等于某个仿射开子集的有理函数域, 故为$k$的多项式函数整环的分式域, 故为$k$的有限生成域扩张. 又不难由构造证明函子性, 故由\thref{thm:categoryequivalence}知还需要证明每个$k$的有限生成域扩张$K$都可以写成某个代数簇的分式域. 设$K=\kk (x_1, \dotsc, x_n)$, 则$B=\kk [x_1, \dotsc, x_n]$是多项式函数整环, 为某个仿射代数簇的仿射坐标环, 并且$B$的分式域即为$K$, 故得证.
+  最后证明范畴等价. 因为一个代数簇的有理函数域等于某个仿射开子集的有理函数域, 故为$k$的有限生成整环的分式域, 故为$k$的有限生成域扩张. 又不难由构造证明函子性, 故由\thref{thm:categoryequivalence}知还需要证明每个$k$的有限生成域扩张$K$都可以写成某个代数簇的分式域. 设$K=\kk (x_1, \dotsc, x_n)$, 则$B=\kk [x_1, \dotsc, x_n]$是有限生成整环, 为某个仿射代数簇的仿射坐标环, 并且$B$的分式域即为$K$, 故得证.
 \end{proof}
 
 \subsection{杂项}
@@ -327,7 +327,9 @@
   如果$X$可以以两种方式写成两两不同的不可约分支的并, 即有$X=X_1\cup\dotsb\cup X_m$以及$X=X_1'\cup\dotsb\cup X_n'$, 我们将证明对于每个$j=1, \dotsc, m$都存在$k$使得$X_j=X_k'$. 由于$X_j=\bigcup_{k=1}^m(X_j\cap X_k')$并且$X_j$不可约, 存在$k$使得$X_j\subseteq X_k'$. 同理, 存在$l$使得$X_k'\subseteq X_l$, 因此$X_j\subseteq X_l$, 有极大性得$j=l$, 即$X_j=X_k'$.
 \end{proof}
 
-回顾在\ref{sec:algebra-category}我们定义了拓扑空间$X$上集合取值的预层是函子$F\colon \cat{Top}(X)^{\op}\to\cat{Set}$. 为了更符合直觉, 这一节中我们考虑的都是Abel群取值的预层, 为函子$\sheaf{F}\colon \cat{Top}(X)^{\op}\to\cat{Ab}$, 注意$\sheaf{F}(\varnothing)=0$为平凡Abel群. 称$\sheaf{F}(U)$中的元素为$\sheaf{F}$在$U$上的\emph{截面}, 有时也记$\sheaf{F}(U)$为$\Gamma (U, \sheaf{F})$. 称映射$\rho_{UV}\coloneq \sheaf{F}(U\to V)$为\emph{限制映射}, 对于$s\in \sheaf{F}(U)$有时也记$\rho_{UV}(s)$为$s\restrict{V}$.
+\subsubsection{层}
+
+在\ref{sec:algebra-category}我们定义了拓扑空间$X$上集合取值的预层是函子$F\colon \cat{Top}(X)^{\op}\to\cat{Set}$. 为了更符合直觉, 这一节中我们考虑的都是Abel群取值的预层, 为函子$\sheaf{F}\colon \cat{Top}(X)^{\op}\to\cat{Ab}$, 注意$\sheaf{F}(\varnothing)=0$为平凡Abel群. 称$\sheaf{F}(U)$中的元素为$\sheaf{F}$在$U$上的\emph{截面}, 有时也记$\sheaf{F}(U)$为$\Gamma (U, \sheaf{F})$. 称映射$\rho_{UV}\coloneq \sheaf{F}(U\to V)$为\emph{限制映射}, 对于$s\in \sheaf{F}(U)$有时也记$\rho_{UV}(s)$为$s\restrict{V}$.
 
 大体上说一个层就是可以由局部信息决定的预层. 利用范畴论的语言, 对于Abel群取值的预层$\sheaf{F}$, 定义由$U_\lambda\subseteq U$构成的开集族$\{U_\lambda\}$\emph{覆盖}$U$如果它们及其两两的交以及所有可能的态射所定义的$\cat{Top}(X)$中的图的上极限为$U$, 如果$\sheaf{F}$保持这些上极限, 则称$\sheaf{F}$是\emph{层}. 显式地说, 如果预层$\sheaf{F}$满足对于任意的开集$U$和任意$U$的开覆盖$\{V_\lambda\}$都有
 \begin{enumerate}
@@ -339,7 +341,7 @@
 如果$\sheaf{F}$是拓扑空间$X$上的预层, 设$P$为$X$的一点, 则包含$P$点的开集全体所对应的Abel群的直极限称为$P$点处的\emph{茎}, 记为$\sheaf{F}_P$, 称自然映射$\sheaf{F}(U)\to \sheaf{F}_P$将截面$s$映到$P$点处的\emph{芽}.
 
 \begin{example}
-  在\ref{sec:ag-functionrings}中我们定义了代数簇上的整体函数环与任一点处的局部环, 其实这定义了代数簇上的环值的层结构. $\sheaf{F}(U)\coloneq\OO (U)$定义为$U$上的正规函数全体, $\sheaf{F}(U\to V)$定义为包含映射$\OO (V)\to \OO(U)$, 则$\sheaf{F}$是层, 并且在$P$点处的茎即为局部环$\OO_P$. 称$\OO$为仿射簇上的\emph{正规函数层}.
+  在\ref{sec:ag-functionrings}中我们定义了代数簇上的整体函数环与任一点处的局部环, 其实这定义了代数簇上的环值的层结构. $\sheaf{F}(U)\coloneq\OO (U)$定义为$U$上的正则函数全体, $\sheaf{F}(U\to V)$定义为包含映射$\OO (V)\to \OO(U)$, 则$\sheaf{F}$是层, 并且在$P$点处的茎即为局部环$\OO_P$. 称$\OO$为仿射簇上的\emph{正则函数层}.
 \end{example}
 
 既然预层被定义为函子, 那么很自然预层之间的态射被定义为函子之间的自然变换, 层之间的态射也被定义为函子之间的自然变换. 下面一个命题阐释了层的结构可以由它的局部性质决定.
@@ -366,13 +368,13 @@
 
 我们还可以讨论底拓扑空间变化的情况下层结构的变化. 设$f\colon X\to Y$是拓扑空间之间的连续映射, 对于任意$X$上的层$\sheaf{F}$, 定义其在$Y$上的\emph{像层}$f_*\sheaf{F}$满足$(f_*\sheaf{F})(V)=\sheaf{F}(f^{-1}(V))$. 对于$Y$上的层$\sheaf{G}$, 定义其在$X$上的\emph{原像层}$f^{-1}\sheaf{G}$为预层$U\mapsto\dlim \sheaf{G}(V)$对应的层, 其中直极限是对所有的包含$f(U)$的开集$V\subseteq Y$来取的. 特别地, 对于$X$的子空间$Z$, 我们可以利用包含映射定义$X$上的层$\sheaf{G}$在$Z$上的\emph{限制}, 通常记为$\sheaf{F}\restrict{Z}$. 注意$\sheaf{F}\restrict{Z}$在每个点$P$处的茎即为$\sheaf{F}_P$.
 
-\bigskip
+\subsubsection{仿射概形与概形}
 
 现在可以来重新考察环的素谱这一概念. \ref{sec:algebra-primespec}中我们已经定义了素谱上的Zariski拓扑, 现在我们再在其上定义环值的层结构, 使其具有类似于仿射簇的结构.
 
 设$A$为环, $\Spec (A)$为其素谱, 我们来定义层$\sheaf{O}\colon \cat{Top}(\Spec (A))\to \cat{Ring}$. 对于每个开集$U\subseteq \Spec (A)$, 定义$\sheaf{O}(U)$为在局部能写成$A$的元素之商的函数$s\colon U\to \amalg_{\ideal{p}\in U}A_{\ideal{p}}$全体构成的环. 不难验证$\sheaf{O}(U)$是环, 以及$\sheaf{O}$是层. 现在默认环的素谱上也赋有刚才所定义的层结构.
 
-我们发现环的素谱有类似于仿射簇上的正规函数层的性质, 并且从素谱可以重新构造出原本的环. 回顾记号$\Spec(A)_{f}$表示闭集$V((f))$的余集.
+我们发现环的素谱有类似于仿射簇上的正则函数层的性质, 并且从素谱可以重新构造出原本的环. 回顾记号$\Spec(A)_{f}$表示闭集$V((f))$的余集.
 
 \begin{proposition}[{{\parencite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]\label{prop:primespectrumsheaf}
   设$A$为环, $(\Spec (A), \OO)$为其素谱, 则
@@ -395,14 +397,14 @@
 是局部环之间的\emph{局部同态}, 即满足值域的唯一极大理想的原像是定义域的极大理想.
 
 \begin{propositionnoproof}[{{\parencite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]
-  素谱定义了环范畴到局部赋环空间范畴之间的完全反变函子.
+  素谱运算$\Spec$定义了环范畴到局部赋环空间范畴之间的完全反变函子.
 \end{propositionnoproof}
 
 现在终于可以来定义概形这个概念了. 定义\emph{仿射概形}是局部赋环空间$(X, \OO_X)$, 并且同构于某个环的素谱. 定义\emph{概形}是局部赋环空间$(X, \OO_X)$, 并且满足每个点处都有邻域$U$使得子拓扑空间$U$以及限制层$\OO_X\restrict{U}$是仿射概形. 称$X$为\emph{底拓扑空间}, 通常用$X$表示整个概型的结构, 而用$\sp (X)$表示它的拓扑空间结构. 概形之间的态射即为局部赋环空间之间的态射.
 
 如果存在概形态射$f\colon X\to S$, 则称$f$是$S$\emph{上的概形}, 特别地, 如果$S=\Spec (A)$, 也称$f$是$A$\emph{上的概型}. 如果概形之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}. $S$上的概形之间的态射自然被要求要与给定的到$S$的态射可交换.
 
-我们可以证明, 对于代数闭域$\kk$, 存在从$\kk$上的簇范畴到$\kk$上的概形范畴的完全忠实函子$t$, 并且对于每个簇$V$, 它的拓扑空间结构同胚于$\sp (t(V))$的闭点全体所构成的子空间, 并且$V$的正规函数层可以通过这个同胚由$t(V)$的结构层的限制所得到\parencite[78, Proposition 2.6]{hartshorne_algebraic_1977}.
+我们可以证明, 对于代数闭域$\kk$, 存在从$\kk$上的簇范畴到$\kk$上的概形范畴的完全忠实函子$t$, 并且对于每个簇$V$, 它的拓扑空间结构同胚于$\sp (t(V))$的闭点全体所构成的子空间, 并且$V$的正则函数层可以通过这个同胚由$t(V)$的结构层的限制所得到\parencite[78, Proposition 2.6]{hartshorne_algebraic_1977}.
 
 % locally ringed space
 % 仿射概形

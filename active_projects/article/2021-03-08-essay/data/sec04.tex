@@ -2,7 +2,7 @@
 
 \section{代数与几何的联系}\label{sec:algebraandgeometry}
 
-不加说明的情况下$k$依然指代数闭域.
+% 不加说明的情况下$k$依然指代数闭域.
 
 \subsection{理想与代数集}
 
@@ -10,14 +10,20 @@
 
 先考虑仿射空间$\AF^n$的情况, 记$A\coloneq \kk [X_1, \dotsc, X_n]$. 对于多项式环$A$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\AF^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的多项式全体, 即$I(Y)\coloneq \{f\in A\vert f(x)=0, \forall x\in Y\}$, $I(Y)$一定是环$A$的理想, 并且如果$Y$为单点集, 则$I(Y)$为极大理想.
 
-\begin{proposition}[{{\parencite[3, Proposition 1.2; 4, Corollary 1.4]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradical}
+\begin{propositionnoproof}[{{\parencite[3, Proposition 1.2; 4, Corollary 1.4]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradicalpre}
   设$Y, Y_1, Y_2$为$\AF^n$的子集, $T, T_1, T_2$为$A$的子集, $\ideal{a}$为$A$的理想, 则
   \begin{enumerate}
     \item\label{enum:prop-affine-galois-connection-closed-radical-1} $Z(T)=Z((T))=Z(\sqrt{(T)})$;
     \item\label{enum:prop-affine-galois-connection-closed-radical-2} 如果$T_1\subseteq T_2$, 那么$Z(T_1)\supseteq Z(T_2)$;
     \item\label{enum:prop-affine-galois-connection-closed-radical-3} $I(Y)=I(\overline{Y})$;
     \item\label{enum:prop-affine-galois-connection-closed-radical-4} 如果$Y_1\subseteq Y_2$, 那么$I(Y_1)\supseteq I(Y_2)$;
-    \item\label{enum:prop-affine-galois-connection-closed-radical-5} $I(Y_1\cup Y_2)=I(Y_1)\cap I(Y_2)$;
+    \item\label{enum:prop-affine-galois-connection-closed-radical-5} $I(Y_1\cup Y_2)=I(Y_1)\cap I(Y_2)$.
+  \end{enumerate}
+\end{propositionnoproof}
+
+\begin{proposition}[{{\parencite[3, Proposition 1.2; 4, Corollary 1.4]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradical}
+  设$Y$为$\AF^n$的子集, $\ideal{a}$为$A$的理想, 则
+  \begin{enumerate}
     \item\label{enum:prop-affine-galois-connection-closed-radical-nullstellensatz} (强Hilbert零点定理\parencite[85, Exercise 14]{atiyah_introduction_1969}) $I(Z(\ideal{a}))=\sqrt{a}$;
     \item\label{enum:prop-affine-galois-connection-closed-radical-closure} $Z(I(Y))=\overline{Y}$;
     \item\label{enum:prop-affine-galois-connection-closed-radical-8} 如果$\ideal{p}$是$A$的素理想, 那么$Z(\ideal{p})$是$\AF^n$的不可约闭集;
@@ -27,20 +33,19 @@
 \end{proposition}
 
 \begin{proof}
-  这里我们只证明\ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz}\ref{enum:prop-affine-galois-connection-closed-radical-closure}\ref{enum:prop-affine-galois-connection-closed-radical-8}和\ref{enum:prop-affine-galois-connection-closed-radical-9}.
+  % 这里我们只证明\ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz}\ref{enum:prop-affine-galois-connection-closed-radical-closure}\ref{enum:prop-affine-galois-connection-closed-radical-8}和\ref{enum:prop-affine-galois-connection-closed-radical-9}.
+  \ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz} 根据\thref{prop:affinegaloisconnectionclosedradicalpre}\ref{enum:prop-affine-galois-connection-closed-radical-1}\ref{enum:prop-affine-galois-connection-closed-radical-2}和\ref{enum:prop-affine-galois-connection-closed-radical-4}知$I(Z(\ideal{a}))\supseteq\sqrt{\ideal{a}}$. 反过来, 假设$f\notin\sqrt{\ideal{a}}$, 根据\thref{prop:scheinnullstellensatz}知存在包含$\ideal{a}$的素理想$\ideal{p}$使得$f\notin\ideal{p}$. 设$B=(A{\divslash}\ideal{p})$, $C=B_{f}=B[1{\divslash}f]$, 则$C$为有限生成$\kk$-代数. 设$\ideal{m}$为$C$的一个极大理想, 则根据\thref{thm:hilbert-nullstellensatz-weak}知$D\coloneq C{\divslash}\ideal{m}\cong\kk$. 设$X_j\in A$在$D$的像为$x_j$, 则我们定义了一个点$x=(x_1, \dotsc, x_n)\in \AF^n$, 并且有$g\in A$在$D$的像为在$g(x)$. 于是我们有$x\in Z(\ideal{a})$但是$f(x)\neq 0$.
 
-  \ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz} 根据\ref{enum:prop-affine-galois-connection-closed-radical-1}\ref{enum:prop-affine-galois-connection-closed-radical-2}和\ref{enum:prop-affine-galois-connection-closed-radical-4}知$I(Z(\ideal{a}))\supseteq\sqrt{\ideal{a}}$. 反过来, 假设$f\notin\sqrt{\ideal{a}}$, 根据\thref{prop:scheinnullstellensatz}知存在包含$\ideal{a}$的素理想$\ideal{p}$使得$f\notin\ideal{p}$. 设$B=(A{\divslash}\ideal{p})$, $C=B_{f}=B[1{\divslash}f]$, 则$C$为有限生成$\kk$-代数. 设$\ideal{m}$为$C$的一个极大理想, 则根据\thref{thm:hilbert-nullstellensatz-weak}知$D\coloneq C{\divslash}\ideal{m}\cong\kk$. 设$X_j\in A$在$D$的像为$x_j$, 则我们定义了一个点$x=(x_1, \dotsc, x_n)\in \AF^n$, 并且有$g\in A$在$D$的像为在$g(x)$. 于是我们有$x\in Z(\ideal{a})$但是$f(x)\neq 0$.
+  \ref{enum:prop-affine-galois-connection-closed-radical-closure} 根据定义有$Y\subseteq Z(I(Y))$, 而右边是闭集, 所以有$\overline{Y}\subseteq Z(I(Y))$. 反过来, 假设$W$为包含$Y$的闭子集, 则存在$A$的理想$\ideal{a}$使$W=Z(\ideal{a})$. 因此$Z(\ideal{a})\supseteq Y$, 再根据\thref{prop:affinegaloisconnectionclosedradicalpre}\ref{enum:prop-affine-galois-connection-closed-radical-3}得$I(Z(\ideal{a}))\subseteq I(Y)$. 又$\ideal{a}\subseteq I(Z(\ideal{a}))$, 因此由\thref{prop:affinegaloisconnectionclosedradicalpre}\ref{enum:prop-affine-galois-connection-closed-radical-2}有$W=Z(\ideal{a})\supseteq Z(I(Y))$. 故$Z(I(Y))=\overline{Y}$.
 
-  \ref{enum:prop-affine-galois-connection-closed-radical-closure} 根据定义有$Y\subseteq Z(I(Y))$, 而右边是闭集, 所以有$\overline{Y}\subseteq Z(I(Y))$. 反过来, 假设$W$为包含$Y$的闭子集, 则存在$A$的理想$\ideal{a}$使$W=Z(\ideal{a})$. 因此$Z(\ideal{a})\supseteq Y$, 再根据\ref{enum:prop-affine-galois-connection-closed-radical-3}得$I(Z(\ideal{a}))\subseteq I(Y)$. 又$\ideal{a}\subseteq I(Z(\ideal{a}))$, 因此由\ref{enum:prop-affine-galois-connection-closed-radical-2}有$W=Z(\ideal{a})\supseteq Z(I(Y))$. 故$Z(I(Y))=\overline{Y}$.
-
-  \ref{enum:prop-affine-galois-connection-closed-radical-8} 设有闭集$Y_1$和$Y_2$使得$Z(\ideal{p})=Y_1\cup Y_2$, 则由\ref{enum:prop-affine-galois-connection-closed-radical-4}和\ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz}知$\ideal{p}=I(Y_1)\cap I(Y_2)$, 由\thref{prop:prime}\ref{enum:prop-prime-absorb}知$\ideal{p}=I(Y_1)$或者$\ideal{p}=I(Y_2)$, 故由\ref{enum:prop-affine-galois-connection-closed-radical-closure}得$Z(\ideal{p})=Y_1$或$Z(\ideal{p})=Y_2$, 这就证明了$Z(\ideal{p})$是不可约集.
+  \ref{enum:prop-affine-galois-connection-closed-radical-8} 设有闭集$Y_1$和$Y_2$使得$Z(\ideal{p})=Y_1\cup Y_2$, 则由\thref{prop:affinegaloisconnectionclosedradicalpre}\ref{enum:prop-affine-galois-connection-closed-radical-4}和\ref{enum:prop-affine-galois-connection-closed-radical-nullstellensatz}知$\ideal{p}=I(Y_1)\cap I(Y_2)$, 由\thref{prop:prime}\ref{enum:prop-prime-absorb}知$\ideal{p}=I(Y_1)$或者$\ideal{p}=I(Y_2)$, 故由\ref{enum:prop-affine-galois-connection-closed-radical-closure}得$Z(\ideal{p})=Y_1$或$Z(\ideal{p})=Y_2$, 这就证明了$Z(\ideal{p})$是不可约集.
 
   \ref{enum:prop-affine-galois-connection-closed-radical-9} 设$fg\in I(Y)$, 则由\thref{prop:affinezariskitopology}\ref{enum:prop-affine-zariski-topology-2}知$Y=(Y\cap Z(f))\cup (Y\cap Z(g))$, 因为$Y$是不可约闭集, 所以$Y\subseteq Z(f)$或者$Y\subseteq Z(g)$, 故$f\in I(Y)$或者$g\in I(Y)$.
 \end{proof}
 
 再考虑射影空间$\PP^n$的情形, 记$S\coloneq \kk [X_0, \dotsc, X_n]$, $S$的齐次多项式全体为$\Shomo$, 次数为$d$的齐次多项式全体为$S_d$, $S_+=\sum_{d>0}S_d$为$S$的一个极大理想. 对于$\Shomo$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\PP^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的齐次多项式全体生成的理想.
 
-\begin{proposition}[{{\parencite[11, Exercise 2.1--2.4]{hartshorne_algebraic_1977}}}]\label{prop:projectivegaloisconnectionclosedradical}
+\begin{propositionnoproof}[{{\parencite[11, Exercise 2.2--2.3]{hartshorne_algebraic_1977}}}]\label{prop:projectivegaloisconnectionclosedradicalpre}
   设$Y, Y_1, Y_2$为$\PP^n$的子集, $T, T_1, T_2$为$\Shomo$的子集, $\ideal{a}$为$S$的齐次理想, 则
   \begin{enumerate}
     \item\label{enum:prop-projective-galois-connection-closed-radical-1} $Z(T)=Z((T))=Z(\sqrt{(T)})$;
@@ -52,8 +57,14 @@
     \begin{enumerate}
       \item $Z(\ideal{a})=\varnothing$;
       \item $\sqrt{\ideal{a}}$等于$S$或$S_+$;
-      \item 对于某个$d>0$有$\ideal{a}\supseteq S_d$;
+      \item 对于某个$d>0$有$\ideal{a}\supseteq S_d$.
     \end{enumerate}
+  \end{enumerate}
+\end{propositionnoproof}
+
+\begin{proposition}[{{\parencite[11, Exercise 2.1 and 2.4]{hartshorne_algebraic_1977}}}]\label{prop:projectivegaloisconnectionclosedradical}
+  设$Y$为$\PP^n$的子集, $\ideal{a}$为$S$的齐次理想, 则
+  \begin{enumerate}
     \item\label{enum:prop-projective-galois-connection-closed-radical-nullstellensatz} 如果$Z(\ideal{a})\neq\varnothing$, 则$I(Z(\ideal{a}))=\sqrt{a}$;
     \item\label{enum:prop-projective-galois-connection-closed-radical-closure} $Z(I(Y))=\overline{Y}$;
     \item\label{enum:prop-projective-galois-connection-closed-radical-8} 如果$\ideal{p}$是$S$的齐次素理想且$\ideal{p}\neq S_+$, 那么$Z(\ideal{p})$是$\PP^n$的不可约闭集;
@@ -126,7 +137,7 @@
 \end{proof}
 
 \begin{theorem}[{{\parencite[19, Proposition 3.5]{hartshorne_algebraic_1977}}}]\label{thm:categoryisoaffinevariety}
-  设$X$是任意的代数簇, $Y$是仿射代数簇, 则存在$X, Y$之间的态射全体到$A(Y), \OO (X)$之间的$k$-代数同态全体的双射,
+  设$X$是任意的代数簇, $Y$是仿射代数簇, 则存在$X, Y$之间的态射全体到$A(Y), \OO (X)$之间的$k$-代数同态全体的双射
   \begin{equation*}
     \alpha\colon \Hom (X, Y)\to\Hom (A(Y), \OO (X)),
   \end{equation*}
@@ -251,20 +262,6 @@
   \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证任意开覆盖都有有限子覆盖.
 
   \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$\sum_{j=1}^n f_ig_i = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
-\end{proof}
-
-如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的\parencite[13, Exercise 19]{atiyah_introduction_1969}. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的.
-
-\begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
-  拓扑空间$X$的不可约集全体在集合被包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
-\end{proposition}
-
-\begin{proof}
-  先利用Zorn引理证明有极大元. 考虑不可约集的全序子链$\{Y_\lambda\}$, 则断言它们的并$Y$一定是不可约集. 这是因为对于每两个$Y$的真闭子集$Z_1, Z_2$, 都可以找到$\lambda$使得$Z_1\cap Y_\lambda, Z_2\cap Y_\lambda$是$Y_\lambda$的真闭子集.
-
-  再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交.
-
-  最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
 \end{proof}
 
 \begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
@@ -400,7 +397,11 @@
   素谱运算$\Spec$定义了环范畴到局部赋环空间范畴之间的完全反变函子.
 \end{propositionnoproof}
 
-现在终于可以来定义概形这个概念了. 定义\emph{仿射概形}是局部赋环空间$(X, \OO_X)$, 并且同构于某个环的素谱. 定义\emph{概形}是局部赋环空间$(X, \OO_X)$, 并且满足每个点处都有邻域$U$使得子拓扑空间$U$以及限制层$\OO_X\restrict{U}$是仿射概形. 称$X$为\emph{底拓扑空间}, 通常用$X$表示整个概型的结构, 而用$\sp (X)$表示它的拓扑空间结构. 概形之间的态射即为局部赋环空间之间的态射.
+现在终于可以来定义概形这个概念了.
+
+\begin{definition}
+  定义\emph{仿射概形}是局部赋环空间$(X, \OO_X)$, 并且同构于某个环的素谱. 定义\emph{概形}是局部赋环空间$(X, \OO_X)$, 并且满足每个点处都有邻域$U$使得子拓扑空间$U$以及限制层$\OO_X\restrict{U}$是仿射概形. 称$X$为\emph{底拓扑空间}, 通常用$X$表示整个概型的结构, 而用$\sp (X)$表示它的拓扑空间结构. 概形之间的态射即为局部赋环空间之间的态射.
+\end{definition}
 
 如果存在概形态射$f\colon X\to S$, 则称$f$是$S$\emph{上的概形}, 特别地, 如果$S=\Spec (A)$, 也称$f$是$A$\emph{上的概型}. 如果概形之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}. $S$上的概形之间的态射自然被要求要与给定的到$S$的态射可交换.
 

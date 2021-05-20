@@ -45,9 +45,21 @@
 \begin{proof}
   先利用Zorn引理证明有极大元. 考虑不可约集的全序子链$\{Y_\lambda\}$, 则断言它们的并$Y$一定是不可约集. 这是因为对于每两个$Y$的真闭子集$Z_1, Z_2$, 都可以找到$\lambda$使得$Z_1\cap Y_\lambda, Z_2\cap Y_\lambda$是$Y_\lambda$的真闭子集.
 
-  再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交.
+  再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交. 最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
+\end{proof}
 
-  最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
+% \parencites[79, Exercise 7]{atiyah_introduction_1969}[5, Proposition 1.5]{hartshorne_algebraic_1977}
+\begin{proposition}[{{\parencite[5, Proposition 1.5]{hartshorne_algebraic_1977}}}]\label{prop:noetherirreduciblecomponent}
+  Noether拓扑空间$X$中的不可约分支仅有有限个.
+  %, 故Noether环$A$的极小素理想仅有有限个.
+\end{proposition}
+
+\begin{proof}
+  证明分为两步, 先证明$X$可以表示成有限个两两不同的不可约分支的并, 再证明这种表示是唯一的.
+
+  设$\Sigma$为$X$的不能写成有限个不可约闭子空间的并的闭集全体, 假设$\Sigma$非空. 因为$X$是Noether拓扑空间, 故$\Sigma$有极小元, 记为$Y$. $Y$不是不可约集, 于是可以写成两个真闭子集$Y', Y''$的并$Y=Y'\cup Y''$, 又$Y', Y''$可以写成有限个不可约闭子空间的并, 于是得到$Y$可以写成有限个不可约闭子空间的并, 矛盾. 于是$X$可以写成有限个不可约闭子空间的并, 取极大元并抛去相同的项即得$X$可以写成有限个两两不同的不可约分支的并.
+
+  如果$X$可以以两种方式写成两两不同的不可约分支的并, 即有$X=X_1\cup\dotsb\cup X_m$以及$X=X_1'\cup\dotsb\cup X_n'$, 我们将证明对于每个$j=1, \dotsc, m$都存在$k$使得$X_j=X_k'$. 由于$X_j=\bigcup_{k=1}^m(X_j\cap X_k')$并且$X_j$不可约, 存在$k$使得$X_j\subseteq X_k'$. 同理, 存在$l$使得$X_k'\subseteq X_l$, 因此$X_j\subseteq X_l$, 有极大性得$j=l$, 即$X_j=X_k'$.
 \end{proof}
 
 \begin{definition}
@@ -55,8 +67,7 @@
 \end{definition}
 
 \begin{remark}
-  这里仿射代数簇与拟仿射代数簇的定义依赖于到$\AF^n$的嵌入.%, 等到()% TODO: where
-  %定义了簇的同构之后我们才可以给出仿射簇与拟仿射簇的内蕴定义.
+  这里仿射代数簇与拟仿射代数簇的定义依赖于到$\AF^n$的嵌入.
 \end{remark}
 
 为了后续讨论的方便, 我们需要陈述一个事实, 证明将放在下一部分\thref{prop:affinegaloisconnectionclosedradical}中.

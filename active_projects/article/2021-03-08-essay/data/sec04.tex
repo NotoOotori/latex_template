@@ -2,15 +2,15 @@
 
 \section{代数与几何的联系}\label{sec:algebraandgeometry}
 
-% 不加说明的情况下$k$依然指代数闭域.
+% 前两节中$k$依然指代数闭域.
 
-\subsection{理想与代数集}
+\subsection{理想与代数集}\label{sec:ag-ideal}
 
 这一节我们将讨论仿射空间与射影空间的代数集与多项式环的理想的对应关系.
 
 先考虑仿射空间$\AF^n$的情况, 记$A\coloneq \kk [X_1, \dotsc, X_n]$. 对于多项式环$A$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\AF^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的多项式全体, 即$I(Y)\coloneq \{f\in A\vert f(x)=0, \forall x\in Y\}$, $I(Y)$一定是环$A$的理想, 并且如果$Y$为单点集, 则$I(Y)$为极大理想.
 
-\begin{propositionnoproof}[{{\parencite[3, Proposition 1.2; 4, Corollary 1.4]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradicalpre}
+\begin{propositionnoproof}[{{\parencite[3, Proposition 1.2]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradicalpre}
   设$Y, Y_1, Y_2$为$\AF^n$的子集, $T, T_1, T_2$为$A$的子集, $\ideal{a}$为$A$的理想, 则
   \begin{enumerate}
     \item\label{enum:prop-affine-galois-connection-closed-radical-1} $Z(T)=Z((T))=Z(\sqrt{(T)})$;
@@ -42,6 +42,16 @@
 
   \ref{enum:prop-affine-galois-connection-closed-radical-9} 设$fg\in I(Y)$, 则由\thref{prop:affinezariskitopology}\ref{enum:prop-affine-zariski-topology-2}知$Y=(Y\cap Z(f))\cup (Y\cap Z(g))$, 因为$Y$是不可约闭集, 所以$Y\subseteq Z(f)$或者$Y\subseteq Z(g)$, 故$f\in I(Y)$或者$g\in I(Y)$.
 \end{proof}
+
+回顾\ref{sec:algebra-primdecom}中我们证明了Noether环中准素分解的存在性以及伴随素理想和孤立准素理想的唯一性, 而\ref{sec:varietyaffine}中我们证明了Noether拓扑空间中的不可约分支存在有限并且唯一. 善于观察的读者可能已经发现\thref{thm:laskernoether}和\thref{prop:noetherirreduciblecomponent}的证明十分类似, 而现在通过环的理想与仿射空间的代数集之间的对应, 我们可以将两者联系起来. 首先我们可以直接证明Noether环的极小素理想只有有限个\parencite[79, Exercise 7]{atiyah_introduction_1969}, 接着我们通过一个例子考察它们之间更深刻的关系.
+
+\begin{example}\label{exm:primarydecom}
+  设$A=\kk [X, Y]$为$\AF^2$的仿射坐标环, 考虑理想$\ideal{a}=(XY, X^2)$, 则$Z(\ideal{a})$即为$Y$-轴. 而$\ideal{a}$有准素分解$\ideal{a}=(X)\cap (X^2, Y)$, 有伴随素理想$(X), (X, Y)$, 其中$Z(X)$为$Y$-轴, 而$Z(X, Y)$即为原点. 因为原点不是不可约分支, 而是嵌入在某一个不可约分支中, 因此我们称$(X, Y)$为嵌入从属素理想, 而称$(X)$为孤立从属素理想.
+\end{example}
+
+从这个例子中可以看出代数中的准素分解比几何中不可约分支的分解要细致一些, 在某种意义上是考察了几何中忽略的分解的``重数", 不过几何可以给代数理论赋予直观. 在代数中可能看不出准素分解的意义, 但是在几何中可以清晰的看出对理想进行准素分解即为对代数集进行不可约分解, 而几何中这样分解是十分自然的.
+
+\bigskip
 
 再考虑射影空间$\PP^n$的情形, 记$S\coloneq \kk [X_0, \dotsc, X_n]$, $S$的齐次多项式全体为$\Shomo$, 次数为$d$的齐次多项式全体为$S_d$, $S_+=\sum_{d>0}S_d$为$S$的一个极大理想. 对于$\Shomo$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\PP^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的齐次多项式全体生成的理想.
 
@@ -81,11 +91,11 @@
 % 函数环的刻画
 \subsection{函数环}\label{sec:ag-functionrings}
 
-这一节中我们要定义仿射空间代数集的仿射坐标环, 以及射影空间中代数集的射影坐标环, 并研究它们与代数簇上的整体函数环, 在某点的局部环以及函数域的关系.
+这一节中我们要定义仿射空间代数集的仿射坐标环, 以及射影空间中代数集的射影坐标环, 并研究它们与代数簇上的整体函数环, 在某点的局部环以及函数域的关系. 此外, 我们还将代数中的维数理论与几何中代数簇的维数联系了起来, 并研究交理论和维数理论之间的关系.
 
 如果$Y\subseteq \AF^n$是仿射空间中的代数集, 若将$A$中元素看作为$Y$上的函数, 则$A$在由函数相等定义的等价关系下的商环即为$A(Y)\coloneq A{\divslash}I(Y)$, 称为$Y$的\emph{仿射坐标环}. 如果$Y$是仿射代数簇, 则$A(Y)$也为有限生成整环.
 
-现在我们可以来仔细考察仿射代数簇上定义的环与放射坐标环之间的关系, 并将代数的分式环理论\ref{sec:algebra-localization}和维数理论\ref{sec:algebra-dimension}应用到几何的研究中.
+现在我们可以来仔细考察仿射代数簇上定义的环与仿射坐标环之间的关系, 并将代数的分式环理论\ref{sec:algebra-localization}和维数理论\ref{sec:algebra-dimension}应用到几何的研究中.
 
 \begin{theorem}[{{\parencite[6, Proposition 1.7; 17, Theorem 3.2]{hartshorne_algebraic_1977}}}]\label{thm:affinerings}
   设$Y\subseteq \AF^n$为仿射代数簇, 其仿射坐标环为$A(Y)$, 则
@@ -111,6 +121,10 @@
 
   最后, 利用\ref{enum:thm-affine-rings-3}和\ref{enum:thm-affine-rings-4}, 并将每个环都看成分式域$K(Y)$的子环, 我们有$A(Y)\subseteq\OO (Y)\subseteq \bigcap_{\ideal{m}} A(Y)_{\ideal{m}}$. 而\thref{prop:integraldomainlocalizationintersection}证明了$\bigcap_{\ideal{m}} A(Y)_{\ideal{m}}= A(Y)$, 因此我们有$A(Y)\cong \OO(Y)$, 这证明了\ref{enum:thm-affine-rings-2}.
 \end{proof}
+
+\thref{thm:affinerings}中我们已经体会到了维数理论在几何中的一些应用, 我们还可以进一步将\ref{sec:algebra-dimension}素理想与生成元的命题翻译到几何问题里面, 以体会其直观含义. \thref{prop:isolatedprimegenerator2height}告诉我们如果$\AF^n$中一个代数集可以写成$r$个超曲面的交, 那么它的不可约分支的维数一定不小于$n-r$\tjucite[8][Exercise 1.9]{hartshorne_algebraic_1977}; 而\thref{prop:isolatedprimeheight2generator}告诉我们$\AF^n$的每个$n-r$维代数簇都可以表示成$r$个超平面的交的不可约分支的形式, 这初步展现了交理论和维数理论之间的关系.
+
+\bigskip
 
 与仿射情形类似, 如果$Y\subseteq \PP^n$是射影空间中的代数集, 定义$Y$的\emph{射影坐标环}$S(Y)\coloneq S{\divslash}I(Y)$.
 
@@ -202,13 +216,11 @@
   最后证明范畴等价. 因为一个代数簇的有理函数域等于某个仿射开子集的有理函数域, 故为$k$的有限生成整环的分式域, 故为$k$的有限生成域扩张. 又不难由构造证明函子性, 故由\thref{thm:categoryequivalence}知还需要证明每个$k$的有限生成域扩张$K$都可以写成某个代数簇的分式域. 设$K=\kk (x_1, \dotsc, x_n)$, 则$B=\kk [x_1, \dotsc, x_n]$是有限生成整环, 为某个仿射代数簇的仿射坐标环, 并且$B$的分式域即为$K$, 故得证.
 \end{proof}
 
-\subsection{杂项}
+% \subsection{杂项}
 
 % 交理论 准素分解 维数理论
 % 准素分解 代数里面有重数 几何里面有直观
-% Zariski Vol I P241 Theorem 30, 31
-% AM P69 Exercise 5.16
-% Hartshorne Ex 2.6
+% Zariski Vol I P241 Theorem 30, 31 生成元与超平面之交的关系 Hartshorne Ex 1.9
 % Hartshorne Exm II.2.4 embedded points
 
 \subsection{概形}\label{sec:ag-affinescheme}
@@ -312,18 +324,6 @@
   反过来, 我们需要寻找一个反例, 这个反例参考\footfullcite{brandenburg_non-noetherian_2017}. 设$\kk$为一个域, 考虑域的正整数元多项式环的商环$A=\kk [X_1, X_2, \dotsc]{\divslash}(X_1, X_2^2, \dotsc)$. 因为理想升链$(X_1)\subsetneqq (X_1, X_2)\dotsb$不稳定, 因此$A$不是Noether环. 但是因为幂零根$\nil=\ideal{m}\coloneq (X_1, X_2, \dotsc)$为极大理想, 故由\thref{prop:primespecfunctor}\ref{enum:prop-prime-spec-functor-surjective}我们知道$\Spec (A)\cong\Spec (A{\divslash}\nil)=\Spec (\kk)$仅有一个点, 因此一定是Noether拓扑空间.
 \end{proof}
 
-\begin{proposition}[{{\parencites[79, Exercise 7]{atiyah_introduction_1969}[5, Proposition 1.5]{hartshorne_algebraic_1977}}}]
-  Noether拓扑空间$X$中的不可约分支仅有有限个, 故Noether环$A$的极小素理想仅有有限个.
-\end{proposition}
-
-\begin{proof}
-  证明分为两步, 先证明$X$可以表示成有限个两两不同的不可约分支的并, 再证明这种表示是唯一的.
-
-  设$\Sigma$为$X$的不能写成有限个不可约闭子空间的并的闭集全体, 假设$\Sigma$非空. 因为$X$是Noether拓扑空间, 故$\Sigma$有极小元, 记为$Y$. $Y$不是不可约集, 于是可以写成两个真闭子集$Y', Y''$的并$Y=Y'\cup Y''$, 又$Y', Y''$可以写成有限个不可约闭子空间的并, 于是得到$Y$可以写成有限个不可约闭子空间的并, 矛盾. 于是$X$可以写成有限个不可约闭子空间的并, 取极大元并抛去相同的项即得$X$可以写成有限个两两不同的不可约分支的并.
-
-  如果$X$可以以两种方式写成两两不同的不可约分支的并, 即有$X=X_1\cup\dotsb\cup X_m$以及$X=X_1'\cup\dotsb\cup X_n'$, 我们将证明对于每个$j=1, \dotsc, m$都存在$k$使得$X_j=X_k'$. 由于$X_j=\bigcup_{k=1}^m(X_j\cap X_k')$并且$X_j$不可约, 存在$k$使得$X_j\subseteq X_k'$. 同理, 存在$l$使得$X_k'\subseteq X_l$, 因此$X_j\subseteq X_l$, 有极大性得$j=l$, 即$X_j=X_k'$.
-\end{proof}
-
 \subsubsection{层}
 
 在\ref{sec:algebra-category}我们定义了拓扑空间$X$上集合取值的预层是函子$F\colon \cat{Top}(X)^{\op}\to\cat{Set}$. 为了更符合直觉, 这一节中我们考虑的都是Abel群取值的预层, 为函子$\sheaf{F}\colon \cat{Top}(X)^{\op}\to\cat{Ab}$, 注意$\sheaf{F}(\varnothing)=0$为平凡Abel群. 称$\sheaf{F}(U)$中的元素为$\sheaf{F}$在$U$上的\emph{截面}, 有时也记$\sheaf{F}(U)$为$\Gamma (U, \sheaf{F})$. 称映射$\rho_{UV}\coloneq \sheaf{F}(U\to V)$为\emph{限制映射}, 对于$s\in \sheaf{F}(U)$有时也记$\rho_{UV}(s)$为$s\restrict{V}$.
@@ -365,7 +365,7 @@
 
 我们还可以讨论底拓扑空间变化的情况下层结构的变化. 设$f\colon X\to Y$是拓扑空间之间的连续映射, 对于任意$X$上的层$\sheaf{F}$, 定义其在$Y$上的\emph{像层}$f_*\sheaf{F}$满足$(f_*\sheaf{F})(V)=\sheaf{F}(f^{-1}(V))$. 对于$Y$上的层$\sheaf{G}$, 定义其在$X$上的\emph{原像层}$f^{-1}\sheaf{G}$为预层$U\mapsto\dlim \sheaf{G}(V)$对应的层, 其中直极限是对所有的包含$f(U)$的开集$V\subseteq Y$来取的. 特别地, 对于$X$的子空间$Z$, 我们可以利用包含映射定义$X$上的层$\sheaf{G}$在$Z$上的\emph{限制}, 通常记为$\sheaf{F}\restrict{Z}$. 注意$\sheaf{F}\restrict{Z}$在每个点$P$处的茎即为$\sheaf{F}_P$.
 
-\subsubsection{仿射概形与概形}
+\subsubsection{概形}
 
 现在可以来重新考察环的素谱这一概念. \ref{sec:algebra-primespec}中我们已经定义了素谱上的Zariski拓扑, 现在我们再在其上定义环值的层结构, 使其具有类似于仿射簇的结构.
 

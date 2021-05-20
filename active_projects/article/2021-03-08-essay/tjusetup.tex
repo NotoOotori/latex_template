@@ -342,3 +342,5 @@
 \appto\backmatter{\@appendixfalse}
 \preto\section{\if@appendix\else\clearpage\fi}
 \makeatother
+
+\NewDocumentCommand\tjucite{O{} O{} m}{\parencite[#1, #2]{#3}}

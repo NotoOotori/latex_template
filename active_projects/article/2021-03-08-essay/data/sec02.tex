@@ -436,8 +436,7 @@
 
 \subsubsection{Noether环与准素分解}\label{sec:algebra-primdecom}
 
-这一小节中我们将进一步研究Noether环的性质. 前文提到我们的主要研究对象是域的有限生成整环, 我们将证明这些环都是Noether环, 并证明代数几何中非常重要的Hilbert零点定理. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在()% TODO: reference
-看到.
+这一小节中我们将进一步研究Noether环的性质. 前文提到我们的主要研究对象是域的有限生成整环, 我们将证明这些环都是Noether环, 并证明代数几何中非常重要的Hilbert零点定理. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在\ref{sec:ag-ideal}中看到.
 
 % \begin{proposition}[{{\parencite[74, Proposition 6.1; 75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noetherring}
 %     对于环$A$, 以下三个命题等价.
@@ -446,7 +445,7 @@
 %         \item\label{enum:prop-nr-max} 环$A$中的任何一族理想$\{\ideal{a}_\lambda\}$都有极大元, 即存在$\lambda_0$使得对于任意的$\lambda$有$\ideal{a}_\lambda\subseteq\ideal{a}_{\lambda_0}$成立.
 %         \item\label{enum:prop-nr-fnt} 环$A$中的每个理想都是有限生成的.
 %     \end{enumerate}
-% \end{proposition}% TODO: restate
+% \end{proposition}
 
 % \begin{proof}
 %     $\ref{enum:prop-nr-chain}\Rightarrow\ref{enum:prop-nr-max}$ 假设\ref{enum:prop-nr-chain}成立, 对有偏序结构的理想族$\{\ideal{a}_\lambda\}$运用Zorn引理(\thref{thm:maxideal})即可.
@@ -545,10 +544,9 @@
   再证明每个$\ideal{p}_j$都能写成$\sqrt{(\ideal{a}{:}(x))}$的形式. 由于准素分解的既约性, 所以对于每个$j$存在$x_j\notin\ideal{q}_j$, $x_j\in\bigcap_{k\neq j}\ideal{q}_k$, 而由上一步知$\sqrt{(\ideal{a}{:}(x_j))}=\bigcap_{x\notin\ideal{q}_k}\ideal{p}_k=\ideal{p}_j$. 遂得证.
 \end{proof}
 
-接着我们证明孤立伴随素理想的唯一性, 并利用局部化这一工具证明其对应的孤立准素理想的唯一性. 环$A$的可准素分解理想$\ideal{a}$的伴随素理想全体中的极小元被称为\emph{孤立伴随素理想}, 其余的伴随素理想被称为\emph{嵌入伴随素理想}. ``孤立"与``嵌入"的说法来源于代数几何, 我们将在(%TODO: isolated embedded
-)看到其几何意义, 下一个命题刻画了几何意义对应的代数意义.
+接着我们证明孤立伴随素理想的唯一性, 并利用局部化这一工具证明其对应的孤立准素理想的唯一性. 环$A$的可准素分解理想$\ideal{a}$的伴随素理想全体中的极小元被称为\emph{孤立伴随素理想}, 其余的伴随素理想被称为\emph{嵌入伴随素理想}. ``孤立"与``嵌入"的说法来源于代数几何, 我们将在\thref{exm:primarydecom}看到其几何意义, 下一个命题刻画了几何意义对应的代数意义.
 
-\begin{proposition}[{{\parencite[52, Proposition 4.6]{atiyah_introduction_1969}}}]
+\begin{proposition}[{{\parencite[52, Proposition 4.6]{atiyah_introduction_1969}}}]\label{prop:isolatedprime}
   设$\ideal{a}$为环$A$的可准素分解理想. 则每个包含$\ideal{a}$的素理想$\ideal{p}$都包含一个$\ideal{a}$的孤立伴随素理想. 因此$\ideal{a}$的孤立伴随素理想恰为包含$\ideal{a}$的素理想全体中的极小元.
 \end{proposition}
 
@@ -699,7 +697,7 @@
 设$\ideal{p}$为环$A$的素理想,  定义$\ideal{p}$的\emph{高度}$h(\ideal{p})$为满足存在素理想升链$\ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}$的$n$的上确界; 定义$\ideal{p}$的\emph{深度}$d(\ideal{p})$为满足存在素理想降链$\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A$的$d$的下确界. 根据定义, 考虑素理想$\ideal{p}\subsetneqq\ideal{q}$, 只要$h(\ideal{p})$与$h(\ideal{q})$中有一个有限, 那么有$h(\ideal{p})<h(\ideal{q})$, 只要$d(\ideal{p})$与$d(\ideal{q})$中有一个有限, 那么有$d(\ideal{p})>d(\ideal{q})$.
 
 \begin{proposition}[Noether正规化引理{{\parencite[69, Exercise 16]{atiyah_introduction_1969}}}]\label{prop:noethernormalization}
-  设非零环$A$为域$k$上的有限生成$k$-代数, 则存在$r$元子集$\{y_1, \dotsc, y_r\}\subseteq A$在$k$上代数无关, 并且$A$的每个元素都可以由$k[y_1, \dotsc, y_r]$整表示.% TODO: integral dependence
+  设非零环$A$为域$k$上的有限生成$k$-代数, 则存在$r$元子集$\{y_1, \dotsc, y_r\}\subseteq A$在$k$上代数无关, 并且$A$的每个元素都可以由$k[y_1, \dotsc, y_r]$整表示.
 \end{proposition}
 
 \begin{proof}
@@ -769,6 +767,24 @@
 % rewrite module and noetherian module
 % \end{proof}
 
+这一节的最后, 我们再来叙述一些与素理想的高度和生成元个数有关的命题, 它们有很浓的几何含义.
+
+\begin{propositionnoproof}[{{\tjucite[240][Theorem 30]{zariski_commutative_1958}}}]\label{prop:isolatedprimegenerator2height}
+  设$\ideal{a}$是$\kk$的有限生成整环$A$中可以由$r$个元素生成的真子理想, 则$\ideal{a}$的每个孤立伴随素理想都有$h(\ideal{p})\leq r$.
+\end{propositionnoproof}
+
+% Zariski Vol I P241 Theorem 30, 31 生成元与超平面之交的关系 Hartshorne Ex 1.9
+
+\begin{proposition}[{{\tjucite[242][Theorem 31]{zariski_commutative_1958}}}]\label{prop:isolatedprimeheight2generator}
+  设$\ideal{p}$为Noether环$A$中高度为$r$的素理想, 则存在$A$中可以由$r$个元素生成的理想$\ideal{a}$使得$\ideal{p}$为$\ideal{a}$的孤立伴随素理想.
+\end{proposition}
+
+\begin{proof}
+  我们将要归纳构造$r$个元素$a_1, \dotsc, a_r\in\ideal{p}$使得对于每个$j$, 都有$(a_1, \dotsc, a_j)$的每个孤立伴随素理想$\ideal{q}$都满足$h(\ideal{q})\geq j$. $j=0$的情况是平凡的, 假设我们已经对于某个$j<h$构造了$a_1, \dotsc, a_{j}$, 现在来构造$a_{j+1}$. 考虑孤立伴随素理想$\ideal{q}$中高度为$j$的素理想, 其中任意一个都不可能包含$\ideal{p}$, 因此由\thref{prop:prime}\ref{enum:prop-prime-avoid}知它们的并也不可能包含$\ideal{p}$. 取$a_{j+1}$为余集中的任意一个元素, 则由\thref{prop:isolatedprime}知$(a_1, \dotsc, a_{j+1})$的任意一个孤立伴随素理想$\ideal{o}$都包含$\ideal{q}$. 如果$h(\ideal{q})=j$则$\ideal{o}\supsetneqq \ideal{q}$, 因此$h(\ideal{o})\geq j+1$.
+\end{proof}
+
+% Zariski Vol I P241 Theorem 31
+
 在唯一分解整环中, 利用素元和不可约元的等价性, 可以得到高度为一的素理想一定是主理想, 并且可以由一个素元生成\parencite[174, Exercise 21.32]{altman_term_2017}. 我们将要在Noether整环的情况下推广这一结论, 并应用维数理论证明\thref{prop:heightoneideallemma}的逆命题成立.
 
 \begin{theorem}[Krull主理想定理{{\parencite[238, Theorem 29]{zariski_commutative_1958}}}]\label{thm:krullhauptidealsatz}
@@ -779,4 +795,3 @@
 % height and depth; Zariski Vol I 似乎只有定义啊 P240
 % Krull's Hauptidealsatz; Zariski Vol I followed by height and depth
 % minimal ideal theorem; Zariski Vol II
-

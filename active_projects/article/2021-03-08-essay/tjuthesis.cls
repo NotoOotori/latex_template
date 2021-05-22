@@ -244,8 +244,11 @@
 }
 
 
-% 英文字体
-\setmainfont{CMU Serif}%
+% 英文字体 % TODO: Load fonts explicitly
+\setmainfont{cmunrm.ttf}[%
+  BoldFont = cmunbx.ttf,
+  ItalicFont = cmunti.ttf,
+]
 
 
 \mathchardef\ordinarycolon\mathcode`\:
@@ -288,21 +291,33 @@
     BoldFont = \tju@font@name@xits@math@bf,
     StylisticSet = 8,
   ]
-  \setmathfont{XITS Math}[
+  \setmathfont{\tju@font@name@xits@math@rm}[
+    Extension = .otf,
+    BoldFont = \tju@font@name@xits@math@bf,
     StylisticSet = 1,
     range = {cal, bfcal},
   ]
-  \setmathfont{CMU Serif}[
-    range = \mathup/{num},
-    Script = Arabic,
+  \setmathfont{cmunrm.ttf}[
+    range = up/{num},
+    BoldFont = cmunbx.ttf,
   ]
-  \setmathfont{XITS Math}[
-    range = \mathit/{greek,Greek,latin,Latin},
+  \setmathfont{cmunbx.ttf}[
+    range = bfup/{num},
+    BoldFont = cmunbx.ttf,
   ]
-  \setmathfont{XITS Math}[
-    range = \mathup/{greek,Greek,latin,Latin},
+  \setmathfont{\tju@font@name@xits@math@rm}[
+    Extension = .otf,
+    BoldFont = \tju@font@name@xits@math@bf,
+    range = it/{greek,Greek,latin,Latin},
   ]
-  \setmathfont{XITS Math}[
+  \setmathfont{\tju@font@name@xits@math@rm}[
+    Extension = .otf,
+    BoldFont = \tju@font@name@xits@math@bf,
+    range = up/{greek,Greek,latin,Latin},
+  ]
+  \setmathfont{\tju@font@name@xits@math@rm}[
+    Extension = .otf,
+    BoldFont = \tju@font@name@xits@math@bf,
     range = {
       "2212,"002B,"003D,"0028,"0029,"005B,%
       "005D,"221A,"2211,"2248,"222B,"007C,"2026,"2202,"00D7,"0302,%
@@ -323,11 +338,11 @@
     ItalicFont   = KaiTi,
   ]%
   \setCJKsansfont{SimHei}[AutoFakeBold]%
-  \setCJKmonofont{FangSong}%
+  \setCJKmonofont{FangSong}[AutoFakeBold]%
   \newCJKfontfamily\zhsong{SimSun}[AutoFakeBold]%
   \newCJKfontfamily\zhhei{SimHei}[AutoFakeBold]%
-  \newCJKfontfamily\zhkai{KaiTi}%
-  \newCJKfontfamily\zhfs{FangSong}%
+  \newCJKfontfamily\zhkai{KaiTi}[AutoFakeBold]%
+  \newCJKfontfamily\zhfs{FangSong}[AutoFakeBold]%
 }
 \newcommand\tju@load@cjk@font{%
   \@nameuse{tju@load@cjk@font@\tju@cjk@font}%
@@ -400,6 +415,12 @@
   \fancyfoot[RO]{\xiaosi 共\quad \pageref{LastPage}\quad 页\quad 第\quad \thepage \quad 页} % LE,RO if twoside
 }
 \pagestyle{plain}
+
+
+% 章节标题
+\ctexset{
+  subsubsection/name = {\hspace{2em}},
+}
 
 
 % hyperref 宏包在最后调用
@@ -650,7 +671,68 @@
      \ifdefvoid{#3}{}{\bibnamedelimd\mkbibnameprefix{#3}\isdot}%
      \ifdefvoid{#4}{}{\addcomma\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}%%后缀前加逗号
 }
-% TODO: 如果是旧版biblatex-gb7714-2015 那么填上处理翻译为外文文献的处理代码
+
+% 如果是旧版biblatex-gb7714-2015 那么添上处理翻译为外文文献的处理代码
+\def\tju@parse@gbt@date#1 #2{#1}
+\def\dateofgbtstyle{\expandafter\tju@parse@gbt@date\versionofgbtstyle}
+\ifnum\pdfstrcmp{\dateofgbtstyle}{2021/04/03}<0%
+  \DefineBibliographyStrings{english}{
+      bytranslator= {Trans. by},
+      }
+
+  \renewbibmacro*{name:andothers}{\bibauthorfont%
+    \ifboolexpr{
+      test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+      and
+      test \ifmorenames
+    }{\ifnumgreater{\value{liststop}}{1}%
+        {\finalandcomma}%
+        {}%
+  \printdelim{andothersdelim}\printdelim{strandothersdelim}%
+  }{%当是译者的时候需要特殊处理：从7.2节看等，译前面加逗号，但从示例看等和译同时出现时，译前的逗号没有，比如：
+  %袁训来, 陈哲, 肖书海, 等.
+  %胡泳, 范海燕, 译.
+  %潘惠霞, 魏婧, 杨艳, 等译.
+  \ifcurrentname{translator}{\iffieldequalstr{usere}{chinese}{\addcomma\addthinspace}{}}{}%为了实现上述第二个示例情况做的处理
+  }}
+
+  \renewbibmacro*{bytranslator+others}{\bibauthorfont%
+    \ifnameundef{translator}
+      {}
+      {\iffieldequalstr{usere}{chinese}{}{\usebibmacro{bytranslator+othersstrg}}
+      %\setunit{\addspace}%
+      \printnames[bytranslator]{translator}%
+      \clearname{translator}%
+      %从macro*{bytranslator+othersstrg}%中可以看到当地化字符串格式的引用前的代码处理
+      %比如生成cotranslator等用于调用cotranslator所代表的当地化字符串
+      \iffieldequalstr{usere}{chinese}{\usebibmacro{bytranslator+othersstrg}}{}%“译”的位置换到下面来，即放到译者后面。
+      %\setunit{\addspace}%
+      \newunit}%
+    \usebibmacro{withothers}}
+
+
+  \newbibmacro*{bytranslator+othersstrg}{%
+    \def\abx@tempa{bytranslator}%
+    \ifnamesequal{translator}{commentator}
+      {\appto\abx@tempa{co}%
+      \clearname{commentator}}
+      {\ifnamesequal{translator}{annotator}
+        {\appto\abx@tempa{an}%
+          \clearname{annotator}}
+        {}}%
+    \ifnamesequal{translator}{introduction}
+      {\appto\abx@tempa{in}%
+      \clearname{introduction}}
+      {\ifnamesequal{translator}{foreword}
+        {\appto\abx@tempa{fo}%
+          \clearname{foreword}}
+        {\ifnamesequal{translator}{afterword}
+            {\appto\abx@tempa{af}%
+            \clearname{afterword}}
+            {}}}%
+  \iffieldequalstr{usere}{chinese}{\printtext{译}}
+    {\bibstring{\abx@tempa}}}
+\fi
 
 %% 参考文献表
 % \xpretocmd\printbibliography{\begingroup\linespread{1.3}\sloppy}{}{}

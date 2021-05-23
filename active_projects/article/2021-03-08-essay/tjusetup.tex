@@ -221,6 +221,8 @@
 \newcommand*{\op}{\symup{op}}
 \newcommand*{\Cone}{\symup{Cone}}
 \newcommand*{\dlim}{\lim}% TODO: direct limit
+\newcommand*{\id}{\symup{id}}
+\newcommand*{\inv}{\symup{inv}}
 % \newcommand*{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}% defined by unicode-math
 % \newcommand*{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
 \newcommand*{\depend}{\prec}
@@ -228,6 +230,8 @@
 \newcommand*{\SAa}{\overline{S}^{-1}(A{\divslash}\ideal{a})}
 \newcommand*{\SASa}{S^{-1}A{\divslash}S^{-1}\ideal{a}}
 \newcommand*{\Shomo}{S^h}
+
+\renewcommand{\emph}[1]{{\itshape\bfseries #1}}
 
 %% functor diagram
 \makeatletter
@@ -295,7 +299,8 @@
 \newif\if@appendix
 \appto\appendix{\@appendixtrue}
 \appto\backmatter{\@appendixfalse}
-\preto\section{\if@appendix\else\clearpage\fi}
+% \preto\section{\if@appendix\else\clearpage\fi}
+\preto\section{\clearpage}
 \makeatother
 
 \NewDocumentCommand\tjucite{O{} O{} m}{\parencite[#1, #2]{#3}}

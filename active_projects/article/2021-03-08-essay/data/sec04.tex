@@ -55,8 +55,6 @@
   设$A=\kk [X, Y]$为$\AF^2$的仿射坐标环, 考虑理想$\ideal{a}=(XY, X^2)$, 则$Z(\ideal{a})$即为$Y$-轴. 而$\ideal{a}$有准素分解$\ideal{a}=(X)\cap (X^2, Y)$, 有伴随素理想$(X), (X, Y)$, 其中$Z(X)$为$Y$-轴, 而$Z(X, Y)$即为原点. 因为原点不是不可约分支, 而是嵌入在某一个不可约分支中, 因此我们称$(X, Y)$为嵌入从属素理想, 而称$(X)$为孤立从属素理想.
 \end{example}
 
-% TODO: 概形里面这个例子也可以讲
-
 从这个例子中可以看出代数中的准素分解比几何中不可约分支的分解要细致一些, 在某种意义上是考察了几何中忽略的分解的``重数", 不过几何可以给代数理论赋予直观. 在代数中可能看不出准素分解的意义, 但是在几何中可以清晰的看出对理想进行准素分解即为对代数集进行不可约分解, 而几何中这样分解是十分自然的.
 
 \bigskip
@@ -155,7 +153,7 @@
 
   类似地, 由\thref{thm:affinerings}\ref{enum:thm-affine-rings-5}可得$K(Y)\cong K(Y_j)$同构于$A(Y_j)$的分式域, 再由$\varphi_j^*$得同构于$S(Y)_{(0)}$. 这证明了\ref{enum:thm-projective-rings-4}.
 
-  最后, 设$f\in\OO (Y)$是整体的正则函数, 于是对于每个$j$都有$f$在$Y_j$上, 于是根据\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}可以认为$f\in A(Y_j)$, 又由$\varphi_j^*$知$A(Y_j)\cong S(Y)_{(X_j)}$, 于是$f$可以写成$g_j{\divslash}X_j^{N_j}$的形式, 其中$g_j\in S(Y)$为$N_j$次的齐次多项式. 因为$S(Y)$是整环, 所以可以将$\OO (Y), K(Y), S(Y)$都看作$S(Y)$的分式域$L$的子环, 于是$X_j^{N_j}f\in S(Y)_{N_j}$, 其中$S(Y)_{N_j}$表示齐次环$S(Y)$中次数为$N_j$的齐次元全体. 取$N\geq \sum N_j$, 则$S(Y)_N$作为$\kk$-线性空间可以由次数为$N$的由$X_0, \dotsc, X_n$构成的单项式生成, 根据鸽笼原理知$f\cdot S(Y)_N\subseteq S(Y)_N$, 迭代即得对于每个$q>0$都有$f^q\cdot S(Y)_N$. 特别地, 取$X_j\notin I(Y)$, 则有对于每个$q>0$都有$X_0^Nf^q\in S(Y)$. 于是子环$S(Y)[f]\subseteq L$包含于$X_0^{-N}S(Y)$中, 而$X_0^{-N}S(Y)$是有限生成$S(Y)$-模, 又因为$S(Y)$是Noether环, 所以由\thref{prop:fgmoduleovernoetherring}和\thref{prop:noethermodule}得$S(Y)[f]$是有限生成$S(Y)$-模, 于是由\thref{prop:integraldependence}知$f$为$S(Y)$的整元, 又因为$f$的次数为零, 故存在$x_1, \dotsc, x_m\in S(Y)\cong \kk$使得$f^m+x_1f^{m-1}+\dotsb +x_m=0$成立. 于是$f$是$\kk$的代数元, 又$\kk$是代数闭域, 于是有$f\in \kk$, 这证明了\ref{enum:thm-projective-rings-1}.
+  最后, 设$f\in\OO (Y)$是整体的正则函数, 则对于每个$j$都有$f$在$Y_j$上, 于是根据\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}可以认为$f\in A(Y_j)$, 又由$\varphi_j^*$知$A(Y_j)\cong S(Y)_{(X_j)}$, 于是$f$可以写成$g_j{\divslash}X_j^{N_j}$的形式, 其中$g_j\in S(Y)$为$N_j$次的齐次多项式. 因为$S(Y)$是整环, 所以可以将$\OO (Y), K(Y), S(Y)$都看作$S(Y)$的分式域$L$的子环, 于是$X_j^{N_j}f\in S(Y)_{N_j}$, 其中$S(Y)_{N_j}$表示齐次环$S(Y)$中次数为$N_j$的齐次元全体. 取$N\geq \sum N_j$, 则$S(Y)_N$作为$\kk$-线性空间可以由次数为$N$的由$X_0, \dotsc, X_n$构成的单项式生成, 根据鸽笼原理知$f\cdot S(Y)_N\subseteq S(Y)_N$, 迭代即得对于每个$q>0$都有$f^q\cdot S(Y)_N$. 特别地, 取$X_j\notin I(Y)$, 则有对于每个$q>0$都有$X_0^Nf^q\in S(Y)$. 于是子环$S(Y)[f]\subseteq L$包含于$X_0^{-N}S(Y)$中, 而$X_0^{-N}S(Y)$是有限生成$S(Y)$-模, 又因为$S(Y)$是Noether环, 所以由\thref{prop:fgmoduleovernoetherring}和\thref{prop:noethermodule}得$S(Y)[f]$是有限生成$S(Y)$-模, 于是由\thref{prop:integraldependence}知$f$为$S(Y)$的整元, 又因为$f$的次数为零, 故存在$x_1, \dotsc, x_m\in S(Y)\cong \kk$使得$f^m+x_1f^{m-1}+\dotsb +x_m=0$成立. 于是$f$是$\kk$的代数元, 又$\kk$是代数闭域, 于是有$f\in \kk$, 这证明了\ref{enum:thm-projective-rings-1}.
 \end{proof}
 
 \begin{theorem}[{{\parencite[19, Proposition 3.5]{hartshorne_algebraic_1977}}}]\label{thm:categoryisoaffinevariety}
@@ -242,7 +240,7 @@
 设$X$为环$A$的素理想全体构成的集合. 对每个$A$的子集$E$, 记$V(E)$为$A$中包含$E$的素理想全体, 是$X$的子集.
 
 \begin{proposition}[{{\parencite[12, Exercise 15]{atiyah_introduction_1969}}}]\label{prop:primespecclosedset}
-  上述定义的算子$V$有如下性质,
+  设$A$为环, 则上述定义的算子$V$有如下性质,
   \begin{enumerate}
     \item\label{enum:prop-prime-spec-closed-set-1} 如果$\ideal{a}$是由$A$的子集$E$生成的理想, 则$V(E)=V(\ideal{a})=V(\sqrt{\ideal{a}})$;
     \item\label{enum:prop-prime-spec-closed-set-2} 如果$\sqrt{\ideal{a}}\neq\sqrt{\ideal{b}}$, 则$V(\ideal{a})\neq V(\ideal{b})$;
@@ -262,7 +260,7 @@
 素谱$\Spec (A)$有一组很特殊的拓扑基, 我们现在来介绍.
 
 \begin{proposition}[{{\parencite[12, Exercise 17]{atiyah_introduction_1969}}}]\label{prop:primespecbaseopenset}
-  对于$f\in A$, 记$X_f$为闭集$V((f))$的余集. 则这些$X_f$构成$\Spec (A)$的一组拓扑基, 并且满足
+  对于环$A$的元素$f\in A$, 记$X_f$为闭集$V((f))$的余集. 则这些$X_f$构成$\Spec (A)$的一组拓扑基, 并且满足
   \begin{enumerate}
     \item $X_f\cap X_g=X_{fg}$;
     \item\label{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$是幂零元;
@@ -285,7 +283,7 @@
 \end{proof}
 
 \begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
-  素谱$X=\Spec (A)$的不可约闭集全体恰为素理想$\ideal{p}$对应的闭集$V(\ideal{p})$全体, 由此建立了$X$的不可约闭集全体到$A$的素理想全体的反序双射. 于是$X$不可约分支全体恰为极小素理想$\ideal{p}$所对应的闭集$V(\ideal{p})$全体.
+  设$A$为环, 则素谱$X=\Spec (A)$的不可约闭集全体恰为每个素理想$\ideal{p}$对应的闭集$V(\ideal{p})$所构成的集合, 这建立了$X$的不可约闭集全体到$A$的素理想全体的反序双射. 于是$X$不可约分支全体恰为极小素理想$\ideal{p}$所对应的闭集$V(\ideal{p})$全体.
 \end{proposition}
 
 \begin{proof}
@@ -411,7 +409,13 @@
   定义\emph{仿射概形}是局部赋环空间$(X, \OO_X)$, 并且同构于某个环的素谱. 定义\emph{概形}是局部赋环空间$(X, \OO_X)$, 并且满足每个点处都有邻域$U$使得子拓扑空间$U$以及限制层$\OO_X\restrict{U}$是仿射概形. 称$X$为\emph{底拓扑空间}, 通常用$X$表示整个概型的结构, 而用$\sp (X)$表示它的拓扑空间结构. 概形之间的态射即为局部赋环空间之间的态射.
 \end{definition}
 
-如果存在概形态射$f\colon X\to S$, 则称$f$是$S$\emph{上的概形}, 特别地, 如果$S=\Spec (A)$, 也称$f$是$A$\emph{上的概型}. 如果概形之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}. $S$上的概形之间的态射自然被要求要与给定的到$S$的态射可交换.
+我们通过一个简单的例子来一瞥仿射概形这一概念相比仿射代数簇的推广.
+
+\begin{example}
+  设$A=\kk [X, Y]$, 设理想$\ideal{a}=(XY, X^2)$, 则$\Spec (A{\divslash}\ideal{a})$给出了$Y$轴上的闭子概形结构, 并且局部环仅在原点处有幂零元, 因为其同构于$\kk [Y-y, (Y-y)^{-1}]{\divslash}(Y)^2$, 其中$y$为该点在$Y$轴的坐标, 称原点为这个子概形的\emph{嵌入点}. 回顾\thref{exm:primarydecom}, 首先我们发现闭子概形里面能得到准素分解能得到的全部信息, 而仿射代数簇中得不到嵌入伴随素理想的信息, 并且闭子概形的局部环可以有幂零元, 而代数簇的局部环一定是整环, 在这种意义上概形的概念也是推广了代数簇的概念.
+\end{example}
+
+如果存在概形态射$f\colon X\to S$, 则称$f$是$S$\emph{上的概形}, 特别地, 如果$S=\Spec (A)$, 也称$f$是$A$\emph{上的概型}. $S$上的概形之间的\emph{态射}自然被要求要与给定的到$S$的态射可交换. 如果概形$X, Y$之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}.
 
 我们可以证明, 对于代数闭域$\kk$, 存在从$\kk$上的簇范畴到$\kk$上的概形范畴的完全忠实函子$t$, 并且对于每个簇$V$, 它的拓扑空间结构同胚于$\sp (t(V))$的闭点全体所构成的子空间, 并且$V$的正则函数层可以通过这个同胚由$t(V)$的结构层的限制所得到\parencite[78, Proposition 2.6]{hartshorne_algebraic_1977}.
 

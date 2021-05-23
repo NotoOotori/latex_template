@@ -167,7 +167,7 @@
 \end{proposition}
 
 \begin{proof}
-  只需要证明闭集的原像是闭集. 因为$\AF^1$的非空真闭子集恰为有限子集, 因此只需要证明每个单点集$\{x\}$的原像$f^{-1}(x)=\{P\in Y\vert f(P)=x\}$是闭集即可. 利用\thref{prop:closedsetlocal}, 我们只需要证明在局部上是闭集就可以了. 考虑使得$f$能表示成两个多项式$g, h$的商的开集$U$, 则$f^{-1}(x)\cap U=\{P\in U\vert g(P)/h(P)=x\}$, 故$f^{-1}(x)\cap U=Z(g-xh)\cap U$为$U$中的闭集, 故得证.
+  只需要证明闭集的原像是闭集. 因为$\AF^1$的非空真闭子集恰为有限子集, 因此只需要证明每个单点集$\{x\}$的原像$f^{-1}(x)=\{P\in Y\vert f(P)=x\}$是闭集即可. 利用\thref{prop:closedsetlocal}, 我们只需要证明在局部上是闭集就可以了. 考虑使得$f$能表示成两个多项式$g, h$的商的开集$U$, 则$f^{-1}(x)\cap U=\{P\in U\vert g(P){\divslash}h(P)=x\}$, 故$f^{-1}(x)\cap U=Z(g-xh)\cap U$为$U$中的闭集, 故得证.
 \end{proof}
 
 \begin{definition}
@@ -201,8 +201,9 @@
 有了代数簇同构的定义, 我们可以重新考察之前定义过的代数簇之间的Zariski拓扑结构的同胚, 研究它们是不是代数簇结构的同构, 答案是肯定的.
 
 \begin{proposition}[{{\parencite[18, Proposition 3.3]{hartshorne_algebraic_1977}}}]\label{prop:projectiveopencoverisomorphism}
-  设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 则\thref{prop:projspaceopencoverhomeo}中定义的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的(拟)射影代数簇, 则\thref{prop:projvarietyopencoverhomeo}中$\varphi_j$诱导的从$Y\cap U_j$到(拟)仿射代数簇的同胚也是代数簇的同构.
+  设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 即$U_j=\PP^n - Z(X_j)$, 其中$X_j\in S\coloneq \kk [X_0, \dotsc, X_n]$. 则把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j,\linebreak[0] \dotsc, x_{j-1}{\divslash}x_j,\linebreak[0] x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的(拟)射影代数簇, 则$\varphi_j$诱导的从$Y\cap U_j$到(拟)仿射代数簇的同胚也是代数簇的同构.
 \end{proposition}
+% 设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 则\thref{prop:projspaceopencoverhomeo}中定义的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的(拟)射影代数簇, 则\thref{prop:projvarietyopencoverhomeo}中$\varphi_j$诱导的从$Y\cap U_j$到(拟)仿射代数簇的同胚也是代数簇的同构.
 
 \begin{proof}
   对于第一个命题, 利用\thref{prop:projspaceopencoverhomeo}的证明中所定义的$\alpha$和$\beta$, 我们可以建立$U_j$和$\AF^n$由$\varphi_j$诱导的在每个局部的正则函数的对应, 因此它们作为代数簇是同构的. 第二个命题同理.
@@ -239,7 +240,7 @@
 如果有了态射的刚性, 那么在有理映射的定义中, 可以将``$\varphi_U, \varphi_V$在非空开集$U\cap V$的某个非空开子集上的取值相同"改为``$\varphi_U, \varphi_V$在非空开集$U\cap V$上的取值相同", 定义的仍是等价关系. 为此我们来进一步研究代数簇之间态射的性质.
 
 \begin{definition}
-  设$r, s$为正整数, $N=(r+1)(s+1)-1$. 定义映射$\psi\colon \PP^r\times\PP^s\to\PP^N$, 将$((x_0, \dotsc, x_r), (y_0, \dotsc, y_s))$按照字典序映到$(\dotsc, x_jy_k, \dotsc)$, 则$\psi$为良定单射, 称为\emph{Segre嵌入}.
+  设$r, s$为正整数, $N=(r+1)(s+1)-1$. 定义映射$\psi\colon \PP^r\times\PP^s\to\PP^N$, 将$((x_0, \dotsc, x_r), (y_0, \dotsc,\linebreak[0] y_s))$按照字典序映到$(\dotsc, x_jy_k, \dotsc)$, 则$\psi$为良定单射, 称为\emph{Segre嵌入}.
 \end{definition}
 
 \begin{proposition}[{{\parencite[13, Exercise 2.13]{hartshorne_algebraic_1977}}}]\label{prop:segreembedding}

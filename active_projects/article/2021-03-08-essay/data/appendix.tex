@@ -2,6 +2,8 @@
 
 \section{前置知识}
 
+这一节中我们简要列举一些读者应该了解但可能不是很熟悉的命题, 就不给出证明了.
+
 \subsection{基数}
 
 \begin{proposition}[{{\parencite[4]{jacobson_basic_1989}}}]\label{prop:cardcartcor}
@@ -30,11 +32,11 @@
 
 \subsection{Cayley-Hamilton定理}
 
-如果这一节有证明的话会按照\footfullcite{__trivia_2020}的思路来证明交换幺环上的Cayley-Hamilton定理. 不然的话就告诉一下可以用伴随矩阵来证明\parencite[369, Exercise 6.9]{aluffi_algebra_2009}.
-
 \begin{theorem}[Cayley-Hamilton定理]\label{thm:CayleyHamilton}
   设$T$为环$A$上的$n\times n$矩阵, $P_T(X)\coloneq \det (XI-A)\in A[X]$为$T$的特征多项式, 则$P_T(T)=0$为零矩阵.
 \end{theorem}
+
+一种标准的证法是利用伴随矩阵\parencite[369, Exercise 6.9]{aluffi_algebra_2009}, 也可以利用可对角化矩阵是Zariski稠密的这一事实, 并利用首元的存在性最终转化到域的情况来证明\footfullcite{__trivia_2020}.
 
 \section{范畴论}\label{sec:algebra-category}
 
@@ -44,12 +46,12 @@
 
 \subsection{范畴与函子}
 
-一个\emph{范畴}$\cat{C}$包含如下信息.
+一个\emph{范畴} $\cat{C}$包含如下信息.
 \begin{enumerate}
   \item 有一个类, 其元素称为\emph{对象}, 通常用字母$X, Y, Z, \dotsc$或者小写的$c, c', x, y, \dotsc$来表示;
   \item 对于每一组对象$X, Y$, 都有一个类, 其元素称为从$X$到$Y$的\emph{态射}, 一般用小写字母$f, g, h, \dotsc$来表示, 并用$f\colon X\to Y$来表示$f$是从$X$到$Y$的态射. 如果$f\colon X\to Y$, 则称$X$是$f$的\emph{定义域}, $Y$是$f$的\emph{值域};
-  \item 对于每个对象$X$, 有一个特定的\emph{恒同态射}$1_X\colon X\to X$;
-  \item 对于每一组对象$X, Y, Z$以及态射$f\colon X\to Y, g\colon Y\to Z$, 有\emph{复合态射}$gf\colon X\to Z$, 并且满足
+  \item 对于每个对象$X$, 有一个特定的\emph{恒同态射} $1_X\colon X\to X$;
+  \item 对于每一组对象$X, Y, Z$以及态射$f\colon X\to Y, g\colon Y\to Z$, 有\emph{复合态射} $gf\colon X\to Z$, 并且满足
   \begin{enumerate}
     \item 对于每个态射$f\colon X\to Y$, 都有复合态射$f1_{X}=1_{Y}f=f$;
     \item 对于每三个态射$f\colon X\to Y, g\colon Y\to Z, h\colon Z\to W$都有$(hg)f=h(gf)$, 故可记为$hgf$;
@@ -57,7 +59,7 @@
   即态射的``复合运算"满足结合律并有双侧单位元.
 \end{enumerate}
 
-如果范畴$\cat{D}$的对象类和每个态射类都是范畴$\cat{C}$相应的类的子类, 则称$\cat{D}$为$\cat{C}$的\emph{子范畴}.
+如果范畴$\cat{D} $的对象类和每个态射类都是范畴$\cat{C}$相应的类的子类, 则称$\cat{D}$为$\cat{C}$的\emph{子范畴}.
 
 如果范畴$\cat{C}$中的态射全体构成集合, 则称$\cat{C}$是\emph{小范畴}. 如果范畴$\cat{C}$的任一组对象之间的态射类都是集合, 则称$\cat{C}$是\emph{局部小范畴}. 在这篇文章中我们关心的范畴都是局部小的, 不过在每处我们依然会写上这个范畴是局部小的的这一条件. 在局部小的范畴$\cat{C}$中, 我们记一组对象$X, Y$之间的态射全体所构成的集合为$\cat{C} (X, Y)$.
 
@@ -75,13 +77,13 @@
 \begin{example}
   还有一些我们熟悉的数学对象也可以被看成范畴, 只不过其中的态射不是通常的集合之间的映射.
   \begin{enumerate}
-    \item 偏序集$(\cat{P}, \leq)$可以被看成范畴. $\emph{P}$的元素是范畴的对象, 并且对象$x, y$之间存在唯一的态射$x\to y$仅当$x\leq y$, 否则$x, y$之间不存在态射. 特别地, 拓扑空间$X$的开集全体关于集合被包含关系可以被看成范畴, 记作$\cat{Top}(X)$.
+    \item 偏序集$(\cat{P}, \leq)$可以被看成范畴. $\cat{P}$的元素是范畴的对象, 并且对象$x, y$之间存在唯一的态射$x\to y$仅当$x\leq y$, 否则$x, y$之间不存在态射. 特别地, 拓扑空间$X$的开集全体关于集合被包含关系可以被看成范畴, 记作$\cat{Top}(X)$.
   \end{enumerate}
 \end{example}
 
 在数学中, 两个对象的同构几乎总是一个非常核心的概念, 而范畴论中给了一个统一的解答. 如果范畴$\cat{C}$中两个对象$X, Y$之间的态射$f\colon X\to Y$满足存在$g\colon Y\to X$, 使得$fg=1_Y, gf=1_X$, 则称$f$是\emph{同构态射}. 对于两个对象$X, Y$, 如果存在$X$到$Y$的同构态射, 则称$X$和$Y$是\emph{同构的}, 记作$X\cong Y$.
 
-对于一个范畴$\cat{C}$, 我们可以把它的所有态射的定义域与值域交换, 从而得到它的对偶范畴$\cat{C}^{\op}$. 严格来说, 范畴$\cat{C}$的\emph{对偶范畴}$\cat{C}^{\op}$包含如下信息.
+对于一个范畴$\cat{C}$, 我们可以把它的所有态射的定义域与值域交换, 从而得到它的对偶范畴$\cat{C}^{\op}$. 严格来说, 范畴$\cat{C}$的\emph{对偶范畴} $\cat{C}^{\op}$包含如下信息.
 \begin{enumerate}
   \item 有与$\cat{C}$相同的对象类;
   \item 对于每个$\cat{C}$中的态射$f\colon Y\to X$, 有一个态射$f^{\op}\colon X\to Y$;
@@ -150,7 +152,7 @@
 \end{example}
 
 % 自然变换
-我们现在来介绍自然变换这个概念. 给定范畴$\cat{C}, \cat{D}$以及函子$F, G\colon \cat{C}\rightrightarrows\cat{D}$, 一个从$F$到$G$的\emph{自然变换}$\alpha\colon F\Rightarrow G$含有如下信息.
+我们现在来介绍自然变换这个概念. 给定范畴$\cat{C}, \cat{D}$以及函子$F, G\colon \cat{C}\rightrightarrows\cat{D}$, 一个从$F$到$G$的\emph{自然变换} $\alpha\colon F\Rightarrow G$含有如下信息.
 \begin{enumerate}
   \item 对于每个对象$c\in\cat{C}$, 有一个态射$\alpha_c\colon Fc\to Gc$, 被称为这个自然变换的\emph{分量}, 满足对于任意的态射$f\colon c\to c'\in\cat{C}$, 下图交换,
   \begin{equation}
@@ -158,7 +160,7 @@
       Fc \arrow[r, "\alpha_c"{above}] \arrow[d, "Ff"{left}] & Gc \arrow[d, "Gf"{right}] \\
       Fc' \arrow[r, "\alpha_{c'}"{below}] & Gc'
     \end{tikzcd}
-    \end{equation}
+  \end{equation}
   即复合态射$(Gf)\alpha_c=\alpha_{c'}(Ff)$相等.
 \end{enumerate}
 如果每个$\alpha_c$都是同构态射, 那么称$\alpha$是\emph{自然同构}, 记作$\alpha\colon F\cong G$.
@@ -167,7 +169,7 @@
 
 % 画一下自然同态的边缘信息图
 
-为了后续内容的需要, 我们介绍一下函子范畴的定义. 对于固定的范畴$\cat{C}$和$\cat{D}$, 有\emph{函子范畴}$\cat{D}^{\cat{C}}$, 其中的对象是函子$\cat{C}\to\cat{D}$, 态射即为函子之间的自然变换. 给定$F\colon \cat{C}\to \cat{D}$, 恒同态射$1_F$即为恒同自然变换$1_F\colon F\Rightarrow F$满足每个分量$(1_F)_c$都是恒同态射$1_{F_c}$. 如果$\alpha\colon F\Rightarrow G$和$\beta\colon G\Rightarrow H$是平行的函子$F, G, H\colon \cat{C}\to \cat{D}$之间的自然变换, 则定义它们的复合$\beta\alpha\colon F\Rightarrow$的分量$(\beta\alpha)_c\coloneq \beta_c\alpha_c$, 下图的交换性保证了$\beta\alpha$确实定义了一个自然变换\parencite[44, Lemma 1.7.1]{riehl_category_2017}.
+为了后续内容的需要, 我们介绍一下函子范畴的定义. 对于固定的范畴$\cat{C}$和$\cat{D}$, 有\emph{函子范畴} $\cat{D}^{\cat{C}}$, 其中的对象是函子$\cat{C}\to\cat{D}$, 态射即为函子之间的自然变换. 给定$F\colon \cat{C}\to \cat{D}$, 恒同态射$1_F$即为恒同自然变换$1_F\colon F\Rightarrow F$满足每个分量$(1_F)_c$都是恒同态射$1_{F_c}$. 如果$\alpha\colon F\Rightarrow G$和$\beta\colon G\Rightarrow H$是平行的函子$F, G, H\colon \cat{C}\to \cat{D}$之间的自然变换, 则定义它们的复合$\beta\alpha\colon F\Rightarrow$的分量$(\beta\alpha)_c\coloneq \beta_c\alpha_c$, 下图的交换性保证了$\beta\alpha$确实定义了一个自然变换\parencite[44, Lemma 1.7.1]{riehl_category_2017}.
 \begin{equation*}
   \begin{tikzcd}[row sep=large]
     Fc & Gc & Hc\\
@@ -317,6 +319,92 @@
 \section{引申内容}
 
 \subsection{代数群与Hopf代数}\label{sec:algebraicgrouphopfalgebra}
+
+对于域$\kk$, 称$\kk$上的有限类型的概形为$\kk$上的\emph{代数概形}, 记$\Spec (\kk)$为$*$.
+
+\begin{definition}
+  设$G$为$\kk$上的代数概形, 设$m\colon G\times G\to G$为$\kk$上概形的态射. 称$(G, m)$为\emph{代数群}如果存在态射$e\colon *\to G$和$\inv\colon G\to G$使得下列图都交换.
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      G\times G\times G & G\times G\\
+      G\times G & G
+      \arrow[from=1-1,]{1-2}{\id\times m}
+      \arrow[from=1-1,]{2-1}[swap]{m\times \id}
+      \arrow[from=1-2,]{2-2}{m}
+      \arrow[from=2-1,]{2-2}[swap]{m}
+    \end{tikzcd}
+    \quad
+    \begin{tikzcd}[row sep=large]
+      *\times G & G\times G & G\times *\\
+      & G &
+      \arrow[from=1-1,]{1-2}{e\times \id}
+      \arrow[from=1-3,]{1-2}[swap]{\id\times e}
+      \arrow[from=1-1,]{2-2}[swap]{\simeq}
+      \arrow[from=1-3,]{2-2}{\simeq}
+      \arrow[from=1-2,]{2-2}[swap]{m}
+    \end{tikzcd}
+  \end{equation*}
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      G & G\times G & G\\
+      * & G & *
+      \arrow[from=1-1,]{1-2}{(\inv, \id)}
+      \arrow[from=1-2,leftarrow]{1-3}{(\id, \inv)}
+      \arrow[from=2-1,]{2-2}[swap]{e}
+      \arrow[from=2-2,leftarrow]{2-3}[swap]{e}
+      \arrow[from=1-1,]{2-1}[swap]{}
+      \arrow[from=1-2,]{2-2}[swap]{m}
+      \arrow[from=1-3,]{2-3}{}
+    \end{tikzcd}
+  \end{equation*}
+  如果$G$还是仿射概形, 我们称$(G, m)$为\emph{仿射代数群}. 设$(G, m)$与$(G', m')$为代数群, $\varphi\colon G\to G'$为$\kk$上概形之间的态射. 如果$\varphi$还满足$\varphi\composite m=m'\composite (\varphi\times \varphi)$, 则称$\varphi$为代数群$(G, m)$, $(G', m')$之间的\emph{态射}, 记作$\varphi\colon (G, m)\to (G', m')$.
+\end{definition}
+
+\begin{definition}
+  设$A$为环, $B$为$A$-代数, $\Delta\colon A\to A\otimes A$是$A$-代数同态, 则$(A, \Delta)$是$A$上的\emph{Hopf代数}如果存在$A$-代数同态$\varepsilon\colon B\to A$和$S\colon B\to B$使得下列图都交换.
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      B\otimes B\otimes B & B\otimes B\\
+      B\otimes B & B
+      \arrow[from=1-1,leftarrow]{1-2}{\id\otimes \Delta}
+      \arrow[from=1-1,leftarrow]{2-1}[swap]{\Delta\otimes \id}
+      \arrow[from=1-2,leftarrow]{2-2}{\Delta}
+      \arrow[from=2-1,leftarrow]{2-2}[swap]{\Delta}
+    \end{tikzcd}
+    \quad
+    \begin{tikzcd}[row sep=large]
+      \kk\otimes B & B\otimes B & B\otimes \kk\\
+      & B &
+      \arrow[from=1-1,leftarrow]{1-2}{\varepsilon\otimes \id}
+      \arrow[from=1-3,leftarrow]{1-2}[swap]{\id\otimes \varepsilon}
+      \arrow[from=1-1,leftarrow]{2-2}[swap]{\simeq}
+      \arrow[from=1-3,leftarrow]{2-2}{\simeq}
+      \arrow[from=1-2,leftarrow]{2-2}[swap]{\Delta}
+    \end{tikzcd}
+  \end{equation*}
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      B & B\otimes B & B\\
+      \kk & B & \kk
+      \arrow[from=1-1,leftarrow]{1-2}{(S, \id)}
+      \arrow[from=1-2,]{1-3}{(\id, S)}
+      \arrow[from=2-1,leftarrow]{2-2}[swap]{\varepsilon}
+      \arrow[from=2-2,]{2-3}[swap]{\varepsilon}
+      \arrow[from=1-1,leftarrow]{2-1}[swap]{}
+      \arrow[from=1-2,leftarrow]{2-2}[swap]{\Delta}
+      \arrow[from=1-3,leftarrow]{2-3}{}
+    \end{tikzcd}
+  \end{equation*}
+  分别称$\Delta, \varepsilon, S$为\emph{余乘法映射}, \emph{余单位映射}和\emph{对极映射}. 设$(B, \Delta_B)$与$(C, \Delta_C)$为环$A$上的Hopf代数, $f\colon B\to C$为$A$-代数同态. 如果$f$还满足$(f\otimes f)\composite\Delta_B=\Delta_C\composite f$, 则称$f$为Hopf代数$(B, \Delta_B)$, $(C, \Delta_C)$之间的\emph{Hopf代数同态}. 如果Hopf代数$(B, \Delta)$满足$B$是有限生成$A$代数, 则称其为\emph{有限生成的}.
+\end{definition}
+
+\begin{theorem}[{{\parencite[66, Proposition 3.6; 67, Corollary 3.7]{milne_algebraic_2017}}}]
+  设$A$为有限生成$\kk$-代数, 并且$\Delta\colon A\to A\otimes A$是$\kk$-代数同态. 则$(A, \Delta)$是Hopf代数当且仅当$\Spec(A, \Delta)$是代数群. 因此$\Spec$定义了$\kk$上的有限生成Hopf代数关于Hopf代数同态构成的范畴到$\kk$上的仿射代数群关于其态射构成的范畴之间的反变范畴等价.
+\end{theorem}
+
+\begin{proof}
+  只需注意代数群和Hopf代数的定义中要求满足的交换图形状相同, 而只是所有的箭头都反向了, 又$\Spec$给出了有限生成$k$-代数关于代数同态构成的范畴到$\kk$上的仿射概形关于其态射构成的范畴之间的反变范畴等价, 故它能保证其中一组图交换当且仅当另一组图交换.
+\end{proof}
 
 % Hartshorne Ex 3.21 Group Variety (Algebraic Group)
 % Basic examples

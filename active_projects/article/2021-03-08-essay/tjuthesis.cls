@@ -110,6 +110,9 @@
     default = {Title},
     name = title@en,
   },
+  subtitle* = {
+    name = subtitle@en,
+  },
   department = {
     default = {学院},
   },
@@ -126,10 +129,10 @@
     default = {导师姓名},
   },
   date = {
-    default = {},
+    default = {\today},
   },
 }
-%% 字体选项
+%% 排版选项
 \tju@define@key{
   math-font = {
     name = math@font,
@@ -144,6 +147,21 @@
       windows,
     },
     default = windows,
+  },
+  output = {
+    choices = {
+      electronic,
+      print,
+      draft,
+    },
+    default = electronic,
+  },
+  style = {
+    choices = {
+      standard,
+      math,
+    },
+    default = standard,
   },
 }
 
@@ -362,41 +380,47 @@
 
 % 装订线
 \RequirePackage{fancybox}
-% \XeTeXcharclass`┊=1
-% \fancyput(-0.75cm,-12cm){\parbox{1em}{\wuhao\baselineskip 12pt ┊┊┊┊┊┊┊┊┊┊┊┊┊装┊┊┊┊┊订┊┊┊┊┊线┊┊┊┊┊┊┊┊┊┊┊┊┊}}
-\fancyput*(-0.8cm,-4.3cm){$|$}%
-\fancyput*(-0.8cm,-4.9cm){$|$}%
-\fancyput*(-0.8cm,-5.5cm){$|$}%
-\fancyput*(-0.8cm,-6.1cm){$|$}%
-\fancyput*(-0.8cm,-6.7cm){$|$}%
-\fancyput*(-0.8cm,-7.3cm){$|$}%
-\fancyput*(-0.8cm,-7.9cm){$|$}%
-\fancyput*(-0.8cm,-8.5cm){$|$}%
-\fancyput*(-0.8cm,-9.1cm){$|$}%
-\fancyput*(-0.8cm,-9.7cm){$|$}%
-\fancyput*(-1.0cm,-10.3cm){装}%
-\fancyput*(-0.8cm,-10.9cm){$|$}%
-\fancyput*(-0.8cm,-11.5cm){$|$}%
-\fancyput*(-0.8cm,-12.1cm){$|$}%
-\fancyput*(-0.8cm,-12.7cm){$|$}%
-\fancyput*(-0.8cm,-13.3cm){$|$}%
-\fancyput*(-1.0cm,-13.9cm){订}%
-\fancyput*(-0.8cm,-14.5cm){$|$}%
-\fancyput*(-0.8cm,-15.1cm){$|$}%
-\fancyput*(-0.8cm,-15.7cm){$|$}%
-\fancyput*(-0.8cm,-16.3cm){$|$}%
-\fancyput*(-0.8cm,-16.9cm){$|$}%
-\fancyput*(-1.0cm,-17.5cm){线}%
-\fancyput*(-0.8cm,-18.1cm){$|$}%
-\fancyput*(-0.8cm,-18.7cm){$|$}%
-\fancyput*(-0.8cm,-19.3cm){$|$}%
-\fancyput*(-0.8cm,-19.9cm){$|$}%
-\fancyput*(-0.8cm,-20.5cm){$|$}%
-\fancyput*(-0.8cm,-21.1cm){$|$}%
-\fancyput*(-0.8cm,-21.7cm){$|$}%
-\fancyput*(-0.8cm,-22.3cm){$|$}%
-\fancyput*(-0.8cm,-22.9cm){$|$}%
-\fancyput*(-0.8cm,-23.5cm){$|$}%
+\newcommand{\tju@put@gutter@math}{%
+  \fancyput*(-0.8cm,-4.3cm){$|$}%
+  \fancyput*(-0.8cm,-4.9cm){$|$}%
+  \fancyput*(-0.8cm,-5.5cm){$|$}%
+  \fancyput*(-0.8cm,-6.1cm){$|$}%
+  \fancyput*(-0.8cm,-6.7cm){$|$}%
+  \fancyput*(-0.8cm,-7.3cm){$|$}%
+  \fancyput*(-0.8cm,-7.9cm){$|$}%
+  \fancyput*(-0.8cm,-8.5cm){$|$}%
+  \fancyput*(-0.8cm,-9.1cm){$|$}%
+  \fancyput*(-0.8cm,-9.7cm){$|$}%
+  \fancyput*(-1.0cm,-10.3cm){装}%
+  \fancyput*(-0.8cm,-10.9cm){$|$}%
+  \fancyput*(-0.8cm,-11.5cm){$|$}%
+  \fancyput*(-0.8cm,-12.1cm){$|$}%
+  \fancyput*(-0.8cm,-12.7cm){$|$}%
+  \fancyput*(-0.8cm,-13.3cm){$|$}%
+  \fancyput*(-1.0cm,-13.9cm){订}%
+  \fancyput*(-0.8cm,-14.5cm){$|$}%
+  \fancyput*(-0.8cm,-15.1cm){$|$}%
+  \fancyput*(-0.8cm,-15.7cm){$|$}%
+  \fancyput*(-0.8cm,-16.3cm){$|$}%
+  \fancyput*(-0.8cm,-16.9cm){$|$}%
+  \fancyput*(-1.0cm,-17.5cm){线}%
+  \fancyput*(-0.8cm,-18.1cm){$|$}%
+  \fancyput*(-0.8cm,-18.7cm){$|$}%
+  \fancyput*(-0.8cm,-19.3cm){$|$}%
+  \fancyput*(-0.8cm,-19.9cm){$|$}%
+  \fancyput*(-0.8cm,-20.5cm){$|$}%
+  \fancyput*(-0.8cm,-21.1cm){$|$}%
+  \fancyput*(-0.8cm,-21.7cm){$|$}%
+  \fancyput*(-0.8cm,-22.3cm){$|$}%
+  \fancyput*(-0.8cm,-22.9cm){$|$}%
+  \fancyput*(-0.8cm,-23.5cm){$|$}%
+}
+\newcommand{\tju@put@gutter@standard}{%
+  \XeTeXcharclass`┊=1
+  \fancyput(-0.75cm,-12cm){\parbox{1em}{\wuhao\baselineskip 12pt ┊┊┊┊┊┊┊┊┊┊┊┊┊装┊┊┊┊┊订┊┊┊┊┊线┊┊┊┊┊┊┊┊┊┊┊┊┊}}
+}
+\newcommand{\tju@put@gutter}{\@nameuse{tju@put@gutter@\tju@style}}
+\tju@option@hook{style}{\tju@put@gutter}
 
 
 % 行距
@@ -419,7 +443,7 @@
 
 % 章节标题
 \ctexset{
-  subsubsection/name = {\hspace{2em}},
+  subsubsection/nameformat = {\hspace{2em}},
 }
 
 
@@ -451,8 +475,8 @@
 }
 \AtEndDocument{
   \hypersetup{% PDF信息
-    pdftitle={\tjutitle},
-    pdfauthor={\tjuauthor},
+    pdftitle={\tju@title},
+    pdfauthor={\tju@author},
   }
 }
 
@@ -476,8 +500,6 @@
 
 
 % 标题页
-\newcommand{\tjutitle}{\tju@title}
-\newcommand{\tjuauthor}{\tju@author}
 \newcommand{\tjutitlepage}{%
   \clearpage
   \tju@titlepage
@@ -510,60 +532,83 @@
 \newcommand{\tju@keywords@name}{关键词}
 \newcommand{\tju@abstract@name@en}{ABSTRACT}
 \newcommand{\tju@keywords@name@en}{Key words}
-\renewenvironment{abstract}[1]{%
-  \tjusetup{
-    keywords = {#1}
+\let\abstract\relax
+\let\endabstract\relax
+\newcommand{\tju@newenv@abstract@math}{%
+  \newenvironment{abstract}[1]{%
+    \tjusetup{
+      keywords = {##1}
+    }
+    \clearpage
+    \null\vskip -1em
+    \begingroup
+      \erhao\centering\zhhei\tju@title\par%
+    \endgroup
+    \ifx\tju@subtitle\@empty
+      \relax
+    \else
+      \begin{center}
+        \xiaoer\zhhei\tju@subtitle\par%
+      \end{center}
+    \fi
+    \begin{center}
+      \sihao\zhhei\tju@abstract@name%
+    \end{center}
+    \par%
+    \begingroup
+      \xiaowu\zhsong
+  }{%
+    \endgroup
+    \vskip 5mm
+    \begingroup
+      \noindent
+      \wuhao\zhhei\tju@keywords@name:%
+    \endgroup
+    \begingroup
+      \quad\xiaowu\tju@clist@use{\tju@keywords}{, \quad}%
+    \endgroup
+    \clearpage
   }
-  \clearpage
-  \null\vskip -1em
-  \begingroup
-    \erhao\centering\zhhei\tju@title\par%
-  \endgroup
-  \begin{center}
-    \sihao\zhhei\tju@abstract@name%
-  \end{center}
-  \par%
-  \begingroup
-    \xiaowu\zhsong
-}{%
-  \endgroup
-  \vskip 5mm
-  \begingroup
-    \noindent
-    \wuhao\zhhei\tju@keywords@name:%
-  \endgroup
-  \begingroup
-    \quad\xiaowu\tju@clist@use{\tju@keywords}{, \quad}%
-  \endgroup
-  \clearpage
-}
-\newenvironment{abstract*}[1]{
-  \tjusetup{
-    keywords* = {#1},
+  \newenvironment{abstract*}[1]{
+    \tjusetup{
+      keywords* = {##1},
+    }
+    \clearpage
+    \begin{center}
+      \linespread{1}
+      \erhao\bf\tju@title@en%
+    \end{center}
+    \ifx\tju@subtitle@en\@empty
+      \relax
+    \else
+      \begin{center}
+        \xiaoer\zhhei\tju@subtitle@en\par%
+      \end{center}
+    \fi
+    \begin{center}
+      \sihao\bf\tju@abstract@name@en%
+    \end{center}
+    \par%
+    \begingroup
+      \xiaowu\zhsong
+  }{%
+    \endgroup
+    \vskip 5mm
+    \begingroup
+      \noindent
+      \wuhao\bf\tju@keywords@name@en:%
+    \endgroup
+    \begingroup
+      \quad\xiaowu\tju@clist@use{\tju@keywords@en}{, \quad}
+    \endgroup
+    \clearpage
   }
-  \clearpage
-  \begin{center}
-    \erhao\bf\tju@title@en%
-  \end{center}
-  \begin{center}
-    \sihao\bf\tju@abstract@name@en%
-  \end{center}
-  \par%
-  \begingroup
-    \xiaowu\zhsong
-}{%
-  \endgroup
-  \vskip 5mm
-  \begingroup
-    \noindent
-    \wuhao\bf\tju@keywords@name@en:%
-  \endgroup
-  \begingroup
-    \quad\xiaowu\tju@clist@use{\tju@keywords@en}{, \quad}
-  \endgroup
-  \clearpage
 }
-
+\newcommand{\tju@newenv@abstract@standard}{%
+  \tju@newenv@abstract@math% TODO: standard abstract
+}
+\newcommand{\tju@newenv@abstract}{\@nameuse{tju@newenv@abstract@\tju@style}}
+\tju@option@hook{style}{\tju@newenv@abstract}
 
 % 目录
 \newcommand{\tju@contents@name}{目\quad 录}

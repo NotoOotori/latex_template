@@ -6,37 +6,37 @@
 
 \subsection{基数}
 
-\begin{proposition}[{{\parencite[4]{jacobson_basic_1989}}}]\label{prop:cardcartcor}
+\begin{propositionnoproof}[{{\parencite[4]{jacobson_basic_1989}}}]\label{prop:cardcartcor}
   如果$A$非空, $B$为无限集并且$\vert B\vert\geq \vert A\vert$, 则$\vert A\times B\vert=\vert B\vert$.
-\end{proposition}
+\end{propositionnoproof}
 
 \subsection{域论}
 
-\begin{proposition}\label{thm:fntfieldextdegree}% TODO: reference
+\begin{propositionnoproof}\label{thm:fntfieldextdegree}% TODO: reference
   给定域扩张$F\subseteq E$, 如果有不同的元素$x, y\in E$, 则$[F(x, y):F]\leq [F(x):F][F(y):F]$.
-\end{proposition}
+\end{propositionnoproof}
 
-\begin{theorem}\label{thm:fieldextdegreemulti}% TODO: reference
+\begin{theoremnoproof}\label{thm:fieldextdegreemulti}% TODO: reference
   域扩张的次数具有可乘性, 即若有三个域$F\subseteq E\subseteq K$, 则$[K:F]=[K:E][E:F]$.
-\end{theorem}
+\end{theoremnoproof}
 
 \subsection{拓扑}
 
-\begin{proposition}\label{prop:closedsetlocal}
+\begin{propositionnoproof}\label{prop:closedsetlocal}
   设$X$为拓扑空间, $Y\subseteq X$, 则$Y$是$X$的闭集当且仅当存在$X$中的开覆盖$\bigcup U_\lambda\supseteq Y$使得每个$U_\lambda\cap Y$都是$U_\lambda$的闭集.
-\end{proposition}
+\end{propositionnoproof}
 
-\begin{proposition}[{{\parencite[104, Theorem 18.1]{munkres_topology_2000}}}]\label{prop:continuousimageclosure}
+\begin{propositionnoproof}[{{\parencite[104, Theorem 18.1]{munkres_topology_2000}}}]\label{prop:continuousimageclosure}
   如果$f\colon X\to Y$是拓扑空间之间的映射, 则$f$连续当且仅当对于任意的集合$A\subseteq X$都有$f(\overline{A})\subseteq\overline{f(A)}$.
-\end{proposition}
+\end{propositionnoproof}
 
 \subsection{Cayley-Hamilton定理}
 
-\begin{theorem}[Cayley-Hamilton定理]\label{thm:CayleyHamilton}
+\begin{theoremnoproof}[Cayley-Hamilton定理]\label{thm:CayleyHamilton}
   设$T$为环$A$上的$n\times n$矩阵, $P_T(X)\coloneq \det (XI-A)\in A[X]$为$T$的特征多项式, 则$P_T(T)=0$为零矩阵.
-\end{theorem}
+\end{theoremnoproof}
 
-一种标准的证法是利用伴随矩阵\parencite[369, Exercise 6.9]{aluffi_algebra_2009}, 也可以利用可对角化矩阵是Zariski稠密的这一事实, 并利用首元的存在性最终转化到域的情况来证明\footfullcite{__trivia_2020}.
+\thref{thm:CayleyHamilton}的一种标准的证法是利用伴随矩阵\parencite[369, Exercise 6.9]{aluffi_algebra_2009}, 也可以利用可对角化矩阵是Zariski稠密的这一事实, 并利用首元的存在性最终转化到域的情况来证明\footfullcite{__trivia_2020}.
 
 \section{范畴论}\label{sec:algebra-category}
 
@@ -135,13 +135,13 @@
 \begin{example}
   有几个重要的协变函子与反变我们将在这一节的后续部分用到, 因此在这里做介绍.
   \begin{enumerate}
-    \item 给定范畴$\cat{C}$, \emph{恒同函子}$1_{\cat{C}}\colon\cat{C}\to\cat{C}$是保持对象与函子不变的函子, 所含信息可以由下图表示.
+    \item 给定范畴$\cat{C}$, \emph{恒同函子} $1_{\cat{C}}\colon\cat{C}\to\cat{C}$是保持对象与函子不变的函子, 所含信息可以由下图表示.
       \begin{equation*}
         \functordiagram{\cat{C}}{\cat{C}}{1_{\cat{C}}}{c}{c'}{f}{c}{c'}{f}
       \end{equation*}
-    \item 给定范畴$\cat{C}, \cat{D}$与对象$d\in\cat{D}$, \emph{常函子}$d\colon \cat{C}\to\cat{D}$将每个对象映到$d\in D$, 并将每个态射映到恒同态射$1_d$.
+    \item 给定范畴$\cat{C}, \cat{D}$与对象$d\in\cat{D}$, \emph{常函子} $d\colon \cat{C}\to\cat{D}$将每个对象映到$d\in D$, 并将每个态射映到恒同态射$1_d$.
     \item 对于\thref{exm:concretecategory}中的范畴, 可以定义其到$\cat{Set}$的\emph{遗忘函子}, 将对象映到其对应的集合, 将态射映到其对应的集合之间的映射, 相当于``遗忘"了其上的结构.
-    \item 给定局部小范畴$\cat{C}$以及其中一个对象$c\in\cat{C}$, \emph{由$c$表示的同态函子}$\cat{C}(c, -)\colon \cat{C}\to\cat{Set}$和$\cat{C}(-, c)\colon \cat{C}^{\op}\to\cat{Set}$由下图定义.
+    \item 给定局部小范畴$\cat{C}$以及其中一个对象$c\in\cat{C}$, \emph{由$c$表示的态射函子} $\cat{C}(c, -)\colon \cat{C}\to\cat{Set}$和$\cat{C}(-, c)\colon \cat{C}^{\op}\to\cat{Set}$由下图定义.
       \begin{equation*}
         \functordiagram{\cat{C}}{\cat{Set}}{\cat{C}(c, -)}{x}{y}{f}{\cat{C}(c, x)}{\cat{C}(c, y)}{f_*}
         \quad
@@ -201,9 +201,9 @@
 
 第二节我们来介绍泛性质和函子的表示, 一方面是因为它们本身很重要, 我们将要统一并推广之前提到过的商环, 分式环等的泛性质, 另一方面是为介绍极限作铺垫.
 
-设$\cat{C}$为局部小范畴, $F$是从$\cat{C}$到$\cat{Set}$协变函子 (或反变函子), 如果$F$自然同构于某个对象$c$表示的同态函子$\cat{C}(c, -)$ (或$\cat{C}(-, c)$), 则称$F$\emph{可以由对象$c$表示}, 也称$F$为\emph{可表函子}, 这个自然同构也被称为$F$的一个\emph{表示}.
+设$\cat{C}$为局部小范畴, $F$是从$\cat{C}$到$\cat{Set}$协变函子 (或反变函子), 如果$F$自然同构于某个对象$c$表示的态射函子$\cat{C}(c, -)$ (或$\cat{C}(-, c)$), 则称$F$\emph{可以由对象$c$表示}, 也称$F$为\emph{可表函子}, 这个自然同构也被称为$F$的一个\emph{表示}.
 
-于是我们关心什么时候一个函子是可表函子, 即关心同态函子到一个函子的自然同构. Yoneda引理解决了这一问题, 并告诉我们同态函子到一个函子的自然变换需要哪些信息.
+于是我们关心什么时候一个函子是可表函子, 即关心态射函子到一个函子的自然同构. Yoneda引理解决了这一问题, 并告诉我们态射函子到一个函子的自然变换需要哪些信息.
 
 \begin{theorem}[Yoneda引理{{\parencite[57, Theorem 2.2.4]{riehl_category_2017}}}]\label{thm:yonedalemma}
   设$\cat{C}$为局部小范畴, 设$F\colon \cat{C}\to\cat{Set}$, 对于任意的对象$c\in\cat{C}$, 存在双射$\Hom (\cat{C}(c, -), F)\cong Fc$, 将自然变换$\alpha\colon \cat{C}(c, -)\Rightarrow F$映到$\alpha_c(1_c)\in Fc$. 并且, 这个双射关于$c$和$F$是自然的.

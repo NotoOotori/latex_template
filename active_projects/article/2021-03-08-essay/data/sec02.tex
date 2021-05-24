@@ -2,13 +2,6 @@
 
 \section{代数}
 
-这一部分将以域的有限生成整环为原型, 发展本文中所需要用到的代数基础. 第一节中我们将研究一般的交换幺环的基础理论, 包括素理想, 极大理想, 整环等基础概念, 以及商环, 分式环之类的基础的技术, 我们将证明环与其商环或分式环之间都存在某种理想之间的对应关系, 并将证明商环与分式环可交换, 以及累次分式环与做一次分式环是等价的. 在第一节的最后我们将简要提及齐次环与齐次理想的概念, 为了射影簇等概念做准备.
-
-第二节中我们首先将引入模的概念以及技术, 研究有限生成模的性质并介绍了整元的概念. 接着我们将讨论模的升链条件, 并重点研究Noether环的性质, 先证明Hilbert基定理, 即域的有限生成整环都是Noether环, 再证明Lasker-Noether定理, 即Noether环的理想存在准素分解, 最后证明一般的环上的准素分解都满足伴随素理想以及孤立准素理想的唯一性.
-
-第三节中我们将对域的有限生成整环的维数理论展开研究. 首先我们将讨论域扩张的超越基与超越次数, 将代数元的概念抽象为了集合中的对应关系, 并在抽象的情况下证明了基的基数是唯一的. 接着我们将定义域的有限生成整环的维数即为其分式域关于基域的域扩张的超越次数, 并定义素理想的高度及深度, 利用域扩张的理论和Noether正规化引理证明素理想的高度深度与域的有限生成整环的维数之间的关系, 并用此证明Hilbert零点定理.
-% 主要包括局部化, 准素分解, 维数理论等内容.
-
 \subsection{环}
 
 先来介绍交换环论的基本内容, 包括环与理想的基本性质, 商环与局部化, 以及齐次环中的一些内容.
@@ -626,7 +619,7 @@
 \end{proof}
 
 \begin{theorem}[{{\parencite[123, Theorem 3.12]{jacobson_basic_1989}}}]\label{thm:dependbase}
-  设$\Delta$为$X$上的相关关系, 则存在$X$的一个基, 并且$X$的任意两个基具有相同的基数.
+  设$\Delta$为$X$上的相关关系, 则$X$的基存在, 并且$X$的任意两个基具有相同的基数.
 \end{theorem}
 %\footnotetext{如果一个集合$X$为空集, 则定义$X$的\emph{基数}为0; 如果存在$X$到$\{1, 2, \dotsc, n\}$的双射, 则定义$X$的\emph{基数}为$n$; 其余情况定义$X$的\emph{基数}为$\infty$. 其实把基数换成基数也成立, 证明只需要一点关于基数运算的性质, 不过没必要% 这里我们不给出基数的正式定义, 只定义两个非空集合\emph{具有相同的基数}当且仅当存在两个集合之间的双射, 并定义空集与且仅与空集\emph{具有相同的基数}.
 %}
@@ -687,9 +680,9 @@
   \thref{thm:dependbase}和\thref{prop:algbdependcorr}.
 \end{proof}
 
-利用\thref{thm:tranbasis}我们可以定义域扩张$F\subseteq E$的\emph{超越次数}为超越基的基数. 现在我们已经可以定义主要研究对象的维数了. 给定域$k$, 回顾如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的有限生成整环. 记$K$为$A$的分式域, 域$k$的有限生成整环$A$的\emph{维数}$\dim (A)$被定义为域扩张$k\subseteq K$的超越次数, 是有限数. 在剩下的部分中, 我们想要利用环论来刻画维数, 发现素理想在其中有类似于线性子空间的地位, 是构成维数的基本组成部分.
+利用\thref{thm:tranbasis}我们可以定义域扩张$F\subseteq E$的\emph{超越次数}为超越基的基数. 现在我们已经可以定义主要研究对象的维数了. 给定域$k$, 回顾如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的有限生成整环. 记$K$为$A$的分式域, 域$k$的有限生成整环$A$的\emph{维数} $\dim (A)$被定义为域扩张$k\subseteq K$的超越次数, 是有限数. 在剩下的部分中, 我们想要利用环论来刻画维数, 发现素理想在其中有类似于线性子空间的地位, 是构成维数的基本组成部分.
 
-如果$A$为有限生成整环, 我们还可以定义素理想$\ideal{p}$的\emph{余维数}$\codim (\ideal{p})$为域扩张$k\subseteq A{\divslash}\ideal{p}$的超越次数.
+如果$A$为有限生成整环, 我们还可以定义素理想$\ideal{p}$的\emph{余维数} $\codim (\ideal{p})$为域扩张$k\subseteq A{\divslash}\ideal{p}$的超越次数.
 
 \begin{proposition}\label{prop:primeidealdim}
   设$A$为有限生成整环, $\ideal{p}$为$A$的素理想, 那么$\codim (\ideal{p})\leq\dim (A)$. 如果还有素理想$\ideal{q}$使得$\ideal{p}\subsetneqq\ideal{q}$, 那么$\codim (\ideal{p})>\codim (\ideal{q})$.
@@ -699,7 +692,7 @@
   % TODO: proof
 \end{proof}
 
-设$\ideal{p}$为环$A$的素理想,  定义$\ideal{p}$的\emph{高度}$h(\ideal{p})$为满足存在素理想升链$\ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}$的$n$的上确界; 定义$\ideal{p}$的\emph{深度}$d(\ideal{p})$为满足存在素理想降链$\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A$的$d$的下确界. 根据定义, 考虑素理想$\ideal{p}\subsetneqq\ideal{q}$, 只要$h(\ideal{p})$与$h(\ideal{q})$中有一个有限, 那么有$h(\ideal{p})<h(\ideal{q})$, 只要$d(\ideal{p})$与$d(\ideal{q})$中有一个有限, 那么有$d(\ideal{p})>d(\ideal{q})$.
+设$\ideal{p}$为环$A$的素理想,  定义$\ideal{p}$的\emph{高度} $h(\ideal{p})$为满足存在素理想升链$\ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}$的$n$的上确界; 定义$\ideal{p}$的\emph{深度} $d(\ideal{p})$为满足存在素理想降链$\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A$的$d$的下确界. 根据定义, 考虑素理想$\ideal{p}\subsetneqq\ideal{q}$, 只要$h(\ideal{p})$与$h(\ideal{q})$中有一个有限, 那么有$h(\ideal{p})<h(\ideal{q})$, 只要$d(\ideal{p})$与$d(\ideal{q})$中有一个有限, 那么有$d(\ideal{p})>d(\ideal{q})$.
 
 \begin{proposition}[Noether正规化引理{{\parencite[69, Exercise 16]{atiyah_introduction_1969}}}]\label{prop:noethernormalization}
   设非零环$A$为域$k$上的有限生成$k$-代数, 则存在$r$元子集$\{y_1, \dotsc, y_r\}\subseteq A$在$k$上代数无关, 并且$A$的每个元素都可以由$k[y_1, \dotsc, y_r]$整表示.

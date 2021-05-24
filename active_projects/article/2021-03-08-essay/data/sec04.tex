@@ -2,12 +2,6 @@
 
 \section{代数与几何的联系}\label{sec:algebraandgeometry}
 
-这一部分我们将慢慢展现代数与几何之间的联系, 建议读者先阅读\ref{sec:algebra-category}中范畴论的相关概念, 这一部分中将经常用到. 第一节中我们将利用Hilbert零点定理建立起仿射空间中的代数集与多项式环的根式理想之间的反序双射, 射影空间中也有代数集与除了无关极大理想之外的齐次根式理想之间的反序双射, 并且这个双射将素理想对应到代数簇, 我们就可以将代数中的准素分解理论与几何中的不可约分解联系起来.
-
-第二节中我们将定义代数簇的坐标环, 并探究其与函数环之间的关系, 由此我们首先将发现分式环与局部化的几何意义, 即只考虑定义在某些点以外的函数, 其次我们还将代数中的维数理论与代数簇的维数联系起来, 于是我们可以探究超曲面的交的不可约分支的维数. 甚至我们还将证明两个范畴等价, 分别是固定代数闭域$\kk$的仿射代数簇关于代数簇的态射构成的范畴与$\kk$的有限生成整环关于代数同态构成的范畴之间的范畴等价, 以及固定代数闭域$\kk$的代数簇关于有理映射构成的范畴与$\kk$的有限生成代数关于代数同态构成的范畴之间的范畴等价. 在过程中, 我们将顺便证明每个代数簇都有由仿射开子集构成的拓扑基.
-
-前两节中我们发现几何的结论没有代数的结论那么精细, 并且对于对象的要求也比代数上要多许多. 几何学家认为是以前的几何框架限制了他们的直觉, 因此要扩充几何的研究对象, 这就最终引出了概形的概念. 很自然地, 概形应该也是一个有函数结构的拓扑空间, 并且在局部上是仿射的, 而仿射的东西我们认为是一个环的素谱, 于是在第一小节我们将简要介绍素谱上的Zariski拓扑, 读者可以发现其与仿射空间的类似之处. 函数结构是由层来定义, 于是第二小节我们将介绍层与茎的概念以及层之间的态射. 由于代数簇在某一点处的局部环是局部环, 我们也希望概形保留类似的性质, 所以最后一小节我们将引入局部赋环空间的概念及其中的态射, 并对环的素谱定义局部赋环空间的结构, 初步研究其性质.
-
 % 前两节中$k$依然指代数闭域.
 
 \subsection{理想与代数集}\label{sec:ag-ideal}
@@ -106,10 +100,10 @@
 \begin{theorem}[{{\parencite[6, Proposition 1.7; 17, Theorem 3.2]{hartshorne_algebraic_1977}}}]\label{thm:affinerings}
   设$Y\subseteq \AF^n$为仿射代数簇, 其仿射坐标环为$A(Y)$, 则
   \begin{enumerate}
-    \item\label{enum:thm-affine-rings-1} $\dim (Y)=\dim A(Y)$;
+    \item\label{enum:thm-affine-rings-1} $\dim (Y)=\dim (A(Y))$;
     \item\label{enum:thm-affine-rings-2} $\OO (Y)\cong A(Y)$, 于是$A(Y)$为同构不变量;
     \item\label{enum:thm-affine-rings-3} 对于每个点$P\in Y$, 令$\ideal{m}_P\subseteq A(Y)$为在$P$点取值为零的坐标函数全体所构成的极大理想, 则$P\mapsto \ideal{m}_P$给出了$Y$到$A(Y)$的极大理想全体之间的双射;
-    \item\label{enum:thm-affine-rings-4} 对于每个点$P$, 都有$\OO_P\cong A(Y)_{\ideal{m}_P}$, 并且$\dim \OO_P=\dim Y$;
+    \item\label{enum:thm-affine-rings-4} 对于每个点$P$, 都有$\OO_P\cong A(Y)_{\ideal{m}_P}$, 并且$\dim (\OO_P)=\dim (Y)$;
     \item\label{enum:thm-affine-rings-5} $K(Y)$同构于$A(Y)$的分式域, 于是$K(Y)$是$\kk$的有限域扩张, 超越次数等于$\dim (Y)$.
   \end{enumerate}
 \end{theorem}
@@ -121,7 +115,7 @@
 
   利用\thref{prop:quotidealcorr}我们知道$Y$与$A$中包含$I(Y)$的极大理想全体之间存在双射, 即与$A(Y)$的极大理想全体之间存在一一对应. 利用上述定义的$\alpha$将$A(Y)$的元素看作$Y$上的正则函数, 我们有点$P$对应的极大理想即为$\ideal{m}_{P}=\{f\in A(Y)\vert f(P)=0\}$, 故\ref{enum:thm-affine-rings-3}得证.
 
-  对于每个$P\in Y$, 将$\OO (Y)$看作$\OO_P$的子环, 我们可以得到单同态$A(Y)\to \OO_P$, 这个同态将每个$\ideal{m}_P$外的元素都映到单位, 于是我们可以得到单同态$A(Y)_{\ideal{m}_{P}}\to \OO_P$. 根据正则函数的定义, 正则函数在局部上可以写成两个多项式的商, 其中分母在局部没有零点, 于是有这个同态也是满射, 因此$A(Y)_{\ideal{m}_P}\cong \OO_P$. 因为$\OO_P$是整环, 对$\ideal{p}=(0)\subseteq \OO_P$利用\thref{thm:ringdim}和\thref{prop:fracideal}\ref{enum:prop-fracideal-2}可得$\dim \OO_P$等于极大理想$\ideal{m}_P$在$A(Y)$的高度$h(\ideal{m}_P)$. 又因为$A(Y){\divslash}\ideal{m}_P\cong \kk$, 即$\codim (\ideal{m}_P)=0$, 故利用\ref{enum:thm-affine-rings-1}和\thref{thm:ringdim}知$h(\ideal{m}_P)=\dim A(Y)=\dim (Y)$, 于是$\dim (\OO_P)=\dim (Y)$, \ref{enum:thm-affine-rings-4}得证.
+  对于每个$P\in Y$, 将$\OO (Y)$看作$\OO_P$的子环, 我们可以得到单同态$A(Y)\to \OO_P$, 这个同态将每个$\ideal{m}_P$外的元素都映到单位, 于是我们可以得到单同态$A(Y)_{\ideal{m}_{P}}\to \OO_P$. 根据正则函数的定义, 正则函数在局部上可以写成两个多项式的商, 其中分母在局部没有零点, 于是有这个同态也是满射, 因此$A(Y)_{\ideal{m}_P}\cong \OO_P$. 因为$\OO_P$是整环, 对$\ideal{p}=(0)\subseteq \OO_P$利用\thref{thm:ringdim}和\thref{prop:fracideal}\ref{enum:prop-fracideal-2}可得$\dim \OO_P$等于极大理想$\ideal{m}_P$在$A(Y)$的高度$h(\ideal{m}_P)$. 又因为$A(Y){\divslash}\ideal{m}_P\cong \kk$, 即$\codim (\ideal{m}_P)=0$, 故利用\ref{enum:thm-affine-rings-1}和\thref{thm:ringdim}知$h(\ideal{m}_P)=\dim (A(Y))=\dim (Y)$, 于是$\dim (\OO_P)=\dim (Y)$, \ref{enum:thm-affine-rings-4}得证.
 
   根据\ref{enum:thm-affine-rings-3}和\thref{prop:multilocalization}, 对于每个$P\in Y$都有分式域$K(A(Y))\cong K(A(Y)_{\ideal{m}_P})\cong K(\OO_P)$. 因为典范单同态$\OO_P\to K(Y)$诱导出的映射$\amalg_{P\in Y}\OO_P\to K(Y)$是满射, 即每个有理函数都能看成某个$\OO_Y$中的元素, 因此对于每个$P$都有$K(\OO_P)\cong K(Y)$, 故$K(A(Y))\cong K(Y)$. 因为$A(Y)$是有限生成$\kk$-代数, 所以$K(Y)\cong K(A(Y))$是$\kk$的有限域扩张, 并且根据域的有限生成整环维数的定义, 有$\dim (Y)$即为域扩张的超越次数, \ref{enum:thm-affine-rings-5}得证.
 
@@ -132,7 +126,7 @@
 
 \bigskip
 
-与仿射情形类似, 如果$Y\subseteq \PP^n$是射影空间中的代数集, 定义$Y$的\emph{射影坐标环}$S(Y)\coloneq S{\divslash}I(Y)$.
+现在来看射影情形. 与仿射情形类似, 如果$Y\subseteq \PP^n$是射影空间中的代数集, 定义$Y$的\emph{射影坐标环} $S(Y)\coloneq S{\divslash}I(Y)$.
 
 \begin{theorem}[{{\parencite[11--12, Exercise 2.6; 18, Theorem 3.4]{hartshorne_algebraic_1977}}}]\label{thm:projectiverings}
   设$Y\subseteq\PP^n$为射影代数簇, 其齐次射影坐标环为$S(Y)$, 则
@@ -179,9 +173,7 @@
 
   现在证明$\Im (\psi)\subseteq Y$. 只需要证明对于$P\in X$以及$f\in I(Y)$有$f(\psi(P))=0$. 而因为$f$是多项式, $f\in I(Y)$, 并且$h$是代数同态, 所以$f(\psi(P))=f(\xi_1(P), \dotsc, \xi_n(P))=h(f(X_1, \dotsc, X_n))(P)=0$, 故得证$\psi$是$X$到$Y$的映射.
 
-  由\thref{prop:morphismtoaffinevariety}得上述构造的$\psi$是态射, 又由定义可得$\alpha(\varphi)$对应的$\psi$即为$\varphi$, 故得证$\alpha$是双射.
-
-  最后证明范畴等价. 函子性由构造可显然得出, 并且我们已经证明了这个函子是完全忠实的, 又因为每个$k$的有限生成整环都可以写成某个$k$的代数簇的仿射坐标环, 因此这个函子也是本质满射的, 于是由\thref{thm:categoryequivalence}知这个函子给出了范畴之间的等价.
+  由\thref{prop:morphismtoaffinevariety}得上述构造的$\psi$是态射, 又由定义可得$\alpha(\varphi)$对应的$\psi$即为$\varphi$, 故得证$\alpha$是双射. 最后证明范畴等价. 函子性由构造可显然得出, 并且我们已经证明了这个函子是完全忠实的, 又因为每个$k$的有限生成整环都可以写成某个$k$的代数簇的仿射坐标环, 因此这个函子也是本质满射的, 于是由\thref{thm:categoryequivalence}知这个函子给出了范畴之间的等价.
 \end{proof}
 
 \thref{thm:categoryisoaffinevariety}给出了与仿射代数簇范畴等价的代数范畴, 利用这个事实, 我们可以证明每个代数簇在局部上都能找到仿射开子集. 继而我们可以证明代数簇以控制有理映射作为态射的范畴与有限生成域扩张的范畴有反变范畴等价. 如果一个代数簇同构于某个仿射代数簇, 则称它是\emph{仿射的}.
@@ -334,7 +326,7 @@
 
 在\ref{sec:algebra-category}我们定义了拓扑空间$X$上集合取值的预层是函子$F\colon \cat{Top}(X)^{\op}\to\cat{Set}$. 为了更符合直觉, 这一节中我们考虑的都是Abel群取值的预层, 为函子$\sheaf{F}\colon \cat{Top}(X)^{\op}\to\cat{Ab}$, 注意$\sheaf{F}(\varnothing)=0$为平凡Abel群. 称$\sheaf{F}(U)$中的元素为$\sheaf{F}$在$U$上的\emph{截面}, 有时也记$\sheaf{F}(U)$为$\Gamma (U, \sheaf{F})$. 称映射$\rho_{UV}\coloneq \sheaf{F}(U\to V)$为\emph{限制映射}, 对于$s\in \sheaf{F}(U)$有时也记$\rho_{UV}(s)$为$s\restrict{V}$.
 
-大体上说一个层就是可以由局部信息决定的预层. 利用范畴论的语言, 对于Abel群取值的预层$\sheaf{F}$, 定义由$U_\lambda\subseteq U$构成的开集族$\{U_\lambda\}$\emph{覆盖}$U$如果它们及其两两的交以及所有可能的态射所定义的$\cat{Top}(X)$中的图的上极限为$U$, 如果$\sheaf{F}$保持这些上极限, 则称$\sheaf{F}$是\emph{层}. 显式地说, 如果预层$\sheaf{F}$满足对于任意的开集$U$和任意$U$的开覆盖$\{V_\lambda\}$都有
+大体上说一个层就是可以由局部信息决定的预层. 利用范畴论的语言, 对于Abel群取值的预层$\sheaf{F}$, 定义由$U_\lambda\subseteq U$构成的开集族$\{U_\lambda\}$\emph{覆盖} $U$如果它们及其两两的交以及所有可能的态射所定义的$\cat{Top}(X)$中的图的上极限为$U$, 如果$\sheaf{F}$保持这些上极限, 则称$\sheaf{F}$是\emph{层}. 显式地说, 如果预层$\sheaf{F}$满足对于任意的开集$U$和任意$U$的开覆盖$\{V_\lambda\}$都有
 \begin{enumerate}
   \item 如果$s\in\sheaf{F}$满足对于每个$\lambda$都有$s\restrict{V_{\lambda}}=0$, 就有$s=0$;
   \item 如果存在一族截面$\{s_\lambda\in\sheaf{F(V_\lambda)}\}$满足任两个截面在其交上的限制相等, 则存在$s\in\sheaf{F(U)}$使得对于任意的$\lambda$都有$s\restrict{V_\lambda}=s_{\lambda}$;
@@ -406,7 +398,7 @@
 现在终于可以来定义概形这个概念了.
 
 \begin{definition}
-  定义\emph{仿射概形}是局部赋环空间$(X, \OO_X)$, 并且同构于某个环的素谱. 定义\emph{概形}是局部赋环空间$(X, \OO_X)$, 并且满足每个点处都有邻域$U$使得子拓扑空间$U$以及限制层$\OO_X\restrict{U}$是仿射概形. 称$X$为\emph{底拓扑空间}, 通常用$X$表示整个概型的结构, 而用$\sp (X)$表示它的拓扑空间结构. 概形之间的态射即为局部赋环空间之间的态射.
+  定义\emph{仿射概形}是局部赋环空间$(X, \OO_X)$, 并且同构于某个环的素谱. 定义\emph{概形}是局部赋环空间$(X, \OO_X)$, 并且满足每个点处都有邻域$U$使得子拓扑空间$U$以及限制层$\OO_X\restrict{U}$是仿射概形. 称$X$为\emph{底拓扑空间}, 通常用$X$表示整个概形的结构, 而用$\sp (X)$表示它的拓扑空间结构. 概形之间的态射即为局部赋环空间之间的态射.
 \end{definition}
 
 我们通过一个简单的例子来一瞥仿射概形这一概念相比仿射代数簇的推广.
@@ -415,7 +407,7 @@
   设$A=\kk [X, Y]$, 设理想$\ideal{a}=(XY, X^2)$, 则$\Spec (A{\divslash}\ideal{a})$给出了$Y$轴上的闭子概形结构, 并且局部环仅在原点处有幂零元, 因为其同构于$\kk [Y-y, (Y-y)^{-1}]{\divslash}(Y)^2$, 其中$y$为该点在$Y$轴的坐标, 称原点为这个子概形的\emph{嵌入点}. 回顾\thref{exm:primarydecom}, 首先我们发现闭子概形里面能得到准素分解能得到的全部信息, 而仿射代数簇中得不到嵌入伴随素理想的信息, 并且闭子概形的局部环可以有幂零元, 而代数簇的局部环一定是整环, 在这种意义上概形的概念也是推广了代数簇的概念.
 \end{example}
 
-如果存在概形态射$f\colon X\to S$, 则称$f$是$S$\emph{上的概形}, 特别地, 如果$S=\Spec (A)$, 也称$f$是$A$\emph{上的概型}. $S$上的概形之间的\emph{态射}自然被要求要与给定的到$S$的态射可交换. 如果概形$X, Y$之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}.
+如果存在概形态射$f\colon X\to S$, 则称$f$是$S$\emph{上的概形}, 特别地, 如果$S=\Spec (A)$, 也称$f$是$A$\emph{上的概形}. $S$上的概形之间的\emph{态射}自然被要求要与给定的到$S$的态射可交换. 如果概形$X, Y$之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}.
 
 我们可以证明, 对于代数闭域$\kk$, 存在从$\kk$上的簇范畴到$\kk$上的概形范畴的完全忠实函子$t$, 并且对于每个簇$V$, 它的拓扑空间结构同胚于$\sp (t(V))$的闭点全体所构成的子空间, 并且$V$的正则函数层可以通过这个同胚由$t(V)$的结构层的限制所得到\parencite[78, Proposition 2.6]{hartshorne_algebraic_1977}.
 

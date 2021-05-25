@@ -300,7 +300,8 @@
 \appto\appendix{\@appendixtrue}
 \appto\backmatter{\@appendixfalse}
 % \preto\section{\if@appendix\else\clearpage\fi}
-\preto\section{\clearpage}
+% \preto\section{\clearpage}
 \makeatother
 
-\NewDocumentCommand\tjucite{O{} O{} m}{\parencite[#1, #2]{#3}}
+\NewDocumentCommand\tjucite{O{} m}{\cite{#2}}
+\NewDocumentCommand\tjucites{O{} m O{} m}{\cite{#2, #4}}

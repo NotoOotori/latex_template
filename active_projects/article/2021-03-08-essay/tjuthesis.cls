@@ -356,7 +356,7 @@
 \newcommand\tju@load@cjk@font@windows{%
   \xeCJKsetup{EmboldenFactor=2}
   \setCJKmainfont{SimSun}[
-    AutoFakeBold = true,
+    BoldFont = SimHei,
     ItalicFont   = KaiTi,
     % ItalicFeatures = { AutoFakeBold = true },
     BoldItalicFont   = KaiTi,
@@ -384,10 +384,13 @@
 
 % 页面尺寸
 \geometry{
-  top = 32mm,
-  bottom = 38mm,
+  top = \dimexpr32mm+42.82419pt-4.5mm\relax,
+  bottom = \dimexpr38mm-42.82419pt+4.4mm\relax,
   left = 33mm,
   right = 18mm,
+  % headsep = \dimexpr32mm-42.82419pt\relax,
+  headheight = 42.82419pt,
+  % showframe,
 }
 
 
@@ -430,7 +433,7 @@
 }
 \newcommand{\tju@put@gutter@standard}{%
   \XeTeXcharclass`┊=1
-  \fancyput(-0.75cm,-12cm){\parbox{1\ccwd}{\wuhao\baselineskip 12pt ┊┊┊┊┊┊┊┊┊┊┊┊┊装┊┊┊┊┊订┊┊┊┊┊线┊┊┊┊┊┊┊┊┊┊┊┊┊}}
+  \fancyput(-0.75cm,-12cm){\parbox{1\ccwd}{\wuhao\baselineskip 12pt\selectfont ┊┊┊┊┊┊┊┊┊┊┊┊┊装┊┊┊┊┊订┊┊┊┊┊线┊┊┊┊┊┊┊┊┊┊┊┊┊}}
 }
 \newcommand{\tju@put@gutter}{\@nameuse{tju@put@gutter@\tju@style}}
 \tju@option@hook{style}{\tju@put@gutter}
@@ -444,18 +447,18 @@
 \pagestyle{fancy}
 \fancypagestyle{plain}{%
   \fancyhf{}%
-  \setlength{\headheight}{42.82419pt}% TODO: check this
+  % \setlength{\headheight}{42.82419pt}
   \fancyhead[L]{\qquad \includegraphics[height=1.34cm]{tongji-name-bacholar.jpg}}
   \fancyhead[R]{\xiaosi 毕业设计（论文）~\\}
   \renewcommand{\headrulewidth}{1.5pt}
   \renewcommand{\footrulewidth}{1.5pt}
-  \fancyfoot[RO]{\xiaosi 共\quad \pageref{LastPage}\quad 页\quad 第\quad \thepage \quad 页} % LE,RO if twoside
+  \fancyfoot[R]{\leavevmode\smash{\xiaosi 共\quad \pageref{LastPage}\quad 页\quad 第\quad \thepage \quad 页}} % LE,RO if twoside
 }
 \pagestyle{plain}
 
-
 % 章节标题
 \ctexset{
+  subsection/format += {\wuhao},
   subsubsection/nameformat = {\hspace{2\ccwd}},
 }
 
@@ -464,6 +467,12 @@
 \AtEndPreamble{
   \RequirePackage{hyperref}
   \RequirePackage{bookmark}
+
+  \pdfstringdefDisableCommands{% to add definitions for commands that make no sense in bookmarks https://tex.stackexchange.com/a/142276
+    \let\enspace\empty% this causes the warning for \kern
+    \let\noindent\empty% this causes the warning for \indent
+    \let\quad\space% this causes the warning for \quad
+  }
 
   \hypersetup{linktoc=all}% TOC中章节名称和页码都是超链接
   % \hypersetup{% 超链接样式
@@ -552,6 +561,13 @@
       keywords = {##1}
     }
     \clearpage
+    \newgeometry{
+      top = \dimexpr32mm+42.82419pt+21.41209pt-0.5mm\relax,
+      bottom = \dimexpr38mm-42.82419pt+4.4mm\relax,
+      left = 33mm,
+      right = 18mm,
+      headheight = 42.82419pt,
+    }
     \null\vskip -1\ccwd
     \begingroup
       \erhao\centering\zhhei\tju@title\par%
@@ -580,6 +596,7 @@
       \quad\xiaowu\tju@clist@use{\tju@keywords}{, \quad}%
     \endgroup
     \clearpage
+    \aftergroup\restoregeometry
   }
   \newenvironment{abstract*}[1]{
     \tjusetup{
@@ -622,9 +639,10 @@
 \newcommand{\tju@newenv@abstract}{\@nameuse{tju@newenv@abstract@\tju@style}}
 \tju@option@hook{style}{\tju@newenv@abstract}
 
+
 % 目录
 \newcommand{\tju@contents@name}{目\quad 录}
-\renewcommand{\contentsname}{\tju@contents@name}
+\renewcommand{\contentsname}{\zhhei\tju@contents@name}
 \renewcommand{\cftdot}{$\cdot$}
 \renewcommand{\cftdotsep}{1}
 \setlength{\cftbeforesecskip}{10pt}
@@ -647,17 +665,38 @@
 }
 
 
+% 章节
+\preto\section{\clearpage}% 每一个section都会从新的一页开始
+
+
 % 附录
 
 \appto\appendix{\clearpage}
 
 
-% 文献著录
+% 文献著录 TODO: 将来应该弄到bbx和cbx文件中
+% \newcommand\tju@pass@option@biblatex@math{%
+%   \PassOptionsToPackage{gbnamefmt=lowercase}{biblatex}
+% }
+% \newcommand\tju@pass@option@biblatex@standard{%
+%   \PassOptionsToPackage{gbnamefmt=uppercase}{biblatex}
+% }
+% \newcommand{\tju@pass@option@biblatex}{%
+%   \@nameuse{tju@pass@option@biblatex@\tju@style}
+% }
+% \tju@option@hook{style}{\tju@pass@option@biblatex}
 \usepackage[%
-  backend=biber,style=gb7714-2015,gbalign=right,gbpub=false,sortcites=true,doi=false,%
+  backend=biber,%
+  style=gb7714-2015,gbalign=right,gbpub=false,gbnamefmt=lowercase,%
+  sortcites=true,doi=false,%
   defernumbers=true,%
-  ]{biblatex} % 需要 biblatex-gb7714-2015 宏包
+  ]{biblatex} % 需要 biblatex-gb7714-2015
 \bibliography{ref/refs}
+
+%% 引用
+\let\cite\parencite
+
+%% 参考文献表
 \newcommand\tjubibliography{\tju@bibliography}
 \newcommand\tju@bibliography{%
   \begingroup%
@@ -669,7 +708,8 @@
 }
 \AtEveryBibitem{\clearfield{pagetotal}}
 
-% https://tex.stackexchange.com/a/420605
+%% 只被footfullcite的文献不配进参考文献表
+%% https://tex.stackexchange.com/a/420605
 \DeclareBibliographyCategory{inbib}
 \AtEveryCitekey{%
   \ifcsstring{blx@delimcontext}{footfullcite}
@@ -701,7 +741,7 @@
 }
 \DeclareFieldFormat[inreference]{title}{#1}%\nopunct\unspace%将期刊等文献的标题中原来带的引号去掉
 
-%GB/T 7714-2015 风格，全部大写
+%% GB/T 7714-2015 风格, 全部大写 这段代码修复只有姓或者名的人名字不全大写的bug
 \renewbibmacro*{name:gbuppercase}[4]{\bibauthorfont%
 \renewrobustcmd*{\bibinitperiod}{}%将名字简写后的点去掉
 \renewcommand*{\revsdnamepunct}{}%
@@ -729,7 +769,7 @@
      \ifdefvoid{#4}{}{\addcomma\bibnamedelimd\mkbibnamesuffix{#4}\isdot}}%%后缀前加逗号
 }
 
-% 如果是旧版biblatex-gb7714-2015 那么添上处理翻译为外文文献的处理代码
+%% 如果是旧版biblatex-gb7714-2015 那么添上处理翻译为外文文献的处理代码
 \def\tju@parse@gbt@date#1 #2{#1}
 \def\dateofgbtstyle{\expandafter\tju@parse@gbt@date\versionofgbtstyle}
 \ifnum\pdfstrcmp{\dateofgbtstyle}{2021/04/03}<0%
@@ -831,10 +871,11 @@
 
 
 % 谢辞
+\newcommand\tju@acknowledgements@name{谢\quad 辞}
 \newenvironment{acknowledgements}{%
   \clearpage
-  \section*{谢辞}
-  \addcontentsline{toc}{section}{谢辞}
+  \section*{\tju@acknowledgements@name}
+  \addcontentsline{toc}{section}{\tju@acknowledgements@name}
 }{}
 
 

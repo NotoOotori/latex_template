@@ -10,7 +10,7 @@
 
 先考虑仿射空间$\AF^n$的情况, 记$A\coloneq \kk [X_1, \dotsc, X_n]$. 对于多项式环$A$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\AF^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的多项式全体, 即$I(Y)\coloneq \{f\in A\vert f(x)=0, \forall x\in Y\}$, $I(Y)$一定是环$A$的理想, 并且如果$Y$为单点集, 则$I(Y)$为极大理想.
 
-\begin{propositionnoproof}[{{\parencite[3, Proposition 1.2]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradicalpre}
+\begin{propositionnoproof}[{{\tjucite[3, Proposition 1.2]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradicalpre}
   设$Y, Y_1, Y_2$为$\AF^n$的子集, $T, T_1, T_2$为$A$的子集, $\ideal{a}$为$A$的理想, 则
   \begin{enumerate}
     \item\label{enum:prop-affine-galois-connection-closed-radical-1} $Z(T)=Z((T))=Z(\sqrt{(T)})$;
@@ -21,10 +21,10 @@
   \end{enumerate}
 \end{propositionnoproof}
 
-\begin{proposition}[{{\parencite[3, Proposition 1.2; 4, Corollary 1.4]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradical}
+\begin{proposition}[{{\tjucite[3, Proposition 1.2; 4, Corollary 1.4]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradical}
   设$Y$为$\AF^n$的子集, $\ideal{a}$为$A$的理想, 则
   \begin{enumerate}
-    \item\label{enum:prop-affine-galois-connection-closed-radical-nullstellensatz} (强Hilbert零点定理\parencite[85, Exercise 14]{atiyah_introduction_1969}) $I(Z(\ideal{a}))=\sqrt{a}$;
+    \item\label{enum:prop-affine-galois-connection-closed-radical-nullstellensatz} (强Hilbert零点定理\tjucite[85, Exercise 14]{atiyah_introduction_1969}) $I(Z(\ideal{a}))=\sqrt{a}$;
     \item\label{enum:prop-affine-galois-connection-closed-radical-closure} $Z(I(Y))=\overline{Y}$;
     \item\label{enum:prop-affine-galois-connection-closed-radical-8} 如果$\ideal{p}$是$A$的素理想, 那么$Z(\ideal{p})$是$\AF^n$的不可约闭集;
     \item\label{enum:prop-affine-galois-connection-closed-radical-9} 如果$Y$是$\AF^n$的不可约闭集, 那么$I(Y)$是$A$的素理想.
@@ -43,7 +43,7 @@
   \ref{enum:prop-affine-galois-connection-closed-radical-9} 设$fg\in I(Y)$, 则由\thref{prop:affinezariskitopology}\ref{enum:prop-affine-zariski-topology-2}知$Y=(Y\cap Z(f))\cup (Y\cap Z(g))$, 因为$Y$是不可约闭集, 所以$Y\subseteq Z(f)$或者$Y\subseteq Z(g)$, 故$f\in I(Y)$或者$g\in I(Y)$.
 \end{proof}
 
-回顾\ref{sec:algebra-primdecom}中我们证明了Noether环中准素分解的存在性以及伴随素理想和孤立准素理想的唯一性, 而\ref{sec:varietyaffine}中我们证明了Noether拓扑空间中的不可约分支存在有限并且唯一. 善于观察的读者可能已经发现\thref{thm:laskernoether}和\thref{prop:noetherirreduciblecomponent}的证明十分类似, 而现在通过环的理想与仿射空间的代数集之间的对应, 我们可以将两者联系起来. 首先我们可以直接证明Noether环的极小素理想只有有限个\parencite[79, Exercise 7]{atiyah_introduction_1969}, 接着我们通过一个例子考察它们之间更深刻的关系.
+回顾\ref{sec:algebra-primdecom}中我们证明了Noether环中准素分解的存在性以及伴随素理想和孤立准素理想的唯一性, 而\ref{sec:varietyaffine}中我们证明了Noether拓扑空间中的不可约分支存在有限并且唯一. 善于观察的读者可能已经发现\thref{thm:laskernoether}和\thref{prop:noetherirreduciblecomponent}的证明十分类似, 而现在通过环的理想与仿射空间的代数集之间的对应, 我们可以将两者联系起来. 首先我们可以直接证明Noether环的极小素理想只有有限个\tjucite[79, Exercise 7]{atiyah_introduction_1969}, 接着我们通过一个例子考察它们之间更深刻的关系.
 
 \begin{example}\label{exm:primarydecom}
   设$A=\kk [X, Y]$为$\AF^2$的仿射坐标环, 考虑理想$\ideal{a}=(XY, X^2)$, 则$Z(\ideal{a})$即为$Y$-轴. 而$\ideal{a}$有准素分解$\ideal{a}=(X)\cap (X^2, Y)$, 有伴随素理想$(X), (X, Y)$, 其中$Z(X)$为$Y$-轴, 而$Z(X, Y)$即为原点. 因为原点不是不可约分支, 而是嵌入在某一个不可约分支中, 因此我们称$(X, Y)$为嵌入从属素理想, 而称$(X)$为孤立从属素理想.
@@ -55,7 +55,7 @@
 
 再考虑射影空间$\PP^n$的情形, 记$S\coloneq \kk [X_0, \dotsc, X_n]$, $S$的齐次多项式全体为$\Shomo$, 次数为$d$的齐次多项式全体为$S_d$, $S_+=\sum_{d>0}S_d$为$S$的一个极大理想. 对于$\Shomo$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\PP^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的齐次多项式全体生成的理想.
 
-\begin{propositionnoproof}[{{\parencite[11, Exercise 2.2--2.3]{hartshorne_algebraic_1977}}}]\label{prop:projectivegaloisconnectionclosedradicalpre}
+\begin{propositionnoproof}[{{\tjucite[11, Exercise 2.2--2.3]{hartshorne_algebraic_1977}}}]\label{prop:projectivegaloisconnectionclosedradicalpre}
   设$Y, Y_1, Y_2$为$\PP^n$的子集, $T, T_1, T_2$为$\Shomo$的子集, $\ideal{a}$为$S$的齐次理想, 则
   \begin{enumerate}
     \item\label{enum:prop-projective-galois-connection-closed-radical-1} $Z(T)=Z((T))=Z(\sqrt{(T)})$;
@@ -72,7 +72,7 @@
   \end{enumerate}
 \end{propositionnoproof}
 
-\begin{proposition}[{{\parencite[11, Exercise 2.1 and 2.4]{hartshorne_algebraic_1977}}}]\label{prop:projectivegaloisconnectionclosedradical}
+\begin{proposition}[{{\tjucite[11, Exercise 2.1 and 2.4]{hartshorne_algebraic_1977}}}]\label{prop:projectivegaloisconnectionclosedradical}
   设$Y$为$\PP^n$的子集, $\ideal{a}$为$S$的齐次理想, 则
   \begin{enumerate}
     \item\label{enum:prop-projective-galois-connection-closed-radical-nullstellensatz} 如果$Z(\ideal{a})\neq\varnothing$, 则$I(Z(\ideal{a}))=\sqrt{a}$;
@@ -97,7 +97,7 @@
 
 现在我们可以来仔细考察仿射代数簇上定义的环与仿射坐标环之间的关系, 并将代数的分式环理论\ref{sec:algebra-localization}和维数理论\ref{sec:algebra-dimension}应用到几何的研究中.
 
-\begin{theorem}[{{\parencite[6, Proposition 1.7; 17, Theorem 3.2]{hartshorne_algebraic_1977}}}]\label{thm:affinerings}
+\begin{theorem}[{{\tjucite[6, Proposition 1.7; 17, Theorem 3.2]{hartshorne_algebraic_1977}}}]\label{thm:affinerings}
   设$Y\subseteq \AF^n$为仿射代数簇, 其仿射坐标环为$A(Y)$, 则
   \begin{enumerate}
     \item\label{enum:thm-affine-rings-1} $\dim (Y)=\dim (A(Y))$;
@@ -122,13 +122,13 @@
   最后, 利用\ref{enum:thm-affine-rings-3}和\ref{enum:thm-affine-rings-4}, 并将每个环都看成分式域$K(Y)$的子环, 我们有$A(Y)\subseteq\OO (Y)\subseteq \bigcap_{\ideal{m}} A(Y)_{\ideal{m}}$. 而\thref{prop:integraldomainlocalizationintersection}证明了$\bigcap_{\ideal{m}} A(Y)_{\ideal{m}}= A(Y)$, 因此我们有$A(Y)\cong \OO(Y)$, 这证明了\ref{enum:thm-affine-rings-2}.
 \end{proof}
 
-\thref{thm:affinerings}中我们已经体会到了维数理论在几何中的一些应用, 我们还可以进一步将\ref{sec:algebra-dimension}素理想与生成元的命题翻译到几何问题里面, 以体会其直观含义. \thref{prop:isolatedprimegenerator2height}告诉我们如果$\AF^n$中一个代数集可以写成$r$个超曲面的交, 那么它的不可约分支的维数一定不小于$n-r$\tjucite[8][Exercise 1.9]{hartshorne_algebraic_1977}; 而\thref{prop:isolatedprimeheight2generator}告诉我们$\AF^n$的每个$n-r$维代数簇都可以表示成$r$个超平面的交的不可约分支的形式, 这初步展现了交理论和维数理论之间的关系.
+\thref{thm:affinerings}中我们已经体会到了维数理论在几何中的一些应用, 我们还可以进一步将\ref{sec:algebra-dimension}素理想与生成元的命题翻译到几何问题里面, 以体会其直观含义. \thref{prop:isolatedprimegenerator2height}告诉我们如果$\AF^n$中一个代数集可以写成$r$个超曲面的交, 那么它的不可约分支的维数一定不小于$n-r$\tjucite[8, Exercise 1.9]{hartshorne_algebraic_1977}; 而\thref{prop:isolatedprimeheight2generator}告诉我们$\AF^n$的每个$n-r$维代数簇都可以表示成$r$个超平面的交的不可约分支的形式, 这初步展现了交理论和维数理论之间的关系.
 
 \bigskip
 
 现在来看射影情形. 与仿射情形类似, 如果$Y\subseteq \PP^n$是射影空间中的代数集, 定义$Y$的\emph{射影坐标环} $S(Y)\coloneq S{\divslash}I(Y)$.
 
-\begin{theorem}[{{\parencite[11--12, Exercise 2.6; 18, Theorem 3.4]{hartshorne_algebraic_1977}}}]\label{thm:projectiverings}
+\begin{theorem}[{{\tjucite[11--12, Exercise 2.6; 18, Theorem 3.4]{hartshorne_algebraic_1977}}}]\label{thm:projectiverings}
   设$Y\subseteq\PP^n$为射影代数簇, 其齐次射影坐标环为$S(Y)$, 则
   \begin{enumerate}
     \item\label{enum:thm-projective-rings-1} $\dim (S(Y))=\dim (Y)+1$;
@@ -150,8 +150,8 @@
   最后, 设$f\in\OO (Y)$是整体的正则函数, 则对于每个$j$都有$f$在$Y_j$上, 于是根据\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}可以认为$f\in A(Y_j)$, 又由$\varphi_j^*$知$A(Y_j)\cong S(Y)_{(X_j)}$, 于是$f$可以写成$g_j{\divslash}X_j^{N_j}$的形式, 其中$g_j\in S(Y)$为$N_j$次的齐次多项式. 因为$S(Y)$是整环, 所以可以将$\OO (Y), K(Y), S(Y)$都看作$S(Y)$的分式域$L$的子环, 于是$X_j^{N_j}f\in S(Y)_{N_j}$, 其中$S(Y)_{N_j}$表示齐次环$S(Y)$中次数为$N_j$的齐次元全体. 取$N\geq \sum N_j$, 则$S(Y)_N$作为$\kk$-线性空间可以由次数为$N$的由$X_0, \dotsc, X_n$构成的单项式生成, 根据鸽笼原理知$f\cdot S(Y)_N\subseteq S(Y)_N$, 迭代即得对于每个$q>0$都有$f^q\cdot S(Y)_N$. 特别地, 取$X_j\notin I(Y)$, 则有对于每个$q>0$都有$X_0^Nf^q\in S(Y)$. 于是子环$S(Y)[f]\subseteq L$包含于$X_0^{-N}S(Y)$中, 而$X_0^{-N}S(Y)$是有限生成$S(Y)$-模, 又因为$S(Y)$是Noether环, 所以由\thref{prop:fgmoduleovernoetherring}和\thref{prop:noethermodule}得$S(Y)[f]$是有限生成$S(Y)$-模, 于是由\thref{prop:integraldependence}知$f$为$S(Y)$的整元, 又因为$f$的次数为零, 故存在$x_1, \dotsc, x_m\in S(Y)\cong \kk$使得$f^m+x_1f^{m-1}+\dotsb +x_m=0$成立. 于是$f$是$\kk$的代数元, 又$\kk$是代数闭域, 于是有$f\in \kk$, 这证明了\ref{enum:thm-projective-rings-1}.
 \end{proof}
 
-\begin{theorem}[{{\parencite[19, Proposition 3.5]{hartshorne_algebraic_1977}}}]\label{thm:categoryisoaffinevariety}
-  设$X$是任意的代数簇, $Y$是仿射代数簇, 则存在$X, Y$之间的态射全体到$A(Y), \OO (X)$之间的$k$-代数同态全体的双射
+\begin{theorem}[{{\tjucite[19, Proposition 3.5]{hartshorne_algebraic_1977}}}]\label{thm:categoryisoaffinevariety}
+  设$X$是任意的代数簇, $Y$是仿射代数簇, 则存在$X, Y$之间的态射全体到$A(Y),\linebreak[0] \OO (X)$之间的$k$-代数同态全体的双射
   \begin{equation*}
     \alpha\colon \Hom (X, Y)\to\Hom (A(Y), \OO (X)),
   \end{equation*}
@@ -178,7 +178,7 @@
 
 \thref{thm:categoryisoaffinevariety}给出了与仿射代数簇范畴等价的代数范畴, 利用这个事实, 我们可以证明每个代数簇在局部上都能找到仿射开子集. 继而我们可以证明代数簇以控制有理映射作为态射的范畴与有限生成域扩张的范畴有反变范畴等价. 如果一个代数簇同构于某个仿射代数簇, 则称它是\emph{仿射的}.
 
-\begin{proposition}[{{\parencite[25, Lemma 4.2]{hartshorne_algebraic_1977}}}]\label{prop:hypersurfaceaffine}
+\begin{proposition}[{{\tjucite[25, Lemma 4.2]{hartshorne_algebraic_1977}}}]\label{prop:hypersurfaceaffine}
   设$f\in A\coloneq \kk [X_1, \dotsc, X_n]$, 设$Y=Z(f)$为$\AF^n$中由$f=0$定义的超曲面, 则$\AF^n-Y$同构于$\AF^{n+1}$中由$X_{n+1}f=1$定义的超曲面$H$. 特别地, $\AF^n$是仿射的, 并且仿射坐标环为$\kk [X_1, \dotsc, X_n]_{f}$.
 \end{proposition}
 
@@ -186,7 +186,7 @@
   对于$P=(x_1, \dotsc, x_{n+1})\in H$, 定义$\varphi (P)=(x_1, \dotsc, x_n)$, 则$\varphi$是从$H$到$\AF^n - Y$的态射, 并且为双射. 观察到$\varphi^{-1}(x_1, \dotsc, x_n)\in (x_1, \dotsc, x_n, 1{\dotsb} f(x_1, \dotsc, x_n))$, 因此由\thref{prop:morphismtoaffinevariety}得$\varphi^{-1}$也是态射.
 \end{proof}
 
-\begin{proposition}[{{\parencite[25, Proposition 4.3]{hartshorne_algebraic_1977}}}]\label{prop:affinetopologicalbasis}
+\begin{proposition}[{{\tjucite[25, Proposition 4.3]{hartshorne_algebraic_1977}}}]\label{prop:affinetopologicalbasis}
   代数簇$Y$上有由仿射开子集构成的拓扑基.
 \end{proposition}
 
@@ -194,7 +194,7 @@
   因为$Y$的开子集也是代数簇, 并且由\thref{prop:projectiveopencoverisomorphism}知每个代数簇都可以写成拟仿射代数簇的并, 所以我们只需要对任意拟仿射代数簇$Y\subseteq \AF^n$证明对于任意的$P\in Y$都有包含$P$的仿射开子集$U\subseteq Y$. 取$f\in Z(\overline{Y}-Y)$, 考虑超曲面$H\coloneq Z(f)$, 可以定义$U\coloneq (\AF^n-H )\cap Y= (\AF^n -H)\cap \overline{Y}$, 则$P\in U$, 并且$U$即是$\AF^n$的开子集, 又是$\AF^n -H$的闭子集, 由\thref{prop:hypersurfaceaffine}知$U$即为想要得到的仿射开子集.
 \end{proof}
 
-\begin{theorem}[{{\parencite[25, Theorem 4.4]{hartshorne_algebraic_1977}}}]
+\begin{theorem}[{{\tjucite[25, Theorem 4.4]{hartshorne_algebraic_1977}}}]
   设$X, Y$是任意的代数簇, 则存在$X, Y$之间的控制有理映射全体到$K(Y), K(X)$之间的$\kk$-代数同态全体的双射$\beta$, 并且下图中定义的反变函子
   \begin{equation*}
     \begin{tikzcd}[sep=small]
@@ -231,7 +231,7 @@
 
 设$X$为环$A$的素理想全体构成的集合. 对每个$A$的子集$E$, 记$V(E)$为$A$中包含$E$的素理想全体, 是$X$的子集.
 
-\begin{proposition}[{{\parencite[12, Exercise 15]{atiyah_introduction_1969}}}]\label{prop:primespecclosedset}
+\begin{proposition}[{{\tjucite[12, Exercise 15]{atiyah_introduction_1969}}}]\label{prop:primespecclosedset}
   设$A$为环, 则上述定义的算子$V$有如下性质,
   \begin{enumerate}
     \item\label{enum:prop-prime-spec-closed-set-1} 如果$\ideal{a}$是由$A$的子集$E$生成的理想, 则$V(E)=V(\ideal{a})=V(\sqrt{\ideal{a}})$;
@@ -251,7 +251,7 @@
 
 素谱$\Spec (A)$有一组很特殊的拓扑基, 我们现在来介绍.
 
-\begin{proposition}[{{\parencite[12, Exercise 17]{atiyah_introduction_1969}}}]\label{prop:primespecbaseopenset}
+\begin{proposition}[{{\tjucite[12, Exercise 17]{atiyah_introduction_1969}}}]\label{prop:primespecbaseopenset}
   对于环$A$的元素$f\in A$, 记$X_f$为闭集$V((f))$的余集. 则这些$X_f$构成$\Spec (A)$的一组拓扑基, 并且满足
   \begin{enumerate}
     \item $X_f\cap X_g=X_{fg}$;
@@ -274,7 +274,7 @@
   \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$\sum_{j=1}^n f_ig_i = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
 \end{proof}
 
-\begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
+\begin{proposition}[{{\tjucite[13, Exercise 20]{atiyah_introduction_1969}}}]
   设$A$为环, 则素谱$X=\Spec (A)$的不可约闭集全体恰为每个素理想$\ideal{p}$对应的闭集$V(\ideal{p})$所构成的集合, 这建立了$X$的不可约闭集全体到$A$的素理想全体的反序双射. 于是$X$不可约分支全体恰为极小素理想$\ideal{p}$所对应的闭集$V(\ideal{p})$全体.
 \end{proposition}
 
@@ -288,7 +288,7 @@
 
 素谱运算实际上是环范畴到拓扑空间范畴的反变函子, 具有如下一些性质.
 
-\begin{proposition}[{{\parencite[13, Exercise 21]{atiyah_introduction_1969}}}]\label{prop:primespecfunctor}
+\begin{proposition}[{{\tjucite[13, Exercise 21]{atiyah_introduction_1969}}}]\label{prop:primespecfunctor}
   设$\varphi\colon A\to B$为环同态, 记$X=\Spec (A)$, $Y=\Spec (B)$. $\varphi$诱导出了拓扑空间之间的映射$\varphi^*\colon Y\to X$, 满足
   \begin{enumerate}
     \item\label{enum:prop-prime-spec-functor-continuous} 如果$f\in A$, 那么$\varphi^{*-1}(X_f)=Y_{\varphi(f)}$. 因此$\varphi^*$是连续映射;
@@ -310,7 +310,7 @@
 
 对于环$A$, 其极大理想全体可以看成素谱$\Spec (A)$的子空间, 这个子空间被称为$A$的\emph{极大谱}, 记作$\MaxSpec (A)$. 因为一般来说极大理想的原像不一定是极大理想, 所以极大谱没有如\thref{prop:primespecfunctor}中所述的函子性质, 研究起来不是那么方便.
 
-正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\parencite[79, Exercise 5]{atiyah_introduction_1969}. $X$是Noether拓扑空间等价于每个由$X$的闭子集构成的非空集合都有极小元.
+正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\tjucite[79, Exercise 5]{atiyah_introduction_1969}. $X$是Noether拓扑空间等价于每个由$X$的闭子集构成的非空集合都有极小元.
 
 \begin{proposition}
   如果$A$是Noether环, 则$\Spec (A)$是Noether拓扑空间. 反之则不一定成立.
@@ -341,7 +341,7 @@
 
 既然预层被定义为函子, 那么很自然预层之间的态射被定义为函子之间的自然变换, 层之间的态射也被定义为函子之间的自然变换. 下面一个命题阐释了层的结构可以由它的局部性质决定.
 
-\begin{proposition}[{{\parencite[63, Theorem 1.1]{hartshorne_algebraic_1977}}}]
+\begin{proposition}[{{\tjucite[63, Theorem 1.1]{hartshorne_algebraic_1977}}}]
   设$\varphi\colon \sheaf{F}\to\sheaf{G}$是拓扑空间$X$上的两个层之间的态射, 则$\varphi$是同构当且仅当在每个点$P$处诱导的茎之间的映射$\varphi_P\colon \sheaf{F}_P\to\sheaf{G}_P$是同构.
 \end{proposition}
 
@@ -349,7 +349,7 @@
   $\Rightarrow$显然. 对于$\Leftarrow$, 只需要证明每个$\varphi (U)\colon \sheaf{F}(U)\to\sheaf{G}(U)$是双射即可. 因为$\varphi(s)\restrict{U}=0$蕴含着在每个局部$U_P$有$\varphi(s)\restrict{U_P}=0$, 故为单射. 另一方面, 对于$t\in \sheaf{G}(U)$, 再利用茎上的满射可以在每个点的某个局部$U_P$上构造截面$s(P)$使得$\varphi(s(P))=t\restrict{U_P}$, 并利用之前证明的单射可以将局部的截面$s(P)$拼成整体的截面$s$, 并有$\varphi(s)=t$.
 \end{proof}
 
-\begin{proposition}[{{\parencite[64, Proposition-Definition 1.2]{hartshorne_algebraic_1977}}}]
+\begin{proposition}[{{\tjucite[64, Proposition-Definition 1.2]{hartshorne_algebraic_1977}}}]
   给定拓扑空间$X$, 设$\sheaf{F}$为其上的预层, 记$X$上的预层全体关于之前所定义的态射所构成的范畴为$\cat{Presheaf}$, 则函子$\cat{Presheaf}(\sheaf{F}, -)\colon \cat{Sheaf}\to \cat{Set}$是可表函子, 记泛对象为$\sheaf{F}^+$, 称为预层$\sheaf{F}$\emph{对应的层}.
 \end{proposition}
 
@@ -371,7 +371,7 @@
 
 我们发现环的素谱有类似于仿射簇上的正则函数层的性质, 并且从素谱可以重新构造出原本的环. 回顾记号$\Spec(A)_{f}$表示闭集$V((f))$的余集.
 
-\begin{proposition}[{{\parencite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]\label{prop:primespectrumsheaf}
+\begin{proposition}[{{\tjucite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]\label{prop:primespectrumsheaf}
   设$A$为环, $(\Spec (A), \OO)$为其素谱, 则
   \begin{enumerate}
     \item\label{enum:prop-prime-spectrum-sheaf-1} 对于任意的$\ideal{p}\in\Spec (A)$, 层$\OO$的茎$\OO_P$同构于局部环$A_{\ideal{p}}$;
@@ -391,7 +391,7 @@
 \end{equation*}
 是局部环之间的\emph{局部同态}, 即满足值域的唯一极大理想的原像是定义域的极大理想.
 
-\begin{propositionnoproof}[{{\parencite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]
+\begin{propositionnoproof}[{{\tjucite[71, Proposition 2.2]{hartshorne_algebraic_1977}}}]
   素谱运算$\Spec$定义了环范畴到局部赋环空间范畴之间的完全反变函子.
 \end{propositionnoproof}
 
@@ -409,7 +409,7 @@
 
 如果存在概形态射$f\colon X\to S$, 则称$f$是$S$\emph{上的概形}, 特别地, 如果$S=\Spec (A)$, 也称$f$是$A$\emph{上的概形}. $S$上的概形之间的\emph{态射}自然被要求要与给定的到$S$的态射可交换. 如果概形$X, Y$之间的态射$f\colon X\to Y$满足存在$Y$的仿射开覆盖$V_j=\Spec (B_j)$使得对于每个$j$, $f^{-1}(V_j)$都可以被有限个仿射开子集$U_{jk}=\Spec (A_{jk})$覆盖, 并且每个$A_{jk}$都是有限生成$B_j$-代数, 则称$f$为\emph{有限类型的}. 特别地, 如果有有限类型的态射$f\colon X\to \Spec (\kk)$, 则称$X$是$\kk$上的\emph{有限类型的概形}.
 
-我们可以证明, 对于代数闭域$\kk$, 存在从$\kk$上的簇范畴到$\kk$上的概形范畴的完全忠实函子$t$, 并且对于每个簇$V$, 它的拓扑空间结构同胚于$\sp (t(V))$的闭点全体所构成的子空间, 并且$V$的正则函数层可以通过这个同胚由$t(V)$的结构层的限制所得到\parencite[78, Proposition 2.6]{hartshorne_algebraic_1977}.
+我们可以证明, 对于代数闭域$\kk$, 存在从$\kk$上的簇范畴到$\kk$上的概形范畴的完全忠实函子$t$, 并且对于每个簇$V$, 它的拓扑空间结构同胚于$\sp (t(V))$的闭点全体所构成的子空间, 并且$V$的正则函数层可以通过这个同胚由$t(V)$的结构层的限制所得到\tjucite[78, Proposition 2.6]{hartshorne_algebraic_1977}.
 
 % locally ringed space
 % 仿射概形

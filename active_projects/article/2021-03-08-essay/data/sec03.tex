@@ -18,7 +18,7 @@
   设$A\coloneq \kk[X_1, \dotsc, X_n]$为$\kk$的$n$元多项式环, 我们可以将$A$的元素看成从$\AF^n$到$k$的映射, 对于$f\in A$, $P\in \AF^n$, 记$f(P)=f(x_1, \dotsc, x_n)$. 于是我们可以讨论$f\in A$的\emph{零点}, 即为$\AF^n$的子集$Z(f)\coloneq \{P\in \AF^n\vert f(P)=0\}$. 更一般地, 我们还可以讨论$A$的子集$T$的\emph{零点集}$Z(T)\coloneq \{P\in \AF^n\vert f(P)=0, \forall f\in T\}$. 如果$\AF^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
 \end{definition}
 
-\begin{proposition}[{{\parencite[2, Proposition 1.1]{hartshorne_algebraic_1977}}}]\label{prop:affinezariskitopology}
+\begin{proposition}[{{\tjucite[2, Proposition 1.1]{hartshorne_algebraic_1977}}}]\label{prop:affinezariskitopology}
   设$\Lambda$为任意指标集, $T_1, T_2\in A$, $\{T_\lambda\}_{\lambda\in\Lambda}\subseteq A$, 则
   \begin{enumerate}
     \item\label{enum:prop-affine-zariski-topology-1} $Z(A)=\varnothing, Z(0)=\AF^n$;
@@ -36,9 +36,9 @@
 
 回顾二维欧氏空间中二次曲线的分类, 多项式$XY\in \RR[X, Y]$虽然是二次的, 但是它所定义的解集可以写成两条直线的并, 被称为是退化的. 类似地, 我们想先对非退化的代数集展开研究, 这就引出了拓扑空间中不可约的概念.
 
-如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的\parencite[13, Exercise 19]{atiyah_introduction_1969}. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的.
+如果非空拓扑空间$X$不能写成两个真闭子空间的并, 则称$X$是\emph{不可约的}, 这等价于$X$中任意两个非空开集都有非空交, 也等价于$X$中每个非空开集都是稠密的\tjucite[13, Exercise 19]{atiyah_introduction_1969}. 称$X$的子集$Y$不可约当且仅当$Y$的子拓扑结构是\emph{不可约的}. 为了叙述方便, 我们不认为空集是不可约的.
 
-\begin{proposition}[{{\parencite[13, Exercise 20]{atiyah_introduction_1969}}}]
+\begin{proposition}[{{\tjucite[13, Exercise 20]{atiyah_introduction_1969}}}]
   拓扑空间$X$的不可约集全体在集合被包含关系定义的偏序集结构有极大元, 这些极大元都是闭集, 并且它们的并为全空间. 称这些极大元为$X$的\emph{不可约分支}.
 \end{proposition}
 
@@ -48,8 +48,8 @@
   再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交. 最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
 \end{proof}
 
-% \parencites[79, Exercise 7]{atiyah_introduction_1969}[5, Proposition 1.5]{hartshorne_algebraic_1977}
-\begin{proposition}[{{\parencite[5, Proposition 1.5]{hartshorne_algebraic_1977}}}]\label{prop:noetherirreduciblecomponent}
+% \tjucites[79, Exercise 7]{atiyah_introduction_1969}[5, Proposition 1.5]{hartshorne_algebraic_1977}
+\begin{proposition}[{{\tjucite[5, Proposition 1.5]{hartshorne_algebraic_1977}}}]\label{prop:noetherirreduciblecomponent}
   Noether拓扑空间$X$中的不可约分支仅有有限个.
   %, 故Noether环$A$的极小素理想仅有有限个.
 \end{proposition}
@@ -96,7 +96,7 @@
   设$S\coloneq \kk [X_0, \dotsc, X_n]$为$k$的$n$元多项式环, 与仿射情形不同, 我们一般不能把$S$的元素看成从$\PP^n$到$\kk$的映射, 为了定义零点集, 我们需要引入多项式的次数这一概念. 定义单项式的\emph{次数}为$X_0, \dotsc, X_n$的指数之和, 如果多项式$f\in \PP^n$可以写成有限个次数为$d$的单项式的和, 则称多项式$f$为\emph{次数为$d$的齐次多项式}, 称次数为一的齐次多项式为\emph{线性齐次多项式}, 称可以如此定义次数的多项式为\emph{齐次多项式}, 记齐次多项式全体为$\Shomo$. 次数为$d$的齐次多项式$f$满足性质$f(\lambda x_0, \dotsc, \lambda x_n)=\lambda^d f(x_0, \dotsc, x_n)$, 于是可以把$S$的元素看成从$\PP^n$到$\{0, 1\}$的映射, 其中$f(P)=0$当且仅当存在$P$的一组齐次坐标$(x_0, \dotsc, x_n)$使得$f(x_0, \dotsc, x_n)=0$. 从而我们可以讨论一个齐次多项式的\emph{零点}, 即$Z(f)=\{P\in \PP^n\vert f(P)=0\}$, 以及一个由齐次多项式构成的集合$T\subseteq\Shomo$的\emph{零点集}, 即$Z(T)=\{P\in\PP^n\vert f(P)=0, \forall f\in T\}$. 如果$\PP^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
 \end{definition}
 
-\begin{proposition}[{{\parencite[9, Proposition 2.1]{hartshorne_algebraic_1977}}}]
+\begin{proposition}[{{\tjucite[9, Proposition 2.1]{hartshorne_algebraic_1977}}}]
   设$\Lambda$为任意指标集, $T_1, T_2\in \Shomo$, $\{T_\lambda\}_{\lambda\in\Lambda}\subseteq \Shomo$, 则
   \begin{enumerate}
     \item $Z(\Shomo)=\varnothing, Z(0)=\AF^n$;
@@ -120,9 +120,9 @@
   如果$\ideal{p}$是$S$的素理想, 那么$Z(\ideal{p})$是$\PP^n$的不可约闭集. 特别地, $\PP^n$是射影代数簇.
 \end{proposition}
 
-接下来我们将要构造$n$-射影空间中由$n$-仿射空间所构成的开覆盖, 这个构造与证明实射影空间是实微分流形中的构造\parencite[4--5, Definition 2.4]{flaherty_riemannian_1992}完全相同. 如果$f\in S$是一个齐次线性多项式, 则称$f$的零点集为一个\emph{超平面}. 特别地, 对于$j=0, \dotsc, n$, 记$H_j$为$X_j$的零点, 并记$U_j$为开集$\PP^n-H_j$. 定义映射$\varphi_j\colon U_j\to \AF^n$, 把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j, \dotsc, x_{j-1}{\divslash}x_j, x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$. 因为$x_j\neq 0$, 并且$x_i{\divslash}x_j$的取值与齐次坐标的选取无关, 因此$\varphi_j$是良定的.
+接下来我们将要构造$n$-射影空间中由$n$-仿射空间所构成的开覆盖, 这个构造与证明实射影空间是实微分流形中的构造\tjucite[4--5, Definition 2.4]{flaherty_riemannian_1992}完全相同. 如果$f\in S$是一个齐次线性多项式, 则称$f$的零点集为一个\emph{超平面}. 特别地, 对于$j=0, \dotsc, n$, 记$H_j$为$X_j$的零点, 并记$U_j$为开集$\PP^n-H_j$. 定义映射$\varphi_j\colon U_j\to \AF^n$, 把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j, \dotsc, x_{j-1}{\divslash}x_j, x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$. 因为$x_j\neq 0$, 并且$x_i{\divslash}x_j$的取值与齐次坐标的选取无关, 因此$\varphi_j$是良定的.
 
-\begin{proposition}[{{\parencite[10, Proposition 2.2]{hartshorne_algebraic_1977}}}]\label{prop:projspaceopencoverhomeo}
+\begin{proposition}[{{\tjucite[10, Proposition 2.2]{hartshorne_algebraic_1977}}}]\label{prop:projspaceopencoverhomeo}
   $\PP^n$可以被上述定义的开集族$U_j$开覆盖, 并且映射$\varphi_j$是$U_j$到$\AF^n$的同胚.
 \end{proposition}
 
@@ -134,12 +134,12 @@
   现在令$Y\subseteq U$是$U$的闭子集. 记$\overline{Y}$为其在$\PP^n$中的闭包, 这是一个代数集, 因此存在子集$T\subseteq S^h$使得$\overline{Y}=Z(T)$. 令$T'=\alpha(T)$, 可以直接验证$\varphi(Y)=Z(T')$, 即闭集的像是闭集. 反过来的话, 令$W$为$\AF^n$的闭子集, 则存在$A$的子集$T''$使得$W=Z(T'')$, 很容易验证$\varphi^{-1}(W) = Z(\beta(T''))\cap U$, 即闭集的原像是闭集. 于是得证$\varphi$是一个同胚.
 \end{proof}
 
-\begin{proposition}[{{\parencite[11, Corollary 2.3]{hartshorne_algebraic_1977}}}]\label{prop:projvarietyopencoverhomeo}
+\begin{proposition}[{{\tjucite[11, Corollary 2.3]{hartshorne_algebraic_1977}}}]\label{prop:projvarietyopencoverhomeo}
   如果$Y$是一个 (拟) 射影代数簇, 则$Y$可以由开集族$Y\cap U_j$开覆盖, 并且$\varphi_j$诱导了从$Y\cap U_j$到 (拟) 仿射代数簇的同胚.
 \end{proposition}
 
 \begin{proof}
-  只需要对$Y$是射影代数簇的情况, 证明$Y\cap U_j$是$U_j$中的不可约闭集. 注意到$Y\cap U_j$是不可约集$Y$的开子集, 故$Y\cap U_j$中的开集恰为$Y$中包含于$U_j$的开集\parencite[89, Lemma 16.2]{munkres_topology_2000}, 如果开集$V\subseteq Y\cap U_j$不稠密, 记$V$在$Y\cap U_j$中的闭包为$\overline{V}$, 那么$V$在$Y$中的闭包一定与$Y$的非空开集$Y\cap U_j-\overline{V}$不交\parencite[95, Theorem 17.5]{munkres_topology_2000}, 因此与$Y$是不可约集矛盾, 故$Y\cap U_j$不可约. 再由子拓扑的定义即可得到$Y\cap U_j$是$U_j$中的闭集.
+  只需要对$Y$是射影代数簇的情况, 证明$Y\cap U_j$是$U_j$中的不可约闭集. 注意到$Y\cap U_j$是不可约集$Y$的开子集, 故$Y\cap U_j$中的开集恰为$Y$中包含于$U_j$的开集\tjucite[89, Lemma 16.2]{munkres_topology_2000}, 如果开集$V\subseteq Y\cap U_j$不稠密, 记$V$在$Y\cap U_j$中的闭包为$\overline{V}$, 那么$V$在$Y$中的闭包一定与$Y$的非空开集$Y\cap U_j-\overline{V}$不交\tjucite[95, Theorem 17.5]{munkres_topology_2000}, 因此与$Y$是不可约集矛盾, 故$Y\cap U_j$不可约. 再由子拓扑的定义即可得到$Y\cap U_j$是$U_j$中的闭集.
 \end{proof}
 
 \begin{proposition}
@@ -160,7 +160,7 @@
   先令$Y$为$\AF^n$中的拟仿射代数簇, 记$A=\kk [X_1, \dotsc, X_n]$, $A$的元素可以看成$Y$到$\AF^n$的函数. 考虑从$Y$到$\kk$的函数$f$, 如果$f$在局部可以写成两个多项式的商的形式, 即满足存在$\AF^n$的开集$P\in U\subseteq Y$与多项式$g, h\in A$, 使得$h$在$U$上没有零点, 并且在$U$上有等式$f=g{\divslash}h$成立, 则称$f$\emph{在点$P\in Y$正则}. 如果$f$在$Y$的每个点都正则, 则称$f$在$Y$上\emph{正则}.
 \end{definition}
 
-\begin{proposition}[{{\parencite[15, Lemma 3.1]{hartshorne_algebraic_1977}}}]\label{prop:affineregularcontinuous}
+\begin{proposition}[{{\tjucite[15, Lemma 3.1]{hartshorne_algebraic_1977}}}]\label{prop:affineregularcontinuous}
   设$f\colon Y\to \kk$是从$\AF^n$的拟仿射代数簇到$\kk$的正则函数, 若给像集$\kk$赋予$\AF^1$的Zariski拓扑结构, 则$f$是连续函数.
 \end{proposition}
 
@@ -172,7 +172,7 @@
   再令$Y$为$\PP^n$中的拟射影代数簇, 记$S=\kk [X_0, \dotsc, X_n]$, $S$中相同次数的齐次多项式的商可以看成$Y$到$\AF^n$的函数. 考虑从$Y$到$\kk$的函数$f$, 如果$f$在局部可以写成两个相同次数的齐次多项式的商的形式, 即满足存在$\PP^n$的开集$P\in U\subseteq Y$与次数相同的齐次多项式$g, h\in S$, 使得$h$在$U$上没有零点, 并且在$U$上有等式$f=g{\divslash}h$成立, 则称$f$\emph{在点$P\in Y$正则}. 如果$f$在$Y$的每个点都, 则称$f$在$Y$上\emph{正则}.
 \end{definition}
 
-\begin{proposition}[{{\parencite[15, Remark 3.1.1]{hartshorne_algebraic_1977}}}]\label{prop:projregularcontinuous}
+\begin{proposition}[{{\tjucite[15, Remark 3.1.1]{hartshorne_algebraic_1977}}}]\label{prop:projregularcontinuous}
   设$f\colon Y\to \kk$是从$\PP^n$的拟射影代数簇到$\kk$的正则函数, 若给像集$\kk$赋予$\AF^1$的Zariski拓扑结构, 则$f$是连续函数.
 \end{proposition}
 
@@ -180,9 +180,9 @@
   与\thref{prop:affineregularcontinuous}的证明雷同.
 \end{proof}
 
-将之前定义的仿射代数簇, 拟仿射代数簇, 射影代数簇, 拟射影代数簇统称为\emph{代数簇}, 我们已经定义了代数簇上的正则函数. 类似于单复变函数中非零全纯函数的零点是孤立的\parencite[127]{ahlfors_complex_1978}, 代数簇上的函数也有很强的刚性.
+将之前定义的仿射代数簇, 拟仿射代数簇, 射影代数簇, 拟射影代数簇统称为\emph{代数簇}, 我们已经定义了代数簇上的正则函数. 类似于单复变函数中非零全纯函数的零点是孤立的\tjucite[127]{ahlfors_complex_1978}, 代数簇上的函数也有很强的刚性.
 
-\begin{proposition}[{{\parencite[15, Remark 3.1.1]{hartshorne_algebraic_1977}}}]\label{prop:regularstiffness}
+\begin{proposition}[{{\tjucite[15, Remark 3.1.1]{hartshorne_algebraic_1977}}}]\label{prop:regularstiffness}
   设$f, g$为代数簇$X$上的正则函数, 如果在某个非空开集$U$上有$f=g$, 那么在整个$X$上都有$f=g$.
 \end{proposition}
 
@@ -198,7 +198,7 @@
 
 有了代数簇同构的定义, 我们可以重新考察之前定义过的代数簇之间的Zariski拓扑结构的同胚, 研究它们是不是代数簇结构的同构, 答案是肯定的.
 
-\begin{proposition}[{{\parencite[18, Proposition 3.3]{hartshorne_algebraic_1977}}}]\label{prop:projectiveopencoverisomorphism}
+\begin{proposition}[{{\tjucite[18, Proposition 3.3]{hartshorne_algebraic_1977}}}]\label{prop:projectiveopencoverisomorphism}
   设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 即$U_j=\PP^n - Z(X_j)$, 其中$X_j\in S\coloneq \kk [X_0, \dotsc, X_n]$. 则把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j,\linebreak[0] \dotsc, x_{j-1}{\divslash}x_j,\linebreak[0] x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的(拟)射影代数簇, 则$\varphi_j$诱导的从$Y\cap U_j$到(拟)仿射代数簇的同胚也是代数簇的同构.
 \end{proposition}
 % 设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 则\thref{prop:projspaceopencoverhomeo}中定义的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的(拟)射影代数簇, 则\thref{prop:projvarietyopencoverhomeo}中$\varphi_j$诱导的从$Y\cap U_j$到(拟)仿射代数簇的同胚也是代数簇的同构.
@@ -209,7 +209,7 @@
 
 下面一个命题阐述了任意代数簇到仿射代数簇的映射是态射当且仅当每个分量是正则函数, 我们将在\thref{thm:categoryisoaffinevariety}的构造中用到这一刻画.
 
-\begin{proposition}[{{\parencite[20, Lemma 3.6]{hartshorne_algebraic_1977}}}]\label{prop:morphismtoaffinevariety}
+\begin{proposition}[{{\tjucite[20, Lemma 3.6]{hartshorne_algebraic_1977}}}]\label{prop:morphismtoaffinevariety}
   设$X$为任意代数簇, $Y\subseteq \AF^n$为仿射代数簇. 集合间的映射$\varphi\colon X\to Y$为态射当且仅当对于每个$Y$的坐标函数$X_j\subseteq \AF^n$都有$X_j\composite\varphi$是$X$上的正则函数.
 \end{proposition}
 
@@ -241,7 +241,7 @@
   设$r, s$为正整数, $N=(r+1)(s+1)-1$. 定义映射$\psi\colon \PP^r\times\PP^s\to\PP^N$, 将$((x_0, \dotsc, x_r), (y_0, \dotsc,\linebreak[0] y_s))$按照字典序映到$(\dotsc, x_jy_k, \dotsc)$, 则$\psi$为良定单射, 称为\emph{Segre嵌入}.
 \end{definition}
 
-\begin{proposition}[{{\parencite[13, Exercise 2.13]{hartshorne_algebraic_1977}}}]\label{prop:segreembedding}
+\begin{proposition}[{{\tjucite[13, Exercise 2.13]{hartshorne_algebraic_1977}}}]\label{prop:segreembedding}
   上述定义的Segre嵌入$\psi\colon \PP^r\times\PP^s\to\PP^N$的像是$\PP^N$中的射影代数簇.
 \end{proposition}
 
@@ -251,7 +251,7 @@
 
 利用\thref{prop:projectiveprimeirreducible}, 我们可以给$\PP^r\times\PP^s$赋予射影代数簇的结构. 要注意的是, $\PP^r\times\PP^s$作为射影代数簇的拓扑与乘积拓扑不同. 现在想要来定义两个拟射影代数簇的乘积.
 
-\begin{proposition}[{{\parencite[22, Exercise 3.16]{hartshorne_algebraic_1977}}}]\label{prop:projectiveproduct}
+\begin{proposition}[{{\tjucite[22, Exercise 3.16]{hartshorne_algebraic_1977}}}]\label{prop:projectiveproduct}
   设$X\subseteq\PP^r$与$Y\subseteq\PP^s$为两个拟射影代数簇, 考虑$X\times Y\subseteq \PP^r\times\PP^s$. 则有
   \begin{enumerate}
     \item $X\times Y$是拟射影代数簇;

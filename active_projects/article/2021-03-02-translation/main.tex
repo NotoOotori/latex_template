@@ -46,23 +46,24 @@
 % -------------------- Document --------------------
 
 \begin{document}
-    \maketitle
+  \renewcommand{\thepage}{Cover}
+  \maketitle
 
-    \frontmatter
+  \frontmatter
 
-    \chapter{前言}
+  \chapter{前言}
 
-    \input{data/preface.tex}
+  \input{data/preface.tex}
 
-    \chapter{介绍}
+  \chapter{介绍}
 
-    \input{data/introduction.tex}
+  \input{data/introduction.tex}
 
-    \mainmatter
-    \renewcommand{\thechapter}{\Roman{chapter}}
-    \renewcommand{\thesection}{\arabic{section}}
-    \chapter{簇}
+  \mainmatter
+  \renewcommand{\thechapter}{\Roman{chapter}}
+  \renewcommand{\thesection}{\arabic{section}}
+  \chapter{簇}
 
-    \input{data/chap01.tex}
+  \input{data/chap01.tex}
 
 \end{document}

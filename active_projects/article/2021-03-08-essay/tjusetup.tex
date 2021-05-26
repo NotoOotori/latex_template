@@ -303,5 +303,45 @@
 % \preto\section{\clearpage}
 \makeatother
 
-\NewDocumentCommand\tjucite{O{} m}{\cite{#2}}
-\NewDocumentCommand\tjucites{O{} m O{} m}{\cite{#2, #4}}
+\DeclareCiteCommand{\mycite}[\normalfont\mkbibbrackets]
+  {\normalfont\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}%
+  {\normalfont\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}%
+   \usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}%
+  {}
+  {%
+}
+\DeclareMultiCiteCommand{\mycites}[\normalfont\mkbibbrackets]{\mycite}{; }
+
+\makeatletter
+\newcommand{\newcommandfortjucite}{%
+  \newcommand*\thm{Theorem }%
+  \newcommand*\prop{Proposition }%
+  \newcommand*\lem{\@ifstar{Lemma}{Lemma }}%
+  \newcommand*\ex{Exercise }%
+  \newcommand*\cor{Corollary }%
+  \newcommand*\dfntn{Definition }%
+  \newcommand*\rmrk{Remark }%
+  \newcommand*\propdfntn{Proposition-Definition }%
+  \newcommand*\chap{Ch. }%
+  \renewcommand*\sec{\S }%
+  \newcommand*\sect{Sect. }%
+  \renewcommand*\and{and }%
+  \newcommand*\page[1]{pp. ##1}%
+}
+\NewDocumentCommand\tjucite{O{} O{} m}{{%
+  \newcommandfortjucite
+  \mycite[#2]{#3}%
+}}
+\NewDocumentCommand\tjucites{O{} O{} m O{} O{} m}{{%
+  \newcommandfortjucite
+  \mycites[#2]{#3}[#5]{#6}%
+}}
+\makeatother
+
+\AtBeginDocument{
+  \DeclareMathSymbol{,}{\mathpunct}{operators}{"2C}
+  \DeclareMathSymbol{.}{\mathpunct}{operators}{"2E}
+}

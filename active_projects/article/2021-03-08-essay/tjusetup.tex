@@ -220,7 +220,17 @@
 \newcommand*{\composite}{\vysmwhtcircle}
 \newcommand*{\op}{\symup{op}}
 \newcommand*{\Cone}{\symup{Cone}}
-\newcommand*{\dlim}{\lim}% TODO: direct limit
+
+\newcommand{\MyTo}[1]{\mathbin{\,\tikz[baseline] \draw[-stealth,line width=.4pt] (0ex,0.4ex) -- (#1,0.4ex);}}
+\newcommand{\dlim}{%
+  \mathchoice
+    {\lim_{\MyTo{3.0ex}}}% \displaystyle
+    {\lim_{\MyTo{2.5ex}}}% \textstyle
+    {\lim_{\MyTo{2.0ex}}}% \scriptstyle
+    {\lim_{\MyTo{2.0ex}}}% \scriptscriptstyle
+}
+% \newcommand*{\dlim}{\lim_{\MyTo}}% TODO: direct limit
+
 \newcommand*{\id}{\symup{id}}
 \newcommand*{\inv}{\symup{inv}}
 % \newcommand*{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}% defined by unicode-math
@@ -345,3 +355,25 @@
   \DeclareMathSymbol{,}{\mathpunct}{operators}{"2C}
   \DeclareMathSymbol{.}{\mathpunct}{operators}{"2E}
 }
+
+% \AtEndPreamble{
+%   \hypersetup{hidelinks}
+% }
+
+\makeatletter
+\def\@makefnmark@circled@super{\hbox{\@textsuperscript{\normalfont\circled{\@thefnmark}}}}
+\AtBeginDocument{\patchcmd\@footnotemark{\@makefnmark}{\@makefnmark@circled@super}{}{}}
+\makeatother
+
+% \def\@makefnmark@circled@nosuper{\hbox{\normalfont\circled{\@thefnmark}\space}}
+% \def\@makefnmark@circled@super{\hbox{\@textsuperscript{\normalfont\circled{\@thefnmark}}}}
+% \patchcmd\@footnotemark{\@makefnmark}{\@makefnmark@circled@super}{}{}
+% \patchcmd\@makefntext{\@makefnmark}{\@makefnmark@circled@nosuper}{}{}% 需要etoolbox宏包来给局部打补丁
+% % 如果想要每页重置脚注编号, 可以参考https://tex.stackexchange.com/questions/1656/footnote-counter-would-like-to-restart-from-1-each-page
+
+% \renewcommand*{\thefootnote}{\circled{\arabic{footnote}}}
+
+\makeatletter
+\setfontface\xitsregular{XITS-Regular}[Extension = .otf]
+\setoperatorfont\xitsregular
+\makeatother

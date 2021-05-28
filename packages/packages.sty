@@ -138,6 +138,13 @@
 \RequirePackage{commath} % abs, norm
 % \RequirePackage{mathtools} % \xleftrightarrow.
 
+%% := (obsolete)
+\mathchardef\ordinarycolon\mathcode`\:
+\mathcode`\:=\string"8000
+\begingroup \catcode`\:=\active
+  \gdef:{\mathrel{\mathop\ordinarycolon}}
+\endgroup
+
 %% `unicode-math': math font
 
 \RequirePackage[math-style=TeX, bold-style=TeX, partial=upright]{unicode-math}

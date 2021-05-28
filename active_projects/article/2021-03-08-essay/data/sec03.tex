@@ -15,7 +15,7 @@
 \end{definition}
 
 \begin{definition}
-  设$A\coloneq \kk[X_1, \dotsc, X_n]$为$\kk$的$n$元多项式环, 我们可以将$A$的元素看成从$\AF^n$到$k$的映射, 对于$f\in A$, $P\in \AF^n$, 记$f(P)=f(x_1, \dotsc, x_n)$. 于是我们可以讨论$f\in A$的\emph{零点}, 即为$\AF^n$的子集$Z(f)\coloneq \{P\in \AF^n\vert f(P)=0\}$. 更一般地, 我们还可以讨论$A$的子集$T$的\emph{零点集} $Z(T)\coloneq \{P\in \AF^n\vert f(P)=0, \forall f\in T\}$. 如果$\AF^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
+  设$A\coloneq \kk[X_1, \dotsc, X_n]$为$\kk$的$n$元多项式环, 我们可以将$A$的元素看成从$\AF^n$到$k$的映射, 对于多项式$f\in A$和$P\in \AF^n$, 记$f(P)=f(x_1, \dotsc, x_n)$. 于是我们可以讨论$f\in A$的\emph{零点}, 即为$\AF^n$的子集$Z(f)\coloneq \{P\in \AF^n\vert f(P)=0\}$. 更一般地, 我们还可以讨论$A$的子集$T$的\emph{零点集} $Z(T)\coloneq \{P\in \AF^n\vert f(P)=0, \forall f\in T\}$. 如果$\AF^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
 \end{definition}
 
 \begin{proposition}[{{\tjucite[2, Proposition 1.1][\prop I.1.1]{hartshorne_algebraic_1977}}}]\label{prop:affinezariskitopology}
@@ -70,7 +70,7 @@
   这里仿射代数簇与拟仿射代数簇的定义依赖于到$\AF^n$的嵌入.
 \end{remark}
 
-为了后续讨论的方便, 我们需要陈述一个事实, 证明将放在下一部分\thref{prop:affinegaloisconnectionclosedradical}中.
+为了后续讨论的方便, 我们需要陈述一个事实, 证明将放在\thref{prop:affinegaloisconnectionclosedradical}中.
 
 \begin{propositionnoproof}\label{prop:affineprimeirreducible}
   如果$\ideal{p}$是$A$的素理想, 那么$Z(\ideal{p})$是$\AF^n$的不可约闭集. 特别地, $\AF^n$是仿射代数簇.
@@ -93,7 +93,7 @@
 \end{definition}
 
 \begin{definition}
-  设$S\coloneq \kk [X_0, \dotsc, X_n]$为$k$的$n$元多项式环, 与仿射情形不同, 我们一般不能把$S$的元素看成从$\PP^n$到$\kk$的映射, 为了定义零点集, 我们需要引入多项式的次数这一概念. 定义单项式的\emph{次数}为$X_0, \dotsc, X_n$的指数之和, 如果多项式$f\in \PP^n$可以写成有限个次数为$d$的单项式的和, 则称多项式$f$为\emph{次数为$d$的齐次多项式}, 称次数为一的齐次多项式为\emph{线性齐次多项式}, 称可以如此定义次数的多项式为\emph{齐次多项式}, 记齐次多项式全体为$\Shomo$. 次数为$d$的齐次多项式$f$满足性质$f(\lambda x_0, \dotsc, \lambda x_n)=\lambda^d f(x_0, \dotsc, x_n)$, 于是可以把$S$的元素看成从$\PP^n$到$\{0, 1\}$的映射, 其中$f(P)=0$当且仅当存在$P$的一组齐次坐标$(x_0, \dotsc, x_n)$使得$f(x_0, \dotsc, x_n)=0$. 从而我们可以讨论一个齐次多项式的\emph{零点}, 即$Z(f)=\{P\in \PP^n\vert f(P)=0\}$, 以及一个由齐次多项式构成的集合$T\subseteq\Shomo$的\emph{零点集}, 即$Z(T)=\{P\in\PP^n\vert f(P)=0, \forall f\in T\}$. 如果$\PP^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
+  设$S\coloneq \kk [X_0, \dotsc, X_n]$为$k$的$n$元多项式环, 与仿射情形不同, 我们一般不能把$S$的元素看成从$\PP^n$到$\kk$的映射, 为了定义零点集, 我们需要引入多项式的次数这一概念. 定义单项式的\emph{次数}为$X_0, \dotsc, X_n$的指数之和, 如果多项式$f\in \PP^n$可以写成有限个次数为$d$的单项式的和, 则称多项式$f$为\emph{次数为$d$的齐次多项式}, 称次数为一的齐次多项式为\emph{线性齐次多项式}, 称可以如此定义次数的多项式为\emph{齐次多项式}, 并记齐次多项式全体为$\Shomo$. 次数为$d$的齐次多项式$f$满足性质$f(\lambda x_0, \dotsc, \lambda x_n)=\lambda^d f(x_0, \dotsc, x_n)$, 于是可以把$S$的元素看成从$\PP^n$到$\{0, 1\}$的映射, 其中$f(P)=0$当且仅当存在$P$的一组齐次坐标$(x_0, \dotsc, x_n)$使得$f(x_0, \dotsc, x_n)=0$. 从而我们可以讨论一个齐次多项式的\emph{零点}, 即$Z(f)=\{P\in \PP^n\vert f(P)=0\}$, 以及一个由齐次多项式构成的集合$T\subseteq\Shomo$的\emph{零点集}, 即$Z(T)=\{P\in\PP^n\vert f(P)=0, \forall f\in T\}$. 如果$\PP^n$的子集$Y$可以写成$Y=Z(T)$的形式, 则称$Y$为\emph{代数集}.
 \end{definition}
 
 \begin{proposition}[{{\tjucite[9, Proposition 2.1][\prop I.2.1]{hartshorne_algebraic_1977}}}]
@@ -154,7 +154,7 @@
 
 之前我们定义了仿射代数簇和射影代数簇, 给出了其上的Zariski拓扑的结构. 事实上, 代数簇上面还有更丰富的结构, 我们将在这一节中给出.
 
-一般来说, 如果给定了一个对象上的结构, 那么就会诱导出保持结构不变的映射, 在不同的语境下它们有不同的名字, 比如说映射, 线性映射, 环同态, 连续映射, 光滑映射等等. 在对这些具体情形的研究中, 我们发现很多时候这些保持结构不变的映射全体, 可以反过来决定一个对象的结构, 这就引出了范畴论的思想. 我们将分别给出仿射代数簇和射影代数簇上的函数结构, 从而定义代数簇之间的态射, 以此刻画代数簇的结构. 这之后我们将就可以定义簇的同构, 从而给仿射簇一个内蕴的定义.
+一般来说, 如果给定了一个对象上的结构, 那么就会诱导出保持结构不变的映射, 在不同的语境下它们有不同的名字, 比如说映射, 线性映射, 环同态, 连续映射, 光滑映射等等. 在对这些具体情形的研究中, 我们发现很多时候这些保持结构不变的映射全体, 可以反过来决定一个对象的结构, 这就引出了范畴论的思想. 我们将分别给出仿射代数簇和射影代数簇上的函数结构, 从而定义代数簇之间的态射, 以此刻画代数簇的结构. 这之后我们将就可以定义代数簇的同构, 从而给仿射簇一个内蕴的定义.
 
 \begin{definition}
   先令$Y$为$\AF^n$中的拟仿射代数簇, 记$A=\kk [X_1, \dotsc, X_n]$, $A$的元素可以看成$Y$到$\AF^n$的函数. 考虑从$Y$到$\kk$的函数$f$, 如果$f$在局部可以写成两个多项式的商的形式, 即满足存在$\AF^n$的开集$P\in U\subseteq Y$与多项式$g, h\in A$, 使得$h$在$U$上没有零点, 并且在$U$上有等式$f=g{\divslash}h$成立, 则称$f$\emph{在点$P\in Y$正则}. 如果$f$在$Y$的每个点都正则, 则称$f$在$Y$上\emph{正则}.
@@ -177,7 +177,7 @@
 \end{proposition}
 
 \begin{proof}
-  与\thref{prop:affineregularcontinuous}的证明雷同.
+  与\thref{prop:affineregularcontinuous}的证明几乎一致.
 \end{proof}
 
 将之前定义的仿射代数簇, 拟仿射代数簇, 射影代数簇, 拟射影代数簇统称为\emph{代数簇}, 我们已经定义了代数簇上的正则函数. 类似于单复变函数中非零全纯函数的零点是孤立的\tjucite[127][\page{127}]{ahlfors_complex_1978}, 代数簇上的函数也有很强的刚性.
@@ -199,7 +199,7 @@
 有了代数簇同构的定义, 我们可以重新考察之前定义过的代数簇之间的Zariski拓扑结构的同胚, 研究它们是不是代数簇结构的同构, 答案是肯定的.
 
 \begin{proposition}[{{\tjucite[18, Proposition 3.3][\prop I.3.3]{hartshorne_algebraic_1977}}}]\label{prop:projectiveopencoverisomorphism}
-  设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 即$U_j=\PP^n - Z(X_j)$, 其中$X_j\in S\coloneq \kk [X_0, \dotsc, X_n]$. 则把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j,\linebreak[0] \dotsc, x_{j-1}{\divslash}x_j,\linebreak[0] x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的(拟)射影代数簇, 则$\varphi_j$诱导的从$Y\cap U_j$到(拟)仿射代数簇的同胚也是代数簇的同构.
+  设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 即$U_j=\PP^n - Z(X_j)$, 其中$X_j\in S\coloneq \kk [X_0, \dotsc, X_n]$. 则把有齐次坐标$(x_0, \dotsc, x_n)$的点$P\in U_j$映到有仿射坐标$(x_0{\divslash}x_j,\linebreak[0] \dotsc, x_{j-1}{\divslash}x_j,\linebreak[0] x_{j+1}{\divslash}x_j, \dotsc,  x_n{\divslash}x_j)$的点$Q\in \AF^n$的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的 (拟) 射影代数簇, 则$\varphi_j$所诱导的从$Y\cap U_j$到 (拟) 仿射代数簇的同胚也是代数簇的同构.
 \end{proposition}
 % 设$U_j\in \PP^n$为由$X_j\neq 0$定义的开集, 则\thref{prop:projspaceopencoverhomeo}中定义的同胚$\varphi_j\colon U_j\to \AF^n$是代数簇的同构. 更一般地, 如果$Y$是$\PP^n$中的(拟)射影代数簇, 则\thref{prop:projvarietyopencoverhomeo}中$\varphi_j$诱导的从$Y\cap U_j$到(拟)仿射代数簇的同胚也是代数簇的同构.
 
@@ -270,4 +270,4 @@
   因为每个代数簇都同构于某个$\PP^n$中的拟射影代数簇, 再复合上到$\PP^n$的包含映射, 我们可以不妨假设$Y=\PP^n$. 考虑射影代数簇$\PP^n\times \PP^n$, 根据\thref{prop:projectiveproduct}\ref{enum:prop-projective-product-3}, 存在乘积态射$\varphi\times \psi$. 记$\Delta=\{(P, P)\vert P\in \PP^n\}$为$\PP^n\times \PP^n$的对角线子集, 由方程$\{X_jY_k-X_kY_j=0\vert i, j=0, \dotsc, n\}$定义, 因此是$\PP^n\times \PP^n$的闭子集. 根据假设以及乘积态射的定义, 有$\varphi\times \psi(U)\subseteq \Delta$, 又根据\thref{prop:continuousimageclosure}, 得$\varphi\times \psi(X)\subseteq\Delta$, 于是根据乘积态射的定义可知$\varphi=\psi$.
 \end{proof}
 
-如果有理映射$\varphi$满足对于某一对 (因此也对于任何一对) $\lrbig<>{U, \varphi_U}$都有$\varphi_U$的像都在$Y$中稠密, 则称$\varphi$为\emph{控制有理映射}. $\varphi$为控制有理映射等价于对于某一对$\lrbig<>{U, \varphi_U}$成立$\varphi_U$的像都在$Y$中稠密\footfullcite{andrew_how_2016}. 代数簇关于有理映射也构成一个范畴, 称这个范畴中的同构为\emph{双有理同构}.
+如果有理映射$\varphi$满足对于某一对 (因此也对于任何一对) $\lrbig<>{U, \varphi_U}$都有$\varphi_U$的像都在$Y$中稠密, 则称$\varphi$为\emph{控制有理映射}. $\varphi$为控制有理映射等价于对于某一对$\lrbig<>{U, \varphi_U}$成立$\varphi_U$的像都在$Y$中稠密\footfullcite{andrew_how_2016}. 代数簇关于有理映射也构成一个范畴, 称这个范畴中的同构为\emph{双有理同构}. 双有理同构意义下的代数簇是代数几何中非常重要的话题, 在\ref{sec:ag-functionrings}中我们将得到以控制有理映射为态射的代数簇范畴与某个代数范畴的同构.

@@ -107,7 +107,7 @@
 \end{theorem}
 
 \begin{proof}
-  真包含于$A$的理想全体构成偏序集结构. 对于任意的全序子链$\{\ideal{a}_\lambda\}$, 都有$\bigcup_{\lambda}\ideal{a}_\lambda$是真包含于$A$的理想, 为该全序子链的上界, 故由Zorn引理可得该偏序集中存在极大元, 即环$A$中存在极大理想.
+  真包含于$A$的理想全体关于集合的被包含关系构成偏序集结构. 对于任意的全序子链$\{\ideal{a}_\lambda\}$, 都有$\bigcup_{\lambda}\ideal{a}_\lambda$是真包含于$A$的理想, 为该全序子链的上界, 故由Zorn引理可得该偏序集中存在极大元, 即环$A$中存在极大理想.
 \end{proof}
 
 有的环有且仅有一个极大理想, 称这样的环为\emph{局部环}, 并称局部环对其唯一极大理想的商域为这个环的\emph{剩余域}.
@@ -306,10 +306,7 @@
 \end{proof}
 
 \begin{definition}
-  设$B$为$A$-代数, 若$B$同时为有限生成$A$-模, 则称$B$为\emph{有限$A$-代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数} $C$为包含$T$的最小子代数, 有显式表达
-  \begin{equation*}
-    C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\},
-  \end{equation*}
+  设$B$为$A$-代数, 若$B$同时为有限生成$A$-模, 则称$B$为\emph{有限$A$-代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数} $C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$,
   同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的\emph{有限生成整环}, 这将是本文的主要研究对象.
 \end{definition}
 
@@ -343,7 +340,7 @@
   是正合列. 称形如\eqref{eqn:shortexactsequence}的正合列为\emph{短正合列}.
 \end{definition}
 
-整相关与整元是代数中非常重要的一个概念, 我们来简要这介绍这一概念并证明其与模之间的关系. 设$B$为环$A$的子环, 如果$x\in A$是某个以$B$中元素为系数的首一多项式的根, 即满足$x^n+b_1x^{n-1}+\dotsb +b_n=0$, 其中$b_1, \dotsc, b_n\in B$, 则称$x$是$B$的\emph{整元}. 特别地, 域上的代数元即为域上的整元.
+整相关与整元是代数中非常重要的概念, 我们来简要一下并证明其与模之间的关系. 设$B$为环$A$的子环, 如果$x\in A$是某个以$B$中元素为系数的首一多项式的根, 即满足$x^n+b_1x^{n-1}+\dotsb +b_n=0$, 其中$b_1, \dotsc, b_n\in B$, 则称$x$是$B$的\emph{整元}. 特别地, 域上的代数元即为域上的整元.
 
 \begin{proposition}[{{\tjucite[59, Proposition 5.1][\prop 5.1]{atiyah_introduction_1969}}}]\label{prop:integraldependence}
   设$B$是$A$的子环, $x\in A$, 则下列命题等价.
@@ -365,7 +362,7 @@
 
 \subsubsection{链条件与有限条件}
 
-这一小节我们来介绍链条件与Noether模. 链条件是一种偏序集上的有限条件, 可以应用在环, 模, 拓扑空间等结构中, 而环的链条件是模的链条件的特殊情况, 所以我们先来对模的情况进行研究.
+这一小节我们来介绍链条件与Noether模. 在偏序集上可以定义链条件和有限条件, 假设Zorn引理的情况下它们等价. 这两个条件可以应用在环, 模, 拓扑空间等结构中, 可以限制研究对象从而得到强的结论. 而环的链条件是模的链条件的特殊情况, 所以我们先来对模的情况进行研究.
 
 \begin{proposition}[{{\tjucite[74, Proposition 6.1][\prop 6.1]{atiyah_introduction_1969}}}]\label{prop:chaincondition}
   对于偏序集$(\Sigma, \leq)$, 以下两个命题等价.

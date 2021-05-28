@@ -7,7 +7,6 @@
 \subsection{理想与代数集}\label{sec:ag-ideal}
 
 这一节我们将讨论仿射空间与射影空间的代数集与多项式环的理想的对应关系.
-
 先考虑仿射空间$\AF^n$的情况, 记$A\coloneq \kk [X_1, \dotsc, X_n]$. 对于多项式环$A$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\AF^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的多项式全体, 即$I(Y)\coloneq \{f\in A\vert f(x)=0, \forall x\in Y\}$, $I(Y)$一定是环$A$的理想, 并且如果$Y$为单点集, 则$I(Y)$为极大理想.
 
 \begin{propositionnoproof}[{{\tjucite[3, Proposition 1.2][\prop I.1.2]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradicalpre}
@@ -89,13 +88,126 @@
 
 % 射影空间
 % 函数环的刻画
-\subsection{函数环}\label{sec:ag-functionrings}
 
-这一节中我们要定义仿射空间代数集的仿射坐标环, 以及射影空间中代数集的射影坐标环, 并研究它们与代数簇上的整体函数环, 在某点的局部环以及函数域的关系. 此外, 我们还将代数中的维数理论与几何中代数簇的维数联系了起来, 并研究交理论和维数理论之间的关系.
+\subsection{环与素谱}\label{sec:algebra-primespec}
+
+% 同胚于极大谱
+
+仿射代数簇上的坐标函数全体构成一个环, 而从这个环中我们可以反过来构造``原先"的代数簇, 而从环构造的拓扑空间的方法即为素谱. 这一节我们要介绍环的素谱及其上的Zariski拓扑结构, 它具有很好的函子性, 也可以反映出一些环本身的性质.
 
 如果$Y\subseteq \AF^n$是仿射空间中的代数集, 若将$A$中元素看作为$Y$上的函数, 则$A$在由函数相等定义的等价关系下的商环即为$A(Y)\coloneq A{\divslash}I(Y)$, 称为$Y$的\emph{仿射坐标环}. 如果$Y$是仿射代数簇, 则$A(Y)$也为有限生成整环.
 
-现在我们可以来仔细考察仿射代数簇上定义的环与仿射坐标环之间的关系, 并将代数的分式环理论\ref{sec:algebra-localization}和维数理论\ref{sec:algebra-dimension}应用到几何的研究中.
+现在来定义环$A$的素谱. 设$X$为环$A$的素理想全体构成的集合. 对每个$A$的子集$E$, 记$V(E)$为$A$中包含$E$的素理想全体, 是$X$的子集.
+
+\begin{proposition}[{{\tjucite[12, Exercise 15][\chap 1, \ex 15]{atiyah_introduction_1969}}}]\label{prop:primespecclosedset}
+  设$A$为环, 则上述定义的算子$V$有如下性质,
+  \begin{enumerate}
+    \item\label{enum:prop-prime-spec-closed-set-1} 如果$\ideal{a}$是由$A$的子集$E$生成的理想, 则$V(E)=V(\ideal{a})=V(\sqrt{\ideal{a}})$;
+    \item\label{enum:prop-prime-spec-closed-set-2} 如果$\sqrt{\ideal{a}}\neq\sqrt{\ideal{b}}$, 则$V(\ideal{a})\neq V(\ideal{b})$;
+    \item\label{enum:prop-prime-spec-closed-set-3} $V((0))=X$, $V((1))=\varnothing$;
+    \item\label{enum:prop-prime-spec-closed-set-4} 设$\{E_\lambda\}$为$A$的一族子集, 则$\bigcap V(E_\lambda)=V(\bigcup E_\lambda)$;
+    \item\label{enum:prop-prime-spec-closed-set-5} 如果$\ideal{a}, \ideal{b}$是$A$的两个理想, 则$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
+  \end{enumerate}
+  因此$V(E)$全体作为$X$的子集满足拓扑空间中闭集的公理, 如此可以在$X$中定义拓扑空间结构, 称为\emph{Zariski拓扑}, 称赋有Zariski拓扑的拓扑空间$X$为环$A$的\emph{素谱}, 记为$\Spec (A)$.
+\end{proposition}
+
+\begin{proof}
+  \ref{enum:prop-prime-spec-closed-set-1} 注意如果$x^n\in \ideal{p}$那么有$x\in\ideal{p}$.
+
+  \ref{enum:prop-prime-spec-closed-set-5} 不难证明$V(\ideal{a}\cap\ideal{b})=V(\ideal{a})\cup V(\ideal{b})$, 又由\ref{enum:prop-prime-spec-closed-set-1}和\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}, 即得$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
+\end{proof}
+
+素谱$\Spec (A)$有一组很特殊的拓扑基, 我们现在来介绍.
+
+\begin{proposition}[{{\tjucite[12, Exercise 17][\chap 1, \ex 17]{atiyah_introduction_1969}}}]\label{prop:primespecbaseopenset}
+  对于环$A$的元素$f\in A$, 记$X_f$为闭集$V((f))$的余集. 则这些$X_f$构成$\Spec (A)$的一组拓扑基, 并且满足
+  \begin{enumerate}
+    \item $X_f\cap X_g=X_{fg}$;
+    \item\label{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$是幂零元;
+    \item $X_f=X$当且仅当$f$是单位;
+    \item $X_f=X_g$当且仅当$\sqrt{(f)}=\sqrt{(g)}$;
+    \item\label{enum:prop-prime-spec-base-open-set-5} $X$是拟紧集\footnotemark;
+    \item\label{enum:prop-prime-spec-base-open-set-6} 每个$X_f$是拟紧集;
+    \item $X$中的开集为拟紧集当且仅当它是有限个$X_f$的并.
+  \end{enumerate}
+  称这些$X_f$为素谱$\Spec (A)$的\emph{基开集}.
+\end{proposition}
+\footnotetext{代数几何中对紧集的称法与其它领域中不同. 称每个开覆盖都有有限子覆盖的集合为\emph{拟紧集}, 称满足Hausdorff性质的拟紧集为\emph{紧集}.}
+
+\begin{proof}
+  \ref{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$属于$A$的幂零根, 也当且仅当$f$是幂零元.
+
+  \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证任意开覆盖都有有限子覆盖.
+
+  \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$\sum_{j=1}^n f_ig_i = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
+\end{proof}
+
+\begin{proposition}[{{\tjucite[13, Exercise 20][\chap 1, \ex 20]{atiyah_introduction_1969}}}]
+  设$A$为环, 则素谱$X=\Spec (A)$的不可约闭集全体恰为每个素理想$\ideal{p}$对应的闭集$V(\ideal{p})$所构成的集合, 这建立了$X$的不可约闭集全体到$A$的素理想全体的反序双射. 于是$X$不可约分支全体恰为极小素理想$\ideal{p}$所对应的闭集$V(\ideal{p})$全体.
+\end{proposition}
+
+\begin{proof}
+  因为$V$可以看成从$A$的素理想全体到$X$的闭集全体之间的保序单射, 所以只需证明$\sqrt{\ideal{a}}$为素理想当且仅当$V(\ideal{a})$不可约.
+
+  如果$\ideal{p}$是素理想, 若有$V(\ideal{p})=V(\sqrt{\ideal{a}})\cup V(\sqrt{\ideal{b}})=V(\sqrt{\ideal{ab}})$, 则根据\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}有$\ideal{p}=\sqrt{\ideal{ab}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$, 再根据\thref{prop:prime}\ref{enum:prop-prime-absorb}得$\ideal{p}=\sqrt{\ideal{a}}$或$\ideal{p}=\sqrt{\ideal{b}}$. 于是得$V(\ideal{p})$不能写成两个真闭子集得并, 故为不可约集.
+
+  如果$V(\sqrt{\ideal{a}})$是不可约集, 考虑$fg\in\sqrt{\ideal{a}}$. 则$V(\ideal{a})=(V(\ideal{a})\cap V((f)))\cap (V(\ideal{a})\cap V((g)))$可以写成两个闭子集的并. 于是有$V(\ideal{a})=V((f))$或者$V(\ideal{a})=V((g))$, 因此$f\in \sqrt{\ideal{a}}$或者$g\in \sqrt{\ideal{a}}$成立, 即$\sqrt{\ideal{a}}$为素理想.
+\end{proof}
+
+素谱运算实际上是环范畴到拓扑空间范畴的反变函子, 具有如下一些性质.
+
+\begin{proposition}[{{\tjucite[13, Exercise 21][\chap 1, \ex 21]{atiyah_introduction_1969}}}]\label{prop:primespecfunctor}
+  设$\varphi\colon A\to B$为环同态, 记$X=\Spec (A)$, $Y=\Spec (B)$. $\varphi$诱导出了拓扑空间之间的映射$\varphi^*\colon Y\to X$, 满足
+  \begin{enumerate}
+    \item\label{enum:prop-prime-spec-functor-continuous} 如果$f\in A$, 那么$\varphi^{*-1}(X_f)=Y_{\varphi(f)}$. 因此$\varphi^*$是连续映射;
+    \item 如果$\ideal{a}$是$A$的理想, 那么$\varphi^{*-1}(V(\ideal{a}))=V(\ideal{a}^e)$;
+    \item 如果$\ideal{b}$是$B$的理想, 那么$\overline{\varphi^*(V(\ideal{b}))}=V(\ideal{b}^c)$;
+    \item\label{enum:prop-prime-spec-functor-surjective} 如果$\varphi$是满射, 那么$\varphi^*$为从$Y$到$X$的闭子集$V(\Ker (\varphi))$的同胚. 特别地, $\Spec (A)$与$\Spec (A{\divslash}\nil)$有自然同胚;
+    \item $\varphi^*(Y)$在$X$中稠密当且仅当$\Ker (\varphi)\subseteq \nil$;
+    \item\label{enum:prop-prime-spec-functor-composite} 如果$\psi\colon B\to C$为另一个环同态, 则$(\psi\composite\varphi)^*=\varphi^*\composite\psi^*$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \ref{enum:prop-prime-spec-functor-continuous} $\ideal{q}\in\varphi^{*-1}(V(X_f))$当且仅当$\varphi^*(\ideal{q})\in X_f$, 又当且仅当$f\notin \ideal{q}^c$, 还当且仅当$\varphi (f)\notin \ideal{q}$, 最后当且仅当$\ideal{q}\in Y_{\varphi (f)}$.
+
+  \ref{enum:prop-prime-spec-functor-surjective} 只需证明$\varphi^*(V(\ideal{b}))=V(\ideal{b}^c)$. 考虑素理想$\ideal{p}\in X$, 则$\ideal{p}\in\varphi^*(V(\ideal{b}))$当且仅当$\varphi(\ideal{p})\in V(\ideal{b})$, 也当且仅当$\varphi(\ideal{p})\supseteq\ideal{b}$, 故当且仅当$\ideal{p}\supseteq\ideal{b}^c$.
+
+  \ref{enum:prop-prime-spec-functor-composite} 注意$(\psi\composite\varphi)^{-1}=(\varphi^{-1}\composite\psi^{-1})$即可.
+\end{proof}
+
+% 对于环$A$, 其极大理想全体可以看成素谱$\Spec (A)$的子空间, 这个子空间被称为$A$的\emph{极大谱}, 记作$\MaxSpec (A)$. 因为一般来说极大理想的原像不一定是极大理想, 所以极大谱没有如\thref{prop:primespecfunctor}中所述的函子性质, 研究起来不是那么方便.
+
+正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\tjucite[79, Exercise 5][\chap 6, \ex 5]{atiyah_introduction_1969}. $X$是Noether拓扑空间等价于每个由$X$的闭子集构成的非空集合都有极小元.
+
+\begin{proposition}
+  如果$A$是Noether环, 则$\Spec (A)$是Noether拓扑空间. 反之则不一定成立.
+\end{proposition}
+
+\begin{proof}
+  假设$A$是Noether环, 因为$\Spec (A)$中的闭集降链能诱导出$A$中的根式理想的升链, 故由\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}知闭集降链一定有限.
+
+  反过来, 我们需要寻找一个反例, 这个反例参考\footfullcite{brandenburg_non-noetherian_2017}. 设$\kk$为一个域, 考虑域的正整数元多项式环的商环$A=\kk [X_1, X_2, \dotsc]{\divslash}(X_1, X_2^2, \dotsc)$. 因为理想升链$(X_1)\subsetneqq (X_1, X_2)\dotsb$不稳定, 因此$A$不是Noether环. 但是因为幂零根$\nil=\ideal{m}\coloneq (X_1, X_2, \dotsc)$为极大理想, 故由\thref{prop:primespecfunctor}\ref{enum:prop-prime-spec-functor-surjective}我们知道$\Spec (A)\cong\Spec (A{\divslash}\nil)=\Spec (\kk)$仅有一个点, 因此一定是Noether拓扑空间.
+\end{proof}
+
+\begin{example}
+  设$A\coloneq\kk [X]$为代数闭域$\kk$上的一元多项式环, 则$X\coloneq \Spec (A)=\{(X-x)\vert x\in \kk\}\cup \{(0)\}$, 比$\kk$``多出"了一个点, 称$(0)$为$\Spec (A)$的\emph{广点}. 再对于$f\in \kk [X]$考察闭集$V(f)$. 如果$f=0$, 则$V(f)=X$; 否则$f$可以写成若干不可约多项式的乘积, 即$f=\prod_{j=1}^np_{j}^{r_j}$, 此时$V(f)=\{\prod_{j=1}^np_j^{s_j}\vert \sum_{j=1}^ns_j=1\}$.
+\end{example}
+
+对于环$A$, 其极大理想全体可以看成素谱$\Spec (A)$的子空间, 这个子空间被称为$A$的\emph{极大谱}, 记作$\MaxSpec (A)$. 因为一般来说极大理想的原像不一定是极大理想, 所以极大谱没有如\thref{prop:primespecfunctor}中所述的函子性质. 利用\thref{prop:affinegaloisconnectionclosedradical}, 我们可以证明一个仿射代数簇同胚于它的仿射坐标环的极大谱, 这就建立了某种仿射代数簇与环的极大谱 (素谱) 之间的对应. 下一节中我们将把代数簇的态射也纳入考虑, 以范畴等价的形式建立更强的对应.
+
+\subsection{代数簇与概型}\label{sec:ag-affinescheme}
+
+代数簇有着比拓扑空间更丰富的结构, 回顾\ref{sec:geometry-morphism}我们定义了代数簇上的函数结构, 并利用这些函数结构定义了代数簇之间的态射. 这一节中我们将进一步研究代数簇与环的素谱之间的对应, 从而比较自然地引出概型这个概念.
+% \subsection{概型}\label{sec:ag-affinescheme}
+
+% 现代代数几何的主要语言从固定域上的代数簇发展到了概型. 概型这个概念是簇及其上的函数环的推广, 对于给定的代数闭域可以构造从簇范畴到概型范畴的完全忠实函子, 并且利用概型的语言我们可以对更一般更本质的对象进行研究, 可以允许局部环内有幂零元, 可以考察在基域的变换下对象的变换等等. 这一节中我们将要引入层的语言, 介绍仿射概型的定义及基本性质, 并简单叙述概型的定义及概型之间的态射.
+
+\subsubsection{函数环}\label{sec:ag-functionrings}
+
+这一小节中我们要定义仿射空间代数集的仿射坐标环, 以及射影空间中代数集的射影坐标环, 并研究它们与代数簇上的整体函数环, 在某点的局部环以及函数域的关系. 此外, 我们还将代数中的维数理论与几何中代数簇的维数联系了起来, 并研究交理论和维数理论之间的关系.
+
+回顾\ref{sec:algebra-primespec}中我们定义了代数簇$Y\subseteq \AF^n$的仿射坐标环为$A(Y)\coloneq A{\divslash}I(Y)$, 是$\kk$的有限生成整环. 现在我们可以来仔细考察仿射代数簇上定义的环与仿射坐标环之间的关系, 并将代数的分式环理论\ref{sec:algebra-localization}和维数理论\ref{sec:algebra-dimension}应用到几何的研究中.
 
 \begin{theorem}[{{\tjucite[6, Proposition 1.7; 17, Theorem 3.2][\prop I.1.7 \and \thm I.3.2]{hartshorne_algebraic_1977}}}]\label{thm:affinerings}
   设$Y\subseteq \AF^n$为仿射代数簇, 其仿射坐标环为$A(Y)$, 则
@@ -221,108 +333,9 @@
 % Zariski Vol I P241 Theorem 30, 31 生成元与超平面之交的关系 Hartshorne Ex 1.9
 % Hartshorne Exm II.2.4 embedded points
 
-\subsection{概型}\label{sec:ag-affinescheme}
-
-现代代数几何的主要语言从固定域上的代数簇发展到了概型. 概型这个概念是簇及其上的函数环的推广, 对于给定的代数闭域可以构造从簇范畴到概型范畴的完全忠实函子, 并且利用概型的语言我们可以对更一般更本质的对象进行研究, 可以允许局部环内有幂零元, 可以考察在基域的变换下对象的变换等等. 这一节中我们将要引入层的语言, 介绍仿射概型的定义及基本性质, 并简单叙述概型的定义及概型之间的态射.
-
-\subsubsection{素谱}\label{sec:algebra-primespec}
-
-这一节我们要介绍环的素谱及其上的Zariski拓扑结构, 它具有很好的函子性质, 也可以反映出一些环本身的性质.
-
-设$X$为环$A$的素理想全体构成的集合. 对每个$A$的子集$E$, 记$V(E)$为$A$中包含$E$的素理想全体, 是$X$的子集.
-
-\begin{proposition}[{{\tjucite[12, Exercise 15][\chap 1, \ex 15]{atiyah_introduction_1969}}}]\label{prop:primespecclosedset}
-  设$A$为环, 则上述定义的算子$V$有如下性质,
-  \begin{enumerate}
-    \item\label{enum:prop-prime-spec-closed-set-1} 如果$\ideal{a}$是由$A$的子集$E$生成的理想, 则$V(E)=V(\ideal{a})=V(\sqrt{\ideal{a}})$;
-    \item\label{enum:prop-prime-spec-closed-set-2} 如果$\sqrt{\ideal{a}}\neq\sqrt{\ideal{b}}$, 则$V(\ideal{a})\neq V(\ideal{b})$;
-    \item\label{enum:prop-prime-spec-closed-set-3} $V((0))=X$, $V((1))=\varnothing$;
-    \item\label{enum:prop-prime-spec-closed-set-4} 设$\{E_\lambda\}$为$A$的一族子集, 则$\bigcap V(E_\lambda)=V(\bigcup E_\lambda)$;
-    \item\label{enum:prop-prime-spec-closed-set-5} 如果$\ideal{a}, \ideal{b}$是$A$的两个理想, 则$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
-  \end{enumerate}
-  因此$V(E)$全体作为$X$的子集满足拓扑空间中闭集的公理, 如此可以在$X$中定义拓扑空间结构, 称为\emph{Zariski拓扑}, 称赋有Zariski拓扑的拓扑空间$X$为环$A$的\emph{素谱}, 记为$\Spec (A)$.
-\end{proposition}
-
-\begin{proof}
-  \ref{enum:prop-prime-spec-closed-set-1} 注意如果$x^n\in \ideal{p}$那么有$x\in\ideal{p}$.
-
-  \ref{enum:prop-prime-spec-closed-set-5} 不难证明$V(\ideal{a}\cap\ideal{b})=V(\ideal{a})\cup V(\ideal{b})$, 又由\ref{enum:prop-prime-spec-closed-set-1}和\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}, 即得$V(\ideal{a})\cup V(\ideal{b})=V(\ideal{ab})= V(\ideal{a}\cap \ideal{b})$.
-\end{proof}
-
-素谱$\Spec (A)$有一组很特殊的拓扑基, 我们现在来介绍.
-
-\begin{proposition}[{{\tjucite[12, Exercise 17][\chap 1, \ex 17]{atiyah_introduction_1969}}}]\label{prop:primespecbaseopenset}
-  对于环$A$的元素$f\in A$, 记$X_f$为闭集$V((f))$的余集. 则这些$X_f$构成$\Spec (A)$的一组拓扑基, 并且满足
-  \begin{enumerate}
-    \item $X_f\cap X_g=X_{fg}$;
-    \item\label{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$是幂零元;
-    \item $X_f=X$当且仅当$f$是单位;
-    \item $X_f=X_g$当且仅当$\sqrt{(f)}=\sqrt{(g)}$;
-    \item\label{enum:prop-prime-spec-base-open-set-5} $X$是拟紧集\footnotemark;
-    \item\label{enum:prop-prime-spec-base-open-set-6} 每个$X_f$是拟紧集;
-    \item $X$中的开集为拟紧集当且仅当它是有限个$X_f$的并.
-  \end{enumerate}
-  称这些$X_f$为素谱$\Spec (A)$的\emph{基开集}.
-\end{proposition}
-\footnotetext{代数几何中对紧集的称法与其它领域中不同. 称每个开覆盖都有有限子覆盖的集合为\emph{拟紧集}, 称满足Hausdorff性质的拟紧集为\emph{紧集}.}
-
-\begin{proof}
-  \ref{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$属于$A$的幂零根, 也当且仅当$f$是幂零元.
-
-  \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证任意开覆盖都有有限子覆盖.
-
-  \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$\sum_{j=1}^n f_ig_i = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
-\end{proof}
-
-\begin{proposition}[{{\tjucite[13, Exercise 20][\chap 1, \ex 20]{atiyah_introduction_1969}}}]
-  设$A$为环, 则素谱$X=\Spec (A)$的不可约闭集全体恰为每个素理想$\ideal{p}$对应的闭集$V(\ideal{p})$所构成的集合, 这建立了$X$的不可约闭集全体到$A$的素理想全体的反序双射. 于是$X$不可约分支全体恰为极小素理想$\ideal{p}$所对应的闭集$V(\ideal{p})$全体.
-\end{proposition}
-
-\begin{proof}
-  因为$V$可以看成从$A$的素理想全体到$X$的闭集全体之间的保序单射, 所以只需证明$\sqrt{\ideal{a}}$为素理想当且仅当$V(\ideal{a})$不可约.
-
-  如果$\ideal{p}$是素理想, 若有$V(\ideal{p})=V(\sqrt{\ideal{a}})\cup V(\sqrt{\ideal{b}})=V(\sqrt{\ideal{ab}})$, 则根据\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}有$\ideal{p}=\sqrt{\ideal{ab}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$, 再根据\thref{prop:prime}\ref{enum:prop-prime-absorb}得$\ideal{p}=\sqrt{\ideal{a}}$或$\ideal{p}=\sqrt{\ideal{b}}$. 于是得$V(\ideal{p})$不能写成两个真闭子集得并, 故为不可约集.
-
-  如果$V(\sqrt{\ideal{a}})$是不可约集, 考虑$fg\in\sqrt{\ideal{a}}$. 则$V(\ideal{a})=(V(\ideal{a})\cap V((f)))\cap (V(\ideal{a})\cap V((g)))$可以写成两个闭子集的并. 于是有$V(\ideal{a})=V((f))$或者$V(\ideal{a})=V((g))$, 因此$f\in \sqrt{\ideal{a}}$或者$g\in \sqrt{\ideal{a}}$成立, 即$\sqrt{\ideal{a}}$为素理想.
-\end{proof}
-
-素谱运算实际上是环范畴到拓扑空间范畴的反变函子, 具有如下一些性质.
-
-\begin{proposition}[{{\tjucite[13, Exercise 21][\chap 1, \ex 21]{atiyah_introduction_1969}}}]\label{prop:primespecfunctor}
-  设$\varphi\colon A\to B$为环同态, 记$X=\Spec (A)$, $Y=\Spec (B)$. $\varphi$诱导出了拓扑空间之间的映射$\varphi^*\colon Y\to X$, 满足
-  \begin{enumerate}
-    \item\label{enum:prop-prime-spec-functor-continuous} 如果$f\in A$, 那么$\varphi^{*-1}(X_f)=Y_{\varphi(f)}$. 因此$\varphi^*$是连续映射;
-    \item 如果$\ideal{a}$是$A$的理想, 那么$\varphi^{*-1}(V(\ideal{a}))=V(\ideal{a}^e)$;
-    \item 如果$\ideal{b}$是$B$的理想, 那么$\overline{\varphi^*(V(\ideal{b}))}=V(\ideal{b}^c)$;
-    \item\label{enum:prop-prime-spec-functor-surjective} 如果$\varphi$是满射, 那么$\varphi^*$为从$Y$到$X$的闭子集$V(\Ker (\varphi))$的同胚. 特别地, $\Spec (A)$与$\Spec (A{\divslash}\nil)$有自然同胚;
-    \item $\varphi^*(Y)$在$X$中稠密当且仅当$\Ker (\varphi)\subseteq \nil$;
-    \item\label{enum:prop-prime-spec-functor-composite} 如果$\psi\colon B\to C$为另一个环同态, 则$(\psi\composite\varphi)^*=\varphi^*\composite\psi^*$.
-  \end{enumerate}
-\end{proposition}
-
-\begin{proof}
-  \ref{enum:prop-prime-spec-functor-continuous} $\ideal{q}\in\varphi^{*-1}(V(X_f))$当且仅当$\varphi^*(\ideal{q})\in X_f$, 又当且仅当$f\notin \ideal{q}^c$, 还当且仅当$\varphi (f)\notin \ideal{q}$, 最后当且仅当$\ideal{q}\in Y_{\varphi (f)}$.
-
-  \ref{enum:prop-prime-spec-functor-surjective} 只需证明$\varphi^*(V(\ideal{b}))=V(\ideal{b}^c)$. 考虑素理想$\ideal{p}\in X$, 则$\ideal{p}\in\varphi^*(V(\ideal{b}))$当且仅当$\varphi(\ideal{p})\in V(\ideal{b})$, 也当且仅当$\varphi(\ideal{p})\supseteq\ideal{b}$, 故当且仅当$\ideal{p}\supseteq\ideal{b}^c$.
-
-  \ref{enum:prop-prime-spec-functor-composite} 注意$(\psi\composite\varphi)^{-1}=(\varphi^{-1}\composite\psi^{-1})$即可.
-\end{proof}
-
-对于环$A$, 其极大理想全体可以看成素谱$\Spec (A)$的子空间, 这个子空间被称为$A$的\emph{极大谱}, 记作$\MaxSpec (A)$. 因为一般来说极大理想的原像不一定是极大理想, 所以极大谱没有如\thref{prop:primespecfunctor}中所述的函子性质, 研究起来不是那么方便.
-
-正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\tjucite[79, Exercise 5][\chap 6, \ex 5]{atiyah_introduction_1969}. $X$是Noether拓扑空间等价于每个由$X$的闭子集构成的非空集合都有极小元.
-
-\begin{proposition}
-  如果$A$是Noether环, 则$\Spec (A)$是Noether拓扑空间. 反之则不一定成立.
-\end{proposition}
-
-\begin{proof}
-  假设$A$是Noether环, 因为$\Spec (A)$中的闭集降链能诱导出$A$中的根式理想的升链, 故由\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}知闭集降链一定有限.
-
-  反过来, 我们需要寻找一个反例, 这个反例参考\footfullcite{brandenburg_non-noetherian_2017}. 设$\kk$为一个域, 考虑域的正整数元多项式环的商环$A=\kk [X_1, X_2, \dotsc]{\divslash}(X_1, X_2^2, \dotsc)$. 因为理想升链$(X_1)\subsetneqq (X_1, X_2)\dotsb$不稳定, 因此$A$不是Noether环. 但是因为幂零根$\nil=\ideal{m}\coloneq (X_1, X_2, \dotsc)$为极大理想, 故由\thref{prop:primespecfunctor}\ref{enum:prop-prime-spec-functor-surjective}我们知道$\Spec (A)\cong\Spec (A{\divslash}\nil)=\Spec (\kk)$仅有一个点, 因此一定是Noether拓扑空间.
-\end{proof}
-
 \subsubsection{层}
+
+我们已经定义并且研究了代数簇上的函数结构, 而代数簇之间的态射保持这些函数结构, 因此为了推广\ref{sec:algebra-primespec}中得到的仿射代数簇与素谱的对应, 我们需要在素谱上也定义函数结构, 并定义素谱之间的态射, 这就需要层的概念.
 
 在\ref{sec:algebra-category}我们定义了拓扑空间$X$上集合取值的预层是函子$F\colon \cat{Top}(X)^{\op}\to\cat{Set}$. 为了更符合直觉, 这一节中我们考虑的都是Abel群取值的预层, 为函子$\sheaf{F}\colon \cat{Top}(X)^{\op}\to\cat{Ab}$, 注意$\sheaf{F}(\varnothing)=0$为平凡Abel群. 称$\sheaf{F}(U)$中的元素为$\sheaf{F}$在$U$上的\emph{截面}, 有时也记$\sheaf{F}(U)$为$\Gamma (U, \sheaf{F})$. 称映射$\rho_{UV}\coloneq \sheaf{F}(U\to V)$为\emph{限制映射}, 对于$s\in \sheaf{F}(U)$有时也记$\rho_{UV}(s)$为$s\restrict{V}$.
 
@@ -382,7 +395,7 @@
 \begin{proof}
   \ref{enum:prop-prime-spectrum-sheaf-1} 利用直极限的定义可以构造同态$\varphi\colon \OO_{\ideal{p}}\to A_{\ideal{p}}$, 将$\ideal{p}$点邻域的截面$s$映到$s(\ideal{p})\in A_{\ideal{p}}$. 对于每个$a{\divslash}f\in A_{\ideal{p}}$, 则存在$s\in\OO (\Spec (A))_f$使得对于任意的$\ideal{q}\in \OO (\Spec (A))_f$都有$s(\ideal{q})=a{\divslash}f$, 因此$\varphi$为满射. 又如果截面$s$使得$s(\ideal{p})=0$, 则在邻域$U'$有$s(\ideal{q})=a{\divslash}f$, 因此存在$x\in A-\ideal{p}$使得$ax=0$. 则$s$在开集$\Spec (A)_x\cap U'$上的限制为零, 因此$\varphi$为单射.
 
-  \ref{enum:prop-prime-spectrum-sheaf-2} 定义$\psi\colon A_f\to \OO (\Spec (A)_f)$将$a{\divslash}f^n$映到截面$s\in \OO (\Spec (A)_f)$, $s$将每个$\ideal{p}$都映到$a{\divslash}f^n$. 首先, 如果$\psi(a{\divslash}f^n)=0$, 则可以推出$V(\Ann a)\cap \Spec (A)_f=\varnothing$, 于是$f^ma=0$, 故$\psi$为单射. 另一方面, 设$s\in \OO (\Spec (A)_f)$, 先证明$\Spec (A)_f$可以由开子集$D(h_j)$覆盖, 并且$s$在$D(h_j)$上可以由$a_j{\divslash}h_j$表示. 再利用$\Spec (A)$的拓扑基的拟紧性, 可以假设这些$D(h_j)$是有限的. 接着利用上述表述的在交集处的相容性, 可以不妨假设对于任意的$j,k$都有$h_ka_j=h_ja_k$. 最后对于$f^n=\sum b_jh_j$构造$a=\sum b_ja_j$, 则在$\Spec (A)_{h_j}$上有$a{\divslash}f^n=a_j{\divslash}h_j$, 因此$\psi (a{\divslash}f^n)=s$, 得证$\psi$为满射.
+  \ref{enum:prop-prime-spectrum-sheaf-2} 定义$\psi\colon A_f\to \OO (\Spec (A)_f)$将$a{\divslash}f^n$映到截面$s\in \OO (\Spec (A)_f)$, $s$将每个$\ideal{p}$都映到$a{\divslash}f^n$. 首先, 如果$\psi(a{\divslash}f^n)=0$, 则可以推出$V(\Ann (a))\cap \Spec (A)_f=\varnothing$, 于是$f^ma=0$, 故$\psi$为单射. 另一方面, 设$s\in \OO (\Spec (A)_f)$, 先证明$\Spec (A)_f$可以由开子集$D(h_j)$覆盖, 并且$s$在$D(h_j)$上可以由$a_j{\divslash}h_j$表示. 再利用$\Spec (A)$的拓扑基的拟紧性, 可以假设这些$D(h_j)$是有限的. 接着利用上述表述的在交集处的相容性, 可以不妨假设对于任意的$j,k$都有$h_ka_j=h_ja_k$. 最后对于$f^n=\sum b_jh_j$构造$a=\sum b_ja_j$, 则在$\Spec (A)_{h_j}$上有$a{\divslash}f^n=a_j{\divslash}h_j$, 因此$\psi (a{\divslash}f^n)=s$, 得证$\psi$为满射.
 \end{proof}
 
 为了定义素谱之间的态射, 我们需要引入赋环空间的概念. \emph{赋环空间}包含的信息为一个拓扑空间$X$和$X$上的一个环值的层$\OO_X$. 两个赋环空间$(X, \OO_X)$和$(Y, \OO_Y)$之间的\emph{态射}包含的信息为连续映射$f\colon X\to Y$和层态射$f^\mathoctothorpe\colon \OO_Y\to f_*\OO_X$. 如果赋环空间$(X, \OO_X)$满足对于每个$P\in X$都有茎$\OO_{X, P}$是局部环, 则称其为\emph{局部赋环空间}. 局部赋环空间之间的\emph{态射}为赋环空间之间的态射$(f, f^\mathoctothorpe)$, 额外要求在每个点$P\in X$处诱导映射

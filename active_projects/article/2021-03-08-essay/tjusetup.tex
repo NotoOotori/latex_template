@@ -221,15 +221,15 @@
 \newcommand*{\op}{\symup{op}}
 \newcommand*{\Cone}{\symup{Cone}}
 
-\newcommand{\MyTo}[1]{\mathbin{\,\tikz[baseline] \draw[-stealth,line width=.4pt] (0ex,0.4ex) -- (#1,0.4ex);}}
-\newcommand{\dlim}{%
-  \mathchoice
-    {\lim_{\MyTo{3.0ex}}}% \displaystyle
-    {\lim_{\MyTo{2.5ex}}}% \textstyle
-    {\lim_{\MyTo{2.0ex}}}% \scriptstyle
-    {\lim_{\MyTo{2.0ex}}}% \scriptscriptstyle
-}
-% \newcommand*{\dlim}{\lim_{\MyTo}}% TODO: direct limit
+% \newcommand{\MyTo}[1]{\mathbin{\,\tikz[baseline] \draw[-stealth,line width=.4pt] (0ex,0.4ex) -- (#1,0.4ex);}}
+% \newcommand{\dlim}{%
+%   \mathchoice
+%     {\lim_{\MyTo{3.0ex}}}% \displaystyle
+%     {\lim_{\MyTo{2.5ex}}}% \textstyle
+%     {\lim_{\MyTo{2.0ex}}}% \scriptstyle
+%     {\lim_{\MyTo{2.0ex}}}% \scriptscriptstyle
+% }
+\newcommand*{\dlim}{\varinjlim}% TODO: direct limit
 
 \newcommand*{\id}{\symup{id}}
 \newcommand*{\inv}{\symup{inv}}
@@ -335,11 +335,11 @@
   \newcommand*\dfntn{Definition }%
   \newcommand*\rmrk{Remark }%
   \newcommand*\propdfntn{Proposition-Definition }%
-  \newcommand*\chap{Ch. }%
+  \newcommand*\chap{Ch.\thinspace}%
   \renewcommand*\sec{\S }%
-  \newcommand*\sect{Sect. }%
+  \newcommand*\sect{Sect.\thinspace}%
   \renewcommand*\and{and }%
-  \newcommand*\page[1]{pp. ##1}%
+  \newcommand*\page[1]{pp.\thinspace ##1}%
 }
 \NewDocumentCommand\tjucite{O{} O{} m}{{%
   \newcommandfortjucite

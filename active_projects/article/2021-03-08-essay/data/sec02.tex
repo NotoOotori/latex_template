@@ -265,11 +265,11 @@
 % quotient; commute with localization?
 % primary decomposition
 
-\subsection{模与Noether性}
+\subsection{模}
 
 现代交换代数强调对模的研究, 模的概念是环与理想的推广, 并且模范畴中任意的模都可以与其子模取商, 于是我们可以引入一些以正合列为例的同调代数的技术.
 
-\subsubsection{模}
+\subsubsection{模与子模}
 
 我们先来介绍模的基本概念.
 
@@ -281,7 +281,7 @@
 
 如果两个$A$-模$M, N$之间的映射$f\colon M\to N$满足对于任意的$x, y\in M$与$a\in A$都有$f(x+y)=f(x)+f(y)$以及$f(ax)=af(x)$成立, 则称$f$是$A$-模同态. $f$的核$\Ker (f)$是$M$的子模, $f$的像$\Im (f)$是$N$的子模, 商模$N{\divslash}\Im (f)$称为$f$的\emph{余核}.
 
-若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模}$N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}. 特别地, $A^n\coloneq \bigoplus_{j=1}^n A$是有限生成$A$-模, 并且每个有限生成$A$-模都可以看作某个$A^n$的商模.
+若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模} $N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}. 特别地, $A^n\coloneq \bigoplus_{j=1}^n A$是有限生成$A$-模, 并且每个有限生成$A$-模都可以看作某个$A^n$的商模.
 
 设$N$是$B$-模, 如果有环同态$f\colon A\to B$, 则$N$上有自然的$A$-模结构$ay\coloneq f(a)y$, 其中$y\in N, a\in A$. 特别地, 如果考虑$N=B$并赋有典范的$B$-模结构, 则称$B$以及$f\colon A\to B$为$A$-代数.
 
@@ -359,7 +359,7 @@
 %     设$\field{k}\subseteq\field{K}$为域, 则$\field{K}$为$\field{k}$的有限代数域扩张当且仅当$\field{K}$为有限$\field{k}$-代数.
 % \end{proposition}
 
-\subsubsection{链条件}
+\subsubsection{链条件与有限条件}
 
 这一小节我们来介绍链条件与Noether模. 链条件是一种偏序集上的有限条件, 可以应用在环, 模, 拓扑空间等结构中, 而环的链条件是模的链条件的特殊情况, 所以我们先来对模的情况进行研究.
 
@@ -686,7 +686,7 @@
 
 设$\ideal{p}$为环$A$的素理想,  定义$\ideal{p}$的\emph{高度} $h(\ideal{p})$为满足存在素理想升链$\ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}$的$n$的上确界; 定义$\ideal{p}$的\emph{深度} $d(\ideal{p})$为满足存在素理想降链$\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A$的$d$的下确界. 根据定义, 考虑素理想$\ideal{p}\subsetneqq\ideal{q}$, 只要$h(\ideal{p})$与$h(\ideal{q})$中有一个有限, 那么有$h(\ideal{p})<h(\ideal{q})$, 只要$d(\ideal{p})$与$d(\ideal{q})$中有一个有限, 那么有$d(\ideal{p})>d(\ideal{q})$.
 
-\begin{proposition}[Noether正规化引理{{\tjucite[69, Exercise 16]{atiyah_introduction_1969}}}]\label{prop:noethernormalization}
+\begin{proposition}[Noether正规化引理{{\tjucite[\chap 5, \ex 16][69, Exercise 16]{atiyah_introduction_1969}}}]\label{prop:noethernormalization}
   设非零环$A$为域$k$上的有限生成$k$-代数, 超越次数为$r$, 则存在$r$元子集$\{y_1, \dotsc, y_r\}\subseteq A$在$k$上代数无关, 并且$A$的每个元素都可以由$k[y_1, \dotsc, y_r]$整表示.
 \end{proposition}
 

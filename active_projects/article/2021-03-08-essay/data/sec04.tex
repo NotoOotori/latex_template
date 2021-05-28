@@ -139,7 +139,7 @@
 
   \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证任意开覆盖都有有限子覆盖.
 
-  \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$\sum_{j=1}^n f_ig_i = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
+  \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$f_j, g_j$使得$\sum_{j=1}^n f_jg_j = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
 \end{proof}
 
 \begin{proposition}[{{\tjucite[13, Exercise 20][\chap 1, \ex 20]{atiyah_introduction_1969}}}]
@@ -234,7 +234,7 @@
   最后, 利用\ref{enum:thm-affine-rings-3}和\ref{enum:thm-affine-rings-4}, 并将每个环都看成分式域$K(Y)$的子环, 我们有$A(Y)\subseteq\OO (Y)\subseteq \bigcap_{\ideal{m}} A(Y)_{\ideal{m}}$. 而\thref{prop:integraldomainlocalizationintersection}证明了$\bigcap_{\ideal{m}} A(Y)_{\ideal{m}}= A(Y)$, 因此我们有$A(Y)\cong \OO(Y)$, 这证明了\ref{enum:thm-affine-rings-2}.
 \end{proof}
 
-\thref{thm:affinerings}中我们已经体会到了维数理论在几何中的一些应用, 我们还可以进一步将\ref{sec:algebra-dimension}素理想与生成元的命题翻译到几何问题里面, 以体会其直观含义. \thref{prop:isolatedprimegenerator2height}告诉我们如果$\AF^n$中一个代数集可以写成$r$个超曲面的交, 那么它的不可约分支的维数一定不小于$n-r$\tjucite[8, Exercise 1.9][\ex I.1.9]{hartshorne_algebraic_1977}; 而\thref{prop:isolatedprimeheight2generator}告诉我们$\AF^n$的每个$n-r$维代数簇都可以表示成$r$个超平面的交的不可约分支的形式, 这初步展现了交理论和维数理论之间的关系.
+\thref{thm:affinerings}中我们已经体会到了维数理论在几何中的一些应用, 我们还可以进一步将\ref{sec:algebra-dimension}素理想与生成元的命题翻译到几何问题里面, 以体会其直观含义. \thref{prop:isolatedprimegenerator2height}告诉我们如果$\AF^n$中一个代数集可以写成$r$个超曲面的交, 那么它的不可约分支的维数一定不小于$n-r$ \tjucite[8, Exercise 1.9][\ex I.1.9]{hartshorne_algebraic_1977}; 而\thref{prop:isolatedprimeheight2generator}告诉我们$\AF^n$的每个$n-r$维代数簇都可以表示成$r$个超平面的交的不可约分支的形式, 这初步展现了交理论和维数理论之间的关系.
 
 \bigskip
 

@@ -283,9 +283,9 @@
 
 若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模} $N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}. 特别地, $A^n\coloneq \bigoplus_{j=1}^n A$是有限生成$A$-模, 并且每个有限生成$A$-模都可以看作某个$A^n$的商模.
 
-设$N$是$B$-模, 如果有环同态$f\colon A\to B$, 则$N$上有自然的$A$-模结构$ay\coloneq f(a)y$, 其中$y\in N, a\in A$. 特别地, 如果考虑$N=B$并赋有典范的$B$-模结构, 则称$B$以及$f\colon A\to B$为$A$-代数.
+设$N$是$B$-模, 如果有环同态$f\colon A\to B$, 则$N$上有自然的$A$-模结构$ay\coloneq f(a)y$, 其中$y\in N, a\in A$. 特别地, 如果考虑$N=B$并赋有典范的$B$-模结构, 则称$B$以及同态$f\colon A\to B$为$A$-\emph{代数}.
 
-与有限维线性空间上的线性变换类似, 有限生成模上的自同态也可以由矩阵表示, 虽然就算给定了生成元矩阵表示也不唯一, 但是我们仍有如下命题, 这是环上的Cayley-Hamilton定理的简单应用.
+与有限维线性空间上的线性变换类似, 有限生成模上的模自同态也可以由矩阵表示, 虽然矩阵表示就算给定了生成元也不唯一, 但是我们仍有如下命题, 这是环上的Cayley-Hamilton定理的简单应用.
 
 \begin{proposition}[{{\tjucite[21, Proposition 2.4][\prop 2.4]{atiyah_introduction_1969}}}]\label{prop:fgmoduleendomorphism}
   设$M$为有限生成$A$-模, $\ideal{a}$为$A$的理想, $\varphi$为$M$上的$A$-模自同态, 并且满足$\varphi(M)\subseteq \ideal{a}M$. 则$\varphi$满足形如$\varphi^n+a_1\varphi^{n-1}+\dotsb +a_n=0$的方程, 其中每个$a_j\in \ideal{a}$.
@@ -307,7 +307,7 @@
 
 \begin{definition}
   设$B$为$A$-代数, 若$B$同时为有限生成$A$-模, 则称$B$为\emph{有限$A$-代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数} $C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$,
-  同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的\emph{有限生成整环}, 这将是本文的主要研究对象.
+  同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的\emph{有限生成整环}, 这将是本文的主要研究对象. 在域$\kk$没有歧义的情况下, 我们偶尔会省略这个域, 直接说$A$为有限生成整环.
 \end{definition}
 
 有限生成代数有很好用的等价定义.
@@ -389,7 +389,7 @@
 \begin{proof}
   先证$\Rightarrow$. 对于$M$的子模$N$, 考虑$N$的有限生成子模全体构成的集合$\Sigma$, 是非空集合, 故由\thref{prop:chaincondition}得$\Sigma$有极大元, 记为$P$. 对于任意的$x\in N$都有$P+Ax$是$N$的有限生成子模, 于是$P+Ax=N$, 因此$P=N$, 即$N$也为有限生成的.
 
-  再证$\Leftarrow$. 考虑$M$的子模升链$M_1\subseteq M_2\subseteq \dotsb$, 则$N=\bigcup_{j=1}^\infty M_j$是$M$的子模, 故有限生成, 设可以由$x_1, \dotsc, x_r$生成. 设$n_j$满足$x_j\in M_{n_j}$, 取$n=\max_j n_j$则有$M_n=M_{n+1}=\dotsb$, 即该升链稳定.
+  再证$\Leftarrow$. 考虑$M$的子模升链$M_1\subseteq M_2\subseteq \dotsb$, 则$N=\bigcup_{j=1}^\infty M_j$是$M$的子模, 故有限生成, 设可以由$x_1, \dotsc, x_r$生成. 设$n_j$满足$x_j\in M_{n_j}$, 取$n=\max_j n_j$则有$M_n=M_{n+1}=\dotsb$, 即该升链是稳定的.
 \end{proof}
 
 下面一个命题简洁而有力, 使我们可以将正合列的技术引入Noether模的研究中.
@@ -478,7 +478,7 @@
 
 这一小节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明伴随素理想, 孤立伴随素理想及其对应的孤立准素理想的唯一性.
 
-准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想.
+准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想.\clearpage
 
 \begin{definition}
   设$A$为环, 若$A$的真理想$\ideal{q}$满足如果$xy\in \ideal{q}$那么$x\in\ideal{q}$或者$y\in\sqrt{\ideal{q}}$, 则称$\ideal{q}$为\emph{准素理想}, 有等价条件为$A{\divslash}\ideal{q}\neq 0$并且$A{\divslash}\ideal{q}$的每个零因子都是幂零元. 显然素理想是准素理想, 准素理想的拉回是准素理想.
@@ -617,7 +617,7 @@
 
 \begin{theorem}[{{\tjucite[123, Theorem 3.12][\thm 3.12]{jacobson_basic_1989}}}]\label{thm:dependbase}
   设$\Delta$为$X$上的相关关系, 则$X$的基存在, 并且$X$的任意两个基具有相同的基数.
-\end{theorem}
+\end{theorem}\clearpage
 %\footnotetext{如果一个集合$X$为空集, 则定义$X$的\emph{基数}为0; 如果存在$X$到$\{1, 2, \dotsc, n\}$的双射, 则定义$X$的\emph{基数}为$n$; 其余情况定义$X$的\emph{基数}为$\infty$. 其实把基数换成基数也成立, 证明只需要一点关于基数运算的性质, 不过没必要% 这里我们不给出基数的正式定义, 只定义两个非空集合\emph{具有相同的基数}当且仅当存在两个集合之间的双射, 并定义空集与且仅与空集\emph{具有相同的基数}.
 %}
 

@@ -3,11 +3,14 @@
 
 % -------------------- Identification --------------------
 
-\NeedsTeXFormat{LaTeX2e}[2017/04/15]
-\ProvidesClass{tjuthesis}[2020/06/19 0.0.0 Tongji University Thesis Template]
+\NeedsTeXFormat{LaTeX2e}[2020/10/01]
+\ProvidesClass{tjuthesis}[2021/06/01 0.0.0 Tongji University Thesis Template]
 
 % -------------------- Preliminary Declarations --------------------
 
+
+\newif\iftju@load@time
+\tju@load@timetrue
 
 \newcommand\tju@error[1]{%
   \ClassError{tjuthesis}{#1}{}%
@@ -15,11 +18,16 @@
 \newcommand\tju@warning[1]{%
   \ClassWarning{tjuthesis}{#1}%
 }
-\@ifl@t@r\fmtversion{2017/04/15}{}{
+
+\@ifl@t@r\fmtversion{2020/10/01}{}{
   \tju@error{%
-    TeX Live 2017 or later version is required to compile this document%
+    TeX Live 2021 or later version is required to compile this document%
   }
 }
+\RequirePackage{iftex}
+\ifXeTeX\else
+  \tju@error{XeLaTeX is required to compile this document}
+\fi
 
 
 \newcommand\version{0.0.0}
@@ -39,6 +47,10 @@
 }
 \newcommand\tju@define@key[1]{%
   \kvsetkeys{tju@key}{#1}%
+}
+\newcommand\tju@define@load@time@key[1]{%
+  \tju@define@key{tju@key}{#1}%
+  \tju@option@hook{#1}{\iftju@load@time\else\tju@error{Option "#1" must be used as tjuthesis is loaded.}\fi}
 }
 
 \kv@set@family@handler{tju@key}{%
@@ -98,6 +110,14 @@
       bachelor,
     },
     default = bachelor,
+  },
+  tju-style = {
+    choices = {
+      standard,
+      math,
+    },
+    default = standard,
+    name = style,
   },
 }
 %% 文档信息
@@ -163,20 +183,22 @@
     },
     default = electronic,
   },
-  style = {
+  cover = {
     choices = {
-      standard,
-      math,
+      true,
+      false,
     },
-    default = standard,
+    default = false,
+    name = cover,
   },
 }
 
 
 % -------------------- Handle Options --------------------
 
-\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{\DocumentClass}}
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessKeyvalOptions*
+\tju@load@timefalse
 
 % -------------------- More Declarations --------------------
 
@@ -186,6 +208,11 @@
 
 \LoadClass[a4paper, zihao=5, fontset=none]{ctexart}
 
+\if@twoside
+  \iftju@style@math
+    \tju@warning{The option "twoside" is not supported for style=math.}
+  \fi
+\fi
 
 % 引用必要宏包
 \RequirePackage{etoolbox}
@@ -202,7 +229,7 @@
 %   with the math functionality.
 \RequirePackage{unicode-math}
 \RequirePackage{graphicx}
-\RequirePackage[labelformat=simple]{subcaption}
+\RequirePackage{subcaption}
 \RequirePackage{pdfpages}
 \includepdfset{fitpaper=true}
 \RequirePackage{enumitem}
@@ -228,10 +255,24 @@
 
 
 % 正文字体大小
-\newcommand\tju@set@font@size@math{}
+\newlength\tju@font@size@standard@normal
+\setlength\tju@font@size@standard@normal{9bp}
+\newlength\tju@font@size@normal
+\setlength\tju@font@size@normal{9bp}
+\newlength\tju@line@height@normal
+\setlength\tju@line@height@normal{1.2\tju@font@size@normal}
+\newcommand\tju@set@font@size@math{
+  \renewcommand\normalsize{%
+    \@setfontsize\normalsize{10.5bp}{12.6bp}%
+    \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+    \abovedisplayshortskip \z@ \@plus3\p@
+    \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
+    \belowdisplayskip \abovedisplayskip
+  }
+}
 \newcommand\tju@set@font@size@standard{%
   \renewcommand\normalsize{%
-    \@setfontsize\normalsize{12bp}{18bp}%
+    \@setfontsize\normalsize{10.5bp}{18bp}%
     \abovedisplayskip 0bp%
     \abovedisplayshortskip 0bp%
     \belowdisplayshortskip 0bp%
@@ -241,9 +282,21 @@
   \ifx\MakeRobust\@undefined \else
       \MakeRobust\normalsize
   \fi
+  % TODO: 故意设置得奇怪一点观察有没有地方用到
+  \DeclareRobustCommand\small{%
+    \@setfontsize\small{12bp}{20bp}%
+    \abovedisplayskip 6bp%
+    \abovedisplayshortskip 6bp%
+    \belowdisplayshortskip 6bp%
+    \def\@listi{\leftmargin\leftmargini
+                \topsep \z@skip
+                \parsep \z@skip
+                \itemsep \z@skip}%
+    \belowdisplayskip \abovedisplayskip
+  }
 }
-\newcommand\tju@set@font@size{\@nameuse{tju@set@font@size\tju@style}}
-\tju@option@hook{style}{\tju@set@font@size}
+\newcommand\tju@set@font@size{\@nameuse{tju@set@font@size@\tju@style}}
+\tju@set@font@size
 
 
 % 设置常用字号
@@ -271,20 +324,24 @@
 
 
 % 论文基本结构
-\newif\if@mainmatter
+\newif\iftju@mainmatter
+\tju@mainmatterfalse
 \newcommand\frontmatter{%
   \cleardoublepage
-  \@mainmatterfalse
-  \pagenumbering{arabic}}
+  \tju@mainmatterfalse
+  \pagestyle{front}
+  \tju@set@page@numbering@front}
 
 \newcommand\mainmatter{%
   \cleardoublepage
-  \@mainmattertrue
+  \tju@mainmattertrue
+  \pagestyle{main}
+  \tju@set@page@numbering@main
 }
 
 \newcommand\backmatter{%
-  \clearpage
-  \@mainmatterfalse
+  \cleardoublepage
+  \tju@mainmatterfalse
 }
 
 
@@ -434,14 +491,15 @@
 
 
 % 中文字体
+\newcommand\tju@cjk@embolden@factor{4}
 \newcommand\tju@load@cjk@font@windows{%
-  \xeCJKsetup{EmboldenFactor=2}
+  \xeCJKsetup{EmboldenFactor = \tju@cjk@embolden@factor}
   \setCJKmainfont{SimSun}[
     BoldFont = SimHei,
     ItalicFont   = KaiTi,
     % ItalicFeatures = { AutoFakeBold = true },
     BoldItalicFont   = KaiTi,
-    BoldItalicFeatures = { FakeBold = 2 },
+    BoldItalicFeatures = { FakeBold = \tju@cjk@embolden@factor },
   ]%
   \setCJKsansfont{SimHei}[AutoFakeBold]%
   \setCJKmonofont{FangSong}[AutoFakeBold]%
@@ -450,9 +508,13 @@
     ItalicFont   = KaiTi,
     % ItalicFeatures = { AutoFakeBold = true },
     BoldItalicFont   = KaiTi,
-    BoldItalicFeatures = { FakeBold = 2 },
+    BoldItalicFeatures = { FakeBold = \tju@cjk@embolden@factor },
   ]%
-  \newCJKfontfamily\zhhei{SimHei}[AutoFakeBold]%
+  \newfontfamily\songti{SimSun}
+  \newCJKfontfamily\zhhei{SimHei}[
+    BoldFont = SimHei,
+    BoldFeatures = { FakeBold = \tju@cjk@embolden@factor },
+  ]%
   \newCJKfontfamily\zhkai{KaiTi}[AutoFakeBold]%
   \newCJKfontfamily\zhfs{FangSong}[AutoFakeBold]%
 }
@@ -463,21 +525,53 @@
 \tju@option@hook{cjk-font}{\tju@load@cjk@font}
 
 
+% 双页
+\NewDocumentCommand\tju@emptypage{s}{%
+  \hbox{}%
+  \IfBooleanTF{#1}{\thispagestyle{empty}\tju@this@gutter@off}{}
+  \newpage%
+}%
+\let\cleardoublepage\relax%
+\NewDocumentCommand\cleardoublepage{s}{%
+  \clearpage%
+  \if@twoside%
+    \ifodd\c@page%
+        % do nothing
+    \else%
+      \IfBooleanTF{#1}{\tju@emptypage*}{\tju@emptypage}%
+    \fi%
+  \fi%
+}%
+
+
 % 页面尺寸
-\geometry{
-  top = \dimexpr32mm+42.82419pt-4.5mm\relax,
-  bottom = \dimexpr38mm-42.82419pt+4.4mm\relax,
-  left = 33mm,
-  right = 18mm,
-  % headsep = \dimexpr32mm-42.82419pt\relax,
-  headheight = 42.82419pt,
-  % showframe,
+\newcommand\tju@set@geometry@standard{
+  \geometry{
+    top = 1.67in,
+    bottom = 1.05in,
+    left = 1.38in,
+    right = 0.76in,
+    headheight = 45pt,
+  }
 }
+\newcommand\tju@set@geometry@math{
+  \geometry{
+    top = \dimexpr32mm+42.82419pt-4.5mm\relax,
+    bottom = \dimexpr38mm-42.82419pt+4.4mm\relax,
+    left = 33mm,
+    right = 18mm,
+    % headsep = \dimexpr32mm-42.82419pt\relax,
+    headheight = 42.82419pt,
+    % showframe,
+  }
+}
+\newcommand\tju@set@geometry{\@nameuse{tju@set@geometry@\tju@style}}
+\tju@set@geometry
 
 
 % 装订线
-\RequirePackage{fancybox}
 \newcommand{\tju@put@gutter@math}{%
+  \RequirePackage{fancybox}
   \fancyput*(-0.8cm,-4.3cm){$|$}%
   \fancyput*(-0.8cm,-4.9cm){$|$}%
   \fancyput*(-0.8cm,-5.5cm){$|$}%
@@ -512,33 +606,138 @@
   \fancyput*(-0.8cm,-22.9cm){$|$}%
   \fancyput*(-0.8cm,-23.5cm){$|$}%
 }
+\newcommand\tju@this@gutter@off@math{\thisfancyput{}}
 \newcommand{\tju@put@gutter@standard}{%
   \XeTeXcharclass`┊=1
-  \fancyput(-0.75cm,-12cm){\parbox{1\ccwd}{\wuhao\baselineskip 12pt\selectfont ┊┊┊┊┊┊┊┊┊┊┊┊┊装┊┊┊┊┊订┊┊┊┊┊线┊┊┊┊┊┊┊┊┊┊┊┊┊}}
+  \newlength\tju@gutter@right@x
+  \newlength\tju@gutter@right@y
+  \newlength\tju@gutter@left@x
+  \newlength\tju@gutter@left@y
+  \newlength\tju@gutter@x
+  \newlength\tju@gutter@y
+  \setlength\tju@gutter@right@x{1.69cm}
+  \setlength\tju@gutter@right@y{-15.20cm}
+  \setlength\tju@gutter@left@x{19.12cm}
+  \setlength\tju@gutter@left@y{-15.20cm}
+  \setlength\tju@gutter@x{\tju@gutter@right@x}
+  \setlength\tju@gutter@y{\tju@gutter@right@y}
+  \newif\iftju@gutter@this@page
+  \tju@gutter@this@pagetrue
+  \AddToHook{shipout/background}{%
+    \iftju@gutter@this@page
+      \if@twoside
+        \ifodd\ReadonlyShipoutCounter
+          \setlength\tju@gutter@x{\tju@gutter@right@x}
+          \setlength\tju@gutter@y{\tju@gutter@right@y}
+        \else
+          \setlength\tju@gutter@x{\tju@gutter@left@x}
+          \setlength\tju@gutter@y{\tju@gutter@left@y}
+        \fi
+      \fi
+      \put(\tju@gutter@x,\tju@gutter@y){\wuhao[0.48cm]\parbox{1\ccwd}{┊┊┊┊┊┊┊┊┊┊┊┊┊装┊┊┊┊┊订┊┊┊┊┊线┊┊┊┊┊┊┊┊┊┊┊┊┊}}%
+    \fi
+    \setlength\tju@gutter@x{\tju@gutter@right@x}
+    \setlength\tju@gutter@y{\tju@gutter@right@y}
+  }
+  % \fancyput(-0.86cm,-12.745cm){\wuhao[0.48cm]\parbox{1\ccwd}{┊┊┊┊┊┊┊┊┊┊┊┊┊装┊┊┊┊┊订┊┊┊┊┊线┊┊┊┊┊┊┊┊┊┊┊┊┊}}% -0.66cm
 }
+\newcommand\tju@this@gutter@off@standard{%
+  \AddToHookNext{shipout/before}{\tju@gutter@this@pagefalse}%
+  \AddToHookNext{shipout/background}{\tju@gutter@this@pagetrue}%
+}
+\newcommand\tju@this@gutter@off{\@nameuse{tju@this@gutter@off@\tju@style}}
 \newcommand{\tju@put@gutter}{\@nameuse{tju@put@gutter@\tju@style}}
-\tju@option@hook{style}{\tju@put@gutter}
+\tju@put@gutter
+
 
 
 % 页眉页脚
-\pagestyle{fancy}
-\fancypagestyle{plain}{%
-  \fancyhf{}%
-  % \setlength{\headheight}{42.82419pt}
-  \fancyhead[L]{\qquad \includegraphics[height=1.34cm]{tongji-name-bacholar.jpg}}
-  \fancyhead[R]{\xiaosi 毕业设计（论文）~\\}
-  \renewcommand{\headrulewidth}{1.5pt}
-  \renewcommand{\footrulewidth}{1.5pt}
-  \fancyfoot[R]{\leavevmode\smash{\xiaosi 共\quad \pageref{LastPage}\quad 页\quad 第\quad \thepage \quad 页}} % LE,RO if twoside
+\newcommand\tju@new@page@style@standard@head{%
+  \if@twoside
+    \fancyhead[LO,RE]{\qquad \includegraphics{tongji-name-bacholar.jpg}}%
+    \fancyhead[RO,LE]{\xiaosi \raisebox{0.15in}{毕业设计（论文）}}%
+  \else
+    \fancyhead[L]{\qquad \includegraphics{tongji-name-bacholar.jpg}}%
+    \fancyhead[R]{\xiaosi \raisebox{0.15in}{毕业设计（论文）}}%
+  \fi
+  \renewcommand{\headrulewidth}{1.5pt}%
+  \fancyhfoffset{0.02in}
 }
-\pagestyle{plain}
-
-
-% 章节标题
-\ctexset{
-  subsection/format += {\wuhao},
-  subsubsection/nameformat = {\hspace{2\ccwd}},
+\newcommand\tju@new@page@style@standard@front@foot{%
+  \renewcommand{\footrulewidth}{0pt}%
+  \fancyfoot[C]{\xiaosi \raisebox{-0.02in}{\thepage}}%
 }
+\newcommand\tju@new@page@style@standard@main@foot{%
+  \renewcommand{\footrulewidth}{1.5pt}%
+  \if@twoside
+    \fancyfoot[RO,LE]{\leavevmode\smash{\xiaosi\zhsong 共\hspace*{1\ccwd}\pageref{LastPage}\hspace*{1\ccwd}页\hspace*{1.5\ccwd}第\hspace*{1\ccwd}\thepage\hspace*{1\ccwd}页}}%
+  \else
+    \fancyfoot[R]{\leavevmode\smash{\xiaosi\zhsong 共\hspace*{1\ccwd}\pageref{LastPage}\hspace*{1\ccwd}页\hspace*{1.5\ccwd}第\hspace*{1\ccwd}\thepage\hspace*{1\ccwd}页}}%
+  \fi
+}
+\newcommand\tju@new@page@style@standard@front{%
+  \fancypagestyle{front}{%
+    \fancyhf{}%
+    \tju@new@page@style@standard@head%
+    \tju@new@page@style@standard@front@foot%
+  }
+}
+\newcommand\tju@set@page@numbering@standard@front{%
+  \pagenumbering{Roman}
+}
+\newcommand\tju@new@page@style@standard@main{%
+  \fancypagestyle{main}{%
+    \fancyhf{}%
+    \tju@new@page@style@standard@head%
+    \tju@new@page@style@standard@main@foot%
+  }
+}
+\newcommand\tju@set@page@numbering@standard@main{%
+  \pagenumbering{arabic}
+}
+\newcommand\tju@new@page@style@math@front{%
+  \fancypagestyle{front}{%
+    \fancyhf{}%
+    \fancyhead[L]{\qquad \includegraphics[height=1.34cm]{tongji-name-bacholar.jpg}}%
+    \fancyhead[R]{\xiaosi 毕业设计（论文）~\\}%
+    \renewcommand{\headrulewidth}{1.5pt}%
+    \renewcommand{\footrulewidth}{1.5pt}%
+    \fancyfoot[R]{\leavevmode\smash{\xiaosi 共\quad \pageref{LastPage}\quad 页\quad 第\quad \thepage \quad 页}}% LE,RO if twoside
+  }
+}
+\newcommand\tju@set@page@numbering@math@front{%
+  \pagenumbering{arabic}
+}
+\newcommand\tju@new@page@style@math@main{%
+  \fancypagestyle{main}{%
+    \fancyhf{}%
+    \fancyhead[L]{\qquad \includegraphics[height=1.34cm]{tongji-name-bacholar.jpg}}%
+    \fancyhead[R]{\xiaosi 毕业设计（论文）~\\}%
+    \renewcommand{\headrulewidth}{1.5pt}%
+    \renewcommand{\footrulewidth}{1.5pt}%
+    \fancyfoot[R]{\leavevmode\smash{\xiaosi 共\quad \pageref{LastPage}\quad 页\quad 第\quad \thepage \quad 页}}% LE,RO if twoside
+  }
+}
+\newcommand\tju@set@page@numbering@math@main{}
+\newcommand\tju@new@page@style@front{%
+  \@nameuse{tju@new@page@style@\tju@style @front}
+}
+\newcommand\tju@new@page@style@main{%
+  \@nameuse{tju@new@page@style@\tju@style @main}
+}
+\newcommand\tju@new@page@style{%
+  \tju@new@page@style@front
+  \tju@new@page@style@main
+  \pagestyle{main}
+}
+\newcommand\tju@set@page@numbering@front{%
+  \@nameuse{tju@set@page@numbering@\tju@style @front}
+}
+\newcommand\tju@set@page@numbering@main{%
+  \@nameuse{tju@set@page@numbering@\tju@style @main}
+}
+\tju@new@page@style
+
 
 
 % hyperref 宏包在最后调用
@@ -568,25 +767,186 @@
     bookmarksopenlevel = 2,
     bookmarksnumbered = true,% 将章节编号放入书签中
   }
+  \newcommand\tju@pdf@page@layout{%
+    \if@twoside
+      TwoPageRight%
+    \else
+      SinglePage%
+    \fi
+  }
   \hypersetup{% PDF默认打开视图
     pdfpagemode = UseNone,
     pdfstartview = Fit,
-    pdfpagelayout = SinglePage,
+    pdfpagelayout = \tju@pdf@page@layout,
   }
+  \hypersetup{pdftitle={\tju@title}}
+  \hypersetup{pdfauthor={\tju@author}}
   % PDF信息
-  % \tju@option@hook{title}{\hypersetup{pdftitle={\tju@title}}}
-  % \tju@option@hook{author}{\hypersetup{pdfauthor={\tju@author}}}
-  % \tju@option@hook{keywords}{\hypersetup{pdfkeywords={\tju@keywords}}}
+  % \newcommand\tju@set@pdf@meta[2]{% https://tex.stackexchange.com/a/495206
+  %   \protected@write\@auxout{}{%
+  %     \string\ifx\string\@onlypreamble\string\@notprerr
+  %     \string\else
+  %       \string\AtBeginDocument{\string\def\string\@pdf#1{#2}}%
+  %     \string\fi
+  %   }%
+  % }
+  % \AddToHook{enddocument/afterlastpage}{
+  %   % \hypersetup{pdftitle={\tju@title}}
+  %   % \hypersetup{pdfauthor={\tju@author}}
+  %   % \hypersetup{pdfkeywords={\tju@keywords}}
+  %   \tju@set@pdf@meta{title}{\tju@title}
+  %   \tju@set@pdf@meta{author}{\tju@author}
+  %   \tju@set@pdf@meta{keywords}{\tju@keywords}
+  % }
 }
+
+
+% 行间距
+\newcommand\tju@set@line@spread@standard{\linespread{1.0}}
+\newcommand\tju@set@line@spread@math{\linespread{1.3}}
+\newcommand\tju@set@line@spread{\@nameuse{tju@set@line@spread@\tju@style}}
+\tju@set@line@spread
 
 
 % 标题页
-\newcommand{\tjutitlepage}{%
-  \clearpage
-  \tju@titlepage
-  \clearpage
+\newcommand{\tjuputcover}{%
+  \clearpage%
+  \renewcommand\thepage{C\arabic{page}}%
+  \tju@put@cover%
+  \cleardoublepage%
+  \pagenumbering{Roman}
 }
-\newcommand\tju@titlepage{%
+\newcommand\tju@put@cover{%
+  \iftju@cover@true
+    \newgeometry{
+      hmargin = 3.18cm,
+      vmargin = 2.54cm,
+    }
+    \thispagestyle{empty}%
+    \tju@this@gutter@off%
+    \vspace*{\dimexpr-\baselineskip+1.5\tju@line@height@normal\relax}%
+    \begingroup
+      \centering\includegraphics{tongji-name-bacholar-cover.pdf}%
+      \vskip 0.50cm%
+    \endgroup
+    \begingroup
+      \centering\xiaoer\MakeUppercase{\textbf{Tongji University}}%
+      \vskip 1.00cm%
+    \endgroup
+    \begingroup
+      \centering\xiaochu\zhhei 毕业设计（论文）%
+      \vskip 2.96cm%
+    \endgroup
+    {\centering\tju@put@cover@info}%
+    \cleardoublepage*%
+    \restoregeometry
+  \fi
+}
+\newcommand\tju@put@cover@info{%
+  \tju@put@cover@info@tabular{4\ccwd}{4\ccwd}{0.64cm}{10.80cm}{%
+    \tju@info@item{课题名称}{}{\tju@title}
+    \tju@info@item{副标题}{}{\tju@subtitle}
+    \tju@info@item{学院}{}{\tju@department}
+    \tju@info@item{专业}{}{\tju@discipline}
+    \tju@info@item{学生姓名}{}{\tju@author}
+    \tju@info@item{学号}{}{\tju@id}
+    \tju@info@item{指导教师}{\tju@name@title}{\tju@supervisor}
+    \tju@info@item{日期}{}{\tju@format@date\tju@date@zh@digit{\tju@date}}
+  }
+}
+\newcommand\tju@put@cover@info@tabular[5]{%
+  \def\tju@info@item##1##2##3{%
+    \ifx##3\@empty\else
+      \tju@pad{#1}{\tju@fixed@box{#2}{##1}}%
+      \tju@pad{#3}{}%
+      \tju@CJKunderline[#4]{\tju@par{#4}{##2{##3}}}\\
+    \fi
+  }%
+  \xiaoer[40bp]\zhhei
+  \begin{tabular}{l}%
+    #5%
+  \end{tabular}%
+}
+\newcommand\tju@format@date[2]{%
+  \edef\tju@@date{#2}%
+  \def\tju@@process@date##1-##2-##3\@nil{%
+    #1{##1}{##2}{##3}%
+  }%
+  \expandafter\tju@@process@date\tju@@date\@nil
+}
+\newcommand\tju@date@zh@digit[3]{#1 年 \number#2 月 \number#3 日}
+\newcommand\tju@date@zh@digit@short[3]{#1 年 \number#2 月}
+\newcommand\tju@date@zh@short[3]{\zhdigits{#1}年\zhnumber{#2}月}
+\newcommand\tju@date@month[1]{%
+  \ifcase\number#1\or
+    January\or February\or March\or April\or May\or June\or
+    July\or August\or September\or October\or November\or December%
+  \fi
+}
+\newcommand\tju@date@en@short[3]{\tju@date@month{#2}, #1}
+\newcommand\tju@underline[2][6em]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
+\newcommand\tju@CJKunderline[2][6em]{\CJKunderline*{\hb@xt@ #1{\hss#2\hss}}}
+\newbox\tju@stretch@box
+\newcommand\tju@stretch[2]{%
+  \sbox\tju@stretch@box{#2}%
+  \ifdim \wd\tju@stretch@box < #1\relax
+    \begingroup
+      \def\CJKglue{\hskip 0pt plus 2filll}%
+      \makebox[#1][l]{#2}%
+    \endgroup
+  \else
+    \box\tju@stretch@box
+  \fi
+}
+% 如果内容小于给定宽度, 则在右侧填充空白至该宽度, 否则取自然宽度.
+\newbox\tju@pad@box
+\newcommand\tju@pad[2]{%
+  \sbox\tju@pad@box{#2}%
+  \ifdim \wd\tju@pad@box < #1\relax
+    \makebox[#1][l]{\box\tju@pad@box}%
+  \else
+    \box\tju@pad@box
+  \fi
+}
+\newbox\tju@par@box
+\newcommand\tju@par[2]{%
+  \sbox\tju@par@box{#2}%
+  \ifdim \wd\tju@par@box < #1\relax
+    \makebox[#1][c]{\box\tju@par@box}%
+  \else
+    \box\tju@par@box
+  \fi
+}
+% 将文本分散排在固定长度的box里
+\newcommand\tju@fixed@box[2]{%
+  \begingroup
+    \def\CJKglue{\hskip 0pt plus 2filll minus 1filll}%
+    \makebox[#1][l]{#2}%
+  \endgroup
+}
+% 导师职称排版
+\newcounter{tju@csl@count}
+\newcommand\tju@name@title@process[1]{%
+  \ifcase\c@tju@csl@count  % == 0
+    \gdef\tju@@name{#1}%
+  \or  % == 1
+    \gdef\tju@@title{#1}%
+  \fi
+  \stepcounter{tju@csl@count}%
+}
+\newcommand\tju@name@title@format[2]{%
+  \tju@stretch{3em}{#1}%
+  \ifx#2\@empty\else
+    \tju@pad{0.5em}{}
+    \tju@stretch{3em}{#2}%
+  \fi
+}
+\newcommand\tju@name@title[1]{%
+  \setcounter{tju@csl@count}{0}%
+  \gdef\tju@@name{}%
+  \gdef\tju@@title{}%
+  \expandafter\comma@parse\expandafter{#1}{\tju@name@title@process}%
+  \tju@name@title@format{\tju@@name}{\tju@@title}%
 }
 
 
@@ -609,12 +969,94 @@
   }%
   \expandafter\comma@parse\expandafter{#1}{\tju@clist@processor}%
 }
-\newcommand{\tju@abstract@name}{摘\quad 要}
+\newcommand{\tju@abstract@name@standard}{摘\hspace*{0.5\ccwd}要}
+\newcommand{\tju@abstract@name@math}{摘\quad 要}
+\newcommand{\tju@abstract@name}{\@nameuse{tju@abstract@name@\tju@style}}
 \newcommand{\tju@keywords@name}{关键词}
 \newcommand{\tju@abstract@name@en}{ABSTRACT}
 \newcommand{\tju@keywords@name@en}{Key words}
 \let\abstract\relax
 \let\endabstract\relax
+\newcommand{\tju@newenv@abstract@standard}{%
+  \newenvironment{abstract}[1]{%
+    \tjusetup{
+      keywords = {##1}
+    }
+    \cleardoublepage*%
+    \vspace*{\dimexpr-\baselineskip+1.5\tju@line@height@normal\relax}%
+    \begingroup
+      \centering\bf\xiaoer\zhhei\tju@title%
+      \vskip 0.5\tju@line@height@normal%
+    \endgroup
+    \ifx\tju@subtitle\@empty
+      \vskip 1.0\tju@line@height@normal%
+    \else
+    \begingroup
+      \vskip 0.5\tju@line@height@normal%
+      \centering\sanhao\zhhei\tju@subtitle%
+      \vskip 1.5\tju@line@height@normal%
+    \endgroup
+    \fi
+    \begingroup
+      \vskip \dimexpr0.5\tju@line@height@normal+9bp\relax% 这里的9bp应是 \baselineskip-\tju@font@size@normal
+      \centering\sihao[18bp]\zhhei\tju@abstract@name%
+      \vskip 0.5\tju@line@height@normal%
+    \endgroup
+    \par%
+    \begingroup
+      \wuhao[18bp]\zhsong
+  }{%
+    \endgroup
+    \vskip \dimexpr1.0\tju@line@height@normal+9bp\relax%
+    \begingroup
+      \noindent%
+      \bf\wuhao\zhsong\tju@keywords@name：%
+    \endgroup%
+    \begingroup%
+      \wuhao\zhsong\tju@clist@use{\tju@keywords}{，}%
+    \endgroup
+    \cleardoublepage
+  }
+  \newenvironment{abstract*}[1]{
+    \tjusetup{
+      keywords* = {##1},
+    }
+    \cleardoublepage
+    \vspace*{\dimexpr-\baselineskip+1.5\tju@line@height@normal\relax}%
+    \begingroup
+      \centering\bf\xiaoer\tju@title@en%
+      \vskip 0.5\tju@line@height@normal%
+    \endgroup
+    \ifx\tju@subtitle@en\@empty
+      \vskip 1.0\tju@line@height@normal%
+    \else
+    \begingroup
+      \vskip 0.5\tju@line@height@normal%
+      \centering\sanhao\tju@subtitle@en%
+      \vskip 1.5\tju@line@height@normal%
+    \endgroup
+    \fi
+    \begingroup
+      \vskip \dimexpr0.5\tju@line@height@normal+9bp\relax% 这里的9bp应是 \baselineskip-\tju@font@size@normal
+      \centering\sihao[18bp]\tju@abstract@name@en%
+      \vskip 0.5\tju@line@height@normal%
+    \endgroup
+    \par%
+    \begingroup
+      \wuhao[18bp]
+  }{%
+    \endgroup
+    \vskip \dimexpr1.0\tju@line@height@normal+9bp\relax%
+    \begingroup
+      \noindent%
+      \bf\wuhao\tju@keywords@name@en: %
+    \endgroup%
+    \begingroup%
+      \wuhao\tju@clist@use{\tju@keywords@en}{, }%
+    \endgroup
+    \cleardoublepage
+  }
+}
 \newcommand{\tju@newenv@abstract@math}{%
   \newenvironment{abstract}[1]{%
     \tjusetup{
@@ -693,40 +1135,164 @@
     \clearpage
   }
 }
-\newcommand{\tju@newenv@abstract@standard}{%
-  \tju@newenv@abstract@math% TODO: standard abstract
-}
 \newcommand{\tju@newenv@abstract}{\@nameuse{tju@newenv@abstract@\tju@style}}
-\tju@option@hook{style}{\tju@newenv@abstract}
+\tju@newenv@abstract
 
 
 % 目录
-\newcommand{\tju@contents@name}{目\quad 录}
-\renewcommand{\contentsname}{\zhhei\tju@contents@name}
-\renewcommand{\cftdot}{$\cdot$}
-\renewcommand{\cftdotsep}{1}
-\setlength{\cftbeforesecskip}{10pt}
-\setlength{\cftbeforesubsecskip}{3pt}
-\setlength{\cftbeforesubsubsecskip}{0pt}
-\renewcommand{\cftsecfont}{\wuhao\zhhei}
-\renewcommand{\cftsubsecfont}{\wuhao\zhhei}
-\renewcommand{\cftsubsubsecfont}{\wuhao\zhhei}
-\renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
-\renewcommand{\cftsecdotsep}{\cftdotsep}
-\renewcommand{\cftsecpagefont}{\wuhao}
-\renewcommand{\cftsubsecpagefont}{\wuhao}
-\renewcommand{\cftsubsubsecpagefont}{\wuhao}
-\renewcommand{\numberline}[1]{%
-  \settowidth\@tempdimb{#1\hspace{0.5em}}%
-  \ifdim\@tempdima<\@tempdimb%
-    \@tempdima=\@tempdimb%
-  \fi%
-  \hb@xt@\@tempdima{\@cftbsnum #1\@cftasnum\hfil}\@cftasnumb%
+\newcommand\tju@contents@name@standard{目\hspace*{0.5\ccwd}录}
+\newcommand\tju@contents@name@math{目\quad 录}
+\newcommand\tju@contents@name{\@nameuse{tju@contents@name@\tju@style}}
+\newcommand\tju@format@contents@standard{%
+  \renewcommand{\contentsname}{\tju@contents@name}
+  \renewcommand{\cftdot}{.}
+  \renewcommand{\cftdotsep}{0}
+  \renewcommand{\cftsecdotsep}{\cftdotsep}
+  \renewcommand{\cftsubsecdotsep}{\cftdotsep}
+  \renewcommand{\cftsubsubsecdotsep}{\cftdotsep}
+  \setlength{\cftbeforesecskip}{0pt}
+  \setlength{\cftbeforesubsecskip}{0pt}
+  \setlength{\cftbeforesubsubsecskip}{0pt}
+  \renewcommand{\cftsecfont}{\wuhao[1]\zhsong}
+  \renewcommand{\cftsubsecfont}{\wuhao[1]\zhsong}
+  \renewcommand{\cftsubsubsecfont}{\wuhao[1]\zhsong}
+  \renewcommand{\cftsecindent}{0pt}
+  \renewcommand{\cftsubsecindent}{1.25\ccwd}
+  \renewcommand{\cftsubsubsecindent}{4.5\ccwd}
+  \renewcommand{\cftsecnumwidth}{1.25\ccwd}
+  \renewcommand{\cftsubsecnumwidth}{2\ccwd}
+  \renewcommand{\cftsubsubsecnumwidth}{2.75\ccwd}
+  \renewcommand{\cftsecleader}{\hspace*{0.125\ccwd}\cftdotfill{\cftsecdotsep}}
+  \renewcommand{\cftsubsecleader}{\hspace*{0.125\ccwd}\cftdotfill{\cftsubsecdotsep}}
+  \renewcommand{\cftsubsubsecleader}{\hspace*{0.125\ccwd}\cftdotfill{\cftsubsubsecdotsep}}
+  \renewcommand{\cftsecpagefont}{\wuhao[1]\zhsong}
+  \renewcommand{\cftsubsecpagefont}{\wuhao[1]\zhsong}
+  \renewcommand{\cftsubsubsecpagefont}{\wuhao[1]\zhsong}
+  \cftsetpnumwidth{0.5\ccwd}
+  \cftsetrmarg{0.75\ccwd}
+  \renewcommand{\cftpnumalign}{l}
+  \renewcommand{\numberline}[1]{% default
+    \hb@xt@\@tempdima{\@cftbsnum ##1\@cftasnum\hfil}\@cftasnumb}
 }
+\newcommand\tju@format@contents@math{%
+  \renewcommand{\contentsname}{\zhhei\tju@contents@name}
+  \renewcommand{\cftdot}{$\cdot$}
+  \renewcommand{\cftdotsep}{1}
+  \renewcommand{\cftsecdotsep}{\cftdotsep}
+  \renewcommand{\cftsubsecdotsep}{\cftdotsep}
+  \renewcommand{\cftsubsubsecdotsep}{\cftdotsep}
+  \setlength{\cftbeforesecskip}{10pt}
+  \setlength{\cftbeforesubsecskip}{3pt}
+  \setlength{\cftbeforesubsubsecskip}{0pt}
+  \renewcommand{\cftsecfont}{\wuhao\zhhei}
+  \renewcommand{\cftsubsecfont}{\wuhao\zhhei}
+  \renewcommand{\cftsubsubsecfont}{\wuhao\zhhei}
+  \renewcommand{\cftsecindent}{0pt}
+  \renewcommand{\cftsubsecindent}{1.5em}
+  \renewcommand{\cftsubsubsecindent}{3.8em}
+  \renewcommand{\cftsecnumwidth}{1.5em}
+  \renewcommand{\cftsubsecnumwidth}{2.3em}
+  \renewcommand{\cftsubsubsecnumwidth}{3.2em}
+  \renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
+  \renewcommand{\cftsecpagefont}{\wuhao}
+  \renewcommand{\cftsubsecpagefont}{\wuhao}
+  \renewcommand{\cftsubsubsecpagefont}{\wuhao}
+  \cftsetpnumwidth{1.55em}
+  \cftsetrmarg{2.55em}
+  \renewcommand{\cftpnumalign}{r}
+  \renewcommand{\numberline}[1]{%
+    \settowidth\@tempdimb{##1\hspace{0.5em}}%
+    \ifdim\@tempdima<\@tempdimb%
+      \@tempdima=\@tempdimb%
+    \fi%
+    \hb@xt@\@tempdima{\@cftbsnum ##1\@cftasnum\hfil}\@cftasnumb%
+  }
+}
+\newcommand\tju@format@contents{\@nameuse{tju@format@contents@\tju@style}}
+\tju@format@contents
+\newcommand\tju@at@pre@toc@standard{%
+  \begingroup%
+  \ctexset{
+    section/afterskip = \dimexpr1.5\tju@line@height@normal+9bp\relax
+  }
+}
+\newcommand\tju@at@post@toc@standard{%
+  \endgroup%
+}
+\newcommand\tju@at@pre@toc@math{}
+\newcommand\tju@at@post@toc@math{}
+\newcommand\tju@at@pre@toc{\@nameuse{tju@at@pre@toc@\tju@style}}
+\newcommand\tju@at@post@toc{\@nameuse{tju@at@post@toc@\tju@style}}
+\preto\tableofcontents{\tju@at@pre@toc@standard}
+\appto\tableofcontents{\tju@at@post@toc@standard}
 
 
 % 章节
-\preto\section{\clearpage}% 每一个section都会从新的一页开始
+\newcommand\tju@set@section@format@standard{
+  \ctexset{%
+    section/format = {\centering\sihao[18bp]\zhhei},
+    subsection/format = {\wuhao[18bp]\zhhei},
+    subsubsection/format = {\wuhao[18bp]\zhhei},
+    subsubsection/nameformat = {\hspace{2\ccwd}},
+  }
+  %% 设置标题上下间距
+  \ctexset{%
+    section/beforeskip = 0pt,
+    subsection/beforeskip = 0.5\tju@line@height@normal,
+    subsubsection/beforeskip = 0.5\tju@line@height@normal,
+    section/afterskip = 0.5\tju@line@height@normal,
+    subsection/afterskip = 0.5\tju@line@height@normal,
+    subsubsection/afterskip = 0.5\tju@line@height@normal,
+  }
+  \ctexset{%
+    section/aftertitle = {},
+    subsection/aftertitle = {},
+    subsubsection/aftertitle = {},
+  }
+  \ctexset{%
+    section/aftername = \hspace*{1\ccwd},
+    subsection/aftername = \hspace*{0.5\ccwd},
+    subsubsection/aftername = \hspace*{0.5\ccwd},
+  }
+}
+\newcommand\tju@set@section@format@math{
+  \ctexset{%
+    section/format = {\Large\bfseries\centering },
+    subsection/format = {\bfseries\wuhao},
+    subsubsection/format = {\normalsize\bfseries},
+    subsubsection/nameformat = {\hspace{2\ccwd}},
+  }
+  %% 设置标题上下间距
+  \ctexset{%
+    section/beforeskip = 3.5ex plus 1ex minus .2ex,
+    subsection/beforeskip = 3.25ex plus 1ex minus .2ex,
+    subsubsection/beforeskip = 3.25ex plus 1ex minus .2ex,
+    section/afterskip = 2.3ex plus .2ex,
+    subsection/afterskip = 1.5ex plus .2ex,
+    subsubsection/afterskip = 1.5ex plus .2ex,
+  }
+  \ctexset{%
+    section/aftertitle = \@@par,
+    subsection/aftertitle = \@@par,
+    subsubsection/aftertitle = \@@par,
+  }
+  \ctexset{%
+    section/aftername = \quad,
+    subsection/aftername = \quad,
+    subsubsection/aftername = \quad,
+  }
+}
+\newcommand\tju@set@section@format{\@nameuse{tju@set@section@format@\tju@style}}
+\tju@set@section@format
+\newcommand\tju@at@pre@section@standard{%
+  \cleardoublepage% 每一个section都会从新的一页开始
+  \vspace*{\dimexpr-\baselineskip+1.5\tju@line@height@normal\relax}%
+}
+\newcommand\tju@at@pre@section@math{%
+  \cleardoublepage% 每一个section都会从新的一页开始
+}
+\newcommand\tju@at@pre@section{\@nameuse{tju@at@pre@section@\tju@style}}
+\preto\section{\tju@at@pre@section}
 
 
 % 分项
@@ -743,17 +1309,28 @@
 \RequirePackage{tikz}
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
   \node[shape=circle,draw,inner sep=0pt] (char) {#1};}}
-\def\nosuper@makefnmark{\hbox{\normalfont\circled{\@thefnmark}\space}}
-\patchcmd\@makefntext{\@makefnmark}{\nosuper@makefnmark}{}{}% 需要etoolbox宏包来给局部打补丁
+\def\@makefnmark@circled@nosuper{\hbox{\normalfont\circled{\@thefnmark}\space}}
+\def\@makefnmark@circled@super{\hbox{\@textsuperscript{\normalfont\circled{\@thefnmark}}}}
+\AtBeginDocument{% should be done after loading hyperref
+  \patchcmd\@footnotemark{\@makefnmark}{\@makefnmark@circled@super}{}{}
+  \patchcmd\@makefntext{\@makefnmark}{\@makefnmark@circled@nosuper}{}{}% 需要etoolbox宏包来给局部打补丁
+}
 % 如果想要每页重置脚注编号, 可以参考https://tex.stackexchange.com/questions/1656/footnote-counter-would-like-to-restart-from-1-each-page
 
 
 % 图表代码算法之类的环境
 \RequirePackage{caption}% 来配置caption格式
-\newcommand\tju@caption@font{\xiaowu[12bp]\selectfont}% 小五 18磅行距 baselinestrech=1.5
+\newcommand\tju@caption@font{\xiaowu[18bp]\selectfont}% 小五 18磅行距
 \DeclareCaptionFont{tju}{\tju@caption@font}
+\DeclareCaptionLabelSeparator{tju}{\hspace*{0.5\ccwd}}
 \captionsetup{%
-  font = tju,% zihao=5的时候小五是small
+  font = tju,%
+  labelsep = tju,%
+  skip = 0pt,%
+}
+\captionsetup[sub]{%
+  font = tju,%
+  labelsep = tju,%
   skip = 0pt,%
 }
 \RequirePackage{chngcntr}% 设置counter within
@@ -765,16 +1342,20 @@
 \counterwithin{figure}{section}
 
 %% 表格
-% \captionsetup[table]{%
-%   position = above,%
-% }
+\captionsetup[table]{%
+  position = above,%
+}
+\counterwithin{table}{section}
+\AtBeginEnvironment{tabular*}{\xiaowu[18bp]}
+\AtBeginEnvironment{tabularx}{\xiaowu[18bp]}
 
 
 % 附录
 \appto\appendix{\clearpage}
-\newif\if@appendix
-\appto\appendix{\@appendixtrue}
-\appto\backmatter{\@appendixfalse}
+\newif\iftju@appendix
+\tju@appendixfalse
+\appto\appendix{\tju@appendixtrue}
+\appto\backmatter{\tju@appendixfalse}
 
 
 % 文献著录
@@ -788,29 +1369,108 @@
 % \newcommand{\tju@pass@option@biblatex}{%
 %   \@nameuse{tju@pass@option@biblatex@\tju@style}
 % }
-% \tju@option@hook{style}{\tju@pass@option@biblatex}
+% \tju@pass@option@biblatex
 \usepackage[%
   backend=biber,%
-  style=gb7714-2015,gbalign=right,gbpub=false,gbnamefmt=lowercase,%
+  style=gb7714-2015,gbpub=false,gbnamefmt=lowercase,%
   sortcites=true,doi=false,%
   defernumbers=true,%
   ]{biblatex} % 需要 biblatex-gb7714-2015
 \bibliography{ref/refs}
+\AtEveryBibitem{\clearfield{pagetotal}}
 
 %% 引用
 \let\cite\parencite
 
 %% 参考文献表
-\newcommand\tjubibliography{\tju@bibliography}
 \newcommand\tju@bibliography{%
   \begingroup%
-  \linespread{1.3}%
+  \tju@set@line@spread%
   \sloppy\hbadness 10000\relax%
   \printbibliography[heading=bibintoc, category=inbib]%
   \fussy%
   \endgroup%
 }
-\AtEveryBibitem{\clearfield{pagetotal}}
+\newcommand\tjubibliography{\tju@bibliography}
+
+% \xpretocmd\printbibliography{\begingroup\linespread{1.3}\sloppy}{}{}
+% \xapptocmd\printbibliography{\fussy\endgroup}{}{}
+\newcommand\tju@def@bibenv@standard{%
+  \ExecuteBibliographyOptions{gbalign=left}
+  \renewcommand{\bibfont}{\wuhao[18bp]}
+  \setlength{\bibitemsep}{0pt} % 1.3*1.2-1.2
+  % \setlength{\bibitemsep}{\baselineskip}
+  % \addtolength{\bibitemsep}{-\ht\strutbox}
+  \setlength{\bibitemindent}{0em} % bibitemindent表示一条文献中第一行相对后面各行的缩进
+  \setlength{\bibhang}{0pt} % 著者-出版年制中bibhang 表示的各行起始位置到页边的距离
+  \setlength{\biblabelsep}{0.25\ccwd} % 调整顺序标签与文献内容的间距
+  % 调整各条文献的缩进：
+  %-1-----gbalign=left、right、center时，重定义bibenvironment
+  \defbibenvironment{bibliography}%修改对齐环境-调整缩进
+  {%
+    \list{%
+      \printtext[labelnumberwidth]{%
+      \printfield{labelprefix}%
+      \printfield{labelnumber}}}
+    {%
+      %这里是所做的调整，通过设置\bibitemindent，\bibhang调整缩进
+      \addtolength{\bibitemindent}{\labelnumberwidth}%
+      \addtolength{\bibitemindent}{\biblabelsep}%
+      \addtolength{\bibhang}{-\labelnumberwidth}%
+      \addtolength{\bibhang}{-\biblabelsep}%
+      %
+      %以下是默认的设置
+      \setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \setlength{\leftmargin}{\bibhang}%
+      \addtolength{\leftmargin}{\labelnumberwidth}%
+      \setlength{\itemindent}{\bibitemindent}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss####1}}{%
+    \endlist}{%
+    \item%
+  }
+}
+\newcommand\tju@def@bibenv@math{%
+  \ExecuteBibliographyOptions{gbalign=right}
+  \renewcommand{\bibfont}{\xiaowu}
+  \setlength{\bibitemsep}{0.36ex} % 1.3*1.2-1.2
+  % \setlength{\bibitemsep}{\baselineskip}
+  % \addtolength{\bibitemsep}{-\ht\strutbox}
+  \setlength{\bibitemindent}{0em} % bibitemindent表示一条文献中第一行相对后面各行的缩进
+  \setlength{\bibhang}{3\ccwd} % 著者-出版年制中bibhang 表示的各行起始位置到页边的距离
+  \setlength{\biblabelsep}{2mm} % 调整顺序标签与文献内容的间距% 调整各条文献的缩进：
+  %-1-----gbalign=left、right、center时，重定义bibenvironment
+  \defbibenvironment{bibliography}%修改对齐环境-调整缩进
+  {%
+    \list{%
+      \printtext[labelnumberwidth]{%
+      \printfield{labelprefix}%
+      \printfield{labelnumber}}}
+    {%
+      %这里是所做的调整，通过设置\bibitemindent，\bibhang调整缩进
+      % \addtolength{\bibitemindent}{\labelnumberwidth}%
+      % \addtolength{\bibitemindent}{\biblabelsep}%
+      \addtolength{\bibhang}{-\labelnumberwidth}%
+      \addtolength{\bibhang}{-\biblabelsep}%
+      %
+      %以下是默认的设置
+      \setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \setlength{\leftmargin}{\bibhang}%
+      \addtolength{\leftmargin}{\labelnumberwidth}%
+      \setlength{\itemindent}{\bibitemindent}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss####1}}{%
+    \endlist}{%
+    \item%
+  }
+}
+\newcommand\tju@def@bibenv{\@nameuse{tju@def@bibenv@\tju@style}}
+\tju@def@bibenv
+\tju@option@hook{style}{\tju@def@bibenv}
 
 %% 只被footfullcite的文献不配进参考文献表
 %% https://tex.stackexchange.com/a/420605
@@ -824,6 +1484,7 @@
     % }
 }
 
+%% 设置 incollection 和 collection 的文献类型标识
 %%% 在驱动别名处理, 再处理文献类型标识.
 \DeclareBibliographyAlias{inreference}{incollection}
 \DeclareBibliographyAlias{reference}{collection}
@@ -935,49 +1596,12 @@
     {\bibstring{\abx@tempa}}}
 \fi
 
-%% 参考文献表
-% \xpretocmd\printbibliography{\begingroup\linespread{1.3}\sloppy}{}{}
-% \xapptocmd\printbibliography{\fussy\endgroup}{}{}
-\renewcommand{\bibfont}{\xiaowu}
-\setlength{\bibitemsep}{0.36ex} % 1.3*1.2-1.2
-% \setlength{\bibitemsep}{\baselineskip}
-% \addtolength{\bibitemsep}{-\ht\strutbox}
-\setlength{\bibitemindent}{0em} % bibitemindent表示一条文献中第一行相对后面各行的缩进
-\setlength{\bibhang}{3\ccwd} % 著者-出版年制中bibhang 表示的各行起始位置到页边的距离
-\setlength{\biblabelsep}{2mm} % 调整顺序标签与文献内容的间距
-% 调整各条文献的缩进：
-%-1-----gbalign=left、right、center时，重定义bibenvironment
-\defbibenvironment{bibliography}%修改对齐环境-调整缩进
-{%
-  \list{%
-    \printtext[labelnumberwidth]{%
-    \printfield{labelprefix}%
-    \printfield{labelnumber}}}
-  {%
-    %这里是所做的调整，通过设置\bibitemindent，\bibhang调整缩进
-    % \addtolength{\bibitemindent}{\labelnumberwidth}%
-    % \addtolength{\bibitemindent}{\biblabelsep}%
-    \addtolength{\bibhang}{-\labelnumberwidth}%
-    \addtolength{\bibhang}{-\biblabelsep}%
-    %
-    %以下是默认的设置
-    \setlength{\labelwidth}{\labelnumberwidth}%
-    \setlength{\labelsep}{\biblabelsep}%
-    \setlength{\leftmargin}{\bibhang}%
-    \addtolength{\leftmargin}{\labelnumberwidth}%
-    \setlength{\itemindent}{\bibitemindent}%
-    \setlength{\itemsep}{\bibitemsep}%
-    \setlength{\parsep}{\bibparsep}}%
-    \renewcommand*{\makelabel}[1]{\hss##1}}{%
-  \endlist}{%
-  \item%
-}
-
 
 % 谢辞
-\newcommand\tju@acknowledgements@name{谢\quad 辞}
+\newcommand\tju@acknowledgements@name@standard{谢\hspace*{0.5\ccwd}辞}
+\newcommand\tju@acknowledgements@name@math{谢\quad 辞}
+\newcommand\tju@acknowledgements@name{\@nameuse{tju@acknowledgements@name@\tju@style}}
 \newenvironment{acknowledgements}{%
-  \clearpage
   \section*{\tju@acknowledgements@name}
   \addcontentsline{toc}{section}{\tju@acknowledgements@name}
 }{}

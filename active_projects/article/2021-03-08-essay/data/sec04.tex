@@ -10,7 +10,7 @@
 先考虑仿射空间$\AF^n$的情况, 记$A\coloneq \kk [X_1, \dotsc, X_n]$. 对于多项式环$A$的子集$T$, 我们已经定义了$T$的零点集$Z(T)\subseteq\AF^n$. 同样地, 对于仿射空间的子集$Y$, 我们也可以定义$Y$的\emph{理想}为在$Y$上取值为零的多项式全体, 即$I(Y)\coloneq \{f\in A\vert f(x)=0, \forall x\in Y\}$, $I(Y)$一定是环$A$的理想, 并且如果$Y$为单点集, 则$I(Y)$为极大理想.
 
 \begin{propositionnoproof}[{{\tjucite[3, Proposition 1.2][\prop I.1.2]{hartshorne_algebraic_1977}}}]\label{prop:affinegaloisconnectionclosedradicalpre}
-  设$Y, Y_1, Y_2$为$\AF^n$的子集, $T, T_1, T_2$为$A$的子集, $\ideal{a}$为$A$的理想, 则
+  设$Y, Y_1, Y_2$为$\AF^n$的子集, $T, T_1, T_2$为$A$的子集, $\ideal{a}$为$A$的理想, 那么就有
   \begin{enumerate}
     \item\label{enum:prop-affine-galois-connection-closed-radical-1} $Z(T)=Z((T))=Z(\sqrt{(T)})$;
     \item\label{enum:prop-affine-galois-connection-closed-radical-2} 如果$T_1\subseteq T_2$, 那么$Z(T_1)\supseteq Z(T_2)$;
@@ -137,7 +137,7 @@
 \begin{proof}
   \ref{enum:prop-prime-spec-base-open-set-2} $X_f=\varnothing$当且仅当$f$属于$A$的幂零根, 也当且仅当$f$是幂零元.
 
-  \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证任意开覆盖都有有限子覆盖.
+  \ref{enum:prop-prime-spec-base-open-set-5} 考虑一族$\{f_\lambda\}_{\lambda\subseteq \Lambda}$, 则利用集合运算的性质, 我们有$\bigcup X_{f_\lambda}=X$当且仅当$X-(\bigcap V(f_\lambda))=X$, 也当且仅当$V(\bigcup (f_\lambda))=\varnothing$, 也当且仅当$V((\{f_\lambda\}))=\varnothing$, 也当且仅当$(\{f_\lambda\})=(1)$. 根据生成理想的定义, 如果$(\{f_\lambda\})=(1)$, 则存在有限子集$J$使得$(\{f_j\}_{j\in J})=(1)$, 于是$\bigcup X_{f_j}=X$, 即得证.
 
   \ref{enum:prop-prime-spec-base-open-set-6} 先证明$\bigcup X_{f_\lambda}\supseteq X_f$当且仅当$(\{f_\lambda\})\supseteq (f)$, 再找$f_j, g_j$使得$\sum_{j=1}^n f_jg_j = f$, 于是有有限子覆盖$\{f_1, \dotsc, f_n\}$.
 \end{proof}
@@ -149,7 +149,7 @@
 \begin{proof}
   因为$V$可以看成从$A$的素理想全体到$X$的闭集全体之间的保序单射, 所以只需证明$\sqrt{\ideal{a}}$为素理想当且仅当$V(\ideal{a})$不可约.
 
-  如果$\ideal{p}$是素理想, 若有$V(\ideal{p})=V(\sqrt{\ideal{a}})\cup V(\sqrt{\ideal{b}})=V(\sqrt{\ideal{ab}})$, 则根据\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}有$\ideal{p}=\sqrt{\ideal{ab}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$, 再根据\thref{prop:prime}\ref{enum:prop-prime-absorb}得$\ideal{p}=\sqrt{\ideal{a}}$或$\ideal{p}=\sqrt{\ideal{b}}$. 于是得$V(\ideal{p})$不能写成两个真闭子集得并, 故为不可约集.
+  如果$\ideal{p}$是素理想, 若有$V(\ideal{p})=V(\sqrt{\ideal{a}})\cup V(\sqrt{\ideal{b}})=V(\sqrt{\ideal{ab}})$, 则根据\thref{prop:primespecclosedset}\ref{enum:prop-prime-spec-closed-set-2}有$\ideal{p}=\sqrt{\ideal{ab}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$, 再根据\thref{prop:prime}\ref{enum:prop-prime-absorb}得$\ideal{p}=\sqrt{\ideal{a}}$或$\ideal{p}=\sqrt{\ideal{b}}$. 于是得$V(\ideal{p})$不能写成两个真闭子集的并, 故为不可约集.
 
   如果$V(\sqrt{\ideal{a}})$是不可约集, 考虑$fg\in\sqrt{\ideal{a}}$. 则$V(\ideal{a})=(V(\ideal{a})\cap V((f)))\cap (V(\ideal{a})\cap V((g)))$可以写成两个闭子集的并. 于是有$V(\ideal{a})=V((f))$或者$V(\ideal{a})=V((g))$, 因此$f\in \sqrt{\ideal{a}}$或者$g\in \sqrt{\ideal{a}}$成立, 即$\sqrt{\ideal{a}}$为素理想.
 \end{proof}
@@ -210,7 +210,7 @@
 回顾\ref{sec:algebra-primespec}中我们定义了代数簇$Y\subseteq \AF^n$的仿射坐标环为$A(Y)\coloneq A{\divslash}I(Y)$, 是$\kk$的有限生成整环. 现在我们可以来仔细考察仿射代数簇上定义的环与仿射坐标环之间的关系, 并将代数的分式环理论\ref{sec:algebra-localization}和维数理论\ref{sec:algebra-dimension}应用到几何的研究中.
 
 \begin{theorem}[{{\tjucite[6, Proposition 1.7; 17, Theorem 3.2][\prop I.1.7 \and \thm I.3.2]{hartshorne_algebraic_1977}}}]\label{thm:affinerings}
-  设$Y\subseteq \AF^n$为仿射代数簇, 其仿射坐标环为$A(Y)$, 则
+  设$Y\subseteq \AF^n$为仿射代数簇, 仿射坐标环为$A(Y)$, 则
   \begin{enumerate}
     \item\label{enum:thm-affine-rings-1} $\dim (Y)=\dim (A(Y))$;
     \item\label{enum:thm-affine-rings-2} $\OO (Y)\cong A(Y)$, 于是$A(Y)$为同构不变量;
@@ -231,7 +231,7 @@
 
   根据\ref{enum:thm-affine-rings-3}和\thref{prop:multilocalization}, 对于每个$P\in Y$都有分式域$K(A(Y))\cong K(A(Y)_{\ideal{m}_P})\cong K(\OO_P)$. 因为典范单同态$\OO_P\to K(Y)$诱导出的映射$\amalg_{P\in Y}\OO_P\to K(Y)$是满射, 即每个有理函数都能看成某个$\OO_Y$中的元素, 因此对于每个$P$都有$K(\OO_P)\cong K(Y)$, 故$K(A(Y))\cong K(Y)$. 因为$A(Y)$是有限生成$\kk$-代数, 所以$K(Y)\cong K(A(Y))$是$\kk$的有限域扩张, 并且根据域的有限生成整环维数的定义, 有$\dim (Y)$即为域扩张的超越次数, \ref{enum:thm-affine-rings-5}得证.
 
-  最后, 利用\ref{enum:thm-affine-rings-3}和\ref{enum:thm-affine-rings-4}, 并将每个环都看成分式域$K(Y)$的子环, 我们有$A(Y)\subseteq\OO (Y)\subseteq \bigcap_{\ideal{m}} A(Y)_{\ideal{m}}$. 而\thref{prop:integraldomainlocalizationintersection}证明了$\bigcap_{\ideal{m}} A(Y)_{\ideal{m}}= A(Y)$, 因此我们有$A(Y)\cong \OO(Y)$, 这证明了\ref{enum:thm-affine-rings-2}.
+  最后, 利用\ref{enum:thm-affine-rings-3}和\ref{enum:thm-affine-rings-4}, 并将每个环都看成分式域$K(Y)$的子环, 得到$A(Y)\subseteq\OO (Y)\subseteq \bigcap_{\ideal{m}} A(Y)_{\ideal{m}}$. 而\thref{prop:integraldomainlocalizationintersection}证明了$\bigcap_{\ideal{m}} A(Y)_{\ideal{m}}= A(Y)$, 因此我们有$A(Y)\cong \OO(Y)$, 这证明了\ref{enum:thm-affine-rings-2}.
 \end{proof}
 
 \thref{thm:affinerings}中我们已经体会到了维数理论在几何中的一些应用, 我们还可以进一步将\ref{sec:algebra-dimension}素理想与生成元的命题翻译到几何问题里面, 以体会其直观含义. \thref{prop:isolatedprimegenerator2height}告诉我们如果$\AF^n$中一个代数集可以写成$r$个超曲面的交, 那么它的不可约分支的维数一定不小于$n-r$ \tjucite[8, Exercise 1.9][\ex I.1.9]{hartshorne_algebraic_1977}; 而\thref{prop:isolatedprimeheight2generator}告诉我们$\AF^n$的每个$n-r$维代数簇都可以表示成$r$个超平面的交的不可约分支的形式, 这初步展现了交理论和维数理论之间的关系.
@@ -253,7 +253,7 @@
 \begin{proof}
   首先, 设$U_j\subseteq\PP^n$是由$X_j\neq 0$所定义的开集, 记$Y_j=Y\cap U_j$, 则由\thref{prop:projectiveopencoverisomorphism}知$\varphi_j$诱导出$Y_j$与$\AF^n$的某个仿射代数簇的同构. 有$S(Y)_{X_j}$同构于$A(Y_j)[X_j, X_j^{-1}]$, 通过计算域扩张的次数以及利用\thref{thm:affinerings}\ref{enum:thm-affine-rings-1}, 有$\dim (S(Y))=\dim (S(Y)_{X_j})=\dim (A(Y_j)[X_j, X_j^{-1}])=\dim (A(Y))+1=\dim (Y)+1$. 这证明了\ref{enum:thm-projective-rings-1}.
 
-  我们现在来构造仿射坐标环$A(Y_j)$与$S(Y)_{(X_j)}$之间的同构. 首先如\thref{prop:projspaceopencoverhomeo}中那样构造$\kk [Y_1, \dotsc, Y_n]$到$\kk [X_0, \dotsc, X_n]_{(X_j)}$的同构, 将$f$映到$f(X_0{\divslash}X_j, \dotsc, X_{j-1}{\divslash}X_j, X_{j+1}{\divslash}X_j, \dotsc, X_n{\divslash}X_j)$. 通过验证多项式的零点可以证明这个同构将$I(Y_j)$映到$I(Y)S_{(X_j)}$, 于是我们得到了同构$\varphi_j^*\colon A(Y_j)\cong S(Y)_{(X_j)}$.
+  我们现在来构造仿射坐标环$A(Y_j)$与$S(Y)_{(X_j)}$之间的同构. 首先如\thref{prop:projspaceopencoverhomeo}中那样构造从$\kk [Y_1,\linebreak[0] \dotsc,\linebreak[0] Y_n]$到$\kk [X_0, \dotsc, X_n]_{(X_j)}$的同构, 将$f$映到$f(X_0{\divslash}X_j, \dotsc, X_{j-1}{\divslash}X_j, X_{j+1}{\divslash}X_j, \dotsc, X_n{\divslash}X_j)$. 通过验证多项式的零点可以证明这个同构将$I(Y_j)$映到$I(Y)S_{(X_j)}$, 于是我们得到了同构$\varphi_j^*\colon A(Y_j)\cong S(Y)_{(X_j)}$.
 
   设$P\in Y$为任意点, 存在$j$使得$P\in Y_j$, 记$\ideal{m}_P'$为$P$在$A(Y_j)$中对应的极大理想. 由\thref{thm:affinerings}\ref{enum:thm-affine-rings-4}可得$\OO_P\cong A(Y_j)_{\ideal{m}_P'}$. 通过验证多项式的零点可以证明$\varphi_{j}^*(\ideal{m}_P')=\ideal{m}_PS(Y)_{(X_j)}$. 因为$X_j\notin \ideal{m}_P$, 再根据\thref{prop:multilocalization}可得$A(Y_j)_{\ideal{m}_P'}\cong S(Y)_{\ideal{m}_P}$. 这证明了\ref{enum:thm-projective-rings-3}.
 

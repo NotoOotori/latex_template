@@ -240,12 +240,10 @@
 
 利用\thref{thm:yonedalemma}, 我们还可以定义范畴论中的泛性质, 与我们之前所叙述过的商环, 分式环等的映射的泛性质有密切关系.
 
-给定局部小范畴$\cat{C}$与一个对象$c\in \cat{C}$, 一个$c$的\emph{泛性质}包含的信息有一个可表函子$F$, 和一个\emph{泛对象}$x\in Fc$, 其中$x$可以通过\thref{thm:yonedalemma}定义自然同构$\cat{C}(c, -)\cong F$或$\cat{C}(-, c)\cong F$.
+给定局部小范畴$\cat{C}$与一个对象$c\in \cat{C}$, 一个$c$的\emph{泛性质}包含的信息有一个可表函子$F$, 和一个\emph{泛对象} $x\in Fc$, 其中$x$可以通过\thref{thm:yonedalemma}定义自然同构$\cat{C}(c, -)\cong F$或$\cat{C}(-, c)\cong F$.
 
 \begin{example}
-  我们来用线性空间的张量积这个例子来演示一下如何从函子的表示来得到映射的泛性质\footnotemark.
-
-  给定域$\kk$以及$\kk$-线性空间$V$和$W$, 可以定义函子$\Bilin (V, W; -)\colon\cat{Vect}_{\kk}\to\cat{Set}$, 将线性空间$U$映到双线性函数$V\times W\to U$全体构成的集合. 函子$\Bilin (V, W; -)$的表示可以定义一个$\kk$-线性空间, 记作$V\otimes_{\kk}W$, 有自然同构$\alpha\colon\cat{Vect}_{\kk}(V\otimes_{\kk}W, -)\cong \Bilin (V, W; -)$, 并且由\thref{thm:yonedalemma}知这个自然同构定义了$\Bilin (V, W; V\otimes_{\kk} W)$中的泛对象, 为双线性映射$\otimes\colon V\times W\to V\otimes_{\kk} W$.
+  我们来用线性空间的张量积这个例子来演示一下如何从函子的表示来得到映射的泛性质\footnotemark. 给定域$\kk$以及$\kk$-线性空间$V$和$W$, 可以定义函子$\Bilin (V, W; -)\colon\cat{Vect}_{\kk}\to\cat{Set}$, 将线性空间$U$映到双线性函数$V\times W\to U$全体构成的集合. 函子$\Bilin (V, W; -)$的表示可以定义一个$\kk$-线性空间, 记作$V\otimes_{\kk}W$, 有自然同构$\alpha\colon\cat{Vect}_{\kk}(V\otimes_{\kk}W, -)\cong \Bilin (V, W; -)$, 并且由\thref{thm:yonedalemma}知这个自然同构定义了$\Bilin (V, W; V\otimes_{\kk} W)$中的泛对象, 为双线性映射$\otimes\colon V\times W\to V\otimes_{\kk} W$.
 
   设自然同构$\alpha$将双线性函数$f\colon V\times W\to U$对应到$\alpha_{U}(f)\coloneq\overline{f}\colon V\otimes_{\kk}W\to U$, 考虑$\overline{f}$诱导出的自然性交换图,
   \begin{equation*}
@@ -311,7 +309,7 @@
 
 考虑由部分$\cat{C}$中的形状为$\cat{J}$的图$K\colon \cat{J}\to\cat{C}$构成的类, 以及函子$F\colon \cat{C}\to\cat{D}$,
 \begin{enumerate}
-  \item 如果对于任意的图$K\colon\cat{J}\to\cat{C}$和$K$上的极限锥, 这个锥在$F$的像都定义了复合图$FK\colon \cat{J}\to\cat{D}$上的极限锥, 那么称$F$\emph{保持}这些极限;
+  \item 如果对于任意的图$K\colon\cat{J}\to\cat{C}$和$K$上的极限锥, 它在$F$的像都定义了复合图$FK\colon \cat{J}\to\cat{D}$上的极限锥, 那么称$F$\emph{保持}这些极限;
   \item 如果对于图$K\colon\cat{J}\to\cat{C}$上的任意的锥, 只要在$F$的像下是$FK\colon \cat{J}\to\cat{D}$上的极限锥那么它就是$K$上的极限锥, 则称$F$\emph{反映}这些极限;
   \item 如果只要$FK\colon \cat{J}\to\cat{D}$在$\cat{D}$中有极限就存在$FK$上的极限锥使其可以被提升称为$K$上的极限锥, 并且$F$反映这些图的极限, 则称$F$\emph{创造}这些极限.
 \end{enumerate}

@@ -478,7 +478,7 @@
 
 这一小节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明伴随素理想, 孤立伴随素理想及其对应的孤立准素理想的唯一性.
 
-准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想.\clearpage
+准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想.
 
 \begin{definition}
   设$A$为环, 若$A$的真理想$\ideal{q}$满足如果$xy\in \ideal{q}$那么$x\in\ideal{q}$或者$y\in\sqrt{\ideal{q}}$, 则称$\ideal{q}$为\emph{准素理想}, 有等价条件为$A{\divslash}\ideal{q}\neq 0$并且$A{\divslash}\ideal{q}$的每个零因子都是幂零元. 显然素理想是准素理想, 准素理想的拉回是准素理想.
@@ -651,7 +651,7 @@
   反之, 假设存在$j$使得$x_j$为$S_j$的代数元. 为了记号上的方便, 不妨重新编号, 使得$j=n$. 根据定义, 存在$g_1, \dotsc, g_m\in F(x_1, \dotsc, x_{n-1})$使得$g=X^m+g_1X^{m-1}+\dotsb+g_m\in F(x_1, \dotsc, x_{n-1})[X]$满足$g(x_n)=0$. 去分母, 存在$f_0, \dotsc, f_m\in F[X_1, \dotsc, X_{n-1}]$满足对每个$1\leq j<\leq n$, 有$g_jf_0(x_1, \dotsc, x_{n-1})=f_j(x_1, \dotsc, x_{n-1})$, 故$f\coloneq f_0(X_1, \dotsc, X_{n-1})X_n^m+f_1(X_1, \dotsc, X_{n-1})X_n^{m-1}+\dotsb+f_m(X_1, \dotsc, X_{n-1})$属于$F[X_1, \dotsc, X_n]$为非零多项式, 并且将$x_1, \dotsc, x_n$映到0, 故$S$在$F$上代数相关.
 \end{proof}
 
-给定域扩张$F\subseteq E$, 定义一个$E$到$\powerset{E}$的\emph{对应} $\Delta$为$x\depend S$当且仅当$x$为$F(S)$的代数元.
+给定域扩张$F\subseteq E$, 我们来定义一个$E$到$\powerset{E}$的\emph{对应} $\Delta$. 回顾一个对应是集合$E\times \powerset{E}$的一个子集, 其元素为$E$中元素与$\powerset{E}$中元素构成的二元组, 而如果$(x, S)\in\Delta$则我们记$x\depend S$. 定义对应$\Delta$满足$x\depend S$当且仅当$x$为$F(S)$的代数元.
 
 \begin{proposition}[{{\tjucite[516, Theorem 8.34][\thm 8.34]{jacobson_basic_1989}}}]\label{prop:algbdependcorr}
   设$F\subseteq E$为域扩张, 则刚才定义的$\Delta$是一个相关关系.
@@ -711,7 +711,7 @@
   % 分类讨论, 如果是多项式环的话就是唯一分解整环, 非常简单; 否则的话利用\thref{prop:noethernormalization}来处理.
 \end{proof}
 
-\begin{theorem}[{{\tjucite[193, Theorem 20][\chap 7, \sec 7, \thm 20]{zariski_commutative_1960}}}]\label{thm:ringdim}
+\begin{theorem}[{{\tjucite[193, Theorem 20][\chap VII, \sec 7, \thm 20]{zariski_commutative_1960}}}]\label{thm:ringdim}
   设$A=k[x_1, \dotsc, x_n]$为$k$的有限生成整环, $\ideal{p}$为$A$的素理想, 则有
   \begin{enumerate}
     \item\label{enum:thm-ringdim-height} $\codim(\ideal{p})+h(\ideal{p})=\dim (A)$,
@@ -730,7 +730,7 @@
 
 利用维数理论我们可以证明Hilbert零点定理, 它建立了代数与几何之间的联系. 我们先来证一个简单的引理.
 
-\begin{proposition}[{{\tjucite[195, Corollary 3][\chap 7, \sec 7, \cor 3]{zariski_commutative_1960}}}]\label{prop:ringdimprimeidealexist}
+\begin{proposition}[{{\tjucite[195, Corollary 3][\chap VII, \sec 7, \cor 3]{zariski_commutative_1960}}}]\label{prop:ringdimprimeidealexist}
   设$A$为$\kk$的有限生成整环, $\dim (A)=r$, 则分别存在余维数为$0, 1, \dotsc, r$的素理想.
 \end{proposition}
 

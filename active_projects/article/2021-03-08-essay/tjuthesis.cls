@@ -273,9 +273,9 @@
 \newcommand\tju@set@font@size@standard{%
   \renewcommand\normalsize{%
     \@setfontsize\normalsize{10.5bp}{18bp}%
-    \abovedisplayskip 0bp%
-    \abovedisplayshortskip 0bp%
-    \belowdisplayshortskip 0bp%
+    \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+    \abovedisplayshortskip \z@ \@plus3\p@
+    \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
     \belowdisplayskip \abovedisplayskip
   }
   \normalsize

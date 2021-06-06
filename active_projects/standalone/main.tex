@@ -1,0 +1,44 @@
+\documentclass[crop,convert={ghostscript,gsexe={"D://Program Files//gs//gs9.54.0//bin//gswin64c.exe"},gsdevice=tiffg4,outext=.tiff,density=600}]{standalone}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+
+\setmainfont{Times New Roman}
+\setmathfont{XITS Math}
+
+\AtBeginDocument{
+  \let\dim\relax
+  \DeclareMathOperator\dim{dim}
+  \DeclareMathOperator\codim{codim}
+}
+
+\newcommand\eqni{f\colon A\to B}
+\newcommand\eqnii{A}
+\newcommand\eqniii{B}
+\newcommand\eqniv{S^{-1}A\coloneq \{(a,s)\vert a\in A, s\in S\}\mathord{\divslash}{\sim}}
+\newcommand\eqnv{S^{-1}A}
+\newcommand\eqnvi{S}
+\newcommand\eqnvii{A_{\symfrak{p}}}
+\newcommand\eqnviii{\symfrak{p}^e}
+\newcommand\eqnix{0\to M\to N\to P\to 0}
+\newcommand\eqnx{M}
+\newcommand\eqnxi{N}
+\newcommand\eqnxii{P}
+\newcommand\eqnxiii{k}
+\newcommand\eqnxiv{K(A)}
+\newcommand\eqnxv{\symfrak{p}}
+\newcommand\eqnxvi{\codim (\symfrak{p})+h(\symfrak{p})=\dim (A)}
+\newcommand\eqnxvii{\codim (\symfrak{p})=d(\symfrak{p})}
+\newcommand\eqnxviii{B}
+\newcommand\eqnxix{x\in A}
+\newcommand\eqnxx{x}
+\newcommand\eqnxxi{B[x]}
+\newcommand\eqnxxii{I(Z(\symfrak{a}))=\sqrt{\symfrak{a}}}
+\newcommand\eqnxxiii{Z(I(Y))=\overline{Y}}
+\newcommand\eqnxxiv{Z(\symfrak{a})\neq\varnothing}
+\newcommand\eqnxxv{\dim (A(Y)) = \dim (Y)}
+\newcommand\eqnxxvi{\dim (S(Y)) = \dim (Y) + 1}
+
+\begin{document}
+  \fontsize{28bp}{28bp}$\eqnxxvi$
+\end{document}

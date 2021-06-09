@@ -1,0 +1,70 @@
+\documentclass[tikz,crop,convert={ghostscript,gsexe={"D://Program Files//gs//gs9.54.0//bin//gswin64c.exe"},gsdevice=tiffg4,outext=.tiff,density=600}]{standalone}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{tikz-cd}
+
+\setmainfont{Times New Roman}
+\setmathfont{XITS Math}
+
+\makeatletter
+\newcommand*{\@covariantfunctordiagramwithoutcategory}[6]{%
+  #1 \arrow[dd, "#3"{left}] \& \mapsto \& |[alias=X]| #4\\
+  \& \mapsto \& \\
+  #2 \& \mapsto \& |[alias=Y]| #5
+  \arrow[from=X, to=Y, "#6"{right}]
+}
+\newcommand*{\@contravariantfunctordiagramwithoutcategory}[6]{%
+  #1 \arrow[dd, "#3"{left}] \& \mapsto \& |[alias=X]| #4\\
+  \& \mapsto \& \\
+  #2 \& \mapsto \& |[alias=Y]| #5
+  \arrow[from=Y, to=X, "#6"{right}]
+}
+\newcommand*{\@functordiagramwithoutcategory}{% X Y f F(X) F(Y) F(f)
+  \@ifstar{\@contravariantfunctordiagramwithoutcategory}{\@covariantfunctordiagramwithoutcategory}%
+}
+\newcommand*{\functordiagramwithoutcategory}{% X Y f F(X) F(Y) F(f)
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    \@ifstar{\@functordiagramwithoutcategory*}{\@functordiagramwithoutcategory}%
+  \end{tikzcd}
+}
+\newcommand*{\@functordiagram@nostar}[9]{%
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    #1 \arrow{rr}{#3} \& \& #2\\
+    \@functordiagramwithoutcategory{#4}{#5}{#6}{#7}{#8}{#9}%
+  \end{tikzcd}%
+}
+\newcommand*{\@functordiagram@star}[9]{%
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    #1 \arrow{rr}{#3} \& \& #2\\
+    \@functordiagramwithoutcategory*{#4}{#5}{#6}{#7}{#8}{#9}
+  \end{tikzcd}%
+}
+\newcommand*{\functordiagram}{% C D F X Y f F(X) F(Y) F(f)
+  \@ifstar{\@functordiagram@star}{\@functordiagram@nostar}%
+}
+\makeatother
+
+\AtBeginDocument{
+  \let\dim\relax
+  \DeclareMathOperator\dim{dim}
+  \DeclareMathOperator\codim{codim}
+  \DeclareMathOperator\Spec{Spec}
+  \DeclareMathOperator\MaxSpec{MaxSpec}
+  \def\OO{\symscr{O}}
+  \let\cat\symsfup
+}
+\newcommand\tikzi{%
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    X \arrow[dd, "\varphi"'] \& \mapsto \& \OO(X) \& \mapsto \& \Spec (\OO(X)) \arrow[dd, "(\alpha (\varphi))^*"]\\
+    \& \mapsto \& \& \mapsto \& \\
+    Y \& \mapsto \& \OO(Y) \arrow[uu, "\alpha (\varphi)"'] \& \mapsto \& \Spec (\OO(Y))
+  \end{tikzcd}
+}
+\newcommand\tikzii{%
+  \functordiagram*{\cat{CRing}}{\cat{Top}}{}{A}{B}{\varphi}{\Spec (A)}{\Spec(B)}{\varphi^*}
+}
+
+\begin{document}
+  \fontsize{20bp}{20bp}\tikzii
+\end{document}

@@ -12,6 +12,10 @@
   \DeclareMathOperator\codim{codim}
   \DeclareMathOperator\Spec{Spec}
   \DeclareMathOperator\MaxSpec{MaxSpec}
+  \def\OO{\symscr{O}}
+  \let\ideal\symfrak
+  \def\AF{\symbb{A}}
+  \def\PP{\symbb{P}}
 }
 
 \newcommand\eqni{f\colon A\to B}
@@ -43,7 +47,67 @@
 \newcommand\eqnxxvii{\Spec (A)}
 \newcommand\eqnxxviii{A(Y)}
 \newcommand\eqnxxix{Y\cong \MaxSpec (A(Y))}
+\newcommand\eqnxxx{\OO}
+\newcommand\eqnxxxi{\OO(Y)\cong A(Y)}
+\newcommand\eqnxxxii{\OO_P\cong A(Y)_{\symfrak{m}_P}}
+\newcommand\eqnxxxiii{K(Y)\cong K(A(Y))}
+\newcommand\eqnxxxiv{\OO(\Spec(A))\cong A}
+\newcommand\eqnxxxv{\OO_{\symfrak{p}}\cong A_{\symfrak{p}}}
+\newcommand\eqnxxxvi{(f, f^\mathoctothorpe)}
+\newcommand\eqnxxxvii{\OO(Y)\cong k}
+\newcommand\eqnxxxviii{\OO_P\cong S(Y)_{(\symfrak{m}_P)}}
+\newcommand\eqnxxxix{K(Y)\cong S(Y)_{((0))}}
+\newcommand\eqnxl{(a, b)\mapsto a+b}
+\newcommand\eqnxli{(a, b)\mapsto ab}
+\newcommand\eqnxlii{\forall a \forall b\forall c\colon (a+b)+c=a+(b+c)}
+\newcommand\eqnxliii{\exists 0\forall a\colon 0+a=a+0=a}
+\newcommand\eqnxliv{\forall a\exists {-}a\colon a+(-a)=(-a)+a=0}
+\newcommand\eqnxlv{\forall a\forall b\colon a+b=b+a}
+\newcommand\eqnxlvi{\forall a \forall b\forall c\colon (ab)c=a(bc)}
+\newcommand\eqnxlvii{\exists 1\forall a\colon 1a=a1=a}
+\newcommand\eqnxlviii{\forall a\forall b\colon ab=ba}
+\newcommand\eqnxlix{\forall a \forall b\forall c\colon a(b+c)=ab+ac}
+\newcommand\eqnl{\forall a \forall b\forall c\colon (a+b)c=ac+bc}
+\newcommand\eqnli{\symfrak{a}}
+\newcommand\eqnlii{\forall a\forall x\colon a\in \symfrak{a}\wedge x\in A\to ax\in \symfrak{a}}
+\newcommand\eqnliii{S}
+\newcommand\eqnliv{(a, s)\sim (b, t)\Leftrightarrow \exists u\colon u\in S\wedge u(at-bs)=0}
+\newcommand\eqnlv{S=A-\symfrak{p}}
+\newcommand\eqnlvi{A_{\symfrak{p}}}
+\newcommand\eqnlvii{\symfrak{a}_1\subseteq\symfrak{a}_2\subseteq\dotsb}
+\newcommand\eqnlviii{\exists n\colon \symfrak{a}_n=\symfrak{a}_{n+1}=\dotsb}
+\newcommand\eqnlix{\symfrak{q}}
+\newcommand\eqnlx{xy\in\symfrak{q}\to x\in\symfrak{q}\vee y\in\sqrt{\symfrak{q}}}
+\newcommand\eqnlxi{\symfrak{a}=\bigcap_{j=1}^n \symfrak{q}_j}
+\newcommand\eqnlxii{\sqrt{\ideal{q}_j}}
+\newcommand\eqnlxiii{\forall j\colon \ideal{q}_j\nsupseteq\bigcap_{k\neq j}\ideal{q}_k}
+\newcommand\eqnlxiv{h(\ideal{p})\coloneq\sup \{h\vert\ \exists \ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}\}}
+\newcommand\eqnlxv{\dim (A)}
+\newcommand\eqnlxvi{d(\ideal{p})\coloneq\sup \{d\vert\ \exists\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A\}}
+\newcommand\eqnlxvii{\codim (\ideal{p})\coloneq\dim (A{\divslash}\ideal{p})}
+\newcommand\eqnlxviii{\AF^n\coloneq k^n}
+\newcommand\eqnlxix{\PP^n\coloneq (\AF^{n+1}-\{(0, \dotsc, 0)\}){\divslash}\sim}
+\newcommand\eqnlxx{(x_0, \dotsc, x_n)\sim (y_0, \dotsc, y_n)\Leftrightarrow \exists a\colon a\in k\wedge \forall j\colon x_j=ay_j}
+\newcommand\eqnlxxi{\Leftrightarrow}
+\newcommand\eqnlxxii{A=k [X_1, \dotsc, X_n]}
+\newcommand\eqnlxxiii{S=k [X_0, \dotsc, X_n]}
+\newcommand\eqnlxxiv{Z(T)=\{P\in \AF^n\vert\ f(P)=0, \forall f\in T\}}
+\newcommand\eqnlxxv{T\subseteq A}
+\newcommand\eqnlxxvi{Z(T)=\{P\in \PP^n\vert\ f(P)=0, \forall f\in T^h\}}
+\newcommand\eqnlxxvii{T\subseteq S}
+\newcommand\eqnlxxviii{X}
+\newcommand\eqnlxxix{Y}
+\newcommand\eqnlxxx{Y_1\supseteq Y_2\supseteq\dotsb}
+\newcommand\eqnlxxxi{\exists n\colon Y_n=Y_{n+1}=\dotsb}
+\newcommand\eqnlxxxii{\dim (X)\coloneq \sup \{n\vert\ \exists Z_0\subsetneqq Z_1\subsetneqq \dotsb \subsetneqq Z_n\}}
+\newcommand\eqnlxxxiii{\dim (\AF^1)=1}
+\newcommand\eqnlxxxiv{V(E)=\{\ideal{p}\supseteq E\}, E\subseteq A}
+\newcommand\eqnlxxxv{\Spec}
+\newcommand\eqnlxxxvi{\symbfit{Y}}
+\newcommand\eqnlxxxvii{\mathbf{Spec}\symbfit{(A)}}
+\newcommand\eqnlxxxviii{\MaxSpec(A)}
+
 
 \begin{document}
-  \fontsize{28bp}{28bp}$\eqnxxix$
+  \fontsize{24bp}{24bp}$\eqnlxxxvii$
 \end{document}

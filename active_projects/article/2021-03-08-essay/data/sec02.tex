@@ -20,9 +20,9 @@
       \item 对于任意的$x\in A$, 存在$-x\in A$使得$x+(-x)=0$成立,
       \item 对于任意的$x, y\in A$, 有$x+y=y+x$成立;
     \end{enumerate}
-    \item $A$的乘法满足结合律和与加法的分配律, 即
+    \item $A$的乘法满足结合律交换律和与加法的分配律, 即
     \begin{enumerate}
-      \item 对于任意的$x, y, z\in A$, 有$(xy)z=x(yz)$成立,
+      \item 对于任意的$x, y, z\in A$, 有$(xy)z=x(yz)$与$xy=yx$成立,
       \item 对于任意的$x, y, z\in A$, 有$x(y+z)=xy+xz$和$(y+z)x=yx+zx$成立;
     \end{enumerate}
     \item 存在$1\in A$, 使得对于任意的$x\in A$都有$1x=x$成立,
@@ -685,7 +685,7 @@
   设$A$为域$\kk$的有限生成整环, $\ideal{p}$为$A$的素理想, 那么$\codim (\ideal{p})\leq\dim (A)$. 如果还有素理想$\ideal{q}$使得$\ideal{p}\subsetneqq\ideal{q}$, 那么$\codim (\ideal{p})>\codim (\ideal{q})$.
 \end{propositionnoproof}
 
-设$\ideal{p}$为环$A$的素理想,  定义$\ideal{p}$的\emph{高度} $h(\ideal{p})$为满足存在素理想升链$\ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}$的$n$的上确界; 定义$\ideal{p}$的\emph{深度} $d(\ideal{p})$为满足存在素理想降链$\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A$的$d$的下确界. 根据定义, 考虑素理想$\ideal{p}\subsetneqq\ideal{q}$, 只要$h(\ideal{p})$与$h(\ideal{q})$中有一个有限, 那么有$h(\ideal{p})<h(\ideal{q})$, 只要$d(\ideal{p})$与$d(\ideal{q})$中有一个有限, 那么有$d(\ideal{p})>d(\ideal{q})$.
+设$\ideal{p}$为环$A$的素理想,  定义$\ideal{p}$的\emph{高度} $h(\ideal{p})$为满足存在素理想升链$\ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}$的$h$的上确界; 定义$\ideal{p}$的\emph{深度} $d(\ideal{p})$为满足存在素理想降链$\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A$的$d$的下确界. 根据定义, 考虑素理想$\ideal{p}\subsetneqq\ideal{q}$, 只要$h(\ideal{p})$与$h(\ideal{q})$中有一个有限, 那么有$h(\ideal{p})<h(\ideal{q})$, 只要$d(\ideal{p})$与$d(\ideal{q})$中有一个有限, 那么有$d(\ideal{p})>d(\ideal{q})$.
 
 \begin{proposition}[Noether正规化引理{{\tjucite[\chap 5, \ex 16][69, Exercise 16]{atiyah_introduction_1969}}}]\label{prop:noethernormalization}
   设非零环$A$为域$k$上的有限生成$k$-代数, 超越次数为$r$, 则存在$r$元子集$\{y_1, \dotsc, y_r\}\subseteq A$在$k$上代数无关, 并且$A$的每个元素都可以由$k[y_1, \dotsc, y_r]$整表示.

@@ -178,7 +178,7 @@
 
 % 对于环$A$, 其极大理想全体可以看成素谱$\Spec (A)$的子空间, 这个子空间被称为$A$的\emph{极大谱}, 记作$\MaxSpec (A)$. 因为一般来说极大理想的原像不一定是极大理想, 所以极大谱没有如\thref{prop:primespecfunctor}中所述的函子性质, 研究起来不是那么方便.
 
-正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\tjucite[79, Exercise 5][\chap 6, \ex 5]{atiyah_introduction_1969}. $X$是Noether拓扑空间等价于每个由$X$的闭子集构成的非空集合都有极小元.
+回顾 Noether 拓扑空间被定义为其任意的闭集降链都稳定.
 
 \begin{proposition}
   如果$A$是Noether环, 则$\Spec (A)$是Noether拓扑空间. 反之则不一定成立.
@@ -246,7 +246,7 @@
     \item\label{enum:thm-projective-rings-1} $\dim (S(Y))=\dim (Y)+1$;
     \item\label{enum:thm-projective-rings-2} $\OO (Y)\cong\kk$;
     \item\label{enum:thm-projective-rings-3} 对于每个点$P\in Y$, 令$\ideal{m}_P\subseteq S(Y)$为在$P$点取值为零的齐次坐标函数所生成的极大理想, 则$\OO_P\cong S(Y)_{(\ideal{m}_P)}$;
-    \item\label{enum:thm-projective-rings-4} $K(Y)\cong S(Y)_{(0)}$.
+    \item\label{enum:thm-projective-rings-4} $K(Y)\cong S(Y)_{((0))}$.
   \end{enumerate}
 \end{theorem}
 
@@ -257,7 +257,7 @@
 
   设$P\in Y$为任意点, 存在$j$使得$P\in Y_j$, 记$\ideal{m}_P'$为$P$在$A(Y_j)$中对应的极大理想. 由\thref{thm:affinerings}\ref{enum:thm-affine-rings-4}可得$\OO_P\cong A(Y_j)_{\ideal{m}_P'}$. 通过验证多项式的零点可以证明$\varphi_{j}^*(\ideal{m}_P')=\ideal{m}_PS(Y)_{(X_j)}$. 因为$X_j\notin \ideal{m}_P$, 再根据\thref{prop:multilocalization}可得$A(Y_j)_{\ideal{m}_P'}\cong S(Y)_{\ideal{m}_P}$. 这证明了\ref{enum:thm-projective-rings-3}.
 
-  类似地, 由\thref{thm:affinerings}\ref{enum:thm-affine-rings-5}可得$K(Y)\cong K(Y_j)$同构于$A(Y_j)$的分式域, 再由$\varphi_j^*$得同构于$S(Y)_{(0)}$. 这证明了\ref{enum:thm-projective-rings-4}.
+  类似地, 由\thref{thm:affinerings}\ref{enum:thm-affine-rings-5}可得$K(Y)\cong K(Y_j)$同构于$A(Y_j)$的分式域, 再由$\varphi_j^*$得同构于$S(Y)_{((0))}$. 这证明了\ref{enum:thm-projective-rings-4}.
 
   最后, 设$f\in\OO (Y)$是整体的正则函数, 则对于每个$j$都有$f$在$Y_j$上, 于是根据\thref{thm:affinerings}\ref{enum:thm-affine-rings-2}可以认为$f\in A(Y_j)$, 又由$\varphi_j^*$知$A(Y_j)\cong S(Y)_{(X_j)}$, 于是$f$可以写成$g_j{\divslash}X_j^{N_j}$的形式, 其中$g_j\in S(Y)$为$N_j$次的齐次多项式. 因为$S(Y)$是整环, 所以可以将$\OO (Y), K(Y), S(Y)$都看作$S(Y)$的分式域$L$的子环, 于是$X_j^{N_j}f\in S(Y)_{N_j}$, 其中$S(Y)_{N_j}$表示齐次环$S(Y)$中次数为$N_j$的齐次元全体. 取$N\geq \sum N_j$, 则$S(Y)_N$作为$\kk$-线性空间可以由次数为$N$的由$X_0, \dotsc, X_n$构成的单项式生成, 根据鸽笼原理知$f\cdot S(Y)_N\subseteq S(Y)_N$, 迭代即得对于每个$q>0$都有$f^q\cdot S(Y)_N$. 特别地, 取$X_j\notin I(Y)$, 则有对于每个$q>0$都有$X_0^Nf^q\in S(Y)$. 于是子环$S(Y)[f]\subseteq L$包含于$X_0^{-N}S(Y)$中, 而$X_0^{-N}S(Y)$是有限生成$S(Y)$-模, 又因为$S(Y)$是Noether环, 所以由\thref{prop:fgmoduleovernoetherring}和\thref{prop:noethermodule}得$S(Y)[f]$是有限生成$S(Y)$-模, 于是由\thref{prop:integraldependence}知$f$为$S(Y)$的整元, 又因为$f$的次数为零, 故存在$x_1, \dotsc, x_m\in S(Y)_0\cong \kk$使得$f^m+x_1f^{m-1}+\dotsb +x_m=0$成立. 于是$f$是$\kk$的代数元, 又$\kk$是代数闭域, 于是有$f\in \kk$, 这证明了\ref{enum:thm-projective-rings-1}.
 \end{proof}
@@ -295,7 +295,7 @@
 \end{proposition}
 
 \begin{proof}
-  对于$P=(x_1, \dotsc, x_{n+1})\in H$, 定义$\varphi (P)=(x_1, \dotsc, x_n)$, 则$\varphi$是从$H$到$\AF^n - Y$的态射, 并且为双射. 观察到$\varphi^{-1}(x_1, \dotsc, x_n)\in (x_1, \dotsc, x_n, 1{\dotsb} f(x_1, \dotsc, x_n))$, 因此由\thref{prop:morphismtoaffinevariety}得$\varphi^{-1}$也是态射.
+  对于$P=(x_1, \dotsc, x_{n+1})\in H$, 定义$\varphi (P)=(x_1, \dotsc, x_n)$, 则$\varphi$是从$H$到$\AF^n - Y$的态射, 并且为双射. 观察到$\varphi^{-1}(x_1, \dotsc, x_n)\in (x_1, \dotsc, x_n, 1{\divslash} f(x_1, \dotsc, x_n))$, 因此由\thref{prop:morphismtoaffinevariety}得$\varphi^{-1}$也是态射.
 \end{proof}
 
 \begin{proposition}[{{\tjucite[25, Proposition 4.3][\prop I.4.3]{hartshorne_algebraic_1977}}}]\label{prop:affinetopologicalbasis}

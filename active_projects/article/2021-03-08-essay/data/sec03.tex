@@ -48,6 +48,8 @@
   再证明不可约集的闭包仍然是不可约集, 于是极大元一定是闭集. 设$Y$为不可约集, 考虑$\overline{Y}$中的非空开子集$U_1, U_2$, 则$U_1\cap Y, U_2\cap Y$是$Y$的非空开子集, 有非空交, 故$U_1, U_2$也有非空交. 最后根据定义知, 单点集一定是不可约集, 所以这些极大元的并一定是全空间.
 \end{proof}
 
+正如Noether环在环论中的作用, 我们也希望研究带有某种有限条件的拓扑空间. 如果拓扑空间$X$满足关于闭子集的降链条件, 即对于任意的闭集降链$Y_1\supseteq Y_2\supseteq\dotsb$都存在$n$使得$Y_n=Y_{n+1}=\dotsb$, 则称$X$为\emph{Noether拓扑空间}. 对偶地, $X$为Noether拓扑空间当且仅当$X$满足关于开子集的升链条件, 因而Noether拓扑空间总是拟紧的\tjucite[79, Exercise 5][\chap 6, \ex 5]{atiyah_introduction_1969}. $X$是Noether拓扑空间等价于每个由$X$的闭子集构成的非空集合都有极小元.
+
 % \tjucites[79, Exercise 7]{atiyah_introduction_1969}[5, Proposition 1.5]{hartshorne_algebraic_1977}
 \begin{proposition}[{{\tjucite[5, Proposition 1.5][\prop I.1.5]{hartshorne_algebraic_1977}}}]\label{prop:noetherirreduciblecomponent}
   Noether拓扑空间$X$中的不可约分支仅有有限个.

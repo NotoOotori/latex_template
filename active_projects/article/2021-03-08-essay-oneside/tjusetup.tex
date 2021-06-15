@@ -1,0 +1,412 @@
+% !TeX root = ./main.tex
+
+% 论文基本信息配置
+
+\tjusetup{
+  %******************************
+  % 注意：
+  %   1. 配置里面不要出现空行
+  %   2. 不需要的配置信息可以删除
+  %   3. 建议先阅读文档中所有关于选项的说明
+  %******************************
+  %
+  % 输出格式 (还没有做)
+  %   electronic  **    默认
+  %   print       **
+  %   draft       草稿
+  %
+  % output = electronic,
+  %
+  % 标题
+  %   不可使用“\\”命令手动控制换行
+  %   副标题为可选项
+  %
+  title  = {代数理论的几何应用},
+  % subtitle = {},
+  title* = {Application of Algebra in Geometry},
+  % subtitle* = {}
+   % subtitle* = {}
+  %
+  % 培养单位
+  %   填写所属学院的全名
+  %
+  department = {数学科学学院},
+  %
+  % 学科
+  %   本科生填写专业名称
+  %
+  discipline  = {数学与应用数学},
+  %
+  % 姓名
+  %
+  author  = {陈旭阳},
+  %
+  % 学号
+  %
+  id = {1753763},
+  %
+  % 指导教师
+  %   中文姓名和职称之间以英文逗号分开, 也可不写职称
+  %
+  supervisor  = {李灵光, 副教授},
+  % 日期
+  %   使用 ISO 格式；默认为当前时间
+  %
+  date = {2021-06-09},
+  %
+  % 英文字体
+  %   times   Times New Roman 字体,
+  %             如果系统中没有则会使用 TeX Gyre Termes 字体 (默认)
+  %   cmu     Computer Modern Serif 字体
+  %
+  font = cmu,
+  %
+  % cover
+  %
+  cover = true,
+  %
+}
+
+%% Put any packages you would like to use here
+
+% 表格中支持跨行
+% \usepackage{multirow}
+
+% 跨页表格
+% \usepackage{longtable}
+
+% 固定宽度的表格。放在 hyperref 之前的话，tabularx 里的 footnote 显示不出来。
+% \usepackage{tabularx}
+
+% 表格加脚注
+% \usepackage{threeparttable}
+% \pretocmd{\TPTnoteSettings}{\footnotesize}{}{}
+
+% 确定浮动对象的位置，可以使用 H，强制将浮动对象放到这里（可能效果很差）
+% \usepackage{float}
+
+% 浮动图形控制宏包。
+% 允许上一个 section 的浮动图形出现在下一个 section 的开始部分
+% 该宏包提供处理浮动对象的 \FloatBarrier 命令，使所有未处
+% 理的浮动图形立即被处理。这三个宏包仅供参考，未必使用：
+% \usepackage[below]{placeins}
+% \usepackage{floatflt} % 图文混排用宏包
+% \usepackage{rotating} % 图形和表格的控制旋转
+
+% 定理类环境宏包
+% \usepackage{amsthm}
+% 也可以使用 ntheorem
+\usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
+\numberwithin{equation}{subsection}
+\makeatletter
+  \renewcommand\c@equation\c@theorem
+\makeatother
+
+% One should always load \usepackage{hyperref} before the first use of \newtheorem to obtain correct handling and referencing of counters.
+\AtBeginDocument{
+  \theoremstyle{plain}
+  \theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
+  \theoremindent0pt
+  % \theoremprework{}
+  \newtheorem{theorem}{定理}[subsection]
+  \newtheorem{corollary}[theorem]{推论}
+  \newtheorem{lemma}[theorem]{引理}
+  \newtheorem{proposition}[theorem]{命题}
+  % \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
+  \newtheorem{theoremnoproof}[theorem]{定理}
+  \newtheorem{propositionnoproof}[theorem]{命题}
+  % \theoremsymbol{}
+  % \newtheorem{axiom}[theorem]{公理}
+  % \newtheorem{conjection}[theorem]{猜想}
+  \newtheorem{definition}[theorem]{定义}
+  \newtheorem{remark}[theorem]{注}
+  \newtheorem{example}[theorem]{例}
+  \theoremstyle{nonumberplain}
+  \theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
+  \theoremindent0pt
+  % \theoremsymbol{\ensuremath{\enclosesquare}}
+  \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
+  \newtheorem{proof}{证明}
+  \newtheorem{proofhint}{证明思路}
+  \theoremsymbol{}
+  % \newtheorem{proofsketch}{证明梗概}
+  % \newenvironment{breakexample}{\begin{example}\leavevmode\vspace{-\baselineskip}}{\end{example}}
+  % TODO: theorem style
+
+  % \makeatletter
+  % \newcommand{\ntheoremheader}[1]{\expandafter\csname mkheader@#1\endcsname}
+  % \makeatother
+
+  % \appto\appendix{%
+  %   \theoremstyle{plain}%
+  %   \theoremheaderfont{\bfseries}%
+  %   \theorembodyfont{\upshape}%
+  %   \theoremindent0pt%
+  %   \renewtheorem{theorem}{定理}[section]%
+  %   \renewtheorem{corollary}[theorem]{推论}
+  %   \renewtheorem{lemma}[theorem]{引理}
+  %   \renewtheorem{proposition}[theorem]{命题}
+  %   \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
+  %   \renewtheorem{theoremnoproof}[theorem]{定理}
+  %   \renewtheorem{propositionnoproof}[theorem]{命题}
+  %   \theoremsymbol{}
+  %   % \newtheorem{axiom}[theorem]{公理}
+  %   % \newtheorem{conjection}[theorem]{猜想}
+  %   \renewtheorem{definition}[theorem]{定义}
+  %   \renewtheorem{remark}[theorem]{注}
+  %   \renewtheorem{example}[theorem]{例}
+  %   \theoremstyle{nonumberplain}
+  %   \theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
+  %   \theoremindent0pt
+  %   % \theoremsymbol{\ensuremath{\enclosesquare}}
+  %   \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
+  %   \renewtheorem{proof}{证明}
+  %   \renewtheorem{proofhint}{证明思路}
+  %   \theoremsymbol{}
+  % }% etoolbox
+}
+
+% 给自定义的宏后面自动加空白
+% \usepackage{xspace}
+
+% 定义所有的图片文件在 figures 子目录下
+% \graphicspath{{figures/}}
+
+% 配置enumitem宏包
+\setlist*[enumerate,1]{left = \parindent .. 2\parindent} % 设置enumerate环境一级分项的缩进, 用star version以添加设置而不是覆盖之前的设置
+
+% tikz-cd
+\usepackage{tikz-cd}
+\tikzcdset{
+  arrow style=tikz,
+  diagrams={>={Straight Barb[scale=0.8]}}
+}% from documentation
+% \newcommand{\tikzcdarrowdimens}[2]{%
+%     \tikzcdset{every arrow/.append style={line width=#1}}%
+%     \pgfmathdeclarefunction*{axis_height}{0}{%
+%         \begingroup%
+%         \pgfmathreturn#2%
+%         \endgroup%
+%     }%
+% }
+% \tikzcdarrowdimens{0.068em}{0.259em}% https://tex.stackexchange.com/a/423314
+
+% 定义自己常用的东西
+% \def\myname{薛瑞尼}
+
+% 数学命令
+% unicode-math does many jobs at begin document, so we need to declare operator after that.
+\AtBeginDocument{%https://tex.stackexchange.com/a/117995
+  \DeclareMathOperator{\Aut}{Aut}
+  \DeclareMathOperator{\Ann}{Ann}
+  \let\dim\relax
+  \DeclareMathOperator{\dim}{dim}
+  \DeclareMathOperator{\codim}{codim}
+  \let\det\relax
+  \DeclareMathOperator{\det}{det}
+  \let\Im\relax
+  \DeclareMathOperator{\Ker}{Ker}
+  \DeclareMathOperator{\Im}{Im}
+  \let\max\relax
+  \DeclareMathOperator{\max}{max}
+  \let\min\relax
+  \DeclareMathOperator{\min}{min}
+  \ifdefined\Hom\let\Hom\relax\fi
+  \DeclareMathOperator{\Hom}{Hom}
+  \DeclareMathOperator{\Spec}{Spec}
+  \DeclareMathOperator{\MaxSpec}{MaxSpec}
+  \DeclareMathOperator{\ob}{ob}
+  \ifdefined\lim\let\lim\relax\fi
+  \DeclareMathOperator{\lim}{lim}
+  \ifdefined\colim\let\colim\relax\fi
+  \DeclareMathOperator{\colim}{colim}
+  \DeclareMathOperator{\Bilin}{Bilin}
+  \ifdefined\sp\let\sp\relax\fi
+  \DeclareMathOperator{\sp}{sp}
+  %https://tex.stackexchange.com/questions/175251/how-to-redefine-a-command-using-declaremathoperator
+}
+
+\newcommand*{\lr}[3]{\left#1#3\right#2}
+\newcommand*{\lrbig}[3]{\big#1#3\big#2}
+\newcommand*{\ideal}[1]{\symfrak{#1}}
+% \newcommand*{\rad}[1]{\sqrt{\ideal{#1}}}
+\newcommand*{\axiom}[1]{\ensuremath{\symsfup{#1}}}
+\newcommand*{\field}[1]{#1}
+\newcommand*{\cat}[1]{\symsfup{#1}}% Category
+\newcommand*{\sheaf}[1]{\symscr{#1}}
+\newcommand*{\powerset}[1]{2^{#1}}
+\newcommand*{\restrict}[1]{\vert_{#1}}
+
+\newcommand*{\CC}{\symbb{C}}
+\newcommand*{\ZZ}{\symbb{Z}}
+\newcommand*{\NN}{\symbb{N}}
+\newcommand*{\RR}{\symbb{R}}
+\newcommand*{\AF}{\symbb{A}}
+\newcommand*{\PP}{\symbb{P}}
+\newcommand*{\kk}{\field{k}}
+\newcommand*{\nil}{\symfrak{N}}
+\newcommand*{\OO}{\sheaf{O}}
+\newcommand*{\algebra}{\cat{Algr}}
+\newcommand*{\variety}{\cat{Var}}
+\newcommand*{\composite}{\vysmwhtcircle}
+\newcommand*{\op}{\symup{op}}
+\newcommand*{\Cone}{\symup{Cone}}
+
+% \newcommand{\MyTo}[1]{\mathbin{\,\tikz[baseline] \draw[-stealth,line width=.4pt] (0ex,0.4ex) -- (#1,0.4ex);}}
+% \newcommand{\dlim}{%
+%   \mathchoice
+%     {\lim_{\MyTo{3.0ex}}}% \displaystyle
+%     {\lim_{\MyTo{2.5ex}}}% \textstyle
+%     {\lim_{\MyTo{2.0ex}}}% \scriptstyle
+%     {\lim_{\MyTo{2.0ex}}}% \scriptscriptstyle
+% }
+\newcommand*{\dlim}{\varinjlim}% TODO: direct limit
+
+\newcommand*{\id}{\symup{id}}
+\newcommand*{\inv}{\symup{inv}}
+% \newcommand*{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}% defined by unicode-math
+% \newcommand*{\niton}{\mathrel{\reflectbox{\ensuremath{\notin}}}}
+\newcommand*{\depend}{\prec}
+\newcommand*{\ndepend}{\nprec}
+\newcommand*{\SAa}{\overline{S}^{-1}(A{\divslash}\ideal{a})}
+\newcommand*{\SASa}{S^{-1}A{\divslash}S^{-1}\ideal{a}}
+\newcommand*{\Shomo}{S^h}
+
+\renewcommand{\emph}[1]{{\itshape\bfseries #1}}
+
+%% functor diagram
+\makeatletter
+\newcommand*{\@covariantfunctordiagramwithoutcategory}[6]{%
+  #1 \arrow[dd, "#3"{left}] \& \mapsto \& |[alias=X]| #4\\
+  \& \mapsto \& \\
+  #2 \& \mapsto \& |[alias=Y]| #5
+  \arrow[from=X, to=Y, "#6"{right}]
+}
+\newcommand*{\@contravariantfunctordiagramwithoutcategory}[6]{%
+  #1 \arrow[dd, "#3"{left}] \& \mapsto \& |[alias=X]| #4\\
+  \& \mapsto \& \\
+  #2 \& \mapsto \& |[alias=Y]| #5
+  \arrow[from=Y, to=X, "#6"{right}]
+}
+\newcommand*{\@functordiagramwithoutcategory}{% X Y f F(X) F(Y) F(f)
+  \@ifstar{\@contravariantfunctordiagramwithoutcategory}{\@covariantfunctordiagramwithoutcategory}%
+}
+\newcommand*{\functordiagramwithoutcategory}{% X Y f F(X) F(Y) F(f)
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    \@ifstar{\@functordiagramwithoutcategory*}{\@functordiagramwithoutcategory}%
+  \end{tikzcd}
+}
+\newcommand*{\@functordiagram@nostar}[9]{%
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    #1 \arrow{rr}{#3} \& \& #2\\
+    \@functordiagramwithoutcategory{#4}{#5}{#6}{#7}{#8}{#9}%
+  \end{tikzcd}%
+}
+\newcommand*{\@functordiagram@star}[9]{%
+  \begin{tikzcd}[sep=small, ampersand replacement=\&]
+    #1 \arrow{rr}{#3} \& \& #2\\
+    \@functordiagramwithoutcategory*{#4}{#5}{#6}{#7}{#8}{#9}
+  \end{tikzcd}%
+}
+\newcommand*{\functordiagram}{% C D F X Y f F(X) F(Y) F(f)
+  \@ifstar{\@functordiagram@star}{\@functordiagram@nostar}%
+}
+\makeatother
+
+% enumerate中的公式
+\makeatletter%
+\apptocmd{\mathdisplay}{%
+  \hspace*{-\@totalleftmargin}%
+}{}{}
+\makeatother%
+
+% 借用 ltxdoc 里面的几个命令方便写文档。
+% \DeclareRobustCommand\cs[1]{\texttt{\char`\\#1}}
+% \providecommand\pkg[1]{{\sffamily#1}}
+
+% 借用 lipsum与zhlipsum 来填充内容
+\usepackage{lipsum}
+\usepackage{zhlipsum}
+
+% 交叉引用
+\AtEndPreamble{
+  \usepackage{varioref}
+  \labelformat{section}{\S#1}
+  \labelformat{subsection}{\S#1}
+  \labelformat{subsubsection}{\S#1}
+}
+
+\makeatletter
+\newif\if@appendix
+\appto\appendix{\@appendixtrue}
+\appto\backmatter{\@appendixfalse}
+% \preto\section{\if@appendix\else\clearpage\fi}
+% \preto\section{\clearpage}
+\makeatother
+
+\DeclareCiteCommand{\mycite}[\normalfont\mkbibbrackets]
+  {\normalfont\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}%
+  {\normalfont\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}%
+   \usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}%
+  {}
+  {%
+}
+\DeclareMultiCiteCommand{\mycites}[\normalfont\mkbibbrackets]{\mycite}{; }
+
+\makeatletter
+\newcommand{\newcommandfortjucite}{%
+  \newcommand*\thm{Theorem }%
+  \newcommand*\prop{Proposition }%
+  \newcommand*\lem{\@ifstar{Lemma}{Lemma }}%
+  \newcommand*\ex{Exercise }%
+  \newcommand*\cor{Corollary }%
+  \newcommand*\dfntn{Definition }%
+  \newcommand*\rmrk{Remark }%
+  \newcommand*\propdfntn{Proposition-Definition }%
+  \newcommand*\chap{Ch.\thinspace}%
+  \renewcommand*\sec{\S }%
+  \newcommand*\sect{Sect.\thinspace}%
+  \renewcommand*\and{and }%
+  \newcommand*\page[1]{pp.\thinspace ##1}%
+}
+\NewDocumentCommand\tjucite{O{} O{} m}{{%
+  \newcommandfortjucite
+  \mycite[#2]{#3}%
+}}
+\NewDocumentCommand\tjucites{O{} O{} m O{} O{} m}{{%
+  \newcommandfortjucite
+  \mycites[#2]{#3}[#5]{#6}%
+}}
+\makeatother
+
+% https://tex.stackexchange.com/questions/252784/different-commas-in-text-and-math-mode-in-beamer
+% zhihu muzi 统一文本与数学模式下的逗号
+\AtBeginDocument{
+  \DeclareMathSymbol{,}{\mathpunct}{operators}{"2C}
+  \DeclareMathSymbol{.}{\mathpunct}{operators}{"2E}
+}
+
+% \AtEndPreamble{
+%   \hypersetup{hidelinks}
+% }
+
+\makeatletter
+\def\@makefnmark@circled@super{\hbox{\@textsuperscript{\normalfont\circled{\@thefnmark}}}}
+\AtBeginDocument{\patchcmd\@footnotemark{\@makefnmark}{\@makefnmark@circled@super}{}{}}
+\makeatother
+
+% \def\@makefnmark@circled@nosuper{\hbox{\normalfont\circled{\@thefnmark}\space}}
+% \def\@makefnmark@circled@super{\hbox{\@textsuperscript{\normalfont\circled{\@thefnmark}}}}
+% \patchcmd\@footnotemark{\@makefnmark}{\@makefnmark@circled@super}{}{}
+% \patchcmd\@makefntext{\@makefnmark}{\@makefnmark@circled@nosuper}{}{}% 需要etoolbox宏包来给局部打补丁
+% % 如果想要每页重置脚注编号, 可以参考https://tex.stackexchange.com/questions/1656/footnote-counter-would-like-to-restart-from-1-each-page
+
+% \renewcommand*{\thefootnote}{\circled{\arabic{footnote}}}
+
+\makeatletter
+\setmathfontface\xitsregular{XITS-Regular}[Extension = .otf]
+\setoperatorfont\xitsregular
+\makeatother

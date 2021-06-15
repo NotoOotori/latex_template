@@ -1,0 +1,800 @@
+% !TeX root = ../main.tex
+
+\section{代数}
+
+\subsection{环}
+
+先来介绍交换环论的基本内容, 包括环与理想的基本性质, 商环与局部化, 以及齐次环和齐次理想相关的一些内容.
+
+\subsubsection{环与理想}\label{sec:algebra-ringideal}
+
+这一小节中我们将要给出环和理想的基本概念, 以及理想之间的一些运算.
+
+\begin{definition}
+  设$A$为非空集合, 若在$A$中有两个二元运算(加法和乘法), 满足
+  \begin{enumerate}
+    \item $A$关于加法构成Abel群, 即
+    \begin{enumerate}
+      \item 对于任意的$x, y, z\in A$, 有$(x+y)+z=x+(y+z)$成立,
+      \item 存在$0\in A$, 使得对任意的$x\in A$都有$0+x=x$成立,
+      \item 对于任意的$x\in A$, 存在$-x\in A$使得$x+(-x)=0$成立,
+      \item 对于任意的$x, y\in A$, 有$x+y=y+x$成立;
+    \end{enumerate}
+    \item $A$的乘法满足结合律交换律和与加法的分配律, 即
+    \begin{enumerate}
+      \item 对于任意的$x, y, z\in A$, 有$(xy)z=x(yz)$与$xy=yx$成立,
+      \item 对于任意的$x, y, z\in A$, 有$x(y+z)=xy+xz$和$(y+z)x=yx+zx$成立;
+    \end{enumerate}
+    \item 存在$1\in A$, 使得对于任意的$x\in A$都有$1x=x$成立,
+  \end{enumerate}
+  则称$A$为\emph{交换幺环}.
+\end{definition}
+
+后文中\emph{环}指的都是交换幺环. 注意如果$1=0$, 则环中有且仅有一个元素, 称这样的环为\emph{零环}\footnotemark . 如果$B$是$A$的Abel子群且满足$1\in B$, 则称$B$为$A$的\emph{子环}.
+研究保持代数结构的映射为代数理论的核心, 而保持环结构的映射即为环同态, 定义如下.
+\begin{definition}
+  设$A, B$是两个环, 若映射$f\colon A\to B$满足
+  \begin{enumerate}
+    \item $f(x+y)=f(x)+f(y)$ (即$f$为群同态, 同时还有$f(0)=0$与$f(-x)=-f(x)$成立);
+    \item $f(xy)=f(x)f(y)$;
+    \item $f(1)=1$,
+  \end{enumerate}
+  则称$f$为从$A$到$B$的\emph{环同态}.
+\end{definition}
+\footnotetext{需要注意的是, 在之后的一些定义中会排除零环, 比如说整环, 域等概念.}
+
+理想在环论中的作用类似于正规子群在群论中的作用, 一个环可以与其理想做商得到商环, 商环中的理想与原来环中的理想有对应关系, 可以以此来简化问题.
+\begin{definition}
+  设$A$为环, 如果$A$的子集$\ideal{a}$满足
+  \begin{enumerate}
+    \item $\ideal{a}$为$A$的加法子群;
+    \item 若$x\in A, y\in\ideal{a}$, 则$xy\in\ideal{a}$,
+  \end{enumerate}
+  则称$\ideal{a}$为$A$的\emph{理想}. 若$\ideal{a}\neq A$, 则称$\ideal{a}$为\emph{真理想}\footnotemark .
+\end{definition}
+\footnotetext{与零环的情况相对应, 同样需要注意之后的一些定义中会只考虑真理想, 比如说素理想, 极大理想等概念, 为了保证素理想(极大理想)与整环(域)对应的简洁性.}
+
+设$B$为环$A$的子集, 则定义$B$\emph{生成的理想}为$A$中包含$B$的(在包含意义下)最小的理想, 该理想$=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in A, y_j\in B\}$. 由有限个元素$x_1, \dotsc, x_n$生成的理想记为$(x_1, \dotsc, x_n)$, 由一个元素$x$生成的理想记为$(x)$, 称可以由有限个元素生成的理想\emph{有限生成理想}, 称可以由一个元素生成的理想为\emph{主理想}.
+
+商群$A{\divslash} \ideal{a}$有从$A$诱导的自然的环结构, 其中乘法由$(x+\ideal{a})(y+\ideal{a})=xy+\ideal{a}$定义. 称环$A{\divslash}\ideal{a}$为$A$对$\ideal{a}$的\emph{商环}. 有一个从环到其商环的自然的\emph{投影映射} $\pi\colon A\to A{\divslash}\ideal{a}$, 满足$\pi(x)=x+\ideal{a}$, 为满环同态. 商环有如下的\emph{泛性质}\tjucite[5][\page{5}]{altman_term_2017}, 给定环$A$和$A$的理想$\ideal{a}$, 对于任意的环$B$以及核包含$\ideal{a}$的环同态$\phi\colon A\to B$, 存在唯一的环同态$\psi\colon A{\divslash}\ideal{a}\to B$使得$\psi\pi=\phi$成立, 并且满足该泛性质的环$A{\divslash}\ideal{a}$在同构意义下唯一.
+
+\begin{proposition}[{{\tjucite[2, Proposition 1.1][\prop 1.1]{atiyah_introduction_1969}}}]\label{prop:quotidealcorr}
+  设$\ideal{a}$为环$A$的理想, 则$A$中包含$\ideal{a}$的理想全体与$A{\divslash}\ideal{a}$中的理想全体有由投影映射$\pi$诱导出的保序双射 ($\ideal{b}\leftrightarrow\ideal{b}{\divslash}\ideal{a}$).
+\end{proposition}
+
+\begin{proof}
+  保序显然, 再验证$\pi$将$A$中包含$\ideal{a}$的理想映到$A{\divslash}\ideal{a}$中的理想, $\pi^{-1}$将$A{\divslash}\ideal{a}$中的理想映到$A$中包含$\ideal{a}$的理想, 并且两者互为逆.
+\end{proof}
+
+\begin{remark}
+  由于\thref{prop:quotidealcorr}的成立, 在不致引起混淆的情况下我们会将$A$中包含$\ideal{a}$的某一个理想同时看作$A{\divslash}\ideal{a}$的理想而不另加说明, 反之亦然.
+\end{remark}
+
+% TODO: https://proofwiki.org/wiki/Third_Isomorphism_Theorem/Rings
+\begin{propositionnoproof}[第三同构定理{{\tjucite[126, Theorem 2.12 (ii)][\thm III.2.12]{hungerford_algebra_1974}}}]\label{prop:thirdisomorphism}
+  设$A$为环, $\ideal{a}\subseteq\ideal{b}$为$A$的两个理想, 则$\ideal{b}{\divslash}\ideal{a}$是商环$A{\divslash}\ideal{a}$的理想, 并且有$(A{\divslash}\ideal{a}){\divslash}(\ideal{b}{\divslash}\ideal{a})\cong A{\divslash}\ideal{b}$.
+\end{propositionnoproof}
+
+对于环$A$的元素$x$, 如果存在$y\neq 0$使得$xy=0$, 则称$x$为\emph{零因子}. 如果非零环$A$中没有非零零因子, 则称环$A$为\emph{整环}. 对于$x\in A$, 如果存在整数$n>0$使得$x^n = 0$, 则称$x$为\emph{幂零元}. 幂零元为零因子, 反过来则不一定成立. 如果$x\in A$关于乘法可逆, 即存在$y\in A$使得$xy=1$, 则称$x$为\emph{单位}, 此时这样的$y$唯一, 记为$x^{-1}$. 环$A$的单位全体关于乘法有Abel群的结构. 如果环$A$非零, 且每个非零元都是单位, 则称$A$为\emph{域}.
+
+如果环$A$的真理想$\ideal{p}$满足如果$xy\in\ideal{p}$那么$x\in \ideal{p}$或者$y\in\ideal{p}$成立, 则称$\ideal{p}$为\emph{素理想}; 如果环$A$的理想$\ideal{m}$为$A$的真理想全体 (在包含意义下) 的极大元, 则称$\ideal{m}$为\emph{极大理想}. 素理想有一些很好的性质.
+
+\begin{proposition}[{{\tjucite[8, Proposition 1.11][\prop 1.11]{atiyah_introduction_1969}}}]\label{prop:prime}\leavevmode
+  \begin{enumerate}
+    \item\label{enum:prop-prime-avoid}(素回避引理) 设$\ideal{p}_1, \dotsc, \ideal{p}_n$为环$A$的素理想, 设$A$的理想$\ideal{a}$满足$\ideal{a}\subseteq\bigcup_{j=1}^n\ideal{p}_j$, 则存在$j$使得$\ideal{a}\subseteq \ideal{p}_j$;
+    \item\label{enum:prop-prime-absorb}(素吸收引理) 设$\ideal{a}_1, \dotsc, \ideal{a}_n$为环$A$的理想, $A$的素理想$\ideal{p}$满足$\ideal{p}\supseteq\bigcap_{j=1}^n\ideal{a}_j$, 则存在$j$使得$\ideal{p}\supseteq\ideal{a}_j$. 如果进一步地有$\ideal{p}=\bigcap_{j=1}^n\ideal{a}_j$, 那么存在$j$使得$\ideal{p}=\ideal{a}_j$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \ref{enum:prop-prime-avoid} 考虑逆否命题, 如果对于任意的$j=1, \dotsc, n$都有$\ideal{a}\nsubseteq\ideal{p}_j$, 那么有$\ideal{a}\nsubseteq\bigcup_{j=1}^n\ideal{p}_j$. 对$n$进行归纳, 当$n=1$时命题显然成立, 假设命题对于$n-1$成立. 根据归纳假设, 对于每个$j=1, \dotsc, n$都存在$x_j\in \ideal{a}$但对于$k\neq j$都有$x_j\notin\ideal{p}_k$, 我们只需要证明对于其中某个$x_j$有$x_j\notin\ideal{p}_j$即可. 反证, 考查$x=\sum_{j}(\prod_{k\neq j}x_k)$, 有$x\in\ideal{a}$但$x$不是任何一个$\ideal{p}_j$的元素, 得到矛盾.
+
+  \ref{enum:prop-prime-absorb} 证明第一个命题的逆否命题, 如果对于任意的$j$都有$\ideal{p}\nsubseteq\ideal{a}_j$, 则存在$x_j\in\ideal{a}_j$但$x_j\notin\ideal{p}$, 于是$x=\prod_j x_j$满足$x\in\bigcap_j\ideal{a}_j$但是$x\notin\ideal{p}$, 即得证$\ideal{p}\nsupseteq\bigcap_{j=1}^n\ideal{a}_j$.
+\end{proof}
+
+素理想和极大理想有等价定义
+\begin{equation*}
+  \begin{aligned}
+    \ideal{p}\text{为素理想}&\Leftrightarrow A{\divslash}\ideal{p}\text{是整环};\\
+    \ideal{m}\text{为极大理想}&\Leftrightarrow A{\divslash}\ideal{m}\text{是域}.
+  \end{aligned}
+\end{equation*}
+因此素理想为极大理想, 而Zorn引理\footnotemark 可以保证非零环中极大理想的存在性.
+\footnotetext{Zorn引理的叙述如下: 如果一个非空偏序集的每个全序子链都有上界, 那么这个偏序集存在极大元. 在\axiom{ZF}公理系统下Zorn引理与选择公理\axiom{AC}等价\tjucite[10, Theorem 2.2][\thm 2.2]{herrlich_axiom_2006}.}
+
+\begin{theorem}[{{\tjucite[3, Theorem 1.3][\thm 1.3]{atiyah_introduction_1969}}}]\label{thm:maxideal}
+  设$A$为非零环, 则存在极大理想$\ideal{m}\subseteq A$.
+\end{theorem}
+
+\begin{proof}
+  真包含于$A$的理想全体关于集合的被包含关系构成偏序集结构. 对于任意的全序子链$\{\ideal{a}_\lambda\}$, 都有$\bigcup_{\lambda}\ideal{a}_\lambda$是真包含于$A$的理想, 为该全序子链的上界, 故由Zorn引理可得该偏序集中存在极大元, 即环$A$中存在极大理想.
+\end{proof}
+
+有的环有且仅有一个极大理想, 称这样的环为\emph{局部环}, 并称局部环对其唯一极大理想的商域为这个环的\emph{剩余域}.
+
+接下来介绍一些理想的运算. 两个理想$\ideal{a}, \ideal{b}$的\emph{和} $\ideal{a}+\ideal{b}=\{x+y\vert x\in\ideal{a}, y\in\ideal{b}\}$是理想. 这是包含$\ideal{a}$和$\ideal{b}$的最小的理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{积} $\ideal{a}\ideal{b}=\{\sum_{j=1}^n x_jy_j\vert n\in\ZZ_+, x_j\in\ideal{a}, y_j\in\ideal{b}\}$是理想. 两个理想$\ideal{a}, \ideal{b}$的\emph{交} $\ideal{a}\cap\ideal{b}$是理想. 定义两个理想$\ideal{a}, \ideal{b}$的\emph{理想商}为$(\ideal{a}{:}\ideal{b})\coloneq \{x\in A\vert xb\subseteq a\}$, 也是一个理想, 这将在\ref{sec:algebra-primdecom}有重要的应用, 特别地, 记理想$\ideal{a}$的\emph{零化理想}为$\Ann(\ideal{a})\coloneq ((0){:}\ideal{a})$. 一个理想$\ideal{a}$的\emph{根}定义为$\sqrt{\ideal{a}}\coloneq \{x\in A\vert \exists n\in\ZZ_+\colon x^n\in\ideal{a}\}$, 也是一个理想. 很显然, 根运算具有保序性, 即如果$\ideal{a}\subseteq\ideal{b}$, 则$\sqrt{\ideal{a}}\subseteq\sqrt{\ideal{b}}$. 如果一个理想$\ideal{a}$为某个理想的根, 则称这个理想$\ideal{a}$为\emph{根理想}. 称零理想$\ideal{a}$的根为环$A$的\emph{幂零根}, 记为$\nil$.
+
+\begin{proposition}[{{\tjucite[8, Exercise 1.12; 9, Exercise 1.13][\ex 1.12 \and 1.13]{atiyah_introduction_1969}}}]\label{prop:idealop}
+  设$\ideal{a}, \ideal{a}_\lambda, \ideal{b}, \ideal{b}_\lambda$为环$A$的理想, 则
+  \begin{enumerate}
+    \item\label{enum:prop-idealop-quot-firstcap} $(\bigcap_\lambda \ideal{a}_\lambda{:}\ideal{b})=\bigcap_{\lambda}(\ideal{a}_\lambda{:}\ideal{b})$;
+    \item $(\ideal{a}{:}\sum_{\lambda}\ideal{b}_\lambda)=\bigcap_{\lambda}(\ideal{a}{:}\ideal{b}_\lambda)$;
+    \item\label{enum:prop-idealop-rad-inters} $\sqrt{\ideal{ab}}=\sqrt{\ideal{a}\cap\ideal{b}}=\sqrt{\ideal{a}}\cap\sqrt{\ideal{b}}$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proposition}[{{\tjucite[9, Proposition 1.14][\prop 1.14]{atiyah_introduction_1969}}}]\label{prop:scheinnullstellensatz}
+  设$\ideal{a}$为环$A$的理想, 则$\sqrt{\ideal{a}}$等于包含$\ideal{a}$的所有素理想的交. 特别地, $A$中所有素理想的交恰为$A$的幂零根.
+\end{proposition}
+
+\begin{proof}
+  先证$\subseteq$, 这一部分比较直接. 只需证如果$x^n\in\ideal{a}$, 那么$x$属于每个包含$\ideal{a}$的素理想, 这由素理想的定义可简单得出.
+
+  再证$\supseteq$, 这一部分需要用到Zorn引理. 反证, 如果有$f\in A$使得对于任意的$n\in\ZZ_+$都有$f^n\notin\ideal{a}$, 我们需要构造一个素理想$\ideal{p}\supseteq\ideal{a}$使得$f\notin\ideal{p}$. 考虑满足包含$\ideal{a}$并且对于任意$n\in\ZZ_+$都有$x^n\notin\ideal{a}$的理想$\ideal{a}$的全体$\Sigma$, 这构成一个非空偏序集, 满足任意全序子列的并集都是其上界, 故由Zorn引理知$\Sigma$存在极大元, 记极大元为$\ideal{p}$, 现在来证明$\ideal{p}$是素理想. 如果$x, y\notin\ideal{p}$, 则理想$(x)+\ideal{p}$与$(y)+\ideal{p}$不属于$\Sigma$, 由$\ideal{p}$的极大性知存在$m, n\in\ZZ_+$使得$f^m\in (x)+\ideal{p}$并且$f^n\in (y)+\ideal{q}$, 因此$f^{m+n}\in (xy)+\ideal{p}$, 故$(xy)+\ideal{p}\neq\ideal{p}$, 即$xy\notin\ideal{p}$. 于是$\ideal{p}$即为我们想找的素理想.
+\end{proof}
+
+理想在环同态作用下的表现也是研究的重点. 给定环同态$f\colon A\to B$, 设$\ideal{a}$为$A$的理想, $\ideal{b}$为$B$的理想. $\ideal{a}$在$f$下的像$f(\ideal{a})$不一定为理想, 定义$\ideal{a}$的\emph{扩张}为$f(\ideal{a})$在$B$中生成的理想, 记作$\ideal{a}^e$. $\ideal{b}$在$f$下的原像$f^{-1}(\ideal{b})$一定是理想, 定义$\ideal{b}$的\emph{收缩}即为$f^{-1}(\ideal{b})$, 记作$\ideal{b}^c$. 若$B$的某个理想可以写成$A$的一个理想的扩张, 则称这个$B$的理想为\emph{扩张理想}, 类似地, 如果$A$的某个理想可以写成$B$的一个理想的收缩, 则称这个$A$的理想为\emph{收缩理想}. 要注意扩张与收缩是相对于$f$而言的, 只不过一般在语境下$f$的选取不会有混淆, 故没有显式提及$f$. 显然扩张与收缩都具有保序性, 即如果$A$的理想$\ideal{a}_1\subseteq\ideal{a}_2$, $B$的理想$\ideal{b}_1\subseteq\ideal{b}_2$, 则$\ideal{a}_1^e\subseteq\ideal{a}_2^e$, $\ideal{b}_1^c\subseteq\ideal{b}_2^c$. 下面一个命题推广了\thref{prop:quotidealcorr}到一般形式.
+
+\begin{proposition}[{{\tjucite[10, Proposition 1.17][\prop 1.17]{atiyah_introduction_1969}}}]\label{prop:extencontrcorr}
+  设$f\colon A\to B$为环同态, 理想$\ideal{a}\subseteq A, \ideal{b}\subseteq B$, 则
+  \begin{enumerate}
+    \item $\ideal{a}\subseteq\ideal{a}^{ec}, \ideal{b}\supseteq\ideal{b}^{ce}$,
+    \item $\ideal{a}=\ideal{a}^{ece}, \ideal{b}=\ideal{b}^{cec}$,
+    \item\label{enum:prop-ec-corr} $A$的收缩理想全体与$B$的扩张理想全体有保序双射($\ideal{a}\mapsto\ideal{a}^e, \ideal{b}^c\mapsfrom\ideal{b}$).
+  \end{enumerate}
+\end{proposition}
+
+\begin{proposition}[{{\tjucite[10, Exercise 1.18][\ex 1.18]{atiyah_introduction_1969}}}]\label{prop:extencontrop}
+  设$\ideal{a}, \ideal{a}_1, \ideal{a}_2$为环$A$的理想, $\ideal{b}, \ideal{b}_1, \ideal{b}_2$为环$B$的理想, 则
+  \begin{equation*}
+    \begin{aligned}
+      &(\ideal{a}_1+\ideal{a}_2)^e=\ideal{a}_1^e+\ideal{a}_2^e,
+      &&\qquad(\ideal{b}_1+\ideal{b_2})^c\supseteq \ideal{b}_1^c+\ideal{b}_2^c,\\
+      &(\ideal{a}_1\cap\ideal{a}_2)^e\subseteq\ideal{a}_1^e\cap\ideal{a}_2^e,
+      &&\qquad(\ideal{b}_1\cap\ideal{b_2})^c= \ideal{b}_1^c\cap\ideal{b}_2^c,\\
+      &(\ideal{a}_1\ideal{a}_2)^e=\ideal{a}_1^e\ideal{a}_2^e,
+      &&\qquad(\ideal{b}_1\ideal{b_2})^c\supseteq\ideal{b}_1^c\ideal{b}_2^c,\\
+      &(\ideal{a}_1{:}\ideal{a}_2)^e\subseteq\ideal{a}_1^e{:}\ideal{a}_2^e,
+      &&\qquad(\ideal{b}_1{:}\ideal{b_2})^c= \ideal{b}_1^c{:}\ideal{b}_2^c,\\
+      &\sqrt{\ideal{a}}^e\subseteq\sqrt{\ideal{a}^e},
+      &&\qquad\sqrt{\ideal{b}}^c= \sqrt{\ideal{b}^c}.
+    \end{aligned}
+  \end{equation*}
+\end{proposition}
+
+\subsubsection{分式环与局部化}\label{sec:algebra-localization}
+
+分式环以及与之相关的局部化可以说是交换代数中最重要的技术之一了. 与商环类似, 分式环也可以对环进行简化, 商环保留包含给定理想的理想, 分式环保留包含于给定集合的理想. 在\ref{sec:ag-functionrings} 和 \ref{sec:ag-affinescheme}中, 我们可以看到局部化的几何意义, 为研究在某个邻域或在某个点处的情况.
+
+\begin{definition}
+  若环$A$的子集$S$包含单位元1, 并且满足关于乘法封闭, 即对于任意的$x, y\in S$都有$xy\in S$成立, 则称$S$为$A$的\emph{乘法闭集}. 在$A\times S$上定义等价关系${\sim}$, $(a, s)\sim (b, t)$当且仅当存在$u\in S$使得$u(at-bs)=0$成立, 记$A\times S$在该等价关系下的商为$S^{-1}A$. 在$S^{-1}A$上定义加法$a{\divslash} s+b{\divslash}t \coloneq  (at+bs){\divslash}(st)$以及乘法$(a{\divslash}s)(b{\divslash}t)=(ab){\divslash}(st)$, 则$S^{-1}A$关于该加法与乘法有环的结构, 称为$A$关于$S$的\emph{分式环}.
+\end{definition}
+
+有自然同态$f\colon A\to S^{-1}A$将$x$映到$x{\divslash}1$, 注意$f$不一定是单射. 分式环有如下的\emph{泛性质}\tjucites[81, Theorem 11.3][\thm 11.3]{altman_term_2017}[37, Proposition 3.1][\prop 3.1]{atiyah_introduction_1969}, 给定环$A$, 乘法闭集$S$与之前定义的自然同态$f\colon A\to S^{-1}A$, 对于任意的环$B$以及将$S$中元素映到单位的环同态$\phi\colon A\to B$, 存在唯一的环同态$\psi\colon S^{-1}R\to B$使得$\psi f=\phi$成立, 并且满足该泛性质的环$S^{-1}A$在同构意义下唯一.
+
+接下来考察分式环中理想的扩张与收缩. 设$f\colon A\to S^{-1}A$为之前定义的自然环同态, $\ideal{a}$为$A$的理想, 则$\ideal{a}$的扩张$\ideal{a}^e=S^{-1}\ideal{a}\coloneq \{a{\divslash}s\vert a\in\ideal{a}, s\in S\}$. 在证明主要命题之前我们需要用到商环与分式环运算的可交换性.
+
+\begin{proposition}\label{prop:localizationquotientcommute}
+  设$A$为环, $\ideal{a}$为$A$的理想, $S$为$A$的乘法闭集, $\overline{S}=\pi(S)$为$S$在商环$A{\divslash}\ideal{a}$中的像仍为乘法闭集, 则环$\SASa$与环$\SAa$有典范同构, 即该同构与典范同态$A\to S^{-1}A\to \SASa$以及$A\to A{\divslash}\ideal{a}\to \SAa$可交换.
+\end{proposition}
+
+\begin{proof}
+  这里我们给出一个需要用到商环和分式环显式定义 (而非只用泛性质) 的证明\footfullcite{ortiz_localization_2019}. 首先考虑典范同态$A\to A{\divslash}\ideal{a}\to \SAa$, 将$x\in A$映到$(x+\ideal{a}){\divslash}(1+\ideal{a})$, 这个映射将$s\in S$映到$(s+\ideal{a}){\divslash}(1+\ideal{a})$是单位, 由分式环的泛性质知有同态$S^{-1}A\to \SAa$, 将$x{\divslash}s$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$, 而这个映射又将$S^{-1}\ideal{a}$的元素映到0, 于是由商环的泛性质知有同态$\phi\colon\SASa\to\SAa$将$x{\divslash}s + S^{-1}\ideal{a}$映到$(x+\ideal{a}){\divslash}(s+\ideal{a})$.
+
+  其次考虑典范同态$A\to S^{-1}A\to\SASa$, 将$x\in A$映到$x{\divslash}1+S^{-1}\ideal{a}$, 这个映射将$\ideal{a}$映到0, 由商环的泛性质知由有同态$A{\divslash}\ideal{a}\to\SASa$将$x+\ideal{a}$映到$x{\divslash}1+S^{-1}\ideal{a}$, 而这个映射又将$s\in\overline{S}^{-1}$映到$s{\divslash}1+S^{-1}\ideal{a}$是单位, 于是由分式环的泛性质知有同态$\psi\colon\SAa\to\SASa$将$(x+\ideal{a}){\divslash}(s+\ideal{a})$映到$x{\divslash}s + S^{-1}\ideal{a}$. 由构造发现$\phi, \psi$互为逆, 并且与典范同态可交换.
+\end{proof}
+
+\begin{proposition}[{{\tjucite[41, Proposition 3.11][\prop 3.11]{atiyah_introduction_1969}}}]\label{prop:fracideal}
+  设$S$为环$A$的乘法闭集, 关于$S^{-1}A$的理想有如下命题成立.
+  \begin{enumerate}
+    \item\label{enum:prop-fracideal-1} $S^{-1}A$的每个理想都是扩张理想.
+    \item\label{enum:prop-fracideal-2} $S^{-1}A$的素理想全体与$A$的与$S$不交的素理想全体有保序双射($\ideal{p}\leftrightarrow S^{-1}\ideal{p}$).
+    \item\label{enum:prop-fracideal-3} $S^{-1}$运算与理想的和积交根均可交换 (或分配).
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \ref{enum:prop-fracideal-1} 设$\ideal{b}$为$S^{-1}A$的理想, 设$x{\divslash}s\in \ideal{b}$, 则$x{\divslash}1\in\ideal{b}$, 故$x\in\ideal{b}^c$, 因此$x{\divslash}s\in\ideal{b}^{ce}$, 于是我们证明了$\ideal{b}\subseteq\ideal{b}^{ce}$, 又由\thref{prop:extencontrcorr}知一般情况下有$\ideal{b}\supseteq\ideal{b}^{ce}$, 于是$\ideal{b}=\ideal{b}^{ce}$, 即$S^{-1}A$的每个理想都是扩张理想.
+
+  \ref{enum:prop-fracideal-2} 只需要证明对于素理想$\ideal{p}\cap S=\varnothing$有$\ideal{p}^e$是素理想并且$\ideal{p}^{ec}=\ideal{p}$, 以及对于素理想$\ideal{q}\subseteq S^{-1}A$有$\ideal{q}^c$是与$S$不交的素理想并且$\ideal{q}^{ce}=\ideal{q}$. 我们已经知道对于素理想$\ideal{q}\subseteq B$有$\ideal{q}^c$为素理想, 并且由于其为扩张理想, 有$\ideal{q}=\ideal{q}^{ce}$成立.
+
+  先考察$A$中的收缩理想, 有$x\in\ideal{a}^{ec}$等价于存在$y\in\ideal{a}$与$s\in S$使得$x{\divslash}1=a{\divslash}s$, 故等价于存在$s\in S$使得$x{\divslash}s\in\ideal{a}$. 故$\ideal{a}$是收缩理想等价于$\ideal{a}\supseteq\ideal{a}^{ec}$, 也等价于如果存在$s\in S$使得$x{\divslash}s\in\ideal{a}$那么$x\in\ideal{a}$, 等价于$\pi(S)$中的元素都不是$A{\divslash}\ideal{a}$的零因子. 因此素理想$\ideal{p}\subseteq A$是收缩理想当且仅当$\ideal{p}\cap S=\varnothing$, 于是$\ideal{q}\subseteq S^{-1}A$满足$\ideal{q}^c\cap S=\varnothing$.
+
+  再证明$A$的素理想$\ideal{p}$的扩张$\ideal{p}^e$是素理想当且仅当$\ideal{p}\cap S=\varnothing$. 对于素理想$\ideal{p}\subseteq A$, 因为有同构$\overline{S}^{-1}(A{\divslash}\ideal{p})\cong S^{-1}A{\divslash}S^{-1}\ideal{p}$, 而$\overline{S}^{-1}(A{\divslash}\ideal{p})$为整环$A{\divslash}\ideal{p}$的分式域的子环, 故为整环或零环, 因此$S^{-1}\ideal{p}$为素理想或$(1)$, 而由分式环中扩张理想的显式表示知$S^{-1}\ideal{p}=(1)$当且仅当$\ideal{p}\cap S\neq\varnothing$, 即当$\ideal{p}\cap S=\varnothing$时有$\ideal{p}^e$为素理想.
+
+  \ref{enum:prop-fracideal-3}由\thref{prop:extencontrop}知$S^{-1}$与理想的和与积可交换, 再验证$S^{-1}(\ideal{a}\cap\ideal{b})=S^{-1}\ideal{a}\cap S^{-1}\ideal{a}\cap\ideal{b}$, 以及$S^{-1}\sqrt{\ideal{a}}=\sqrt{S^{-1}\ideal{a}}$即可.
+\end{proof}
+
+\begin{example}
+  有一些特别的分式环, 我们将要经常遇见.
+  \begin{enumerate}
+    \item 设$A$为整环, $S=A-\{0\}$, 则$S^{-1}A$为域, 称为$A$的\emph{分式域}, 有时记为$K(A)$. 如果有域$F$满足有子环关系$A\subseteq F\subseteq K(A)$, 那么$F=K(A)$.
+    \item 设$\ideal{p}$为环$A$的素理想, 则$\ideal{p}$的余集$A-\ideal{p}$是乘法闭集, 称分式环$(A-\ideal{p})^{-1}A$为$A$在$\ideal{p}$的\emph{局部化}, 记作$A_{\ideal{p}}$. 根据\thref{prop:fracideal}, $A_{\ideal{p}}$的素理想与$A$的包含于$\ideal{p}$的素理想有保序双射, 则由于极大理想存在并且为素理想, 有$\ideal{p}^e$为$A_{\ideal{p}}$的唯一极大理想, 即$A_{\ideal{p}}$为局部环.
+    \item 设$f\in A$为环$A$的非零元, 则集合$\{f^n\vert n\in \NN\}$是乘法闭集, 记$A$关于该集合的分式环为$A_f$. 有时这也被称为$A$的\emph{局部化}.
+  \end{enumerate}
+\end{example}
+
+做累次分式环运算与只做一次分式环运算是等价的.
+
+\begin{proposition}[{{\tjucite[43, Exercise 3][\chap 3, \ex 3]{atiyah_introduction_1969}}}]\label{prop:multilocalization}
+  设$S, T$为$A$的两个乘法闭集, 记$ST\coloneq \{st\vert s\in S, t\in T\}$也为$A$的乘法闭集, 记$T$在$S^{-1}A$中的像为$\overline{T}$为$S^{-1}A$的乘法闭集, 则环$(ST)^{-1}A$与$\overline{T}^{-1}(S^{-1}A)$典范同构, 即该同构与典范同态$A\to (ST)^{-1}A$和$A\to S^{-1}A\to \overline{T}^{-1}(S^{-1}A)$可交换. 特别地, 整环的分式环都可以典范地看成分式域的子环.
+\end{proposition}
+
+\begin{proof}
+  证明思路与\thref{prop:localizationquotientcommute}相同. 典范同态$x\in A\mapsto x{\divslash}1\in(ST)^{-1}A$将$S$的元素映到单位, 因此由分式环的泛性质得到同态$x{\divslash}s\in S^{-1}A\mapsto x{\divslash}1\in (ST)^{-1}A$, 这个同态将$\overline{T}$的元素映到单位, 于是我们得到了同态$\varphi\colon (x{\divslash}s){\divslash}(t{\divslash}s')=(x{\divslash}(ss')){\divslash}(t{\divslash}1)\in \overline{T}^{-1}(S^{-1}A)\mapsto (xs'){\divslash}(st)\in (ST)^{-1}A$.
+
+  另一方面, 典范同态$x\in A\mapsto x{\divslash}1\in S^{-1}\mapsto (x{\divslash}1){\divslash}(1{\divslash}1)\in \overline{T}^{-1}(S^{-1}A)$将$ST$的元素映到单位, 于是由分式环的泛性质可以得到同态$\psi\colon x{\divslash}(st)\in (ST)^{-1}A\mapsto (x{\divslash}s){\divslash}(t{\divslash}1)\in\overline{T}^{-1}(S^{-1}A)$. 不难发现两个同态$\varphi$和$\psi$互为逆, 并且与典范同态可交换.
+\end{proof}
+
+\begin{proposition}\label{prop:integraldomainlocalizationintersection}
+  设$A$为整环, $K(A)$为$A$的分式域, 则在$K(A)$中有$A=\bigcap_{\ideal{m}}A_{\ideal{m}}$.
+\end{proposition}
+
+\begin{proof}
+  只需证$\supseteq$. 对于$x\in K(A)-A$, 考虑包含理想$(x{:}A)$的极大理想$\ideal{m}$, 有$x\notin A_{\ideal{m}}$.
+\end{proof}
+
+\subsubsection{齐次环与齐次理想}
+
+由于射影空间中只有齐次多项式才有意义, 我们需要简要介绍一下齐次环及齐次理想的概念.
+
+\begin{definition}
+  设$A$是环, 如果有一族 (加法) Abel子群$\{A_d\}_{d\in \ZZ}$满足$A=\bigoplus_{d\in\ZZ}A_n$, 以及对于每组$d, e\in \ZZ$都有$A_dA_e\subseteq A_{d+e}$, 则称$A$为\emph{齐次环}, 称$A_d$中的元素为\emph{次数为$n$的齐次元}, 记$A^h\coloneq\bigcup_{d\in\ZZ}A_d$, 称其中的元素为\emph{齐次元}. 如果$A$的理想$\ideal{a}$满足$\ideal{a}=\bigoplus_{d\in \ZZ}\ideal{a}\cap A_d$, 则称$\ideal{a}$为\emph{齐次理想}. $A_0$是$A$的子环.
+\end{definition}
+%, $\bigoplus_{n\in\ZZ_+}A_n$是$A$的极大理想, 有时被称为$A$的\emph{无关极大理想}, 我们将在\thref{prop:projectivegaloisconnectionclosedradical}中看到这种称法的由来.
+
+\begin{proposition}
+  设$A$为齐次环, $\ideal{a}, \ideal{b}$为$A$的齐次理想, 则
+  \begin{enumerate}
+    \item $\ideal{a}$可以由齐次元生成;
+    \item $\ideal{a}+\ideal{b}, \ideal{a}\ideal{b}, \ideal{a}\cap\ideal{b}$是齐次理想;
+    \item $\ideal{a}$是素理想当且仅当对于每组齐次元$f, g\in\ideal{a}\cap A^h$, 都有$fg\in \ideal{a}\rightarrow f\in\ideal{a}\vee g\in\ideal{a}$.
+  \end{enumerate}
+\end{proposition}
+
+齐次环中有一种特殊的局部化, 它在某种程度上对应了环的通常的局部化.
+
+\begin{definition}
+  如果$A$是齐次环, $\ideal{p}$是$A$的齐次理想, 设$S\coloneq (A-\ideal{p})\cap A^h$为$A-\ideal{p}$中的齐次元全体构成的集合, 是一个乘法闭集, 则有通常的分式环$S^{-1}A$. $S^{-1}A$也是一个齐次环, 齐次元为可以写成$f{\divslash}g$的元素, 其中$f\in A^h$, 而$\deg (f{\divslash}g)\coloneq \deg (f)-\deg (g)$. 将$S^{-1}A$的零次元素全体构成的子环记作$A_{(\ideal{p})}$, 这是一个局部环, 极大理想为$S^{-1}\ideal{p}\cap A_{(\ideal{p})}$. 特别地, 如果A是整环并取$\ideal{p}=(0)$, 则$A_{((0))}$为域. 类似地, 如果$f\in A^h$是齐次元, 那么$A_{(f)}$为$A_f$的零次元素全体构成的子环.
+\end{definition}
+
+\begin{example}
+  域上的多项式环$A=k[X_1, \dotsc, X_n]$是齐次环, $A_d$即为次数为$d$的齐次多项式构成的Abel群, 若$d<0$则$A_d=\{0\}$. 此时$\bigoplus_{n\in\ZZ_+}A_n$是$A$的极大理想, 有时被称为$A$的\emph{无关极大理想}, 我们将在\thref{prop:projectivegaloisconnectionclosedradical}中看到这种称法的由来.
+\end{example}
+
+% quotient; commute with localization?
+% primary decomposition
+
+\subsection{模}
+
+现代交换代数强调对模的研究, 模的概念是环与理想的推广, 并且模范畴中任意的模都可以与其子模取商, 于是我们可以引入一些以正合列为例的同调代数的技术.
+
+\subsubsection{模与子模}
+
+我们先来介绍模的基本概念.
+
+\begin{definition}
+  设$A$为环 (注意本文中环指的是交换幺环), $M$为Abel群, 如果给定环同态$\mu\colon A\to \Aut(M)$, 则称$M$为$A$-\emph{模}, 习惯上记$\mu(a)(x)$为$ax$, 其中$a\in A, x\in M$. 在不会出现混淆的情况下, 我们会省略$A$而直接称$M$为\emph{模}.
+\end{definition}
+
+如果$N$是$A$-模$M$的Abel子群并且关于$A$的模运算封闭, 即对于任意$x\in N, a\in A$都有$ax\in N$, 则称$N$是$M$的\emph{子模}. $A$有自然的$A$-模结构, $\ideal{a}$为$A$的子模当且仅当为$A$的理想, 于是在这种意义下模的概念是环与理想概念的推广. 商群$M{\divslash}N$有自然的$A$-模结构, 即$a(x+N)\coloneq ax+N$, 称为$M$对$N$的\emph{商模}. 作为环中\thref{prop:quotidealcorr}的推广, $M$中包含$N$的子模与商模$M{\divslash}N$的子模也有保序双射.
+
+如果两个$A$-模$M, N$之间的映射$f\colon M\to N$满足对于任意的$x, y\in M$与$a\in A$都有$f(x+y)=f(x)+f(y)$以及$f(ax)=af(x)$成立, 则称$f$是$A$-模同态. $f$的核$\Ker (f)$是$M$的子模, $f$的像$\Im (f)$是$N$的子模, 商模$N{\divslash}\Im (f)$称为$f$的\emph{余核}.
+
+若$T\subseteq M$为$A$-模$M$的子集, 则称$T$\emph{生成的子模} $N$为包含$T$的最小子模, 有显式表达$N=\{\sum_{j=1}^m a_jx_j\vert m\in\ZZ_+, a_j\in A, x_j\in T\}$, 同时称可由有限子集生成的$A$-模为\emph{有限生成$A$-模}. 特别地, $A^n\coloneq \bigoplus_{j=1}^n A$是有限生成$A$-模, 并且每个有限生成$A$-模都可以看作某个$A^n$的商模.
+
+设$N$是$B$-模, 如果有环同态$f\colon A\to B$, 则$N$上有自然的$A$-模结构$ay\coloneq f(a)y$, 其中$y\in N, a\in A$. 特别地, 如果考虑$N=B$并赋有典范的$B$-模结构, 则称$B$以及同态$f\colon A\to B$为$A$-\emph{代数}.
+
+与有限维线性空间上的线性变换类似, 有限生成模上的模自同态也可以由矩阵表示, 虽然矩阵表示就算给定了生成元也不唯一, 但是我们仍有如下命题, 这是环上的Cayley-Hamilton定理的简单应用.
+
+\begin{proposition}[{{\tjucite[21, Proposition 2.4][\prop 2.4]{atiyah_introduction_1969}}}]\label{prop:fgmoduleendomorphism}
+  设$M$为有限生成$A$-模, $\ideal{a}$为$A$的理想, $\varphi$为$M$上的$A$-模自同态, 并且满足$\varphi(M)\subseteq \ideal{a}M$. 则$\varphi$满足形如$\varphi^n+a_1\varphi^{n-1}+\dotsb +a_n=0$的方程, 其中每个$a_j\in \ideal{a}$.
+\end{proposition}
+
+\begin{proof}
+  设$x_1, \dotsc, x_n$是$M$的一组生成元, 因为$\varphi (x_j)\in \ideal{a}M$, 所以我们有$\varphi (x_j)=\sum_{k=1}^n t_{jk}x_k$, 其中$t_{jk}\in \ideal{a}$, 于是我们得到了以$\ideal{a}$中元素为系数的$n\times n$矩阵$T=(a_{jk})$. 根据\thref{thm:CayleyHamilton}, 有$T$的特征多项式$P_T(X)\in A[X]$是零化多项式, 故$P_T(\varphi)=0$. 又因为$P_T(X)$的系数均为$\ideal{a}$中元素, 所以我们得到了想要的方程.
+\end{proof}
+
+有限生成模具有传递性.
+
+\begin{proposition}[{{\tjucite[28, Proposition 2.16][\prop 2.16]{atiyah_introduction_1969}}}]\label{prop:fgmodule}
+  设$N$为有限生成$B$-模, 并且$B$为有限生成$A$-模, 则$N$为有限生成$A$-模.
+\end{proposition}
+
+\begin{proof}
+  设$N$的$B$-模结构可以由$y_1, \dotsc, y_n$生成, $B$的$A$-模结构可以由$x_1, \dotsc, x_m$生成, 则$N$的$A$-模结构可以由$\{x_jy_k\vert j=1, \dotsc, m, k=1, \dotsc, n\}$.
+\end{proof}
+
+\begin{definition}
+  设$B$为$A$-代数, 若$B$同时为有限生成$A$-模, 则称$B$为\emph{有限$A$-代数}. 如果$T=\{x_1, \dotsc, x_n\}$为$A$-代数$B$的有限子集, 则称$T$\emph{生成的子代数} $C$为包含$T$的最小子代数, 有显式表达$C=\{f(x_1, \dotsc, x_n)\vert f\in A[X_1, \dotsc, X_n]\}$,
+  同时称可由有限子集生成的$A$-代数为\emph{有限生成$A$-代数}. 如果环$A\subseteq B$, 则$B$有由嵌入映射诱导出的自然的$A$-代数结构, 我们将默认使用这个结构而不另加说明. 如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的\emph{有限生成整环}, 这将是本文的主要研究对象. 在域$\kk$没有歧义的情况下, 我们偶尔会省略这个域, 直接说$A$为有限生成整环.
+\end{definition}
+
+有限生成代数有很好用的等价定义.
+
+\begin{proposition}[{{\tjucite[30][\page{30}]{atiyah_introduction_1969}}}]\label{prop:fgalgebra}
+  设$A$为环, $B$为$A$-代数, 则$B$为有限生成$A$-代数当且仅当存在$n\in \ZZ$使得$B$为某个多项式环$A[X_1, \dotsc, X_n]$的商环.
+\end{proposition}
+
+\begin{proof}
+  如果$B$为由$x_1, \dotsc, x_n$的$A$-代数, 由定义即可得满同态$A[X_1, \dotsc, X_n]\to B$将$X_j$映到$x_j$. 反之, 如果有满同态$A[X_1, \dotsc, X_n]\to B$, 设$X_j$的像为$x_j$, 则$B$可由$x_1, \dotsc, x_n$生成.
+\end{proof}
+
+在\ref{sec:algebra-ringideal}中我们介绍了理想之间的运算, 其中大部分运算也可以定义在子模上. 设$M$为$A$-模, $N, P$为$M$的子模, 则它们的\emph{和} $N+P\coloneq \{x+y\vert x\in N, y\in P\}$是子模, 为包含$N$和$L$的最小的子模. 它们的\emph{交} $N\cap P$也是子模. 一般地不能定义两个子模的积, 不过可以定义\emph{积} $\ideal{a}M\coloneq \{\sum_{j=1}^n a_jx_j\vert a_j\in\ideal{a}, x_j\in M, n\in\ZZ_+\}$, 其中$\ideal{a}$是$A$的理想, 是$M$的子模.
+
+设$N, P$是$A$-模$M$的子模, 定义$(N{:}P)=\{a\in A\vert aP\subseteq N\}$, 是$A$的理想. 特别地, 称$(0{:}M)$为$M$的\emph{零化子}, 记作$\Ann (M)$. 如果$\ideal{a}\subseteq \Ann (M)$, 则$M$有自然的$A{\divslash}\ideal{a}$-模的结构, 其中$\overline{a}x\coloneq ax$. 如果$\Ann (M)=0$, 则称$M$为\emph{忠实$A$-模}. 每个$A$-模$M$都是忠实$A{\divslash}\Ann (M)$-模.
+
+\begin{definition}
+  现在来介绍正合列的概念. 如果一个$A$-模和$A$-模同态构成的序列
+  \begin{equation}
+    \begin{tikzcd}
+      \dotsb \arrow[r] & M_{j-1} \arrow[r, "f_j"] & M_j \arrow[r, "f_{j+1}"] & M_{j+1} \arrow[r] & \dotsb\label{eqn:longexactsequence}
+    \end{tikzcd}
+  \end{equation}
+  满足$\Im (f_j)=\Ker (f_{j+1})$, 则称该序列在$M_j$处\emph{正合}, 如果该序列在每一个$M_j$处都正合, 则称这个序列是\emph{正合列}. 每个形如\eqref{eqn:longexactsequence}的正合列都可以进行分拆, 记$N_j=\Im (f_j)=\Ker (f_{j+1})$, 则对于每个$j$都有序列
+  \begin{equation}
+    \begin{tikzcd}
+      0 \arrow[r] & N_j \arrow[r] & M_j \arrow[r] & N_{j+1} \arrow[r] & 0\label{eqn:shortexactsequence}
+    \end{tikzcd}
+  \end{equation}
+  是正合列. 称形如\eqref{eqn:shortexactsequence}的正合列为\emph{短正合列}.
+\end{definition}
+
+整相关与整元是代数中非常重要的概念, 我们来简要一下并证明其与模之间的关系. 设$B$为环$A$的子环, 如果$x\in A$是某个以$B$中元素为系数的首一多项式的根, 即满足$x^n+b_1x^{n-1}+\dotsb +b_n=0$, 其中$b_1, \dotsc, b_n\in B$, 则称$x$是$B$的\emph{整元}. 特别地, 域上的代数元即为域上的整元.
+
+\begin{proposition}[{{\tjucite[59, Proposition 5.1][\prop 5.1]{atiyah_introduction_1969}}}]\label{prop:integraldependence}
+  设$B$是$A$的子环, $x\in A$, 则下列命题等价.
+  \begin{enumerate}
+    \item\label{enum:prop-integral-dependence-1} $x$是$B$的整元.
+    \item\label{enum:prop-integral-dependence-2} $B[x]$是有限生成$B$-模.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  $\ref{enum:prop-integral-dependence-1}\Rightarrow\ref{enum:prop-integral-dependence-2}$ 如果$x$是$B$的整元, 则对任意的$r\geq 0$都有$x^{n+r}=-(b_1x^{n+r-1}+\dotsb +b_nx^r)$, 于是又归纳法可得每个$x^n$都可以在有$B$-模结构的$A$中由$1, x, \dotsc, x^{n-1}$表示, 因此$B[x]$的$B$-模结构可以由$1, x, \dotsc, x^{n-1}$生成, 即为有限生成$B$-模.
+
+  $\ref{enum:prop-integral-dependence-2}\Rightarrow\ref{enum:prop-integral-dependence-1}$ 注意到$B[x]$是忠实$B[x]$-模, 考虑$B[x]$上的$B[x]$-模自同态$\varphi$, 将$y\in B[x]$映到$xy$. 由\thref{prop:fgmoduleendomorphism}, 知存在$a_1, \dotsc, a_n\in A$使得$\varphi^n +a_1\varphi^{n-1}+\dotsb +a_n=0$, 即$x^n +a_1x^{n-1}+\dotsb +a_n\in \Ann (B[x])=\{0\}$.
+\end{proof}
+
+% \begin{proposition}
+%     设$\field{k}\subseteq\field{K}$为域, 则$\field{K}$为$\field{k}$的有限代数域扩张当且仅当$\field{K}$为有限$\field{k}$-代数.
+% \end{proposition}
+
+\subsubsection{链条件与有限条件}
+
+这一小节我们来介绍链条件与Noether模. 在偏序集上可以定义链条件和有限条件, 假设Zorn引理的情况下它们等价. 这两个条件可以应用在环, 模, 拓扑空间等结构中, 可以限制研究对象从而得到强的结论. 而环的链条件是模的链条件的特殊情况, 所以我们先来对模的情况进行研究.
+
+\begin{proposition}[{{\tjucite[74, Proposition 6.1][\prop 6.1]{atiyah_introduction_1969}}}]\label{prop:chaincondition}
+  对于偏序集$(\Sigma, \leq)$, 以下两个命题等价.
+  \begin{enumerate}
+    \item\label{enum:prop-chain-condition-chain} $\Sigma$中每个升链$x_1\subseteq x_2\subseteq\dotsb$一定稳定, 即存在$n$使得$x_n=x_{n+1}=\dotsb$.
+    \item\label{enum:prop-chain-condition-maximal} $\Sigma$的任何非空子集都有极大元.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  $\ref{enum:prop-chain-condition-chain}\Rightarrow\ref{enum:prop-chain-condition-maximal}$ 对$\Sigma$的每个非空子集应用Zorn引理即可.
+
+  $\ref{enum:prop-chain-condition-maximal}\Rightarrow\ref{enum:prop-chain-condition-chain}$ $\{x_n\}_{n\geq 0}$有极大元, 故稳定.
+\end{proof}
+
+\begin{definition}
+  若$\Sigma$为$A$-模$M$的子模全体关于集合被包含关系所定义的偏序集, \thref{prop:chaincondition}\ref{enum:prop-chain-condition-chain}定义的条件称为\emph{升链条件} (a.c.c.), \ref{enum:prop-chain-condition-maximal}定义的条件称为\emph{极大条件}, 如果$\Sigma$满足任一条件, 则称$M$是\emph{Noether $A$-模}, 简称为\emph{Noether模}. 如果环$A$是Noether $A$-模, 则称$A$为\emph{Noether环}.
+\end{definition}
+
+\begin{proposition}[{{\tjucite[75, Proposition 6.2][\prop 6.2]{atiyah_introduction_1969}}}]\label{prop:noethermodule}
+  设$M$是模, 则$M$是Noether模当且仅当$M$的每个子模都是有限生成的.
+\end{proposition}
+
+\begin{proof}
+  先证$\Rightarrow$. 对于$M$的子模$N$, 考虑$N$的有限生成子模全体构成的集合$\Sigma$, 是非空集合, 故由\thref{prop:chaincondition}得$\Sigma$有极大元, 记为$P$. 对于任意的$x\in N$都有$P+Ax$是$N$的有限生成子模, 于是$P+Ax=N$, 因此$P=N$, 即$N$也为有限生成的.
+
+  再证$\Leftarrow$. 考虑$M$的子模升链$M_1\subseteq M_2\subseteq \dotsb$, 则$N=\bigcup_{j=1}^\infty M_j$是$M$的子模, 故有限生成, 设可以由$x_1, \dotsc, x_r$生成. 设$n_j$满足$x_j\in M_{n_j}$, 取$n=\max_j n_j$则有$M_n=M_{n+1}=\dotsb$, 即该升链是稳定的.
+\end{proof}
+
+下面一个命题简洁而有力, 使我们可以将正合列的技术引入Noether模的研究中.
+
+\begin{proposition}[{{\tjucite[75, Proposition 6.3][\prop 6.3]{atiyah_introduction_1969}}}]\label{prop:noethermoduleexactsequence}
+  设
+  \begin{tikzcd}[cramped, sep=small]
+    0 \arrow[r] & M' \arrow[r, "\alpha"] & M \arrow[r, "\beta"] & M'' \arrow[r] & 0
+  \end{tikzcd}
+  是一个由模构成的短正合列, 则$M$是Noether模当且仅当$M'$和$M''$都是Noether模. 特别地, 有限个Noether模的直和是Noether模, Noether模的子模与商模都是Noether模.
+\end{proposition}
+
+\begin{proof}
+  先证$\Rightarrow$. 只需要注意$M'$ (或$M''$) 中的子模升链都可以提升到$M$中的子模升链, 并且只要$M$中对应的升链稳定那么在$M'$ (或$M''$) 中原来的升链就稳定.
+
+  再证$\Leftarrow$. 只需要注意$M$中的子模升链可以投影到$M'$和$M''$中的子模升链, 并且当这两个升链都稳定时$M$中原来的升链就稳定.
+
+  最后只需要对于模$M_1, M_2, \dotsc$归纳地考虑短正合列
+  \begin{tikzcd}[cramped, sep=small]
+    0 \arrow[r] & M_n \arrow[r] & \bigoplus_{j=1}^n M_j \arrow[r] & \bigoplus_{j=1}^{n-1} M_j \arrow[r] & 0
+  \end{tikzcd}
+  并对于模$M$与子模$N\subseteq M$考虑短正合列
+  \begin{tikzcd}[cramped, sep=small]
+    0 \arrow[r] & N \arrow[r] & M \arrow[r] & M{\divslash}N \arrow[r] & 0
+  \end{tikzcd}
+  即可.
+\end{proof}
+
+\begin{proposition}[{{\tjucite[76, Proposition 6.5][\prop 6.5]{atiyah_introduction_1969}}}]\label{prop:fgmoduleovernoetherring}
+  设$A$是Noether环, $M$是有限生成$A$-模, 则$M$是Noether模.
+\end{proposition}
+
+\begin{proof}
+  $A^n$是有限个Noether模$A$的直和, 故由\thref{prop:noethermoduleexactsequence}得为Noether模. 又$M$是Noether模$A^n$的商模, 再由\thref{prop:noethermoduleexactsequence}得为Noether模.
+\end{proof}
+
+\subsubsection{Noether环与准素分解}\label{sec:algebra-primdecom}
+
+这一小节中我们将进一步研究Noether环的性质. 前文提到我们的主要研究对象是域的有限生成整环, 我们将证明这些环都是Noether环. 准素分解是交换代数中一个重要的技术, 它推广了唯一分解整环中元素分解的概念, 可以将Noether环的理想在某种意义下唯一分解为若干个准素理想的交. 准素分解的几何含义我们将在\ref{sec:ag-ideal}中看到.
+
+% \begin{proposition}[{{\tjucite[74, Proposition 6.1; 75, Proposition 6.2]{atiyah_introduction_1969}}}]\label{prop:noetherring}
+%     对于环$A$, 以下三个命题等价.
+%     \begin{enumerate}
+%         \item\label{enum:prop-nr-chain} 环$A$中的每个理想升链$\ideal{a}_1\subseteq\ideal{a}_2\subseteq\dotsb$一定稳定, 即存在$n$使得$\ideal{a}_n=\ideal{a}_{n+1}=\dotsb$.
+%         \item\label{enum:prop-nr-max} 环$A$中的任何一族理想$\{\ideal{a}_\lambda\}$都有极大元, 即存在$\lambda_0$使得对于任意的$\lambda$有$\ideal{a}_\lambda\subseteq\ideal{a}_{\lambda_0}$成立.
+%         \item\label{enum:prop-nr-fnt} 环$A$中的每个理想都是有限生成的.
+%     \end{enumerate}
+% \end{proposition}
+
+% \begin{proof}
+%     $\ref{enum:prop-nr-chain}\Rightarrow\ref{enum:prop-nr-max}$ 假设\ref{enum:prop-nr-chain}成立, 对有偏序结构的理想族$\{\ideal{a}_\lambda\}$运用Zorn引理(\thref{thm:maxideal})即可.
+
+%     $\ref{enum:prop-nr-max}\Rightarrow\ref{enum:prop-nr-fnt}$ 假设\ref{enum:prop-nr-fnt}不成立, 选择公理\footnotemark 保证了序列$\{x_n\}_{n\in\ZZ_+}\subseteq A$的存在, 其满足对于任意的$n\in\ZZ_+$都有$x_{n+1}\notin (x_1, \dotsc, x_n)$. 于是我们有理想族$\ideal{a}_n=(x_1, \dotsc, x_n)$, 满足$\ideal{a}_1\subsetneqq\ideal{a}_2\subsetneqq\dotsb$, 无极大元, 故\ref{enum:prop-nr-max}不成立.
+%     \footnotetext{{这里只需要用到选择公理(\axiom{AC})的一个弱化版本--相关选择公理(\axiom{DC}, Axiom of Dependent Choice).}}
+
+%     $\ref{enum:prop-nr-fnt}\Rightarrow\ref{enum:prop-nr-chain}$ 假设\ref{enum:prop-nr-fnt}成立, 则对于任意的理想升链$\ideal{a}_1\subseteq\ideal{a}_2\subseteq\dotsb$, 都有它的上确界$\ideal{a}\coloneq \bigcup_{j}\ideal{a}_{j}$是有限生成理想, 设其可由$x_1, \dotsc, x_n$生成. 设$c_1, \dotsc, c_n\in \ZZ^+$满足$x_j\in\ideal{a}_{c_j}$, 则对于$N=\max_{j=1}^nc_j$有$x_1, \dotsc, x_n\subseteq\ideal{a}_N$, 故$\ideal{a}_N=\ideal{a}_{N+1}=\dotsb$, 即该理想升链稳定.
+% \end{proof}
+
+% 定义满足\thref{prop:noetherring}中条件的环为\emph{Noether环}, 其中条件\ref{enum:prop-nr-chain}称为\emph{升链条件}(a.c.c.), 条件\ref{enum:prop-nr-max}称为\emph{极大条件}, 这两个条件只与环$A$理想全体的偏序结构有关, 它们的等价在一般的偏序集中也成立.
+
+\begin{proposition}[{{\tjucite[76, Proposition 6.6; 80, Proposition 7.3][\prop 6.6 \and 7.3]{atiyah_introduction_1969}}}]\label{prop:noetherring2}
+  设$A$为Noether环, 则
+  \begin{enumerate}
+    \item\label{enum:prop-nr2-quot} 如果$\ideal{a}$为理想, 那么商环$A{\divslash}\ideal{a}$为Noether环;
+    \item\label{enum:prop-nr2-frac} 如果$S$为乘法闭集, 那么分式环$S^{-1}A$为Noether环.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \ref{enum:prop-nr2-quot} 由\thref{prop:quotidealcorr}知$A{\divslash}\ideal{a}$的理想全体与$A$的包含$\ideal{a}$的理想全体有保序双射, 故满足升链条件.
+
+  \ref{enum:prop-nr2-frac} 由\thref{prop:extencontrcorr}\ref{enum:prop-ec-corr}和\thref{prop:fracideal}\ref{enum:prop-fracideal-3}知$S^{-1}A$的理想全体与$A$的收缩理想全体有保序双射, 故满足升链条件.
+\end{proof}
+
+\begin{theorem}[Hilbert基定理{{\tjucites[81, Theorem 7.5][\thm 7.5]{atiyah_introduction_1969}[201, Theorem 1][\chap IV, \sec 1, \thm 1]{zariski_commutative_1958}}}]\label{thm:hilbertbasis}
+  若$A$为Noether环, 则有限生成$A$-代数为Noether环.
+\end{theorem}
+
+\begin{proof}
+  这个证明参考了\footfullcite{noauthor_hilberts_2020}. 由\thref{prop:fgalgebra}和\thref{prop:noetherring2}\ref{enum:prop-nr2-quot}, 只需证多项式环$A[X_1, \dotsc, X_n]$为Noether环. 又由数学归纳法, 只需证$n=1$的情况. 反证, 设理想$\ideal{a}\subseteq A[X]$不是有限生成理想, 则由非独立选择公理(\axiom{DC})知, 存在$A[X]$中的序列$\{f_n\}_{n\in\ZZ_+}$, 使得$f_{n+1}$为满足$f_{n+1}\notin \ideal{b}_n\coloneq (f_1, \dotsc, f_{n})$的某个次数最低的多项式, 则次数序列$\{\deg(f_n)\}_{n\in\ZZ_+}$单调不减. 设$f_n$的首项系数为$a_n$, 则$\ideal{b}\coloneq (a_1, a_2, \dotsc)$为$A$的理想, 故由升链条件知存在正整数$N>1$使得$\ideal{b}=(a_1, \dotsc, a_{N-1})$, 特别地, $a_N=\sum_{0<j<N}b_ja_j$, 其中$b_j\in A$. 构造多项式$f=\sum_{0<j<N}b_jX^{\deg(f_N)-\deg(f_j)}f_j$, 有$f$与$f_N$次数相同且首项系数相同, 并且有$f\in\ideal{b}_{N-1}$, 故$f-f_N\in\ideal{b}_{N-1}$次数比$f_N$低, 与假设矛盾. 得证.
+\end{proof}
+
+\begin{propositionnoproof}
+  如果$\ideal{a}$为Noether齐次环$A$的齐次理想, 则$\ideal{a}$可以由有限个齐次元生成.
+\end{propositionnoproof}
+
+这一小节的最后我们来建立Noether环上的准素分解理论, 我们将先通过构造证明准素分解的存在性, 再证明伴随素理想, 孤立伴随素理想及其对应的孤立准素理想的唯一性.
+
+准素分解是对环的理想的分解, 由唯一分解整环中元素的分解推广而来, 素元推广到素理想, 而素元的幂次推广到我们即将介绍的准素理想.\clearpage
+
+\begin{definition}
+  设$A$为环, 若$A$的真理想$\ideal{q}$满足如果$xy\in \ideal{q}$那么$x\in\ideal{q}$或者$y\in\sqrt{\ideal{q}}$, 则称$\ideal{q}$为\emph{准素理想}, 有等价条件为$A{\divslash}\ideal{q}\neq 0$并且$A{\divslash}\ideal{q}$的每个零因子都是幂零元. 显然素理想是准素理想, 准素理想的拉回是准素理想.
+\end{definition}
+
+\begin{propositionnoproof}[{{\tjucite[50, Proposition 4.1; 51, Lemma 4.3][\prop 4.1 \and \lem 4.3]{atiyah_introduction_1969}}}]\label{prop:primary}\leavevmode
+  \begin{enumerate}
+    \item 设$\ideal{q}$为环$A$的准素理想, 则$\ideal{p}\coloneq \sqrt{\ideal{q}}$为包含$\ideal{q}$的极小素理想, 称$\ideal{q}$为$\ideal{p}$-\emph{准素理想}.
+    \item\label{enum:prim-inte} 设$\ideal{q}_1, \dotsc, \ideal{q}_n$为环$A$的$\ideal{p}$-准素理想, 则$\bigcap_{j=1}^n\ideal{q}_j$为$\ideal{p}$-准素理想.
+  \end{enumerate}
+\end{propositionnoproof}
+
+% \begin{proof}
+%   %TODO: Need a proof here
+% \end{proof}
+
+\begin{definition}
+  环$A$中理想$\ideal{a}$的\emph{准素分解}为将$\ideal{a}$写为有限个准素理想的交, 即$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$. 进一步地, 如果有$\sqrt{\ideal{q}_j}$两两不同, 并且对于每个$j$都有$\ideal{q}_j\nsupseteq\bigcap_{k\neq j}\ideal{q}_k$, 则称这个准素分解为\emph{既约的}.
+\end{definition}
+
+利用\thref{prop:primary}\ref{enum:prim-inte}, 再去除多余的项, 我们总可以将准素分解化为既约的.一般来说准素分解不一定存在, 不过我们即将证明在Noether环上准素分解总是存在的.
+
+\begin{theorem}[Lasker–Noether定理{{\tjucites[83, Theorem 7.13][\thm 7.13]{atiyah_introduction_1969}[209, Theorem 4]{zariski_commutative_1958}}}]\label{thm:laskernoether}
+  Noether环$A$的每个理想都有既约准素分解.
+\end{theorem}
+
+\begin{proof}
+  先给一个定义, 如果环$A$的一个理想$\ideal{a}$满足如果$\ideal{a}=\ideal{b}\cap\ideal{c}$则$\ideal{a}=\ideal{b}$或$\ideal{a}=\ideal{c}$, 则称$\ideal{a}$为\emph{不可约理想}, 一个理想若不是不可约的, 则称其为\emph{可约理想}. 这个证明将分为两步, 首先证明Noether环的每个理想都能分解成有限个不可约理想的交, 再证明Noether环的不可约理想总是准素理想.
+
+  考虑Noether环$A$中不能分解成有限个不可约理想的交的理想全体, 假设其非空, 因为满足极大条件, 所以存在极大元$\ideal{a}$, 显然$\ideal{a}$是可约的, 所以存在$\ideal{b}\cap\ideal{c}=\ideal{a}$, 满足$\ideal{b}, \ideal{c}\supsetneqq\ideal{a}$. 由$\ideal{a}$的极大性知$\ideal{b}, \ideal{c}$可以写成有限个不可约理想的交, 于是$\ideal{a}$也可以写成有限个不可约理想的交, 与定义矛盾. 于是得证第一步, Noether环的每个理想都能分解成有限个不可约理想的交.
+
+  设$\ideal{a}$为Noether环$A$的不可约理想, 那么零理想$(0)$是商环$A{\divslash}\ideal{a}$的不可约理想, 并且由于准素理想的拉回是准素理想, 所以我们只需要证明$(0)$是$A{\divslash}\ideal{a}$的准素理想. 调整记号, 我们只需要证明如果Noether环$A$的零理想$(0)$是不可约理想, 则它一定是准素理想. 考虑$xy=0$但$y\neq 0$, 有理想升链$\Ann((x))\subseteq\Ann((x^2))\subseteq\dotsb$, 由升链条件知该升链稳定, 即存在$n$使得$\Ann((x^n))=\Ann((x^{n+1}))=\dotsb$. 我们声称$(x^n)\cap (y)=(0)$, 如果$a\in (y)$, 则$ax=0$, 如果进一步地有$a\in (x^n)$, 设$a=bx^n$, 则$bx^{n+1}=ax=0$, 因此$b\in\Ann((x^{n+1}))=\Ann((x^n))$, 故$a=bx^n=0$. 因为$(0)$为不可约理想且$(y)\neq 0$, 所以$(x^n)=(0)$, 即$x^n=0$, 得证第二步, Noether环的不可约理想总是准素理想.
+
+  又由于每个准素分解都可以化为既约准素分解, 我们证明了Noether环$A$的每个理想都有既约准素分解.
+\end{proof}
+
+现在来考察准素分解的唯一性, 首先我们利用理想商这一工具来证明准素分解中伴随素理想的唯一性.
+
+\begin{propositionnoproof}[{{\tjucite[51, Lemma 4.4][\lem 4.4]{atiyah_introduction_1969}}}]\label{prop:idealquotprimary}
+  设$\ideal{q}$为环$A$的$\ideal{p}$-准素理想, $x\in A$, 则
+  \begin{enumerate}
+    \item 如果$x\in \ideal{q}$, 则$(\ideal{q}{:}(x))=(1)$;
+    \item 如果$x\notin\ideal{q}$, 则$(\ideal{q}{:}(x))$为$\ideal{p}$-准素理想, 故$\sqrt{(\ideal{q}{:}(x))}=\ideal{p}$;
+    \item 如果$x\notin\ideal{p}$, 则$(\ideal{q}{:}(x))=\ideal{q}$.
+  \end{enumerate}
+\end{propositionnoproof}
+
+% \begin{proof}
+%   %TODO: PROOF!
+% \end{proof}
+
+\begin{theorem}[{{\tjucite[52, Theorem 4.5][\thm 4.5]{atiyah_introduction_1969}}}]\label{prop:primuniq1}
+  设$\ideal{a}$为环$A$的一个可准素分解的理想, 令$\ideal{a}=\bigcap_{j=1}^n \ideal{q}_j$为既约准素分解, 对于$j=1, \dotsc, n$记$\ideal{p}_j\coloneq \sqrt{\ideal{q}_j}$, 则集合$\{\ideal{p}_1, \dotsc, \ideal{p}_n\}$恰为$\{\sqrt{(\ideal{a}{:}(x))}\vert x\in A\}$的素理想全体, 于是$\{\ideal{p}_1, \dotsc, \ideal{p}_n\}$与既约准素分解的选取无关, 称为$\ideal{a}$的\emph{伴随素理想}.
+\end{theorem}
+
+\begin{proof}
+  首先证明能写成$\sqrt{(\ideal{a}{:}(x))}$形式的素理想一定是某一个$\ideal{p}_j$. 由\thref{prop:idealop}\ref{enum:prop-idealop-quot-firstcap}和\thref{prop:idealquotprimary}, 有$\sqrt{(\ideal{a}{:}(x))}=\sqrt{\bigcap_{k=1}^n(\ideal{q}_k{:}(x))}=\bigcap_{x\notin\ideal{q}_k}\ideal{p}_k$. 如果$\sqrt{(\ideal{a}{:}(x))}$是素理想, 那么由\thref{prop:prime}\ref{enum:prop-prime-absorb}知存在$j$使得$\sqrt{(\ideal{a}{:}(x))}=\ideal{p}_j$.
+
+  再证明每个$\ideal{p}_j$都能写成$\sqrt{(\ideal{a}{:}(x))}$的形式. 由于准素分解的既约性, 所以对于每个$j$存在$x_j\notin\ideal{q}_j$, $x_j\in\bigcap_{k\neq j}\ideal{q}_k$, 而由上一步知$\sqrt{(\ideal{a}{:}(x_j))}=\bigcap_{x\notin\ideal{q}_k}\ideal{p}_k=\ideal{p}_j$. 遂得证.
+\end{proof}
+
+接着我们证明孤立伴随素理想的唯一性, 并利用局部化这一工具证明其对应的孤立准素理想的唯一性. 环$A$的可准素分解理想$\ideal{a}$的伴随素理想全体中的极小元被称为\emph{孤立伴随素理想}, 其余的伴随素理想被称为\emph{嵌入伴随素理想}. ``孤立"与``嵌入"的说法来源于代数几何, 我们将在\thref{exm:primarydecom}看到其几何意义, 下一个命题刻画了几何意义对应的代数意义.
+
+\begin{proposition}[{{\tjucite[52, Proposition 4.6][\prop 4.6]{atiyah_introduction_1969}}}]\label{prop:isolatedprime}
+  设$\ideal{a}$为环$A$的可准素分解理想. 则每个包含$\ideal{a}$的素理想$\ideal{p}$都包含一个$\ideal{a}$的孤立伴随素理想. 因此$\ideal{a}$的孤立伴随素理想恰为包含$\ideal{a}$的素理想全体中的极小元.
+\end{proposition}
+
+\begin{proof}
+  如果$\ideal{p}\supseteq\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$, 那么由\thref{prop:idealop}\ref{enum:prop-idealop-rad-inters}知$\ideal{p}=\sqrt{\ideal{p}}\supseteq\sqrt{\bigcap_{j=1}^n\ideal{q}_j}=\bigcap_{j=1}^n\sqrt{\ideal{q}_j}=\bigcap_{j=1}^n\ideal{p}_j$, 所以存在$j$使得$\ideal{p}\supseteq\ideal{p}_j$, 于是$\ideal{p}$包含一个$\ideal{a}$的伴随素理想.
+\end{proof}
+
+现在来考察准素理想在局部化下的扩张与收缩.
+
+\begin{proposition}[{{\tjucite[53, Proposition 4.8; 54, Proposition 4.9][\prop 4.8 \and 4.9]{atiyah_introduction_1969}}}]\label{prop:primlocal}设$S$为环$A$的乘法闭集, 考虑典范同态$A\to S^{-1}A$.
+  \begin{enumerate}
+    \item\label{enum:prop-primlocal-exten} 设$\ideal{q}$为$\ideal{p}$-准素理想, 如果$S\cap\ideal{p}\neq\varnothing$, 则$\ideal{q}^e=(1)$. 如果$S\cap\ideal{p}=\varnothing$, 则$\ideal{q}^e$为$\ideal{p}^e$-准素理想, 并且$\ideal{q}^{ec}=\ideal{q}$;
+    \item\label{enum:prop-primlocal-decom} 设$\ideal{a}$为可准素分解的理想, 并且有既约准素分解$\ideal{a}=\bigcap_{j=1}^n\ideal{q}_j$, 设$\ideal{p}_j=\sqrt{\ideal{q}_j}$, 则有
+    \begin{equation*}
+      \ideal{a}^{e}=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j^e,
+      \qquad \ideal{a}^{ec}=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j,
+    \end{equation*}
+    并且这两个都是既约准素分解.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  % \ref{enum:prop-primlocal-exten}% TODO: PROOF
+  \ref{enum:prop-primlocal-decom} 因为$S$为乘法闭集, 所以$\ideal{p}_j\cap S\neq\varnothing$等价于$\ideal{q}_j\cap S\neq\varnothing$, 此时有$\ideal{q}_j^e=(1)$. 再由\ref{enum:prop-primlocal-exten}与\thref{prop:fracideal}\ref{enum:prop-fracideal-3}知, $\ideal{a}^e=(\bigcap_{j=1}^n\ideal{q}_j)^e\bigcap_{j=1}^n\ideal{q}_j^e=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j^e$. 现在证明这个$\ideal{a}^e$的准素分解是既约的. 如果有$\ideal{q}_j^e\supseteq\bigcap_{k\neq j}\ideal{q}_k^e$, 由\thref{prop:extencontrop}有$\ideal{q}_j^e\supseteq(\bigcap_{k\neq j}\ideal{q}_k)^e$, 由\ref{enum:prop-primlocal-exten}两边取收缩即与$\ideal{a}$准素分解的既约性矛盾, 又当$\ideal{p}_j\cap S=\varnothing$时有$\sqrt{\ideal{q}_j}^e=\ideal{p}_j^e$两两不同, 故这个$\ideal{a}^e$的准素分解为既约的. 再两边取拉回, 类似地由\ref{enum:prop-primlocal-exten}, \thref{prop:fracideal}\ref{enum:prop-fracideal-3}和\thref{prop:extencontrop}可得证$\ideal{a}^{ec}=\bigcap_{\ideal{p}_j\cap S=\varnothing}\ideal{q}_j$为既约准素分解.
+\end{proof}
+
+\begin{theorem}[{{\tjucite[54, Corollary 4.11][\cor 4.11]{atiyah_introduction_1969}}}]
+  设$\ideal{a}$为环$A$的可准素分解理想, 则$\ideal{a}$的孤立伴随素理想对应的准素理想由$\ideal{a}$唯一决定, 称为\emph{孤立准素理想}.
+\end{theorem}
+
+\begin{proof}
+  设$\ideal{p}$为$\ideal{a}$的孤立伴随素理想, 其对应的准素理想为$\ideal{q}$. 考察局部化$A_{\ideal{p}}$, 由$\ideal{p}$的极小性以及\thref{prop:primlocal}\ref{enum:prop-primlocal-decom}知$\ideal{a}^{ec}=\ideal{q}$, 又由\thref{prop:primuniq1}以及定义知$\ideal{a}$的孤立伴随素理想由$\ideal{a}$唯一决定, 故孤立伴随素理想对应的准素理想由$\ideal{a}$唯一决定.
+\end{proof}
+
+\subsection{维数}\label{sec:algebra-dimension}
+
+维数理论也是交换代数的重要话题, Atiyah-MacDonald \tjucite[116--126, Chapter 11][\chap 11]{atiyah_introduction_1969}一书中介绍了 Noether 局部环的维数理论, 需要模论以及完备化等技术. 限于篇幅原因, 这一节我们仅介绍域的有限生成整环的维数理论, 其与域论关系密切, 因此我们将先介绍域论中的维数理论, 即先叙述超越基与超越次数相关的内容. 环的维数可以直接利用域的超越次数来定义, 而通过对素理想的研究, 我们发现素理想是构成维数的重要组成部分, 通过考察一个素理想的高度和深度可以得出环的维数, 并且每个高度的素理想都总是存在的, 这个命题十分的强, 甚至足以证明著名的Hilbert零点定理.
+
+% 域论的记号 代数相关代数无关 域扩张 F(S)
+
+回顾线性空间的维数理论, 我们定义了线性空间中线性相关与线性无关的概念, 从而引出了Hamel基的概念, 并证明了Hamel基的存在性\footnotemark 及其在基数意义下的唯一性\tjucite[44--46, Section 2.1][\sect 2.1]{ciarlet_linear_2013}. 我们将推广这个工作, 定义集合论意义下的相关关系, 并将其应用在域扩张中, 从而得到域扩张的超越基与超越次数.
+\footnotetext{``任意非零线性空间都有Hamel基"这个命题在\axiom{ZF}公理系统下也可以推出选择公理\axiom{AC}\tjucite{blass_existence_1984}, 从而与选择公理\axiom{AC}等价.}
+
+\begin{definition}
+  设$X$为非空集合, 用$\powerset{X}$表示$X$的\emph{幂集}, 即$X$的子集全体构成的集合, 用大写字母表示$\powerset{X}$的元素, 用小写字母表示$X$的元素. 考虑子集$\Delta\subseteq X\times \powerset{X}$, 即$\Delta$为从$X$到$\powerset{X}$的一个\emph{对应}, 如果$(x, S)\in \Delta$则记$x\depend S$. 如果$\Delta$满足
+  \begin{enumerate}
+    \item\label{enum:dependaxiom1} 如果$x\in S$, 则$x\depend S$;
+    \item\label{enum:dependaxiom2} 若$x\depend S$, 则存在有限子集$F\subseteq S$使得$x\depend F$;
+    \item\label{enum:dependaxiom3} 如果$x\depend S$并且对于每个$y\in S$都有$y\depend T$, 那么有$x\depend T$;
+    \item\label{enum:dependaxiom4} (Steinitz对换公理) 如果$x\depend S$但是$x\ndepend S-\{y\}$, 则$y\depend (S-\{y\})\cup\{x\}$,
+  \end{enumerate}
+  则称$\Delta$为一个$X$上的\emph{相关关系}. 给定相关关系$\Delta$, 如果子集$S\subseteq X$满足不存在$x\in S$使得$x\depend S-\{x\}$, 则称$S$为\emph{无关集}, 否则称$S$为\emph{相关集}. 如果$X$的无关子集$B$满足每个$x\in X$都有$x\depend B$, 则称$B$为$X$的一个\emph{基}.
+\end{definition}
+
+\begin{remark}
+  上述定义中, $S$与$B$均可以为空集.
+\end{remark}
+
+\begin{example}
+  设$X$为有限维线性空间, 定义从$X$到$\powerset{X}$的对应$\Delta$为$x\depend S$当且仅当$x$能被$S$的某个有限子集线性表示, 则$\Delta$为$X$上的一个相关关系, $\Delta$意义下的无关集恰为线性空间中的线性无关集, $\Delta$意义下的基恰为线性空间的基.
+\end{example}
+
+接下来我们将要证明基存在性以及基数意义下的唯一性, 思路与有限维线性空间的情况类似, 即研究极大无关集的性质. 首先我们需要一个引理保证无关集可以``扩张".
+
+\begin{proposition}[{{\tjucite[123, Lemma 1][\sect 3.6, \lem 1]{jacobson_basic_1989}}}]\label{prop:dependlemma}
+  设$\Delta$为$X$上的相关关系, 如果$S\subseteq X$为无关集且$x\ndepend S$, 则$S\cup\{x\}$也为无关集.
+\end{proposition}
+
+\begin{proof}
+  若假设$S\cup\{x\}$为无关集, 注意到有$x\ndepend S$, 故存在$y\in S$使得$y\depend (S-\{y\})\cup \{x\}$. 因为$S$无关, 故$y\ndepend S-\{y\}$, 故由Steinitz对换公理知$x\depend S$, 矛盾. 遂得证.
+\end{proof}
+
+\begin{theorem}[{{\tjucite[123, Theorem 3.12][\thm 3.12]{jacobson_basic_1989}}}]\label{thm:dependbase}
+  设$\Delta$为$X$上的相关关系, 则$X$的基存在, 并且$X$的任意两个基具有相同的基数.
+\end{theorem}\clearpage
+%\footnotetext{如果一个集合$X$为空集, 则定义$X$的\emph{基数}为0; 如果存在$X$到$\{1, 2, \dotsc, n\}$的双射, 则定义$X$的\emph{基数}为$n$; 其余情况定义$X$的\emph{基数}为$\infty$. 其实把基数换成基数也成立, 证明只需要一点关于基数运算的性质, 不过没必要% 这里我们不给出基数的正式定义, 只定义两个非空集合\emph{具有相同的基数}当且仅当存在两个集合之间的双射, 并定义空集与且仅与空集\emph{具有相同的基数}.
+%}
+
+\begin{proof}
+  首先利用Zorn引理构造极大无关集, 并证明每个极大无关集都是一个基. 无关集全体作为$\powerset{X}$的子集, 有由集合被包含关系定义的偏序关系. 考虑任一全序子链$\{S_\lambda\}$, 只需证明其并集$\tilde{S}\coloneq \bigcup_\lambda S_\lambda$也是无关集. 先考虑$\tilde{S}$有限的情况, 那么一定等于某个$S_\lambda$, 故为无关集. 再考虑$\tilde{S}$无限的情况, 反证存在$x\in \tilde{S}$使得$x\depend \tilde{S}-\{x\}$, 则由定义知存在有限子集$T\subseteq\tilde{S}$满足$x\in T$并且$x\depend T-\{x\}$. 由于全序子链$\{S_\lambda\}$的并$\tilde{S}$为无限集, 且$x\in \tilde{S}$, 故一定存在$S_\lambda$使得$x\in S_\lambda$并且$T\subseteq S_\lambda$, 故根据定义知$x\depend S_\lambda-\{x\}$, 与$S_\lambda$无关矛盾. 故得证无关集的全序子链的并为其上界, 根据Zorn引理知存在极大无关集, 由极大性及基的定义即可得到极大无关集总是基.
+
+  现在考虑两个基$B$和$C$, 需要证明它们有相同的基数. 若$B$为空集, 则由基的定义知$C$也为空集, 故基数相同. 于是只需要考虑$B$和$C$均非空的情况.
+
+  先考虑有限的情况, 我们将证明如果$B$有限, 则$C$有限, 并且$B$与$C$具有相同的基数. 设$B$有限, 即$B=\{x_1, x_2, \dotsc, x_n\}$为$n$元集合. 利用归纳法证明对于每个$0\leq k\leq n$都存在$y_i\in C$使得$\{y_1, \dotsc, y_k, x_{k+1}, \dotsc, x_n\}$为$n$元集合并且为$X$的基. 当$k=0$时因为$B$是基故命题成立, 假设命题对于$k-1$成立, 记$D_{k-1}\coloneq \{y_1, \dotsc, y_{k-1}, x_k, x_{k+1}, \dotsc, x_n\}$. 由基的定义以及归纳假设知, 一定存在$y\in C$使得$y\ndepend D_{k-1}-\{x_k\}$成立, 取一个这样的$y$为$y_k$从而得到$D_k\coloneq \{y_1, \dotsc, y_k, x_{k+1}, \dotsc, x_n\}$, 由\thref{prop:dependlemma}知$D_k$为无关集. 又由Steinitz对换公理知$x_k\depend D_k$, 故每个$D_{k-1}$的元素$x$都有$x\depend D_k$, 由于$D_{k-1}$是基, 所以每个$X$的元素$x$都有$x\depend D_{k}$, 遂得证$D_k$为$n$元集合且为$X$的基, 故由归纳法结论得证.
+
+  无限的情况比有限的要简单不少, 当$B$无限时, 由有限情况的结论知$C$一定无限, 还需要证明$B$与$C$具有相同的基数. 只需证明$\vert B\vert\leq \vert C\vert$. 对于每个$C$的元素$y$, 存在$B$的有限子集$B_y$使得$y\depend B_y$, 我们有$\vert \{B_y\}\vert\leq \vert C\vert$. 因为每个$B_y$都是有限的, 所以有$\vert\bigcup B_y\vert\leq \vert\ZZ\times C\vert$. 由于$C$是无限集, 由\thref{prop:cardcartcor}知$\vert\ZZ\times C\vert=\vert C\vert$, 又根据基的定义, 一定有$\bigcup B_y=B$, 于是有$\vert B\vert\leq\vert C\vert$, 得证.
+\end{proof}
+
+现在我们可以来介绍域的超越基和超越指数了, 我们需要在域扩张的语境中定义一个相关关系, 从而应用之前介绍的相关关系的一般理论.
+
+\begin{definition}
+  考虑域扩张$F\subseteq E$, 如果$n$元子集$\{x_1, \dotsc, x_n\}\subseteq E$满足将$f$映到$f(x_1, \dotsc, x_n)$的同态$F[X_1, \dotsc, X_n]\to E$有非零核, 则称该$n$元子集在$F$上\emph{代数相关}. 对于$E$的任意非空子集, 如果存在有限子集在$F$上代数相关, 则称其在$F$上\emph{代数相关}.
+\end{definition}
+
+我们有如下的代数相关的判别准则.
+
+\begin{proposition}[{{\tjucite[515, Theorem 8.33][\thm 8.33]{jacobson_basic_1989}}}]\label{prop:algbdependcrit}
+  给定域扩张$F\subseteq E$, 则非空子集$S\subseteq E$在$F$上代数相关当且仅当存在$a\in S$是域$F(S-\{a\})$的代数元.
+\end{proposition}
+
+\begin{proof}
+  对于任意子集$T\subseteq E$, 如果$a$是$F(T)$的代数元, 则存在$T$的有限子集$U$使得$a$是$F(U)$的代数元, 因此可以只考虑$S$是有限的情况, 记$S=\{x_1, \dotsc, x_n\}$, 其中$x_j$两两不同, 记$S_j\coloneq S-\{x_j\}$.
+
+  如果$S$在$F$上代数相关, 那么存在非零多项式$f\in F[X_1, \dotsc, X_n]$使得$f(x_1, \dotsc, x_n)=0$. 还需要证明存在$i$使得$x_i$为$F(S_i)$的代数元. 利用归纳法, 当$n=1$时由定义即得, 假设$n-1$时成立. 如果$\{x_1, \dotsc, x_{n-1}\}$代数无关, 因为$f$可以通过合并系数以及代入诱导出多项式$\tilde{f}\in F(x_1, \dotsc, x_{n-1})[X]$使得$\tilde{f}(x_n)=0$, 且归纳假设保证了$\tilde{f}$非零, 于是$x_n$为$F(S_n)$的代数元.
+
+  反之, 假设存在$j$使得$x_j$为$S_j$的代数元. 为了记号上的方便, 不妨重新编号, 使得$j=n$. 根据定义, 存在$g_1, \dotsc, g_m\in F(x_1, \dotsc, x_{n-1})$使得$g=X^m+g_1X^{m-1}+\dotsb+g_m\in F(x_1, \dotsc, x_{n-1})[X]$满足$g(x_n)=0$. 去分母, 存在$f_0, \dotsc, f_m\in F[X_1, \dotsc, X_{n-1}]$满足对每个$1\leq j<\leq n$, 有$g_jf_0(x_1, \dotsc, x_{n-1})=f_j(x_1, \dotsc, x_{n-1})$, 故$f\coloneq f_0(X_1, \dotsc, X_{n-1})X_n^m+f_1(X_1, \dotsc, X_{n-1})X_n^{m-1}+\dotsb+f_m(X_1, \dotsc, X_{n-1})$属于$F[X_1, \dotsc, X_n]$为非零多项式, 并且将$x_1, \dotsc, x_n$映到0, 故$S$在$F$上代数相关.
+\end{proof}
+
+给定域扩张$F\subseteq E$, 定义一个$E$到$\powerset{E}$的\emph{对应} $\Delta$为$x\depend S$当且仅当$x$为$F(S)$的代数元.
+
+\begin{proposition}[{{\tjucite[516, Theorem 8.34][\thm 8.34]{jacobson_basic_1989}}}]\label{prop:algbdependcorr}
+  设$F\subseteq E$为域扩张, 则刚才定义的$\Delta$是一个相关关系.
+\end{proposition}
+
+\begin{proof}
+  我们只证明满足公理\ref{enum:dependaxiom3}和\ref{enum:dependaxiom4}, 另外两个是显然的.
+
+  \ref{enum:dependaxiom3} ``如果$x\depend S$并且对于每个$y\in S$都有$y\depend T$, 那么有$x\depend T$". 我们需要一点关于域扩张次数的知识. 设非零多项式$f=y_0X^m+ y_1X^{m-1}+ \dotsb + y_m\in S[X]$使得$f(x)=0$, 记$K\coloneq F(T)$, 记$S_0\coloneq \{y_0, \dotsc, y_m\}$. 利用\thref{thm:fieldextdegreemulti}, 有$[K(S_0\cup\{x\}):K]=[K(S_0\cup\{x\}):K(S_0)][K(S_0):K]$, 又根据\thref{thm:fntfieldextdegree}有$[K(S_0\cup\{x\}):K(S_0)]$和$[K(S_0):K]\leq\prod [K(y_j):K]$均有限, 故$x$是$K=F(T)$的代数元.
+
+  \ref{enum:dependaxiom4} ``如果$x\depend S$但是$x\ndepend S-\{y\}$, 则$y\depend (S-\{y\})\cup\{x\}$". 设$T\coloneq S-\{y\}$, $K\coloneq F(T)$, 则$x$为$K$的超越元同时也为$K(y)$的代数元, 由\thref{prop:algbdependcrit}知$\{x, y\}$在$K$上代数相关, 因此存在非零多项式$f\in K[X, Y]$使得$f(x, y)=0$, 因为$x$为$K$的超越元, 所以$f$可以通过合并系数以及代入来诱导出多项式$\tilde{f}\in K[x](Y)$使得$\tilde{f}(y)=0$, 从而得证$y$是$K(x)=F(T\cup\{x\})$上的代数元, 即$y\depend T\cup \{x\}$.
+\end{proof}
+
+\begin{definition}
+  对于域扩张$F\subseteq E$, $E$的相关关系$\Delta$意义下的基称为域扩张$F\subseteq E$的\emph{超越基}, 即$B$是超越基当且仅当$B$代数无关并且每个$x\in E$都为$F(B)$的代数元.
+\end{definition}
+
+\begin{theorem}[{{\tjucite[516, Theorem 8.35][\thm 8.35]{jacobson_basic_1989}}}]\label{thm:tranbasis}
+  域扩张$F\subseteq E$有超越基, 并且任意两个超越基有相同的基数.
+\end{theorem}
+
+\begin{proof}
+  \thref{thm:dependbase}和\thref{prop:algbdependcorr}.
+\end{proof}
+
+利用\thref{thm:tranbasis}我们可以定义域扩张$F\subseteq E$的\emph{超越次数}为超越基的基数. 现在我们已经可以定义主要研究对象的维数了. 给定域$k$, 回顾如果环$A$既是$k$的有限生成代数又是整环, 则称$A$为$k$的有限生成整环. 记$K$为$A$的分式域, 域$k$的有限生成整环$A$的\emph{维数} $\dim (A)$被定义为域扩张$k\subseteq K$的超越次数, 是有限数. 在剩下的部分中, 我们想要利用环论来刻画维数, 发现素理想在其中有类似于线性子空间的地位, 是构成维数的基本组成部分.
+
+如果$A$为域$\kk$的有限生成整环, 我们还可以定义素理想$\ideal{p}$的\emph{余维数} $\codim (\ideal{p})$为域扩张$k\subseteq A{\divslash}\ideal{p}$的超越次数.
+
+\begin{propositionnoproof}[{{\tjucite[101, Theorem 28 and 29][\thm 28 \and 29]{zariski_commutative_1958}}}]\label{prop:primeidealdim}
+  设$A$为域$\kk$的有限生成整环, $\ideal{p}$为$A$的素理想, 那么$\codim (\ideal{p})\leq\dim (A)$. 如果还有素理想$\ideal{q}$使得$\ideal{p}\subsetneqq\ideal{q}$, 那么$\codim (\ideal{p})>\codim (\ideal{q})$.
+\end{propositionnoproof}
+
+设$\ideal{p}$为环$A$的素理想,  定义$\ideal{p}$的\emph{高度} $h(\ideal{p})$为满足存在素理想升链$\ideal{p}_0\subsetneqq\ideal{p}_1\subsetneqq\dotsb\subsetneqq \ideal{p}_h=\ideal{p}$的$h$的上确界; 定义$\ideal{p}$的\emph{深度} $d(\ideal{p})$为满足存在素理想降链$\ideal{p}=\ideal{p}_d\subseteqq\ideal{p}_{d-1}\subsetneqq\dotsb\subsetneqq\ideal{p}_0\subsetneqq A$的$d$的下确界. 根据定义, 考虑素理想$\ideal{p}\subsetneqq\ideal{q}$, 只要$h(\ideal{p})$与$h(\ideal{q})$中有一个有限, 那么有$h(\ideal{p})<h(\ideal{q})$, 只要$d(\ideal{p})$与$d(\ideal{q})$中有一个有限, 那么有$d(\ideal{p})>d(\ideal{q})$.
+
+\begin{proposition}[Noether正规化引理{{\tjucite[\chap 5, \ex 16][69, Exercise 16]{atiyah_introduction_1969}}}]\label{prop:noethernormalization}
+  设非零环$A$为域$k$上的有限生成$k$-代数, 超越次数为$r$, 则存在$r$元子集$\{y_1, \dotsc, y_r\}\subseteq A$在$k$上代数无关, 并且$A$的每个元素都可以由$k[y_1, \dotsc, y_r]$整表示.
+\end{proposition}
+
+\begin{proof}
+  我们只对$\kk$是无限域的情形进行证明. 设$A$的$\kk$-代数结构可以由$x_1, \dotsc, x_n$生成, 对它们重新编号使得$x_1, \dotsc, x_r$在$\kk$上代数无关, 并且每个$x_{r+1}, \dotsc, x_n$是域$\kk [x_1, \dotsc, x_r]$的代数元.
+
+  固定$r$而对$n$进行归纳. 当$n=r$时结论显然, 假设当生成元为$n-1$个时结论成立, 考虑生成元为$n$个的情况. 因为$x_n$是域$\kk [x_1, \dotsc, x_{n-1}]$的代数元, 因此存在非零多项式$f\in \kk [X_1, \dotsc, X_n]$使得$f(x_1, \dotsc, x_{n-1}, x_n)=0$. 设$F$为$f$中最高次数的单项式所构成的齐次多项式, 因为$\kk$是无限集, 因此存在$\lambda_1, \dotsc, \lambda_{n-1}\in \kk$使得$F(\lambda_1, \dotsc, \lambda_{n-1}, 1)\neq 0$. 对于$j=1, \dotsc, n-1$取$x_j'=x_j-\lambda_jx_n$, 则有$x_n$是环$A'=\kk [x_1', \dotsc, x_{n-1}']$的整元, 对$A'$应用归纳假设即得结论.
+\end{proof}
+% $k$无限的情况可以参考AM一书, 一般的情况可以看一下Wikipedia.
+% https://en.wikipedia.org/wiki/Noether_normalization_lemma
+% https://mathoverflow.net/questions/42275/choosing-the-algebraic-independent-elements-in-noethers-normalization-lemma/42363#42363
+
+\begin{proposition}[{{\tjucite[91, Lemma][\chap VI, \sec 14, \lem*]{zariski_commutative_1960}}}]\label{prop:heightoneideallemma}
+  设$A=\kk [x_1, \dotsc, x_n]$为$k$的有限生成整环, 超越次数为$r$, $\ideal{p}$为高度为一的素理想, 则$\codim (\ideal{p}) = \dim (A)-1$.
+\end{proposition}
+
+\begin{proof}
+  这里我们同样只对$\kk$为无限域的情况来证明. 首先考虑$x_1, \dotsc, x_n$代数无关的情况, 此时$A$为$\kk$的$n$元多项式环, 从而是唯一分解整环. 而在唯一分解整环中, 利用素元和不可约元的等价性, 可以得到高度为一的素理想一定是主理想, 并且可以由一个素元生成\tjucite[174, Exercise 21.32][\ex 21.32]{altman_term_2017}, 故我们有$\ideal{p}=(f)$, $f$的次数一定为正. 不妨设$x_n$出现在了多项式$f$的形式定义之中, 则$\ideal{p}$中的每个元素都与$x_n$相关, 因此在商去$\ideal{p}$之后$x_1, \dotsc, x_{n-1}$仍在$\kk$上代数无关. 这证明了$\codim (\ideal{p})\geq n-1$, 又因为$\ideal{p}\neq (0)$故有$\codim (\ideal{p})=n-1$.
+
+  再考虑$r<n$的情况. 利用\thref{prop:noethernormalization}我们可以找到代数无关的$y_1, \dotsc, y_r$使得$A$能由$A'=\kk [y_1, \dotsc, y_r]$整表示. 取$\ideal{p}'=\ideal{p}\cap A'$, 则$\ideal{p}'$为多项式环$A'$中的高度为一的素理想, 因此由之前证明的情况知$\codim (\ideal{p}')=r-1$, 于是$\codim (\ideal{p})=r-1$.
+  % 分类讨论, 如果是多项式环的话就是唯一分解整环, 非常简单; 否则的话利用\thref{prop:noethernormalization}来处理.
+\end{proof}
+
+\begin{theorem}[{{\tjucite[193, Theorem 20][\chap 7, \sec 7, \thm 20]{zariski_commutative_1960}}}]\label{thm:ringdim}
+  设$A=k[x_1, \dotsc, x_n]$为$k$的有限生成整环, $\ideal{p}$为$A$的素理想, 则有
+  \begin{enumerate}
+    \item\label{enum:thm-ringdim-height} $\codim(\ideal{p})+h(\ideal{p})=\dim (A)$,
+    \item\label{enum:thm-ringdim-depth} $\codim(\ideal{p})=d(\ideal{p})$.
+  \end{enumerate}
+  特别地, 有$\dim (A) = d((0))$.
+\end{theorem}
+
+\begin{proof}
+  我们用归纳法证明这两个命题. 由于需要利用商环来简化问题, 所以归纳有一点非同寻常, 需要写得仔细一点.
+
+  \ref{enum:thm-ringdim-height} 对$\dim (A)-\codim (\ideal{p})$进行归纳. 利用\thref{prop:primeidealdim}知$\codim (\ideal{p})\leq \dim (A)$, 而当$\codim (\ideal{p})=\dim (A)$时, 有$\ideal{p}=(0)$, 故$h(\ideal{p})=0$, 结论成立. 假设对于任意的满足条件的$A$和$\ideal{p}$以及$k\in\ZZ_+$, 当$\dim (A)-\codim (\ideal{p})< k$时结论成立, 那么对于给定的$A$和$\ideal{p}$, 考虑$\dim (A)-\codim (\ideal{p})=k$的情况, 不妨令$k\leq \dim (A)$. 首先由\thref{prop:primeidealdim}得$\dim (A)\geq\codim (\ideal{p}_0)>\codim (\ideal{p}_1)>\dotsb >\codim (\ideal{p}_{h-1})>\codim (\ideal{p})$, 因此$h(\ideal{p})\leq \dim (A)-\codim (\ideal{p})$. 另一方面, 因为$\ideal{p}\supseteqq (0)$, 所以存在素理想$\ideal{q}\subsetneqq \ideal{p}$使得$\ideal{q}$与$\ideal{p}$之间没有别的素理想, 即在有限生成整环$A{\divslash}\ideal{q}$中有$h(\ideal{p}{\divslash}\ideal{q})=1$. 根据\thref{prop:heightoneideallemma}和\thref{prop:thirdisomorphism}, 有$\dim (A)-\codim (\ideal{q})=k-1$, 再由归纳假设得$h(\ideal{q})=\dim (A)-\codim (\ideal{p})-1$, 因此$h(\ideal{p})\geq h(\ideal{q})+1 = \dim (A)-\codim (\ideal{p})$, 得证.
+
+  \ref{enum:thm-ringdim-depth} 对$\codim (\ideal{p})$进行归纳. 当$\codim (\ideal{p})=0$时, 由\thref{prop:primeidealdim}知$\ideal{p}$一定为极大理想, 因此$d(\ideal{p})=0$, 结论成立. 假设对于任意满足条件的$A$和$\ideal{p}$以及$k\in\ZZ_+$, 当$\codim(\ideal{p})<k$时结论成立, 考虑$\codim(\ideal{p})=k$的情况, 不妨假设$k\leq \dim (A)$. 首先由\thref{prop:primeidealdim}得 $0\leq\codim (\ideal{p}_0)<\codim (\ideal{p}_1)<\dotsb <\codim (\ideal{p}_{d-1})<\codim (\ideal{p})$, 因此$d(\ideal{p})\leq \codim (\ideal{p})$. 另一方面, 考虑有限生成整环$A{\divslash}\ideal{p}$中的一个高度为一的素理想$\ideal{q}{\divslash}\ideal{p}$, 根据\thref{prop:heightoneideallemma}和\thref{prop:thirdisomorphism}, 有$\codim (\ideal{q})=k-1$, 再由归纳假设得$d(\ideal{q})=\codim (\ideal{q})$, 故$d(\ideal{p})\geq d(\ideal{q})+1=\codim (\ideal{q})$, 得证.
+\end{proof}
+
+利用维数理论我们可以证明Hilbert零点定理, 它建立了代数与几何之间的联系. 我们先来证一个简单的引理.
+
+\begin{proposition}[{{\tjucite[195, Corollary 3][\chap 7, \sec 7, \cor 3]{zariski_commutative_1960}}}]\label{prop:ringdimprimeidealexist}
+  设$A$为$\kk$的有限生成整环, $\dim (A)=r$, 则分别存在余维数为$0, 1, \dotsc, r$的素理想.
+\end{proposition}
+
+\begin{proof}
+  根据\thref{thm:ringdim}有$\codim (0)=d((0))=r$. 考虑素理想降链$A\supsetneqq \ideal{p}_0\supsetneqq \dotsb\supsetneqq \ideal{p}_r=(0)$, 因为$0\leq \codim (\ideal{p}_0)< \dotsb <\codim (\ideal{p}_r)=r$, 所以对于$j=0, \dotsc, r$一定有$\codim (\ideal{p}_j)=j$, 得证.
+\end{proof}
+
+\begin{theorem}[弱Hilbert零点定理{{\tjucite[82, Proposition 7.9][\prop 7.9]{atiyah_introduction_1969}}}]\label{thm:hilbert-nullstellensatz-weak}
+  设$\field{k}$是域, $A$为$\field{k}$的有限生成整环, 如果$A$也是域, 则$A$为$\field{k}$的有限代数域扩张. 特别地, 如果$\field{k}$为代数闭域, $A$为有限生成$\kk$-代数, $\ideal{m}$为$A$的极大理想, 则$A{\divslash}\ideal{m}\cong \field{k}$.
+\end{theorem}
+
+\begin{proof}
+  因为域只有$(0)$素理想, 余维数为0, 所以根据\thref{prop:ringdimprimeidealexist}知, 域扩张$\kk\subseteq A$的超越次数为0, 即为代数域扩张. 又$A$为有限生成$k$-代数, 故为有限代数域扩张.
+\end{proof}
+
+% 接下来我们来证明重要的Hilbert零点定理, 它建立了代数与几何联系的根基. 首先我们需要几个引理.
+
+% \begin{proposition}[Artin-Tate引理{{\tjucites[81, Proposition 7.8]{atiyah_introduction_1969}[Theorem 1]{artin_note_1951}}}]
+%     设环$A\subseteq B\subseteq C$, 其中$A$为Noether环, $C$为有限生成$A$-代数, $C$同时也为有限$B$-代数, 则$B$为有限生成$A$-代数.
+% \end{proposition}
+
+% \begin{proof}
+
+% \end{proof}
+
+% \begin{theorem}[弱Hilbert零点定理{{\tjucites[82, Proposition 7.9]{atiyah_introduction_1969}[Theorem 2]{artin_note_1951}}}]
+%     设$\field{k}$是域, $E$为$\field{k}$的有限生成代数, 如果$E$也是域, 则$E$为$\field{k}$的有限代数域扩张. 特别地, 如果$\field{k}$为代数闭域, $A$为$\field{k}$的有限生成代数, $\ideal{m}$为$A$的极大理想, 则$A{\divslash}\ideal{m}\cong \field{k}$.
+% \end{theorem}
+
+% \begin{proof}
+% rewrite module and noetherian module
+% \end{proof}
+
+这一节的最后, 我们再来叙述一些与素理想的高度和生成元个数有关的命题, 它们有很浓的几何含义.
+
+\begin{theoremnoproof}[Krull主理想定理{{\tjucite[238, Theorem 29][\chap IV, \sec 14, \thm 29]{zariski_commutative_1958}}}]\label{thm:krullhauptidealsatz}
+  设$(f)$为Noether整环$A$的一个非零真主理想, $\ideal{p}$为$(f)$的一个孤立伴随素理想, 则$h(\ideal{p})=1$.
+\end{theoremnoproof}
+
+在域的有限生成整环中可以得到比\thref{thm:krullhauptidealsatz}更强的结论.
+
+\begin{propositionnoproof}[{{\tjucite[240, Theorem 30][\chap IV, \sec 14, \thm 30]{zariski_commutative_1958}}}]\label{prop:isolatedprimegenerator2height}
+  设$\ideal{a}$是$\kk$的有限生成整环$A$中可以由$r$个元素生成的真子理想, 则$\ideal{a}$的每个孤立伴随素理想都有$h(\ideal{p})\leq r$.
+\end{propositionnoproof}
+
+% Zariski Vol I P241 Theorem 30, 31 生成元与超平面之交的关系 Hartshorne Ex 1.9
+
+\begin{proposition}[{{\tjucite[242, Theorem 31][\chap IV, \sec 14, \thm 31]{zariski_commutative_1958}}}]\label{prop:isolatedprimeheight2generator}
+  设$\ideal{p}$为Noether环$A$中高度为$r$的素理想, 则存在$A$中可以由$r$个元素生成的理想$\ideal{a}$使得$\ideal{p}$为$\ideal{a}$的孤立伴随素理想.
+\end{proposition}
+
+\begin{proof}
+  我们将要归纳构造$r$个元素$a_1, \dotsc, a_r\in\ideal{p}$使得对于每个$j$, 都有$(a_1, \dotsc, a_j)$的每个孤立伴随素理想$\ideal{q}$都满足$h(\ideal{q})\geq j$. $j=0$的情况是平凡的, 假设我们已经对于某个$j<h$构造了$a_1, \dotsc, a_{j}$, 现在来构造$a_{j+1}$. 考虑孤立伴随素理想$\ideal{q}$中高度为$j$的素理想, 其中任意一个都不可能包含$\ideal{p}$, 因此由\thref{prop:prime}\ref{enum:prop-prime-avoid}知它们的并也不可能包含$\ideal{p}$. 取$a_{j+1}$为余集中的任意一个元素, 则由\thref{prop:isolatedprime}知$(a_1, \dotsc, a_{j+1})$的任意一个孤立伴随素理想$\ideal{o}$都包含$\ideal{q}$. 如果$h(\ideal{q})=j$则$\ideal{o}\supsetneqq \ideal{q}$, 因此$h(\ideal{o})\geq j+1$.
+\end{proof}
+
+% Zariski Vol I P241 Theorem 31
+
+% 在唯一分解整环中, 利用素元和不可约元的等价性, 可以得到高度为一的素理想一定是主理想, 并且可以由一个素元生成\tjucite[174, Exercise 21.32]{altman_term_2017}. 我们将要在Noether整环的情况下推广这一结论, 并应用维数理论证明\thref{prop:heightoneideallemma}的逆命题成立.
+
+% \begin{theorem}[Krull主理想定理{{\tjucite[238, Theorem 29]{zariski_commutative_1958}}}]\label{thm:krullhauptidealsatz}
+%   设$(f)$为Noether整环$A$的一个非零真主理想, $\ideal{p}$为$(f)$的一个孤立伴随素理想, 则$h(\ideal{p})=1$.
+% \end{theorem}
+
+% 域的超越指数; Jacobson Vol II P514
+% height and depth; Zariski Vol I 似乎只有定义啊 P240
+% Krull's Hauptidealsatz; Zariski Vol I followed by height and depth
+% minimal ideal theorem; Zariski Vol II

@@ -1,0 +1,139 @@
+\documentclass[noamsthm]{beamer}
+\usetheme{Bergen}
+\title{The Functor \texorpdfstring{$K(X)$}{K(X)}}
+\subtitle{Section 2.1 of Vector Bundle and K-Theory Version 2.2 Written by A. Hatcher}
+\author{Chen Xuyang}
+\date{August 7, 2021}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmathfont{FiraMath-Regular.otf}
+\setmathfontface\lmsansregular{lmsans10-Regular}[Extension = .otf]
+\setoperatorfont\lmsansregular
+\usepackage{tikz-cd}
+\tikzcdset{
+  arrow style=tikz,
+  diagrams={>={Straight Barb[scale=0.8]}}
+}
+\AtBeginDocument{
+  \DeclareMathOperator\Vect{Vect}
+  \newcommand\iso{\approx}
+  \newcommand\BZ{\symbb{Z}}
+  \newcommand\BC{\symbb{C}}
+  \newcommand\rk{\tilde{K}}
+  \newcommand\cat[1]{\symsfup{#1}}
+  \newcommand\orddiv{\mathord{\divslash}}
+  \newcommand\ordsim{\mathord{\sim}}
+  \newcommand\triv[1]{\varepsilon^{#1}}
+}
+\begin{document}
+  \begin{frame}
+    \titlepage
+  \end{frame}
+  \begin{frame}
+    \frametitle{Overview of K-Theory}
+    \begin{itemize}
+      \item We relate a compact Hausdorff topological space to a commutative ring $K(X)$ (resp. $KO(X)$) by complex (resp. real) vector bundles, and the reduced ideals $\tilde K(X)$ and $\tilde{KO}(X)$, s.t.
+      \begin{equation*}
+        K(X)\iso \tilde K(X)\oplus \BZ,\quad KO(X)\iso \tilde{KO}(X)\oplus \BZ\quad\text{as groups.}
+      \end{equation*}
+      \item We focus on the complex case and derive the Bott periodicity theorem as the form of $\rk(S^{n+2})\iso\rk(S^n)$, where the proof consists of two steps:
+        \begin{itemize}
+          \item Prove $K(X\times S^2)\iso K(X)\otimes K(S^2)$;
+          \item Examine the cohomology induced by $\tilde{K}$.
+        \end{itemize}
+      \item We'll cover the first step in this talk.
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Preliminary}
+    \begin{itemize}
+      \item We have defined a collection of contravariant functors $\Vect^n_{\BC}$ from $\cat{Htpy}$ to $\cat{Set}$,
+      \begin{equation*}
+        \begin{tikzcd}[sep=small, ampersand replacement=\&]
+          X \& \mapsto \& \Vect^n_{\BC}(X)\\
+          \& \mapsto\\
+          Y \& \mapsto \& \Vect^n_{\BC}(Y)
+          \arrow[from=1-1,]{3-1}[swap]{f}
+          \arrow[from=1-3,leftarrow,]{3-3}{f^*}
+        \end{tikzcd}%
+      \end{equation*}
+      where $f^*(E_1\oplus E_2)\iso f^*(E_1)\oplus f^*(E_2)$, and $f^*(E_1\otimes E_2)\iso f^*(E_1)\otimes f^*(E_2)$.
+    \end{itemize}
+    \begin{block}{Proposition 1.4}
+      If $X$ is a compact Hausdorff topological space, and $E$ is a vector bundle over $X$. Then there exists a vector bundle $E'$ over $X$ such that $E\oplus E'$ is trivial.
+    \end{block}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Abelian Groups $K(X)$ and $\rk(X)$}
+    \framesubtitle{Convention and the Reduced Group $\rk(X)$}
+    \begin{block}{Convention}
+      In this talk:
+      \begin{itemize}
+        \item A vector bundle means a complex vector bundle.
+        \item Base spaces are assumed to be complex Hausdorff.
+        \item The concept of a vector bundle is extended to allow the dimension function to be only continuous.
+        \item Trivial bundle of dimension $n$ is denoted by $\triv n$.
+      \end{itemize}
+    \end{block}
+    \begin{block}{$\rk(X)$}
+      $\rk(X)\coloneq \Vect(X)\divslash\ordsim$, where $E_1\sim E_2$ iff there exists $m, n$ such that $E_1\oplus \triv m\iso E_2\oplus \triv n$.
+    \end{block}
+    \begin{itemize}
+      \item $\rk(X)$ forms an abelian group w.r.t. operation $\mathord{\oplus}$.
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Abelian Groups $K(X)$ and $\rk(X)$}
+    \framesubtitle{$K$-Group $K(X)$ and Relation Between two Groups}
+    \begin{block}{$K(X)$}
+      Define $K(X)$ to be the Grothendieck group of the commutative monoid $\Vect(X)$.
+    \end{block}
+    \begin{itemize}
+      \item Explicitly, $K(X)=\Vect(X)\times\Vect(X)\divslash\mathord{\iso_{s}}$ where $(E_1, E_2)\iso_s(E_1', E_2')$ iff there exists $n$ such that $E_1\oplus E_2'\oplus\triv{n}\iso E_1'\oplus E_2\oplus\triv{n}$.
+      \item Elements in $K(X)$ can be written as $E-\triv{n}$.
+    \end{itemize}
+    \begin{block}{Relation}
+      \begin{tikzcd}[cramped, sep=small, ampersand replacement=\&]
+        0 \arrow[r] \& K(x) \arrow[r, leftharpoondown, harpoon, "i_x", "j_x"'] \& K(X) \arrow[r, "\pi"] \& \rk(X) \arrow[r] \& 0
+      \end{tikzcd}
+      splits for $x\in X$.
+      \begin{itemize}
+        \item $K(x)\iso \BZ$;
+        \item $i_x(\triv{n})\coloneq\triv{n}$;
+        \item $j_x(E)\coloneq E\vert_x$;
+        \item $\pi(E-\triv{n}) \coloneq E$.
+      \end{itemize}
+    \end{block}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Multiplicative Structures}
+    \begin{block}{Functoriality}
+      $K, \rk$ define contravariant functors from $\cat{Htpy}$ to $\cat{Ab}$.
+    \end{block}
+    \begin{block}{External Tensor Product}
+      Given vector bundles $E$ over $X$ and $F$ over $Y$. Define their external tensor product $E*F$ over $X\times Y$ to be $\pi_{X}^*(E)\otimes\pi_{Y}^*(F)$, where $\pi_X, \pi_Y$ are projection maps from $X\times Y$. It gives rise to a bilinear map $K(X)\times K(Y)\to K(X\times Y)$.
+    \end{block}
+    \begin{block}{$K(X)$}
+      \begin{tikzcd}[cramped, sep=small, ampersand replacement=\&]
+        K(X)\times K(X) \arrow[r] \& K(X\times X) \arrow[r] \& K(X)
+      \end{tikzcd}
+      defines a commutative ring structure with identity on $K(X)$, where the second map is the pullback of diagnoal map $X\to X\times X$.
+    \end{block}
+    \begin{block}{$\rk(X)$}
+      Multiplicative structure on $\rk(X)$ depends on base point $x$, which is given by $\rk(X)\iso \ker(K(X)\to K(x))\subseteq K(X)$.
+    \end{block}
+    \begin{block}{Functoriality, Reprised}
+      $K$ ($\rk$, resp.) defines contravariant functor from $\cat{Htpy}$ ($\cat{Htpy}_*$, resp.) to $\cat{CRing}$ ($\cat{CRng}$, resp.).
+    \end{block}
+  \end{frame}
+  \begin{frame}
+    \frametitle{The Fundamental Product Theorem}
+    \framesubtitle{Overview}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Clutching Function, Generalized}
+    \framesubtitle{To Define Vector Bundles over $X\times S^2$}
+  \end{frame}
+\end{document}

@@ -1,0 +1,47 @@
+\documentclass{0-meta}
+\usepackage{tikz-cd}
+\tikzcdset{
+  arrow style=tikz,
+  diagrams={>={Straight Barb[scale=0.8]}}
+}
+\newcommand{\cat}[1]{\symsfup{#1}}
+\newcommand{\op}{\symup{op}}
+\begin{document}
+  \section{Functor Diagrams}
+  Here is a complete functor diagram:
+  \begin{equation*}
+    \begin{tikzcd}[sep=small, ampersand replacement=\&]
+      |[alias=C]| \cat{C}^{\op} \& \& |[alias=D]| \cat{D}\\
+      |[alias=x]| X \& \mapsto \& |[alias=y]| F(X)\\
+      \& \mapsto\\
+      |[alias=x']| Y \& \mapsto \& |[alias=y']| F(Y)
+      \arrow[from=C,to=D,"F"{},]
+      \arrow[from=x,to=x',"f"{swap,},]
+      \arrow[from=y,to=y',"Ff"{},leftarrow,]
+    \end{tikzcd}%
+  \end{equation*}
+  and here is a functor diagram without explicit mention of the functor and the categories:
+  \begin{equation*}
+    \begin{tikzcd}[sep=small, ampersand replacement=\&]
+      |[alias=x]| X \& \mapsto \& |[alias=y]| F(X)\\
+      \& \mapsto\\
+      |[alias=x']| Y \& \mapsto \& |[alias=y']| F(Y)
+      \arrow[from=x,to=x',"f"{swap,},]
+      \arrow[from=y,to=y',"Ff"{},]
+    \end{tikzcd}%
+  \end{equation*}
+
+  Here are some tips:
+  \begin{itemize}
+    \item Use ``leftarrow" to change the direction of the arrow.
+    \item Use ``swap" to change the position of the label.
+  \end{itemize}
+
+  \section{Inline Diagrams}
+
+  Here is an inline diagram
+  \begin{tikzcd}[cramped, sep=small, ampersand replacement=\&]
+    0 \arrow[r] \& K(x) \arrow[r, leftharpoondown, harpoon, "i_x", "j_x"'] \& K(X) \arrow[r, "\pi"] \& \tilde K(X) \arrow[r] \& 0
+  \end{tikzcd}.
+  Note that one should always keep an eye on the line spacing.
+\end{document}

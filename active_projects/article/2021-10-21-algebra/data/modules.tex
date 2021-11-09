@@ -1,0 +1,66 @@
+% !TeX root = ../algebra.tex
+
+\chapter{Modules}
+
+\section{Basic Structure}
+
+\subsection{Wedderburn-Remak-Krull-Schmidt Theorem}
+
+Every group with operators with composition series can be written uniquely as a finite direct product of indecomposable groups. Hence one can classify all finte groups if one knows all finite indecomposable groups.
+
+We need the following properties of a normal endomorphism:
+\begin{enumerate}
+  \item A normal endomorphism preserves normal subgroups.
+  \item The composition of two normal endomorphisms is normal.
+  \item The sum of two normal endomorphisms is normal.
+  \item The canonical idempotents of a biproduct are normal.
+\end{enumerate}
+
+\begin{proposition}[Fitting's Lemma]
+  Suppose a group $G$ admit composition series with respect to its normal subgroups and let $f\colon G\to G$ be a normal endomorphism. Then $G$ is the biproduct of $f^{\infty}(G)$ and $f^{-\infty}(1)$, where $f$ is an automorphism on $f^{\infty}(G)$ while $f$ is a nilpotent endomorphism on $f^{\infty}(G)$.
+\end{proposition}
+
+\begin{corollary}
+  Let $f$ be an endomorphism on an indecomposable group $G$. Then $f$ is either isomorphic or nilpotent.
+\end{corollary}
+
+\begin{corollary}
+  Let $G$ be a group and $H$ be an indecomposable group and let $f\colon G\to H$ and $g\colon H\to G$ be morphisms such that $gf$ is an isomorphism on $G$ and $fg$ is a normal endomorphism on $H$. Then both $f$ and $g$ are isomorphisms.
+\end{corollary}
+
+\begin{proof}
+  Observe that $(gf)^{n+1}=g(fg)^{n}f$ implies that $fg$ cannot be nilpotent.
+\end{proof}
+
+\begin{definition}
+  A group is called strongly indecomposable only if that the sum $f+g$ of normal endomorphisms of $G$ is an isomorphism implies that either $f$ or $g$ is an isomorphism.
+\end{definition}
+
+\begin{proposition}
+  A strongly indecomposable group is indecomposable.
+\end{proposition}
+
+\begin{proof}
+  Suppose $G\cong G_1\times G_2$, then the canonical idempotent maps $i_1p_1$ and $i_2p_2$ are normal endomorphisms and their sum is an isomorphism.
+\end{proof}
+
+\begin{proposition}
+  An indecomposable group with composition series is strongly indecomposable.
+\end{proposition}
+
+\begin{proof}
+  If $f$, $g$ is nilpotent and $f+g$ is an endomorphism, then $f+g$ is nilpotent. (Also corollary of Fitting's lemma.)
+\end{proof}
+
+\begin{theorem}[Wedderburn-Remak-Krull-Schmidt Theorem]
+  Let $G$ be a group with composition series and $g$ be a group isomorphism between $G$ and $H$. Then $G, H$ admits decompositions into indecomposable groups respectively. And after possibly change of indices of $H_j$, we have \begin{equation}
+    G\cong g^{-1}(H_1)\times \dotsb g^{-1}(H_r) \times G_{r+1}\times \dotsb \times G_m
+  \end{equation}
+  for each $r$.
+\end{theorem}
+
+\begin{proof}
+  Let $e_j$, $f_j$ denote the canonical idempotents of $G$ and $H$. Define $k_j=f_jge_1$ and $h_j=e_1g^{-1}f_j$. Then the restriction of $h_jk_j$ on $G_1$ is a normal endomorphism for all $j$, and their sum is an automorphism. Assume the restriction of $h_1k_1$ is an automorphism. Then both $h_1$ and $k_1$ are isomorphisms.
+
+  We claim that $G\cong g^{-1}(H_1)\times G_2\times \dotsb\times G_m$. $G_1 = h_1(H_1)=e_1(g^{-1}(H_1))$ implies that $G$ is the product of these subgroups. If $x$ in the intersection of $g^{-1}(H_1)$ and the rest product, then $e_1(x)=e_1(g(y))=0$. It implies from the fact that $k_1$ is an isomorphism that $y=0$ and hence $x=g(y)=0$.
+\end{proof}

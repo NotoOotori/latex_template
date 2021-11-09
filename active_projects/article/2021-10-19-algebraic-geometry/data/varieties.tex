@@ -1,0 +1,48 @@
+% !TeX root = ../ag.tex
+
+\chapter{Varieties}
+
+\begin{theorem}
+  Let $Y$ be a projective variety and $X$ be any variety. Then the projection  $\pi\colon X\times Y\to X$ is a closed map.
+\end{theorem}
+
+\begin{corollary}
+  Let $X$ be a projective variety. Then any regular map $f\colon X\to \PP^n$ is closed.
+\end{corollary}
+
+\begin{corollary}
+  A regular function on a projective variety is constant.
+\end{corollary}
+
+\begin{corollary}
+  Let $X\subseteq \PP^n$ be a connected projective variety and $X$ is not a point. Then any hypersurface $H$ of $\PP^n$ intersects $X$.
+\end{corollary}
+
+\section{Dimension}
+
+\subsection{Dimension and Defining Equations}
+
+\begin{theorem}
+  Suppose that $X$ is a quasi-projective variety of $\PP^N$. Let $F_1, \dotsc, F_r$ be homogeneous polynomials.
+  \begin{enumerate}
+    \item If $X$ is of pure dimension $n$, then each nonempty components of $X\cap V(F_1\cap \dotsb\cap F_r)$ has dimension greater than or equal to $n-r$.
+    \item If $X$ is projective of dimension $n$, then $X\cap V(F_1\cap \dotsb\cap F_r)$ is nonempty.
+  \end{enumerate}
+\end{theorem}
+
+\subsection{Generally Finite Maps}
+
+\begin{theorem}
+  Let $X$ and $Y$ be irreducible varieties and $f\colon X\to Y$ be a dominant morphism. Then a general fiber of $f$ is finite if and only if $f^*\colon K(Y)\to K(X)$ induces a finite extension of fields.
+
+  Moreover, we have $\DIM X=\DIM Y$, and for a general $y\in Y$, we have $\#f^{-1}(y)\leq [K(X):K(Y)]$, where the equality holds if $K(X):K(Y)$ is separable.
+\end{theorem}
+
+\subsection{Morphisms and Dimension}
+
+\begin{theorem}
+  Let $\varphi\colon X\to \PP^n$ be a morphism. Then the function $\delta\colon x\in X\mapsto \DIM_x (X_x)\in \NN$ is upper-continuous. Moreover, if $X$ is irreducible, then
+  \begin{equation}
+    \DIM (X)=\DIM (Y) + \MIN_{x\in X}\delta(x).
+  \end{equation}
+\end{theorem}

@@ -5,6 +5,8 @@
 
 % -------------------- Settings --------------------
 
+\usepackage{pdfpages}
+
 % Title
 
 \title{\LaTeX 作业模板}
@@ -47,7 +49,7 @@
 
 \begin{document}
   \renewcommand{\thepage}{Cover}
-  \maketitle
+  \includepdf{cover.pdf}
 
   \frontmatter
 
@@ -65,5 +67,10 @@
   \chapter{簇}
 
   \input{data/chap01.tex}
+
+  \clearpage
+  \pagenumbering{arabic}
+  \renewcommand{\thepage}{O\arabic{page}}
+  \includepdf[pages=-]{origin.pdf}
 
 \end{document}

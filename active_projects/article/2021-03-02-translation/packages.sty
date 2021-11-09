@@ -39,27 +39,27 @@
 
 %% `fancyhdr': page style
 
-\newif\iffancyhdr@loaded
-\@ifpackageloaded{fancyhdr}{\fancyhdr@loadedtrue}{\fancyhdr@loadedfalse}
+% \newif\iffancyhdr@loaded
+% \@ifpackageloaded{fancyhdr}{\fancyhdr@loadedtrue}{\fancyhdr@loadedfalse}
 
-\iffancyhdr@loaded\else
-    \RequirePackage{fancyhdr}
-    \RequirePackage{lastpage}
+% \iffancyhdr@loaded\else
+%     \RequirePackage{fancyhdr}
+%     \RequirePackage{lastpage}
 
-    \pagestyle{fancy}
-    \pagenumbering{arabic}
+%     \pagestyle{fancy}
+%     \pagenumbering{arabic}
 
-    \newcommand{\PageHead}[2]{\ifctex@loaded{第#1页\ 共\ #2\ 页}\else{Page #1\ of #2}\fi}
+%     \newcommand{\PageHead}[2]{\ifctex@loaded{第#1页\ 共\ #2\ 页}\else{Page #1\ of #2}\fi}
 
-    \renewcommand{\headrulewidth}{0.4pt}
-    \setlength{\headheight}{15pt}
-    \fancyhead[L]{}
-    \fancyhead[C]{}
-    \fancyhead[R]{\footnotesize{\PageHead{\thepage}{\pageref{LastPage}}}}
-    \fancyfoot[L, C]{}
-    \fancyfoot[C]{}
-    \fancyfoot[R]{}
-\fi
+%     \renewcommand{\headrulewidth}{0.4pt}
+%     \setlength{\headheight}{15pt}
+%     \fancyhead[L]{}
+%     \fancyhead[C]{}
+%     \fancyhead[R]{\footnotesize{\PageHead{\thepage}{\pageref{LastPage}}}}
+%     \fancyfoot[L, C]{}
+%     \fancyfoot[C]{}
+%     \fancyfoot[R]{}
+% \fi
 
 %% `hyperref'
 

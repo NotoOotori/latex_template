@@ -37,13 +37,16 @@
   includeheadfoot,
 }
 
+\RequirePackage{enumitem}
+\setlist*{nosep}
+
 \usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
 \AtEndPreamble{\RequirePackage{hyperref}}
 
 % One should always load \usepackage{hyperref} before the first use of \newtheorem to obtain correct handling and referencing of counters.
 \AtBeginDocument{
   \theoremstyle{plain}
-  \theoremheaderfont{\bfseries\upshape}\theorembodyfont{\itshape}
+  \theoremheaderfont{\bfseries\upshape}\theorembodyfont{\upshape}
   \theoremindent0pt
   \newtheorem{theorem}{Theorem}
   \newtheorem{corollary}[theorem]{Corollary}

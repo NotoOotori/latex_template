@@ -2,6 +2,12 @@
 
 \chapter{Varieties}
 
+In this chapter, a variety always means a quasi-projective variety.
+
+\section{Projective Varieties}
+
+\subsection{Image of Regular Maps}
+
 \begin{theorem}
   Let $Y$ be a projective variety and $X$ be any variety. Then the projection  $\pi\colon X\times Y\to X$ is a closed map.
 \end{theorem}
@@ -25,10 +31,16 @@
 \begin{theorem}
   Suppose that $X$ is a quasi-projective variety of $\PP^N$. Let $F_1, \dotsc, F_r$ be homogeneous polynomials.
   \begin{enumerate}
-    \item If $X$ is of pure dimension $n$, then each nonempty components of $X\cap V(F_1\cap \dotsb\cap F_r)$ has dimension greater than or equal to $n-r$.
-    \item If $X$ is projective of dimension $n$, then $X\cap V(F_1\cap \dotsb\cap F_r)$ is nonempty.
+    \item If $X$ is of pure dimension $n$, then each nonempty components of $X\cap V(F_1, \dotsc, F_r)$ has dimension greater than or equal to $n-r$.
+    \item If $X$ is projective of dimension $n$ and $r\leq n$, then $X\cap V(F_1, \dotsc, F_r)$ is nonempty.
   \end{enumerate}
 \end{theorem}
+
+The key is the Krull's Hauptidealsatz.
+
+\begin{corollary}
+    The hypersurfaces of $\AAA^n$ (resp. $\PP^n$) are the subvarieties of pure dimension $n-1$.
+\end{corollary}
 
 \subsection{Generally Finite Maps}
 
@@ -38,11 +50,41 @@
   Moreover, we have $\DIM X=\DIM Y$, and for a general $y\in Y$, we have $\#f^{-1}(y)\leq [K(X):K(Y)]$, where the equality holds if $K(X):K(Y)$ is separable.
 \end{theorem}
 
+\begin{corollary}
+    Let $X$ be an irreducible variety of dimension $n$. Then there exists a dominant morphism $f\colon X\to \PP^n$ with finite fibers.
+\end{corollary}
+
+\begin{corollary}
+    Let $X, Y$ be varieties. Then $\DIM(X\times Y)=\DIM(X)+\DIM(Y)$.
+\end{corollary}
+
 \subsection{Morphisms and Dimension}
 
+Let $\varphi\colon X\to Y$ be a morphism between varieties. For every $x\in X$, write $X_x\coloneq \varphi^{-1}(\varphi(x))$ the fiber of $\varphi$ containing $x$.
+
 \begin{theorem}
-  Let $\varphi\colon X\to \PP^n$ be a morphism. Then the function $\delta\colon x\in X\mapsto \DIM_x (X_x)\in \NN$ is upper-continuous. Moreover, if $X$ is irreducible, then
-  \begin{equation}
-    \DIM (X)=\DIM (Y) + \MIN_{x\in X}\delta(x).
-  \end{equation}
+  Let $\varphi\colon X\to \PP^n$ be a morphism. Then the function $\delta\colon x\in X\mapsto \DIM_x (X_x)\in \NN$ is upper semi-continuous, i.e. the set $X(r)\coloneq \DIM_x (X_x)\geq r$ is closed. Moreover, if $X$ is irreducible, then
+  \begin{equation*}
+    \DIM (X)=\DIM (\overline{\varphi(X)}) + \MIN_{x\in X}\delta(x).
+  \end{equation*}
 \end{theorem}
+
+\begin{corollary}
+    Let $X$ be an irreducible variety, and let $\varphi\colon X\to \PP^n$ be a morphism with $Y=\overline{\varphi(X)}$. Then
+    \begin{enumerate}
+      \item for any $y\in \varphi(X)$, any component of $\varphi^{-1}(y)$ has dimension no less than $\DIM(X) - \DIM(Y)$;
+      \item for a general point $y\in Y$, $\varphi^{-1}(y)$ is of pure dimension $\DIM(X)-\DIM(Y)$.
+    \end{enumerate}
+\end{corollary}
+
+Let $X'$ be an irreducible component of $\varphi^{-1}(y)$. If $x\in X'$ such that $x$ is not contained in any other irreducible component of $\varphi^{-1}(y)$, then $\DIM_x(X_x)=\MIN_{x\in X} \delta(x)$.
+
+\begin{corollary}
+    Let $\varphi\colon X\to Y$ be a closed morphism between varieties. Then the function $y\mapsto \DIM(\varphi^{-1}(Y))$ is upper semi-continuous.
+\end{corollary}
+
+\begin{proposition}
+    Let $\varphi\colon X\to Y$ be a closed surjective morphism. Assume that $Y$ is irreducible and all fibers of $\varphi$ are irreducible of dimension $r$. Then $X$ is irreducible of dimension $\DIM(Y)+r$.
+\end{proposition}
+
+This is an important proposition to show a variety is irreducible.

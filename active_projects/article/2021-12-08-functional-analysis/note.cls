@@ -16,6 +16,8 @@
 
 % -------------------- More Declarations --------------------
 
+\PassOptionsToPackage{quiet}{fontspec}
+
 \LoadClass[10pt]{book}
 
 \RequirePackage{etoolbox}
@@ -25,8 +27,9 @@
 \RequirePackage{geometry}
 \RequirePackage{enumitem}
 
+\emergencystretch=.5em
+
 \setmainfont{TeX Gyre Pagella}
-\setmathfont{Asana Math}
 
 \geometry{
   paperwidth = 6in,
@@ -37,6 +40,54 @@
   bottom = 0.5in,
   includeheadfoot,
 }
+
+\setmathfont{Asana Math}
+\unimathsetup{%
+  math-style = ISO,
+  bold-style = ISO,
+  nabla = upright,
+  partial = upright,
+}
+\setmathfont{texgyretermes-regular}[
+  Extension = .otf,
+  range = up/{num},
+  BoldFont = texgyretermes-bold,
+]
+\setmathfont{texgyretermes-bold}[
+  Extension = .otf,
+  range = bfup/{num},
+  BoldFont = texgyretermes-bold,
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  StylisticSet = 8,
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  StylisticSet = 1,
+  range = {cal, bfcal},
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  range = it/{greek,Greek,latin,Latin},
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  range = up/{greek,Greek,latin,Latin},
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  range = {
+    "2212,"002B,"003D,"0028,"0029,"005B,%
+    "005D,"221A,"2211,"2248,"222B,"007C,"2026,"2202,"00D7,"0302,%
+    "2261,"0025,"22C5,"00B1,"2194,"21D4%
+  },
+]
 
 \usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
 \AtEndPreamble{\RequirePackage{hyperref}}
@@ -66,6 +117,15 @@
   \theoremsymbol{}
 }
 
-\emergencystretch=.5em
+\renewcommand{\maketitle}{%
+  \thispagestyle{empty}
+  \vspace*{\fill}
+  \begin{center}
+    \Huge\bf\@title
+  \end{center}
+  % \vspace{10cm}
+  \vfill % equivalent to \vspace{\fill}
+  \cleardoublepage
+}
 
 \endinput

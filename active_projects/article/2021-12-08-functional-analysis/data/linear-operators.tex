@@ -1,0 +1,257 @@
+% !TeX encoding = UTF-8
+
+\chapter{Linear Operators}
+
+\section{Hahn-Banach Theorem}
+
+In this section, we may assume all vector spaces to be over $\RR$. To show the corresponding theorems of vector spaces over $\CC$, one may observe that a complex linear functional $l$ can be expressed by its real part $u$, which is a real linear functional, as $l(x)=u(x)-iu(ix)$.
+
+Amenable semigroup actions are fairly important since some forms of Hahn-Banach theorem can preserve this kind of action. Note that in functional analysis, a semigroup is always required to admit an identity element. For amenable semigroups, we admit the fact that
+\begin{itemize}
+  \item any commutative semigroup is amenable, and that
+  \item the group of rigid motions of 2-dimensional space is amenable.
+\end{itemize}
+
+\begin{definition}
+  Let $X$ be a real linear space and let $p$ be a function $X\to \RR$. $p$ is called to be sublinear only if it satisfies
+  \begin{equation*}
+    \begin{aligned}
+      p(tx)=tp(x) &\text{\enskip for all } t>0 \text{ and all }x\in X,\\
+      p(x+y)\leq p(x)+p(y)&\text{\enskip for all }x, y\in X.
+    \end{aligned}
+  \end{equation*}
+  $p$ is called to be a seminorm only if it satisfies
+  \begin{equation*}
+    \begin{aligned}
+      p(x)\geq 0 &\text{\enskip for all x\in X},\\
+      p(tx)=\ABS tp(x) &\text{\enskip for all } t\in\RR \text{ and all }x\in X,\\
+      p(x+y)\leq p(x)+p(y)&\text{\enskip for all }x, y\in X.
+    \end{aligned}
+  \end{equation*}
+\end{definition}
+
+\begin{theorem}[Hahn-Banach Theorem (Analytic Form)]
+  Let $X$ be a real linear space and let $p$ be a sublinear functional on $X$. Let $Y$ be a subspace of $X$ and let $l$ be a linear function on $Y$ that satisfies
+  \begin{equation*}
+    l(y)\leq p(y) \text{\enskip for all } y\in Y.
+  \end{equation*}
+  Then there exists a linear functional $\tilde l\colon X\to\RR$ that satisfies
+  \begin{equation*}
+    \tilde l(y)=l(y)\text{\enskip for all }y\in Y\text{\quad and\quad} \tilde l(x)\leq p(x) \text{\enskip for all } x\in X.
+  \end{equation*}
+\end{theorem}
+
+\begin{corollary}
+  Let $X$ be a real normed linear space. Let $Y$ be a subspace of $X$ and let $l$ be a continuous linear functional on $Y$. Then there exists a continuous linear functional $\tilde l\colon X\to\RR$ that satisfies
+  \begin{equation*}
+    \tilde l(y)=l(y)\text{\enskip for all }y\in Y\text{\quad and\quad} \NORM{\tilde l}_{X'}=\NORM{l}_{Y'}.
+  \end{equation*}
+\end{corollary}
+
+\begin{hint}
+  Take $p(x)=\NORM{l}_{Y'}\,\NORM{x}_X$ and then apply the analytic form of Hahn-Banach theorem.
+\end{hint}
+
+\begin{example}
+  We may show the existence of a finite-additive measure $\mu$ on $\RR$ such that $\mu((a, b])=b-a$ for all $a\leq b$. Let
+  \begin{equation*}
+    X = \{f\colon\RR\to\RR\VERT f\text{ is bounded with compact support}\}\subseteq\CAT{Set}(\RR, \RR),
+  \end{equation*}
+  and let
+  \begin{equation*}
+    Y = \{f=\sum_{j=1}^nc_j\chi_{(a_j, b_j]}\VERT n\in\ZZ_+, c_j\in\RR, a_j\leq b_j\}\subseteq X.
+  \end{equation*}
+  Define
+  \begin{equation*}
+    l\colon f=\sum_{j=1}^n\chi_{(a_j, b_j]}\in Y\mapsto \sum_{j=1}^n c_j(b_j-a_j)
+  \end{equation*}
+  to be a linear functional on $Y$ and define
+  \begin{equation*}
+    p\colon f\in X\mapsto \inf_{g\geq f, g\in Y}l(g)
+  \end{equation*}
+  to be a sublinear functional such that $l\leq p\vert_Y$. Apply the analytic form of Hahn-Banach theorem, we obtain a positive linear functional $\tilde l$ extending $l$. Finally, we can define $\mu(E)=\tilde l(\chi_E)$ for any bounded set $E$ and define
+  \begin{equation*}
+    \mu(F)=\lim_{n\to\infty}\mu(E\cap (-n, n])
+  \end{equation*}
+  for any subset $F$ of $\RR$.
+\end{example}
+
+\begin{theorem}{(\bf Hahn-Banach Theorem (Analytic Form with Amenable Semigroup Action))}
+  Let $X$ be a real linear space, let $G$ be an amenable semigroup that acts on $X$, and let $p$ be a sublinear functional on $X$ that satisfies
+  \begin{equation*}
+    p(gx)\leq p(x) \text{\enskip for all } g\in G \text{ and all } x\in X.
+  \end{equation*}
+  Let $Y$ be a subspace of $X$ such that $GY\subseteq Y$ and let $l$ be a linear function on $Y$ that satisfies
+  \begin{equation*}
+    \begin{aligned}
+      l(y)\leq p(y) &\text{\enskip for all } y\in Y,\\
+      l(gy)=l(y)&\text{\enskip for all } g\in G \text{ and all }y\in Y.
+    \end{aligned}
+  \end{equation*}
+  Then there exists a linear functional $\tilde l\colon X\to\RR$ that satisfies
+  \begin{equation*}
+    \tilde l(y)=l(y)\text{\enskip for all }y\in Y\text{\quad and\quad} \tilde l(x)\leq p(x) \text{\enskip for all } x\in X.
+  \end{equation*}
+\end{theorem}
+
+\begin{example}
+  We may show the existence of a translation-invariant finite-additive measure on $\RR$ and $\RR^2$ compatible with the Lebesgue measure.
+\end{example}
+
+\begin{example}
+  Banach limit of $l^\infty(\NN)$. $Y=\{\lim x_n \text{ exists}\}$, $l\colon Y\to\RR$ sends $x_n$ to $\lim x_n$.
+\end{example}
+
+We are to define the Minkowski functional, which connects geometry and analysis.
+
+\begin{definition}
+  Let $V$ be an absorbing convex subset of a real linear space $X$. Then we define the Minkowski functional $p$ of $V$ by
+  \begin{equation*}
+    p\colon x\in X\mapsto \inf_{t\geq 0}\{x\in tV\}\in\RR.
+  \end{equation*}
+\end{definition}
+
+\begin{proposition}
+  Let $V$ be an absorbing convex subset of a real linear space $X$, and let $p$ be the Minkowski function of $V$.
+  \begin{enumerate}
+    \item $p$ satisfies
+    \begin{equation*}
+      \begin{aligned}
+        p(x)\geq 0,&\\
+        p(tx)=tp(x) &\text{\enskip for all }t\geq 0,\\
+        p(x+y)\leq p(x)+p(y) &\text{\enskip for all } x, y\in X.
+      \end{aligned}
+    \end{equation*}
+    \item If $-V=V$ (or in particular if $V$ is balanced), then $p$ also satisfies
+    \begin{equation*}
+      p(tx)=\ABS tp(x)\text{\enskip for all }t\in\RR,
+    \end{equation*}
+    \item If $X$ is a topological linear space and $V$ contains the origin as its interior point, then $p$ is continuous.
+  \end{enumerate}
+\end{proposition}
+
+\begin{theorem}[Hahn-Banach Theorem (Geometric Form)]
+  Let $V$ be a absorbing convex subset of a real linear space $X$, and let $p$ be the Minkowski functional of $V$. Suppose $x_o\notin V$. Then there is a linear functional $l$ on $X$ that satisfies
+  \begin{equation*}
+    l(x)\leq p(x)\text{\enskip for all }x\in X\text{\quad and\quad}l(x_0)=1.
+  \end{equation*}
+  In particular, $l$ satisfies
+  \begin{equation*}
+    l(x)\leq 1\text{\enskip for all }x\in V.
+  \end{equation*}
+\end{theorem}
+
+\begin{hint}
+  Take $Y$ to be the linear subspace spanned by $x_0$, and define a linear functional $l$ on $Y$ such that $l(x_0)=1$.
+\end{hint}
+
+\begin{theorem}[Hahn-Banach Separation Theorem]
+  Let $V$ and $W$ be two disjoint nonempty convex subsets of a real linear space $X$.
+  \begin{enumerate}
+    \item If $V$ is absorbing after a possible translation, then there is a nonzero linear functional $l$ on $X$ that satisfies
+    \begin{equation*}
+        \sup_{x\in V}l(x)\leq\inf_{y\in W}l(y).
+      \end{equation*}
+    \item If $X$ is normed and $V$ contains an interior point, then there is a continuous linear functional $l$ on $X$that satisfies
+    \begin{equation*}
+      \sup_{x\in V}l(x)\leq\inf_{y\in W}l(y).
+    \end{equation*}
+    \item If $X$ is normed and $\DIST(V, W)>0$, then there is a continuous linear functional $l$ on $X$ that satisfies
+    \begin{equation*}
+      \sup_{x\in V}l(x)<\inf_{y\in W}l(y).
+    \end{equation*}
+  \end{enumerate}
+\end{theorem}
+
+\begin{hint}
+  For (1), by a possible translation, assume $V$ to be absorbing (and hence to contain the origin). Then fix a point $y_0\in W$ and apply the geometric form of the Hahn-Banach theorem to the absorbing convex subset $V+(-W)+y_0$, which yields the existence of a linear functional that satisfies
+  \begin{equation*}
+    l(x-y)\leq 0\text{\enskip for all }x\in V\text{ and all }y\in W.
+  \end{equation*}
+
+  For (2), recall that if a convex subset contains the origin as its interior point, then its Minkowski functional is continuous, and hence is bounded.
+
+  For (3), first, denote $d=\DIST(V, W)$, and let $\tilde V = V + \{x\in X\VERT \NORM x< d\DIV 2\}$, where $\tilde V$ is open convex and doesn't intersect $W$. Next, find an element $x_0\in \{x\in X\VERT \NORM x< d\DIV 2\}$ such that $l(x_0)>0$. Then there is the inequality
+  \begin{equation*}
+    \sup_{x\in V}l(x)<\sup_{x\in V}l(x+x_0)\leq\sup_{x\in\tilde V}l(x)\leq \inf_{y\in W}l(y).
+  \end{equation*}
+\end{hint}
+
+\begin{theorem}{\bf (Hahn-Banach Separation Theorem (Topological Form))}
+  Let $X$ be a topological linear space, and let $V$ and $W$ be two disjoint nonempty convex subsets of $X$.
+  \begin{enumerate}
+    \item If $V$ contains an interior point, then there exists a continuous linear functional $l$ on $X$ and a real number $\gamma$ that satisfies
+    \begin{equation*}
+      \begin{aligned}
+        l(x)\leq\gamma\leq l(y)&\text{\enskip for all }x\in V\text{ and all }y\in W,\\
+        l(x)<\gamma\leq l(y)&\text{\enskip for all }x\in \INT V\text{ and all }y\in W.
+      \end{aligned}
+    \end{equation*}
+    In particular, if $V$ is open, then $l$ and $\gamma$ satisfies
+    \begin{equation*}
+      l(x)<\gamma\leq l(y)\text{\enskip for all }x\in V\text{ and all }y\in W.
+    \end{equation*}
+    \item If $X$ is locally convex, $V$ is compact, and $V$ and $W$ are separated (i.e., $V\cap \CL W=\varnothing$), then there exists a continous linear functional $l$ on $X$ and two real numbers $\gamma_1<\gamma_2$ that satisfies
+    \begin{equation*}
+      l(x)<\gamma_1<\gamma_2 < l(y)\text{\enskip for all }x\in V\text{ and all }y\in W.
+    \end{equation*}
+    \item If $X'$ separates $X$, and $V$ and $W$ are compact, then there exists a continous linear functional $l$ on $X$ and two real numbers $\gamma_1<\gamma_2$ that satisfies
+    \begin{equation*}
+      l(x)<\gamma_1<\gamma_2 < l(y)\text{\enskip for all }x\in V\text{ and all }y\in W.
+    \end{equation*}
+  \end{enumerate}
+\end{theorem}
+
+\begin{hint}
+  For (1), continuity of $l$ follows from the continuity of the Minkowski functional, while the second part follows from the fact that any nonzero linear functional is an open map (proved by the fact that the scalar multiplication is continuous).
+
+  For (2), we claim the existence of a convex neighbourhood $U$ of the origin such that the convex open subset $U+V$ doesn't intersect $W$. Apply (1) and note that $l(V)$ is compact.
+
+  For (3), equip $X$ with its weak topology, denoted by $X_w$, and observe that
+  \begin{itemize}
+    \item $X_w$ is a locally convex topological linear space, that
+    \item $V$ and $W$ are compact as subspaces of $X_w$, and that
+    \item $(X_w)'\cong X'$ as topological linear spaces.
+  \end{itemize}
+\end{hint}
+
+\begin{corollary}[Mazur]
+  Let $X$ be a locally convex topological linear space, $M$ a linear subspace, and $V$ a convex subset disjoint from $M$ with nonempty interior. Then there exists a continuous linear functional $l$ on $X$ that satisfies
+  \begin{equation*}
+    l(x) \leq 0\text{\enskip for all }x\in V\text{,\quad}l(x) < 0\text{\enskip for all }x\in \INT V\text{,\quad and \quad}l(y) = 0\text{\enskip for all }y\in M.
+  \end{equation*}
+\end{corollary}
+
+\begin{hint}
+  Apply part (2) of the previous theorem.
+\end{hint}
+
+\begin{theorem}{\bf (Hahn-Banach Theorem (Topological Form))}
+  Let $X$ be a locally convex topological linear space, $M$ a linear subspace, and $l$ a continuous linear functional on $M$. Then there exists a continuous linear functional $\tilde l$ on $X$ that satisfies
+  \begin{equation*}
+    \tilde l(y)=l(y)\text{\enskip for all }y\in M.
+  \end{equation*}
+\end{theorem}
+
+\begin{hint}
+  Pick a point $x_0\in M$ such that $l(x_0)=1$, and then apply part (2) of the topological form of the Hahn-Banach separation theorem with $V$ to be $x_0$ and with $W$ to be the zero locus of $f$. Observe
+  \begin{equation*}
+    x=l(x)x_0+(x-l(x)x_0)\text{\enskip lor all }x\in M.
+  \end{equation*}
+\end{hint}
+
+The theory of extreme points is closedly related to optimization theory. The next theorem states about the relationship between a compact convex set and its extreme points in a manner of combinatorical topology.
+
+\begin{theorem}[Krein-Milman]
+  Let $X$ be a topological linear space such that $X'$ separates $X$, and $K$ a nonempty compact subset of $X$.
+  \begin{enumerate}
+    \item $\EXT K$ is nonempty.
+    \item If $K$ is convex, then $K=\CLCO\EXT K$.
+    \item If $X$ is locally convex, then $K\subseteq \CLCO\EXT K$.
+    \item If $X$ is locally convex, and $S\subseteq K$ satisfies $\CLCO S=\CLCO \EXT K$, then $\EXT K\subseteq\CL S$.
+  \end{enumerate}
+\end{theorem}
+
+% 优化问题
+% 拓扑线性空间 Banach-Alaogue定理
+% 锥版本 Krein-Riesz定理

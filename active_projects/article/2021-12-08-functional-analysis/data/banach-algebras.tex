@@ -1,6 +1,6 @@
 % !TeX encoding = UTF-8
 
-\chapter{Banach Algebra}
+\chapter{Banach Algebras}
 
 Here are some typical examples of Banach algebras: algebra of functions, operator algebra and group algebra. In this chapter, we are concerning about complex Banach algebras (with identity) and their spectrums.
 
@@ -23,24 +23,24 @@ Here are some examples of a Banach algebra.
 \end{itemize}
 
 \begin{example}
-  $L^1(\RR)$ does not admit an identity. Consider $f = \chi_{[0, 1]}$, and recall the fact that $L^1(\RR)$ functions are continuous w.r.t. translation.
+  $L^1(\RR)$ does not admit an identity. Consider $f = \chi_{[0, 1]}$, and recall the fact that $L^1(\RR)$ functions are continuous with respect to translation.
 \end{example}
 
 \begin{proposition}
   Let $\BA{A}$ be a Banach algebra, then
-  \begin{enumerate}[label=(\arabic*)]
+  \begin{enumerate}
     \item If $x\in \BA{A}$ and $\NORM{x}<1$, then $1-x$ is invertible with inverse $(1-x)^{-1}=\sum_{n=0}^\infty x^n$, and we have $\NORM{(1-x)^{-1}}\leq (1-\NORM{x})^{-1}$;
     \item Suppose $x\in \BA{A}^\times$ and $h\in \BA{A}$ satisfies $\NORM{h}\leq\NORM{x^{-1}}^{-1}\DIV 2$. Then $x+h\in \BA{A}^{\times}$, with $\NORM{(x+h)^{-1}-x^{-1}}\leq 2\NORM{x^{-1}}^2\,\NORM{h}$;
     \item $\BA{A}^\times$ is open, and the map $x\mapsto x^{-1}$ defines a homeomorphism on $\BA{A}^\times$.
   \end{enumerate}
 \end{proposition}
 
-\begin{sketch}
-  For (ii), observe that
+\begin{hint}
+  For (2), observe that
   \begin{equation}
     (x+h)^{-1}-x^{-1}=(x+h)^{-1}(x-(x+h))x^{-1}=-(1+x^{-1}h)x^{-1}hx^{-1}.
   \end{equation}
-\end{sketch}
+\end{hint}
 
 Recall that if $X$ is a Banach space and $A\in B(X)$, then $A-\lambda$ is invertible if and only if $A-\lambda$ is bijective by the inverse mapping theorem.
 
@@ -57,14 +57,14 @@ Recall that if $X$ is a Banach space and $A\in B(X)$, then $A-\lambda$ is invert
 
 \begin{proposition}
   Let $\BA A$ be a Banach algebra and let $x\in \BA A$. Then
-  \begin{enumerate}[label=(\arabic*)]
+  \begin{enumerate}
     \item $\sigma(x)$ is not empty;
     \item $\sigma(x)$ is compact (or is both closed and bounded) and $r(x)\leq \NORM x$;
     \item $r(x)=\max\{\ABS{\lambda}\VERT \lambda\in \sigma(x)\}=\lim_{n\to\infty}\NORM{x^n}^{1\DIV n}$.
   \end{enumerate}
 \end{proposition}
 
-\begin{sketch}
+\begin{hint}
   For (1), assume $\sigma(x)$ is empty. Define $F\colon \lambda\in\CC\mapsto (f-\lambda)^{-1}\in \BA A$. Show by direct calculation that $F$ is differentialable (by the fact that inverse is continuous) and that $\lim_{\lambda\to\infty} \NORM{F(\lambda)}=0$. Then derive the contradiction using the Liouville's theorem (if $fF$ is constant for every $f\in B(\BA A)$, then $F$ must be constant).
 
   For (2), use the continuous function $\lambda\in\CC\to f-\lambda\in\BA A$ to show $\sigma(x)$ is closed, and use the equality $x-\lambda=\lambda(x\DIV\lambda-1)$ to show $r(x)\leq \NORM{x}$.
@@ -81,7 +81,7 @@ Recall that if $X$ is a Banach space and $A\in B(X)$, then $A-\lambda$ is invert
   \begin{equation*}
     r(x)\geq \limsup\NORM{x^n}^{1\DIV n}.
   \end{equation*}
-\end{sketch}
+\end{hint}
 
 \begin{example}
   Let $V\colon C[a, b]\to C[a, b]$ sending $f$ to the function $x\mapsto \int_a^x f(t)\DIFF t$. Then $V\in B(C[a, b])$ and
@@ -93,7 +93,7 @@ Recall that if $X$ is a Banach space and $A\in B(X)$, then $A-\lambda$ is invert
 
 \begin{proposition}
   Let $\BA B$ be a Banach algebra and let $\BA A\subseteq \BA B$ be a closed subalgebra. Suppose $x\in\BA A$. Then
-  \begin{enumerate}[label=(\arabic*)]
+  \begin{enumerate}
     \item $r_{\BA A}(x) = r_{\BA B}(x) = \lim_{n\to\infty}\NORM{x^n}^{1\DIV n}$;
     \item $\partial\sigma_{\BA A}(x)\subseteq\sigma_{\BA B}(x)\subseteq \sigma_{\BA A}(x)$;
     \item If $\Omega$ is a connected component of $\CC - \sigma_{\BA B}(x)$, then either $\Omega\cap \sigma_{\BA A}(x)=\varnothing$ or $\Omega\cap \sigma_{\BA B}(x)=\varnothing$;
@@ -104,9 +104,9 @@ Recall that if $X$ is a Banach space and $A\in B(X)$, then $A-\lambda$ is invert
   \end{enumerate}
 \end{proposition}
 
-(4) is a good tool to calculate the spectrum.
+We shall remark that (4) is a good tool to calculate the spectrum.
 
-\begin{sketch}
+\begin{hint}
   For (2), suppose $\lambda\in\partial\sigma_{\BA A}(x)$, which is equivalent to the existence of a sequence $\lambda_n\notin \sigma_{\BA A}(x)$ such that $\lambda_n\to \lambda\in \sigma_{\BA A}(x)$. If $\lambda\notin \sigma_{\BA B}(x)$, then $(x-\lambda_n)^{-1}\to (x-\lambda)^{-1}$ in $\BA B$, and hence in $\BA A = \CL \BA A$, which contradicts to the fact that $\lambda\in\sigma_{\BA A}(x)$.
 
   For (3), let $X = \Omega\cap \sigma_{\BA A}(x)$. Observe that $(\Omega-X)\cap \sigma_{\BA A}(x)=\varnothing$, and apply
@@ -114,7 +114,7 @@ Recall that if $X$ is a Banach space and $A\in B(X)$, then $A-\lambda$ is invert
     \partial_\Omega X\subseteq\partial\sigma_{\BA A}(x)\subseteq\sigma_{\BA B}(x)\subseteq \CC-\Omega
   \end{equation*}
   to derive $\partial_\Omega X = \varnothing$.
-\end{sketch}
+\end{hint}
 
 \begin{example}
   Let $K = \{z\in\CC\VERT 1\leq\ABS{z}\leq 2\}$, $C(K)$ be the Banach algebra of (complex valued) continous functions on $K$ with the uniform norm, $\BA A$ be the closed subalgebra generated by $\{1, z\}$, $\BA B$ be the closed subalgebra generated by $\{1, z, 1\DIV z\}$, and $f\in C(K)$ sending $z\in K$ to $z\in\CC$.
@@ -126,15 +126,15 @@ Recall that if $X$ is a Banach space and $A\in B(X)$, then $A-\lambda$ is invert
 
 Let $x\in \BA A$ be an element of a Banach algebra, and let $f$ be a analytic function on a neighbourhood of $\{z\in\CC\VERT \ABS{z}\leq r(x)\}$ (containing $\{z\in\CC\VERT \ABS{z}\leq R\}$ for some $R>r(x)$). Then since
 \begin{equation*}
-  \NORM{\sum_{n=0}^\infty a_nx^n}\leq\sum_{n=0}^\infty\NORM{a_n}\,\NORM{x^n}=\sum_{n=0}^\infty \NORM{a_n}R^n(\frac{\NORM{x^n}^{1\DIV n}}{R})^n,
+  \sum_{n=0}^\infty \NORM{a_nx^n}\leq\sum_{n=0}^\infty\NORM{a_n}\,\NORM{x^n}=\sum_{n=0}^\infty \NORM{a_n}R^n(\frac{\NORM{x^n}^{1\DIV n}}{R})^n,
 \end{equation*}
-we {\bf may or may not} define an element $f(x)\in \BA A$. We have $(f\cdot g)(x)=f(x)g(x)$. Specifically, if $f$ is nowhere zero, then $f(x)$ is invertible in $\BA A$.
+we may define an element $f(x)=\sum_{n=0}^\infty a_nx^n\in \BA A$. We have $(f\cdot g)(x)=f(x)g(x)$. Specifically, if $f$ is nowhere zero, then $f(x)$ is invertible in $\BA A$.
 
 \begin{theorem}[Spectral Mapping Theorem]
   Let $x\in \BA A$ be an element of a Banach algebra, and let $f$ be a analytic function on a neighbourhood $\Omega$ of $\{z\in\CC\VERT \ABS{z}\leq r(x)\}$. Then $\sigma(f(x))=f(\sigma(x))$.
 \end{theorem}
 
-\begin{sketch}
+\begin{hint}
   For "$\supseteq$", observe that $g(z)=(f(z)-f(\lambda))\DIV (z-\lambda)$ is analytic on $\Omega$. And hence if $x-\lambda$ is not invertible, then $f(x)-f(\lambda)$ is not invertible.
 
   For "$\subseteq$", we suppose $\mu\notin f(\sigma(x))$ and are to show $f(x)-\mu$ is invertible. Observe that $f(z)-\mu$ is nowhere zero on $\sigma(x)$. Hence we may write
@@ -142,7 +142,7 @@ we {\bf may or may not} define an element $f(x)\in \BA A$. We have $(f\cdot g)(x
     f(z)-\mu=g(z)(z-\mu_1)\dotsb(z-\mu_n),
   \end{equation*}
   where $g$ is analytic on $\Omega'$, and $\mu_1, \dotsc, \mu_n\in\Omega'-\sigma(x)$, with $\Omega'=\INT \{z\in\CC\VERT \ABS{z}\leq r(x)+\epsilon\}$ satisfying $\CL\Omega'\subseteq\Omega$. It follows that $f(x)-\mu$ is invertible, being a finite multiplication of invertible elements.
-\end{sketch}
+\end{hint}
 
 \begin{theorem}[Gelfand-Mazur]
   If $\BA A$ is a Banach algebra which is also a division algebra, then there is a unique isomorphism $\BA A\to \CC$.

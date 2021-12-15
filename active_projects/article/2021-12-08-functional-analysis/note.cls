@@ -89,15 +89,28 @@
   },
 ]
 
+\setlist{nosep}
+\setlist[enumerate]{wide, label=(\arabic*)}
+
 \usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
-\AtEndPreamble{\RequirePackage{hyperref}}
+\AtEndPreamble{%
+  \RequirePackage{hyperref}
+  \hypersetup{%
+    bookmarksopen = true,
+    bookmarksopenlevel = 2,
+    bookmarksnumbered = true,
+    pdfpagemode = UseNone,
+    pdfstartview = Fit,
+    pdfpagelayout = TwoPageRight,
+  }
+}
 
 % One should always load \usepackage{hyperref} before the first use of \newtheorem to obtain correct handling and referencing of counters.
 \AtBeginDocument{
   \theoremstyle{plain}
   \theoremheaderfont{\bfseries\upshape}\theorembodyfont{\upshape}
   \theoremindent0pt
-  \newtheorem{theorem}{Theorem}
+  \newtheorem{theorem}{Theorem}[chapter]
   \newtheorem{corollary}[theorem]{Corollary}
   \newtheorem{lemma}[theorem]{Lemma}
   \newtheorem{proposition}[theorem]{Proposition}
@@ -113,7 +126,7 @@
   \theoremindent0pt
   \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
   \newtheorem{proof}{Proof}
-  \newtheorem{sketch}{Sketch of Proof}
+  \newtheorem{hint}{Hint}
   \theoremsymbol{}
 }
 

@@ -66,8 +66,13 @@
 \setmathfont{Asana Math}[
   % Extension = .otf,
   % BoldFont = \tju@font@name@xits@math@bf,
-  StylisticSet = 1,
+  Style = Alternate,
   range = {cal, bfcal},
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  range = {scr, bfscr},
 ]
 \setmathfont{Asana Math}[
   % Extension = .otf,

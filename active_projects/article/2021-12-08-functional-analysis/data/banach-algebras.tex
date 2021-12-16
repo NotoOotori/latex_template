@@ -2,7 +2,7 @@
 
 \chapter{Banach Algebras}
 
-Here are some typical examples of Banach algebras: algebra of functions, operator algebra and group algebra. In this chapter, we are concerning about complex Banach algebras (with identity) and their spectrums.
+Here are some typical examples of Banach algebras: algebra of functions, operator algebra and group algebra (that comes from harmony analysis). In this chapter, we are concerning about complex Banach algebras (with identity) and their spectrums.
 
 \begin{definition}
   A Banach space $\BA{A}$ (over $\CC$) is called a Banach algebra only if there is a multiplication operation on $\BA{A}$, making it into an algebra (with identity), with $\NORM 1=1$ and $\NORM{ab}\leq \NORM{a}\,\NORM{b}$.
@@ -18,8 +18,8 @@ Here are some examples of a Banach algebra.
 
 \begin{itemize}
   \item Operator algebra: $M_n(\CC)$; $B(X)$, where $X$ is a Banach space;
-  \item Algebra of functions (with multiplication induced by the field): $C(X)$, where $X$ is a compact Hausdorff space; $C(\overline\DD)$; $A(\overline\DD)$; $H^{\infty}(\DD)$: the space of bounded analytic functions on $\DD$;
-  \item Algebra of functions (with multiplication defined by convolution): $l^1(\ZZ)$; $L^1(\RR)$.
+  \item Algebra of functions: $C(X)$, where $X$ is a compact Hausdorff space; $C(\overline\DD)$; $A(\overline\DD)$; $H^{\infty}(\DD)$: the space of bounded analytic functions on $\DD$;
+  \item Group algebras (with multiplication defined by convolution): $l^1(\ZZ)$; $L^1(\RR)$.
 \end{itemize}
 
 \begin{example}
@@ -134,6 +134,8 @@ we may define an element $f(x)=\sum_{n=0}^\infty a_nx^n\in \BA A$. We have $(f\c
   Let $x\in \BA A$ be an element of a Banach algebra, and let $f$ be a analytic function on a neighbourhood $\Omega$ of $\{z\in\CC\VERT \ABS{z}\leq r(x)\}$. Then $\sigma(f(x))=f(\sigma(x))$.
 \end{theorem}
 
+We present a proof here, and we will provide a clearer proof using Gelfand transformation.
+
 \begin{hint}
   For "$\supseteq$", observe that $g(z)=(f(z)-f(\lambda))\DIV (z-\lambda)$ is analytic on $\Omega$. And hence if $x-\lambda$ is not invertible, then $f(x)-f(\lambda)$ is not invertible.
 
@@ -147,3 +149,98 @@ we may define an element $f(x)=\sum_{n=0}^\infty a_nx^n\in \BA A$. We have $(f\c
 \begin{theorem}[Gelfand-Mazur]
   If $\BA A$ is a Banach algebra which is also a division algebra, then there is a unique isomorphism $\BA A\to \CC$.
 \end{theorem}
+
+Introduction of Gelfand transformation
+% multiplicative linear functional <-> maximal ideal
+
+\begin{definition}
+  Let $\BA A$ be a Banach algebra and $I$ be a subset of $\BA A$. $I$ is called to be an ideal of $\BA A$ only if it is a two-sided ideal of the ring $\BA A$ and is also a linear subspace of $\BA A$.
+\end{definition}
+
+Here are some elementry properties of ideals and quotients of a Banach algebra.
+
+\begin{proposition}
+  Let $\BA A$ be a Banach algebra.
+  \begin{enumerate}
+    \item If $I$ is a proper ideal of a Banach algebra $\BA A$, and $y\in I$, then $\NORM{1-y}\geq 1$, and hence $\CL I$ is also a proper ideal of $\BA A$.
+    \item Every maximal ideal is closed, and every proper ideal is contained in some maximal ideal.
+  \end{enumerate}
+
+  Now let $I$ be a closed proper ideal of $\BA A$, and define a norm on $\BA A\DIV I$ by
+  \begin{equation*}
+    \NORM{\tilde x}_{\BA A\DIV I}=\inf_{y\in I}\NORM{x-y}_{\BA A}.
+  \end{equation*}
+  \begin{enumerate}[resume*]
+    \item $\BA A\DIV I$ is also a Banach algebra under the norm just defined.
+    \item The canonical projection map $p\colon\BA A\to \BA A\DIV I$ satisfies $\NORM{p}_{\symcal L(\BA A; \BA A\DIV I)}=1$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{hint}
+  For (3), observe that
+  \begin{equation*}
+    \NORM{\tilde x_1\tilde x_2}=\inf_{y\in I}\NORM{x_1x_2-y}\leq\inf_{y_1, y_2\in I}\NORM{(x_1-y_1)(x_2-y_2)}\leq \NORM{\tilde x_1}\,\NORM{\tilde x_2},
+  \end{equation*}
+  and show that $\NORM{1}_{\BA A\DIV I}=1$.
+\end{hint}
+
+\begin{definition}
+  Let $\BA A$ be a Banach algebra. Then a multiplicative linear functional $\varphi$ on $\BA A$ is a nonzero algebra morphism $\varphi\colon\BA A\to \CC$. Denote the set of multiplicative linear functionals of $\BA A$ by $\Delta$. If $\Delta$ is nonempty, then it has a topological structure inherited from $\BA A^*$ equipped with the $\WS$ topology.
+\end{definition}
+
+\begin{proposition}
+  Let $\BA A$ be a Banach algebra and assume $\Delta$ to be nonempty. Let $\varphi\in \Delta$ be a multiplicative linear functional.
+  \begin{enumerate}
+    \item $\varphi$ is continuous, with $\NORM{\varphi}=1$.
+    \item The closed ideal $\ker\varphi$ is a maximal ideal of $\BA A$.
+    \item If $\varphi_1, \varphi_2\in\Delta$ are distinct multiplicative linear functionals, then $\ker\varphi_1\neq \ker\varphi_2$.
+    \item $\Delta$ is compact, where $\Delta$ is equipped with the $\WS$ topology.
+    \item If $x\in\BA A$, then
+    \begin{equation*}
+      \{\varphi(x)\VERT \varphi\in\Delta\}\subseteq \sigma(x).
+    \end{equation*}
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  For (1), observe that $1-x\DIV \varphi(x)\in\ker\varphi$ cannot be invertible.
+
+  For (2), note that $\varphi$ is a epimorphism onto a field. Thus $\ker\varphi$ is maximal among the left (or right) ideals.
+
+  For (3), consider the element $x-\varphi_1(x)$.
+
+  For (4), by the Banach-Alaogue theorem, it suffices to show that $\Delta$ is closed, which is a routine verification.
+
+  For (5), observe that $x-\varphi(x)\in\ker\varphi$.
+\end{proof}
+
+\begin{proposition}
+  Let $\BA A$ be a commutative Banach algebra.
+  \begin{enumerate}
+    \item For every maximal ideal $M$, there exists a unique multiplicative functional $\varphi$ that satisfies $M=\ker\varphi$.
+    \item There is a bijection between $\Delta$ and the set of all maximal ideals of $\BA A$.
+    \item If $\varphi\in\Delta$ and $x\in\BA A$, then
+    \begin{equation*}
+      \{\varphi(x)\VERT \varphi\in\Delta\}= \sigma(x).
+    \end{equation*}
+  \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+  Let $\BA A$ be a Banach algebra such that $\Delta$ is nonempty. For $x\in \BA A$, define a function $\hat x$ on $\Delta$ that maps $\varphi\in\Delta$ to $\varphi(x)\in\CC$.
+  \begin{enumerate}
+    \item $\hat x$ is always continuous. Thus we've defined a map $x\in\BA A\mapsto \hat x\in C(\Delta)$. The map is denoted by $\Lambda$, and is called the Gelfand transform on $\BA A$.
+    \item $\Lambda$ is a continuous algebra morphism.
+    \item $\ker\Lambda=\RAD\BA A$ is the intersection of all maximal ideals of $\Delta$.
+    \item $x$ in invertible in $\BA A$ if and only if $\hat x$ is invertible in $C(\Delta)$.
+    \item $\Lambda$ preserves the norm if and only if for every $x\in \BA A$ there is $\NORM{x^2}=\NORM{x}^2$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  For (2), observe that $\NORM{\hat x}_\infty=r(x)\leq \NORM{x}$.
+\end{proof}
+
+\begin{example}
+  $C(X)$, $l^1(\ZZ)$.
+\end{example}

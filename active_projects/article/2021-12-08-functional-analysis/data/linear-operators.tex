@@ -12,6 +12,8 @@ Amenable semigroup actions are fairly important since some forms of Hahn-Banach 
   \item the group of rigid motions of 2-dimensional space is amenable.
 \end{itemize}
 
+\subsection{Hahn-Banach Theorem (Analytic Form)}
+
 \begin{definition}
   Let $X$ be a real linear space and let $p$ be a function $X\to \RR$. $p$ is called to be sublinear only if it satisfies
   \begin{equation*}
@@ -102,6 +104,63 @@ Amenable semigroup actions are fairly important since some forms of Hahn-Banach 
   Banach limit of $l^\infty(\NN)$. $Y=\{\lim x_n \text{ exists}\}$, $l\colon Y\to\RR$ sends $x_n$ to $\lim x_n$.
 \end{example}
 
+\subsection{Hahn-Banach Theorem (Ordered Form), alias Krein-Riesz Theorem}
+
+Ordered linear space; positive cone; Krein-Riesz theorem.
+
+\begin{definition}
+  Let $X$ be a real linear space, a subset $\CONE P\subset X$ is called a positive cone only if it satisfies
+  \begin{equation*}
+    \begin{aligned}
+      x+y\in\CONE P&\text{\enskip for all }x, y\in\CONE P,\\
+      tx\in\CONE P&\text{\enskip for all }t>0 \text{ and for all }x\in\CONE P.
+    \end{aligned}
+  \end{equation*}
+  A positive cone $\CONE P$ induces a natural partial order on $X$, by defining
+  \begin{equation*}
+    x\leq y \text{\enskip if and only if \enskip}y-x\in\CONE P.
+  \end{equation*}
+  The partial order satisfies that if $x\leq y$ then
+  \begin{equation*}
+    \begin{aligned}
+      x+z\leq y+z&\text{\enskip for all }z\in X,\\
+      tx\leq ty&\text{\enskip for all }t>0.
+    \end{aligned}
+  \end{equation*}
+  Conversely, such a partial order can define a positive cone, which shows the equivalent of these two concepts.
+\end{definition}
+
+The following theorem is the ordered form of the Hahn-Banach theorem, which is discovered first by Krein and Riesz.
+
+\begin{theorem}[Krein-Riesz]
+  Let $X$ be an ordered linear space, and $Y$ a linear subspace that satisfies
+  \begin{equation*}
+    \text{for every }x\in X\text{, there exists some }y\in Y\text{ such that }y\geq x.
+  \end{equation*}
+  Let $l$ be a positive linear functional on $Y$, i.e., $l(y)\geq 0$ whenever $y\geq 0$. Then $l$ can be extended to a positive linear functional on $X$.
+\end{theorem}
+
+\begin{remark}
+  We are to show that the Krein-Riesz theorem is equivalent to (the analytic form of) the Hahn-Banach theorem.
+
+  First assume the Krein-Riesz theorem. Let $X$ be the Banach space, $p$ the sublinear functional, $Y$ the subspace, and $l$ be the linear functional on $Y$ controlled by $p$. Then the positive cone on $X\oplus \RR$ is defined to be
+  \begin{equation*}
+    \CONE P=\{(x,t)\in X\oplus \RR\VERT t-p(x)\geq 0\},
+  \end{equation*}
+  and the linear functional on $Y\oplus \RR$ is defined to be
+  \begin{equation*}
+    l'\colon (y, t)\in Y\oplus \RR\mapsto t-l(y)\in\RR,
+  \end{equation*}
+  which is positive.
+
+  Conversely, let $X$ be the Banach space, $\CONE P$ the positive cone, $Y$ the subspace, and $l$ the positive linear functional on $Y$. Then a sublinear functional $p$ on $X$ is defined by
+  \begin{equation*}
+    p\colon x\in X\mapsto \inf_{y\geq x, y\in Y}\NORM{y-x}.
+  \end{equation*}
+\end{remark}
+
+\subsection{Hahn-Banach Theorem (Geometric Form) and Hahn-Banach Separation Theorem (Geometric Form)}
+
 We are to define the Minkowski functional, which connects geometry and analysis.
 
 \begin{definition}
@@ -145,7 +204,7 @@ We are to define the Minkowski functional, which connects geometry and analysis.
   Take $Y$ to be the linear subspace spanned by $x_0$, and define a linear functional $l$ on $Y$ such that $l(x_0)=1$.
 \end{hint}
 
-\begin{theorem}[Hahn-Banach Separation Theorem]
+\begin{theorem}{(\bf Hahn-Banach Separation Theorem (Geometrical Form))}
   Let $V$ and $W$ be two disjoint nonempty convex subsets of a real linear space $X$.
   \begin{enumerate}
     \item If $V$ is absorbing after a possible translation, then there is a nonzero linear functional $l$ on $X$ that satisfies
@@ -176,6 +235,8 @@ We are to define the Minkowski functional, which connects geometry and analysis.
     \sup_{x\in V}l(x)<\sup_{x\in V}l(x+x_0)\leq\sup_{x\in\tilde V}l(x)\leq \inf_{y\in W}l(y).
   \end{equation*}
 \end{hint}
+
+\subsection{Hahn-Banach Theorem (Topological Form) and Hahn-Banach Theorem (Topological Form)}
 
 \begin{theorem}{\bf (Hahn-Banach Separation Theorem (Topological Form))}
   Let $X$ be a topological linear space, and let $V$ and $W$ be two disjoint nonempty convex subsets of $X$.

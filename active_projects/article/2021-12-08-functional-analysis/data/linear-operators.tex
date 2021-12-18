@@ -2,6 +2,69 @@
 
 \chapter{Linear Operators}
 
+\section{Topological Linear Spaces}
+
+$0\in \CL S$ under the weak topology.
+
+\begin{proposition}
+  Let $X$ be a locally convex topological space defined by a family $\FML P$ of separating seminorms. Then a linear functional $l$ on $X$ is continuous if and only if there exist $p_1, \dotsc, p_n\in \FML P$ and $M>0$ that satisfies
+  \begin{equation*}
+    \ABS{l(x)}\leq M(p_1(x)+\dotsb+p_n(x)).
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}
+  Suppose $l$ is continuous at 0. Observe that if we let
+  \begin{equation*}
+    y=\frac{x}{p_1(x)+\dotsb+p_n(x)+t},
+  \end{equation*}
+  where $t>0$, then $p_j(y)<1$ for every $x\in X$. The other direction is obvious.
+\end{proof}
+
+\begin{proposition}
+  Let $X$ be a topological linear space such that $X^*$ separates $X$. Then
+  \begin{equation*}
+    (X_w)^*= X^*.
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}
+  It suffices to show that if $l\colon X_w\to\CC$ is a continuous linear functional, then $l\in X^*$. Observe that since $l$ can be controlled by a finite number of seminorms, say $p_1=\ABS{l_1}, \dotsc, p_n=\ABS{l_n}$, then
+  \begin{equation*}
+    \ker l\supseteq\bigcap_{j=1}^n\ker l_j.
+  \end{equation*}
+  By some linear algebra arguments we can show that $l$ is a linear combination of $l_1, \dotsc, l_n$, and hence $l\in X^*$.
+\end{proof}
+
+The next proposition is a nice sufficient condition of a compact space being metrizable.
+
+\begin{proposition}
+  Let $X$ be a compact Hausdorff space. If there exists a separating sequence of functions $\{f_n\}\subseteq C(X)$, then $X$ is metrizable.
+\end{proposition}
+
+\begin{proof}
+  Assume these $f_n$ are uniformly bounded, and define
+  \begin{equation*}
+    d(x, y)=\sup_{n} \frac{1}{2^n}\ABS{f_n(x)-f_n(y)}.
+  \end{equation*}
+\end{proof}
+
+\begin{corollary}
+  Let $X$ be a Banach space. If $X$ is separable, then the unit closed ball of $X^*$ is metrizable equipped with the $\WS$ topology.
+\end{corollary}
+
+We remark here that the converse on the previous corollary is also true, where a proof can be found in Conway's book.
+
+\begin{example}
+  The closed unit sphere of $(l^\infty)^*$ is unmetrizable equipped with the $\WS$ topology.
+\end{example}
+
+Canonical isometry
+
+\begin{proposition}[Goldstein?]
+  Let $X$ be a Banach space, and $J$ the canonical isometry from $X$ to $X^{**}$. Let $B$ denote the unit ball of $X$. Then the $\WS$ closure of $J(B)$ contains the unit ball of $X^{**}$.
+\end{proposition}
+
 \section{Hahn-Banach Theorem}
 
 In this section, we may assume all vector spaces to be over $\RR$. To show the corresponding theorems of vector spaces over $\CC$, one may observe that a complex linear functional $l$ can be expressed by its real part $u$, which is a real linear functional, as $l(x)=u(x)-iu(ix)$.
@@ -50,9 +113,9 @@ Amenable semigroup actions are fairly important since some forms of Hahn-Banach 
   \end{equation*}
 \end{corollary}
 
-\begin{hint}
+\begin{proof}
   Take $p(x)=\NORM{l}_{Y'}\,\NORM{x}_X$ and then apply the analytic form of Hahn-Banach theorem.
-\end{hint}
+\end{proof}
 
 \begin{example}
   We may show the existence of a finite-additive measure $\mu$ on $\RR$ such that $\mu((a, b])=b-a$ for all $a\leq b$. Let
@@ -159,7 +222,7 @@ The following theorem is the ordered form of the Hahn-Banach theorem, which is d
   \end{equation*}
 \end{remark}
 
-\subsection{Hahn-Banach Theorem (Geometric Form) and Hahn-Banach Separation Theorem (Geometric Form)}
+\subsection{Hahn-Banach Theorem (Geometric Form), and Hahn-Banach Separation Theorem (Geometric Form)}
 
 We are to define the Minkowski functional, which connects geometry and analysis.
 
@@ -200,9 +263,9 @@ We are to define the Minkowski functional, which connects geometry and analysis.
   \end{equation*}
 \end{theorem}
 
-\begin{hint}
+\begin{proof}
   Take $Y$ to be the linear subspace spanned by $x_0$, and define a linear functional $l$ on $Y$ such that $l(x_0)=1$.
-\end{hint}
+\end{proof}
 
 \begin{theorem}{(\bf Hahn-Banach Separation Theorem (Geometrical Form))}
   Let $V$ and $W$ be two disjoint nonempty convex subsets of a real linear space $X$.
@@ -222,7 +285,7 @@ We are to define the Minkowski functional, which connects geometry and analysis.
   \end{enumerate}
 \end{theorem}
 
-\begin{hint}
+\begin{proof}
   For (1), by a possible translation, assume $V$ to be absorbing (and hence to contain the origin). Then fix a point $y_0\in W$ and apply the geometric form of the Hahn-Banach theorem to the absorbing convex subset $V+(-W)+y_0$, which yields the existence of a linear functional that satisfies
   \begin{equation*}
     l(x-y)\leq 0\text{\enskip for all }x\in V\text{ and all }y\in W.
@@ -234,9 +297,21 @@ We are to define the Minkowski functional, which connects geometry and analysis.
   \begin{equation*}
     \sup_{x\in V}l(x)<\sup_{x\in V}l(x+x_0)\leq\sup_{x\in\tilde V}l(x)\leq \inf_{y\in W}l(y).
   \end{equation*}
-\end{hint}
+\end{proof}
 
-\subsection{Hahn-Banach Theorem (Topological Form) and Hahn-Banach Theorem (Topological Form)}
+\begin{corollary}
+  Let $X$ be a Banach space and $V$ a nonempty closed convex subset of $X$. Then $V$ is closed under $w$ topology.
+\end{corollary}
+
+\begin{example}
+  Consider $X=L^2([0, 1]; \RR)$. For any $a\in\RR$, define
+  \begin{equation*}
+    V_a = \{f\in C[0, 1]\VERT f(0)=a\}.
+  \end{equation*}
+  these $V_a$ are disjoint convex subsets of $X$. Since $V_0$ is a dense linear subspace of $X$ with every $V_a$ being a translation of $V_0$, then there doesn't exist a continuous linear functional that separates $V_a$ and $V_b$.
+\end{example}
+
+\subsection{Hahn-Banach Theorem (Topological Form), and Hahn-Banach Separation Theorem (Topological Form)}
 
 \begin{theorem}{\bf (Hahn-Banach Separation Theorem (Topological Form))}
   Let $X$ be a topological linear space, and let $V$ and $W$ be two disjoint nonempty convex subsets of $X$.
@@ -263,7 +338,7 @@ We are to define the Minkowski functional, which connects geometry and analysis.
   \end{enumerate}
 \end{theorem}
 
-\begin{hint}
+\begin{proof}
   For (1), continuity of $l$ follows from the continuity of the Minkowski functional, while the second part follows from the fact that any nonzero linear functional is an open map (proved by the fact that the scalar multiplication is continuous).
 
   For (2), we claim the existence of a convex neighbourhood $U$ of the origin such that the convex open subset $U+V$ doesn't intersect $W$. Apply (1) and note that $l(V)$ is compact.
@@ -274,7 +349,7 @@ We are to define the Minkowski functional, which connects geometry and analysis.
     \item $V$ and $W$ are compact as subspaces of $X_w$, and that
     \item $(X_w)'\cong X'$ as topological linear spaces.
   \end{itemize}
-\end{hint}
+\end{proof}
 
 \begin{corollary}[Mazur]
   Let $X$ be a locally convex topological linear space, $M$ a linear subspace, and $V$ a convex subset disjoint from $M$ with nonempty interior. Then there exists a continuous linear functional $l$ on $X$ that satisfies
@@ -283,9 +358,9 @@ We are to define the Minkowski functional, which connects geometry and analysis.
   \end{equation*}
 \end{corollary}
 
-\begin{hint}
+\begin{proof}
   Apply part (2) of the previous theorem.
-\end{hint}
+\end{proof}
 
 \begin{theorem}{\bf (Hahn-Banach Theorem (Topological Form))}
   Let $X$ be a locally convex topological linear space, $M$ a linear subspace, and $l$ a continuous linear functional on $M$. Then there exists a continuous linear functional $\tilde l$ on $X$ that satisfies
@@ -294,12 +369,12 @@ We are to define the Minkowski functional, which connects geometry and analysis.
   \end{equation*}
 \end{theorem}
 
-\begin{hint}
+\begin{proof}
   Pick a point $x_0\in M$ such that $l(x_0)=1$, and then apply part (2) of the topological form of the Hahn-Banach separation theorem with $V$ to be $x_0$ and with $W$ to be the zero locus of $f$. Observe
   \begin{equation*}
     x=l(x)x_0+(x-l(x)x_0)\text{\enskip lor all }x\in M.
   \end{equation*}
-\end{hint}
+\end{proof}
 
 The theory of extreme points is closedly related to optimization theory. The next theorem states about the relationship between a compact convex set and its extreme points in a manner of combinatorical topology.
 
@@ -312,6 +387,20 @@ The theory of extreme points is closedly related to optimization theory. The nex
     \item If $X$ is locally convex, and $S\subseteq K$ satisfies $\CLCO S=\CLCO \EXT K$, then $\EXT K\subseteq\CL S$.
   \end{enumerate}
 \end{theorem}
+
+\begin{example}
+  Let $X$ be a complex normed linear space, and $x\in X$. Calculating the distance
+  \begin{equation*}
+    \DIST (x, K)=\inf_{y\in K}\NORM{y-x}
+  \end{equation*}
+  is a nonlinear optimization problem on $K$. If $X$ is reflexive, and $K$ is a non-empty convex subset of $X$, then the optimization problem is always solvable on $K$, i.e., there exists $y\in K$ such that
+  \begin{equation*}
+    \DIST(x, K)=\NORM{y-x}.
+  \end{equation*}
+  Moreover, if $X$ is a Hilbert space, then such $y$ is unique, following from the parallelogram identity.
+
+  Consider the $w$ topology of $X$. The function $f\colon y\in K\to\NORM{y-x}\RR$ is lower semi-continuous, where $K$ is closed convex, and $M=K\cap\{z\in X\VERT \NORM{z-x}\leq 2d\}$ is compact. Hence $f$ admits a minimum on $M$.
+\end{example}
 
 % 优化问题
 % 拓扑线性空间 Banach-Alaogue定理

@@ -24,6 +24,14 @@
 \RequirePackage{fontspec}
 \RequirePackage{amsmath}
 \RequirePackage{unicode-math}
+\usepackage[immediate]{silence}
+\WarningFilter[temp]{latex}{Command} % silence the warning
+\usepackage{sectsty}
+\DeactivateWarningFilters[temp] % So nothing unrelated gets silenced
+% \makeatletter % disable the runtime redefinitions
+% \let\SS@makeulinesect\relax
+% \let\SS@makeulinepartchap\relax
+% \makeatother
 \RequirePackage{geometry}
 \RequirePackage{enumitem}
 
@@ -97,6 +105,9 @@
 \setlist{nosep}
 \setlist[enumerate]{wide, label=(\arabic*)}
 
+\sectionfont{\raggedright}
+\subsectionfont{\raggedright}
+
 \usepackage[amsmath,thmmarks,hyperref,thref]{ntheorem}
 \AtEndPreamble{%
   \RequirePackage{hyperref}
@@ -131,7 +142,7 @@
   \theoremindent0pt
   \theoremsymbol{\ensuremath{\mdlgwhtsquare}}
   \newtheorem{proof}{Proof}
-  \newtheorem{hint}{Hint}
+  % \newtheorem{hint}{Hint}
   \theoremsymbol{}
 }
 

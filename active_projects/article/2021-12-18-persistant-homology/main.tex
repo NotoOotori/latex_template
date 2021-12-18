@@ -1,0 +1,208 @@
+% -------------------- Packages --------------------
+
+\PassOptionsToPackage{quiet}{fontspec}
+\documentclass{assignment}[2019/10/15]
+% \usepackage{packages}[2019/11/14]
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{ntheorem}
+\usepackage{enumitem}
+\usepackage[%
+  backend=biber,%
+  % style=gb7714-2015,gbpub=false,gbnamefmt=lowercase,%
+  sortcites=true,doi=false,%
+  defernumbers=true,%
+  ]{biblatex} % 需要 biblatex-gb7714-2015
+\bibliography{refs}
+
+% -------------------- Settings --------------------
+
+\RequirePackage{unicode-math}
+\setmainfont{TeX Gyre Pagella}
+\setmathfont{Asana Math}
+\unimathsetup{%
+  math-style = ISO,
+  bold-style = ISO,
+  nabla = upright,
+  partial = upright,
+}
+\setmathfont{texgyretermes-regular}[
+  Extension = .otf,
+  range = up/{num},
+  BoldFont = texgyretermes-bold,
+]
+\setmathfont{texgyretermes-bold}[
+  Extension = .otf,
+  range = bfup/{num},
+  BoldFont = texgyretermes-bold,
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  StylisticSet = 8,
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  Style = Alternate,
+  range = {cal, bfcal},
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  range = {scr, bfscr},
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  range = it/{greek,Greek,latin,Latin},
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  range = up/{greek,Greek,latin,Latin},
+]
+\setmathfont{Asana Math}[
+  % Extension = .otf,
+  % BoldFont = \tju@font@name@xits@math@bf,
+  range = {
+    "2212,"002B,"003D,"0028,"0029,"005B,%
+    "005D,"221A,"2211,"2248,"222B,"007C,"2026,"2202,"00D7,"0302,%
+    "2261,"0025,"22C5,"00B1,"2194,"21D4%
+  },
+]
+
+
+% Title
+
+\title{Persistent Homology}
+\author{Chen Xuyang}
+\date{\today}
+\institute{School of Mathematical Science}
+\professor{L\"u Zhi}
+\course{Algebraic Topology}
+\subject{Algebraic Topology}
+\keywords{}
+
+% -------------------- New commands --------------------
+
+% \newcommand{\me}{\symup{e}}
+% \newcommand{\BR}{\symbb{R}}
+% \newcommand{\BZ}{\symbb{Z}}
+% \newcommand{\BN}{\symbb{N}}
+% \newcommand{\diag}{\mathop{}\!\symup{diag}}
+% \newcommand{\pr}{\mathop{}\!\symup{Pr}}
+% \newcommand{\expect}{\mathop{}\!\symup{E}}
+% \newcommand{\cov}{\mathop{}\!\symup{Cov}}
+% \newcommand{\var}{\mathop{}\!\symup{Var}}
+
+% \def\multiset#1#2{\ensuremath{\left(\kern-.3em\left(\genfrac{}{}{0pt}{}{#1}{#2}\right)\kern-.3em\right)}}
+
+\newcommand{\lr}[3]{\left#1#3\right#2}
+\newcommand{\lmr}[5]{\left#1#4\middle#2#5\right#3}
+
+\theoremstyle{plain}
+\theoremheaderfont{\upshape\bfseries}
+\theorembodyfont{\upshape}
+\theoremseparator{}
+\theoremsymbol{}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+
+% \newcommand{\SC}{\mathscr{C}}
+% \newcommand{\BC}{\symbb{C}}
+
+% \newcommand{\Kernal}{\mathop{}\!\symup{Ker}}
+% \newcommand{\Image}{\mathop{}\!\symup{Im}}
+% \newcommand{\Hom}{\mathop{}\!\symup{Hom}}
+% \newcommand{\Aut}{\mathop{}\!\symup{Aut}}
+% \newcommand{\Type}{\mathop{}\!\symup{Type}}
+% \newcommand{\GL}{\mathop{}\!\symup{GL}}
+% \newcommand{\sgn}{\mathop{}\!\symup{sgn}}
+% \newcommand{\id}{\text{id.}}
+% \newcommand{\blank}{{\cdot}}
+% \newcommand{\tr}{\mathop{}\!\symup{tr}}
+% \newcommand{\Cl}{\mathop{}\!\symup{Cl}}
+
+\newcommand{\RR}{\symbb{R}}
+\renewcommand{\emph}[1]{\textbf{#1}}
+\newcommand{\CECH}{\u{C}ech}
+\newcommand{\DIV}{{\divslash}}
+\DeclareMathOperator{\CL}{cl}
+
+% \numberwithin{equation}{section}
+
+% -------------------- Document --------------------
+
+\begin{document}
+  \maketitle
+  % \tableofcontents
+
+  Persistent homology is a method to extract global information from cloud point data, by calculating homology groups of a finite sequence of simplicial complexes, and by examining how the free generator of the homology group transform along the sequence.
+
+  A \emph{cloud of data} is a finite set of points $S$ in an Euclidean space, i.e., $S\subseteq \RR^n$. When $n$ is small (e.g. $n=2, 3$), we may easily find the pattern of a cloud of data from our naked eyes. But when $n$ is large, which is the most common case, we need some tools to distinguish patterns and noises, where homology theories come to help.
+
+  We want to approximate the data using simplicial complexes. Here are two natural way to do this. Let $\varepsilon>0$ be the scale that we are looking at the data.
+
+  \begin{definition}
+    A \emph{{\CECH} complex} $C_\varepsilon$ is an abstract simplicial complex that can be described as follows: a subset $\sigma\subseteq S$ is a face of $C_\varepsilon$ if and only if the closed $\varepsilon\DIV 2$ neighbourhoods of the points of $\sigma$ have a common intersection, i.e.,
+    \begin{equation*}
+      \bigcap_{x\in\sigma} \CL B_{\varepsilon\DIV 2}(x)\neq \varnothing.
+    \end{equation*}
+  \end{definition}
+
+  \begin{definition}
+    A \emph{Vietoris-Rips complex} $R_\varepsilon$ is an abstract simplicial complex such that its $k$-faces are exactly the $(k+1)$-subsets $\sigma$ of $S$ that are pairwise within distance $\varepsilon$, i.e.,
+    \begin{equation*}
+      \CL B_{\varepsilon\DIV 2}(x)\cap \CL B_{\varepsilon\DIV 2}(y)\neq \varnothing
+    \end{equation*}
+    for every $x, y\in\sigma$.
+  \end{definition}
+
+  Though it may only have a geometric realization in higher dimensional, a {\CECH} complex preserves some intuitive properties of $S$, as it has the same homotopy type of the union of all $\varepsilon\DIV 2$-radius closed ball of the points of $S$. But a {\CECH} is generally hard to compute.
+
+  A Vietoris-Rips complex is a flag complex, i.e., it is maximal with respect to its 1-dimensional skeleton. So it's much easier to compute. In general, the homology type of a Vietoris-Rips complex is hard to tell.
+
+  \begin{lemma}
+    There is a chain of inclusion maps
+    \begin{equation}
+      R_\varepsilon\to C_{\sqrt{2}\varepsilon}\to R_{\sqrt{2}\varepsilon}
+    \end{equation}
+  \end{lemma}
+
+  The lemma shows us if a topological property of a Vietoris-Rips complex is persistent under the inclusion map $R_\varepsilon\to R_{\varepsilon'}$ for $\varepsilon'\geq \sqrt{2}\varepsilon$, then it's a topological property of a {\CECH} complex. Hence it suffices to compute the homology of Vietoris-Rips complexes.
+
+  If $\varepsilon$ is very small, the complex is nothing but a disjoint union of the points. If $\varepsilon$ is very large, the complex is just a single simplex. When $\varepsilon$ goes from small to large, some ``holes" emerge and then disappear. These holes are the key topological feature we want to extract by calculating the homology groups for different $\varepsilon$, which is the key idea of persistent homology. We'll track the generators of the homology group. If it is quickly nullified, then it may be recognized as a noise. If it lasts significantly long, then it's possible that this is an important global property of the data.
+
+  \begin{definition}
+    Let $0<\varepsilon_1<\varepsilon_2<\dotsb$ be a strictly increasing sequence, and let $R_j$ denote the Vietoris-Rips complex $R_{\varepsilon_j}$ and $C(R_j)$ the chain complex consisting of the simplicial chain groups of $R_j$. Then we have the homology groups $H_p(C(R_j))$, and the natural map $H_p(C(R_j))\to H_p(C(R_k))$ for $j<k$ induced by the inclusion map. The image of $H_p(C(R_j))$ in $H_p(C(R_k))$ is called the $(j, k)$-\emph{persistent homology group}.
+  \end{definition}
+
+  Denote $H_p(C(R))$ to be the direct sum of $H_p(C(R_j))$ for $j=1, 2, \dotsc$. If the coefficient of the chain complexes is a field $F$, then there is a natural graded $F[x]$-module structure on $H_p(C(R; F))$, where $\sigma\in H_p(C(R_j; F))$ is sended to $i_*(\sigma)\in H_p(C(R_{j+1}; F))$. Apply the structure theorem of finitely-generated modules over a P.I.D., we have the following structure theorem for persistent homology.
+
+  \begin{theorem}[Structure Theorem]
+    \begin{equation*}
+      H_p(C(R; F))\cong \bigoplus_{j}x^{t_j}\cdot F[x]\oplus\bigoplus_kx^{r_k}\cdot (F[x]\DIV (x^{s_k}\cdot F[x])).
+    \end{equation*}
+  \end{theorem}
+
+  The structure theorem has a natural interpretation: A free generator $x^{t_j}$ represents a homology generator of $H_p(C(R_{t_j}; F))$ that persists for all future value of $\epsilon$, while a torsion generator $x^{r_k}$ represents a homology generator of $H_p(C(R_{r_k}); F)$ that disappear after $s_k-r_k$ steps.
+
+  The birth and death of generators can reflect many properties of the data, say if there are about 2 significant generators in $p$-th persistent homology group, then we'll guess the $p$-th Betti number of the data to be about 2. By gathering all these numbers extracted from the data, we may have a good guess of the structure of the data.
+
+  \nocite{*}
+  \sloppy\hbadness 10000\relax%
+  \printbibliography[heading=bibintoc]%
+  \fussy%
+  % \section*{Reference}
+  % \begin{enumerate}[1]
+  %     \item Thomas W. Hungerford. Algebra. \url{https://doi.org/10.1007/978-1-4612-6101-8}.
+  %     \item B. Steinberg. Representation Theory of Finite Groups: An Introductory Approach. \\\url{https://doi.org/10.1007/978-1-4614-0776-8}.
+  %     \item R. McNamara. Irreducible Representations of the Symmetric Group. \\\url{http://math.uchicago.edu/~may/REU2013/REUPapers/McNamara.pdf}.
+  %     \item Bruce Sagan. The Symmetric Group. \url{https://doi.org/10.1007/978-1-4757-6804-6}
+  % \end{enumerate}
+\end{document}

@@ -136,13 +136,19 @@
 
 % \numberwithin{equation}{section}
 
+\linespread{1.5}
+
 % -------------------- Document --------------------
 
 \begin{document}
   \maketitle
   % \tableofcontents
 
+  \section*{Overview}
+
   Persistent homology is a method to extract global information from cloud point data, by calculating homology groups of a finite sequence of simplicial complexes, and by examining how the free generator of the homology group transform along the sequence.
+
+  \section*{Main Theory}
 
   A \emph{cloud of data} is a finite set of points $S$ in an Euclidean space, i.e., $S\subseteq \RR^n$. When $n$ is small (e.g. $n=2, 3$), we may easily find the pattern of a cloud of data from our naked eyes. But when $n$ is large, which is the most common case, we need some tools to distinguish patterns and noises, where homology theories come to help.
 
@@ -165,7 +171,7 @@
 
   Though it may only have a geometric realization in higher dimensional, a {\CECH} complex preserves some intuitive properties of $S$, as it has the same homotopy type of the union of all $\varepsilon\DIV 2$-radius closed ball of the points of $S$. But a {\CECH} is generally hard to compute.
 
-  A Vietoris-Rips complex is a flag complex, i.e., it is maximal with respect to its 1-dimensional skeleton. So it's much easier to compute. In general, the homology type of a Vietoris-Rips complex is hard to tell.
+  A Vietoris-Rips complex is a flag complex, i.e., it is maximal with respect to its 1-dimensional skeleton. So it's much easier to compute. In general, the homology type of a Vietoris-Rips complex is hard to tell. Hence the geometric meaning of a Vietoris-Rips complex is less obvious. But we have the following lemma, showing the relationship between {\CECH} complexes and Vietoris-Rips complexes.
 
   \begin{lemma}
     There is a chain of inclusion maps
@@ -193,6 +199,10 @@
   The structure theorem has a natural interpretation: A free generator $x^{t_j}$ represents a homology generator of $H_p(C(R_{t_j}; F))$ that persists for all future value of $\epsilon$, while a torsion generator $x^{r_k}$ represents a homology generator of $H_p(C(R_{r_k}); F)$ that disappear after $s_k-r_k$ steps.
 
   The birth and death of generators can reflect many properties of the data, say if there are about 2 significant generators in $p$-th persistent homology group, then we'll guess the $p$-th Betti number of the data to be about 2. By gathering all these numbers extracted from the data, we may have a good guess of the structure of the data.
+
+  One may visualize the birth-death process of a generator by a \emph{barcode}, i.e., a horizontal line starting at the time that the generator is born and ending at the time that the generator is dead. The barcodes of all generators at all time and at all dimension form a diagram, which is called the barcode diagram. One can easily notice the significant generator by a glance at the barcode diagram, which shows how powerful it is.
+
+  Normally we shall put some figures to illustrate the process how a series of simplicial complexes are constructed from the data cloud and how a barcode diagram is derived by a sequence of complexes, and we shall post an worked example to show the power of the theory. But even when the size of data is far less than being nontrivial, the corresponding complexes are not easy to visualize. So we may end our adventure here.
 
   \nocite{*}
   \sloppy\hbadness 10000\relax%

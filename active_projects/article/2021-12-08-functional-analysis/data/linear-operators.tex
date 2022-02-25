@@ -65,6 +65,10 @@ Canonical isometry
   Let $X$ be a Banach space, and $J$ the canonical isometry from $X$ to $X^{**}$. Let $B$ denote the unit ball of $X$. Then the $\WS$ closure of $J(B)$ contains the unit ball of $X^{**}$.
 \end{proposition}
 
+\begin{proof}
+  It suffices to show for any $\eta\in B(X^{**})$ and $f_1, \dotsc, f_n\in X^*$, the closure of the image of the map $x\mapsto (f_1(x), \dotsc, f_n(x))$ contains $(\langle\eta, f_1\rangle, \dotsc, \langle \eta, f_n\rangle)$, and it follows from the Hahn-Banach separation theorem.
+\end{proof}
+
 \section{Hahn-Banach Theorem}
 
 In this section, we may assume all vector spaces to be over $\RR$. To show the corresponding theorems of vector spaces over $\CC$, one may observe that a complex linear functional $l$ can be expressed by its real part $u$, which is a real linear functional, as $l(x)=u(x)-iu(ix)$.
@@ -274,7 +278,7 @@ We are to define the Minkowski functional, which connects geometry and analysis.
     \begin{equation*}
         \sup_{x\in V}l(x)\leq\inf_{y\in W}l(y).
       \end{equation*}
-    \item If $X$ is normed and $V$ contains an interior point, then there is a continuous linear functional $l$ on $X$that satisfies
+    \item If $X$ is normed and $V$ contains an interior point, then there is a continuous linear functional $l$ on $X$ that satisfies
     \begin{equation*}
       \sup_{x\in V}l(x)\leq\inf_{y\in W}l(y).
     \end{equation*}
@@ -405,3 +409,20 @@ The theory of extreme points is closedly related to optimization theory. The nex
 % 优化问题
 % 拓扑线性空间 Banach-Alaogue定理
 % 锥版本 Krein-Riesz定理
+
+% TODO
+
+% Banach limit on commutative semigroup
+% Banach Alaogue
+% 第三次习题课最后三题
+
+% 凸集
+
+% 凸集的闭包和内部都是凸的
+% 凸集在线性映射下的原像是凸的
+% 凸集的交是凸的
+% 凸集的闭包和弱闭包是一致的
+% 凸集决定了线性泛函的存在性
+% 弱*拓扑的单位闭球是紧凸的
+% 局部凸的拓扑线性空间有足够多的线性泛函
+% 凸集加凸开集是凸开集

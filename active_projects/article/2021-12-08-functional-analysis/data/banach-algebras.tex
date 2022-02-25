@@ -38,7 +38,7 @@ Here are some examples of a Banach algebra.
 \begin{proof}
   For (2), observe that
   \begin{equation}
-    (x+h)^{-1}-x^{-1}=(x+h)^{-1}(x-(x+h))x^{-1}=-(1+x^{-1}h)x^{-1}hx^{-1}.
+    (x+h)^{-1}-x^{-1}=(x+h)^{-1}(x-(x+h))x^{-1}=-(1+x^{-1}h)^{-1}x^{-1}hx^{-1}.
   \end{equation}
 \end{proof}
 
@@ -65,7 +65,7 @@ Recall that if $X$ is a Banach space and $A\in B(X)$, then $A-\lambda$ is invert
 \end{proposition}
 
 \begin{proof}
-  For (1), assume $\sigma(x)$ is empty. Define $F\colon \lambda\in\CC\mapsto (f-\lambda)^{-1}\in \BA A$. Show by direct calculation that $F$ is differentialable (by the fact that inverse is continuous) and that $\lim_{\lambda\to\infty} \NORM{F(\lambda)}=0$. Then derive the contradiction using the Liouville's theorem (if $fF$ is constant for every $f\in B(\BA A)$, then $F$ must be constant).
+  For (1), assume $\sigma(x)$ is empty. Define $F\colon \lambda\in\CC\mapsto (x-\lambda)^{-1}\in \BA A$. Show by direct calculation that $F$ is differentialable (by the fact that inverse is continuous) and that $\lim_{\lambda\to\infty} \NORM{F(\lambda)}=0$. Then derive the contradiction using the Liouville's theorem (if $fF$ is constant for every $f\in B(\BA A)$, then $F$ must be constant).
 
   For (2), use the continuous function $\lambda\in\CC\to f-\lambda\in\BA A$ to show $\sigma(x)$ is closed, and use the equality $x-\lambda=\lambda(x\DIV\lambda-1)$ to show $r(x)\leq \NORM{x}$.
 
@@ -96,7 +96,7 @@ Recall that if $X$ is a Banach space and $A\in B(X)$, then $A-\lambda$ is invert
   \begin{enumerate}
     \item $r_{\BA A}(x) = r_{\BA B}(x) = \lim_{n\to\infty}\NORM{x^n}^{1\DIV n}$;
     \item $\partial\sigma_{\BA A}(x)\subseteq\sigma_{\BA B}(x)\subseteq \sigma_{\BA A}(x)$;
-    \item If $\Omega$ is a connected component of $\CC - \sigma_{\BA B}(x)$, then either $\Omega\cap \sigma_{\BA A}(x)=\varnothing$ or $\Omega\cap \sigma_{\BA B}(x)=\varnothing$;
+    \item If $\Omega$ is a connected component of $\CC - \sigma_{\BA B}(x)$, then either $\Omega\cap \sigma_{\BA A}(x)=\varnothing$ or $\Omega\subseteq \sigma_{\BA A}(x)$;
     \item Let $\{\Omega_n\}$ be the collection of connected components of $\CC - \sigma_{\BA B}(x)$ that intersects $\sigma_{\BA A}(x)$ (which is at most countable since $\CC - \sigma_{\BA B}(x)$ is locally path-connected and second-countable). Then
     \begin{equation}
       \sigma_{\BA A}(x)=\sigma_{\BA B}(x)\cup\bigcup \Omega_n.

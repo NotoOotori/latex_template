@@ -2,6 +2,29 @@
 
 \documentclass{note}
 
+\usepackage{tikz-cd}
+\tikzcdset{
+  arrow style=tikz,
+  diagrams={>={Straight Barb[scale=0.8]}}
+}
+
+\newcommand{\CAT}[1]{\symsfup{#1}}
+\newcommand{\AB}{\CAT{Ab}}
+\newcommand{\MOD}{\CAT{Mod}}
+\newcommand{\MODR}{\MOD{\textnormal-}R}
+\newcommand{\BCIR}{\smblkcircle}
+\newcommand{\CCCIR}{\smblkcircle}
+\newcommand{\CH}{\CAT{Ch}_{\CCCIR}}
+
+\DeclareMathOperator{\HOM}{hom}
+\DeclareMathOperator{\KER}{ker}
+\DeclareMathOperator{\COKER}{coker}
+
+\title{Algebra}
+
 \begin{document}
+  \maketitle
+  \tableofcontents
   \input{data/modules.tex}
+  \input{data/homologica-algebra.tex}
 \end{document}

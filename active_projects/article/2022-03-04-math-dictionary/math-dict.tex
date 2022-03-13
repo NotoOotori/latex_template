@@ -1,0 +1,149 @@
+\documentclass[10pt]{book}
+
+\emergencystretch=.5em
+
+\usepackage[twocolumn]{geometry}
+\geometry{
+  paperwidth = 6in,
+  paperheight = 9in,
+  inner = 0.5in,
+  outer = 0.5in,
+  top = 0.5in,
+  bottom = 0.5in,
+  includeheadfoot,
+  twocolumn,
+}
+% \geometry{showframe}
+
+\tracinglostchars=3 % Make it an error if characters are missing.
+\usepackage{fontspec}
+\newfontfamily\ipafamily{Doulos_SIL_Regular.ttf}
+\newcommand{\textipa}[1]{{\ipafamily #1}}
+% \newfontfamily\jpnfamily{NotoSerifJP-Regular.otf}
+\newfontfamily\jpnfamily{Noto Serif CJK JP}
+\newcommand{\textjpn}[1]{{\jpnfamily #1}}
+
+\usepackage{enumitem}
+% \setlist*[enumerate]{nosep, wide, labelindent=2em, listparindent=2em,  font=\bfseries,}
+\setlist*[description]{nosep, labelindent=2em, leftmargin=4em}
+\setlist*[itemize]{nosep, label={}, leftmargin=0em}
+
+\BeforeBeginEnvironment{itemize}{\hspace{\fill}}
+
+\usepackage[nonumberlist,nopostdot,style=treenonamegroup]{glossaries}
+\renewcommand{\glossarypreamble}{\footnotesize}
+\makeglossaries % create makeindex files
+\newglossaryentry{Koszul Jean-Louis}{
+  name={Jean-Louis Koszul},
+  sort={Koszul Jean-Louis},
+  description={%
+    (\textipa{[kɔsyl]})
+    \begin{description}
+      \item[Born] January 3, 1921 (France)
+      \item[Died] January 12, 2018 (aged 97)
+      \item[Citizenship] France
+      \item[Known for]
+        \begin{itemize}
+          \item Koszul complex
+          \item Koszul duality
+          \item Koszul connection
+        \end{itemize}
+      \item[Membership] Bourbaki (2nd generation)
+    \end{description}
+  },
+}
+\newglossaryentry{Yoneda Nobuo}{
+  name={Nobuo Yoneda},
+  sort={Yoneda Nobuo},
+  description={%
+    (\textjpn{米田 信夫})
+    \begin{description}
+      \item[Born] 28 March, 1930 (Japan)
+      \item[Died] 22 April, 1996 (aged 66)
+      \item[Citizenship] Japan
+      \item[Known for]
+        \begin{itemize}
+          \item Yoneda lemma (category theory)
+          \item Yoneda product (homological algebra)
+        \end{itemize}
+    \end{description}
+  },
+}
+\newglossaryentry{Artin Emil}{
+  name={Emil Artin},
+  sort={Artin Emil},
+  description={%
+    (\textipa{[ˈaʁtiːn]})
+    \begin{description}
+      \item[Born] 3 March, 1898 (Austria-Hungary)
+      \item[Died] 20 December, 1962 (aged 64)
+      \item[Known for]
+        \begin{itemize}
+          \item Abstract algebra
+          \item Artin-Wedderburn theorem
+        \end{itemize}
+      \item[Relationship] John Tate (brother-in-law)
+    \end{description}
+  },
+}
+\newglossaryentry{Artin Michael}{
+  name={Michael Artin},
+  sort={Artin Michael},
+  description={%
+    (\textipa{[ˈaʁtiːn]})
+    \begin{description}
+      \item[Born] 28 June, 1934 (Germany)
+      \item[Citizenship] America
+      \item[Known for]
+        \begin{itemize}
+          \item Algebraic geometry
+          \item Noncommutative algebraic geometry
+          \item Artin approximation theorem
+        \end{itemize}
+    \end{description}
+  },
+}
+\newglossaryentry{Hochschild Gerhard Paul}{
+  name={Gerhard Paul Hochschild},
+  sort={Hochschild Gerhard Paul},
+  description={%
+    (\textipa{[hoːxʃɪlt]})
+    \begin{description}
+      \item[Born] 29 April, 1915 (Berlin)
+      \item[Died] 8 July, 2010 (aged 95)
+      \item[Citizenship] America
+      \item[Known for]
+        \begin{itemize}
+          \item Lie groups
+          \item Algebraic groups
+          \item Homological algebra
+          \item Algebraic number theory
+          \item Hochschild-Kostant-Rosenberg theorem
+        \end{itemize}
+    \end{description}
+  },
+}
+\newglossaryentry{Kähler Erich}{
+  name={Erich Kähler},
+  sort={Kähler Erich},
+  description={%
+    (\textipa{[ˈkɛːlɐ]})
+    \begin{description}
+      \item[Born] 16 January, 1906 (Berlin)
+      \item[Died] 31 May, 2000 (aged 95)
+      \item[Citizenship] German
+      \item[Known for]
+        \begin{itemize}
+          \item Kahler differential
+          \item Cartan-Kähler theorem
+          \item Kahler manifold
+          \item algebraic geometry
+          \item string theory
+        \end{itemize}
+    \end{description}
+  },
+}
+\glsaddall
+\begin{document}
+\printglossaries % input files created by makeindex
+\end{document}

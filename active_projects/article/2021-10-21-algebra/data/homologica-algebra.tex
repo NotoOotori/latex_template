@@ -2,6 +2,8 @@
 
 \chapter{Homological Algebra}
 
+Three important lemmas: long exact sequence, comparison lemma, horseshoe lemma
+
 \begin{itemize}\color{red}
   \item hom complex, tensor complex, and 2-complex
   \item mapping cone motivation (P273 Munkres)
@@ -112,7 +114,7 @@ The lemma is the first of three fundamental lemmas of homological algebra.
 \begin{lemma}[Five Lemma]
   Given a commutative diagram with exact rows.
   \begin{equation*}
-    \begin{tikzcd}
+    \begin{tikzcd}[row sep=large]
       A_1 & A_2 & A_3 & A_4 & A_5\\
       B_1 & B_2 & B_3 & B_4 & B_5
       \arrow[from=1-1,]{1-2}[]{}
@@ -150,6 +152,118 @@ homotopy category
 
 \subsection{Derived Functors}
 
-resolution, left derived functors, right derived functors
+A \emph{projective resolution} of a module $M$ is a long exact sequence,
+\begin{equation*}
+  \begin{tikzcd}[sep=small]
+    \dotsb & P_2 & P_1 & P_0 & M & 0
+    \arrow[from=1-1,]{1-2}[]{}
+    \arrow[from=1-2,]{1-3}[]{}
+    \arrow[from=1-3,]{1-4}[]{}
+    \arrow[from=1-4,]{1-5}[]{\varepsilon}
+    \arrow[from=1-5,]{1-6}[]{}
+  \end{tikzcd}
+\end{equation*}
+where each module $P_n$ is projective. Its \emph{deleted resolution} is the complex deleting $M$,
+\begin{equation*}
+  \begin{tikzcd}[sep=small]
+    \dotsb & P_2 & P_1 & P_0 & 0
+    \arrow[from=1-1,]{1-2}[]{}
+    \arrow[from=1-2,]{1-3}[]{}
+    \arrow[from=1-3,]{1-4}[]{}
+    \arrow[from=1-4,]{1-5}[]{}
+  \end{tikzcd}
+\end{equation*}
+denoted by $P_A$. A projective resolution of $M$ can be viewed as a chain map from a projective chain complex $P_\CCCIR$ to $M$, which is a weak equivalence. The initial segment of a free resolution,
+\begin{equation*}
+  \begin{tikzcd}[sep=small]
+    F_1 & F_0 & M & 0
+    \arrow[from=1-1,]{1-2}[]{}
+    \arrow[from=1-2,]{1-3}[]{\varepsilon}
+    \arrow[from=1-3,]{1-4}[]{}
+  \end{tikzcd}
+\end{equation*}
+is simply a presentation of $M$ by generators and relations.
+
+\begin{example}
+  If $R$ is a principal ideal domain, then any $R$-module $M$ has a length 1 projective resolution. This is the key fact behind the classifying theorem of finitely generated modules over a principal ideal domain.
+\end{example}
+
+Dually, an \emph{injective resolution} of a module $N$ is a long exact sequence,
+\begin{equation*}
+  \begin{tikzcd}[sep=small]
+    0 & N & Q_0 & Q_1 & Q_2 & \dotsb
+    \arrow[from=1-1,]{1-2}[]{}
+    \arrow[from=1-2,]{1-3}[]{\eta}
+    \arrow[from=1-3,]{1-4}[]{}
+    \arrow[from=1-4,]{1-5}[]{}
+    \arrow[from=1-5,]{1-6}[]{}
+  \end{tikzcd}
+\end{equation*}
+where each module $Q_n$ is injective.
+
+Usually, projective resolutions are easier to compute, while injective resolutions occur more naturally.
+
+\textcolor{red}{Existence of projective resolutions and injective resolutions.}
+
+\begin{lemma}[Comparison Lemma]
+  Let $P_\CCCIR$ be a projective complex over a module $M$ and $P_\CCCIR'$ be a resolution over a module $M'$. Suppose there is a map $f\colon M\to M'$, then there is a chain map $\check f\colon P_\CCCIR\to P_\CCCIR'$ making the following diagram commutes.
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      \dotsb & P_2 & P_1 & P_0 & M & 0\\
+      \dotsb & P_2' & P_1' & P_0' & M' & 0
+      \arrow[from=1-1,]{1-2}[]{}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{}
+      \arrow[from=1-4,]{1-5}[]{\varepsilon}
+      \arrow[from=1-5,]{1-6}[]{}
+      \arrow[from=2-1,]{2-2}[]{}
+      \arrow[from=2-2,]{2-3}[]{}
+      \arrow[from=2-3,]{2-4}[]{}
+      \arrow[from=2-4,]{2-5}[]{\varepsilon'}
+      \arrow[from=2-5,]{2-6}[]{}
+      \arrow[from=1-2,dashed,]{2-2}[]{\check{f}_2}
+      \arrow[from=1-3,dashed,]{2-3}[]{\check{f}_1}
+      \arrow[from=1-4,dashed,]{2-4}[]{\check{f}_0}
+      \arrow[from=1-5,]{2-5}[]{f}
+    \end{tikzcd}
+  \end{equation*}
+  Moreover, any two such chain maps are equivalent under homotopy.
+\end{lemma}
+
+\begin{proof}
+  We need frequently the following equivalent condition for a module to be projective: A module $P$ is projective if and only if for any module $M$, $N$ and any map $M\to N$, whenever there is a map $g\colon P\to N$ such that $\IM(g)\subseteq\IM(f)$, then $g$ can be lifted to a map $\tilde g\colon P\to M$ (not necessarily unique) such that $g=f\tilde g$.
+\end{proof}
+
+The dual of comparison lemma is also true, which is stated as follows.
+
+\begin{lemma}[Comparison Lemma]
+  Let $Q_\CCCIR$ be an injective complex under a module $N$ and $Q_\CCCIR'$ be a resolution under a module $N'$. Suppose there is a map $g\colon N'\to N$, then there is a chain map $\check g\colon Q_\CCCIR'\to Q_\CCCIR$ making the following diagram commutes.
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      \dotsb & Q_2 & Q_1 & Q_0 & N & 0\\
+      \dotsb & Q_2' & Q_1' & Q_0' & N' & 0
+      \arrow[from=1-1,leftarrow]{1-2}[]{}
+      \arrow[from=1-2,leftarrow]{1-3}[]{}
+      \arrow[from=1-3,leftarrow]{1-4}[]{}
+      \arrow[from=1-4,leftarrow]{1-5}[]{\eta}
+      \arrow[from=1-5,leftarrow]{1-6}[]{}
+      \arrow[from=2-1,leftarrow]{2-2}[]{}
+      \arrow[from=2-2,leftarrow]{2-3}[]{}
+      \arrow[from=2-3,leftarrow]{2-4}[]{}
+      \arrow[from=2-4,leftarrow]{2-5}[]{\eta'}
+      \arrow[from=2-5,leftarrow]{2-6}[]{}
+      \arrow[from=1-2,dashed,leftarrow]{2-2}[]{\check{g}_2}
+      \arrow[from=1-3,dashed,leftarrow]{2-3}[]{\check{g}_1}
+      \arrow[from=1-4,dashed,leftarrow]{2-4}[]{\check{g}_0}
+      \arrow[from=1-5,leftarrow]{2-5}[]{g}
+    \end{tikzcd}
+  \end{equation*}
+\end{lemma}
+
+left derived functors, right derived functors
+
+\begin{lemma}[Horseshoe Lemma]
+  Suppose there is a short exact sequence $0\to M'\to M\to M''\to 0$ of modules. Then there exists projective resolutions $P_\CCCIR', P_\CCCIR, P_\CCCIR''$
+\end{lemma}
 
 Ext, Tor

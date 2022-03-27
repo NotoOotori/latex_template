@@ -64,3 +64,41 @@ We need the following properties of a normal endomorphism:
 
   We claim that $G\cong g^{-1}(H_1)\times G_2\times \dotsb\times G_m$. $G_1 = h_1(H_1)=e_1(g^{-1}(H_1))$ implies that $G$ is the product of these subgroups. If $x$ in the intersection of $g^{-1}(H_1)$ and the rest product, then $e_1(x)=e_1(g(y))=0$. It implies from the fact that $k_1$ is an isomorphism that $y=0$ and hence $x=g(y)=0$.
 \end{proof}
+
+\section{Special Modules}
+
+\subsection{Projective Modules}
+
+\section{Nakayama's Lemma}
+
+\begin{lemma}
+  Let $R$ be a ring, $J$ the Jacobson radical of $R$, and $M$ a non-zero finitely generated $R$-module. Then $JM\subsetneq M$.
+\end{lemma}
+
+\begin{proof}
+  Suppose $x_1, \dotsc, x_n$ is a minimal set of generators of $M$. Assume $JM=M$. Then we have $x_n=\sum r_ix_i$, which implies that
+  \begin{equation*}
+    (1-r_n)x_n=r_1x_1+\dotsb+r_{n-1}x_{n-1}.
+  \end{equation*}
+  Since $1-r_n$ is a unit, we have derived a contradiction.
+\end{proof}
+
+\begin{proof}[Local Algebra, Serre, P1]
+  By Zorn's lemma, every non-zero finitely generated module $M$ admits a non-zero simple quotient module $M\DIV N$, which is isomorphic to $R/I$ for a maximal left ideal $I$ of $R$. Since $J\subseteq I$, we have $J$ kills $M\DIV N$. It implies that $JM\subseteq N\subsetneq M$.
+\end{proof}
+
+\begin{corollary}
+  Commutative; Commutative local ring.
+\end{corollary}
+
+\begin{lemma}
+  Let $R$ be a (nonnegatively) graded ring, and $M$ be a non-zero finitely generated graded $R$-module with a lower bound. Let $R_+$ denote the invariant maximal ideal of $R$. Then $R_+M\subsetneq M$.
+\end{lemma}
+
+\begin{proof}
+  Let $d$ be the lowest degree of $M$. Then $R_+M\cap M_d=0$.
+\end{proof}
+
+\begin{corollary}
+  $M\otimes_R R\DIV R_+=0$ implies that $M=0$.
+\end{corollary}

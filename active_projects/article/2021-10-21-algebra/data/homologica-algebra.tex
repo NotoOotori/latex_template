@@ -6,8 +6,14 @@ Three important lemmas: long exact sequence, comparison lemma, horseshoe lemma
 
 \begin{itemize}\color{red}
   \item hom complex, tensor complex, and 2-complex
-  \item mapping cone motivation (P273 Munkres)
+  \item mapping cone motivation (P273 Munkres); mapping cylinder
+  \item Universal Coefficient Theorems
+  \item Koszul complex, Hilbert's Syzygy
+  \item Dimension (projective dimension and global projective dimension)
+  \item $\{a\vert b\}$ typography
 \end{itemize}
+
+Size issue --- universe (Gabriel)
 
 \section{Basic Concepts}
 
@@ -21,7 +27,7 @@ A \emph{pre-additive category} is an pointed $\AB$-enriched category. One can pr
 
 An \emph{additive category} is a pre-additive category which admits finite biproducts.
 
-A \emph{pre-abelian category} is an additive category such that every morphism has a kernel and a cokernel. Equivalently, a pre-abelian category is an additive category which admits all finite limits and finite colimits. In a pre-abelian category, every morphism $f\colon A\to B$ induces a morphism $\overline{f}\colon\COKER\KER f\to \KER\COKER f$ as shown in the diagram.
+A \emph{pre-abelian category} is an additive category such that every morphism has a kernel and a cokernel. Equivalently, a pre-abelian category is an additive category which admits all finite limits and finite colimits. In a pre-abelian category, every morphism $f\colon A\to B$ induces a morphism $\BAR{f}\colon\COKER\KER f\to \KER\COKER f$ as shown in the diagram.
 \begin{equation*}
   \begin{tikzcd}
     0 & \KER f & A & B & \COKER f & 0\\
@@ -34,7 +40,7 @@ A \emph{pre-abelian category} is an additive category such that every morphism h
     \arrow[from=1-3,two heads,]{2-3}[]{}
     \arrow[from=1-4,hookleftarrow,]{2-4}[]{}
     \arrow[from=2-3,dashed,]{1-4}[]{}
-    \arrow[from=2-3,dashed,]{2-4}[]{\overline{f}}
+    \arrow[from=2-3,dashed,]{2-4}[]{\BAR{f}}
   \end{tikzcd}
 \end{equation*}
 
@@ -44,20 +50,32 @@ A \emph{pre-abelian category} is an additive category such that every morphism h
     \begin{tikzcd}[sep=small]
       A & \COKER\KER f & \KER\COKER f & B
       \arrow[from=1-1,]{1-2}[]{p}
-      \arrow[from=1-2,]{1-3}[]{\overline{f}}
+      \arrow[from=1-2,]{1-3}[]{\BAR{f}}
       \arrow[from=1-3,]{1-4}[]{i}
     \end{tikzcd}
   \end{equation*}
   where $p$ is a cokernel, hence epic, and $i$ is a kernel, hence monic.
 \end{proposition}
 
-An \emph{abelian category} is a pre-abelian category such that for every morphism $f$, the induced map $\overline{f}$ is an isomorphism. Equivalently, an abelian category is a pre-abelian category such that every monomorphism is the cokernel of its kernel, and that every epimorphism is the kernel of its cokernel.
+An \emph{abelian category} is a pre-abelian category such that for every morphism $f$, the induced map $\BAR{f}$ is an isomorphism. Equivalently, an abelian category is a pre-abelian category such that every monomorphism is the cokernel of its kernel, and that every epimorphism is the kernel of its cokernel.
 
 \begin{remark}
   The dual of an additive (abelian, resp.) category is additive (abelian, resp).
 \end{remark}
 
-Chain complex abelian, functor category abelian.
+\begin{example}
+  The category $\CH(\CAT{C})$ of chain complexes over an abelian category $\CAT{C}$ is also an abelian category, with projective objects to be split exact complexes of projectives.
+\end{example}
+
+\begin{example}
+  Let $\CAT{C}$ be an abelian category and $\CAT{J}$ a category. Then the functor category $\CAT{C}^{\CAT{J}}$ is an abelian category with finite biproducts, kernels and cokernels defined element-wise. If $\CAT{C}$ is cocomplete (complete, resp.) and has enough projectives (injectives, resp.), then $\CAT{C}^{\CAT{J}}$ has enough projectives (injectives, resp.).
+
+  For example, let $\CAT{J}$ be the arrow category $1\to 2$. Then projective objects of $\CAT{C}^{\CAT{J}}$ are split monic morphisms $f\colon U\to V$ between projectives.
+\end{example}
+
+\begin{proposition}[Gabriel]
+  Let $\CAT{C}$ be an abelian category and $\CAT{D}$ an abelian category with exact filtered colimits. Then the full subcategory of left exact functors of the functor category $\CAT{D}^{\CAT{C}}$ is indeed a reflexive subcategory, and hence is an abelian category.
+\end{proposition}
 
 \begin{theorem}[Freyd-Mitchell Embedding Theorem]
   Every small abelian category admits a full, faithful and exact functor to the category $\MODR$ for some ring $R$.
@@ -65,9 +83,27 @@ Chain complex abelian, functor category abelian.
 
 The Freyd-Mitchell Embedding Theorem implies that proofs about exactness of sequences in an abelian category can always be obtained by a diagram chase.
 
-The category of chain complexes of an abelian category $\CAT{A}$, denoted by $\CH(\CAT{A})$, is an abelian category.
-
 \subsection{Homology and Diagram Chasing Lemmas}
+
+A \emph{split chain complex} is a chain complex with a map $s$ of degree 1 such that $dsd=d$. A \emph{split exact chain complex} is a split chain complex that is exact at each term.
+
+\begin{proposition}\hspace*{\fill}
+  \begin{enumerate}
+    \item A chain complex $C_{\CCCIR}$ splits if and only if there are decompositions $C_n\cong Z_n\oplus B_n'$ and $Z_n\cong B_n\oplus H_n'$ for each $n$.
+    \item A split chain complex $C_{\CCCIR}$ is exact if and only if $H_n'=0$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proposition}\hspace*{\fill}
+  \begin{enumerate}
+    \item A bounded-below acyclic complex of free $R$-modules is split exact.
+    \item An acyclic complex of finitely generated free abelian groups is split exact.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+  A chain complex is split exact if and only if the identity chain map is null-homotopic. Therefore, additive functors sends a split exact chain complex to a split exact chain complex.
+\end{proposition}
 
 The homology in degree $n$ defines a functor $H_n\colon\CH(\MODR)\to\MODR$.
 
@@ -86,7 +122,7 @@ positive chain complex; negative chain complex
 exactness of a sequence of chain complexes
 
 \begin{lemma}[Long Exact Sequence]
-  Let $0\to C_\CCCIR'\xrightarrow{i} C_\CCCIR \xrightarrow{p} C_\CCCIR''\to 0$ be an exact sequence in $\CH(\CAT{A})$ for an abelian category $\CAT{A}$, then there is a long exact sequence in $\CAT{A}$.
+  Let $0\to C_\CCCIR'\xrightarrow{i} C_\CCCIR \xrightarrow{p} C_\CCCIR''\to 0$ be an exact sequence in $\CH(\CAT{C})$ for an abelian category $\CAT{C}$, then there is a long exact sequence in $\CAT{C}$.
   \begin{equation*}
     \begin{tikzcd}[sep=small]
       \dotsb & H_{n+1}(C_\CCCIR'') & H_n(C_\CCCIR') & H_n(C_\CCCIR) & H_n(C_\CCCIR'') & H_{n-1}(C_\CCCIR') & \dotsb
@@ -101,14 +137,40 @@ exactness of a sequence of chain complexes
   Moreover, the long exact sequence is natural.
 \end{lemma}
 
-The lemma is the first of three fundamental lemmas of homological algebra.
-
 \begin{proof}
-  For naturality, let $\CAT{J}$ denote the category $\BCIR\to\BCIR$. Then the functor category $\CAT{A}^{\CAT{J}}$ is also an abelian category. By applying the long exact sequence to the category $\CAT{A}^{\CAT{J}}$ one can obtain naturality of the long exact sequence.
+  For naturality, let $\CAT{J}$ denote the category $\BCIR\to\BCIR$. Then the functor category $\CAT{C}^{\CAT{J}}$ is also an abelian category. By applying the long exact sequence to the category $\CAT{C}^{\CAT{J}}$ one can obtain naturality of the long exact sequence.
 \end{proof}
 
 \begin{lemma}[Snake Lemma]
-
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      0 & M' & M & M'' & 0\\
+      0 & N' & N & N'' & 0
+      \arrow[from=1-1,dashed,]{1-2}[]{}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{}
+      \arrow[from=1-4,]{1-5}[]{}
+      \arrow[from=2-1,]{2-2}[]{}
+      \arrow[from=2-2,]{2-3}[]{}
+      \arrow[from=2-3,]{2-4}[]{}
+      \arrow[from=2-4,dashed,]{2-5}[]{}
+      \arrow[from=1-2,]{2-2}[swap]{f'}
+      \arrow[from=1-3,]{2-3}[]{f}
+      \arrow[from=1-4,]{2-4}[]{f''}
+    \end{tikzcd}
+  \end{equation*}
+  \begin{equation*}
+    \begin{tikzcd}[sep=small, cramped]
+      0 & \KER(f') & \KER(f) & \KER(f'') & \COKER(f') & \COKER(f) & \COKER(f'') & 0
+      \arrow[from=1-1,dashed,]{1-2}[]{}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{}
+      \arrow[from=1-4,]{1-5}[]{\partial}
+      \arrow[from=1-5,]{1-6}[]{}
+      \arrow[from=1-6,]{1-7}[]{}
+      \arrow[from=1-7,dashed,]{1-8}[]{}
+    \end{tikzcd}
+  \end{equation*}
 \end{lemma}
 
 \begin{lemma}[Five Lemma]
@@ -152,7 +214,9 @@ homotopy category
 
 \subsection{Derived Functors}
 
-A \emph{projective resolution} of a module $M$ is a long exact sequence,
+The idea is to replace every module by a deleted resolution of it; given a short exact sequence of modules, we shall see that this replacement gives a short exact sequence of complexes. (Rotman)
+
+A \emph{projective resolution} $P_\CCCIR$ of a module $M$ is a long exact sequence,
 \begin{equation*}
   \begin{tikzcd}[sep=small]
     \dotsb & P_2 & P_1 & P_0 & M & 0
@@ -173,7 +237,7 @@ where each module $P_n$ is projective. Its \emph{deleted resolution} is the comp
     \arrow[from=1-4,]{1-5}[]{}
   \end{tikzcd}
 \end{equation*}
-denoted by $P_A$. A projective resolution of $M$ can be viewed as a chain map from a projective chain complex $P_\CCCIR$ to $M$, which is a weak equivalence. The initial segment of a free resolution,
+denoted by $P_M$. A projective resolution of $M$ can be viewed as a chain map from a projective chain complex $P_\CCCIR$ to $M$, which is a weak equivalence. The initial segment of a free resolution,
 \begin{equation*}
   \begin{tikzcd}[sep=small]
     F_1 & F_0 & M & 0
@@ -201,9 +265,7 @@ Dually, an \emph{injective resolution} of a module $N$ is a long exact sequence,
 \end{equation*}
 where each module $Q_n$ is injective.
 
-Usually, projective resolutions are easier to compute, while injective resolutions occur more naturally.
-
-\textcolor{red}{Existence of projective resolutions and injective resolutions.}
+Usually, projective resolutions are easier to compute, while injective resolutions occur more naturally. (not enough projectives in the category of sheaves for some topological space)
 
 \begin{lemma}[Comparison Lemma]
   Let $P_\CCCIR$ be a projective complex over a module $M$ and $P_\CCCIR'$ be a resolution over a module $M'$. Suppose there is a map $f\colon M\to M'$, then there is a chain map $\check f\colon P_\CCCIR\to P_\CCCIR'$ making the following diagram commutes.
@@ -260,10 +322,387 @@ The dual of comparison lemma is also true, which is stated as follows.
   \end{equation*}
 \end{lemma}
 
-left derived functors, right derived functors
-
 \begin{lemma}[Horseshoe Lemma]
-  Suppose there is a short exact sequence $0\to M'\to M\to M''\to 0$ of modules. Then there exists projective resolutions $P_\CCCIR', P_\CCCIR, P_\CCCIR''$
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      & \vdots & \color{cyan}\vdots & \vdots\\
+      0 & P_1' & \color{cyan}P_1 & P_1'' & 0\\
+      0 & P_0' & \color{cyan}P_0 & P_0'' & 0\\
+      0 & M' & M & M'' & 0\\
+      & 0 & 0 & 0
+      \arrow[from=4-1,]{4-2}[]{}
+      \arrow[from=4-2,]{4-3}[]{}
+      \arrow[from=4-3,]{4-4}[]{}
+      \arrow[from=4-4,]{4-5}[]{}
+      \arrow[from=1-2,]{2-2}[]{}
+      \arrow[from=2-2,]{3-2}[]{}
+      \arrow[from=3-2,]{4-2}[]{}
+      \arrow[from=4-2,]{5-2}[]{}
+      \arrow[from=1-4,]{2-4}[]{}
+      \arrow[from=2-4,]{3-4}[]{}
+      \arrow[from=3-4,]{4-4}[]{}
+      \arrow[from=4-4,]{5-4}[]{}
+      \arrow[from=1-3,cyan,]{2-3}[]{}
+      \arrow[from=2-3,cyan,]{3-3}[]{}
+      \arrow[from=3-3,cyan,]{4-3}[]{}
+      \arrow[from=4-3,]{5-3}[]{}
+      \arrow[from=3-1,]{3-2}[]{}
+      \arrow[from=3-2,cyan,]{3-3}[]{}
+      \arrow[from=3-3,cyan,]{3-4}[]{}
+      \arrow[from=3-4,]{3-5}[]{}
+      \arrow[from=2-1,]{2-2}[]{}
+      \arrow[from=2-2,cyan,]{2-3}[]{}
+      \arrow[from=2-3,cyan,]{2-4}[]{}
+      \arrow[from=2-4,]{2-5}[]{}
+    \end{tikzcd}
+  \end{equation*}
 \end{lemma}
 
-Ext, Tor
+\begin{definition}
+  Let $F\colon \CAT{C}\to \CAT{D}$ be an additive functor between abelian categories where $\CAT{C}$ has enough projectives. We shall construct the \emph{left derived functors} $L_nF$ of $F$.
+
+  Choose a projective resolution $P_\CCCIR$ for each object $M\in\CAT{C}$. Then the image $FP_M$ of the deleted resolution $P_M$ is a complex over $\CAT{D}$. Define $L_nF(M)$ to be $H_n(FP_M)$.
+
+  Let $f\colon M\to M'$ be a morphism in $\CAT{C}$. By the comparison lemma, there is a induced chain map $\check f\colon P_M\to P_{M'}'$ between deleted resolutions. Then $F\check f\colon FP_M\to FP_{M'}'$ is also a chain map, and we define $L_nF(f)$ to be $H_n(F\check f)$.
+\end{definition}
+
+\begin{remark}
+  $L_nF$ is invariant under natural isomorphisms with the choice of resolutions.
+\end{remark}
+
+\begin{remark}
+  If $P$ is projective, then $L_nF(P)=0$ for $i\neq 0$.
+\end{remark}
+
+\begin{remark}
+  If $F$ is right exact, then the sequence
+  \begin{equation*}
+    \begin{tikzcd}[sep=small]
+      FP_1 & FP_0 & FM & 0
+      \arrow[from=1-1,]{1-2}[]{Fd_1}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{}
+    \end{tikzcd}
+  \end{equation*}
+  is exact, and hence $L_0F(M)=FP_0\DIV\IM Fd_1 \cong F(M)$. Moreover, we have a natural isomorphism $L_0F\cong F$.
+\end{remark}
+
+\begin{proposition}
+  An exact functors preserve left derived functors.
+\end{proposition}
+
+\begin{proposition}
+  $L_nF$ defines a homological $\delta$-functor. In particular, every short exact sequence $0\to M'\to M\to M''\to 0$ in $\CAT{C}$ induces a long exact sequence
+  \begin{equation*}
+    \begin{tikzcd}[sep=small]
+      \dotsb & L_1FM'' & L_0FM' & L_0FM & L_0FM'' & 0
+      \arrow[from=1-1,]{1-2}[]{}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{}
+      \arrow[from=1-4,]{1-5}[]{}
+      \arrow[from=1-5,]{1-6}[]{}
+    \end{tikzcd}
+  \end{equation*}
+  in $\CAT{D}$.
+\end{proposition}
+
+\begin{proof}
+  Use the horseshoe lemma, apply by $F$, and then use the long exact sequence.
+
+  The diagram commutes after applying the homology functor.
+  \begin{equation*}
+    \begin{tikzcd}[row sep=large]
+      \dotsb & H_n(FP_M') & H_n(F\tilde{P}_M) & H_n(FP_M'') & \dotsb\\
+      & & H_n(FP_M)
+      \arrow[from=1-1,]{1-2}[]{}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{}
+      \arrow[from=1-4,]{1-5}[]{}
+      \arrow[from=1-2]{2-3}[]{}
+      \arrow[from=1-3,shift right,]{2-3}[]{}
+      \arrow[from=1-3,shift left,leftarrow]{2-3}[]{}
+      \arrow[from=1-4]{2-3}[]{}
+    \end{tikzcd}
+  \end{equation*}
+\end{proof}
+
+\begin{remark}[Dimension Shifting]
+  If $0\to K\to P\to M\to 0$ is exact with $P$ projective (or $F$-acyclic), then $L_nF(M)\cong L_{n-1}F(K)$ for $n\geq 2$, and $L_1F(A)$ is the kernel of $F(K)\to F(P)$.
+\end{remark}
+
+\begin{theorem}
+  Assume $\CAT{C}$ has enough projectives. Then for any right exact functor $F\colon\CAT{C}\to\CAT{D}$, the derived functors $L_nF$ form a universal $\delta$-functor.
+\end{theorem}
+
+\begin{proof}
+  Dimension shifting.
+\end{proof}
+
+\begin{remark}
+  An additive functor $F\colon\CAT{C}\to\CAT{D}$ is called \emph{coeffaceable} if for every $M$ here is a sujection $p\colon P\to A$ such that $F(p)=0$. The above proof actually shows that if $T_*$ is a homological $\delta$-functor such that each $T_n$ is coeffaceable except $T_0$, then $T_*$ is universal.
+
+  Dually, an additive functor $F\colon\CAT{C}\to\CAT{D}$ is called \emph{effaceable} if for every $M$ here is injection $i\colon Q\to M$ such that $F(i)=0$. If $T^*$ is a cohomological $\delta$-functor such that each $T^n$ is effaceable except $T^0$, then $T^*$ is universal.
+
+  Specifically, take $P, Q$ to be the mapping cone $\CONE(A)$, one can show that homology $H_*\colon \CHH(\CAT{C})\to \CAT{C}$ and cohomology $H^*\colon \CHC(\CAT{C})\to \CAT{C}$ are universal $\delta$-functors.
+\end{remark}
+
+\begin{definition}
+  Let $G\colon \CAT{C}\to \CAT{D}$ be an additive functor between abelian categories where $\CAT{C}$ has enough injective. We shall construct the \emph{covariant right derived functors} $R^nG$ of $G$.
+
+  Choose an injective resolution $Q_\CCCIR$ for each object $N\in\CAT{C}$. Then the image $GQ_N$ of the deleted resolution $Q_N$ is a complex over $\CAT{D}$. Define $R^nG(N)$ to be $H^n(GQ_N)$.
+
+  Let $g\colon N\to N'$ be a morphism in $\CAT{C}$. By the comparison lemma, there is a induced chain map $\check g\colon Q_N\to Q_{N'}'$ between deleted resolutions. Then $G\check g\colon GQ_N\to GQ_{N'}'$ is also a chain map, and we define $R^nG(g)$ to be $H^n(G\check g)$.
+\end{definition}
+
+\begin{remark}
+  $R^nG$ is invariant under natural isomorphisms with the choice of resolutions.
+\end{remark}
+
+\begin{remark}
+  If $G$ is left exact, then the sequence
+  \begin{equation*}
+    \begin{tikzcd}[sep=small]
+      0 & GN & GQ_0 & GQ_1
+      \arrow[from=1-1,]{1-2}[]{}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{Gd^1}
+    \end{tikzcd}
+  \end{equation*}
+  is exact, and hence $R^0G(N)=\KER Gd^1 \cong G(N)$. Moreover, we have a natural isomorphism $R^0G\cong G$.
+\end{remark}
+
+\begin{proposition}
+  $R^nG$ defines a homological $\delta$-functor. In particular, every short exact sequence $0\to N'\to N\to N''\to 0$ in $\CAT{C}$ induces a long exact sequence
+  \begin{equation*}
+    \begin{tikzcd}[sep=small]
+      0 & R^0GN' & R^0GN & R^0GN'' & R^1GN' & \dotsb
+      \arrow[from=1-1,]{1-2}[]{}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{}
+      \arrow[from=1-4,]{1-5}[]{}
+      \arrow[from=1-5,]{1-6}[]{}
+    \end{tikzcd}
+  \end{equation*}
+  in $\CAT{D}$.
+\end{proposition}
+
+\begin{definition}
+  Let $H\colon \CAT{C}^{\OP}\to \CAT{D}$ be an contravariant additive functor between abelian categories where $\CAT{C}$ has enough projectives. We shall construct the \emph{contravariant right derived functors} $R^nH$ of $H$.
+
+  Choose a projective resolution $P_\CCCIR$ for each object $M\in\CAT{C}$. Then the image $HP_M$ of the deleted resolution $P_M$ is a complex over $\CAT{D}$. Define $R^nF(M)$ to be $H^n(HP_M)$.
+
+  Let $h\colon M\to M'$ be a morphism in $\CAT{C}$. By the comparison lemma, there is a induced chain map $\check h\colon P_M\to P_{M'}'$ between deleted resolutions. Then $H\check h\colon HP_{M'}'\to HP_{M}$ is also a chain map, and we define $R^nG(h)$ to be $H^n(\check h)$.
+\end{definition}
+
+\begin{remark}
+  $R^nH$ is invariant under natural isomorphisms with the choice of resolutions.
+\end{remark}
+
+\begin{remark}
+  If $H$ is left exact, then the sequence
+  \begin{equation*}
+    \begin{tikzcd}[sep=small]
+      0 & HM & HP_0 & HP_1
+      \arrow[from=1-1,]{1-2}[]{}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{Hd_1}
+    \end{tikzcd}
+  \end{equation*}
+  is exact, and hence $R^0H(M)=\KER Hd_1 \cong HM$. Moreover, we have a natural isomorphism $R^0H\cong H$.
+\end{remark}
+
+\begin{proposition}
+  $R^nH$ defines a homological $\delta$-functor. In particular, every short exact sequence $0\to M'\to M\to M''\to 0$ in $\CAT{C}$ induces a long exact sequence
+  \begin{equation*}
+    \begin{tikzcd}[sep=small]
+      0 & R^0HM'' & R^0HM & R^0HM' & R^1HM'' & \dotsb
+      \arrow[from=1-1,]{1-2}[]{}
+      \arrow[from=1-2,]{1-3}[]{}
+      \arrow[from=1-3,]{1-4}[]{}
+      \arrow[from=1-4,]{1-5}[]{}
+      \arrow[from=1-5,]{1-6}[]{}
+    \end{tikzcd}
+  \end{equation*}
+  in $\CAT{D}$.
+\end{proposition}
+
+The $\EXT$ functors are the covariant right derived functors of $\HOM_R(M,
+\BLANK)$, and are also the contravariant right derived functors of $\HOM_R(\BLANK, N)$. By dimension shifting, one can prove that the two definitions give the same $\EXT_R^n(M, N)$.
+
+\begin{remark}
+  $\EXT^n_R(M, N)=\EXT_R^1(\IM d_{n-1}, N).$
+\end{remark}
+
+\begin{proposition}
+  For a module $M\in \MODR$, the following are equivalent.
+  \begin{enumerate}
+    \item $M$ is projective.
+    \item $\EXT_R^n(M, N)=0$ for any $n\geq 1$ and any $N\in\MODR$.
+    \item $\EXT_R^n(M, N)=0$ for any $N\in\MODR$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Dimension shifting.
+\end{proof}
+
+\begin{remark}
+  The first $\EXT$ group of $M$ and $N$ is isomorphic (as sets) to the extensions of $M$ by $N$, i.e. exact sequences $0\to M\to E\to N\to 0$.
+\end{remark}
+
+The $\TOR$ functors are the left derived functors of $M\otimes \BLANK$, and are also the left derived functors of $\BLANK\otimes N$. By dimension shifting, one can prove that the two definitions give the same $\TOR_n^R(M, N)$.
+
+\begin{proposition}
+  For a module $M\in\MODR$, the following are equivalent.
+  \begin{enumerate}
+    \item $M$ is flat.
+    \item $\TOR_n^R(M, N)=0$ for any $n\geq 1$ and any $N\in\RMOD$.
+    \item $\TOR_1^R(M, N)=0$ for any $N\in\RMOD$.
+  \end{enumerate}
+\end{proposition}
+
+\section{Tor and Ext}
+
+\subsection{Change of Rings}
+
+We study whether projective resolution is preserved by extension of scalars of modules and of bimodules.
+
+Model problem: bar resolution of $\ZG$ (over $\ZG$-Mod-$\ZG$) induces bar resolution of $\ZZ$ (over $\ZG$), and such relation induces an isomorphism of $\EXT$ groups.
+
+To show the image is projective, it suffices to show that the right adjunction of the functor is exact. To show the image complex is exact, one usually shall examine the $\TOR$ group.
+
+Reference: Cartan-Eilenberg: II.6.1, P30; VIII.3.1, P150; X.2.1, P185.
+
+Let $R\to S$ and $R'\to S'$ be ring augmentations, and there is a morphism between augmented rings as shown in the diagram.
+\begin{equation*}
+  \begin{tikzcd}[row sep=large]
+    R & S\\
+    R' & S'
+    \arrow[from=1-1,]{1-2}[]{\varepsilon}
+    \arrow[from=2-1,]{2-2}[]{\varepsilon'}
+    \arrow[from=1-1,]{2-1}[swap,]{\varphi}
+    \arrow[from=1-2,]{2-2}[]{\psi}
+  \end{tikzcd}
+\end{equation*}
+Let $M$ be a right $R'$-module and $N$ be a left $R'$-module. We shall define maps between $\TOR$ groups and between $\EXT$ groups.
+\begin{equation*}
+  \begin{aligned}
+    F^{\varphi}\colon&\TOR^R(M, S)\to\TOR^{R'}(M, S'),\\
+    F_\varphi\colon&\EXT_{R'}(S', N)\to\EXT_{R}(S, N).
+  \end{aligned}
+\end{equation*}
+
+Let $P_{\CCCIR}$ ($P_{\CCCIR}'$, resp.) be a projective resolution of $S$ ($S'$, resp.), then $R'\otimes_{R}P_{\CCCIR}$ is a projective complex. By the comparison lemma, there exists chain maps $R'\otimes_{R}P_{\CCCIR}\to P_{\CCCIR}'$. Hence we may define $F^\varphi$ and $F_\varphi$ by the following maps.
+\begin{equation*}
+  \begin{aligned}
+    F^{\varphi}\quad\leftwavearrow\quad& M\otimes_R P_{\CCCIR}=M\otimes_{R'}(R'\otimes_{R}P_{\CCCIR})\to M\otimes_{R'}P_{\CCCIR}';\\
+    F_{\varphi}\quad\leftwavearrow\quad& \HOM_{R'}(P_{\CCCIR}', N)\to\HOM_{R'}(R'\otimes_{R}P_{\CCCIR})=\HOM_{R}(P_{\CCCIR}, N).
+  \end{aligned}
+\end{equation*}
+
+\begin{theorem}[Mapping Theorem]\hspace*{\fill}
+  \begin{enumerate}
+    \item $F^\varphi$ are isomorphisms for any $M$, if and only if $R'\otimes_RS\cong S'$ and $\TOR_n^{R}(R', S)=0$ for $n\geq 0$.
+    \item If (1) holds, then $F_\varphi$ are isomorphisms for any $C$.
+    \item If (1) holds, then for any $R$-projective resolution $P_{\CCCIR}$ of $S$, the complex $R'\otimes_R P_{\CCCIR}$ with $R'\otimes_R P_{\CCCIR}\to R'\otimes_R S\cong S'$ is a $R'$-projective resolution of $S'$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{lemma}
+  Suppose $A, B, C$ are $K$-algebras. Let $M$ be a projective ($A$,$B$)-bimodule, and $N$ a ($B$,$C$)-bimodule which is projective as a left $B$-module. Then $M\otimes_B N$ is a projective ($A$,$C$)-bimodule.
+\end{lemma}
+
+\begin{corollary}
+  If $M$ is a projective ($A$,$B$)-bimodule, and if $A$ is $K$-projective, then $M$ is projective as a right $B$-module.
+\end{corollary}
+
+Now let $K$ be a commutative ring, $R$ a $K$-algebra, $M$ a right $R$-module, and $N$ a left $R$-module. Then we have the following morphism of augmented rings
+\begin{equation*}
+  \begin{tikzcd}[row sep=large]
+    R^{\ENV} & R\\
+    R & K
+    \arrow[from=1-1,]{1-2}[]{\eta}
+    \arrow[from=2-1,]{2-2}[]{\varepsilon}
+    \arrow[from=1-1,]{2-1}[swap,]{\eta}
+    \arrow[from=1-2,]{2-2}[]{\varepsilon}
+  \end{tikzcd}
+\end{equation*}
+and the following maps between $\TOR$ groups and between $\EXT$ groups.
+\begin{equation*}
+  \begin{aligned}
+    F^{\varphi}\colon&\TOR^{R^{\ENV}}({}_{\varepsilon}M, R)\to\TOR^{R}(M, K),\\
+    F_\varphi\colon&\EXT_{R}(K, N)\to\EXT_{R^{\ENV}}(R, N_{\varepsilon}).
+  \end{aligned}
+\end{equation*}
+
+\begin{lemma}
+  If $M$ is a ($R$,$R$)-bimodule, then there is an $R$-module isomorphism as follows.
+  \begin{equation*}
+    {}_{\varepsilon}R\otimes_{R^{\ENV}}M\cong M\otimes_{R}K.
+  \end{equation*}
+\end{lemma}
+
+\begin{theorem}
+  If the supplemented $K$-algebra $R$ is $K$-projective, then $F^\varphi$ and $F_\varphi$ are isomorphisms, and for each $R^{\ENV}$-projective resolution $P_{\CCCIR}$ of $R$, the complex $P_{\CCCIR}\otimes_{R} K$ is an $R$-projective resolution of $K=R\otimes_R K$ as a left $R$-module.
+\end{theorem}
+
+Suppose $P_\CCCIR$ is a projective resolution of $\ZG$ over $\ZG^{\ENV}$. Then $P_\CCCIR\otimes_{\ZG}\ZZ$ is projective, and also resolution since $P_\CCCIR$ is projective as a right $\ZG$-module.
+
+\section{Hochschild Theory}
+
+Let $K$ be a commutative ring, and $R$ a $K$-algebra. (One can always view a ring as an algebra over its center.) For an ($R$, $R$)-bimodule $N$, define the $n^{\text{th}}$ \emph{Hochschild homology group} of $R$ with coefficient $N$ to be $\TOR_n^{R^{\ENV}}(R, N)$, which automatically has a structure of $K$-module. Dually, define the $n^{\text{th}}$ \emph{Hochschild cohomology group} of $R$ with coefficient $N$ to be $\EXT^n_{R^{\ENV}}(R, N)$.
+
+There is a canonical resolution, named \emph{bar resolution}, of $R$ over $R^{\ENV}$, defined as follows,
+\begin{equation*}
+  \begin{tikzcd}[sep=small]
+    \dotsb & R^{\otimes(n+2)} & R^{\otimes(n+1)} & \dotsb & R\otimes R & R & 0
+    \arrow[from=1-1,]{1-2}[]{}
+    \arrow[from=1-2,]{1-3}[]{d_n}
+    \arrow[from=1-3,]{1-4}[]{}
+    \arrow[from=1-4,]{1-5}[]{d_1}
+    \arrow[from=1-5,]{1-6}[]{}
+    \arrow[from=1-6,]{1-7}[]{}
+  \end{tikzcd}
+\end{equation*}
+where $d_n\colon R^{\otimes(n+2)} \to R^{\otimes(n+1)}$ sends $x_0\otimes\dotsb\otimes x_{n+1}$ to $\sum_{0}^n (-1)^ix_0\otimes\dotsb \otimes x_ix_{i+1}\otimes\dotsb\otimes a_{n+1}$, and where $(R, R)$-module structure of $R^{\otimes(n+2)}$ is defined by outer action.
+
+If $R$ is free as $K$-module, then we obtain a free resolution of $R$ over $R^{\ENV}$, by observing ${}_{R}R\otimes R^{\otimes n}\otimes R_{R}\cong {}_{R^{\ENV}}R^{\ENV}\otimes R^{\otimes n}$.
+
+If there is an augmentation $R\to K$, and if $R$ is projective as $K$-module, then by applying $\BLANK\otimes_{R}K$ we obtain a projective resolution of $K$ over $R$, also named as the bar resolution of $K$ over $R$.
+
+In the original paper of Hochschild, he defines the cochain complex $C^n(R, M)$ and the chain complex $C_n(R, N)$ as follows. $C^n(R, N)=\HOM_K(R^{\otimes n}, N)$.
+\begin{equation*}
+  \begin{aligned}
+    \delta^n(f)(x_1\otimes\dotsb x_{n+1})
+    =&\phantom{{}+{}}x_1f(x_2\otimes\dotsb\otimes x_{n+1})\\
+    &+\sum_{i=1}^n(-1)^if(x_1\otimes\dotsb x_ix_{i+1}\otimes\dotsb\otimes x_{n+1})\\
+    &+(-1)^{n+1}f(x_1\otimes\dotsb\otimes x_n)x_{n+1}.
+  \end{aligned}
+\end{equation*}% TODO: REVIEW TYPOGRAPHY
+
+The zeroth Hochschild cohomology group is the center of $N$.
+\begin{equation*}
+  H^0(R, N)=\{y\in N\vert\ ry=yr, \forall r\in R\}.
+\end{equation*}
+
+The first Hochschild cohomology group is related to derivatives.
+\begin{equation*}
+  Z^1(R, N)=\{f\vert\ f(x_1\otimes x_2)=f(x_1)x_2+x_1f(x_2), \forall x_1, x_2\in R\}.
+\end{equation*}
+
+If $R$ is free as $K$-module, then the two definitions of Hochschild (co)homology coincide.
+
+Additional Topics:
+
+\subsection{Relation Between Hochschild Cohomology and Group Cohomology}
+
+\begin{proposition}
+  We have the following isomorphisms between $\EXT$ groups,
+  \begin{equation*}
+    \begin{aligned}
+      \EXT_{\BIMOD{\ZG}{\ZG}}^\BCIR(\ZG, \ZG) &\cong \EXT_{\ZG{\textnormal-}\MOD}^\BCIR(\ZZ, {}_{\BCIR}\ZG),\\
+      \EXT^\BCIR_{\BIMOD{\ZG}{\ZG}}(\ZG, \ZG_{\varepsilon}) &= \EXT^\BCIR_{\ZG{\textnormal-}\MOD}(\ZZ, \ZG),
+    \end{aligned}
+  \end{equation*}
+  where the left $\ZG$-module structure of ${}_{\BCIR}\ZG$ is defined by conjugation action.
+\end{proposition}

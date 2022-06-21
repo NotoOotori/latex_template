@@ -83,7 +83,13 @@ An \emph{abelian category} is a pre-abelian category such that for every morphis
 
 The Freyd-Mitchell Embedding Theorem implies that proofs about exactness of sequences in an abelian category can always be obtained by a diagram chase.
 
-\subsection{Homology and Diagram Chasing Lemmas}
+\subsection{Chain Complexes}
+
+Let $C_\CCCIR$ be a complex. Then $\bigoplus C_n$ can be viewed as a graded $R$-module with a square-zero degree $+1$ endomorphism, or as an $R$-module with a square-zero endomorphism $d$ given by $(x_n)_n\mapsto (d_{n+1}(x_{n+1}))_n$.
+
+positive chain complex; negative chain complex
+
+exactness of a sequence of chain complexes
 
 A \emph{split chain complex} is a chain complex with a map $s$ of degree 1 such that $dsd=d$. A \emph{split exact chain complex} is a split chain complex that is exact at each term.
 
@@ -105,6 +111,28 @@ A \emph{split chain complex} is a chain complex with a map $s$ of degree 1 such 
   A chain complex is split exact if and only if the identity chain map is null-homotopic. Therefore, additive functors sends a split exact chain complex to a split exact chain complex.
 \end{proposition}
 
+A \emph{double complex} is a collection $\{C_{p, q}\}$ with
+\begin{equation*}
+  \DDH(p, q)\colon C_{p-1, q}\to C_{p, q} \text{\quad and\quad} \DDV(p, q)\colon C_{p, q}\to C_{p, q-1}
+\end{equation*}
+such that $\DDV\DDV=\DDH\DDH=\DDH\DDV+\DDV\DDH=0$.
+
+A morphism between double complexes is a collection of maps $\alpha_{p, q}$ that commutes with $\DDH$ and $\DDV$.
+
+For a double complex $C_{\CCCIR,\CCCIR}$, define its total complexes $\TOTP(C_{\CCCIR,\CCCIR})$ and $\TOT^\oplus(C_{\CCCIR,\CCCIR})$ by
+\begin{equation*}
+  \TOTP(C_{\CCCIR,\CCCIR})_n = \prod_{p+q=n}C_{p,q}\text{\quad and\quad}\TOT^\oplus(C_{\CCCIR,\CCCIR})_n = \bigoplus_{p+q=n}C_{p,q},
+\end{equation*}
+where differentials are defined by $d=\DDH+\DDV$.
+
+For example, let $C_{\CCCIR}$ be a complex of $\MODR$ and $D_{\CCCIR}$ a complex of $\RMOD$. Then their tensor product is the double complex $C_p\otimes D_q$
+
+\begin{proposition}
+
+\end{proposition}
+
+\subsection{Homology and Diagram Chasing Lemmas}
+
 The homology in degree $n$ defines a functor $H_n\colon\CH(\MODR)\to\MODR$.
 
 \begin{proposition}
@@ -114,12 +142,6 @@ The homology in degree $n$ defines a functor $H_n\colon\CH(\MODR)\to\MODR$.
 \begin{proof}
   Consider the exact sequence $0\to B_n\to Z_n\to H_n\to 0$ and recall that an exact functor preserves all finite limits and finite colimits.
 \end{proof}
-
-Let $C_\CCCIR$ be a complex. Then $\bigoplus C_n$ can be viewed as a graded $R$-module with a square-zero degree $+1$ endomorphism, or as an $R$-module with a square-zero endomorphism $d$ given by $(x_n)_n\mapsto (d_{n+1}(x_{n+1}))_n$.
-
-positive chain complex; negative chain complex
-
-exactness of a sequence of chain complexes
 
 \begin{lemma}[Long Exact Sequence]
   Let $0\to C_\CCCIR'\xrightarrow{i} C_\CCCIR \xrightarrow{p} C_\CCCIR''\to 0$ be an exact sequence in $\CH(\CAT{C})$ for an abelian category $\CAT{C}$, then there is a long exact sequence in $\CAT{C}$.
@@ -452,6 +474,8 @@ The dual of comparison lemma is also true, which is stated as follows.
   Choose an injective resolution $Q_\CCCIR$ for each object $N\in\CAT{C}$. Then the image $GQ_N$ of the deleted resolution $Q_N$ is a complex over $\CAT{D}$. Define $R^nG(N)$ to be $H^n(GQ_N)$.
 
   Let $g\colon N\to N'$ be a morphism in $\CAT{C}$. By the comparison lemma, there is a induced chain map $\check g\colon Q_N\to Q_{N'}'$ between deleted resolutions. Then $G\check g\colon GQ_N\to GQ_{N'}'$ is also a chain map, and we define $R^nG(g)$ to be $H^n(G\check g)$.
+
+  We will show that the sheaf cohomology coincides with the \v{C}ech cohomology when $X$ is paracompact Hausdorff in this manner too.
 \end{definition}
 
 \begin{remark}
@@ -706,3 +730,7 @@ Additional Topics:
   \end{equation*}
   where the left $\ZG$-module structure of ${}_{\BCIR}\ZG$ is defined by conjugation action.
 \end{proposition}
+
+\begin{proof}
+  The first isomorphism is followed by the following adjunction: $FM=M\otimes_{\ZZ}\ZG\colon \ZG{\textnormal-}\MOD\to\BIMOD{\ZG}{\ZG}$, with module structure given by $g(x\otimes y)g'=(gx\otimes gyg')$; $GM=M$, with module structure given by $gx=gxg^{-1}$.
+\end{proof}

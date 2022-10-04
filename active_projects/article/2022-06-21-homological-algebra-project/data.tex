@@ -1,0 +1,196 @@
+\section{Cohomology}
+
+Let's start with calculating cohomology of $\SLtZ$ with integral coefficient. The tool we need is the Mayer-Vietoris sequence, which follows from the following theorem of Whitehead.
+
+\begin{theorem}[Whitehead]
+  Any amalgamation diagram (left) with $\alpha_1, \alpha_2$ injective can be realized by a pushout diagram (right) of $K(\pi, 1)$-complexes such that $X=X_1\cup X_2$ and $Y=X_1\cap X_2$.
+  \begin{equation*}
+    \begin{tikzcd}
+      A & G_2\\
+      G_1 & G
+      \arrow[from=1-1,hook,]{1-2}[]{\alpha_2}
+      \arrow[from=2-1,hook,]{2-2}[]{}
+      \arrow[from=1-1,hook,]{2-1}[]{\alpha_1}
+      \arrow[from=1-2,hook,]{2-2}[]{}
+      \arrow[from=1-1,phantom,]{2-2}[very near end,]{\ulcorner}
+    \end{tikzcd}
+    \qquad\qquad\qquad
+    \begin{tikzcd}
+      Y & X_2\\
+      X_1 & X
+      \arrow[from=1-1,hook,]{1-2}[]{}
+      \arrow[from=2-1,hook,]{2-2}[]{}
+      \arrow[from=1-1,hook,]{2-1}[]{}
+      \arrow[from=1-2,hook,]{2-2}[]{}
+      \arrow[from=1-1,phantom,]{2-2}[very near end,]{\ulcorner}
+    \end{tikzcd}
+  \end{equation*}
+\end{theorem}
+
+\begin{corollary}
+  Given $G=G_1\ast_{A}G_2$ where $A\hookrightarrow G_1$ and $A\hookrightarrow G_2$, there is a homological Mayer-Vietoris sequence
+  \begin{equation*}
+    \dotsb\to H_n(A)\to H_n(G_1)\oplus H_n(G_2)\to H_n(G)\xrightarrow{d} H_{n-1}(A)\to\dotsb,
+  \end{equation*}
+  and a cohomological Mayer-Vietoris sequence
+  \begin{equation*}
+    \dotsb\to H^n(G)\to H^n(G_1)\oplus H^n(G_2)\to H^n(A)\xrightarrow{d} H^{n+1}(G)\to\dotsb,
+  \end{equation*}
+  where those maps except $d$ are induced by the given maps of groups in the amalgamation diagram.
+\end{corollary}
+
+For simplicity let $\CYC{n}$ denote the finite cyclic group of order $n$. Let $r, s$ and $t$ be generators of $\CYC2, \CYC4$ and $\CYC6$ respectively. Define maps $\alpha_1\colon \CYC2\to \CYC4$ sending $r$ to $s^2$ and $\alpha_2\colon \CYC2\to \CYC6$ sending $r$ to $t^3$, and it is a classical result that there is an amalgamation diagram,
+\begin{equation*}
+  \begin{tikzcd}
+    \CYC2 & \CYC6\\
+    \CYC4 & \SLtZ
+    \arrow[from=1-1,hook,]{1-2}[]{\alpha_2}
+    \arrow[from=2-1,hook,]{2-2}[]{}
+    \arrow[from=1-1,hook,]{2-1}[]{\alpha_1}
+    \arrow[from=1-2,hook,]{2-2}[]{}
+    \arrow[from=1-1,phantom,]{2-2}[very near end,]{\ulcorner}
+  \end{tikzcd}
+\end{equation*}
+of which the prove is omitted.
+
+\vspace{\baselineskip}
+
+Next let's calculate maps $\alpha_1^*$ and $\alpha_2^*$ between cohomology groups which induce the map $H^n(\CYC4)\oplus H^n(\CYC6)\to H^n(\CYC2)$ occurred in the Mayer-Vietoris sequence.
+
+Theoretically, if let $P_\CCCIR^2$ and $P_\CCCIR^4$ denote the projective resolution of $\ZZ$ over $\ZZ\CYC2$ and $\ZZ\CYC4$, then $\ZZ\CYC4\otimes_{\CYC2}P_\CCCIR^2$ is a projective complex with a natural $\CYC4$-map $\ZZ\CYC4\otimes_{\CYC2}\ZZ\to \ZZ$ sending $1\otimes 1$ to 1. By comparison lemma, it can extend (not necessarily unique) to a chain map $\ZZ\CYC4\otimes_{\CYC2}P_\CCCIR^2\to P_\CCCIR^4$. Then by applying the functor $\HOM_{\CYC4}(\BLANK, \ZZ)$ and by taking homology, we may obtain the desired map $\alpha_1^*\colon H^n(\CYC4)\to H^n(\CYC2)$.
+
+To give a explicit chain map, let's compute using the periodic resolutions of cyclic groups. We may obtain the following commutative diagram which is exact in rows.
+\begin{equation*}
+  \begin{tikzcd}[column sep=scriptsize]
+    \dotsb & \ZZ\CYC4 & \ZZ\CYC4 & \ZZ\CYC4 & \dotsb & \ZZ\CYC4 & \ZZ\CYC4\otimes_{\CYC2}\ZZ & 0\\
+    \dotsb & \ZZ\CYC4 & \ZZ\CYC4 & \ZZ\CYC4 & \dotsb & \ZZ\CYC4 & \ZZ & 0
+    \arrow[from=1-1,]{1-2}[]{}
+    \arrow[from=1-2,]{1-3}[]{s^2-1}
+    \arrow[from=1-3,]{1-4}[]{1+s^2}
+    \arrow[from=1-4,]{1-5}[]{}
+    \arrow[from=1-5,]{1-6}[]{}
+    \arrow[from=1-6,]{1-7}[]{\varepsilon}
+    \arrow[from=1-7,]{1-8}[]{}
+    \arrow[from=2-1,]{2-2}[]{}
+    \arrow[from=2-2,]{2-3}[]{s-1}
+    \arrow[from=2-3,]{2-4}[]{1+s+s^2+s^3}
+    \arrow[from=2-4,]{2-5}[]{}
+    \arrow[from=2-5,]{2-6}[]{}
+    \arrow[from=2-6,]{2-7}[]{\varepsilon}
+    \arrow[from=2-7,]{2-8}[]{}
+    \arrow[from=1-2,]{2-2}[]{f_{2m+1}}
+    \arrow[from=1-3,]{2-3}[]{f_{2m}}
+    \arrow[from=1-4,]{2-4}[]{f_{2m-1}}
+    \arrow[from=1-6,]{2-6}[]{f_0}
+    \arrow[from=1-7,]{2-7}[]{}
+  \end{tikzcd}
+\end{equation*}
+We may see that the assignment $f_{2m}(1)=1$ and $f_{2m+1}(1)=1+s$ for $m\geq 0$ is valid.
+
+Then we apply the functor $\HOM_{\CYC4}(\BLANK, \ZZ)$ to the deleted diagram (not including the right part after the column of $f_0$) to obtain the following,
+\begin{equation*}
+  \begin{tikzcd}[column sep=scriptsize]
+    \dotsb & \ZZ & \ZZ & \ZZ & \dotsb & \ZZ & 0\\
+    \dotsb & \ZZ & \ZZ & \ZZ & \dotsb & \ZZ & 0
+    \arrow[from=1-1,leftarrow,]{1-2}[]{}
+    \arrow[from=1-2,leftarrow,]{1-3}[]{0}
+    \arrow[from=1-3,leftarrow,]{1-4}[]{2}
+    \arrow[from=1-4,leftarrow,]{1-5}[]{}
+    \arrow[from=1-5,leftarrow,]{1-6}[]{}
+    \arrow[from=1-6,leftarrow,]{1-7}[]{}
+    \arrow[from=2-1,leftarrow,]{2-2}[]{}
+    \arrow[from=2-2,leftarrow,]{2-3}[]{0}
+    \arrow[from=2-3,leftarrow,]{2-4}[]{4}
+    \arrow[from=2-4,leftarrow,]{2-5}[]{}
+    \arrow[from=2-5,leftarrow,]{2-6}[]{}
+    \arrow[from=2-6,leftarrow,]{2-7}[]{}
+    \arrow[from=1-2,leftarrow,]{2-2}[]{f_{2m+1}^*}
+    \arrow[from=1-3,leftarrow,]{2-3}[]{f_{2m}^*}
+    \arrow[from=1-4,leftarrow,]{2-4}[]{f_{2m-1}^*}
+    \arrow[from=1-6,leftarrow,]{2-6}[]{f_0^*}
+  \end{tikzcd}
+\end{equation*}
+where $f_{2m}(1)=1$ and where $f_{2m+1}(1)=2$.
+
+Take homology, and we obtain that all cohomology groups $H^*(\CYC{k}, \ZZ)$ vanish but $H^n(\CYC{k}, \ZZ)=\CYC{k}$ for $n>0$ even, and that the map $\alpha_1^n\colon H^n(\CYC4, \ZZ)\to H^n(\CYC2, \ZZ)$ is the identity for $n=0$, is zero for $n$ odd, and is given by $t\mapsto r$ for $n>0$ even.
+
+By the same argument, we may obtain that the map $\alpha_2^n\colon H^n(\CYC6, \ZZ)\to H^n(\CYC2, \ZZ)$ is the identity for $n=0$, is zero for $n$ odd, and is given by $t\mapsto r$ for $n>0$ even.
+
+\vspace{\baselineskip}
+
+Now we consider the cohomological Mayer-Vietoris sequence
+\begin{equation*}
+  \dotsb\to H^{n-1}(\CYC2)\xrightarrow{d} H^n(\SLtZ)\xrightarrow{\varphi} H^n(\CYC4)\oplus H^n(\CYC6)\xrightarrow{\psi} H^n(\CYC2)\to\dotsb,
+\end{equation*}
+where $\psi$ is induced by $\alpha_1^*$ and $\alpha_2^*$ via the universal property of direct sums.
+
+For $n>0$ even, we have $d=0$ and $\psi$ surjective. Hence $H^n(\SLtZ)$ is the kernel of $\psi$, which is the subgroup of order 12 generated by $(s, t)$.
+
+For $n=0$, we have
+\begin{equation*}
+  0\to H^0(\SLtZ)\xrightarrow{\varphi} \ZZ\oplus\ZZ\xrightarrow{\psi} \ZZ\to\dotsb,
+\end{equation*}
+so $H^0(\SLtZ)\cong \KER(\psi)\cong\ZZ$.
+
+For $n>0$ odd, we have
+\begin{equation*}
+  \dotsb\to H^{n-1}(\CYC4)\oplus H^{n-1}(\CYC6)\xrightarrow{\psi} H^{n-1}(\CYC2)\xrightarrow{d} H^n(\SLtZ)\xrightarrow{\varphi} 0\to\dotsb.
+\end{equation*}
+Since $\psi$ is surjective, we have $H^n(\SLtZ)=0$.
+
+To sum up, we have the following theorem.
+
+\begin{theorem}
+  \begin{equation*}
+    H^n(\SLtZ, \ZZ)=
+    \begin{cases}
+      \ZZ, & n=0;\\
+      0, & n\text{ odd};\\
+      \ZZ\DIV 12\ZZ, & n>0\text{ even}.
+    \end{cases}
+  \end{equation*}
+\end{theorem}
+
+\section{Some Finite Index Subgroups}
+
+There is a class of finite index subgroups called principal congruence subgroups, which we are to introduce. Consider the natural map $\pi_n\colon\SLtZ\to\SL(2, \ZZ\DIV n\ZZ)$ induced by the natural projection $\ZZ\to \ZZ\DIV n\ZZ$. The principal congruence subgroup of level $n$ is defined by the kernel of $\pi$, which is denoted by $\Gamma(n)$. By definition, $\Gamma(n)$ is a finite index subgroup of $\SLtZ$.
+
+There are also finite index subgroups of $\Gamma(n)$, which are therefore finite index subgroups of $\SLtZ$. In particular, there is a free subgroup of rank 2 of $\Gamma(2)$ of finite index, which is generated by the two matrices
+\begin{equation*}
+  \begin{bmatrix}
+    1 & 2\\ 0 & 1
+  \end{bmatrix}
+  \quad\text{and}\quad
+  \begin{bmatrix}
+    1 & 0\\ 2 & 1
+  \end{bmatrix}.
+\end{equation*}
+The subgroup is called the Sanov subgroup, which consists of matrices of the form
+\begin{equation*}
+  \begin{bmatrix}
+    4k+1&2l\\2m&4n+1
+  \end{bmatrix},
+\end{equation*}
+while the principal congruence subgroup $\Gamma(2)$ consists of matrices of the form
+\begin{equation*}
+  \begin{bmatrix}
+    2k+1&2l\\2m&2n+1
+  \end{bmatrix}.
+\end{equation*}
+The product of any two matrices from $\Gamma(2)$ but not in the Sanov subgroup lies in the Sanov subgroup. Hence the Sanov subgroup has index 2 in $\Gamma(2)$.
+
+Denote the free group of rank 2 by $F_2$. By the discussion of the previous section, or by the geometrical fact that the classifying space $K(F_2, 1)$ of $F_2$ is of 1-dimensional, the cohomology $H^n(F_2, \ZZ)$ is zero for $n\geq 2$.
+
+Since torsion elements (i.e. elements of finite order) of $H^n(\SLtZ, \ZZ)$ only appear for $n\geq 2$ even, if we take $i$ to be the inclusion of the Sanov subgroup to $\SLtZ$, then the induced cohomology map $i^*$ always sends torsion elements to zero. It gives a positive answer of the problem for the case of $\SLtZ$ and $M=\ZZ$.
+
+\section{Cohomology with Coefficients}
+
+Let's consider cohomology with coefficients of any $\SLtZ$-module $M$. Since for $n\geq 2$, we have $H^n(F_2, M)=0$, in this case the problem is automatically true. For $n=0$, we have $H^n(F_2, M) = \hom_{F_2}(\ZZ F_2, M)$ is torsion-free, and hence the problem is true.
+
+For $n=1$, the Mayer-Vietoris sequence with coefficients gives the following sequence.
+\begin{equation*}
+  \dotsb\to H^{0}(\CYC4, M)\oplus H^{0}(\CYC6, M)\xrightarrow{\psi} H^{0}(\CYC2, M)\xrightarrow{d} H^1(\SLtZ, M)\xrightarrow{\varphi} 0\to\dotsb.
+\end{equation*}
+Notice that $H^0(C_k, M)=\HOM_{C_k}(\ZZ C_k, M)$, and it is clear that $\psi$ is surjective, and hence $H^1(\SLtZ, M)=0$. Therefore the problem is true for $\SLtZ$ with any coefficient.
+
+For $\SL(d, \ZZ)$, since we know little about its structure, and since its hard to describe and to do calculation about $i^*$ using the standard resolution of $\SL(d, \ZZ)$, we can't say anything about the problem.

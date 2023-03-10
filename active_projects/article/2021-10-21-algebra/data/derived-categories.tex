@@ -1,0 +1,115 @@
+% !TeX root = ../algebra.tex
+
+\chapter{Derived Categories}
+
+In this chapter all complexes are assumed to be cochain ones, and $\CHX$ denotes the category of cochain complexes. Chain maps are referred as morphisms between chain complexes.
+
+Recall that if $X$ is a complex, then the $p$\textsuperscript{th} \emph{translate} $X[p]$ is a complex with degree $n$ part to be $X[p]^n=X^{n+p}$, and with differential $d_{X[p]}^n=(-1)^pd_X^{n+p}$. The sign convention is designed to simplify notation later on. Also for a chain map $f\colon X\to Y$, its \emph{translate} $f[p]$ is a chain map $X[p]\to Y[p]$ given by $f[p]^n=f^{n+p}$.
+
+\section{Mapping Cones and Cylinders}
+
+Let $\CAT C$ be an additive category, and let $f\colon X\to Y$ be a morphism in $\CHX(\CAT C)$. The \emph{mapping cone} $\CONE(f)$ of $f$ is defined as a complex whose degree $n$ part is $Y^n\oplus X^{n+1}$ and whose differential is given by the matrix
+\begin{equation*}
+  \begin{tikzcd}[ampersand replacement=\&,column sep=large,]
+    Y^n\oplus X^{n+1} \& Y^{n+1}\oplus X^{n+2}.
+    \arrow[from=1-1,]{1-2}[]{\begin{BSM}d^n_Y&-f^{n+1}\\0&-d^{n+1}_X\end{BSM}}
+  \end{tikzcd}
+\end{equation*}
+% \begin{equation*}
+%   Y^n\oplus X^{n+1}\xrightarrow{\begin{BSM}d^n_X&-f^{n+1}\\0&-d^{n+1}_Y\end{BSM}}Y^{n+1}\oplus X^{n+2}.
+% \end{equation*}
+% There is a short exact sequence
+% \begin{equation*}
+%   \begin{tikzcd}[ampersand replacement=\&,]
+%     0 \& Y \& \CONE(f) \& X[1] \& 0,
+%     \arrow[from=1-1,]{1-2}[]{}
+%     \arrow[from=1-2,]{1-3}[]{\begin{BSM}1\\0\end{BSM}}[swap,]{\alpha(f)}
+%     \arrow[from=1-3,]{1-4}[]{\begin{BSM}0&-1\end{BSM}}[swap,]{\beta(f)}
+%     \arrow[from=1-4,]{1-5}[]{}
+%   \end{tikzcd}
+% \end{equation*}
+% where the nonzero chain maps are denoted by $\alpha(f)$ and $\beta(f)$ respectively.
+
+One may also construct the \emph{mapping cylinder} $\CYL(f)$ from a chain map $f\colon X\to Y$. The degree $n$ part of $\CYL(f)$ is $X^n\oplus Y^n\oplus X^{n+1}$, and the differential is
+\begin{equation*}
+  \begin{tikzcd}[ampersand replacement=\&,column sep=huge,]
+    X^n\oplus Y^n\oplus X^{n+1} \& X^{n+1}\oplus Y^{n+1}\oplus X^{n+2}.
+    \arrow[from=1-1,]{1-2}[]{\begin{BSM}d^n_X&0&1\\0&d^n_Y&-f^{n+1}\\0&0&-d^{n+1}_X\end{BSM}}
+  \end{tikzcd}
+\end{equation*}
+It's routine to verify that the cylinder is a complex, and that it is actually the cone of $\beta(f)[-1]\colon \CONE(f)[-1]\to X$.
+
+The main reason of studying mapping cones and cylinders is shown in the following commutative diagram with exact rows,
+\begin{equation*}
+  \begin{tikzcd}[ampersand replacement=\&,column sep=large,row sep=huge]
+    \& 0 \& Y \& \CONE(f) \& X[1] \& 0\\
+    0 \& X \& \CYL(f) \& \CONE(f)\& 0\\
+    0 \& X \& Y \& Z \& 0
+    \arrow[from=1-2,]{1-3}[]{}
+    \arrow[from=1-3,]{1-4}[]{\begin{BSM}1\\0\end{BSM}}[swap,]{\alpha(f)}
+    \arrow[from=1-4,]{1-5}[]{\begin{BSM}0&-1\end{BSM}}[swap,]{\beta(f)}
+    \arrow[from=1-5,]{1-6}[]{}
+    \arrow[from=2-1,]{2-2}[]{}
+    \arrow[from=2-2,]{2-3}[]{\begin{BSM}1\\0\\0\end{BSM}}
+    \arrow[from=2-3,]{2-4}[]{\begin{BSM}0&1&0\\0&0&1\end{BSM}}
+    \arrow[from=2-4,]{2-5}[]{}
+    \arrow[from=3-1,]{3-2}[]{}
+    \arrow[from=3-2,]{3-3}[]{f}
+    \arrow[from=3-3,]{3-4}[]{g}
+    \arrow[from=3-4,]{3-5}[]{}
+    \arrow[from=1-3,]{2-3}[]{\begin{BSM}0\\1\\0\end{BSM}}[swap,]{\mu(f)}
+    \arrow[from=1-4,equal,]{2-4}[]{}
+    \arrow[from=2-2,equal,]{3-2}[]{}
+    \arrow[from=2-3,]{3-3}[]{\begin{BSM}f&1&0\end{BSM}}[swap,]{\nu(f)}
+    \arrow[from=2-4,]{3-4}[]{\begin{BSM}g&0\end{BSM}}[swap,]{\varphi}
+  \end{tikzcd}
+\end{equation*}
+where
+$\begin{tikzcd}[cramped, sep=small]
+  0 & X & Y & Z & 0
+  \arrow[from=1-1,]{1-2}[]{}
+  \arrow[from=1-2,]{1-3}[]{f}
+  \arrow[from=1-3,]{1-4}[]{g}
+  \arrow[from=1-4,]{1-5}[]{}
+\end{tikzcd}$
+is an arbitrary short exact sequence. Observe that $\nu(f)\mu(f)=\ID_Y$, and that a chain homotopy equivalence $\mu(f)\nu(f)$ and $\ID_{\CYL(f)}$ is given by the matrix
+\begin{equation*}
+  \begin{tikzcd}[ampersand replacement=\&,column sep=huge,]
+    X^{n}\oplus Y^{n}\oplus X^{n+1} \& X^{n-1}\oplus Y^{n-1}\oplus X^{n}.
+    \arrow[from=1-1,]{1-2}[]{\begin{BSM}0&0&0\\0&0&0\\1&0&0\end{BSM}}
+  \end{tikzcd}
+\end{equation*}
+This gives a pair of chain homotopy equivalences between $Y$ and $\CYL(Y)$. Moreover, since $\nu(f)$ is a quasi-isomorphism, it follows from the five lemma that $\varphi$ is also a quasi-isomorphism (though it is not necessarily a chain homotopy equivalence (Weibel p. 23)).
+
+\section{Triangulated Categories}
+
+definition
+\begin{enumerate}[label={(TR \arabic*)},start=0,labelindent=!,]
+  \item every triangle isomorphic to a distinguished triangle is itself a distinguished triangle;
+  \item 1
+  \item 2
+  \item 3
+  \item 4
+  \item 5
+\end{enumerate}
+over
+
+(TR 3)
+\begin{equation*}
+  \begin{tikzcd}[ampersand replacement=\&,row sep=large]
+    Y \& \CONE(f) \& X[1] \& Y[1]\\
+    Y \& \CONE(f) \& \CONE(\alpha(f)) \& Y[1]
+    \arrow[from=1-1,]{1-2}[]{\begin{BSM}1\\0\end{BSM}}
+    \arrow[from=1-2,]{1-3}[]{\begin{BSM}0&-1\end{BSM}}
+    \arrow[from=1-3,]{1-4}[]{-f[1]}
+    \arrow[from=2-1,]{2-2}[]{\begin{BSM}1\\0\end{BSM}}
+    \arrow[from=2-2,]{2-3}[]{\begin{BSM}1&0\\0&1\\0&0\end{BSM}}
+    \arrow[from=2-3,]{2-4}[]{\begin{BSM}0&0&-1\end{BSM}}
+    \arrow[from=1-1,equal]{2-1}[]{}
+    \arrow[from=1-2,equal]{2-2}[]{}
+    \arrow[from=1-3,]{2-3}[]{\begin{BSM}0\\-1\\f\end{BSM}}
+    \arrow[from=1-4,equal]{2-4}[]{}
+  \end{tikzcd}
+\end{equation*}
+
+differential of $\CONE(\alpha(f))$: $\begin{BSM}d&-f&-1\\0&-d&0\\0&0&-d\end{BSM}$. the second square commutes only in homotopy category, where the chain homotopy is given by $\begin{BSM}0&0\\0&0\\1&0\end{BSM}$

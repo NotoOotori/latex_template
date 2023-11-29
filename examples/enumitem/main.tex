@@ -1,0 +1,214 @@
+\documentclass{article}
+\title{How to \textsf{enumitem}}
+\author{Chen Xuyang}
+\def\version{v0.0.1}
+% \usepackage{lipsum}
+\def\lipsum{Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis.}
+
+\usepackage{enumitem}
+
+\usepackage[a4paper]{geometry}
+\geometry{
+  top = 1.67in,
+  bottom = 1.05in,
+  left = 1.00in,
+  right = 1.00in,
+  headheight = 15pt,
+}
+
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{listings}
+\newcommand{\lstfont}{\ttfamily}
+\newcommand{\textlst}[1]{{\lstfont #1}}
+\newtcblisting{mylisting}{
+  % listing only,
+  % boxsep=0mm,
+  % top=1mm,
+  % bottom=1mm,
+  % middle=1mm,
+  leftlower=0mm,
+  parbox=false,
+  % hbox,
+  colframe=cyan,
+  colback=cyan!10,
+  listing options={
+    basicstyle=\small\lstfont,
+    breaklines=true,
+    columns=fullflexible,
+  },
+}
+\newtcblisting{mylisting2}{
+  listing only,
+  % boxsep=0mm,
+  % top=1mm,
+  % bottom=1mm,
+  % middle=1mm,
+  % hbox,
+  colframe=cyan,
+  colback=cyan!10,
+  listing options={
+    basicstyle=\small\lstfont,
+    breaklines=true,
+    columns=fullflexible,
+  },
+}
+
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{center}
+    {\large\bf\@title}\\
+    \vspace*{\baselineskip}
+    \@author\\
+    \vspace*{\baselineskip}
+    \version\\
+    \@date
+  \end{center}
+  \vspace*{1cm}
+}
+\makeatother
+
+\begin{document}
+  \maketitle
+
+  \begin{mylisting2}
+\documentclass{article}
+\usepackage[inline]{enumitem}
+\setlist*{noitemsep}
+\setlist*[enumerate]{wide}
+\setlist*[enumerate,1]{label={\roman*)}}
+\begin{document}
+  A ring $A$ is a set with two binary operations (addition and multiplication) such that
+  \begin{enumerate}
+    \item $A$ is an abelian group with respect to addition (so that $A$ has a zero element, denoted by $0$, and every $x\in A$ has an (additive) inverse $-x$).
+    \item Multiplication is associative ($(xy)z=x(yz)$) and distributive over addition ($x(y+z)=xy+xz, (y+z)x=yx+zx$).
+  \end{enumerate}
+  We shall consider only rings which are commutative:
+  \begin{enumerate}[resume]
+    \item $xy=yx$ for all $x,y\in A$,
+  \end{enumerate}
+  and have an identity element (denoted by $1$):
+  \begin{enumerate}[resume]
+    \item $\exists 1\in A$ such that $x1=1x=x$ for all $x\in A$.
+  \end{enumerate}
+  The identity element is then unique.
+
+  \vspace*{.5\baselineskip}
+
+  Proposition 1.2. Let $A$ be a ring $\neq 0$. The the following are equivalent:
+  \begin{enumerate}
+    \item $A$ is a field;
+    \item the only ideals in $A$ are $0$ and $(1)$;
+    \item every homomorphism of $A$ into a non-zero ring $B$ is injective
+  \end{enumerate}
+
+  Exercise 1.13.
+  \begin{enumerate*}[series=ex1.13]
+    \item $r(a)\supseteq a$
+  \end{enumerate*}
+  \begin{enumerate}[resume=ex1.13,nosep]
+    \item $r(r(a))=r(a)$
+    \item $r(ab)=r(a\cap b)=r(a)\cap r(b)$
+    \item $r(a)=1\Leftrightarrow a=(1)$
+    \item $r(a+b)=r(r(a)+r(b))$
+    \item if $p$ is prime, $r(p^n)=p$ for all $n>0$.
+  \end{enumerate}
+\end{document}
+  \end{mylisting2}
+
+  \clearpage
+
+  \section{Keys}
+
+  \subsection{Labels and cross references format}
+
+  \begin{mylisting}
+\begin{enumerate}[label={\Alph*}]
+  \item\label{enum1} One can set label format using the key \textlst{label}.
+  \item\label{enum11} A set of starred macros \verb|\alph*|, \verb|\Alph*|, \verb|\arabic*|, \verb|\roman*| and \verb|\Roman*|, without arguments, stand for the current counter.
+\end{enumerate}
+
+To reference an item, \ref{enum11} for example, we simply need to use the \verb|\label| macro to set an identifier, and the \verb|\ref| command to set the reference.
+  \end{mylisting}
+
+  \begin{mylisting}
+\begin{enumerate}[label={\arabic*.}, ref={(\arabic*)}]
+  \item\label{enum2} By default, \textlst{label} sets also the form of cross reference and \verb|\the...|, but one can define a different format with the key \textlst{ref}.
+  \item For example, we've replaced the dot by a pair of parentheses of the previous item \ref{enum2}.
+  \item The \textlst{label}s are not accumulated to form the reference. If one wants, say, something like 1.A from 1) as first level and A) as second level, it's better to set it with the key \textlst{ref}, other than to use \verb|\ref{level1}.\ref{level2}|, which would be both tedious and error-prone.
+    \begin{enumerate}[label*={\Alph*.}, ref={[\arabic{enumi}-\Alph{enumii}]}]
+      \item\label{enum3} The value of the key \textlst{label*} is appended to the parent label.
+    \end{enumerate}
+\end{enumerate}
+
+\ref{enum2} and \ref{enum3} tell us \lipsum
+  \end{mylisting}
+
+  \subsection{Horizontal spacing of labels}
+
+  \begin{mylisting}
+\begin{enumerate}[left=0pt]% equiv. to [labelindent=0pt,leftmargin=*]
+  \item Here we'll illustrate several typical settings of horizontal spacing.Since it's hard to explain what exactly these keys represent, we will leave it for later.
+  \item Try to run these codes on your own machine, and you will get a better understanding of how it works.
+\end{enumerate}
+
+\begin{enumerate}[left=\parindent]
+  \item \lipsum
+  \item \lipsum
+\end{enumerate}
+
+\begin{enumerate}[labelindent=-\parindent, leftmargin=0pt]
+  \item \lipsum
+  \item \lipsum
+\end{enumerate}
+
+\begin{enumerate}[wide]
+  \item Here is an example for a "wide" list.
+  \item With this convenient key, the leftmargin is null and the label is part of the text --- in other word, the items look like ordinary paragraphs.
+\end{enumerate}
+  \end{mylisting}
+
+  % \begin{enumerate}[left= 0pt .. \parindent]
+  %   \item \lipsum
+  %   \item \lipsum
+  % \end{enumerate}
+
+  % \begin{enumerate}[left= \parindent .. 2\parindent]
+  %   \item \lipsum
+  %   \item \lipsum
+  % \end{enumerate}
+
+  % \begin{enumerate}[labelindent = \parindent,
+  %   leftmargin = *
+  %   ]
+  %   \item \lipsum
+  %   \item \lipsum
+  % \end{enumerate}
+
+  % \begin{enumerate}[%
+  %   leftmargin=0pt, labelindent=0pt, labelwidth=\parindent, labelsep=0.5em,
+  %   itemindent=*, listparindent=\parindent, start=9, widest=10]
+  %   \item \lipsum
+  %   \item \lipsum
+  % \end{enumerate}
+
+  \subsection{Compact lists}
+
+  \begin{mylisting}
+\lipsum
+\begin{enumerate}[noitemsep]
+  \item \lipsum
+  \item \lipsum
+\end{enumerate}
+\lipsum
+
+\lipsum
+\begin{enumerate}[nosep]
+  \item \lipsum
+  \item \lipsum
+\end{enumerate}
+\lipsum
+
+\lipsum
+  \end{mylisting}
+
+\end{document}
